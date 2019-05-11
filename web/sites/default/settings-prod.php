@@ -320,7 +320,7 @@ $settings['hash_salt'] = 'libFo16D22vW733wiRe24ZQo6A4F1UwiYGthp3mKeo7T9U7EKdB6-I
  * After finishing the upgrade, be sure to open this file again and change the
  * TRUE back to a FALSE!
  */
-$settings['update_free_access'] = TRUE;
+$settings['update_free_access'] = FALSE;
 
 /**
  * External access proxy settings:
@@ -735,12 +735,12 @@ $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
  *
  * For example:
  * @code
- * $settings['trusted_host_patterns'] = array(
- *   '^example\.com$',
- *   '^.+\.example\.com$',
- *   '^example\.org$',
- *   '^.+\.example\.org$',
- * );
+ */
+ $settings['trusted_host_patterns'] = array(
+   '^odszkodowanieodkuriera\.pl',
+   '^.+\.odszkodowanieodkuriera\.pl',
+ );
+ /*
  * @endcode
  * will allow the site to run off of all variants of example.com and
  * example.org, with all subdomains included.
@@ -796,4 +796,4 @@ $databases['default']['default'] = array (
   'driver' => 'mysql',
 );
 $config_directories['sync'] = 'sites/default/files/config_ZFL1_D_zCX2OsxUwMlCgMNbYRhXi87FjuypLXuCNg4DbPU2wMG_qZ0axkc7i8Ga1iMR3hFeqwg/sync';
-$settings['rebuild_access'] = TRUE;
+$settings['rebuild_access'] = FALSE;
