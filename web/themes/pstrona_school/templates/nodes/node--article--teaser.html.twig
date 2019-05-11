@@ -1,0 +1,22 @@
+<div class="ps-full-blog-list-container" {{ attributes }}>
+    <article class="ps-article wow fadeInUp" style="animation-duration: 0.8s; animation-delay: 0.5s; animation-name: fadeInUp;" data-wow-delay="0.5s" data-wow-duration="0.8s">
+        <div class="ps-article-img hvr-grow-shadow">
+            {{ content.field_image }}
+        </div>
+        <div class="ps-article-teaser">
+            <div class="ps-article-tags">
+                {{ content.field_tags }}
+            </div>
+            <div class="ps-article-title">
+                <h3> <a href="{{ url }}">{{ label }}</a>  </h3>
+            </div>
+            <div class="ps-article-body">
+                {{ content.body }}
+            </div>
+            <div class="ps-article-postmeta">
+                {% set createdDate = node.getCreatedTime|format_date('custom', 'j F, Y') %}
+                <span> {% trans %}Submitted by  {{ author_name }} {% endtrans %} | {{ createdDate }} </span>
+            </div>
+        </div>
+    </article>
+</div>

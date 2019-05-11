@@ -1,0 +1,7 @@
+name: 'Shortcode - Pozytywna strona'
+type: module
+description: 'Implementuje shortcody stworzone przez pozytywna-strona.pl'
+core: 8.x
+package: 'Pozytywna strona'
+dependencies:
+  - shortcode

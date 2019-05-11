@@ -1,0 +1,17 @@
+#edit-advanced details {
+    margin: 0;
+    border: 1px solid #eaeaec;;
+}
+
+#edit-advanced summary {
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    font-weight: 500;
+    background: #393e46;
+    color: white;
+}
+
+#edit-advanced summary:hover {
+    background: #393e46;
+}

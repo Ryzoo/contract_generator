@@ -1,0 +1,141 @@
+<?php
+
+use Drupal\pstrona_school\Controller\ThemeRenderer;
+
+function pstrona_school_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormStateInterface &$form_state, $form_id = NULL) {
+    if (isset($form_id)) {
+        return;
+    }
+
+    ThemeRenderer::configureSettingsForm($form);
+
+    // ustawienia ikon
+    $form['pstrona_school_font_settings'] = [
+        '#type' => 'details',
+        '#title' => t('Ustawienia ikon'),
+        '#description' => t('Zdecyduj które zestawy ikon mają być aktywne.'),
+        '#weight' => -998,
+        '#open' => TRUE,
+    ];
+    $form['pstrona_school_font_settings']['font_fontawesome'] = [
+        '#type' => 'checkbox',
+        '#default_value' => theme_get_setting('font_fontawesome'),
+        '#title' => t("Używaj ikon fontawesome"),
+    ];
+
+    $form['pstrona_school_font_settings']['font_simplelineicons'] = [
+        '#type' => 'checkbox',
+        '#default_value' => theme_get_setting('font_simplelineicons'),
+        '#title' => t("Używaj ikon simplelineicons"),
+    ];
+
+    $form['pstrona_school_font_settings']['font_icofont'] = [
+        '#type' => 'checkbox',
+        '#default_value' => theme_get_setting('font_icofont'),
+        '#title' => t("Używaj ikon icofont"),
+    ];
+
+    // layout
+    $form['pstrona_school_layout_settings'] = [
+        '#type' => 'details',
+        '#title' => t('Ustawienia szablonu strony'),
+        '#description' => t('Zdecyduj które strony mają otwierać się na określonych szablonach. Domyślnie, wszystkie strony otwierają się w szablonie - zawierającym kontener 1140px'),
+        '#weight' => -999,
+        '#open' => TRUE,
+    ];
+
+    $form['pstrona_school_layout_settings']['layout_full'] = [
+        '#type' => 'textarea',
+        '#default_value' => theme_get_setting('layout_full'),
+        '#title' => t("Szablon - pełna szerokość."),
+        '#description' => t('Podawaj kolejno url, oddzielając poszczeólne adresy spacją. Każdy adres rozpoczynaj od znaku / '),
+    ];
+
+}
+
+function pstrona_school_css_alter(&$css) {
+    $fontawesome = theme_get_setting('font_fontawesome', 'pstrona_school');
+    $simplelineicons = theme_get_setting('font_simplelineicons', 'pstrona_school');
+    $icofont = theme_get_setting('font_icofont', 'pstrona_school');
+
+    if (count($css) > 1) {
+        if ($fontawesome) {
+            ThemeRenderer::addCss($css, 'https://use.fontawesome.com/releases/v5.2.0/css/all.css');
+        }
+        if ($simplelineicons) {
+            ThemeRenderer::addCss($css, 'https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css');
+        }
+        if ($icofont) {
+            ThemeRenderer::addCss($css, 'https://allyoucan.cloud/cdn/icofont/1.0.0beta/css/icofont.css');
+        }
+
+        $themeRenderer = new ThemeRenderer($css);
+        $themeRenderer->render();
+    }
+}
+
+function pstrona_school_preprocess_page(&$var) {
+    $actualPath = explode("/", ltrim(strtolower(\Drupal::service('path.alias_manager')
+        ->getAliasByPath((\Drupal::service('path.current')->getPath()))), '/'));
+    $isFront = $var['is_front'];
+    $selectedLayout = '';
+
+    $layoutPath = [
+        "fullPage" => theme_get_setting('layout_full', 'pstrona_school'),
+    ];
+
+    foreach ($layoutPath as $key => $layout) {
+        $layoutFullUrl = str_replace('  ', ' ', strtolower(trim($layout)));
+        $layoutFullUrl = str_replace('\\', '/', $layoutFullUrl);
+        $layoutUrls = explode(' ', $layoutFullUrl);
+
+        if (strlen($layout) > 0) {
+            foreach ($layoutUrls as $url) {
+                $layoutUrl = explode("/", ltrim($url, '/'));
+
+                $isSame = FALSE;
+
+                foreach ($layoutUrl as $index => $urlPart) {
+
+                    if (isset($actualPath[$index])) {
+                        $isSame = $actualPath[$index] === $urlPart;
+                        $isSame = $isSame || ($isFront && ($urlPart === '' || $urlPart === '<front>'));
+                        $isSame = $isSame || ($urlPart === "*");
+
+                        if (!$isSame) {
+                            break;
+                        }
+                    }
+                    else {
+                        if ($isSame && $urlPart[$index - 1] === "*" || ($isFront && ($urlPart[$index - 1] === '' || $urlPart[$index - 1] === '<front>'))) {
+                            $isSame = TRUE;
+                        }
+                        else {
+                            $isSame = FALSE;
+                        }
+                        break;
+                    }
+                }
+
+                if ($isSame) {
+                    $selectedLayout = $key;
+                    break;
+                }
+            }
+        }
+
+        if (strlen($selectedLayout) > 0) {
+            break;
+        }
+    }
+
+
+    switch ($selectedLayout) {
+        case "fullPage":
+            $var['container_class'] = 'container-fluid';
+            break;
+        default:
+            $var['container_class'] = 'container';
+            break;
+    }
+}

@@ -1,0 +1,58 @@
+.layout-node-form{
+  position: relative;
+}
+
+.layout-region-node-secondary {
+  background: #eaebed;
+  padding: 35px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  width: 360px;
+  display: none;
+  border-radius: 3px;
+  margin-left: -26px;
+}
+.layout-region-node-secondary div#edit-revision-information{
+  text-align: center;
+}
+
+.layout-region-node-secondary label{
+  width: 100%;
+}
+
+.layout-region-node-secondary div#edit-meta-published,
+.layout-region-node-secondary div#edit-meta-changed,
+.layout-region-node-secondary div#edit-meta-author{
+  margin: 0;
+  font-size: 12px;
+  padding: 0 15px;
+  line-height: 12px;
+  text-align: center;
+}
+
+.sidebar-button {
+  font-size: 36px;
+  padding: 10px;
+  border-radius: 3px;
+  background: #7f7caf;
+  color: white;
+  z-index: 11;
+  transition: all .3s;
+}
+
+.sidebar-button:hover {
+  background: #918ec1;
+  cursor: pointer;
+}
+
+.sidebar-content {
+  position: absolute;
+  right: -35px;
+  top: 0;
+  display: flex;
+  align-items: flex-start;
+  z-index: 10;
+}
+
+.layout-region-node-main {
+  width: 100%;
+}

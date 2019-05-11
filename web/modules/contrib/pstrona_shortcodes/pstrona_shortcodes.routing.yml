@@ -1,0 +1,45 @@
+pstrona_shortcodes_ajax_shortcodes_list:
+  path: '/ajax/pstrona_shortcodes/shortcodes_list'
+  defaults:
+    _controller: '\Drupal\pstrona_shortcodes\Controller\pstrona_shortcodesController::pstrona_shortcodes_ajax_shortcodes_list'
+  requirements:
+    _custom_access: '\Drupal\pstrona_shortcodes\Controller\pstrona_shortcodesController::access'
+
+pstrona_shortcodes_ajax_get_icon_list:
+  path: '/ajax/pstrona_shortcodes/ajax_get_icon_list'
+  defaults:
+    _controller: '\Drupal\pstrona_shortcodes\Controller\pstrona_shortcodesController::pstrona_shortcodes_ajax_get_icon_list'
+  requirements:
+    _custom_access: '\Drupal\pstrona_shortcodes\Controller\pstrona_shortcodesController::access'
+
+pstrona_shortcodes_ajax_get_settings_html:
+  path: '/ajax/pstrona_shortcodes/get_settings_html'
+  defaults:
+    _controller: '\Drupal\pstrona_shortcodes\Controller\pstrona_shortcodesController::pstrona_shortcodes_ajax_get_settings_html'
+  methods:  [POST]
+  requirements:
+    _custom_access: '\Drupal\pstrona_shortcodes\Controller\pstrona_shortcodesController::access'
+
+pstrona_shortcodes_ajax_delete_file:
+  path: '/ajax/pstrona_shortcodes/ajax_delete_file'
+  defaults:
+    _controller: '\Drupal\pstrona_shortcodes\Controller\pstrona_shortcodesController::pstrona_shortcodes_ajax_delete_file'
+  methods:  [POST]
+  requirements:
+    _custom_access: '\Drupal\pstrona_shortcodes\Controller\pstrona_shortcodesController::access'
+
+pstrona_shortcodes_ajax_shortcodes_filtered_list:
+  path: '/ajax/pstrona_shortcodes/shortcodes_filtered_list'
+  defaults:
+    _controller: '\Drupal\pstrona_shortcodes\Controller\pstrona_shortcodesController::pstrona_shortcodes_ajax_shortcodes_filtered_list'
+  methods:  [POST]
+  requirements:
+    _custom_access: '\Drupal\pstrona_shortcodes\Controller\pstrona_shortcodesController::access'
+
+pstrona_shortcodes_ajax_send_file:
+  path: '/ajax/pstrona_shortcodes/ajax_send_file'
+  defaults:
+    _controller: '\Drupal\pstrona_shortcodes\Controller\pstrona_shortcodesController::pstrona_shortcodes_ajax_send_file'
+  methods:  [POST]
+  requirements:
+    _custom_access: '\Drupal\pstrona_shortcodes\Controller\pstrona_shortcodesController::access'

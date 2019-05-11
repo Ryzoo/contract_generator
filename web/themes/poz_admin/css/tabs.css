@@ -1,0 +1,59 @@
+#block-poz-admin-primary-local-tasks {
+    top: 24px;
+    position: relative;
+}
+
+#block-poz-admin-primary-local-tasks a {
+    font-weight: normal;
+    text-transform: uppercase;
+    float: left;
+}
+
+#block-poz-admin-primary-local-tasks .tabs {
+    float: none;
+    list-style: none;
+    position: relative;
+    text-align: left;
+    margin: 0;
+}
+
+#block-poz-admin-primary-local-tasks .tabs li {
+    float: left;
+    display: block;
+    position: relative;
+}
+
+#block-poz-admin-primary-local-tasks .tabs a {
+    display: block;
+    padding: 14px 21px;
+    border-radius: 2px 2px 0 0;
+    font-size: 16px;
+    background: #7f7caf;
+    cursor: pointer;
+    color: white;
+}
+
+#block-poz-admin-primary-local-tasks .tabs li:not(.is-active) a:hover {
+    background: #7471a0;
+    transition: 0.3s;
+}
+
+#block-poz-admin-primary-local-tasks .tabs .is-active {
+    border-radius: 2px 2px 0 0;
+    top: -5px;
+    background: #686690;
+}
+
+#block-poz-admin-primary-local-tasks .tabs .is-active a {
+    top: 5px;
+    position: relative;
+}
+
+#block-poz-admin-primary-local-tasks .tabs>li {
+    margin: 0;
+}
+
+.is-collapsible .tabs__trigger,
+.is-horizontal .tabs__trigger {
+    display: none;
+}

@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i');
+@import "base";
+
+// pageColorsTMP jest generowane autmatycznie przez szablon podczas komiplacji
+@import "pageColorsTMP";
+@import "variables";
+@import "pagePreloader";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+* {
+    box-sizing: border-box;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    button, button:hover, button:active, button:focus, a, a:hover, a:active, a:focus {
+        outline: 0;
+    }
+
+    @media(max-width: 576px) {
+        text-align: center;
+    }
+}
+
+input[type="checkbox"]{
+    -webkit-appearance: checkbox !important;
+    -moz-appearance: checkbox !important;
+    appearance: checkbox !important;
+}
+
+input[type="radio"]{
+    -webkit-appearance: radio !important;
+    -moz-appearance: radio !important;
+    appearance: radio !important;
+}
+
+html, body {
+    font-family: 'Open Sans', sans-serif !important;
+    font-size: 14px;
+    font-weight: 300;
+    color: #666;
+    width: 100%;
+}
+.col {
+    min-height: 0;
+}
+
+// base elements
+@import "elements/containers";
+@import "elements/forms";
+@import "elements/headers";
+@import "elements/lists";
+@import "elements/buttons";
+@import "elements/links";
+@import "elements/paragraphs";
+@import "elements/dividers";
+@import "elements/base/blog";
+
+// shortcode elements
+@import "elements/shortcodes/flags";
+@import "elements/shortcodes/topbar";
+@import "elements/shortcodes/footerWithMenu";
+@import "elements/shortcodes/breadcrumbs";
+@import "elements/shortcodes/navigation";
+@import "elements/shortcodes/banner";
+@import "elements/shortcodes/accordion";
+@import "elements/shortcodes/divider";
+@import "elements/shortcodes/quote";
+@import "elements/shortcodes/dropcap";
+@import "elements/shortcodes/icon";
+@import "elements/shortcodes/protected";
+@import "elements/shortcodes/map";
+@import "elements/shortcodes/slider";
+@import "elements/shortcodes/gallery";
+@import "elements/shortcodes/counters";
+@import "elements/shortcodes/tabs";

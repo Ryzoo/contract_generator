@@ -1,0 +1,25 @@
+ul li {
+    padding-left: 5px;
+}
+
+ul {
+    margin-bottom: 28px;
+}
+
+.ps-ordered-list {
+    list-style-type: decimal;
+    ul {
+        list-style-type: lower-alpha;
+        ul {
+            list-style-type: lower-roman;
+        }
+    }
+}
+
+.ps-unstyled-list {
+    list-style-type: none;
+    padding-left: 0;
+    ul {
+        list-style-type: none;
+    }
+}

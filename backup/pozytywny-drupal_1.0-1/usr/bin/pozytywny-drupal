@@ -1,0 +1,130 @@
+#!/usr/bin/env python
+
+import sys
+import os
+import os.path
+import subprocess
+import time
+
+actualDir = os.getcwd()
+
+def init(gitPath=None):
+    print "Inicjalizacja projektu z gita..."
+    thisPath = "https://biuroPozytywnaStrona@bitbucket.org/pozstrona/przedszole_drupal.git"
+    if gitPath:
+        thisPath = gitPath
+    subprocess.call("sudo apt install docker",shell=True)
+    subprocess.call("sudo apt install curl",shell=True)
+    subprocess.call("sudo curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose",shell=True)
+    subprocess.call("sudo chmod +x /usr/local/bin/docker-compose",shell=True)
+    haveIpInHosts = 0
+    try:
+        haveIpInHosts = subprocess.check_output(["grep", "drupal.docker.localhost", "/etc/hosts"])
+        haveIpInHosts = len(haveIpInHosts)
+    except subprocess.CalledProcessError as grepexc:                                                                                                   
+        haveIpInHosts = 0
+
+    if haveIpInHosts == 0:
+        subprocess.call("sudo echo '127.0.0.1 drupal.docker.localhost 127.0.0.1 portainer.drupal.docker.localhost' >> /etc/hosts",shell=True)
+
+    subprocess.call("sudo git clone "+thisPath,shell=True)
+    subprocess.call("cd "+actualDir+"/przedszkole_drupal && sudo git checkout dev",shell=True)
+    print "Inicjalizacja projektu zakonczona..."
+
+def start():
+    if os.path.isfile("docker-compose.yml"):
+        print "Budowanie serwisu..."
+        print "Uruchamianie dockera..."
+        subprocess.call("sudo chmod -R 777 "+actualDir+"/web",shell=True)
+        subprocess.call("sudo chmod 775 "+actualDir+"/web/sites/default",shell=True)
+        subprocess.call("sudo chmod 775 "+actualDir+"/web/sites/default/settings.php",shell=True)
+        subprocess.call("sudo chmod 775 "+actualDir+"/web/sites/default/services.yml",shell=True)
+        subprocess.call("sudo chmod 777 "+actualDir+"/mariadb-init",shell=True)
+        subprocess.call("sudo docker-compose up -d",shell=True)
+        print "Docker uruchomiony."
+        time.sleep( 10 )
+        clearCache()
+        print "Budowanie serwisu zakonczone."
+        print "Drupal jest dostepny pod adresem: http://drupal.docker.localhost:8000"
+    else:
+        print "W danym katalogu nie istnieje plik docker-compose.yml. Przejdz do odpowiedniego katalogu."
+
+def stop(dbDump="dump"):
+    if os.path.isfile("docker-compose.yml"):
+        print "Konczenie pracy..."
+        if dbDump == "dump":
+            dumpDb()
+        print "Zatrzymywanie dockera..."
+        subprocess.call("sudo docker stop $(docker ps -a -q)",shell=True)
+        print "Docker zatrzymany."
+        print "Czyszczenie po dockerze..."
+        subprocess.call("sudo docker rm $(docker ps -a -q)",shell=True)
+        subprocess.call("sudo docker volume ls -qf dangling=true | xargs -r docker volume rm", shell=True)
+        print "Czyszczenie zakonczone."
+    else:
+        print "W danym katalogu nie istnieje plik docker-compose.yml. Przejdz do odpowiedniego katalogu."
+
+def dumpDb():
+    if os.path.isfile("docker-compose.yml"):
+        print "Zrzut bazy danych..."
+        subprocess.call("sudo docker-compose exec mariadb sh -c 'exec mysqldump -uroot -proot -B przedszkole_drupal' > przedszkole_drupal.sql",shell=True)
+        subprocess.call("sudo gzip przedszkole_drupal.sql",shell=True)
+        subprocess.call("sudo rm -rf "+actualDir+"/mariadb-init/*",shell=True)
+        subprocess.call("sudo mv "+actualDir+"/przedszkole_drupal.sql.gz "+actualDir+"/mariadb-init/",shell=True)
+        print "Zrzut bazy danych zakonczony. Sciezka do bazy: "+actualDir+"/mariadb-init/przedszkole_drupal.sql"
+    else:
+        print "W danym katalogu nie istnieje plik docker-compose.yml. Przejdz do odpowiedniego katalogu."
+
+def clearCache():
+    if os.path.isfile("docker-compose.yml"):
+        print "Czyszczenie cashu..."
+        subprocess.call("docker exec przedszkole_drupal_php sh -c 'exec drush cr'",shell=True)
+        print "Czyszczenie cashu zakonczone"
+    else:
+        print "W danym katalogu nie istnieje plik docker-compose.yml. Przejdz do odpowiedniego katalogu."
+
+def updateAll():
+    print "updateAll - w przygotowaniu"
+
+def updateModule():
+    print "updateModule - w przygotowaniu"
+
+def updateCore():
+    print "updateCore - w przygotowaniu"
+
+if len(sys.argv) == 1:
+    print "Podstawowe parametry do uzycia:"
+    print "-- init         -  inicjalizuje projekt przedszkole z gita [mozna po argumencie podac url do innego], oraz instaluje zaleznosci, kofiguruje hosty."
+    print "-- start        -  serwuje nam dzialajacego drupala z najnowsza baza za pomoca dockera"
+    print "-- stop         -  zapisuje baze, zamyka i sprzata po dockerze [jesli nie chcemy zrzuca bazy dopisujemy noDump]"
+    print "-- clearCache   -  czyscie i buduje na nowo drupal cache"
+    print "-- dumpDb       -  robi zrzut aktualnej bazy i podmienia stara kopie na nowa"
+    print "-- updateAll    -  w przygotowaniu"
+    print "-- updateModule -  w przygotowaniu"
+    print "-- updateCore   -  w przygotowaniu"
+else:
+    firstArg = sys.argv[1]
+    if firstArg == 'start':
+        start()
+    elif firstArg == 'stop':
+        if len(sys.argv) >=3:
+            stop(sys.argv[2])
+        else:
+            stop()
+    elif firstArg == 'init':
+        if len(sys.argv) >=3:
+            init(sys.argv[2])
+        else:
+            init()
+    elif firstArg == 'clearCache':
+        clearCache()
+    elif firstArg == 'dumpDb':
+        dumpDb()
+    elif firstArg == 'updateAll':
+        updateAll()
+    elif firstArg == 'updateModule':
+        updateModule()
+    elif firstArg == 'updateCore':
+        updateCore()
+    else:
+        print "Nie ma takiego polecenia"

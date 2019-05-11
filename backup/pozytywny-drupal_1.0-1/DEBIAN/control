@@ -1,0 +1,12 @@
+Package: pozytywny-drupal
+Name: Pozytywny Drupal
+Version: 1.0-1
+Section: base
+Priority: optional
+Architecture: amd64
+Depends: python (>= 2.7.12)
+Maintainer: Grzegorz Kastelik <g.kastelik@gmail.com>
+Author: Grzegorz Kastelik <g.kastelik@gmail.com>
+Homepage: https://pozytywna-strona.pl
+Website: https://pozytywna-strona.pl
+Description: Program do automatyzacji tworzenia z użyciem CMS'a Drupal 8

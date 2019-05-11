@@ -1,0 +1,49 @@
+$icomoon-font-family: "ps-shortcode-font" !default;
+$icomoon-font-path: "./fonts" !default;
+
+$ps-shortcode-icon-edit: "\e905";
+$ps-shortcode-icon-copy: "\e92c";
+$ps-shortcode-icon-remove: "\e9ac";
+
+
+@font-face {
+  font-family: '#{$icomoon-font-family}';
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?3t9fo8');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?3t9fo8#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?3t9fo8') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?3t9fo8') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?3t9fo8##{$icomoon-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="ps-shortcode-icon-"], [class*=" ps-shortcode-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$icomoon-font-family}' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ps-shortcode-icon-edit {
+  &:before {
+    content: $ps-shortcode-icon-edit;
+  }
+}
+.ps-shortcode-icon-copy {
+  &:before {
+    content: $ps-shortcode-icon-copy;
+  }
+}
+.ps-shortcode-icon-remove {
+  &:before {
+    content: $ps-shortcode-icon-remove;
+  }
+}

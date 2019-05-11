@@ -1,0 +1,88 @@
+/*----------------*/
+/*** Accordion ***/
+/*---------------*/
+
+.ps-accordion {
+  width: 100%;
+  h4 {
+    text-transform: uppercase;
+  }
+  i {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.4s all;
+    margin-right: 20px;
+
+  }
+  .ps-accordion-text {
+    display: none;
+    padding-left: 60px;
+  }
+  h4:hover {
+    cursor: pointer;
+  }
+}
+
+.ps-accordion-container {
+  width: 100%;
+}
+
+/*-------------------*/
+/*** Accordion v1 ***/
+/*------------------*/
+
+.ps-accordion-v1 {
+  i.ps-accordion-hover {
+    color: #fff;
+    background-color: $primary;
+  }
+}
+
+/*-------------------*/
+/*** Accordion v2 ***/
+/*------------------*/
+
+.ps-accordion-v2 {
+  h4 {
+    border: 1px solid #cccccc;
+  }
+  h4.ps-accordion-hover {
+    color: white;
+    background-color: $primary;
+  }
+}
+
+/*-------------------*/
+/*** Accordion v3 ***/
+/*------------------*/
+
+.ps-accordion-v3 {
+  margin-bottom: 15px;
+  h4 {
+    background-color: #eff2f7;
+    margin-bottom: 0;
+    i {
+      margin-right: 15px;
+      transition: all .15s ease-out;
+    }
+  }
+  .ps-accordion-text {
+    padding: 10px;
+    border: 1px solid $primary;
+    border-top: none;
+  }
+}
+
+.ps-accordion-v3.ps-accordion-hover {
+  h4 {
+    color: white;
+    background-color: $primary;
+    i {
+      margin-right: 20px;
+    }
+  }
+}

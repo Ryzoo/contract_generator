@@ -1,0 +1,25 @@
+preloader:
+  version: 1.x
+  css:
+    theme:
+      css/pagePreloader.css: { }
+global-styling:
+  version: 1.x
+  css:
+    theme:
+      css/_renderedStyle.css: { minified: true }
+      https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css: { type: external, minified: true }
+      https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.1/css/hover-min.css: { type: external, minified: true }
+      https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.4.1/jquery.fancybox.min.css : { type: external, minified: true }
+      css/custom.css: {}
+global-scripts:
+  version: 1.x
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.4.1/jquery.fancybox.min.js : { type: external, minified: true, attributes: { async: true, defer: true } }
+    https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js: { type: external, minified: true, attributes: { async: true, defer: true } }
+    https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js: { type: external, minified: true, attributes: { async: true, defer: true } }
+    https://cdnjs.cloudflare.com/ajax/libs/jarallax/1.10.4/jarallax.min.js: { type: external, minified: true, attributes: { async: true, defer: true } }
+    js/main.js: { minified: false, attributes: { async: true, defer: true } }
+
+  dependencies:
+    - core/jquery

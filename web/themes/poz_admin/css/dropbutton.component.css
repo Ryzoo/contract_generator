@@ -1,0 +1,118 @@
+.dropbutton-widget {
+    position: relative;
+    width: 200px;
+    max-width: 300px;
+    padding: 0;
+    background: #fff;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    outline: none;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.dropbutton-multiple .dropbutton {
+    background-color: #ffffff  !important;
+    border: 1px solid #8493a7  !important;
+    color: #6f7b8f !important;
+}
+
+.dropbutton-widget .dropbutton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    border: 1px solid #8493a7;
+    color: #6f7b8f;
+    list-style: none;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    overflow: hidden;
+}
+
+.dropbutton-widget .dropbutton li {
+    padding: 0 10px;
+}
+
+.dropbutton-widget .dropbutton li a {
+    display: block;
+    text-decoration: none;
+    color: #6f7b8f;
+    padding: 5px 0;
+    transition: all 0.3s ease-out;
+}
+
+.dropbutton-widget .dropbutton li i {
+    margin-right: 5px;
+    color: inherit;
+    vertical-align: middle;
+}
+
+#edit-displays .edit-display-settings-top .dropbutton-wrapper li:not(:first-child) input:hover,
+.dropbutton-widget .dropbutton li:hover:not(:first-child) a {
+    color: #abd6f4;
+}
+
+.dropbutton-wrapper.open .dropbutton li:first-child {
+    box-shadow: none;
+}
+
+.dropbutton-wrapper.open .dropbutton li button,
+.dropbutton-wrapper.open .dropbutton li:first-child a {
+    color: #6f7b8f;
+}
+
+.dropbutton-wrapper.open .dropbutton {
+    max-height: 400px;
+    max-width: 300px;
+    width: 100%;
+}
+
+.dropbutton-wrapper.open .dropbutton-widget {
+    min-width: 200px;
+}
+
+#edit-displays .dropbutton-widget {
+    width: 175px;
+}
+
+#edit-displays .views-display-top .dropbutton-wrapper {
+    top: 4px;
+}
+
+#edit-displays .edit-display-settings-top .dropbutton-wrapper li input {
+    padding-left: 0;
+}
+
+#edit-displays .edit-display-settings-top .dropbutton-wrapper li input:hover {
+    box-shadow: none;
+}
+
+#edit-displays .edit-display-settings-top .dropbutton li:first-child a {
+    padding: 0;
+}
+
+#edit-displays #edit-display-settings-main .dropbutton-wrapper.open .dropbutton-widget {
+    min-width: 100px;
+}
+
+#edit-displays #edit-display-settings-main .dropbutton-widget {
+    width: 100px;
+}
+
+#edit-displays #edit-display-settings-main .dropbutton-widget li a {
+    padding: 0;
+}
+
+@media screen and (max-width: 1172px) {
+    .dropbutton-widget {
+        width: 165px;
+    }
+}

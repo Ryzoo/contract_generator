@@ -1,0 +1,22 @@
+global-styling:
+  version: 1.x
+  css:
+    base:
+      css/custom.css: {}
+      css/dialog.css: {}
+      css/buttons.css: {weight: 1000}
+      css/content-header.css: {}
+      css/breadcrumb.css: {weight: 1000}
+      css/form.css: {}
+      css/tables.css: {weight: 1000}
+      css/elements.css: {weight: 1000}
+      css/dropbutton.component.css: {weight: 1000}
+      css/dropbutton.css: {weight: 1000}
+      css/entity-meta.css: {}
+      css/tabs.css: {}
+      css/vertical-tabs.css: {weight: 1000}
+      css/system-status-counter.css: {}
+      css/settings-widget.css: {}
+  js:
+    js/slide-details.js: {}
+    js/custom.js: {}

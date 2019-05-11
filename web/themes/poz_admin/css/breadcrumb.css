@@ -1,0 +1,68 @@
+#block-poz-admin-breadcrumbs {
+    padding: 20px 0 20px 40px;
+}
+
+.breadcrumb {
+    padding-bottom: 0;
+}
+
+.breadcrumb ol {
+    list-style-type: none;
+}
+
+.breadcrumb ol li::before,
+.breadcrumb ol li::after {
+    content: "" !important;
+    position: absolute;
+    left: 0;
+    height: 50%;
+    width: 100%;
+    background: #8493a7;
+    z-index: 0;
+}
+
+.breadcrumb ol li::before {
+    top: 0;
+    transform: skew(20deg);
+}
+
+.breadcrumb ol li::after {
+    bottom: 0;
+    transform: skew(-20deg);
+}
+
+.breadcrumb ol li {
+    margin: 2px 0;
+    display: inline-block;
+    position: relative;
+}
+
+.breadcrumb ol li:last-child a {
+    cursor: default;
+}
+
+.breadcrumb ol li:last-child::before,
+.breadcrumb ol li:last-child::after {
+    background: #6f7b8f;
+}
+
+.breadcrumb ol li:not(:last-child):hover::before,
+.breadcrumb ol li:not(:last-child):hover::after {
+    background: #6f7b8f;
+}
+
+.breadcrumb ol li a {
+    display: inline-block;
+    position: relative;
+    line-height: 2.5;
+    padding: 0 20px;
+    color: #fff;
+    text-decoration: none;
+    z-index: 1;
+}
+
+@media screen and (max-width: 313px) {
+    .breadcrumb ol li::before {
+        top: 1px;
+    }
+}

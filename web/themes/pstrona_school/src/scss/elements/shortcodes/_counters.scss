@@ -1,0 +1,91 @@
+.ps-counter {
+    width: 100%;
+    padding: 5px;
+    max-width: 200px;
+    margin: auto;
+    margin-top: 2rem;
+
+    .ps-counter-in{
+        width: 100%;
+        border: solid;
+        position: relative;
+        transition: all .2s;
+    }
+
+    .ps-counter-icon {
+        margin: auto;
+        display: block;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .ps-counter-number {
+        transition: all .2s;
+        font-size: 35px;
+        font-weight: 100;
+        text-align: center;
+        -webkit-font-smoothing: antialiased;
+        margin: 0;
+        @media(max-width:900px){
+            font-size: 25px;
+        }
+    }
+}
+
+.ps-counter-circle-full{
+    .ps-counter-in{
+        padding-top: 100%;
+        border-radius: 100%;
+        .ps-counter-content{
+            position: absolute;
+            transform: translate(-50%,-50%);
+            top: 50%;
+            left: 50%;
+            width: 100%;
+        }
+    }
+}
+
+.ps-counter-circle-bordered{
+    .ps-counter-in{
+        padding-top: 100%;
+        border-radius: 100%;
+        background: transparent !important;
+        .ps-counter-content{
+            position: absolute;
+            transform: translate(-50%,-50%);
+            top: 50%;
+            left: 50%;
+            width: 100%;
+        }
+    }
+}
+
+.ps-counter-rectangle-full{
+    .ps-counter-in{
+        padding-top: 100%;
+        border-radius: 5%;
+        .ps-counter-content{
+            position: absolute;
+            transform: translate(-50%,-50%);
+            top: 50%;
+            left: 50%;
+            width: 100%;
+        }
+    }
+}
+
+.ps-counter-rectangle-bordered{
+    .ps-counter-in{
+        padding-top: 100%;
+        background: transparent !important;
+        border-radius: 5%;
+        .ps-counter-content{
+            position: absolute;
+            transform: translate(-50%,-50%);
+            top: 50%;
+            left: 50%;
+            width: 100%;
+        }
+    }
+}

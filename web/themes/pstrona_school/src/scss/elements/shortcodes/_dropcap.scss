@@ -1,0 +1,24 @@
+.ps-dropcap-v1 p:first-child:first-letter {
+  font-size: 2rem;
+  line-height: 2rem;
+  border: 1px solid #DBDADB;
+  color: $primary;
+  float: left;
+  padding: 5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+.ps-dropcap-v2 p:first-child:first-letter {
+  font-size: 2rem;
+  line-height: 2rem;
+  border: 1px solid $primary;
+  background-color: $primary;
+  color: white;
+  float: left;
+  padding: 5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-right: 5px;
+}

@@ -1,0 +1,21 @@
+<div class="ps-blog-list-container" {{ attributes }}>
+    <article class="ps-article">
+        <div class="ps-article-img">
+            {{ content.field_image }}
+        </div>
+        <div class="ps-article-postmeta">
+            {% set createdDate = node.getCreatedTime|format_date('custom', 'j F, Y') %}
+            <span> {% trans %}Submitted by  {{ author_name }} {% endtrans %} | {{ createdDate }} </span>
+            {{ content.field_tags }}
+        </div>
+        <div class="ps-article-title">
+            <h2> {{ label }} </h2>
+        </div>
+        <div class="ps-article-body">
+            {{ content.body }}
+        </div>
+        <div class="ps-article-comments">
+            {{ content.comment }}
+        </div>
+    </article>
+</div>

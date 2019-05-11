@@ -1,0 +1,64 @@
+.btn-texture {
+    color: #fff;
+    transition:  all .3s ease-in-out;
+}
+
+.btn-texture:hover {
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.ps-button-disabled {
+    pointer-events: none;
+    opacity: 0.65;
+}
+
+.ps-button-icon-left {
+    margin-right: 5px;
+    line-height: inherit;
+}
+
+.ps-button-icon-right {
+    margin-left: 5px;
+    line-height: inherit;
+}
+
+.btn-texture-primary{
+    background-color: opacify($primary, 0.6);
+    background-blend-mode: luminosity;
+}
+
+.btn-texture-secondary{
+    background-color: opacify($secondary, 0.6);
+    background-blend-mode: luminosity;
+}
+
+.btn-texture-success{
+    background-color: opacify($success, 0.6);
+    background-blend-mode: luminosity;
+}
+
+.btn-texture-danger{
+    background-color: opacify($danger, 0.6);
+    background-blend-mode: luminosity;
+}
+
+.btn-texture-warning{
+    background-color: opacify($warning, 0.6);
+    background-blend-mode: luminosity;
+}
+
+.btn-texture-info{
+    background-color: opacify($info, 0.6);
+    background-blend-mode: luminosity;
+}
+
+.btn-texture-light{
+    background-color: opacify($light, 0.6);
+    background-blend-mode: luminosity;
+}
+
+.btn-texture-dark{
+    background-color: opacify($dark, 0.6);
+    background-blend-mode: luminosity;
+}

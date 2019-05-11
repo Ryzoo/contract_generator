@@ -1,0 +1,173 @@
+.button {
+  position: relative;
+  background-color: #6f7b8f;
+  border: none;
+  padding: 7px 15px;
+  text-align: center;
+  -webkit-transition-duration: 0.4s;
+  display: inline;
+  box-sizing: border-box;
+  transition-duration: 0.4s;
+  overflow: hidden;
+      max-width: 350px;
+  border-radius: 2px;
+  line-height: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+a.button{
+    display: flex;
+    float: left;
+}
+
+.button:hover {
+  background: #8493a7;
+  box-shadow: 0px 2px 3px 2px #dadada;
+  text-decoration: none;
+}
+
+.button:disabled{
+  background-color: #a6b6cc;
+  color: #d8e1ec;
+  cursor: not-allowed !important;
+}
+
+.button:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s;
+  text-decoration: none;
+}
+
+.select-arrow {
+  position: relative;
+}
+
+.select-arrow:after {
+  content: "";
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-style: solid;
+  border-width: 0.3333em 0.3333em 0;
+  display: block;
+  height: 0;
+  line-height: 0;
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  width: 0;
+  overflow: hidden;
+  color: #6f7b8f;
+}
+
+/*
+.opened:after {
+    border-bottom: 0.3333em solid !important;
+    border-top-color: transparent;
+    top: 45% !important;
+}
+
+.form-type-select:after {
+    content: "";
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-style: solid;
+    border-width: 0.3333em 0.3333em 0;
+    display: block;
+    height: 0;
+    line-height: 0;
+    position: absolute;
+    left: 155px;
+    top: 55%;
+    margin-top: -0.1666em;
+    width: 0;
+    overflow: hidden;
+    color: white;
+}
+
+.form-type-select {
+    position: relative;
+}
+
+.view-filters .form-type-select::after {
+    right: 10px;
+    top: 74%;
+}
+
+.view-filters .form-type-select:nth-child(2) select {
+    width: 120px;
+}
+
+.view-filters .opened:after {
+    top: 64% !important;
+}
+
+.view-filters #edit-title {
+    margin-top: 2px;
+}
+
+#views-form-content-page-1 .form-type-select::after {
+    left: 258px;
+    top: 73%;
+}
+
+#views-form-content-page-1 .opened:after {
+    top: 64% !important;
+} */
+
+select {
+  appearance: none;
+  -moz-appearance: none;
+  min-width: 130px;
+  -webkit-appearance: none;
+  position: relative;
+  background-color: #ffffff;
+  border: none;
+  border: 1px solid #8493a7;
+  padding: 0 0 0 15px;
+  line-height: 30px;
+  box-sizing: border-box;
+  max-width: 320px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  overflow: hidden;
+  border-radius: 2px;
+  color: #6f7b8f;
+  text-decoration: none;
+  height: 32px;
+}
+
+.button--primary {
+  background-color: #7471a0;
+}
+
+.button--primary:hover {
+  background-color: #8d8ab1;
+}
+
+.button--danger {
+  background-color: #ef6464;
+}
+
+.button--danger:hover {
+  background-color: #ff8787;
+}
+
+/* #system-themes-admin-form select {
+    width: 250px;
+}
+
+#system-themes-admin-form .form-type-select::after {
+    left: 230px;
+} */
+
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .button {
+        display: flex;
+    }
+} */

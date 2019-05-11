@@ -1,0 +1,68 @@
+body {
+    background: #eaebed;
+}
+
+.c-2 {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    align-content: stretch;
+}
+
+.c-2>div {
+    flex: 1 0 47%;
+    padding-right: 10px;
+}
+
+.poz-admin-body {
+    padding: 20px 50px;
+    margin: 0 40px 40px 40px;
+    background: #fff;
+}
+
+.page-content {
+    margin-bottom: 0px !important;
+}
+
+.system-modules tr.even,
+.system-modules tr.odd,
+.locale-translation-status-form tr.even,
+.locale-translation-status-form tr.odd,
+.views-ui-display-tab-bucket .views-display-setting:nth-of-type(2n),
+.view-preview-form__title,
+.form-edit .form-actions,
+.views-display-top {
+    background-color: #eaebed !important;
+}
+
+.system-modules details {
+    white-space: unset;
+}
+
+.panel {
+    background: white !important;
+    border-color: white !important;
+        box-shadow: 0 3px 6px #ffffff24, 0 3px 6px rgba(173, 173, 173, 0.52);
+}
+
+@media screen and (max-width: 1476px) {
+    .theme-selector .operations {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    .theme-selector .operations li {
+        border-right: none;
+        padding: 0;
+    }
+    .theme-selector .operations li:first-child,
+    .theme-selector .operations li:last-child {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 1174px) {
+    .c-2>div {
+        flex: 100%;
+    }
+}

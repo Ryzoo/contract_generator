@@ -1,0 +1,14 @@
+.swiper-slide{
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+    .ps-shortcode-render-container {
+        position: absolute;
+        z-index: 0;
+        transform: translate(-50%,-50%);
+        top: 50%;
+        left: 50%;
+    }
+}

@@ -1,0 +1,33 @@
+
+
+// to zostanie wklejona czesc kodu zwiazana z kolorami
+/* przykladowy wyglad - wszystko trzeba opisac w pliku colorConfig
+$colorsDefaults: (
+  background: #ffffff,
+  font: #263238,
+  primary: #DB12A2,
+  secondary: #1752BA,
+  accent: #FEAD26
+);
+*/
+
+// podstawowy kolor tła
+$body-bg: map-get($colorsDefaults, background);
+
+// podstawoowy kolor czcionek
+$body-color: map-get($colorsDefaults, font);
+
+// kolor główny strony
+$primary: map-get($colorsDefaults, primary);
+$primary-light: lighten($primary,10%);
+$primary-dark: darken($primary,10%);
+
+// kolor dodatkowy strony
+$secondary: map-get($colorsDefaults, secondary);
+$secondary-light: lighten($secondary,10%);
+$secondary-dark: darken($secondary,10%);
+
+// kolor akcentowy strony
+$third: map-get($colorsDefaults, accent);
+$third-light: lighten($third,10%);
+$third-dark: darken($third,10%);

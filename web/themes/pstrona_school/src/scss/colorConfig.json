@@ -1,0 +1,9 @@
+{
+  "colorsDefaults": [
+    ["background", "#ffffff","Kolor tła","Używany głównie do ..."],
+    ["font", "#263238","Kolor tekstu","Używany głównie do ..."],
+    ["primary", "#DB12A2","Kolor podstawowy","Używany głównie do ..."],
+    ["secondary", "#1752BA","Kolor aleternatywny","Używany głównie do ..."],
+    ["accent", "#FEAD26","Kolor akcentowy","Używany głównie do ..."]
+  ]
+}

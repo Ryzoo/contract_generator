@@ -1,0 +1,35 @@
+thead th {
+    background: #ffffff;
+    color: #6f7b8f;
+    border-color: #cacaca;
+}
+
+tbody tr:hover, tbody tr:focus {
+    background: #f5f5f5 !important;
+}
+
+th>a:hover,
+th>a:focus,
+th.is-active>a:hover,
+th.is-active>a:focus {
+    color: #b3b1cb;
+}
+
+th>a:hover::after,
+th>a:focus::after,
+th.is-active>a:hover::after,
+th.is-active>a:focus::after {
+    border-bottom-color: #b3b1cb;
+}
+
+.admin-list li {
+    border-top: 1px solid #efefef !important;
+}
+
+th.is-active>a {
+    color: #b3b1cb;
+}
+
+th.is-active>a::after {
+    border-bottom-color: #b3b1cb;
+}

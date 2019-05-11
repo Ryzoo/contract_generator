@@ -1,0 +1,50 @@
+.vertical-tabs {
+    background: #eaebed;
+}
+
+.vertical-tabs .is-selected a:after {
+    content: '';
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    margin-top: -13px;
+    border-left: 0;
+    border-bottom: 13px solid transparent;
+    border-top: 13px solid transparent;
+    border-left: 10px solid #7471a0;
+}
+
+.vertical-tabs .is-selected a {
+    background: #7471a0;
+    color: white;
+}
+
+.vertical-tabs a {
+    background: #eaebed;
+}
+
+.vertical-tabs__menu-item.is-selected {
+    overflow-x: visible;
+}
+
+.vertical-tabs__menu-item.is-selected .vertical-tabs__menu-item-summary {
+    color: white;
+}
+
+.vertical-tabs .vertical-tabs__panes {
+    background: #eaebed;
+}
+
+.vertical-tabs__menu-item:not(.is-selected) a:hover {
+    background: #f5f5f5
+}
+
+.vertical-tabs__menu-item.is-selected a:hover,
+.vertical-tabs__menu-item.is-selected a:focus {
+    color: white;
+}
+
+.vertical-tabs details {
+    opacity: 0;
+    transition: opacity 0.5s linear;
+}

@@ -1,0 +1,15 @@
+<div class="ps-tag-list-container" {{ attributes }}>
+    <article class="ps-article">
+        <div class="ps-article-img">
+            <a href="{{ url }}">{{ content.field_image }}</a>
+        </div>
+        <div class="ps-article-teaser">
+            <div class="ps-article-tags">
+                {{ content.field_tags }}
+            </div>
+            <div class="ps-article-title">
+                <h3><a href="{{ url }}">{{ label }}</a></h3>
+            </div>
+        </div>
+    </article>
+</div>

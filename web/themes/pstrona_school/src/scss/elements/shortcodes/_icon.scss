@@ -1,0 +1,98 @@
+
+a.link-with-icon {
+    width: 100%;
+    height: 100%;
+    transition: all .2s;
+    display: flex;
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.icon-position {
+    position: absolute;
+}
+a.link-with-icon.icon-position-center {
+    justify-content: center;
+    align-items: center;
+}
+.icon-position-center {
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+a.link-with-icon.icon-position-top{
+    justify-content: center;
+    align-items: flex-start;
+}
+.icon-position-top {
+    transform: translate(-50%, 0%);
+    top: 0%;
+    left: 50%;
+}
+
+a.link-with-icon.icon-position-tl{
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.icon-position-tl {
+    transform: translate(0%, 0%);
+    top: 0%;
+    left: 0%;
+}
+
+a.link-with-icon.icon-position-tr{
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+.icon-position-tr {
+    transform: translate(-100%, 0%);
+    top: 0%;
+    left: 100%;
+}
+a.link-with-icon.icon-position-left{
+    justify-content: center;
+    align-items: flex-start;
+}
+.icon-position-left {
+    transform: translate(0%, -50%);
+    top: 50%;
+    left: 0%;
+}
+a.link-with-icon.icon-position-right{
+    justify-content: center;
+    align-items: flex-end;
+}
+.icon-position-right {
+    transform: translate(-100%, -50%);
+    top: 50%;
+    left: 100%;
+}
+a.link-with-icon.icon-position-bottom{
+    justify-content: center;
+    align-items: flex-end;
+}
+.icon-position-bottom {
+    transform: translate(-50%, -100%);
+    top: 100%;
+    left: 50%;
+}
+a.link-with-icon.icon-position-bl{
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+.icon-position-bl {
+    transform: translate(0%, -100%);
+    top: 100%;
+    left: 0%;
+}
+a.link-with-icon.icon-position-br{
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.icon-position-br {
+    transform: translate(-100%, -100%);
+    top: 100%;
+    left: 100%;
+}

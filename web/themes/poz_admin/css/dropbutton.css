@@ -1,0 +1,26 @@
+.js .dropbutton-widget {
+    border: none;
+}
+
+.dropbutton-multiple .dropbutton {
+    border: 1px solid #e6e8ea;
+    border-radius: 5px;
+}
+
+.dropbutton-multiple.open .dropbutton-arrow {
+    top: 10px;
+}
+
+#edit-displays .edit-display-settings-top .dropbutton-multiple.open .dropbutton-arrow,
+#edit-displays #edit-display-settings-main .dropbutton-multiple.open .dropbutton-arrow {
+    top: 5px;
+}
+
+.dropbutton .dropbutton-action>* {
+    white-space: normal;
+}
+
+.dropbutton-widget,
+.dropbutton {
+        width: 100% !important;
+}

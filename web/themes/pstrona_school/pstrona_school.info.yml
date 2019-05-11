@@ -1,0 +1,19 @@
+name: Pstrona_school
+type: theme
+description: 'Szablon dostarczony prze pozytywna-strona.pl'
+core: 8.x
+package: 'Pozytywna Strona'
+base theme: classy
+libraries:
+  - pstrona_school/global-styling
+  - pstrona_school/global-scripts
+regions:
+  topbar: Topbar
+  header: Header
+  slider: Main slider
+  breadcrumbs: Breadcrumbs
+  messages: Status messages
+  leftsidebar: Left sidebar
+  content: Content
+  rightsidebar: Right sidebar
+  footer: Footer

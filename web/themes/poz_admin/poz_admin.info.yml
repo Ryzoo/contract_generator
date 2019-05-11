@@ -1,0 +1,34 @@
+name: PozytywnaStrona - Admin theme
+type: theme
+description: Administration theme.
+core: 8.x
+base theme: seven
+libraries:
+  - poz_admin/global-styling
+libraries-override:
+  seven/global-styling:
+    css:
+      component:
+        css/components/buttons.css: css/buttons.css
+        css/components/dialog.css: css/dialog.css
+        css/components/content-header.css: css/content-header.css
+        css/components/breadcrumb.css: css/breadcrumb.css
+        css/components/form.css: css/form.css
+        css/components/dropbutton.component.css: css/dropbutton.component.css
+        css/components/dropbutton.css: css/dropbutton.css
+        css/components/entity-meta.css: css/entity-meta.css
+        css/components/tabs.css: css/tabs.css
+        css/components/vertical-tabs.css: css/vertical-tabs.css
+        css/components/system-status-counter.css: css/system-status-counter.css
+regions:
+  header: 'Header'
+  pre_content: 'Pre-content'
+  breadcrumb: Breadcrumb
+  highlighted: Highlighted
+  help: Help
+  content: Content
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  sidebar_first: 'First sidebar'
+regions_hidden:
+  - sidebar_first

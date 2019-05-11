@@ -1,0 +1,45 @@
+<?php
+
+function pstrona_shortcodes_preprocess_breadcrumb(&$variables) {
+  if (($node = \Drupal::routeMatch()
+      ->getParameter('node')) && $variables['breadcrumb']) {
+    $variables['breadcrumb'][] = [
+      'text' => $node->getTitle(),
+      'url' => $node->URL(),
+    ];
+    $variables['#cache']['contexts'][] = 'url';
+  }
+}
+
+function pstrona_shortcodes_system_breadcrumb_alter(\Drupal\Core\Breadcrumb\Breadcrumb &$breadcrumb, \Drupal\Core\Routing\RouteMatchInterface $route_match, array $context) {
+  if ($route_match && $node = $route_match->getParameter('node')) {
+    $breadcrumb->addCacheableDependency($node);
+  }
+}
+
+function pstrona_shortcodes_preprocess_node(&$vars) {
+
+  if (isset($vars['elements']['body'][0]['#type']) && $vars['elements']['body'][0]['#type'] === 'processed_text' && isset($vars['elements']['body'][0]['#text'])) {
+
+    $text = $vars['elements']['body'][0]['#text'];
+    $match = '';
+    preg_match('/ps_cache="([^"]+)"/', $text, $match, PREG_OFFSET_CAPTURE);
+
+    if (isset($match[1]) && $match[1][0] === "false") {
+      $vars['#cache']['max-age'] = 0;
+    }
+  }
+}
+
+function pstrona_shortcodes_preprocess_block(&$vars) {
+  if (isset($vars['elements']['content']['body'][0]['#type']) && $vars['elements']['content']['body'][0]['#type'] === 'processed_text' && isset($vars['elements']['content']['body'][0]['#text'])) {
+
+    $text = $vars['elements']['content']['body'][0]['#text'];
+    $match = '';
+    preg_match('/ps_cache="([^"]+)"/', $text, $match, PREG_OFFSET_CAPTURE);
+
+    if (isset($match[1]) && $match[1][0] === "false") {
+      $vars['#cache']['max-age'] = 0;
+    }
+  }
+}

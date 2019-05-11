@@ -1,0 +1,149 @@
+header {
+    .topbar-container {
+        border-bottom: 1px solid #e8e8e8;
+        width: 100%;
+
+        section {
+            background: white;
+
+            .region-topbar {
+                position: relative;
+                height: 42px;
+                line-height: 42px;
+                font-size: 0.9rem;
+                border-right: 1px solid #e8e8e8;
+                border-left: 1px solid #e8e8e8;
+
+                .social-icon {
+                    border-right: 1px solid #e8e8e8;
+                    display: inline-block;
+                    color: #878787;
+                    cursor: pointer;
+                    float: left;
+                    transition: none;
+
+                    @media (max-width: 450px) {
+                        display: none !important;
+                    }
+
+                    &:hover {
+                        transition: all 0.2s;
+                        color: $primary;
+                    }
+
+                    i {
+                        transition: none;
+                        padding: 0 16px;
+                        width: 100%;
+                        text-align: center;
+                    }
+                }
+
+                & > *:not(.social-icon) {
+                    padding: 0 16px;
+                    color: #878787;
+                    display: inline-block;
+                    border-left: 1px solid #e8e8e8;
+
+                    i {
+                        color: $primary;
+                        padding-right: 6px;
+                        @media (max-width: 900px) {
+                            padding: 0;
+                        }
+                    }
+                }
+
+                & > a:not(.social-icon) {
+                    float: right;
+                    & > span{
+                        @media (max-width: 900px) {
+                            display: none;
+                        }
+                    }
+                }
+
+                .lang-selector {
+                    position: relative;
+                    float: right;
+                    box-sizing: border-box;
+                    cursor: pointer;
+                    padding-right: 32px !important;
+
+                    span {
+                        span {
+                            margin-right: 1rem;
+                        }
+                        user-select: none;
+                        padding-left: 5px !important;
+                        border: none !important;
+                    }
+
+                    &:after {
+                        top: 16px;
+                        position: absolute;
+                        content: '';
+                        right: 12px;
+                        border: solid #878787;
+                        border-width: 0 2px 2px 0;
+                        display: inline-block;
+                        padding: 3px;
+                        transform: rotate(45deg);
+                        -webkit-transform: rotate(45deg);
+                        transition: all 0.3s;
+                    }
+
+                    &.actived {
+                        &:after {
+                            transform: rotate(-135deg);
+                            -webkit-transform: rotate(-135deg);
+                        }
+
+                        ul {
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                    }
+
+                    ul {
+                        z-index: 1;
+                        opacity: 0;
+                        visibility: hidden;
+                        position: absolute;
+                        border: none !important;
+                        margin: 0;
+                        padding: 0 !important;
+                        width: 100%;
+                        height: auto;
+                        top: 100%;
+                        left: 0;
+                        list-style: none;
+
+                        li {
+                            border-bottom: 1px solid #e8e8e8;
+                        }
+
+                        a {
+                            padding: 0 10px;
+                            text-align: center;
+                            display: flex;
+                            justify-content: center;
+
+                            span {
+                                align-self: center;
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .no-lang {
+            line-height: 20px;
+            text-align: center;
+            padding: 10px 0;
+            background: white;
+        }
+    }
+}

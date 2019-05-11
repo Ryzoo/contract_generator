@@ -1,0 +1,22 @@
+hr {
+  background-color: $primary;
+  height: 1px;
+  width: 100%;
+}
+
+hr.ps-gradient-divider {
+  background: -moz-linear-gradient(left, #ffffff 15%, $primary 50%, #ffffff 85%);
+  background: -webkit-linear-gradient(left, #ffffff 15%,$primary 50%,#ffffff 85%);
+  background: linear-gradient(to right, #ffffff 15%,$primary 50%,#ffffff 85%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=1 );
+}
+hr.ps-gradient-default-divider {
+  background: -moz-linear-gradient(left, #ffffff 15%, #cbcbcb 50%, #ffffff 85%);
+  background: -webkit-linear-gradient(left, #ffffff 15%,#cbcbcb 50%,#ffffff 85%);
+  background: linear-gradient(to right, #ffffff 15%,#cbcbcb 50%,#ffffff 85%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=1 );
+}
+
+.ps-divider-container {
+  width: 100%;
+}

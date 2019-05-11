@@ -1,0 +1,49 @@
+input{
+    max-width: 100%;
+}
+
+input.form-autocomplete,
+input.form-text,
+input.form-tel,
+input.form-email,
+input.form-url,
+input.form-search,
+input.form-number,
+input.form-color,
+input.form-file,
+input.form-date,
+input.form-time,
+textarea.form-textarea {
+    font-size: 13px;
+    color: #555;
+    outline: none;
+    border: 1px solid #bbb;
+    padding: 7px 10px;
+    border-radius: 2px;
+    position: relative;
+}
+
+input.form-autocomplete:focus,
+input.form-text:focus,
+input.form-tel:focus,
+input.form-email:focus,
+input.form-url:focus,
+input.form-search:focus,
+input.form-number:focus,
+input.form-color:focus,
+input.form-file:focus,
+input.form-date:focus,
+input.form-time:focus,
+textarea.form-textarea:focus {
+    border-color: #31c0d9;
+}
+
+label {
+    display: table;
+    margin: 0 0 .1em;
+    padding: 0;
+}
+
+select {
+    padding: 3px 0px;
+}

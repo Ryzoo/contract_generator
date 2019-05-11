@@ -1,0 +1,9 @@
+.ps_image_gallery{
+    img{
+        filter: grayscale(30%);
+        transition: all .2s;
+        &:hover{
+            filter: grayscale(0);
+        }
+    }
+}

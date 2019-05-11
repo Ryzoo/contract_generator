@@ -1,0 +1,88 @@
+.tabs-menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+
+    .tabs-menu-container--header{
+        width: 100%;
+        text-align: center;
+        margin-top: 0;
+    }
+
+    .tabs-menu-container--description{
+        width: 100%;
+        text-align: center;
+    }
+
+    .tabs-menu-container--tabs{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+
+        .tabs-menu-item-active{
+            background: $primary !important;
+            color: #fff;
+            position: relative !important;
+        }
+
+        .tabs-menu-item-name{
+            position: relative;
+            line-height: 40px;
+            padding: 0 15px;
+            border-radius: 50px;
+            margin: 12px 8px;
+            transition: all .3s;
+            background: transparent;
+            border: 1px solid $primary;
+
+            &.tabs-menu-item-active:after{
+                opacity: 1;
+            }
+
+            &:after{
+                transition: all .2s;
+                content: '';
+                position: absolute;
+                bottom: -15px;
+                opacity: 0;
+                width: 0;
+                height: 0;
+                border-left: 20px solid transparent;
+                border-right: 20px solid transparent;
+                border-top: 20px solid $primary;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            &:hover{
+                cursor: pointer;
+                background: $primary;
+                color: #fff;
+            }
+        }
+    }
+
+    .tabs-menu-container--content{
+        margin-top: 50px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        transition: all .3s;
+        position: relative;
+
+        &>.tabs-menu-item-active{
+            opacity: 1 !important;
+        }
+
+        &>.ps-shortcode-render-container{
+            width: 100%;
+            position: absolute;
+            transition: all .3s;
+            opacity: 0;
+        }
+    }
+}
+

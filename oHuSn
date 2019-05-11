@@ -1,0 +1,281 @@
+[33mcommit e390c449f188393a0cd0ea69738309740e41181c[m[33m ([m[1;36mHEAD -> [m[1;32mdev[m[33m, [m[1;31morigin/dev[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: maros <tonyawake4@gmail.com>
+Date:   Wed Feb 20 23:02:04 2019 +0100
+
+    add some fixes, mobile menu v1
+
+[33mcommit e5181d14c4e08946e74ad99a7c2f5c1ce880e154[m
+Author: Grzegorz Kastelik <g.kastelik@gmail.com>
+Date:   Tue Jan 8 12:28:38 2019 +0100
+
+    edit tabs / add components page
+
+[33mcommit 1bbd34fed47187723ce1f01ac00a105e584c9a07[m
+Author: Grzegorz Kastelik <g.kastelik@gmail.com>
+Date:   Tue Jan 8 00:34:47 2019 +0100
+
+    add tabs shortcode
+
+[33mcommit d38c4a30a7a74dec04f53824b7598e091e590cd6[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Grzegorz Kastelik <g.kastelik@gmail.com>
+Date:   Mon Jan 7 21:17:55 2019 +0100
+
+    update drupal modules and core
+
+[33mcommit 786e474ea26d9d905e43a9f201dbc1f12f16df8c[m
+Author: maros <tonyawake4@gmail.com>
+Date:   Sat Oct 6 18:19:12 2018 +0200
+
+    Add tags view
+
+[33mcommit 3abf29b7e6c096a6fd863f72ea355a7e92b37066[m
+Author: maros <tonyawake4@gmail.com>
+Date:   Thu Oct 4 19:20:36 2018 +0200
+
+    tag list
+
+[33mcommit e81a7b2da33929ad1162ea2a60116822a0c5a353[m
+Author: Grzegorz Kastelik <g.kastelik@gmail.com>
+Date:   Sun Sep 23 19:23:11 2018 +0200
+
+    Fix problem witch shortcode cache
+
+[33mcommit f67496adb76441450924369753affd448672bb2d[m
+Author: maros <tonyawake4@gmail.com>
+Date:   Fri Sep 21 12:24:57 2018 +0200
+
+    blog all post list fixes
+
+[33mcommit d8e262f037bbe1e5cd3ced47d0e392a1e4062fe1[m
+Author: maros <tonyawake4@gmail.com>
+Date:   Fri Sep 21 11:56:39 2018 +0200
+
+    breadcrumb height fix
+
+[33mcommit 5cbfa25c64e22528751a6625e8e387b7b631fd04[m
+Author: maros <tonyawake4@gmail.com>
+Date:   Fri Sep 21 11:49:17 2018 +0200
+
+    blog latest view fix
+
+[33mcommit 3d6565dc90af418eb454244c34324b257a5b42d7[m
+Author: maros <tonyawake4@gmail.com>
+Date:   Thu Sep 20 20:55:03 2018 +0200
+
+    add all blog post list view
+
+[33mcommit ae4f8d8b94879ee9e08ee372bb2a1bfd4a50a979[m
+Author: maros <tonyawake4@gmail.com>
+Date:   Thu Sep 20 11:36:35 2018 +0200
+
+    mobile fixes
+
+[33mcommit caebdd8a88182c816d937ebdf4c46a16f45d4353[m
+Merge: 54b57a609 4326ca883
+Author: maros <tonyawake4@gmail.com>
+Date:   Wed Sep 19 19:35:37 2018 +0200
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit 54b57a6093ca371a5fbf2542d8a92c6b5d9788fc[m
+Author: maros <tonyawake4@gmail.com>
+Date:   Wed Sep 19 19:35:15 2018 +0200
+
+    images
+
+[33mcommit 46eff632953bed907033f45e03d98139b8f45187[m
+Author: maros <tonyawake4@gmail.com>
+Date:   Wed Sep 19 19:34:54 2018 +0200
+
+    add blog single post view
+
+[33mcommit e30e6914faa5f9606e6f1d4c99604dad2dacd116[m
+Author: maros <tonyawake4@gmail.com>
+Date:   Wed Sep 19 13:13:53 2018 +0200
+
+    add blog list view
+
+[33mcommit b41df3c5feb7db71bc8908bc9117886b57f6ebb2[m
+Author: maros <tonyawake4@gmail.com>
+Date:   Tue Sep 18 18:23:09 2018 +0200
+
+    blog list v1
+
+[33mcommit 4326ca8836a0d1cd094426f82adc76f169d216bc[m
+Author: Grzegorz Kastelik <g.kastelik@gmail.com>
+Date:   Tue Sep 18 17:03:58 2018 +0200
+
+    remove bug with img shortcode
+
+[33mcommit 1b601a5fdedf869fd17cf57b9fcb55b3e52a9328[m
+Author: Grzegorz Kastelik <g.kastelik@gmail.com>
+Date:   Tue Sep 18 03:01:22 2018 +0200
+
+    update shortcode view
+
+[33mcommit fd5c65988ac47bee27a4fc4c2caeb17937c4967b[m
+Author: Grzegorz Kastelik <g.kastelik@gmail.com>
+Date:   Mon Sep 17 23:21:42 2018 +0200
+
+    add counters
+
+[33mcommit 54d33dfec68871d11e0cd3af983db56c0515f7ed[m
+Author: maros <tonyawake4@gmail.com>
+Date:   Fri Sep 14 11:44:08 2018 +0200
+
+    merge
+
+[33mcommit f5c6f88346980de6bad024409217c011d6e6e1fb[m
+Merge: 82e7ee159 82ddfdd36
+Author: maros <tonyawake4@gmail.com>
+Date:   Fri Sep 14 11:38:15 2018 +0200
+
+    Merge remote-tracking branch 'origin/dev' into dev
+    
+    # Conflicts:
+    #       web/modules/contrib/pstrona_shortcodes/js/init.js
+    #       web/modules/contrib/pstrona_shortcodes/js/init.js.map
+
+[33mcommit 82e7ee159cf424ab244c6e51ff2c68c86481faf2[m
+Author: maros <tonyawake4@gmail.com>
+Date:   Fri Sep 14 11:37:58 2018 +0200
+
+    front page project v4
+
+[33mcommit 82ddfdd3675cc081a6034b104d6d685ff70475e9[m
+Author: Grzegorz Kastelik <g.kastelik@gmail.com>
+Date:   Fri Sep 14 11:19:30 2018 +0200
+
+    repair shortcode copy function
+
+[33mcommit 7fa46f830396e51ef34c62bec447287672b9aa70[m
+Author: Grzegorz Kastelik <g.kastelik@gmail.com>
+Date:   Fri Sep 14 10:57:28 2018 +0200
+
+    add galery
+
+[33mcommit e2cad237aa85e8a529a7b6d3245c471ad0783522[m
+Author: Grzegorz Kastelik <g.kastelik@gmail.com>
+Date:   Fri Sep 14 00:21:17 2018 +0200
+
+    rewrie shortcode structure / add hover effects / add shadow drop
+
+[33mcommit ae3620894fb1f7b75bb9696a412b8c9ec90a4130[m
+Author: Grzegorz Kastelik <g.kastelik@gmail.com>
+Date:   Thu Sep 13 23:11:58 2018 +0200
+
+    Update shortcode parser
+
+[33mcommit 63b4d062fafe4973aadac92e3d50416a9e4e4fe7[m
+Author: maros <tonyawake4@gmail.com>
+Date:   Thu Sep 13 22:00:24 2018 +0200
+
+    frontpage project v3
+
+[33mcommit b95b6530cd31a9088a28505ace47ad9f4ce0d1ae[m
+Merge: e6e34feb8 4b5834353
+Author: maros <tonyawake4@gmail.com>
+Date:   Thu Sep 13 21:23:24 2018 +0200
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit e6e34feb87497f385268bf34a08c94b63a844b0f[m
+Author: maros <tonyawake4@gmail.com>
+Date:   Thu Sep 13 21:23:15 2018 +0200
+
+    frontpage project v2
+
+[33mcommit 4b5834353c0d1d4edb8a523666f47d25ab7a76d2[m
+Author: Grzegorz Kastelik <g.kastelik@gmail.com>
+Date:   Thu Sep 13 21:16:05 2018 +0200
+
+    add slider item / remove some bug
+
+[33mcommit b6d43f73a761874809c2e6764e474222d54c7978[m
+Author: maros <tonyawake4@gmail.com>
+Date:   Thu Sep 13 20:28:24 2018 +0200
+
+    images
+
+[33mcommit 4e3dd88d251748e21536e4c22c69cc2dc9e855b4[m
+Author: maros <tonyawake4@gmail.com>
+Date:   Thu Sep 13 20:24:29 2018 +0200
+
+    add new shortcodes
+
+[33mcommit 396801f9e8926acebf77d8cbd9b351f605dd0162[m
+Merge: 7cbd03528 9d218cec4
+Author: maros <tonyawake4@gmail.com>
+Date:   Thu Sep 13 20:13:07 2018 +0200
+
+    Merge remote-tracking branch 'origin/dev' into dev
+    
+    # Conflicts:
+    #       web/modules/contrib/pstrona_shortcodes/js/init.js
+    #       web/modules/contrib/pstrona_shortcodes/js/init.js.map
+
+[33mcommit 7cbd035284ee24a9e180f998f532e3f47b15f3cc[m
+Author: maros <tonyawake4@gmail.com>
+Date:   Thu Sep 13 20:12:08 2018 +0200
+
+    icons features, repair shortcode parser and frontpage project v1
+
+[33mcommit 9d218cec44fd42aac1fb47f6017b0287fdb05d30[m
+Author: Grzegorz Kastelik <g.kastelik@gmail.com>
+Date:   Thu Sep 13 20:06:29 2018 +0200
+
+    add slider
+
+[33mcommit ad133071b9d498c08a8c18b44bea83a0f58d1637[m
+Merge: 39ae52c24 5b08232c3
+Author: Grzegorz Kastelik <g.kastelik@gmail.com>
+Date:   Thu Sep 13 12:48:50 2018 +0200
+
+    Merge branch 'dev' of https://bitbucket.org/pozstrona/przedszole_drupal into dev
+
+[33mcommit 39ae52c240591a3b855e19de3ddfa69d7fc59754[m
+Author: Grzegorz Kastelik <g.kastelik@gmail.com>
+Date:   Thu Sep 13 12:48:37 2018 +0200
+
+    Add slider shortcode
+
+[33mcommit 5b08232c3d14a5f1f4608ffb74ccbf2cf68b3c49[m
+Author: maros <tonyawake4@gmail.com>
+Date:   Thu Sep 13 12:22:11 2018 +0200
+
+    slide sidebar alpha
+
+[33mcommit 193b8edb681d9a6e8aafed66a8dff1d59a09cf6c[m
+Merge: 2a023b06f c5a01a4b4
+Author: maros <tonyawake4@gmail.com>
+Date:   Thu Sep 13 11:14:35 2018 +0200
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit 2a023b06f8fc3626a2c3ad9720d9af12012a7d6d[m
+Author: maros <tonyawake4@gmail.com>
+Date:   Thu Sep 13 11:14:27 2018 +0200
+
+    slide sidebar settings v1
+
+[33mcommit c5a01a4b48a6c69fab956258120e6e790194d22e[m
+Author: Grzegorz Kastelik <g.kastelik@gmail.com>
+Date:   Thu Sep 13 10:59:31 2018 +0200
+
+    Add preloader
+
+[33mcommit f1db7105c83522b46d854e011707d63d4a58a7ec[m
+Merge: 3d51fdd30 a523d5253
+Author: Grzegorz Kastelik <g.kastelik@gmail.com>
+Date:   Thu Sep 13 10:13:47 2018 +0200
+
+    update
+
+[33mcommit a523d5253f3250caf56d40e1cc758464f44b2ce3[m
+Author: maros <tonyawake4@gmail.com>
+Date:   Thu Sep 13 10:10:08 2018 +0200
+
+    accordion fixes
+
+[33mcommit 3d51fdd3089541ecf19c13bd90d34da3db8391a2[m
+Author: Grz
