@@ -24,6 +24,6 @@ class FunctionalTester extends \Codeception\Actor
 
    public function authAs(User $user){
 	   $this->deleteHeader("Remember-token");
-	   $this->haveHttpHeader("Remember-token",$user->remember_token);
+	   $this->haveHttpHeader("Remember-token",$user->loginToken);
    }
 }

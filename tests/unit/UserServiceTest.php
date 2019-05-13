@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+
 class UserServiceTest extends \Codeception\Test\Unit {
 
     /**
@@ -17,6 +19,7 @@ class UserServiceTest extends \Codeception\Test\Unit {
     }
 
     protected function _before() {
+
     }
 
     protected function _after() {
@@ -30,8 +33,8 @@ class UserServiceTest extends \Codeception\Test\Unit {
 
         $this->assertNotNull($user);
         $this->assertIsObject($user);
-        $this->assertObjectHasAttribute("id",$user);
-        $this->assertObjectHasAttribute("role",$user);
+        $this->assertTrue(isset($user->id));
+        $this->assertTrue(isset($user->role));
         $this->assertEquals($this->userService::ROLE_CLIENT,$user->role);
     }
 
@@ -42,11 +45,31 @@ class UserServiceTest extends \Codeception\Test\Unit {
 
         $this->assertNotNull($user);
         $this->assertIsObject($user);
-        $this->assertObjectHasAttribute("id",$user);
+        $this->assertTrue(isset($user->id));
+        $this->assertTrue(isset($user->role));
         $this->assertEquals($this->userService::ROLE_ADMIN,$user->role);
     }
 
-    public function testRemoveUser() {
+    public function testGetUserFromSeedsByEmail() {
+        $user = $this->userService->getUserByEmail("t.client@test.pl");
 
+        $this->assertNotNull($user);
+        $this->assertIsObject($user);
+        $this->assertTrue(isset($user->id));
+        $this->assertTrue(isset($user->role));
+        $this->assertEquals($this->userService::ROLE_CLIENT,$user->role);
     }
+
+    public function testGetUserFromSeedsById() {
+        $facUser = factory(User::class)->states('client')->create();
+
+        $user = $this->userService->getUserById($facUser->id);
+
+        $this->assertNotNull($user);
+        $this->assertIsObject($user);
+        $this->assertTrue(isset($user->id));
+        $this->assertTrue(isset($user->role));
+        $this->assertEquals($this->userService::ROLE_CLIENT,$user->role);
+    }
+
 }
