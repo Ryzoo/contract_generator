@@ -3,14 +3,14 @@ shortcode_editor:
   css:
     theme:
       css/main.css: {}
-      //cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css: { type: external }
+      //cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.css: { type: external }
       //use.fontawesome.com/releases/v5.2.0/css/all.css: { type: external }
       //cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css: { type: external }
       //allyoucan.cloud/cdn/icofont/1.0.0beta/css/icofont.css: { type: external }
 
   js:
     js/init.js: {}
-    //cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js: { type: external }
+    //cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.js: { type: external }
 
   dependencies:
   - core/jquery

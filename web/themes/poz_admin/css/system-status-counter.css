@@ -12,7 +12,8 @@
 .system-status-general-info__header,
 .system-status-general-info__item,
 .system-status-report-counters__item {
-    background-color: #eaebed !important;
+    background-color: #f7f7f7 !important;
+    border-radius: 5px;
 }
 
 .system-status-counter__status-icon::before {
@@ -22,7 +23,6 @@
 .system-status-report-counters__item {
     display: flex;
     align-items: center;
-    box-shadow: 0px 7px 8px -7px #848484;
 }
 
 .system-status-general-info__run-cron {
@@ -31,8 +31,10 @@
 
 .system-status-general-info__item {
     margin-top: 0;
+    border-color: #efefef !important;
+
 }
 
 .system-status-general-info {
-    box-shadow: 0px 7px 8px -9px #848484;
+    border: none !important;
 }

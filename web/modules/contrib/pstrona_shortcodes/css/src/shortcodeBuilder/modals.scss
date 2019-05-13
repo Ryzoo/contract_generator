@@ -14,7 +14,14 @@
   z-index: 1040;
 
   .shortcode-container {
-    width: 800px;
+    width: calc(100% - 100px);
+    margin: 0 50px;
+    max-width: 1200px;
+    position: absolute;
+    top: 50%;
+    left: calc(50% - 50px);
+    transform: translate(-50%, -50%);
+    border-radius: 2px;
 
     .search-body{
       text-align: center;
@@ -26,19 +33,6 @@
         color: #bdc7d4;
       }
     }
-
-    @media (max-width: 800px) {
-      width: 500px;
-    }
-    @media (max-width: 500px) {
-      width: calc(100% - 20px);
-      padding: 0 10px;
-    }
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 2px;
 
     .head {
       background: #7471a0;

@@ -1,8 +1,10 @@
-name: PozytywnaStrona - Admin theme
+name: PozytywnaStrona - Default admin theme
 type: theme
-description: Administration theme.
+description: Default admin theme
 core: 8.x
 base theme: seven
+dependencies:
+  - pstrona_shortcodes
 libraries:
   - poz_admin/global-styling
 libraries-override:

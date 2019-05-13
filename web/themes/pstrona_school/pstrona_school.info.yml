@@ -1,9 +1,11 @@
-name: Pstrona_school
+name: PozytywnaStrona - Kindergarten
 type: theme
-description: 'Szablon dostarczony prze pozytywna-strona.pl'
+description: Kindergarten
 core: 8.x
 package: 'Pozytywna Strona'
 base theme: classy
+dependencies:
+  - pstrona_shortcodes
 libraries:
   - pstrona_school/global-styling
   - pstrona_school/global-scripts

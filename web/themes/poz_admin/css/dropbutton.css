@@ -4,7 +4,7 @@
 
 .dropbutton-multiple .dropbutton {
     border: 1px solid #e6e8ea;
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 .dropbutton-multiple.open .dropbutton-arrow {
@@ -23,4 +23,61 @@
 .dropbutton-widget,
 .dropbutton {
         width: 100% !important;
+}
+
+#view-edit-form .dropbutton{
+    position: relative;
+    display: block;
+}
+
+#view-edit-form .dropbutton-multiple .dropbutton-widget{
+    padding-right: 0 !important;
+}
+
+#view-edit-form .dropbutton-toggle {
+    right: -4px;
+    width: 0px;
+}
+
+#view-edit-form #views-display-top .dropbutton-wrapper{
+    width: 200px;
+}
+
+#view-edit-form #edit-display-settings-top .dropbutton-wrapper{
+    width: 192px;
+}
+
+#view-edit-form #edit-display-settings-top .dropbutton-wrapper .dropbutton li,
+#view-edit-form #edit-display-settings-top .dropbutton-wrapper .dropbutton li button,
+#view-edit-form #edit-display-settings-top .dropbutton-wrapper .dropbutton li a,
+#view-edit-form #edit-display-settings-top .dropbutton-wrapper .dropbutton li input{
+    color: #6f7b8f;
+    text-align: left;
+}
+
+
+#view-edit-form .views-displays a{
+    border-radius: 2px !important;
+    transition: all .2s;
+    padding: 5.5px 15px;
+}
+
+#view-edit-form .views-displays ul.secondary li.is-active a, #view-edit-form  .views-displays ul.secondary li.is-active a.is-active{
+    color: white !important;
+    border-bottom: 5px solid #393e46;
+
+}
+
+#view-edit-form .views-displays .tabs li a:hover, #view-edit-form .views-displays .tabs li.is-active a, #view-edit-form .views-displays .tabs li.is-active a.is-active{
+    color: white !important;
+    border-bottom: 5px solid #393e46;
+}
+
+#view-edit-form .views-displays .tabs.secondary li a{
+    background-color: #6f7b8f;
+    color: white;
+}
+
+#view-edit-form  .views-displays .secondary a > .icon.add {
+    background-position: center -25px;
 }

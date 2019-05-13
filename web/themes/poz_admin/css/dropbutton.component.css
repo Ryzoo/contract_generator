@@ -29,10 +29,6 @@
     border: 1px solid #8493a7;
     color: #6f7b8f;
     list-style: none;
-    -webkit-transition: all 0.3s ease-out;
-    -moz-transition: all 0.3s ease-out;
-    -ms-transition: all 0.3s ease-out;
-    -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
     overflow: hidden;
 }

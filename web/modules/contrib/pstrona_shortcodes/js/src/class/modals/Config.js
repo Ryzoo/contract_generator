@@ -295,6 +295,7 @@ class Config {
                             prettifyHtml: true,
                             toolbar: [
                                 ['style', ['style']],
+                                ['fontsize', ['fontsize']],
                                 ['font', ['bold', 'italic', 'underline', 'clear']],
                                 ['fontname', ['fontname']],
                                 ['color', ['color']],
@@ -313,6 +314,9 @@ class Config {
                                 onImageUpload: function (files) {
                                     let editor = jQuery(this);
                                     self.sendFile(files[0], editor);
+                                },
+                                onPaste: function (e) {
+                                    var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text'); e.preventDefault(); document.execCommand('insertText', false, bufferText);
                                 }
                             }
                         });
