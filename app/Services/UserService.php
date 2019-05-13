@@ -39,4 +39,14 @@ class UserService
     public function getUserById(int $userID):?User{
         return User::find($userID);
     }
+
+    public function removeUser(int $userID):bool {
+        $user = $this->getUserById($userID);
+        if(isset($user)){
+            $user->forceDelete();
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

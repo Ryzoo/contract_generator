@@ -50,7 +50,7 @@ class UserServiceTest extends \Codeception\Test\Unit {
         $this->assertEquals($this->userService::ROLE_ADMIN,$user->role);
     }
 
-    public function testGetUserFromSeedsByEmail() {
+    public function testGetUserByEmail() {
         $user = $this->userService->getUserByEmail("t.client@test.pl");
 
         $this->assertNotNull($user);
@@ -60,7 +60,7 @@ class UserServiceTest extends \Codeception\Test\Unit {
         $this->assertEquals($this->userService::ROLE_CLIENT,$user->role);
     }
 
-    public function testGetUserFromSeedsById() {
+    public function testGetUserById() {
         $facUser = factory(User::class)->states('client')->create();
 
         $user = $this->userService->getUserById($facUser->id);
@@ -70,6 +70,11 @@ class UserServiceTest extends \Codeception\Test\Unit {
         $this->assertTrue(isset($user->id));
         $this->assertTrue(isset($user->role));
         $this->assertEquals($this->userService::ROLE_CLIENT,$user->role);
+    }
+
+    public function testRemoveUser() {
+        $facUser = factory(User::class)->states('client')->create();
+        $this->assertTrue($this->userService->removeUser($facUser->id));
     }
 
 }
