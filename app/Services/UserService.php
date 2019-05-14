@@ -13,9 +13,6 @@ class UserService
     public function addUser(User $userModel):User {
         User::validate($userModel);
         $userModel->save();
-
-        //TODO add notification to admin and email to client
-
         return $userModel;
     }
 

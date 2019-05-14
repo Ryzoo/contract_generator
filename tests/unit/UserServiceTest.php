@@ -18,13 +18,6 @@ class UserServiceTest extends \Codeception\Test\Unit {
         $this->userService = $userService;
     }
 
-    protected function _before() {
-
-    }
-
-    protected function _after() {
-    }
-
     // tests
     public function testAddClientUser() {
         $userModel = new User();

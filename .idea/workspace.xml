@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/lang/en/response.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Services/AuthService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/unit/AuthServiceTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Helpers/ElegantValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/ElegantValidator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Helpers/Validator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/Validator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/UserService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/UserService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/validation.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/validation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/response.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/response.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/unit/UserServiceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/UserServiceTest.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,51 +24,67 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Services/UserService.php">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/unit/AuthServiceTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="34" column="26" lean-forward="true" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
+            <state relative-caret-position="391">
+              <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
               <folding>
-                <element signature="e#32#57#0#PHP" expanded="true" />
-                <element signature="e#172#387#0#PHP" expanded="true" />
-                <element signature="e#814#926#0#PHP" expanded="true" />
-                <element signature="e#932#1016#0#PHP" expanded="true" />
-                <element signature="e#1393#1626#0#PHP" expanded="true" />
+                <element signature="e#153#202#0#PHP" expanded="true" />
+                <element signature="e#240#289#0#PHP" expanded="true" />
+                <element signature="n#_inject#0;n#AuthServiceTest#0;n#!!top" expanded="true" />
+                <element signature="n#testRegisterUser#0;n#AuthServiceTest#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/unit/UserServiceTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="97" column="26" lean-forward="true" selection-start-line="97" selection-start-column="26" selection-end-line="97" selection-end-column="26" />
+            <state relative-caret-position="-1126">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
               <folding>
+                <element signature="e#153#202#0#PHP" expanded="true" />
                 <element signature="n#_inject#0;n#UserServiceTest#0;n#!!top" expanded="true" />
-                <element signature="n#_before#0;n#UserServiceTest#0;n#!!top" expanded="true" />
-                <element signature="n#_after#0;n#UserServiceTest#0;n#!!top" expanded="true" />
+                <element signature="n#testAddClientUser#0;n#UserServiceTest#0;n#!!top" expanded="true" />
                 <element signature="n#testAddAdminUser#0;n#UserServiceTest#0;n#!!top" expanded="true" />
+                <element signature="n#testUpdateUser#0;n#UserServiceTest#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Helpers/ElegantValidator.php">
+        <entry file="file://$PROJECT_DIR$/app/Services/AuthService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="381">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="161">
+              <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+              <folding>
+                <element signature="e#34#59#0#PHP" expanded="true" />
+                <element signature="e#81#116#0#PHP" expanded="true" />
+                <element signature="e#152#222#0#PHP" expanded="true" />
+                <element signature="e#184#265#0#PHP" expanded="true" />
+                <element signature="e#271#338#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Helpers/Validator.php">
+        <entry file="file://$PROJECT_DIR$/resources/lang/en/response.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="12" column="25" lean-forward="true" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+            <state relative-caret-position="208">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="20" column="49" lean-forward="true" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -99,12 +111,16 @@
         <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
         <option value="$PROJECT_DIR$/app/Helpers/IElegantValidator.php" />
         <option value="$PROJECT_DIR$/resources/lang/en/validation.php" />
-        <option value="$PROJECT_DIR$/resources/lang/en/response.php" />
         <option value="$PROJECT_DIR$/app/Models/User.php" />
         <option value="$PROJECT_DIR$/app/Helpers/Validator.php" />
         <option value="$PROJECT_DIR$/app/Helpers/ElegantValidator.php" />
-        <option value="$PROJECT_DIR$/app/Services/UserService.php" />
         <option value="$PROJECT_DIR$/tests/unit/UserServiceTest.php" />
+        <option value="$PROJECT_DIR$/app/Services/UserService.php" />
+        <option value="$PROJECT_DIR$/app/Http/Middleware/BeforeAutoTrimmer.php" />
+        <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
+        <option value="$PROJECT_DIR$/resources/lang/en/response.php" />
+        <option value="$PROJECT_DIR$/app/Services/AuthService.php" />
+        <option value="$PROJECT_DIR$/tests/unit/AuthServiceTest.php" />
       </list>
     </option>
   </component>
@@ -336,47 +352,20 @@
               <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Helpers" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Models" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Middleware" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Services" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="bootstrap" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="factories" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="seeds" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
@@ -407,114 +396,6 @@
               <item name="tests" type="462c0819:PsiDirectoryNode" />
               <item name="unit" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="codeception" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="codeception" type="462c0819:PsiDirectoryNode" />
-              <item name="codeception" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="codeception" type="462c0819:PsiDirectoryNode" />
-              <item name="codeception" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="codeception" type="462c0819:PsiDirectoryNode" />
-              <item name="codeception" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Codeception" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="codeception" type="462c0819:PsiDirectoryNode" />
-              <item name="codeception" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Codeception" type="462c0819:PsiDirectoryNode" />
-              <item name="Subscriber" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="laravel" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="framework" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="framework" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="framework" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Illuminate" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="framework" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Illuminate" type="462c0819:PsiDirectoryNode" />
-              <item name="Database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="framework" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Illuminate" type="462c0819:PsiDirectoryNode" />
-              <item name="Database" type="462c0819:PsiDirectoryNode" />
-              <item name="Eloquent" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="framework" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Illuminate" type="462c0819:PsiDirectoryNode" />
-              <item name="Database" type="462c0819:PsiDirectoryNode" />
-              <item name="Eloquent" type="462c0819:PsiDirectoryNode" />
-              <item name="Concerns" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -525,11 +406,12 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/lang/en" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/unit" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/unit" />
       <recent name="$PROJECT_DIR$/resources/lang/en" />
       <recent name="$PROJECT_DIR$/app" />
     </key>
@@ -575,7 +457,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9648000" />
+    <option name="totallyTimeSpent" value="12025000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
@@ -741,13 +623,6 @@
     <entry file="file://$PROJECT_DIR$/resources/lang/en/auth.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lang/en/response.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
@@ -802,27 +677,81 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Services/UserService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="34" column="26" lean-forward="true" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
+        <state relative-caret-position="286">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
           <folding>
             <element signature="e#32#57#0#PHP" expanded="true" />
             <element signature="e#172#387#0#PHP" expanded="true" />
             <element signature="e#814#926#0#PHP" expanded="true" />
             <element signature="e#932#1016#0#PHP" expanded="true" />
+            <element signature="e#606#1387#0#PHP" expanded="true" />
             <element signature="e#1393#1626#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/BeforeAutoTrimmer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="13" column="20" lean-forward="true" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+          <folding>
+            <element signature="e#241#606#0#PHP" expanded="true" />
+            <element signature="e#393#517#1#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="20" column="49" lean-forward="true" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/en/response.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Services/AuthService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+          <folding>
+            <element signature="e#34#59#0#PHP" expanded="true" />
+            <element signature="e#81#116#0#PHP" expanded="true" />
+            <element signature="e#152#222#0#PHP" expanded="true" />
+            <element signature="e#184#265#0#PHP" expanded="true" />
+            <element signature="e#271#338#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/unit/UserServiceTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="97" column="26" lean-forward="true" selection-start-line="97" selection-start-column="26" selection-end-line="97" selection-end-column="26" />
+        <state relative-caret-position="-1126">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
           <folding>
+            <element signature="e#153#202#0#PHP" expanded="true" />
             <element signature="n#_inject#0;n#UserServiceTest#0;n#!!top" expanded="true" />
-            <element signature="n#_before#0;n#UserServiceTest#0;n#!!top" expanded="true" />
-            <element signature="n#_after#0;n#UserServiceTest#0;n#!!top" expanded="true" />
+            <element signature="n#testAddClientUser#0;n#UserServiceTest#0;n#!!top" expanded="true" />
             <element signature="n#testAddAdminUser#0;n#UserServiceTest#0;n#!!top" expanded="true" />
+            <element signature="n#testUpdateUser#0;n#UserServiceTest#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/unit/AuthServiceTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+          <folding>
+            <element signature="e#153#202#0#PHP" expanded="true" />
+            <element signature="e#240#289#0#PHP" expanded="true" />
+            <element signature="n#_inject#0;n#AuthServiceTest#0;n#!!top" expanded="true" />
+            <element signature="n#testRegisterUser#0;n#AuthServiceTest#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
