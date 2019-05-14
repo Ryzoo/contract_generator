@@ -5,6 +5,7 @@ namespace App\Services;
 
 
 use App\Helpers\Response;
+use App\Jobs\SendWelcomeEmail;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -21,7 +22,7 @@ class AuthService {
 
     public function registerUser(User $userModel):?User {
         $user = $this->userService->addUser($userModel);
-        //TODO send email to user
+        SendWelcomeEmail::dispatch($user);
         return $user;
     }
 
