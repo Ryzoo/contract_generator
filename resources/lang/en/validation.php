@@ -146,4 +146,6 @@ return [
 
     'attributes' => [],
 
+    'bad_object_data' => 'Data injected to model validator is bad'
+
 ];

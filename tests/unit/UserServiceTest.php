@@ -27,9 +27,16 @@ class UserServiceTest extends \Codeception\Test\Unit {
 
     // tests
     public function testAddClientUser() {
-        $user = $this->userService->addUser("Adam",
-            "Nowak","a.nowak@gmail.com","fajnehaslo",
-            $this->userService::ROLE_CLIENT);
+        $userModel = new User();
+        $userModel->fill([
+            "firstName" => "Adam",
+            "lastName" => "Nowak",
+            "email" => "a.nowak@gmail.com",
+            "password" => bcrypt("fajnehaslo"),
+            "role" => $this->userService::ROLE_CLIENT
+        ]);
+
+        $user = $this->userService->addUser($userModel);
 
         $this->assertNotNull($user);
         $this->assertIsObject($user);
@@ -39,9 +46,16 @@ class UserServiceTest extends \Codeception\Test\Unit {
     }
 
     public function testAddAdminUser() {
-        $user = $this->userService->addUser("Adam",
-            "Nowak","a.nowak@gmail.com","fajnehaslo",
-            $this->userService::ROLE_ADMIN);
+        $userModel = new User();
+        $userModel->fill([
+            "firstName" => "Adam",
+            "lastName" => "Nowak",
+            "email" => "a.nowak@gmail.com",
+            "password" => bcrypt("fajnehaslo"),
+            "role" => $this->userService::ROLE_ADMIN
+        ]);
+
+        $user = $this->userService->addUser($userModel);
 
         $this->assertNotNull($user);
         $this->assertIsObject($user);
@@ -75,6 +89,26 @@ class UserServiceTest extends \Codeception\Test\Unit {
     public function testRemoveUser() {
         $facUser = factory(User::class)->states('client')->create();
         $this->assertTrue($this->userService->removeUser($facUser->id));
+    }
+
+    public function testUpdateUser() {
+        $facUser = factory(User::class)->states('client')->create();
+
+        $userModel = new User();
+        $userModel->fill([
+            "id" => $facUser->id,
+            "lastName" => "Inny",
+            "email" => "a.inny@gmail.com",
+        ]);
+
+        $user = $this->userService->updateUser($userModel);
+
+        $this->assertNotNull($user);
+        $this->assertIsObject($user);
+        $this->assertTrue(isset($user->id));
+        $this->assertTrue(isset($user->role));
+        $this->assertEquals($this->userService::ROLE_CLIENT,$user->role);
+        $this->assertEquals($user->firstName,$facUser->firstName);
     }
 
 }

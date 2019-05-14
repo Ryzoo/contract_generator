@@ -3,27 +3,18 @@
 
 namespace App\Helpers;
 
-
 use Illuminate\Database\Eloquent\Model;
 
 class ElegantValidator extends Model{
+    protected static $rulesAdd = array();
+    protected static $rulesUpdate = array();
 
-    protected $rules = [];
-
-    protected $errors;
-
-    public function validate($data) {
-        $v = \Illuminate\Support\Facades\Validator::make($data, $this->rules);
-
-        if ($v->fails()) {
-            $this->errors = $v->errors;
-            return FALSE;
+    public static function validate($data, bool $isUpdate=false):bool {
+        if(!isset($data) || !($data instanceof Model)){
+            Response::error(__("validation.bad_object_data"),400);
         }
 
-        return TRUE;
+        return Validator::validate($data->getAttributes(),$isUpdate ? static::$rulesUpdate : static::$rulesAdd);
     }
 
-    public function errors() {
-        return $this->errors;
-    }
 }

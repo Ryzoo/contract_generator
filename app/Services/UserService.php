@@ -10,26 +10,13 @@ class UserService
     public const ROLE_CLIENT = 0;
     public const ROLE_ADMIN = 1;
 
-    public function addUser(string $firstName, string $lastName, string $email, string $password, int $role = self::ROLE_CLIENT):User {
-        $userData = [
-            'firstName' => $firstName,
-            'lastName' => $lastName,
-            'email' => $email,
-            'password' => bcrypt($password),
-            'role' => $role
-        ];
+    public function addUser(User $userModel):User {
+        User::validate($userModel);
+        $userModel->save();
 
-        $user = new User();
+        //TODO add notification to admin and email to client
 
-        if($user->validate($userData)){
-            $user = User::create($userData);
-
-            //TODO add notification to admin and email to client
-
-            return $user;
-        }else{
-            Response::error($user->errors()[0],400);
-        }
+        return $userModel;
     }
 
     public function getUserByEmail(string $email):?User {
@@ -38,6 +25,18 @@ class UserService
 
     public function getUserById(int $userID):?User{
         return User::find($userID);
+    }
+
+    public function updateUser(User $userModel) {
+        $user = $this->getUserById($userModel->id);
+        if(isset($user)){
+            $user->fill($userModel->getAttributes());
+            User::validate($user,true);
+            $user->save();
+            return $user;
+        }else{
+            Response::error(__("response.not_found_id"),400);
+        }
     }
 
     public function removeUser(int $userID):bool {
