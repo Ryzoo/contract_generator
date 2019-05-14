@@ -6,8 +6,8 @@ namespace App\Helpers;
 use Illuminate\Database\Eloquent\Model;
 
 class ElegantValidator extends Model{
-    protected static $rulesAdd = array();
-    protected static $rulesUpdate = array();
+    public static $rulesAdd = array();
+    public static $rulesUpdate = array();
 
     public static function validate($data, bool $isUpdate=false):bool {
         if(!isset($data) || !($data instanceof Model)){

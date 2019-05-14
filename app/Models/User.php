@@ -8,14 +8,14 @@ class User extends ElegantValidator
 {
     protected $guarded = [];
 
-    protected static $rulesAdd = array(
+    public static $rulesAdd = array(
         'email' => 'required|email|unique:users,email|min:6|max:100',
         'firstName'  => 'required|min:3|max:50',
         'lastName'  => 'required|min:3|max:50',
         'role'  => 'required|digits_between:0,1',
     );
 
-    protected static $rulesUpdate = array(
+    public static $rulesUpdate = array(
         'email' => 'required|email|min:6|max:100',
         'firstName'  => 'required|min:3|max:50',
         'lastName'  => 'required|min:3|max:50',

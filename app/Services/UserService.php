@@ -12,6 +12,7 @@ class UserService
 
     public function addUser(User $userModel):User {
         User::validate($userModel);
+        $userModel->password = bcrypt($userModel->password);
         $userModel->save();
         return $userModel;
     }
