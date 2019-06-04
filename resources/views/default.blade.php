@@ -8,7 +8,7 @@
     </head>
     <body>
         <div id="app">
-            <example-component></example-component>
+            <router-view></router-view>
         </div>
     </body>
     <script src="{{ asset('js/app.js')}}"></script>
