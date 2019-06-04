@@ -4,7 +4,6 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Example Component</div>
-
                     <div class="card-body">
                         <p>{{ $t('validation.accepted', {attribute: 'adasd'}) }}</p>
                     </div>
