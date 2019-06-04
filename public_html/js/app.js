@@ -44932,8 +44932,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/ryzo/Documents/Projekty/contract_generator/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/ryzo/Documents/Projekty/contract_generator/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/node/contract_generator/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/node/contract_generator/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
