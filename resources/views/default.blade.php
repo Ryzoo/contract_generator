@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en_US">
+<html lang="{{App::getLocale()}}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Laravel</title>
+        <title>contract generator</title>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
