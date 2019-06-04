@@ -11,7 +11,8 @@
         "test": "./vendor/bin/codecept build && npm run test-unit && npm run test-api",
         "test-func": "./vendor/bin/codecept run functional",
         "test-unit": "./vendor/bin/codecept run unit",
-        "test-api": "./vendor/bin/codecept run api"
+        "test-api": "./vendor/bin/codecept run api",
+        "lang": "php artisan vue-i18n:generate"
     },
     "devDependencies": {
         "axios": "^0.18",
@@ -25,5 +26,8 @@
         "sass-loader": "^7.1.0",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
+    },
+    "dependencies": {
+        "vue-i18n": "^8.11.2"
     }
 }

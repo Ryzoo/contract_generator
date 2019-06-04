@@ -28,6 +28,7 @@ class AuthService {
         // TODO - try to send email using dispatch
         Mail::to($userModel->email)
             ->send(new Welcome($userModel));
+
         return $user;
     }
 
