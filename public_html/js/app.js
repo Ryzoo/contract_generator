@@ -11305,6 +11305,25 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/LoginView.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/LoginView.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "LoginView"
+});
+
+/***/ }),
+
 /***/ "./node_modules/is-buffer/index.js":
 /*!*****************************************!*\
   !*** ./node_modules/is-buffer/index.js ***!
@@ -44132,6 +44151,32 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/LoginView.vue?vue&type=template&id=29e9cc9f&scoped=true&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/LoginView.vue?vue&type=template&id=29e9cc9f&scoped=true& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("p", [
+    _vm._v(_vm._s(_vm.$t("validation.accepted", { attribute: "adasd" })))
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
 /*!********************************************************************!*\
   !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
@@ -59992,42 +60037,24 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-i18n */ "./node_modules/vue-i18n/dist/vue-i18n.esm.js");
-/* harmony import */ var _assets_vue_i18n_locales_generated__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/vue-i18n-locales.generated */ "./resources/js/assets/vue-i18n-locales.generated.js");
-/* harmony import */ var _assets_vue_i18n_locales_generated__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_assets_vue_i18n_locales_generated__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/fontawesome-svg-core */ "./node_modules/@fortawesome/fontawesome-svg-core/index.es.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
-/* harmony import */ var _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/vue-fontawesome */ "./node_modules/@fortawesome/vue-fontawesome/index.es.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
-/* harmony import */ var _route__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./route */ "./resources/js/route.js");
+/* harmony import */ var _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @fortawesome/vue-fontawesome */ "./node_modules/@fortawesome/vue-fontawesome/index.es.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
+/* harmony import */ var _route__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./route */ "./resources/js/route.js");
+/* harmony import */ var _lang__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lang */ "./resources/js/lang.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
-
-
-
-
-
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_2__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUserSecret"]);
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-Vue.use(vue_i18n__WEBPACK_IMPORTED_MODULE_0__["default"]);
-var lang = document.documentElement.lang.substr(0, 2); // or however you determine your current app locale
-
-var i18n = new vue_i18n__WEBPACK_IMPORTED_MODULE_0__["default"]({
-  locale: lang,
-  messages: _assets_vue_i18n_locales_generated__WEBPACK_IMPORTED_MODULE_1___default.a
-});
-Vue.component('font-awesome-icon', _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_4__["FontAwesomeIcon"]);
+Vue.component('font-awesome-icon', _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_0__["FontAwesomeIcon"]);
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
+
 
 
 var app = new Vue({
   el: '#app',
-  i18n: i18n,
-  store: _store__WEBPACK_IMPORTED_MODULE_5__["default"],
-  router: _route__WEBPACK_IMPORTED_MODULE_6__["default"]
+  i18n: _lang__WEBPACK_IMPORTED_MODULE_3__["default"],
+  store: _store__WEBPACK_IMPORTED_MODULE_1__["default"],
+  router: _route__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
 
 /***/ }),
@@ -60036,149 +60063,151 @@ var app = new Vue({
 /*!***********************************************************!*\
   !*** ./resources/js/assets/vue-i18n-locales.generated.js ***!
   \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-(function (global, factory) {
-  ( false ? undefined : _typeof(exports)) === 'object' && typeof module !== 'undefined' ? module.exports = factory() :  true ? !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
-				__WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : undefined;
-})(this, function () {
-  'use strict';
-
-  return {
-    "en": {
-      "email": {
-        "welcome_header": "Welcome to Contract Generator",
-        "go_to_page": "Go to page",
-        "welcome": {
-          "subject": "Welcome to Contract Generator",
-          "info": "Your account are created successfully. You can now login and work in app."
-        },
-        "thanks": "Thanks"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  "en": {
+    "pageMeta": {
+      "auth": {
+        "login": {
+          "title": "Login"
+        }
       },
-      "response": {
-        "not_found_id": "Object with this id was not found",
-        "email_not_found": "Account with this email not found",
-        "bad_password": "Password for this account didn't match"
-      },
-      "validation": {
-        "accepted": "The {attribute} must be accepted.",
-        "active_url": "The {attribute} is not a valid URL.",
-        "after": "The {attribute} must be a date after {date}.",
-        "after_or_equal": "The {attribute} must be a date after or equal to {date}.",
-        "alpha": "The {attribute} may only contain letters.",
-        "alpha_dash": "The {attribute} may only contain letters, numbers, dashes and underscores.",
-        "alpha_num": "The {attribute} may only contain letters and numbers.",
-        "array": "The {attribute} must be an array.",
-        "before": "The {attribute} must be a date before {date}.",
-        "before_or_equal": "The {attribute} must be a date before or equal to {date}.",
-        "between": {
-          "numeric": "The {attribute} must be between {min} and {max}.",
-          "file": "The {attribute} must be between {min} and {max} kilobytes.",
-          "string": "The {attribute} must be between {min} and {max} characters.",
-          "array": "The {attribute} must have between {min} and {max} items."
-        },
-        "boolean": "The {attribute} field must be true or false.",
-        "confirmed": "The {attribute} confirmation does not match.",
-        "date": "The {attribute} is not a valid date.",
-        "date_equals": "The {attribute} must be a date equal to {date}.",
-        "date_format": "The {attribute} does not match the format {format}.",
-        "different": "The {attribute} and {other} must be different.",
-        "digits": "The {attribute} must be {digits} digits.",
-        "digits_between": "The {attribute} must be between {min} and {max} digits.",
-        "dimensions": "The {attribute} has invalid image dimensions.",
-        "distinct": "The {attribute} field has a duplicate value.",
-        "email": "The {attribute} must be a valid email address.",
-        "exists": "The selected {attribute} is invalid.",
-        "file": "The {attribute} must be a file.",
-        "filled": "The {attribute} field must have a value.",
-        "gt": {
-          "numeric": "The {attribute} must be greater than {value}.",
-          "file": "The {attribute} must be greater than {value} kilobytes.",
-          "string": "The {attribute} must be greater than {value} characters.",
-          "array": "The {attribute} must have more than {value} items."
-        },
-        "gte": {
-          "numeric": "The {attribute} must be greater than or equal {value}.",
-          "file": "The {attribute} must be greater than or equal {value} kilobytes.",
-          "string": "The {attribute} must be greater than or equal {value} characters.",
-          "array": "The {attribute} must have {value} items or more."
-        },
-        "image": "The {attribute} must be an image.",
-        "in": "The selected {attribute} is invalid.",
-        "in_array": "The {attribute} field does not exist in {other}.",
-        "integer": "The {attribute} must be an integer.",
-        "ip": "The {attribute} must be a valid IP address.",
-        "ipv4": "The {attribute} must be a valid IPv4 address.",
-        "ipv6": "The {attribute} must be a valid IPv6 address.",
-        "json": "The {attribute} must be a valid JSON string.",
-        "lt": {
-          "numeric": "The {attribute} must be less than {value}.",
-          "file": "The {attribute} must be less than {value} kilobytes.",
-          "string": "The {attribute} must be less than {value} characters.",
-          "array": "The {attribute} must have less than {value} items."
-        },
-        "lte": {
-          "numeric": "The {attribute} must be less than or equal {value}.",
-          "file": "The {attribute} must be less than or equal {value} kilobytes.",
-          "string": "The {attribute} must be less than or equal {value} characters.",
-          "array": "The {attribute} must not have more than {value} items."
-        },
-        "max": {
-          "numeric": "The {attribute} may not be greater than {max}.",
-          "file": "The {attribute} may not be greater than {max} kilobytes.",
-          "string": "The {attribute} may not be greater than {max} characters.",
-          "array": "The {attribute} may not have more than {max} items."
-        },
-        "mimes": "The {attribute} must be a file of type: {values}.",
-        "mimetypes": "The {attribute} must be a file of type: {values}.",
-        "min": {
-          "numeric": "The {attribute} must be at least {min}.",
-          "file": "The {attribute} must be at least {min} kilobytes.",
-          "string": "The {attribute} must be at least {min} characters.",
-          "array": "The {attribute} must have at least {min} items."
-        },
-        "not_in": "The selected {attribute} is invalid.",
-        "not_regex": "The {attribute} format is invalid.",
-        "numeric": "The {attribute} must be a number.",
-        "present": "The {attribute} field must be present.",
-        "regex": "The {attribute} format is invalid.",
-        "required": "The {attribute} field is required.",
-        "required_if": "The {attribute} field is required when {other} is {value}.",
-        "required_unless": "The {attribute} field is required unless {other} is in {values}.",
-        "required_with": "The {attribute} field is required when {values} is present.",
-        "required_with_all": "The {attribute} field is required when {values} are present.",
-        "required_without": "The {attribute} field is required when {values} is not present.",
-        "required_without_all": "The {attribute} field is required when none of {values} are present.",
-        "same": "The {attribute} and {other} must match.",
-        "size": {
-          "numeric": "The {attribute} must be {size}.",
-          "file": "The {attribute} must be {size} kilobytes.",
-          "string": "The {attribute} must be {size} characters.",
-          "array": "The {attribute} must contain {size} items."
-        },
-        "starts_with": "The {attribute} must start with one of the following: {values}",
-        "string": "The {attribute} must be a string.",
-        "timezone": "The {attribute} must be a valid zone.",
-        "unique": "The {attribute} has already been taken.",
-        "uploaded": "The {attribute} failed to upload.",
-        "url": "The {attribute} format is invalid.",
-        "uuid": "The {attribute} must be a valid UUID.",
-        "custom": {
-          "attribute-name": {
-            "rule-name": "custom-message"
-          }
-        },
-        "attributes": [],
-        "bad_object_data": "Data injected to model validator is bad"
+      "panel": {
+        "dashboard": {
+          "title": "Panel - Dashboard"
+        }
       }
+    },
+    "email": {
+      "welcome_header": "Welcome to Contract Generator",
+      "go_to_page": "Go to page",
+      "welcome": {
+        "subject": "Welcome to Contract Generator",
+        "info": "Your account are created successfully. You can now login and work in app."
+      },
+      "thanks": "Thanks"
+    },
+    "response": {
+      "not_found_id": "Object with this id was not found",
+      "email_not_found": "Account with this email not found",
+      "bad_password": "Password for this account didn't match"
+    },
+    "validation": {
+      "accepted": "The {attribute} must be accepted.",
+      "active_url": "The {attribute} is not a valid URL.",
+      "after": "The {attribute} must be a date after {date}.",
+      "after_or_equal": "The {attribute} must be a date after or equal to {date}.",
+      "alpha": "The {attribute} may only contain letters.",
+      "alpha_dash": "The {attribute} may only contain letters, numbers, dashes and underscores.",
+      "alpha_num": "The {attribute} may only contain letters and numbers.",
+      "array": "The {attribute} must be an array.",
+      "before": "The {attribute} must be a date before {date}.",
+      "before_or_equal": "The {attribute} must be a date before or equal to {date}.",
+      "between": {
+        "numeric": "The {attribute} must be between {min} and {max}.",
+        "file": "The {attribute} must be between {min} and {max} kilobytes.",
+        "string": "The {attribute} must be between {min} and {max} characters.",
+        "array": "The {attribute} must have between {min} and {max} items."
+      },
+      "boolean": "The {attribute} field must be true or false.",
+      "confirmed": "The {attribute} confirmation does not match.",
+      "date": "The {attribute} is not a valid date.",
+      "date_equals": "The {attribute} must be a date equal to {date}.",
+      "date_format": "The {attribute} does not match the format {format}.",
+      "different": "The {attribute} and {other} must be different.",
+      "digits": "The {attribute} must be {digits} digits.",
+      "digits_between": "The {attribute} must be between {min} and {max} digits.",
+      "dimensions": "The {attribute} has invalid image dimensions.",
+      "distinct": "The {attribute} field has a duplicate value.",
+      "email": "The {attribute} must be a valid email address.",
+      "exists": "The selected {attribute} is invalid.",
+      "file": "The {attribute} must be a file.",
+      "filled": "The {attribute} field must have a value.",
+      "gt": {
+        "numeric": "The {attribute} must be greater than {value}.",
+        "file": "The {attribute} must be greater than {value} kilobytes.",
+        "string": "The {attribute} must be greater than {value} characters.",
+        "array": "The {attribute} must have more than {value} items."
+      },
+      "gte": {
+        "numeric": "The {attribute} must be greater than or equal {value}.",
+        "file": "The {attribute} must be greater than or equal {value} kilobytes.",
+        "string": "The {attribute} must be greater than or equal {value} characters.",
+        "array": "The {attribute} must have {value} items or more."
+      },
+      "image": "The {attribute} must be an image.",
+      "in": "The selected {attribute} is invalid.",
+      "in_array": "The {attribute} field does not exist in {other}.",
+      "integer": "The {attribute} must be an integer.",
+      "ip": "The {attribute} must be a valid IP address.",
+      "ipv4": "The {attribute} must be a valid IPv4 address.",
+      "ipv6": "The {attribute} must be a valid IPv6 address.",
+      "json": "The {attribute} must be a valid JSON string.",
+      "lt": {
+        "numeric": "The {attribute} must be less than {value}.",
+        "file": "The {attribute} must be less than {value} kilobytes.",
+        "string": "The {attribute} must be less than {value} characters.",
+        "array": "The {attribute} must have less than {value} items."
+      },
+      "lte": {
+        "numeric": "The {attribute} must be less than or equal {value}.",
+        "file": "The {attribute} must be less than or equal {value} kilobytes.",
+        "string": "The {attribute} must be less than or equal {value} characters.",
+        "array": "The {attribute} must not have more than {value} items."
+      },
+      "max": {
+        "numeric": "The {attribute} may not be greater than {max}.",
+        "file": "The {attribute} may not be greater than {max} kilobytes.",
+        "string": "The {attribute} may not be greater than {max} characters.",
+        "array": "The {attribute} may not have more than {max} items."
+      },
+      "mimes": "The {attribute} must be a file of type: {values}.",
+      "mimetypes": "The {attribute} must be a file of type: {values}.",
+      "min": {
+        "numeric": "The {attribute} must be at least {min}.",
+        "file": "The {attribute} must be at least {min} kilobytes.",
+        "string": "The {attribute} must be at least {min} characters.",
+        "array": "The {attribute} must have at least {min} items."
+      },
+      "not_in": "The selected {attribute} is invalid.",
+      "not_regex": "The {attribute} format is invalid.",
+      "numeric": "The {attribute} must be a number.",
+      "present": "The {attribute} field must be present.",
+      "regex": "The {attribute} format is invalid.",
+      "required": "The {attribute} field is required.",
+      "required_if": "The {attribute} field is required when {other} is {value}.",
+      "required_unless": "The {attribute} field is required unless {other} is in {values}.",
+      "required_with": "The {attribute} field is required when {values} is present.",
+      "required_with_all": "The {attribute} field is required when {values} are present.",
+      "required_without": "The {attribute} field is required when {values} is not present.",
+      "required_without_all": "The {attribute} field is required when none of {values} are present.",
+      "same": "The {attribute} and {other} must match.",
+      "size": {
+        "numeric": "The {attribute} must be {size}.",
+        "file": "The {attribute} must be {size} kilobytes.",
+        "string": "The {attribute} must be {size} characters.",
+        "array": "The {attribute} must contain {size} items."
+      },
+      "starts_with": "The {attribute} must start with one of the following: {values}",
+      "string": "The {attribute} must be a string.",
+      "timezone": "The {attribute} must be a valid zone.",
+      "unique": "The {attribute} has already been taken.",
+      "uploaded": "The {attribute} failed to upload.",
+      "url": "The {attribute} format is invalid.",
+      "uuid": "The {attribute} must be a valid UUID.",
+      "custom": {
+        "attribute-name": {
+          "rule-name": "custom-message"
+        }
+      },
+      "attributes": [],
+      "bad_object_data": "Data injected to model validator is bad"
     }
-  };
+  }
 });
 
 /***/ }),
@@ -60187,10 +60216,16 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
   \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @fortawesome/fontawesome-svg-core */ "./node_modules/@fortawesome/fontawesome-svg-core/index.es.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+
+
 
 try {
   window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
@@ -60199,6 +60234,7 @@ try {
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_0__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faUserSecret"]);
 
 /***/ }),
 
@@ -60340,6 +60376,32 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/lang.js":
+/*!******************************!*\
+  !*** ./resources/js/lang.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-i18n */ "./node_modules/vue-i18n/dist/vue-i18n.esm.js");
+/* harmony import */ var _assets_vue_i18n_locales_generated__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/vue-i18n-locales.generated */ "./resources/js/assets/vue-i18n-locales.generated.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vue_i18n__WEBPACK_IMPORTED_MODULE_0__["default"]);
+var lang = document.documentElement.lang.substr(0, 2); // or however you determine your current app locale
+
+/* harmony default export */ __webpack_exports__["default"] = (new vue_i18n__WEBPACK_IMPORTED_MODULE_0__["default"]({
+  locale: lang,
+  messages: _assets_vue_i18n_locales_generated__WEBPACK_IMPORTED_MODULE_1__["default"]
+}));
+
+/***/ }),
+
 /***/ "./resources/js/layouts/PanelLayout.vue":
 /*!**********************************************!*\
   !*** ./resources/js/layouts/PanelLayout.vue ***!
@@ -60421,9 +60483,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _components_ExampleComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/ExampleComponent */ "./resources/js/components/ExampleComponent.vue");
-/* harmony import */ var _components_Dashboard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Dashboard */ "./resources/js/components/Dashboard.vue");
-/* harmony import */ var _layouts_PanelLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./layouts/PanelLayout */ "./resources/js/layouts/PanelLayout.vue");
+/* harmony import */ var _components_Dashboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Dashboard */ "./resources/js/components/Dashboard.vue");
+/* harmony import */ var _layouts_PanelLayout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./layouts/PanelLayout */ "./resources/js/layouts/PanelLayout.vue");
+/* harmony import */ var _views_LoginView__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/LoginView */ "./resources/js/views/LoginView.vue");
+/* harmony import */ var _lang__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./lang */ "./resources/js/lang.js");
+
 
 
 
@@ -60432,15 +60496,38 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
+  base: Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).BASE_URL,
   routes: [{
     path: '/panel',
-    component: _layouts_PanelLayout__WEBPACK_IMPORTED_MODULE_4__["default"],
+    component: _layouts_PanelLayout__WEBPACK_IMPORTED_MODULE_3__["default"],
     children: [{
       path: '/',
       name: 'dashboard',
-      component: _components_Dashboard__WEBPACK_IMPORTED_MODULE_3__["default"]
+      component: _components_Dashboard__WEBPACK_IMPORTED_MODULE_2__["default"],
+      meta: {
+        title: _lang__WEBPACK_IMPORTED_MODULE_5__["default"].t('pageMeta.panel.dashboard.title')
+      }
+    }]
+  }, {
+    path: '/auth',
+    component: _layouts_PanelLayout__WEBPACK_IMPORTED_MODULE_3__["default"],
+    children: [{
+      path: 'login',
+      name: 'login',
+      component: _views_LoginView__WEBPACK_IMPORTED_MODULE_4__["default"],
+      meta: {
+        title: _lang__WEBPACK_IMPORTED_MODULE_5__["default"].t('pageMeta.auth.login.title')
+      }
     }]
   }]
+});
+router.beforeEach(function (to, from, next) {
+  var nearestWithTitle = to.matched.slice().reverse().find(function (r) {
+    return r.meta && r.meta.title;
+  });
+  console.log(window.i18n);
+  if (nearestWithTitle) document.title = nearestWithTitle.meta.title;
+  next();
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
 
@@ -60507,6 +60594,75 @@ var getters = {
 
 /***/ }),
 
+/***/ "./resources/js/views/LoginView.vue":
+/*!******************************************!*\
+  !*** ./resources/js/views/LoginView.vue ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _LoginView_vue_vue_type_template_id_29e9cc9f_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LoginView.vue?vue&type=template&id=29e9cc9f&scoped=true& */ "./resources/js/views/LoginView.vue?vue&type=template&id=29e9cc9f&scoped=true&");
+/* harmony import */ var _LoginView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LoginView.vue?vue&type=script&lang=js& */ "./resources/js/views/LoginView.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _LoginView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _LoginView_vue_vue_type_template_id_29e9cc9f_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _LoginView_vue_vue_type_template_id_29e9cc9f_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "29e9cc9f",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/LoginView.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/LoginView.vue?vue&type=script&lang=js&":
+/*!*******************************************************************!*\
+  !*** ./resources/js/views/LoginView.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./LoginView.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/LoginView.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/LoginView.vue?vue&type=template&id=29e9cc9f&scoped=true&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/views/LoginView.vue?vue&type=template&id=29e9cc9f&scoped=true& ***!
+  \*************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginView_vue_vue_type_template_id_29e9cc9f_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./LoginView.vue?vue&type=template&id=29e9cc9f&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/LoginView.vue?vue&type=template&id=29e9cc9f&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginView_vue_vue_type_template_id_29e9cc9f_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginView_vue_vue_type_template_id_29e9cc9f_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -60525,8 +60681,8 @@ var getters = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/node/contract_generator/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/node/contract_generator/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/ryzo/Documents/Projekty/contract_generator/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/ryzo/Documents/Projekty/contract_generator/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
