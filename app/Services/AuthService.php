@@ -25,8 +25,9 @@ class AuthService {
     public function registerUser(User $userModel):?User {
         $user = $this->userService->addUser($userModel);
 //        SendWelcomeEmail::dispatch($user);
-        Mail::to($this->userModel->email)
-            ->send(new Welcome($this->userModel));
+        // TODO - try to send email using dispatch
+        Mail::to($userModel->email)
+            ->send(new Welcome($userModel));
         return $user;
     }
 

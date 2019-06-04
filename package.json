@@ -8,9 +8,10 @@
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "test": "./vendor/bin/codecept build && npm run test-unit && npm run test-func",
+        "test": "./vendor/bin/codecept build && npm run test-unit && npm run test-api",
         "test-func": "./vendor/bin/codecept run functional",
-        "test-unit": "./vendor/bin/codecept run unit"
+        "test-unit": "./vendor/bin/codecept run unit",
+        "test-api": "./vendor/bin/codecept run api"
     },
     "devDependencies": {
         "axios": "^0.18",

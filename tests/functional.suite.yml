@@ -15,5 +15,7 @@ modules:
               run_database_seeder: true
               database_seeder_class: 'DatabaseSeeder'
         - REST:
-            - depends: Laravel5
+            depends: Laravel5
+            url: http://localhost/
+            shortDebugResponse: 300
         - \Helper\Functional

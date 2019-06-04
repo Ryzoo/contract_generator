@@ -1,8 +1,11 @@
 <?php
 
 use App\Models\User;
+use App\Services\AuthService;
+use App\Services\UserService;
+use Codeception\Test\Unit;
 
-class AuthServiceTest extends \Codeception\Test\Unit {
+class AuthServiceTest extends Unit {
 
     /**
      * @var \UnitTester
@@ -19,7 +22,7 @@ class AuthServiceTest extends \Codeception\Test\Unit {
      */
     protected $userService;
 
-    protected function _inject(\App\Services\AuthService $authService, \App\Services\UserService $userService) {
+    protected function _inject(AuthService $authService, UserService $userService) {
         $this->authService = $authService;
         $this->userService = $userService;
     }
