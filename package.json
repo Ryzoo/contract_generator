@@ -33,6 +33,7 @@
         "@fortawesome/vue-fontawesome": "^0.1.6",
         "vue-i18n": "^8.11.2",
         "vue-router": "^3.0.6",
+        "vuetify": "^1.5.14",
         "vuex": "^3.1.1"
     }
 }

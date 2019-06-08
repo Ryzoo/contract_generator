@@ -8,7 +8,9 @@
     </head>
     <body>
         <div id="app">
-            <router-view></router-view>
+            <v-container fluid>
+                <router-view></router-view>
+            </v-container>
         </div>
     </body>
     <script src="{{ asset('js/app.js')}}"></script>
