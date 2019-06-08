@@ -37,6 +37,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 import store from './store';
 import route from './route'
+import i18n from './lang'
 
 const app = new Vue({
     el: '#app',

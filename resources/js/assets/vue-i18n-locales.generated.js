@@ -1,10 +1,17 @@
-(function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-        typeof define === 'function' && define.amd ? define(factory) :
-            (global.vuei18nLocales = factory());
-}(this, (function () { 'use strict';
-    return {
+export default {
     "en": {
+        "pageMeta": {
+            "auth": {
+                "login": {
+                    "title": "Login"
+                }
+            },
+            "panel": {
+                "dashboard": {
+                    "title": "Panel - Dashboard"
+                }
+            }
+        },
         "email": {
             "welcome_header": "Welcome to Contract Generator",
             "go_to_page": "Go to page",
@@ -132,5 +139,3 @@
         }
     }
 }
-
-})));
