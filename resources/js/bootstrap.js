@@ -1,6 +1,6 @@
 window._ = require('lodash');
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faBars, faPoll, faUser, faCog, faFileContract, faTh } from '@fortawesome/free-solid-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
 
 try {
     window.Popper = require('popper.js').default;
@@ -10,4 +10,4 @@ try {
 window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-library.add(faBars, faPoll, faUser, faCog, faFileContract, faTh);
+library.add(fas);

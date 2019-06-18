@@ -1,6 +1,8 @@
 export default {
     "en": {
         "pageMeta": {
+            "appTitle": "Contract Generator",
+            "copyright": "All rights reserved - Contract Generator",
             "auth": {
                 "login": {
                     "title": "Login"

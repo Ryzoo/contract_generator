@@ -1,9 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Dashboard from "./components/Dashboard";
 import PanelLayout from "./layouts/PanelLayout";
 import LoginView from "./views/LoginView";
 import i18n from "./lang";
+import AuthLayout from "./layouts/AuthLayout";
+import DashboardView from "./views/DashboardView";
 
 Vue.use(VueRouter);
 
@@ -18,7 +19,7 @@ const router = new VueRouter({
         {
           path: '/',
           name: 'dashboard',
-          component: Dashboard,
+          component: DashboardView,
           meta: {
             title: i18n.t('pageMeta.panel.dashboard.title')
           }
@@ -27,7 +28,7 @@ const router = new VueRouter({
     },
     {
       path: '/auth',
-      component: PanelLayout,
+      component: AuthLayout,
       children: [
         {
           path: 'login',
