@@ -1,10 +1,12 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import PanelLayout from "./layouts/PanelLayout";
-import LoginView from "./views/LoginView";
 import i18n from "./lang";
 import AuthLayout from "./layouts/AuthLayout";
-import DashboardView from "./views/DashboardView";
+import DashboardView from "./views/panel/DashboardView";
+import LoginView from "./views/auth/LoginView";
+import ResetPassword from "./views/auth/ResetPassword";
+import RegisterView from "./views/auth/RegisterView";
 
 Vue.use(VueRouter);
 
@@ -36,6 +38,22 @@ const router = new VueRouter({
           component: LoginView,
           meta: {
             title: i18n.t('pageMeta.auth.login.title')
+          }
+        },
+        {
+          path: 'register',
+          name: 'register',
+          component: RegisterView,
+          meta: {
+            title: i18n.t('pageMeta.auth.register.title')
+          }
+        },
+        {
+          path: 'resetPassword',
+          name: 'resetPassword',
+          component: ResetPassword,
+          meta: {
+            title: i18n.t('pageMeta.auth.resetPassword.title')
           }
         },
       ]

@@ -7,6 +7,12 @@ return [
         'login' => [
             'title' => 'Login',
         ],
+        'register' => [
+            'title' => 'Register account',
+        ],
+        'resetPassword' => [
+            'title' => 'Reset password',
+        ],
     ],
     'panel' => [
         'dashboard' => [

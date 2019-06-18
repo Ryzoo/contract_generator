@@ -58,7 +58,9 @@
         <v-content>
             <v-container fluid>
                 <v-layout align-center justify-center>
-                    <router-view></router-view>
+                    <v-fade-transition mode="out-in">
+                        <router-view></router-view>
+                    </v-fade-transition>
                 </v-layout>
             </v-container>
         </v-content>
@@ -70,7 +72,7 @@
 
 <script>
   export default {
-    name: "GeneratorPanel",
+    name: "PanelLayout",
     data: function () {
       return {
         navigationModel: true,

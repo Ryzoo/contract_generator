@@ -7,9 +7,9 @@ window.Vue = require('vue');
 
 Vue.use(Vuetify, {
     theme: {
-        primary: '#1976D2',
-        secondary: '#424242',
-        accent: '#82B1FF',
+        primary: '#446477',
+        secondary: '#324a58',
+        accent: '#ccbd99',
         error: '#FF5252',
         info: '#2196F3',
         success: '#4CAF50',

@@ -10,7 +10,9 @@
         <div id="app">
             <v-app>
                 <v-container fluid>
-                    <router-view></router-view>
+                    <v-fade-transition mode="out-in">
+                        <router-view></router-view>
+                    </v-fade-transition>
                 </v-container>
             </v-app>
         </div>
