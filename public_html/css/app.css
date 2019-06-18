@@ -2591,7 +2591,6 @@
 }
 
 .theme--light.v-footer {
-  background: #ccbd99 !important;
   color: #324a58 !important;
 }
 
@@ -2602,5 +2601,97 @@
 
 .theme--light.application {
   color: #324a58 !important;
+}
+
+body > .notify-container {
+  font-family: Roboto, sans-serif !important;
+  position: fixed;
+  z-index: 11111;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  width: 100%;
+  right: 25px;
+  padding: 0;
+  bottom: 25px;
+  height: auto;
+}
+
+body > .notify-container .notify-remove {
+  opacity: 0 !important;
+}
+
+body > .notify-container .notify-element {
+  font-family: Roboto, sans-serif !important;
+  opacity: 1;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  color: white;
+  padding: 15px;
+  position: relative;
+  align-items: center;
+  display: flex;
+  transition: all 0.3s;
+}
+
+body > .notify-container .notify-element.notify-type-0 {
+  background: #F45549;
+}
+
+body > .notify-container .notify-element.notify-type-1 {
+  background: #5ABF5D;
+}
+
+body > .notify-container .notify-element.notify-type-2 {
+  background: #3E8CD9;
+}
+
+body > .notify-container .notify-element.notify-type-3 {
+  background: #446477;
+}
+
+body > .notify-container .notify-element p {
+  font-family: Roboto, sans-serif !important;
+  margin: 0;
+  flex: 1;
+  font-size: 15px;
+}
+
+body > .notify-container .notify-element .close {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  opacity: 0.5;
+  margin-left: 5px;
+  transition: all 0.3s;
+}
+
+body > .notify-container .notify-element .close:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+body > .notify-container .notify-element .close:before,
+body > .notify-container .notify-element .close:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  height: 33px;
+  width: 2px;
+  background-color: #fff;
+}
+
+body > .notify-container .notify-element .close:before {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+body > .notify-container .notify-element .close:after {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
 }
 

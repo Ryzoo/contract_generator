@@ -21,7 +21,7 @@
                     </v-list-tile-avatar>
 
                     <v-list-tile-content>
-                        <v-list-tile-title>Grzegorz Kastelik</v-list-tile-title>
+                        <v-list-tile-title>{{user.firstName}} {{user.lastName}}</v-list-tile-title>
                     </v-list-tile-content>
 
                     <v-list-tile-action>
@@ -37,14 +37,15 @@
                 <v-list-tile
                     v-for="item in items"
                     :key="item.title"
-                    @click=""
+                    :to="item.link ? item.link : null"
+                    @click="item.logout ? logout() : null"
                 >
                     <v-list-tile-action>
                         <font-awesome-icon size="2x" :icon="item.icon"/>
                     </v-list-tile-action>
 
                     <v-list-tile-content>
-                        <v-list-tile-title>{{item.title}}</v-list-tile-title>
+                        <v-list-tile-title >{{item.title}}</v-list-tile-title>
                     </v-list-tile-content>
                 </v-list-tile>
             </v-list>
@@ -77,10 +78,12 @@
       return {
         navigationModel: true,
         mini: false,
+        user: this.$store.getters.authUser,
         items: [
           {
             title: "Dashboard",
-            icon: "poll"
+            icon: "poll",
+            link: "/panel/"
           },
           {
             title: "Klienci",
@@ -102,9 +105,19 @@
             title: "Ustawienia",
             icon: "cog"
           },
+          {
+            title: "Wyloguj",
+            icon: "sign-out-alt",
+            logout: true
+          }
         ]
       }
     },
+    methods:{
+      logout(){
+        auth.logout();
+      }
+    }
   }
 </script>
 

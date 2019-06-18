@@ -37,7 +37,8 @@ const router = new VueRouter({
           name: 'login',
           component: LoginView,
           meta: {
-            title: i18n.t('pageMeta.auth.login.title')
+            title: i18n.t('pageMeta.auth.login.title'),
+            noRequireAuthorization: true
           }
         },
         {
@@ -45,7 +46,8 @@ const router = new VueRouter({
           name: 'register',
           component: RegisterView,
           meta: {
-            title: i18n.t('pageMeta.auth.register.title')
+            title: i18n.t('pageMeta.auth.register.title'),
+            noRequireAuthorization: true
           }
         },
         {
@@ -53,7 +55,8 @@ const router = new VueRouter({
           name: 'resetPassword',
           component: ResetPassword,
           meta: {
-            title: i18n.t('pageMeta.auth.resetPassword.title')
+            title: i18n.t('pageMeta.auth.resetPassword.title'),
+            noRequireAuthorization: true
           }
         },
       ]
@@ -64,12 +67,38 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title);
 
-  console.log(window.i18n);
-
   if(nearestWithTitle)
     document.title = nearestWithTitle.meta.title;
 
-  next();
+  if (to.matched.some(record => record.meta.noRequireAuthorization)) {
+    next();
+  } else {
+    if (to.path !== '/login') {
+      window.auth.checkAuth()
+          .then((returned)=>{
+            if(returned){
+              next();
+            }else{
+              next({
+                path: '/auth/login',
+                query: {
+                  redirect: to.fullPath ? to.fullPath : null,
+                }
+              });
+            }
+          })
+          .catch(()=>{
+            next({
+              path: '/auth/login',
+              query: {
+                redirect: to.fullPath ? to.fullPath : null,
+              }
+            });
+          });
+    } else {
+      next();
+    }
+  }
 });
 
 export default router;

@@ -36,6 +36,9 @@ export default {
                 "button": {
                     "login": "Login",
                     "register": "Create new account"
+                },
+                "notify": {
+                    "success": "Loged succesfully"
                 }
             },
             "register": {

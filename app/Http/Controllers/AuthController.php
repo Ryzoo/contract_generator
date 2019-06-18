@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
+
+    /**
+     * @var \App\Services\AuthService
+     */
     protected $authService;
 
     public function __construct(AuthService $authService) {
@@ -22,11 +26,30 @@ class AuthController extends Controller
             "password" => "required",
         ]);
 
-        Response::json($this->authService->loginUser($request->get('email'),$request->get('password')));
+        $logedUser = $this->authService->loginUser(
+            $request->get('email'),
+            $request->get('password')
+        );
+
+        Response::json($logedUser);
     }
 
     public function registerUser(Request $request) {
         Validator::validate($request->all(),User::$rulesAdd);
-        Response::json($this->authService->registerUser((new User())->fill($request->all())));
+
+        $user = new User();
+        $user->fill($request->all());
+
+        $registeredUser = $this->authService->registerUser( $user );
+
+        Response::json($registeredUser);
+    }
+
+    public function authorizeLogedUser(Request $request) {
+        $loginToken = $request->bearerToken();
+
+        $logedUser = $this->authService->authorizeLogedUser( $loginToken );
+
+        Response::json($logedUser);
     }
 }

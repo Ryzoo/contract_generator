@@ -38,10 +38,19 @@ class AuthService {
             if(Hash::check($password, $user->password)){
                 return $user;
             }else{
-                Response::error(__("response.bad_password"),401);
+                Response::error(__("response.badPassword"),401);
             }
         }else{
-            Response::error(__("response.email_not_found"),401);
+            Response::error(__("response.emailNotFound"),401);
         }
+    }
+
+    public function authorizeLogedUser(string $loginToken) {
+        $user = $this->userService->getUserByLoginToken($loginToken);
+
+        if(!isset($user))
+            Response::error(__("response.notAuthorized"),401);
+
+        return $user;
     }
 }

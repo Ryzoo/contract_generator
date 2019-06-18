@@ -25,6 +25,10 @@ class UserService
         return User::find($userID);
     }
 
+    public function getUserByLoginToken(string $loginToken):?User {
+        return User::where("loginToken",$loginToken)->first();
+    }
+
     public function updateUser(User $userModel) {
         $user = $this->getUserById($userModel->id);
         if(isset($user)){
@@ -33,7 +37,7 @@ class UserService
             $user->save();
             return $user;
         }else{
-            Response::error(__("response.not_found_id"),400);
+            Response::error(__("response.notFoundId"),400);
         }
     }
 

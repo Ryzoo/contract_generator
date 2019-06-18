@@ -1,11 +1,11 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-import chatModule from './modules/chat';
+import Vue from "vue";
+import Vuex from "vuex";
+import authUserModule from "./modules/authUser";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
-    chat: chatModule,
-  },
+    authUser: authUserModule
+  }
 });
