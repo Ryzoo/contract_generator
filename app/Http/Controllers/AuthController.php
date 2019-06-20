@@ -57,4 +57,14 @@ class AuthController extends Controller
 
         Response::json($logedUser);
     }
+
+    public function resetUserPassword(Request $request) {
+        Validator::validate($request->all(),[
+            "email" => "required",
+        ]);
+
+        $this->authService->resetPassword( $request->get('email') );
+
+        Response::success();
+    }
 }

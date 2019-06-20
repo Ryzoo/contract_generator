@@ -6,7 +6,5 @@ Route::prefix('auth')->group(function () {
     Route::post('/login', 'AuthController@loginUser');
     Route::post('/register', 'AuthController@registerUser');
     Route::post('/authorize', 'AuthController@authorizeLogedUser');
-    // TODO add test
-    
-    // TODO add reset password endpoint
+    Route::post('/passwordReset', 'AuthController@resetUserPassword');
 });

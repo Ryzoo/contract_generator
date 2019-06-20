@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('role')->default(UserRole::CLIENT);
             $table->string('loginToken')->nullable()->default(null);
+            $table->string('resetPasswordToken')->nullable()->default(null);
             $table->softDeletes();
             $table->timestamps();
         });
