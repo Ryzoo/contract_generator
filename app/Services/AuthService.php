@@ -5,11 +5,9 @@ namespace App\Services;
 
 
 use App\Helpers\Response;
-use App\Jobs\SendWelcomeEmail;
-use App\Mail\Welcome;
+use App\Jobs\Email\SendWelcomeEmail;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 
 class AuthService {
 
@@ -22,18 +20,21 @@ class AuthService {
         $this->userService = $userService;
     }
 
-    public function registerUser(User $userModel):?User {
+    public function registerUser(User $userModel, int $userRole):?User {
+        $userModel->role = $userRole;
+
+        if(isset($userModel['rePassword']))
+            unset($userModel['rePassword']);
+
         $user = $this->userService->addUser($userModel);
-//        SendWelcomeEmail::dispatch($user);
-        // TODO - try to send email using dispatch
-        Mail::to($userModel->email)
-            ->send(new Welcome($userModel));
+
+        SendWelcomeEmail::dispatchNow($user);
 
         return $user;
     }
 
     public function loginUser(string $email, string $password) {
-        $user = $this->userService->getUserByEmail($email);
+        $user = User::getByEmail($email);
         if(isset($user)){
             if(Hash::check($password, $user->password)){
                 return $user;
@@ -46,7 +47,7 @@ class AuthService {
     }
 
     public function authorizeLogedUser(string $loginToken) {
-        $user = $this->userService->getUserByLoginToken($loginToken);
+        $user = User::getByLoginToken($loginToken);
 
         if(!isset($user))
             Response::error(__("response.notAuthorized"),401);

@@ -12,11 +12,11 @@ class AuthCest {
     public function _before(ApiTester $I) {
         $this->roles['ADMIN'] = factory(User::class)->states('admin')->create([
             'email' => "test@admin.pl",
-            'password' => bcrypt("fajnehaslo")
+            'password' => "fajnehaslo"
         ]);
         $this->roles['CLIENT'] = factory(User::class)->states('client')->create([
             'email' => "test@client.pl",
-            'password' => bcrypt("fajnehaslo")
+            'password' => "fajnehaslo"
         ]);
     }
 
@@ -31,14 +31,27 @@ class AuthCest {
     }
 
     public function tryRegister(ApiTester $I) {
-        $facUser = factory(User::class)->states('client')->make([
-            'password' => 'fajnehaslo',
-            'email' => "t.test@test.pl"
-        ]);
+        $facUser = factory(User::class)->states('client')->make();
 
-        $I->sendPOST('api/auth/register',$facUser->getAttributes());
+        $data = $facUser->getAttributes();
+        $data['password'] = 'fajnehaslo';
+        $data['rePassword'] = 'fajnehaslo';
+        $data['email'] = 't.test@test.pl';
+
+        $I->sendPOST('api/auth/register',$data);
+
         $I->seeResponseCodeIs(HttpCode::OK);
         $I->seeResponseIsJson();
         $I->seeResponseContainsJson(['email' => 't.test@test.pl']);
+    }
+
+    public function tryAuthorize(ApiTester $I) {
+        $I->amBearerAuthenticated($this->roles['CLIENT']->loginToken);
+
+        $I->sendPOST('api/auth/authorize');
+
+        $I->seeResponseCodeIs(HttpCode::OK);
+        $I->seeResponseIsJson();
+        $I->seeResponseContainsJson(['email' => 'test@client.pl']);
     }
 }

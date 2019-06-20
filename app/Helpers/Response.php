@@ -24,13 +24,9 @@ class Response
 
     public static function error($errorMessage, $code = 404)
     {
-		if(Request::is('api/*') && Request::wantsJson()){
-			Response::json([
-				"error" => $errorMessage
-			],$code);
-		}else{
-			abort($code, $errorMessage);
-		}
+        Response::json([
+            "error" => $errorMessage
+        ],$code);
     }
 
     public static function success($successMessage = true, $code = 200)
