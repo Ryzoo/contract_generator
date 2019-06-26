@@ -2,19 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/acceptance/tmp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/functional/tmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php-test-framework.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php-test-framework.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Helpers/Response.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/Response.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Helpers/ElegantValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/ElegantValidator.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/AuthService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/AuthService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/response.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/response.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/api/AuthCest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/api/AuthCest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit/AuthServiceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/AuthServiceTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,58 +58,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/api/AuthCest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="753">
-              <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
+            <state relative-caret-position="319">
+              <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
               <folding>
                 <element signature="n#_inject#0;n#AuthCest#0;n#!!top" expanded="true" />
                 <element signature="n#_before#0;n#AuthCest#0;n#!!top" expanded="true" />
                 <element signature="n#tryLogin#0;n#AuthCest#0;n#!!top" expanded="true" />
                 <element signature="n#tryRegister#0;n#AuthCest#0;n#!!top" expanded="true" />
-                <element signature="n#tryAuthorize#0;n#AuthCest#0;n#!!top" expanded="true" />
                 <element signature="n#trySendResetPasswordToken#0;n#AuthCest#0;n#!!top" expanded="true" />
                 <element signature="n#tryResetPassword#0;n#AuthCest#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/api.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="8" column="86" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="86" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AuthController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="64" column="42" selection-start-line="64" selection-start-column="42" selection-end-line="64" selection-end-column="42" />
-              <folding>
-                <element signature="e#40#63#0#PHP" expanded="true" />
-                <element signature="e#244#293#0#PHP" expanded="true" />
-                <element signature="e#327#431#0#PHP" expanded="true" />
-                <element signature="e#1275#1496#0#PHP" expanded="true" />
-                <element signature="e#1778#2163#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Services/AuthService.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="61" selection-start-line="61" selection-end-line="61" />
-              <folding>
-                <element signature="e#34#59#0#PHP" expanded="true" />
-                <element signature="e#319#423#0#PHP" expanded="true" />
-                <element signature="e#429#759#0#PHP" expanded="true" />
-                <element signature="e#765#1172#0#PHP" expanded="true" />
-                <element signature="e#1178#1405#0#PHP" expanded="true" />
-                <element signature="e#1835#2134#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -152,6 +103,7 @@
       <find>getuser</find>
       <find>registerUser</find>
       <find>resetUserPassword</find>
+      <find>provider</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -160,12 +112,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Helpers/ElegantValidator.php" />
         <option value="$PROJECT_DIR$/tests/acceptance.suite.yml" />
         <option value="$PROJECT_DIR$/tests/api.suite.yml" />
         <option value="$PROJECT_DIR$/tests/functional.suite.yml" />
         <option value="$PROJECT_DIR$/database/seeds/UserSeeder.php" />
-        <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/config/vue-i18n-generator.php" />
         <option value="$PROJECT_DIR$/resources/js/store/modules/chat.js" />
         <option value="$PROJECT_DIR$/routes/web.php" />
@@ -211,6 +161,8 @@
         <option value="$PROJECT_DIR$/tests/unit/AuthServiceTest.php" />
         <option value="$PROJECT_DIR$/app/Services/AuthService.php" />
         <option value="$PROJECT_DIR$/tests/api/AuthCest.php" />
+        <option value="$PROJECT_DIR$/config/app.php" />
+        <option value="$PROJECT_DIR$/composer.json" />
       </list>
     </option>
   </component>
@@ -419,6 +371,13 @@
       <path value="$PROJECT_DIR$/vendor/mockery/mockery" />
       <path value="$PROJECT_DIR$/vendor/facebook/webdriver" />
       <path value="$PROJECT_DIR$/vendor/martinlindhe/laravel-vue-i18n-generator" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/reflection-docblock" />
+      <path value="$PROJECT_DIR$/vendor/seld/jsonlint" />
+      <path value="$PROJECT_DIR$/vendor/justinrainbow/json-schema" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper" />
+      <path value="$PROJECT_DIR$/vendor/seld/phar-utils" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
@@ -505,6 +464,11 @@
             <path>
               <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -523,57 +487,6 @@
               <item name="tests" type="462c0819:PsiDirectoryNode" />
               <item name="api" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-              <item name="unit" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="laravel" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="framework" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="framework" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="framework" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Illuminate" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="framework" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Illuminate" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -585,7 +498,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/functional" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="php.test.frameworks.configurable" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php.zend.framework.tool" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -615,11 +528,19 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Codeception.Test app">
     <configuration name="Test app" type="CodeceptionConfigurationType" factoryName="Codeception">
       <PhpTestRunnerSettings configuration_file="$PROJECT_DIR$/codeception.yml" directory="$PROJECT_DIR$/tests" method="" scope="Type" selected_type="All" options="--steps --ansi" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
+    <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner scope="XML" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Codeception.Test app" />
+      <item itemvalue="PHPUnit.phpunit.xml" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -641,7 +562,7 @@
       <workItem from="1560954025234" duration="10000" />
       <workItem from="1560988514287" duration="7080000" />
       <workItem from="1561035565968" duration="14000" />
-      <workItem from="1561584756680" duration="5828000" />
+      <workItem from="1561584756680" duration="6450000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>
@@ -700,7 +621,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62358000" />
+    <option name="totallyTimeSpent" value="62980000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -713,7 +634,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1026" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23315509" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -722,14 +642,14 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32964823" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.25668448" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32941177" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.33582887" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.33582887" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="12" weight="0.32941177" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -750,22 +670,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Add theme color and panel sidebar" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/js/additionalModules/Auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1488">
-          <caret line="51" column="22" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
-          <folding>
-            <element signature="n#!!block;n#login#0;n#Auth#0;n#!!top" expanded="true" />
-            <element signature="n#!!block;n#authorize#0;n#Auth#0;n#!!top" expanded="true" />
-            <element signature="n#!!block;n#logout#0;n#Auth#0;n#!!top" expanded="true" />
-            <element signature="n#!!block;n#setStore#0;n#Auth#0;n#!!top" expanded="true" />
-            <element signature="n#!!block;n#setRouter#0;n#Auth#0;n#!!top" expanded="true" />
-            <element signature="e#1488#1765#0" expanded="true" />
-            <element signature="e#1805#1867#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/store/modules/authUser.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
@@ -875,16 +779,6 @@
           <caret line="313" column="20" selection-start-line="313" selection-start-column="20" selection-end-line="313" selection-end-column="20" />
           <folding>
             <element signature="e#7191#8076#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Helpers/ElegantValidator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
-          <folding>
-            <element signature="e#197#517#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1048,13 +942,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
-          <caret line="1" column="30" lean-forward="true" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/codeception.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="310">
@@ -1119,18 +1006,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="41" column="27" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
-          <folding>
-            <element signature="e#30#63#0#PHP" expanded="true" />
-            <element signature="e#971#1096#0#PHP" expanded="true" />
-            <element signature="e#1102#1217#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="248">
@@ -1182,16 +1057,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="178" column="6" selection-start-line="178" selection-start-column="6" selection-end-line="178" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="17" column="56" lean-forward="true" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="56" />
+          <folding>
+            <element signature="e#30#63#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Helpers/ElegantValidator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+          <folding>
+            <element signature="e#73#428#0#PHP" expanded="true" />
+            <element signature="e#197#517#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="64" column="28" selection-start-line="64" selection-start-column="28" selection-end-line="64" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/api/AuthCest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="753">
-          <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
+        <state relative-caret-position="319">
+          <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
           <folding>
             <element signature="n#_inject#0;n#AuthCest#0;n#!!top" expanded="true" />
             <element signature="n#_before#0;n#AuthCest#0;n#!!top" expanded="true" />
             <element signature="n#tryLogin#0;n#AuthCest#0;n#!!top" expanded="true" />
             <element signature="n#tryRegister#0;n#AuthCest#0;n#!!top" expanded="true" />
-            <element signature="n#tryAuthorize#0;n#AuthCest#0;n#!!top" expanded="true" />
             <element signature="n#trySendResetPasswordToken#0;n#AuthCest#0;n#!!top" expanded="true" />
             <element signature="n#tryResetPassword#0;n#AuthCest#0;n#!!top" expanded="true" />
           </folding>

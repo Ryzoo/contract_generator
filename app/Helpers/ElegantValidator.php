@@ -5,6 +5,14 @@ namespace App\Helpers;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Helpers\ElegantValidator
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Helpers\ElegantValidator newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Helpers\ElegantValidator newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Helpers\ElegantValidator query()
+ * @mixin \Eloquent
+ */
 class ElegantValidator extends Model{
     public static $rulesAdd = array();
     public static $rulesUpdate = array();
