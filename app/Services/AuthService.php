@@ -41,10 +41,10 @@ class AuthService {
             if(Hash::check($password, $user->password)){
                 return $user;
             }else{
-                Response::error(__("response.badPassword"),401);
+                Response::error(__("response.badPassword"),400);
             }
         }else{
-            Response::error(__("response.emailNotFound"),401);
+            Response::error(__("response.emailNotFound"),400);
         }
     }
 
@@ -57,16 +57,28 @@ class AuthService {
         return $user;
     }
 
-    public function resetPassword(string $email) {
+    public function sendResetPasswordToken(string $email):string {
         $user = User::getByEmail($email);
-        if(isset($user)){
-            $resetPasswordToken = Str::random(60);
-            $user->resetPasswordToken = $resetPasswordToken;
-            $user->save();
 
-            SendPasswordResetEmail::dispatchNow($user);
-        }else{
-            Response::error(__("response.emailNotFound"),401);
-        }
+        if(!isset($user))
+            Response::error(__("response.emailNotFound"),400);
+
+        $resetPasswordToken = Str::random(60);
+        $user->resetPasswordToken = $resetPasswordToken;
+        $user->save();
+
+        SendPasswordResetEmail::dispatchNow($user);
+
+        return $resetPasswordToken;
+    }
+
+    public function resetUserPassword(string $resetToken, string $newPassword) {
+        $user = User::getByResetToken($resetToken);
+
+        if(!isset($user))
+            Response::error(__("response.badResetToken"),400);
+
+        $user->setPasswordAttribute($newPassword);
+        $user->save();
     }
 }

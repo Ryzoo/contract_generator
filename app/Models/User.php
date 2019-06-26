@@ -43,6 +43,10 @@ class User extends ElegantValidator
         return User::where("email",$email)->first();
     }
 
+    public static function getByResetToken(string $resetPasswordToken):?User {
+        return User::where("resetPasswordToken",$resetPasswordToken)->first();
+    }
+
     public static function getById(int $userID):?User{
         return User::where("id",$userID)->first();
     }

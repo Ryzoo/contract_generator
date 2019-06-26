@@ -19,14 +19,18 @@ class Response
 
     public static function json($content, int $code = 200)
     {
-		\Response::json($content,$code)->throwResponse();
+        \Response::json($content,$code)->throwResponse();
     }
 
     public static function error($errorMessage, $code = 404)
     {
-        Response::json([
-            "error" => $errorMessage
-        ],$code);
+        if(Request::is('api/*') && Request::wantsJson()){
+            Response::json([
+                "error" => $errorMessage
+            ],$code);
+        }else{
+            abort($code, $errorMessage);
+        }
     }
 
     public static function success($successMessage = true, $code = 200)
@@ -41,10 +45,10 @@ class Response
         $redirect = redirect($route);
 
         if(isset($status))
-        	$redirect->with('status', $status);
+            $redirect->with('status', $status);
 
-		if(isset($error))
-			$redirect->with('error', $error);
+        if(isset($error))
+            $redirect->with('error', $error);
 
         $redirect->throwResponse();
     }

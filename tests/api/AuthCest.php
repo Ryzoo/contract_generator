@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\User;
+use App\Services\AuthService;
+use App\Services\UserService;
 use Codeception\Util\HttpCode;
 
 class AuthCest {
@@ -8,6 +10,15 @@ class AuthCest {
     private $roles = [
         "ADMIN" => NULL,
     ];
+
+    /**
+     * @var \App\Services\AuthService
+     */
+    protected $authService;
+
+    protected function _inject(AuthService $authService) {
+        $this->authService = $authService;
+    }
 
     public function _before(ApiTester $I) {
         $this->roles['ADMIN'] = factory(User::class)->states('admin')->create([
@@ -53,5 +64,26 @@ class AuthCest {
         $I->seeResponseCodeIs(HttpCode::OK);
         $I->seeResponseIsJson();
         $I->seeResponseContainsJson(['email' => 'test@client.pl']);
+    }
+
+    public function trySendResetPasswordToken(ApiTester $I) {
+        $I->sendPOST('api/auth/resetPassword/sendToken',[
+            'email' => $this->roles['CLIENT']->email
+        ]);
+
+        $I->seeResponseCodeIs(HttpCode::OK);
+        $I->seeResponseIsJson();
+    }
+
+    public function tryResetPassword(ApiTester $I) {
+        $data = [];
+        $data["resetToken"] = $this->authService->sendResetPasswordToken($this->roles['CLIENT']->email);
+        $data["password"] = "fajne";
+        $data["rePassword"] = "fajne";
+
+        $I->sendPOST('api/auth/resetPassword',$data);
+
+        $I->seeResponseCodeIs(HttpCode::OK);
+        $I->seeResponseIsJson();
     }
 }

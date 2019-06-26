@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Services\AuthService;
 use App\Services\UserService;
 use Codeception\Test\Unit;
+use Illuminate\Support\Str;
 
 class AuthServiceTest extends Unit {
 
@@ -28,7 +29,6 @@ class AuthServiceTest extends Unit {
         $this->userService = $userService;
     }
 
-    // tests
     public function testRegisterUser() {
         $userModel = new User();
         $userModel->fill([
@@ -49,7 +49,7 @@ class AuthServiceTest extends Unit {
     }
 
     public function testLoginUser() {
-        $facUser = factory(User::class)->states('client')->create([
+        factory(User::class)->states('client')->create([
             'password' => "fajnehaslo",
             'email' => "t.test@test.pl"
         ]);
@@ -65,7 +65,7 @@ class AuthServiceTest extends Unit {
     }
 
     public function testAuthorizeUser() {
-        $facUser = factory(User::class)->states('client')->create([
+        factory(User::class)->states('client')->create([
             'password' => "fajnehaslo",
             'email' => "t.test@test.pl"
         ]);
@@ -80,4 +80,37 @@ class AuthServiceTest extends Unit {
         $this->assertTrue(isset($authUser->loginToken));
         $this->assertEquals(UserRole::CLIENT,$authUser->role);
     }
+
+    public function testSendResetPasswordToken() {
+        factory(User::class)->states('client')->create([
+            'password' => "fajnehaslo",
+            'email' => "t.test@test.pl"
+        ]);
+
+        $resetToken = $this->authService->sendResetPasswordToken("t.test@test.pl");
+
+        $this->assertNotNull($resetToken);
+        $this->assertIsString($resetToken);
+        $this->assertTrue(Str::length($resetToken) === 60);
+    }
+
+    public function testResetUserPassword() {
+        factory(User::class)->states('client')->create([
+            'password' => "fajnehaslo",
+            'email' => "t.test@test.pl"
+        ]);
+
+        $resetToken = $this->authService->sendResetPasswordToken("t.test@test.pl");
+        $this->authService->resetUserPassword($resetToken,"fajne");
+
+        $user = $this->authService->loginUser("t.test@test.pl","fajne");
+
+        $this->assertNotNull($user);
+        $this->assertIsObject($user);
+        $this->assertTrue(isset($user->id));
+        $this->assertTrue(isset($user->role));
+        $this->assertTrue(isset($user->loginToken));
+        $this->assertEquals(UserRole::CLIENT,$user->role);
+    }
+
 }

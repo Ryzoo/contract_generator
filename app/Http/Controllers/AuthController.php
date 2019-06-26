@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-
     /**
      * @var \App\Services\AuthService
      */
@@ -58,12 +57,24 @@ class AuthController extends Controller
         Response::json($logedUser);
     }
 
-    public function resetUserPassword(Request $request) {
+    public function sendResetUserPasswordToken(Request $request) {
         Validator::validate($request->all(),[
             "email" => "required",
         ]);
 
-        $this->authService->resetPassword( $request->get('email') );
+        $this->authService->sendResetPasswordToken( $request->get('email') );
+
+        Response::success();
+    }
+
+    public function resetUserPassword(Request $request) {
+        Validator::validate($request->all(),[
+            "resetToken" => "required",
+            "password" => "required",
+            "rePassword" => "required|same:password",
+        ]);
+
+        $this->authService->resetUserPassword( $request->get('resetToken'), $request->get('password') );
 
         Response::success();
     }
