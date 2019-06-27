@@ -3,7 +3,7 @@
 
 {{__("email.resetPassword.info")}}
 
-@component('mail::button', ['url' => url('/auth/passwordReset?token='.$user->passwordResetToken)])
+@component('mail::button', ['url' => url('/auth/resetPassword/'.$user->passwordResetToken)])
     {{__("email.go_to_page")}}
 @endcomponent
 
