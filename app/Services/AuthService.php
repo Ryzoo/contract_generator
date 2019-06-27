@@ -39,6 +39,8 @@ class AuthService {
         $user = User::getByEmail($email);
         if(isset($user)){
             if(Hash::check($password, $user->password)){
+                $user->loginToken = Str::random(60);
+                $user->save();
                 return $user;
             }else{
                 Response::error(__("response.badPassword"),400);

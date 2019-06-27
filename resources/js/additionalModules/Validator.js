@@ -58,6 +58,16 @@ class validation {
     return this;
   }
 
+  sameAs(comparedProp){
+    this.isString();
+    if(this.elements[comparedProp] !== this.current){
+      this.returnError(
+          i18n.t('validation.same',{attribute: this.currentName, other:comparedProp})
+      );
+    }
+    return this;
+  }
+
   isNotNull() {
     if (this.current === null || this.current.length === 0) {
       this.returnError(i18n.t('validation.required',{attribute: this.currentName}));

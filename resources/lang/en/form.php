@@ -18,7 +18,7 @@ return [
             'register' => 'Create new account'
         ],
         'notify' => [
-            'success' => 'Loged succesfully'
+            'success' => 'Logged successfully'
         ]
     ],
 
@@ -34,17 +34,38 @@ return [
         'button' => [
             'login' => 'I have account',
             'register' => 'Register account'
+        ],
+        'notify' => [
+            'success' => 'Account added successful. Please check your email to confirm.'
         ]
     ],
 
-    'resetPassword' => [
-        'title' => 'Reset password form',
+    'sendResetTokenForm' => [
+        'title' => 'Send reset password token form',
         'field' => [
             'email' => 'Email',
         ],
         'button' => [
             'cancel' => 'Cancel',
             'remind' => 'Remind'
+        ],
+        'notify' => [
+            'success' => 'Reset token send to your email. Check your email and use url to reset password.'
+        ]
+    ],
+
+    'resetPasswordForm' => [
+        'title' => 'Reset password form',
+        'field' => [
+            'password' => 'Password',
+            'rePassword' => 'Retype password',
+        ],
+        'button' => [
+            'cancel' => 'Cancel',
+            'reset' => 'Reset password'
+        ],
+        'notify' => [
+            'success' => 'Your password was changed successfully. You can login now'
         ]
     ]
 

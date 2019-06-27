@@ -13,6 +13,9 @@ return [
         'resetPassword' => [
             'title' => 'Reset password',
         ],
+        'sendResetPasswordToken' => [
+            'title' => 'Reset password token',
+        ],
     ],
     'panel' => [
         'dashboard' => [

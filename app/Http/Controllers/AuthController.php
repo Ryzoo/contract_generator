@@ -35,11 +35,7 @@ class AuthController extends Controller
     }
 
     public function registerUser(Request $request) {
-        Validator::validate($request->all(),User::$rulesAdd);
-        Validator::validate($request->all(),[
-            "password" => "required",
-            "rePassword" => "required|same:password",
-        ]);
+        Validator::validate($request->all(),User::$rulesAddRequest);
 
         $user = new User();
         $user->fill($request->all());

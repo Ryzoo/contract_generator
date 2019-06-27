@@ -12,6 +12,9 @@ export default {
                 },
                 "resetPassword": {
                     "title": "Reset password"
+                },
+                "sendResetPasswordToken": {
+                    "title": "Reset password token"
                 }
             },
             "panel": {
@@ -38,7 +41,7 @@ export default {
                     "register": "Create new account"
                 },
                 "notify": {
-                    "success": "Loged succesfully"
+                    "success": "Logged successfully"
                 }
             },
             "register": {
@@ -53,32 +56,58 @@ export default {
                 "button": {
                     "login": "I have account",
                     "register": "Register account"
+                },
+                "notify": {
+                    "success": "Account added successful. Please check your email to confirm."
                 }
             },
-            "resetPassword": {
-                "title": "Reset password form",
+            "sendResetTokenForm": {
+                "title": "Send reset password token form",
                 "field": {
                     "email": "Email"
                 },
                 "button": {
                     "cancel": "Cancel",
                     "remind": "Remind"
+                },
+                "notify": {
+                    "success": "Reset token send to your email. Check your email and use url to reset password."
+                }
+            },
+            "resetPasswordForm": {
+                "title": "Reset password form",
+                "field": {
+                    "password": "Password",
+                    "rePassword": "Retype password"
+                },
+                "button": {
+                    "cancel": "Cancel",
+                    "reset": "Reset password"
+                },
+                "notify": {
+                    "success": "Your password was changed successfully. You can login now"
                 }
             }
         },
         "email": {
             "welcome_header": "Welcome to Contract Generator",
             "go_to_page": "Go to page",
+            "thanks": "Thanks",
             "welcome": {
                 "subject": "Welcome to Contract Generator",
                 "info": "Your account are created successfully. You can now login and work in app."
             },
-            "thanks": "Thanks"
+            "resetPassword": {
+                "subject": "Reset account password",
+                "info": "You send request for reset your password. To end this process please use button below."
+            }
         },
         "response": {
-            "not_found_id": "Object with this id was not found",
-            "email_not_found": "Account with this email not found",
-            "bad_password": "Password for this account didn't match"
+            "notFoundId": "Object with this id was not found",
+            "emailNotFound": "Account with this email not found",
+            "badPassword": "Password for this account didn't match",
+            "notAuthorized": "User are not authorized! Please login",
+            "badResetToken": "Password reset token is incorrect"
         },
         "validation": {
             "accepted": "The {attribute} must be accepted.",

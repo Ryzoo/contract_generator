@@ -18,7 +18,7 @@
                     type="password">
                 </v-text-field>
                 <small class="ma-0">{{$t('form.login.text.forgotPassword')}}
-                    <router-link to="/auth/resetPassword">{{$t('form.login.link.resetPassword')}}</router-link>
+                    <router-link to="/auth/sendResetPasswordToken">{{$t('form.login.link.resetPassword')}}</router-link>
                 </small>
                 <br/>
             </v-form>

@@ -5,8 +5,9 @@ import i18n from "./lang";
 import AuthLayout from "./layouts/AuthLayout";
 import DashboardView from "./views/panel/DashboardView";
 import LoginView from "./views/auth/LoginView";
-import ResetPassword from "./views/auth/ResetPassword";
+import SendResetPasswordTokenView from "./views/auth/SendResetPasswordTokenView";
 import RegisterView from "./views/auth/RegisterView";
+import ResetPasswordView from "./views/auth/ResetPasswordView";
 
 Vue.use(VueRouter);
 
@@ -51,9 +52,18 @@ const router = new VueRouter({
           }
         },
         {
-          path: 'resetPassword',
+          path: 'sendResetPasswordToken',
+          name: 'sendResetPasswordToken',
+          component: SendResetPasswordTokenView,
+          meta: {
+            title: i18n.t('pageMeta.auth.sendResetPasswordToken.title'),
+            noRequireAuthorization: true
+          }
+        },
+        {
+          path: 'resetPassword/:token',
           name: 'resetPassword',
-          component: ResetPassword,
+          component: ResetPasswordView,
           meta: {
             title: i18n.t('pageMeta.auth.resetPassword.title'),
             noRequireAuthorization: true
