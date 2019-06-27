@@ -51,7 +51,13 @@ export default {
                     "lastName": "LastName",
                     "email": "Email",
                     "password": "Password",
-                    "rePassword": "Retype password"
+                    "rePassword": "Retype password",
+                    "regulationsAccept": "I accept the Regulations",
+                    "rodoAccept": "I accept the RODO"
+                },
+                "link": {
+                    "rodo": " Rodo policy",
+                    "regulations": " Site regulations"
                 },
                 "button": {
                     "login": "I have account",
@@ -103,11 +109,11 @@ export default {
             }
         },
         "response": {
-            "notFoundId": "Object with this id was not found",
-            "emailNotFound": "Account with this email not found",
-            "badPassword": "Password for this account didn't match",
-            "notAuthorized": "User are not authorized! Please login",
-            "badResetToken": "Password reset token is incorrect"
+            "notFoundId": "Object with this id was not found.",
+            "emailNotFound": "Account with this email not found.",
+            "badPassword": "Password for this account didn't match.",
+            "notAuthorized": "User are not authorized! Please login.",
+            "badResetToken": "Password reset token is incorrect or used before."
         },
         "validation": {
             "accepted": "The {attribute} must be accepted.",

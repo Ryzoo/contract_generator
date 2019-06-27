@@ -30,6 +30,12 @@ return [
             'email' => 'Email',
             'password' => 'Password',
             'rePassword' => 'Retype password',
+            'regulationsAccept' => 'I accept the Regulations',
+            'rodoAccept' => 'I accept the RODO',
+        ],
+        'link' => [
+            'rodo' => ' Rodo policy',
+            'regulations' => ' Site regulations'
         ],
         'button' => [
             'login' => 'I have account',

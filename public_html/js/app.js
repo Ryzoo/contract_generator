@@ -11587,6 +11587,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "RegisterView",
   data: function data() {
@@ -11597,7 +11621,9 @@ __webpack_require__.r(__webpack_exports__);
         lastName: "",
         email: "",
         password: "",
-        rePassword: ""
+        rePassword: "",
+        rodoAccept: false,
+        regulationsAccept: false
       }
     };
   },
@@ -11612,12 +11638,16 @@ __webpack_require__.r(__webpack_exports__);
         validationArray[this.$t('form.register.field.email')] = this.registerForm.email;
         validationArray[this.$t('form.register.field.password')] = this.registerForm.password;
         validationArray[this.$t('form.register.field.rePassword')] = this.registerForm.rePassword;
+        validationArray[this.$t('form.register.field.rodoAccept')] = this.registerForm.rodoAccept;
+        validationArray[this.$t('form.register.field.regulationsAccept')] = this.registerForm.regulationsAccept;
         var valid = new window.Validator(validationArray);
         valid.get(this.$t('form.register.field.firstName')).length(3, 50);
         valid.get(this.$t('form.register.field.lastName')).length(3, 50);
         valid.get(this.$t('form.register.field.email')).isEmail();
         valid.get(this.$t('form.register.field.password')).length(6, 50);
         valid.get(this.$t('form.register.field.rePassword')).length(6, 50).sameAs(this.$t('form.register.field.password'));
+        valid.get(this.$t('form.register.field.rodoAccept')).isTrue();
+        valid.get(this.$t('form.register.field.regulationsAccept')).isTrue();
       } catch (e) {
         return;
       }
@@ -45840,6 +45870,118 @@ var render = function() {
                         _vm.$set(_vm.registerForm, "rePassword", $$v)
                       },
                       expression: "registerForm.rePassword"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("v-checkbox", {
+                    scopedSlots: _vm._u(
+                      [
+                        {
+                          key: "label",
+                          fn: function() {
+                            return [
+                              _vm._v(
+                                "\n                    " +
+                                  _vm._s(
+                                    _vm.$t("form.register.field.rodoAccept")
+                                  ) +
+                                  ":\n                        "
+                              ),
+                              _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    target: "_blank",
+                                    href: "http://google.pl"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      $event.stopPropagation()
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                            " +
+                                      _vm._s(
+                                        _vm.$t("form.register.link.rodo")
+                                      ) +
+                                      "\n                        "
+                                  )
+                                ]
+                              )
+                            ]
+                          },
+                          proxy: true
+                        }
+                      ],
+                      null,
+                      false,
+                      3465937093
+                    ),
+                    model: {
+                      value: _vm.registerForm.rodoAccept,
+                      callback: function($$v) {
+                        _vm.$set(_vm.registerForm, "rodoAccept", $$v)
+                      },
+                      expression: "registerForm.rodoAccept"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("v-checkbox", {
+                    scopedSlots: _vm._u(
+                      [
+                        {
+                          key: "label",
+                          fn: function() {
+                            return [
+                              _vm._v(
+                                "\n                    " +
+                                  _vm._s(
+                                    _vm.$t(
+                                      "form.register.field.regulationsAccept"
+                                    )
+                                  ) +
+                                  ":\n                    "
+                              ),
+                              _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    target: "_blank",
+                                    href: "http://google.pl"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      $event.stopPropagation()
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        " +
+                                      _vm._s(
+                                        _vm.$t("form.register.link.regulations")
+                                      ) +
+                                      "\n                    "
+                                  )
+                                ]
+                              )
+                            ]
+                          },
+                          proxy: true
+                        }
+                      ],
+                      null,
+                      false,
+                      2313753093
+                    ),
+                    model: {
+                      value: _vm.registerForm.regulationsAccept,
+                      callback: function($$v) {
+                        _vm.$set(_vm.registerForm, "regulationsAccept", $$v)
+                      },
+                      expression: "registerForm.regulationsAccept"
                     }
                   })
                 ],
@@ -88448,7 +88590,13 @@ __webpack_require__.r(__webpack_exports__);
           "lastName": "LastName",
           "email": "Email",
           "password": "Password",
-          "rePassword": "Retype password"
+          "rePassword": "Retype password",
+          "regulationsAccept": "I accept the Regulations",
+          "rodoAccept": "I accept the RODO"
+        },
+        "link": {
+          "rodo": " Rodo policy",
+          "regulations": " Site regulations"
         },
         "button": {
           "login": "I have account",
@@ -88500,11 +88648,11 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     "response": {
-      "notFoundId": "Object with this id was not found",
-      "emailNotFound": "Account with this email not found",
-      "badPassword": "Password for this account didn't match",
-      "notAuthorized": "User are not authorized! Please login",
-      "badResetToken": "Password reset token is incorrect"
+      "notFoundId": "Object with this id was not found.",
+      "emailNotFound": "Account with this email not found.",
+      "badPassword": "Password for this account didn't match.",
+      "notAuthorized": "User are not authorized! Please login.",
+      "badResetToken": "Password reset token is incorrect or used before."
     },
     "validation": {
       "accepted": "The {attribute} must be accepted.",

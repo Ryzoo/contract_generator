@@ -48,6 +48,8 @@ class User extends ElegantValidator
         'lastName'  => 'required|min:3|max:50',
         "password" => "required",
         "rePassword" => "required|same:password",
+        "regulationsAccept" => "required|accepted",
+        "rodoAccept" => "required|accepted",
     );
 
     public static $rulesAdd = array(

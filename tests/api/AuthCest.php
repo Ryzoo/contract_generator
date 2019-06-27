@@ -48,6 +48,8 @@ class AuthCest {
         $data['password'] = 'fajnehaslo';
         $data['rePassword'] = 'fajnehaslo';
         $data['email'] = 't.test@test.pl';
+        $data['regulationsAccept'] = true;
+        $data['rodoAccept'] = true;
 
         $I->sendPOST('api/auth/register',$data);
 

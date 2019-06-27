@@ -35,6 +35,30 @@
                     :label="$t('form.register.field.rePassword')"
                     type="password">
                 </v-text-field>
+                <v-checkbox v-model="registerForm.rodoAccept">
+                    <template v-slot:label>
+                        {{$t('form.register.field.rodoAccept')}}:
+                            <a
+                                target="_blank"
+                                href="http://google.pl"
+                                @click.stop
+                            >
+                                {{$t('form.register.link.rodo')}}
+                            </a>
+                    </template>
+                </v-checkbox>
+                <v-checkbox v-model="registerForm.regulationsAccept">
+                    <template v-slot:label>
+                        {{$t('form.register.field.regulationsAccept')}}:
+                        <a
+                            target="_blank"
+                            href="http://google.pl"
+                            @click.stop
+                        >
+                            {{$t('form.register.link.regulations')}}
+                        </a>
+                    </template>
+                </v-checkbox>
             </v-form>
             <loader v-else></loader>
         </v-card-text>
@@ -58,6 +82,8 @@
           email: "",
           password: "",
           rePassword: "",
+          rodoAccept: false,
+          regulationsAccept: false,
         }
       }
     },
@@ -71,6 +97,8 @@
           validationArray[this.$t('form.register.field.email')] = this.registerForm.email;
           validationArray[this.$t('form.register.field.password')] = this.registerForm.password;
           validationArray[this.$t('form.register.field.rePassword')] = this.registerForm.rePassword;
+          validationArray[this.$t('form.register.field.rodoAccept')] = this.registerForm.rodoAccept;
+          validationArray[this.$t('form.register.field.regulationsAccept')] = this.registerForm.regulationsAccept;
 
           let valid = new window.Validator(validationArray);
 
@@ -81,6 +109,9 @@
           valid.get(this.$t('form.register.field.rePassword'))
               .length(6, 50)
               .sameAs(this.$t('form.register.field.password'));
+          valid.get(this.$t('form.register.field.rodoAccept')).isTrue();
+          valid.get(this.$t('form.register.field.regulationsAccept')).isTrue();
+
         }
         catch (e) {
           return

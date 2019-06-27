@@ -28,6 +28,12 @@ class AuthService {
         if(isset($userModel['rePassword']))
             unset($userModel['rePassword']);
 
+        if(isset($userModel['regulationsAccept']))
+            unset($userModel['regulationsAccept']);
+
+        if(isset($userModel['rodoAccept']))
+            unset($userModel['rodoAccept']);
+
         $user = $this->userService->addUser($userModel);
 
         SendWelcomeEmail::dispatchNow($user);
