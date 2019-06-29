@@ -31,6 +31,8 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.18",
         "@fortawesome/free-solid-svg-icons": "^5.8.2",
         "@fortawesome/vue-fontawesome": "^0.1.6",
+        "material-design-icons-iconfont": "^5.0.1",
+        "vue-content-loading": "^1.6.0",
         "vue-i18n": "^8.11.2",
         "vue-router": "^3.0.6",
         "vuetify": "^1.5.14",

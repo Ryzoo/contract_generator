@@ -10,15 +10,15 @@ $factory->define(User::class, function (Faker $faker) {
         'firstName' => $faker->firstName,
         'lastName' => $faker->lastName,
         'email' => $faker->unique()->safeEmail,
-        'password' => bcrypt('secret'),
+        'password' => 'secret',
         'loginToken' => Str::random(60),
     ];
 });
 
 $factory->state(User::class, 'admin', [
-    'role' => \App\Services\UserService::ROLE_ADMIN
+    'role' => \App\Enums\UserRole::ADMIN
 ]);
 
 $factory->state(User::class, 'client', [
-    'role' => \App\Services\UserService::ROLE_CLIENT
+    'role' => \App\Enums\UserRole::CLIENT
 ]);

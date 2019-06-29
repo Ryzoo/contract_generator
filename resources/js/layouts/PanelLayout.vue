@@ -1,79 +1,89 @@
 <template>
     <section>
-        <!--<div class="sidebar-nav-container">-->
-            <!--<div class="nav-header">-->
-                <!--<h2 class="title">Pozytywny <span class="primary&#45;&#45;text">Generator</span></h2>-->
-            <!--</div>-->
-            <!--<div class="nav-content">-->
-                <!--<ul class="nav-items">-->
-                    <!--<li class="nav-item">-->
-                        <!--Dashboard-->
-                    <!--</li>-->
-                <!--</ul>-->
-            <!--</div>-->
-        <!--</div>-->
         <v-navigation-drawer
             :mini-variant="mini"
-            absolute
+            v-model="navigationModel"
             dark
-            permanent
+            absolute
+            overflow
+            app
         >
             <v-list class="pa-1">
                 <v-list-tile v-if="mini" @click.stop="mini = !mini">
                     <v-list-tile-action>
-                        <font-awesome-icon icon="bars"/>
+                        <font-awesome-icon icon="chevron-right"/>
                     </v-list-tile-action>
                 </v-list-tile>
 
                 <v-list-tile avatar tag="div">
                     <v-list-tile-avatar>
-                        <img src="https://randomuser.me/api/portraits/men/80.jpg">
+                        <lazy-img src="https://randomuser.me/api/portraits/men/80.jpg"></lazy-img>
                     </v-list-tile-avatar>
 
                     <v-list-tile-content>
-                        <v-list-tile-title>Grzegorz Kastelik</v-list-tile-title>
+                        <v-list-tile-title>{{user.firstName}} {{user.lastName}}</v-list-tile-title>
                     </v-list-tile-content>
 
                     <v-list-tile-action>
-                        <v-btn class="hamburger-icon" icon @click.stop="mini = !mini">
-                            <font-awesome-icon icon="bars"/>
+                        <v-btn icon @click.stop="mini = !mini">
+                            <font-awesome-icon icon="chevron-left"/>
                         </v-btn>
                     </v-list-tile-action>
                 </v-list-tile>
             </v-list>
-
             <v-list class="pt-0" dense>
                 <v-divider light></v-divider>
 
                 <v-list-tile
                     v-for="item in items"
                     :key="item.title"
-                    @click=""
+                    :to="item.link ? item.link : null"
+                    @click="item.logout ? logout() : null"
                 >
                     <v-list-tile-action>
                         <font-awesome-icon size="2x" :icon="item.icon"/>
                     </v-list-tile-action>
 
                     <v-list-tile-content>
-                        <v-list-tile-title>{{item.title}}</v-list-tile-title>
+                        <v-list-tile-title >{{item.title}}</v-list-tile-title>
                     </v-list-tile-content>
                 </v-list-tile>
             </v-list>
         </v-navigation-drawer>
-        <router-view></router-view>
+        <v-toolbar app absolute>
+            <v-toolbar-side-icon dark
+                @click.stop="navigationModel = !navigationModel"
+            ></v-toolbar-side-icon>
+            <v-toolbar-title>{{$t('pageMeta.appTitle')}}</v-toolbar-title>
+        </v-toolbar>
+        <v-content>
+            <v-container fluid>
+                <v-layout align-center justify-center>
+                    <v-fade-transition mode="out-in">
+                        <router-view></router-view>
+                    </v-fade-transition>
+                </v-layout>
+            </v-container>
+        </v-content>
+        <v-footer app inset>
+            <span class="px-3">&copy; {{ new Date().getFullYear() }} - {{$t('pageMeta.copyright')}}</span>
+        </v-footer>
     </section>
 </template>
 
 <script>
   export default {
-    name: "GeneratorPanel",
+    name: "PanelLayout",
     data: function () {
       return {
+        navigationModel: true,
         mini: false,
+        user: this.$store.getters.authUser,
         items: [
           {
             title: "Dashboard",
-            icon: "poll"
+            icon: "poll",
+            link: "/panel/"
           },
           {
             title: "Klienci",
@@ -95,15 +105,22 @@
             title: "Ustawienia",
             icon: "cog"
           },
+          {
+            title: "Wyloguj",
+            icon: "sign-out-alt",
+            logout: true
+          }
         ]
       }
     },
+    methods:{
+      logout(){
+        auth.logout();
+      }
+    }
   }
 </script>
 
-<style scoped lang="scss">
-.hamburger-icon svg {
-    width: 35px;
-    height: 25px;
-}
+<style lang="scss">
+
 </style>

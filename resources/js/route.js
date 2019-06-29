@@ -1,9 +1,13 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Dashboard from "./components/Dashboard";
 import PanelLayout from "./layouts/PanelLayout";
-import LoginView from "./views/LoginView";
 import i18n from "./lang";
+import AuthLayout from "./layouts/AuthLayout";
+import DashboardView from "./views/panel/DashboardView";
+import LoginView from "./views/auth/LoginView";
+import SendResetPasswordTokenView from "./views/auth/SendResetPasswordTokenView";
+import RegisterView from "./views/auth/RegisterView";
+import ResetPasswordView from "./views/auth/ResetPasswordView";
 
 Vue.use(VueRouter);
 
@@ -18,7 +22,7 @@ const router = new VueRouter({
         {
           path: '/',
           name: 'dashboard',
-          component: Dashboard,
+          component: DashboardView,
           meta: {
             title: i18n.t('pageMeta.panel.dashboard.title')
           }
@@ -27,14 +31,42 @@ const router = new VueRouter({
     },
     {
       path: '/auth',
-      component: PanelLayout,
+      component: AuthLayout,
       children: [
         {
           path: 'login',
           name: 'login',
           component: LoginView,
           meta: {
-            title: i18n.t('pageMeta.auth.login.title')
+            title: i18n.t('pageMeta.auth.login.title'),
+            noRequireAuthorization: true
+          }
+        },
+        {
+          path: 'register',
+          name: 'register',
+          component: RegisterView,
+          meta: {
+            title: i18n.t('pageMeta.auth.register.title'),
+            noRequireAuthorization: true
+          }
+        },
+        {
+          path: 'sendResetPasswordToken',
+          name: 'sendResetPasswordToken',
+          component: SendResetPasswordTokenView,
+          meta: {
+            title: i18n.t('pageMeta.auth.sendResetPasswordToken.title'),
+            noRequireAuthorization: true
+          }
+        },
+        {
+          path: 'resetPassword/:token',
+          name: 'resetPassword',
+          component: ResetPasswordView,
+          meta: {
+            title: i18n.t('pageMeta.auth.resetPassword.title'),
+            noRequireAuthorization: true
           }
         },
       ]
@@ -45,12 +77,38 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title);
 
-  console.log(window.i18n);
-
   if(nearestWithTitle)
     document.title = nearestWithTitle.meta.title;
 
-  next();
+  if (to.matched.some(record => record.meta.noRequireAuthorization)) {
+    next();
+  } else {
+    if (to.path !== '/login') {
+      window.auth.checkAuth()
+          .then((returned)=>{
+            if(returned){
+              next();
+            }else{
+              next({
+                path: '/auth/login',
+                query: {
+                  redirect: to.fullPath ? to.fullPath : null,
+                }
+              });
+            }
+          })
+          .catch(()=>{
+            next({
+              path: '/auth/login',
+              query: {
+                redirect: to.fullPath ? to.fullPath : null,
+              }
+            });
+          });
+    } else {
+      next();
+    }
+  }
 });
 
 export default router;

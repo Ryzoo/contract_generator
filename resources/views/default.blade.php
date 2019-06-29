@@ -8,9 +8,13 @@
     </head>
     <body>
         <div id="app">
-            <v-container fluid>
-                <router-view></router-view>
-            </v-container>
+            <v-app>
+                <v-container fluid>
+                    <v-fade-transition mode="out-in">
+                        <router-view></router-view>
+                    </v-fade-transition>
+                </v-container>
+            </v-app>
         </div>
     </body>
     <script src="{{ asset('js/app.js')}}"></script>

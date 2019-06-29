@@ -15,14 +15,14 @@ class UserSeeder extends Seeder
         factory(User::class)->states('client')->create([
             "firstName" => 'test',
             "lastName" => 'client',
-            "password" => bcrypt('client'),
+            "password" => 'client',
             "email" => 't.client@test.pl',
         ]);
 
         factory(User::class)->states('admin')->create([
             "firstName" => 'test',
             "lastName" => 'admin',
-            "password" => bcrypt('admin'),
+            "password" => 'admin',
             "email" => 't.admin@test.pl',
         ]);
     }

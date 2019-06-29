@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\UserRole;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -19,8 +20,10 @@ class CreateUsersTable extends Migration
             $table->string('lastName');
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('role')->default(0);
+            $table->integer('role')->default(UserRole::CLIENT);
             $table->string('loginToken')->nullable()->default(null);
+            $table->string('resetPasswordToken')->nullable()->default(null);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

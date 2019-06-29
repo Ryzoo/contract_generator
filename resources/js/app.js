@@ -3,19 +3,24 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 
+
 window.Vue = require('vue');
 
 Vue.use(Vuetify, {
     theme: {
-        primary: '#825339',
-        secondary: '#50778d',
-        accent: '#82533a',
-        error: '#b71c1c'
+        primary: '#dabd79',
+        secondary: '#324a58',
+        accent: '#ccbd99',
+        error: '#FF5252',
+        info: '#2196F3',
+        success: '#4CAF50',
+        warning: '#FFC107'
     }
 });
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('lazy-img', require('./components/LazyImg').default);
+Vue.component('loader', require('./components/Loader').default);
 
 import store from './store';
 import route from './route'
@@ -27,3 +32,6 @@ const app = new Vue({
     store,
     router: route
 });
+
+window.auth.setStore(store);
+window.auth.setRouter(route);
