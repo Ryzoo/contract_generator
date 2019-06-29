@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+//body .application {
+//    font-family: 'Poppins', sans-serif;
+//    letter-spacing: 1px;
+//}
+
 .theme--dark.v-navigation-drawer {
     background-color: #324a58 !important;
 }
@@ -13,4 +20,13 @@
 
 .theme--light.application{
     color: #324a58 !important;
+    background: #f0f3f7 !important;
+}
+.v-list--dense .v-list__tile {
+    font-size: 14px !important;
+}
+
+
+section {
+    width: 100%;
 }

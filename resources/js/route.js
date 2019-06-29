@@ -4,6 +4,7 @@ import PanelLayout from "./layouts/PanelLayout";
 import i18n from "./lang";
 import AuthLayout from "./layouts/AuthLayout";
 import DashboardView from "./views/panel/DashboardView";
+import AgreementsView from "./views/panel/AgreementsView";
 import LoginView from "./views/auth/LoginView";
 import SendResetPasswordTokenView from "./views/auth/SendResetPasswordTokenView";
 import RegisterView from "./views/auth/RegisterView";
@@ -25,6 +26,14 @@ const router = new VueRouter({
           component: DashboardView,
           meta: {
             title: i18n.t('pageMeta.panel.dashboard.title')
+          }
+        },
+        {
+          path: 'agreements',
+          name: 'agreements',
+          component: AgreementsView,
+          meta: {
+            title: i18n.t('pageMeta.panel.agreements.title')
           }
         },
       ]

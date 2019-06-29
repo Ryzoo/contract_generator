@@ -23,7 +23,7 @@ window.axios.interceptors.response.use(
         return response;
     },
     function(error) {
-        if(error.response.data &&  error.response.data.error && error.response.data.error.length>0){
+        if(error.response !== undefined && error.response.data &&  error.response.data.error && error.response.data.error.length>0){
             window.notify.push(error.response.data.error,window.notify.ERROR);
         }
         return Promise.reject(error);

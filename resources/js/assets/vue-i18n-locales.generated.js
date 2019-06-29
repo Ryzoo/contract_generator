@@ -1,120 +1,5 @@
 export default {
     "en": {
-        "pageMeta": {
-            "appTitle": "Contract Generator",
-            "copyright": "All rights reserved - Contract Generator",
-            "auth": {
-                "login": {
-                    "title": "Login"
-                },
-                "register": {
-                    "title": "Register account"
-                },
-                "resetPassword": {
-                    "title": "Reset password"
-                },
-                "sendResetPasswordToken": {
-                    "title": "Reset password token"
-                }
-            },
-            "panel": {
-                "dashboard": {
-                    "title": "Panel - Dashboard"
-                }
-            }
-        },
-        "form": {
-            "login": {
-                "title": "Login form",
-                "field": {
-                    "email": "Email",
-                    "password": "Password"
-                },
-                "text": {
-                    "forgotPassword": "Forgot password?"
-                },
-                "link": {
-                    "resetPassword": "Reset password"
-                },
-                "button": {
-                    "login": "Login",
-                    "register": "Create new account"
-                },
-                "notify": {
-                    "success": "Logged successfully"
-                }
-            },
-            "register": {
-                "title": "Register form",
-                "field": {
-                    "firstName": "FirstName",
-                    "lastName": "LastName",
-                    "email": "Email",
-                    "password": "Password",
-                    "rePassword": "Retype password",
-                    "regulationsAccept": "I accept the Regulations",
-                    "rodoAccept": "I accept the RODO"
-                },
-                "link": {
-                    "rodo": " Rodo policy",
-                    "regulations": " Site regulations"
-                },
-                "button": {
-                    "login": "I have account",
-                    "register": "Register account"
-                },
-                "notify": {
-                    "success": "Account added successful. Please check your email to confirm."
-                }
-            },
-            "sendResetTokenForm": {
-                "title": "Send reset password token form",
-                "field": {
-                    "email": "Email"
-                },
-                "button": {
-                    "cancel": "Cancel",
-                    "remind": "Remind"
-                },
-                "notify": {
-                    "success": "Reset token send to your email. Check your email and use url to reset password."
-                }
-            },
-            "resetPasswordForm": {
-                "title": "Reset password form",
-                "field": {
-                    "password": "Password",
-                    "rePassword": "Retype password"
-                },
-                "button": {
-                    "cancel": "Cancel",
-                    "reset": "Reset password"
-                },
-                "notify": {
-                    "success": "Your password was changed successfully. You can login now"
-                }
-            }
-        },
-        "email": {
-            "welcome_header": "Welcome to Contract Generator",
-            "go_to_page": "Go to page",
-            "thanks": "Thanks",
-            "welcome": {
-                "subject": "Welcome to Contract Generator",
-                "info": "Your account are created successfully. You can now login and work in app."
-            },
-            "resetPassword": {
-                "subject": "Reset account password",
-                "info": "You send request for reset your password. To end this process please use button below."
-            }
-        },
-        "response": {
-            "notFoundId": "Object with this id was not found.",
-            "emailNotFound": "Account with this email not found.",
-            "badPassword": "Password for this account didn't match.",
-            "notAuthorized": "User are not authorized! Please login.",
-            "badResetToken": "Password reset token is incorrect or used before."
-        },
         "validation": {
             "accepted": "The {attribute} must be accepted.",
             "active_url": "The {attribute} is not a valid URL.",
@@ -225,6 +110,127 @@ export default {
             },
             "attributes": [],
             "bad_object_data": "Data injected to model validator is bad"
+        },
+        "pageMeta": {
+            "appTitle": "Contract Generator",
+            "copyright": "All rights reserved - Contract Generator",
+            "auth": {
+                "login": {
+                    "title": "Login"
+                },
+                "register": {
+                    "title": "Register account"
+                },
+                "resetPassword": {
+                    "title": "Reset password"
+                },
+                "sendResetPasswordToken": {
+                    "title": "Reset password token"
+                }
+            },
+            "panel": {
+                "dashboard": {
+                    "title": "Panel - Dashboard"
+                },
+                "agreements": {
+                    "title": "Panel - Agreements",
+                    "button": {
+                        "newAgreement": "Add agreement"
+                    }
+                }
+            }
+        },
+        "response": {
+            "notFoundId": "Object with this id was not found.",
+            "emailNotFound": "Account with this email not found.",
+            "badPassword": "Password for this account didn't match.",
+            "notAuthorized": "User are not authorized! Please login.",
+            "badResetToken": "Password reset token is incorrect or used before."
+        },
+        "email": {
+            "welcome_header": "Welcome to Contract Generator",
+            "go_to_page": "Go to page",
+            "thanks": "Thanks",
+            "welcome": {
+                "subject": "Welcome to Contract Generator",
+                "info": "Your account are created successfully. You can now login and work in app."
+            },
+            "resetPassword": {
+                "subject": "Reset account password",
+                "info": "You send request for reset your password. To end this process please use button below."
+            }
+        },
+        "form": {
+            "login": {
+                "title": "Login form",
+                "field": {
+                    "email": "Email",
+                    "password": "Password"
+                },
+                "text": {
+                    "forgotPassword": "Forgot password?"
+                },
+                "link": {
+                    "resetPassword": "Reset password"
+                },
+                "button": {
+                    "login": "Login",
+                    "register": "Create new account"
+                },
+                "notify": {
+                    "success": "Logged successfully"
+                }
+            },
+            "register": {
+                "title": "Register form",
+                "field": {
+                    "firstName": "FirstName",
+                    "lastName": "LastName",
+                    "email": "Email",
+                    "password": "Password",
+                    "rePassword": "Retype password",
+                    "regulationsAccept": "I accept the Regulations",
+                    "rodoAccept": "I accept the RODO"
+                },
+                "link": {
+                    "rodo": " Rodo policy",
+                    "regulations": " Site regulations"
+                },
+                "button": {
+                    "login": "I have account",
+                    "register": "Register account"
+                },
+                "notify": {
+                    "success": "Account added successful. Please check your email to confirm."
+                }
+            },
+            "sendResetTokenForm": {
+                "title": "Send reset password token form",
+                "field": {
+                    "email": "Email"
+                },
+                "button": {
+                    "cancel": "Cancel",
+                    "remind": "Remind"
+                },
+                "notify": {
+                    "success": "Reset token send to your email. Check your email and use url to reset password."
+                }
+            },
+            "resetPasswordForm": {
+                "title": "Reset password form",
+                "field": {
+                    "password": "Password",
+                    "rePassword": "Retype password"
+                },
+                "button": {
+                    "cancel": "Cancel",
+                    "reset": "Reset password"
+                },
+                "notify": {
+                    "success": "Your password was changed successfully. You can login now"
+                }
+            }
         }
     }
 }

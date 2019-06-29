@@ -91,7 +91,8 @@
           },
           {
             title: "Umowy",
-            icon: "file-contract"
+            icon: "file-contract",
+            link: "/panel/agreements"
           },
           {
             title: "Schematy",

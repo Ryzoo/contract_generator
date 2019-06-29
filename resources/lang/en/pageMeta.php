@@ -21,5 +21,11 @@ return [
         'dashboard' => [
             'title' => 'Panel - Dashboard',
         ],
+        'agreements' => [
+            'title' => 'Panel - Agreements',
+            'button' => [
+                'newAgreement' => 'Add agreement',
+            ],
+        ],
     ]
 ];
