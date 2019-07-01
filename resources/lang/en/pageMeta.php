@@ -26,6 +26,12 @@ return [
             'button' => [
                 'newAgreement' => 'Add agreement',
             ],
+            'headers' => [
+                'name' => 'Name',
+                'status' => 'Status',
+                'dateAdd' => 'Add date',
+                'actions' => 'Actions',
+            ],
         ],
     ]
 ];

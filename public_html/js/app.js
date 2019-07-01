@@ -11913,16 +11913,16 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       headers: [{
-        text: "Nazwa",
+        text: this.$t("pageMeta.panel.agreements.headers.name"),
         value: "name"
       }, {
-        text: "Status",
+        text: this.$t("pageMeta.panel.agreements.headers.status"),
         value: "status"
       }, {
-        text: "Data dodania",
+        text: this.$t("pageMeta.panel.agreements.headers.dateAdd"),
         value: "date_add"
       }, {
-        text: "Akcje",
+        text: this.$t("pageMeta.panel.agreements.headers.actions"),
         sortable: false
       }],
       items: [{
@@ -11937,7 +11937,8 @@ __webpack_require__.r(__webpack_exports__);
         active: 0
       }]
     };
-  }
+  },
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -89090,6 +89091,12 @@ __webpack_require__.r(__webpack_exports__);
           "title": "Panel - Agreements",
           "button": {
             "newAgreement": "Add agreement"
+          },
+          "headers": {
+            "name": "Name",
+            "status": "Status",
+            "dateAdd": "Add date",
+            "actions": "Actions"
           }
         }
       }

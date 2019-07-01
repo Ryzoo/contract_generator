@@ -23,23 +23,23 @@ export default {
         "c-table": Table
     },
     name: "AgreementsView",
-    data: () => {
+    data: function() {
         return {
             headers: [
                 {
-                    text: "Nazwa",
+                    text: this.$t("pageMeta.panel.agreements.headers.name"),
                     value: "name"
                 },
                 {
-                    text: "Status",
+                    text: this.$t("pageMeta.panel.agreements.headers.status"),
                     value: "status"
                 },
                 {
-                    text: "Data dodania",
+                    text: this.$t("pageMeta.panel.agreements.headers.dateAdd"),
                     value: "date_add"
                 },
                 {
-                    text: "Akcje",
+                    text: this.$t("pageMeta.panel.agreements.headers.actions"),
                     sortable: false
                 }
             ],
@@ -58,7 +58,8 @@ export default {
                 }
             ]
         };
-    }
+    },
+    mounted() {}
 };
 </script>
 
