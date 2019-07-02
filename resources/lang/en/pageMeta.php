@@ -21,6 +21,9 @@ return [
         'dashboard' => [
             'title' => 'Panel - Dashboard',
         ],
+        'my_profile' => [
+            'title' => 'Panel - My profile',
+        ],
         'agreements' => [
             'title' => 'Panel - Agreements',
             'button' => [

@@ -11472,27 +11472,31 @@ __webpack_require__.r(__webpack_exports__);
       mini: false,
       user: this.$store.getters.authUser,
       items: [{
-        title: "Dashboard",
+        title: this.$t('navigation.dashboard'),
         icon: "poll",
-        link: "/panel/"
+        link: "/panel/dashboard"
       }, {
-        title: "Klienci",
-        icon: "user"
+        title: this.$t('navigation.profile'),
+        icon: "user-tie",
+        link: "/panel/my_profile"
       }, {
-        title: "Umowy",
+        title: this.$t('navigation.clients'),
+        icon: "users"
+      }, {
+        title: this.$t('navigation.agreements'),
         icon: "file-contract",
         link: "/panel/agreements"
       }, {
-        title: "Schematy",
+        title: this.$t('navigation.schema'),
         icon: "th"
       }, {
-        title: "Konta",
-        icon: "user"
+        title: this.$t('navigation.accounts'),
+        icon: "users-cog"
       }, {
-        title: "Ustawienia",
+        title: this.$t('navigation.settings'),
         icon: "cog"
       }, {
-        title: "Wyloguj",
+        title: this.$t('navigation.logout'),
         icon: "sign-out-alt",
         logout: true
       }]
@@ -11958,6 +11962,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Dashboard"
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/panel/MyProfileView.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/panel/MyProfileView.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "MyProfileView"
 });
 
 /***/ }),
@@ -45828,9 +45866,11 @@ var render = function() {
                     [
                       _c("v-list-tile-title", [
                         _vm._v(
-                          _vm._s(_vm.user.firstName) +
+                          " " +
+                            _vm._s(_vm.user.firstName) +
                             " " +
-                            _vm._s(_vm.user.lastName)
+                            _vm._s(_vm.user.lastName) +
+                            " "
                         )
                       ])
                     ],
@@ -46676,7 +46716,76 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("Hello")])
+  return _c("h1", [_vm._v("asdasd")])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/panel/MyProfileView.vue?vue&type=template&id=3c52b5f0&scoped=true&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/panel/MyProfileView.vue?vue&type=template&id=3c52b5f0&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-flex",
+    { attrs: { xs12: "" } },
+    [
+      _c(
+        "v-layout",
+        { attrs: { row: "", wrap: "" } },
+        [
+          _c(
+            "v-flex",
+            { attrs: { xs12: "", sm4: "" } },
+            [
+              _c(
+                "v-card",
+                [
+                  _c(
+                    "v-avatar",
+                    { staticClass: "mx-auto d-block", attrs: { size: "80%" } },
+                    [
+                      _c("lazy-img", {
+                        attrs: {
+                          src: "https://randomuser.me/api/portraits/men/80.jpg",
+                          alt: "avatar"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-divider", { staticClass: "my-3" }),
+                  _vm._v(" "),
+                  _c("h1", { staticClass: "text-xs-center" }, [
+                    _vm._v(" adam malysz ")
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -88955,6 +89064,146 @@ window.auth.setRouter(_route__WEBPACK_IMPORTED_MODULE_4__["default"]);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   "en": {
+    "pageMeta": {
+      "appTitle": "Contract Generator",
+      "copyright": "All rights reserved - Contract Generator",
+      "auth": {
+        "login": {
+          "title": "Login"
+        },
+        "register": {
+          "title": "Register account"
+        },
+        "resetPassword": {
+          "title": "Reset password"
+        },
+        "sendResetPasswordToken": {
+          "title": "Reset password token"
+        }
+      },
+      "panel": {
+        "dashboard": {
+          "title": "Panel - Dashboard"
+        },
+        "my_profile": {
+          "title": "Panel - My profile"
+        },
+        "agreements": {
+          "title": "Panel - Agreements",
+          "button": {
+            "newAgreement": "Add agreement"
+          },
+          "headers": {
+            "name": "Name",
+            "status": "Status",
+            "dateAdd": "Add date",
+            "actions": "Actions"
+          }
+        }
+      }
+    },
+    "form": {
+      "login": {
+        "title": "Login form",
+        "field": {
+          "email": "Email",
+          "password": "Password"
+        },
+        "text": {
+          "forgotPassword": "Forgot password?"
+        },
+        "link": {
+          "resetPassword": "Reset password"
+        },
+        "button": {
+          "login": "Login",
+          "register": "Create new account"
+        },
+        "notify": {
+          "success": "Logged successfully"
+        }
+      },
+      "register": {
+        "title": "Register form",
+        "field": {
+          "firstName": "FirstName",
+          "lastName": "LastName",
+          "email": "Email",
+          "password": "Password",
+          "rePassword": "Retype password",
+          "regulationsAccept": "I accept the Regulations",
+          "rodoAccept": "I accept the RODO"
+        },
+        "link": {
+          "rodo": " Rodo policy",
+          "regulations": " Site regulations"
+        },
+        "button": {
+          "login": "I have account",
+          "register": "Register account"
+        },
+        "notify": {
+          "success": "Account added successful. Please check your email to confirm."
+        }
+      },
+      "sendResetTokenForm": {
+        "title": "Send reset password token form",
+        "field": {
+          "email": "Email"
+        },
+        "button": {
+          "cancel": "Cancel",
+          "remind": "Remind"
+        },
+        "notify": {
+          "success": "Reset token send to your email. Check your email and use url to reset password."
+        }
+      },
+      "resetPasswordForm": {
+        "title": "Reset password form",
+        "field": {
+          "password": "Password",
+          "rePassword": "Retype password"
+        },
+        "button": {
+          "cancel": "Cancel",
+          "reset": "Reset password"
+        },
+        "notify": {
+          "success": "Your password was changed successfully. You can login now"
+        }
+      }
+    },
+    "email": {
+      "welcome_header": "Welcome to Contract Generator",
+      "go_to_page": "Go to page",
+      "thanks": "Thanks",
+      "welcome": {
+        "subject": "Welcome to Contract Generator",
+        "info": "Your account are created successfully. You can now login and work in app."
+      },
+      "resetPassword": {
+        "subject": "Reset account password",
+        "info": "You send request for reset your password. To end this process please use button below."
+      }
+    },
+    "response": {
+      "notFoundId": "Object with this id was not found.",
+      "emailNotFound": "Account with this email not found.",
+      "badPassword": "Password for this account didn't match.",
+      "notAuthorized": "User are not authorized! Please login.",
+      "badResetToken": "Password reset token is incorrect or used before."
+    },
+    "navigation": {
+      "dashboard": "Dashboard",
+      "profile": "My profile",
+      "clients": "Clients",
+      "agreements": "Agreements",
+      "schema": "Schemes",
+      "accounts": "Accounts",
+      "settings": "Settings",
+      "logout": "Logout"
+    },
     "validation": {
       "accepted": "The {attribute} must be accepted.",
       "active_url": "The {attribute} is not a valid URL.",
@@ -89065,133 +89314,6 @@ __webpack_require__.r(__webpack_exports__);
       },
       "attributes": [],
       "bad_object_data": "Data injected to model validator is bad"
-    },
-    "pageMeta": {
-      "appTitle": "Contract Generator",
-      "copyright": "All rights reserved - Contract Generator",
-      "auth": {
-        "login": {
-          "title": "Login"
-        },
-        "register": {
-          "title": "Register account"
-        },
-        "resetPassword": {
-          "title": "Reset password"
-        },
-        "sendResetPasswordToken": {
-          "title": "Reset password token"
-        }
-      },
-      "panel": {
-        "dashboard": {
-          "title": "Panel - Dashboard"
-        },
-        "agreements": {
-          "title": "Panel - Agreements",
-          "button": {
-            "newAgreement": "Add agreement"
-          },
-          "headers": {
-            "name": "Name",
-            "status": "Status",
-            "dateAdd": "Add date",
-            "actions": "Actions"
-          }
-        }
-      }
-    },
-    "response": {
-      "notFoundId": "Object with this id was not found.",
-      "emailNotFound": "Account with this email not found.",
-      "badPassword": "Password for this account didn't match.",
-      "notAuthorized": "User are not authorized! Please login.",
-      "badResetToken": "Password reset token is incorrect or used before."
-    },
-    "email": {
-      "welcome_header": "Welcome to Contract Generator",
-      "go_to_page": "Go to page",
-      "thanks": "Thanks",
-      "welcome": {
-        "subject": "Welcome to Contract Generator",
-        "info": "Your account are created successfully. You can now login and work in app."
-      },
-      "resetPassword": {
-        "subject": "Reset account password",
-        "info": "You send request for reset your password. To end this process please use button below."
-      }
-    },
-    "form": {
-      "login": {
-        "title": "Login form",
-        "field": {
-          "email": "Email",
-          "password": "Password"
-        },
-        "text": {
-          "forgotPassword": "Forgot password?"
-        },
-        "link": {
-          "resetPassword": "Reset password"
-        },
-        "button": {
-          "login": "Login",
-          "register": "Create new account"
-        },
-        "notify": {
-          "success": "Logged successfully"
-        }
-      },
-      "register": {
-        "title": "Register form",
-        "field": {
-          "firstName": "FirstName",
-          "lastName": "LastName",
-          "email": "Email",
-          "password": "Password",
-          "rePassword": "Retype password",
-          "regulationsAccept": "I accept the Regulations",
-          "rodoAccept": "I accept the RODO"
-        },
-        "link": {
-          "rodo": " Rodo policy",
-          "regulations": " Site regulations"
-        },
-        "button": {
-          "login": "I have account",
-          "register": "Register account"
-        },
-        "notify": {
-          "success": "Account added successful. Please check your email to confirm."
-        }
-      },
-      "sendResetTokenForm": {
-        "title": "Send reset password token form",
-        "field": {
-          "email": "Email"
-        },
-        "button": {
-          "cancel": "Cancel",
-          "remind": "Remind"
-        },
-        "notify": {
-          "success": "Reset token send to your email. Check your email and use url to reset password."
-        }
-      },
-      "resetPasswordForm": {
-        "title": "Reset password form",
-        "field": {
-          "password": "Password",
-          "rePassword": "Retype password"
-        },
-        "button": {
-          "cancel": "Cancel",
-          "reset": "Reset password"
-        },
-        "notify": {
-          "success": "Your password was changed successfully. You can login now"
-        }
-      }
     }
   }
 });
@@ -89671,6 +89793,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_auth_SendResetPasswordTokenView__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./views/auth/SendResetPasswordTokenView */ "./resources/js/views/auth/SendResetPasswordTokenView.vue");
 /* harmony import */ var _views_auth_RegisterView__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./views/auth/RegisterView */ "./resources/js/views/auth/RegisterView.vue");
 /* harmony import */ var _views_auth_ResetPasswordView__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./views/auth/ResetPasswordView */ "./resources/js/views/auth/ResetPasswordView.vue");
+/* harmony import */ var _views_panel_MyProfileView__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./views/panel/MyProfileView */ "./resources/js/views/panel/MyProfileView.vue");
+
 
 
 
@@ -89687,10 +89811,16 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
   base: Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).BASE_URL,
   routes: [{
+    path: '/',
+    redirect: 'panel'
+  }, {
     path: '/panel',
     component: _layouts_PanelLayout__WEBPACK_IMPORTED_MODULE_2__["default"],
     children: [{
       path: '/',
+      redirect: 'dashboard'
+    }, {
+      path: 'dashboard',
       name: 'dashboard',
       component: _views_panel_DashboardView__WEBPACK_IMPORTED_MODULE_5__["default"],
       meta: {
@@ -89702,6 +89832,13 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       component: _views_panel_AgreementsView__WEBPACK_IMPORTED_MODULE_6__["default"],
       meta: {
         title: _lang__WEBPACK_IMPORTED_MODULE_3__["default"].t('pageMeta.panel.agreements.title')
+      }
+    }, {
+      path: 'my_profile',
+      name: 'my_profile',
+      component: _views_panel_MyProfileView__WEBPACK_IMPORTED_MODULE_11__["default"],
+      meta: {
+        title: _lang__WEBPACK_IMPORTED_MODULE_3__["default"].t('pageMeta.panel.my_profile.title')
       }
     }]
   }, {
@@ -90284,6 +90421,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/views/panel/MyProfileView.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/views/panel/MyProfileView.vue ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MyProfileView_vue_vue_type_template_id_3c52b5f0_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MyProfileView.vue?vue&type=template&id=3c52b5f0&scoped=true& */ "./resources/js/views/panel/MyProfileView.vue?vue&type=template&id=3c52b5f0&scoped=true&");
+/* harmony import */ var _MyProfileView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MyProfileView.vue?vue&type=script&lang=js& */ "./resources/js/views/panel/MyProfileView.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _MyProfileView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _MyProfileView_vue_vue_type_template_id_3c52b5f0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _MyProfileView_vue_vue_type_template_id_3c52b5f0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "3c52b5f0",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/panel/MyProfileView.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/panel/MyProfileView.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/views/panel/MyProfileView.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MyProfileView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./MyProfileView.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/panel/MyProfileView.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MyProfileView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/panel/MyProfileView.vue?vue&type=template&id=3c52b5f0&scoped=true&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/views/panel/MyProfileView.vue?vue&type=template&id=3c52b5f0&scoped=true& ***!
+  \***********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyProfileView_vue_vue_type_template_id_3c52b5f0_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./MyProfileView.vue?vue&type=template&id=3c52b5f0&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/panel/MyProfileView.vue?vue&type=template&id=3c52b5f0&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyProfileView_vue_vue_type_template_id_3c52b5f0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyProfileView_vue_vue_type_template_id_3c52b5f0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -90302,8 +90508,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/node/contract_generator/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/node/contract_generator/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/ryzo/Documents/Projekty/contract_generator/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/ryzo/Documents/Projekty/contract_generator/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

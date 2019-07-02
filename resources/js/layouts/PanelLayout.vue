@@ -21,7 +21,7 @@
                     </v-list-tile-avatar>
 
                     <v-list-tile-content>
-                        <v-list-tile-title>{{user.firstName}} {{user.lastName}}</v-list-tile-title>
+                        <v-list-tile-title> {{user.firstName}} {{user.lastName}} </v-list-tile-title>
                     </v-list-tile-content>
 
                     <v-list-tile-action>
@@ -81,33 +81,38 @@
         user: this.$store.getters.authUser,
         items: [
           {
-            title: "Dashboard",
+            title: this.$t('navigation.dashboard'),
             icon: "poll",
-            link: "/panel/"
+            link: "/panel/dashboard"
           },
           {
-            title: "Klienci",
-            icon: "user"
+            title: this.$t('navigation.profile'),
+            icon: "user-tie",
+            link: "/panel/my_profile"
           },
           {
-            title: "Umowy",
+            title: this.$t('navigation.clients'),
+            icon: "users"
+          },
+          {
+            title: this.$t('navigation.agreements'),
             icon: "file-contract",
             link: "/panel/agreements"
           },
           {
-            title: "Schematy",
+            title: this.$t('navigation.schema'),
             icon: "th"
           },
           {
-            title: "Konta",
-            icon: "user"
+            title: this.$t('navigation.accounts'),
+            icon: "users-cog"
           },
           {
-            title: "Ustawienia",
+            title: this.$t('navigation.settings'),
             icon: "cog"
           },
           {
-            title: "Wyloguj",
+            title: this.$t('navigation.logout'),
             icon: "sign-out-alt",
             logout: true
           }

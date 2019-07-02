@@ -9,6 +9,7 @@ import LoginView from "./views/auth/LoginView";
 import SendResetPasswordTokenView from "./views/auth/SendResetPasswordTokenView";
 import RegisterView from "./views/auth/RegisterView";
 import ResetPasswordView from "./views/auth/ResetPasswordView";
+import MyProfileView from "./views/panel/MyProfileView";
 
 Vue.use(VueRouter);
 
@@ -16,12 +17,14 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
+    { path: '/', redirect: 'panel' },
     {
       path: '/panel',
       component: PanelLayout,
       children: [
+        { path: '/', redirect: 'dashboard' },
         {
-          path: '/',
+          path: 'dashboard',
           name: 'dashboard',
           component: DashboardView,
           meta: {
@@ -34,6 +37,14 @@ const router = new VueRouter({
           component: AgreementsView,
           meta: {
             title: i18n.t('pageMeta.panel.agreements.title')
+          }
+        },
+        {
+          path: 'my_profile',
+          name: 'my_profile',
+          component: MyProfileView,
+          meta: {
+            title: i18n.t('pageMeta.panel.my_profile.title')
           }
         },
       ]
