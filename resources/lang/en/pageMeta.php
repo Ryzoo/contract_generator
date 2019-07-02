@@ -35,6 +35,9 @@ return [
                 'dateAdd' => 'Add date',
                 'actions' => 'Actions',
             ],
+            'create' => [
+                'title' => 'Create new agreement',
+            ],
         ],
     ]
 ];

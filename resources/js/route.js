@@ -9,6 +9,7 @@ import LoginView from "./views/auth/LoginView";
 import SendResetPasswordTokenView from "./views/auth/SendResetPasswordTokenView";
 import RegisterView from "./views/auth/RegisterView";
 import ResetPasswordView from "./views/auth/ResetPasswordView";
+import CreateAgreementView from "./views/panel/agreements/CreateView";
 import MyProfileView from "./views/panel/MyProfileView";
 
 Vue.use(VueRouter);
@@ -38,6 +39,14 @@ const router = new VueRouter({
           meta: {
             title: i18n.t('pageMeta.panel.agreements.title')
           }
+        },
+        {
+          path: 'agreements/create',
+          name: 'createAgreement',
+          component: CreateAgreementView,
+          meta: {
+            title: i18n.t('pageMeta.panel.agreements.create.title')
+          },
         },
         {
           path: 'my_profile',

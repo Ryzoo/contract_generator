@@ -1,0 +1,39 @@
+.theme--light.v-table {
+    background-color: transparent !important;
+}
+.theme--light.v-table tbody tr:not(:last-child) {
+    border-bottom: none !important;
+    background-color: white !important;
+}
+thead .v-datatable__progress {
+    height: 20px !important;
+}
+.theme--light.v-datatable .v-datatable__actions {
+    border-top: none !important;
+}
+.theme--light.v-table thead tr:first-child {
+    border-bottom: none !important;
+    background-color: white !important;
+}
+table.v-table tbody tr {
+    background-color: white !important;
+}
+.table-container table.v-table tbody tr:before {
+    content: "" !important;
+    display: block !important;
+    height: 15px !important;
+}
+.v-datatable {
+    margin-top: 20px !important;
+}
+table.v-table thead th {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+}
+table.v-table tbody td {
+    color: #919191 !important;
+    font-size: 14px !important;
+}
+.table-icons > *:hover {
+    cursor: pointer !important;
+}

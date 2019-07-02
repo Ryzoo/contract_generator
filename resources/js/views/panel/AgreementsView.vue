@@ -1,27 +1,43 @@
 <template>
-    <section>
-        <v-container>
-            <v-flex xs12>
-                <div class="action-button">
-                    <v-btn color="primary">{{
-                        $t("pageMeta.panel.agreements.button.newAgreement")
-                    }}</v-btn>
-                </div>
-            </v-flex>
-            <v-flex xs12 mt-4>
-                <c-table :headers="headers" :items="items" />
-            </v-flex>
-        </v-container>
-    </section>
+    <v-layout row wrap>
+        <v-flex xs12>
+            <v-layout row wrap class="justify-end">
+                <v-btn :to="{ name: 'createAgreement' }" color="primary">{{
+                    $t("pageMeta.panel.agreements.button.newAgreement")
+                }}</v-btn>
+            </v-layout>
+        </v-flex>
+        <v-flex xs12 mt-4>
+            <v-data-table :headers="headers" :items="items">
+                <template v-slot:items="props">
+                    <td>{{ props.item.name }}</td>
+                    <td>
+                        <span
+                            :class="{
+                                'success--text': props.item.active,
+                                'error--text': !props.item.active
+                            }"
+                        >
+                            {{ props.item.status }}
+                        </span>
+                    </td>
+                    <td>
+                        {{ props.item.date_add }}
+                    </td>
+                    <td>
+                        <div class="table-icons">
+                            <font-awesome-icon icon="edit" />
+                            <font-awesome-icon icon="trash" />
+                        </div>
+                    </td>
+                </template>
+            </v-data-table>
+        </v-flex>
+    </v-layout>
 </template>
 
 <script>
-import Table from "../../components/Table";
-
 export default {
-    components: {
-        "c-table": Table
-    },
     name: "AgreementsView",
     data: function() {
         return {
