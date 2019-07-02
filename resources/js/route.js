@@ -53,7 +53,7 @@ const router = new VueRouter({
           name: 'my_profile',
           component: MyProfileView,
           meta: {
-            title: i18n.t('pageMeta.panel.my_profile.title')
+            title: i18n.t('pageMeta.panel.profile.title')
           }
         },
       ]

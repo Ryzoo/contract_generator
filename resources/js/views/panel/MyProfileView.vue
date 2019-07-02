@@ -1,25 +1,25 @@
 <template>
     <v-flex xs12>
-        <v-layout row wrap>
-            <v-flex xs12 sm4>
-                <v-card>
-                    <v-avatar
-                        size="80%"
-                        class="mx-auto d-block"
-                    >
-                        <lazy-img src="https://randomuser.me/api/portraits/men/80.jpg" alt="avatar"></lazy-img>
-                    </v-avatar>
-                    <v-divider class="my-3"></v-divider>
-                    <h1 class="text-xs-center"> adam malysz </h1>
-                </v-card>
-            </v-flex>
-        </v-layout>
+        <profile-view
+            :user-data="user"
+            :editable="true"
+        ></profile-view>
     </v-flex>
 </template>
 
 <script>
+  import ProfileView from "../../components/ProfileView";
+
   export default {
-    name: "MyProfileView"
+    name: "MyProfileView",
+    components: {
+      "profile-view": ProfileView
+    },
+    data() {
+      return {
+        user: Object.assign({},this.$store.getters.authUser),
+      }
+    }
   }
 </script>
 

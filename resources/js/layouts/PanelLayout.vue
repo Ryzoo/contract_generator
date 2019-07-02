@@ -17,7 +17,7 @@
 
                 <v-list-tile avatar tag="div">
                     <v-list-tile-avatar>
-                        <lazy-img src="https://randomuser.me/api/portraits/men/80.jpg"></lazy-img>
+                        <lazy-img :src="user.profileImage"></lazy-img>
                     </v-list-tile-avatar>
 
                     <v-list-tile-content>
