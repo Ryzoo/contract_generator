@@ -44,6 +44,9 @@ class FileService
 
     public function tryRemoveFileByStorageUrl(string $fileUrl) {
         if(!isset($fileUrl) || Str::length($fileUrl) === 0) return null;
-        Storage::delete($fileUrl);
+        $fullPath = Str::replaceFirst("/","",$fileUrl);
+        $fullPath =  str_replace("/","\\",$fullPath) ;
+        $fullPath =  str_replace("storage\\","",$fullPath) ;
+        Storage::disk('public')->delete($fullPath);
     }
 }
