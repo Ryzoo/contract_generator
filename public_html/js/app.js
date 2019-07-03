@@ -11450,24 +11450,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "BaseDataShow",
   props: ["userData", "editable"],
   data: function data() {
     return {
+      isLoaded: true,
       user: this.userData,
       canBeSaved: false,
       isAdmin: this.userData.role === _additionalModules_Enums__WEBPACK_IMPORTED_MODULE_0__["UserRoleEnum"].ADMINISTRATOR
     };
   },
   methods: {
-    saveImage: function saveImage() {},
+    saveImage: function saveImage() {
+      var _this = this;
+
+      var imagefile = this.$refs.profileImage;
+
+      if (imagefile && imagefile.files && imagefile.files[0]) {
+        var formData = new FormData();
+        formData.append("image", imagefile.files[0]);
+        this.isLoaded = false;
+        axios.post("/user/".concat(this.user.id, "/profileImage"), formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }).then(function () {
+          notify.push(_this.$t('page.panel.profile.base.success_change_img'), notify.SUCCESS);
+          auth.checkAuth();
+          _this.canBeSaved = false;
+        })["finally"](function () {
+          _this.isLoaded = true;
+        });
+      }
+    },
     changeProfileImage: function changeProfileImage() {
       $('#profileImageInput').click();
     },
     profileImageAreChanged: function profileImageAreChanged() {
-      var _this = this;
+      var _this2 = this;
 
       var input = this.$refs.profileImage;
 
@@ -11475,10 +11500,10 @@ __webpack_require__.r(__webpack_exports__);
         var reader = new FileReader();
 
         reader.onload = function (e) {
-          _this.user.profileImage = e.target.result;
-          _this.canBeSaved = true;
+          _this2.user.profileImage = e.target.result;
+          _this2.canBeSaved = true;
 
-          _this.$forceUpdate();
+          _this2.$forceUpdate();
         };
 
         reader.readAsDataURL(input.files[0]);
@@ -45951,68 +45976,84 @@ var render = function() {
     "v-card",
     { staticClass: "pb-3" },
     [
-      _c(
-        "v-avatar",
-        { staticClass: "mx-auto d-block", attrs: { size: "80%" } },
-        [
-          _c("lazy-img", {
-            attrs: { src: _vm.user.profileImage, alt: "avatar" }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("input", {
-        ref: "profileImage",
-        attrs: { type: "file", id: "profileImageInput", hidden: "" },
-        on: { change: _vm.profileImageAreChanged }
-      }),
-      _vm._v(" "),
-      _vm.editable
+      _vm.isLoaded
         ? _c(
-            "v-btn",
-            {
-              staticClass: "mx-auto d-block",
-              attrs: { small: "", color: "primary" },
-              on: { click: _vm.changeProfileImage }
-            },
-            [_vm._v(_vm._s(_vm.$t("form.profileEditForm.button.change_img")))]
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.canBeSaved
-        ? _c(
-            "v-btn",
-            {
-              staticClass: "mx-auto d-block",
-              attrs: { small: "", color: "success" },
-              on: { click: _vm.saveImage }
-            },
+            "div",
             [
-              _vm._v(
-                "\n        " +
-                  _vm._s(_vm.$t("form.profileEditForm.button.save_img")) +
-                  "\n    "
-              )
-            ]
+              _c(
+                "v-avatar",
+                { staticClass: "mx-auto d-block", attrs: { size: "80%" } },
+                [
+                  _c("lazy-img", {
+                    attrs: { src: _vm.user.profileImage, alt: "avatar" }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("input", {
+                ref: "profileImage",
+                attrs: { type: "file", id: "profileImageInput", hidden: "" },
+                on: { change: _vm.profileImageAreChanged }
+              }),
+              _vm._v(" "),
+              _vm.editable
+                ? _c(
+                    "v-btn",
+                    {
+                      staticClass: "mx-auto d-block",
+                      attrs: { small: "", color: "primary" },
+                      on: { click: _vm.changeProfileImage }
+                    },
+                    [
+                      _vm._v(
+                        _vm._s(_vm.$t("form.profileEditForm.button.change_img"))
+                      )
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.canBeSaved
+                ? _c(
+                    "v-btn",
+                    {
+                      staticClass: "mx-auto d-block",
+                      attrs: { small: "", color: "success" },
+                      on: { click: _vm.saveImage }
+                    },
+                    [
+                      _vm._v(
+                        "\n            " +
+                          _vm._s(
+                            _vm.$t("form.profileEditForm.button.save_img")
+                          ) +
+                          "\n        "
+                      )
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c("v-divider", { staticClass: "my-3" }),
+              _vm._v(" "),
+              _c("h2", { staticClass: "text-xs-center" }, [
+                _vm._v(
+                  _vm._s(_vm.user.firstName) + " " + _vm._s(_vm.user.lastName)
+                )
+              ]),
+              _vm._v(" "),
+              _c("small", { staticClass: "text-xs-center d-block" }, [
+                _vm._v(
+                  _vm._s(
+                    _vm.isAdmin
+                      ? _vm.$t("user.roles.admin")
+                      : _vm.$t("user.roles.client")
+                  )
+                )
+              ])
+            ],
+            1
           )
-        : _vm._e(),
-      _vm._v(" "),
-      _c("v-divider", { staticClass: "my-3" }),
-      _vm._v(" "),
-      _c("h2", { staticClass: "text-xs-center" }, [
-        _vm._v(_vm._s(_vm.user.firstName) + " " + _vm._s(_vm.user.lastName))
-      ]),
-      _vm._v(" "),
-      _c("small", { staticClass: "text-xs-center d-block" }, [
-        _vm._v(
-          _vm._s(
-            _vm.isAdmin
-              ? _vm.$t("user.roles.admin")
-              : _vm.$t("user.roles.client")
-          )
-        )
-      ])
+        : _c("loader")
     ],
     1
   )
@@ -89702,6 +89743,16 @@ __webpack_require__.r(__webpack_exports__);
           "create": {
             "title": "Create new agreement"
           }
+        }
+      }
+    },
+    "page": {
+      "panel": {
+        "profile": {
+          "base": {
+            "success_change_img": "Your image are successfuly changed."
+          },
+          "tabs": []
         }
       }
     },

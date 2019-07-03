@@ -32,8 +32,18 @@ class UserController extends Controller
             'lastName'  => $request->get('lastName'),
         ]);
 
-        $userModel = $this->userService->updateUser($userModel);
+        $this->userService->updateUser($userModel);
 
         Response::success();
     }
+
+    public function updateUserProfileImage(Request $request, int $id) {
+        Validator::validate($request->all(),[
+            'image' => 'required|image',
+        ]);
+
+        $this->userService->changeUserImage($id, $request->file('image'));
+    }
+
+
 }
