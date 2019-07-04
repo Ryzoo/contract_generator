@@ -1,12 +1,13 @@
 const defaultState = {
 	authUser: {
-		created_at: "",
 		email: "",
 		firstName: "",
 		id: null,
 		lastName: "",
 		loginToken: "",
 		role: null,
+		profileImage: "",
+		created_at: "",
 		updated_at: "",
 	}
 };

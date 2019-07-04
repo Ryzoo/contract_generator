@@ -21,6 +21,15 @@ return [
         'dashboard' => [
             'title' => 'Panel - Dashboard',
         ],
+        'profile' => [
+            'title' => 'Panel - My Profile',
+            'info' => 'After update, all data will change after you refresh the page',
+            'tabs' => [
+                'basic_data' => [
+                    'name' => "Basic data"
+                ]
+            ]
+        ],
         'agreements' => [
             'title' => 'Panel - Agreements',
             'button' => [

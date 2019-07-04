@@ -9,3 +9,8 @@ Route::prefix('auth')->group(function () {
     Route::post('/resetPassword/sendToken', 'AuthController@sendResetUserPasswordToken');
     Route::post('/resetPassword', 'AuthController@resetUserPassword');
 });
+
+Route::prefix('user')->group(function () {
+    Route::put('/{id}/basicData', 'UserController@updateUserBasicData');
+    Route::post('/{id}/profileImage', 'UserController@updateUserProfileImage');
+});

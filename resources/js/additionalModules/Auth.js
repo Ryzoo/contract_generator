@@ -1,4 +1,5 @@
 export default class Auth {
+
     constructor() {
         this.store = null;
         this.router = null;

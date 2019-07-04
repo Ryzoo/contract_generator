@@ -73,6 +73,20 @@ return [
         'notify' => [
             'success' => 'Your password was changed successfully. You can login now'
         ]
-    ]
+    ],
 
+    'profileEditForm' => [
+        'field' => [
+            'firstName' => 'FirstName',
+            'lastName' => 'LastName',
+        ],
+        'button' => [
+            'change_img' => 'Change profile image',
+            'save_img' => 'Save current image',
+            'save' => 'Save data',
+        ],
+        'notify' => [
+            'success' => 'Your basic data are updated now.'
+        ]
+    ]
 ];

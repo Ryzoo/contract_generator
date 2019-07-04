@@ -4,9 +4,19 @@ namespace App\Services;
 
 use App\Helpers\Response;
 use App\Models\User;
+use Illuminate\Http\UploadedFile;
 
 class UserService
 {
+    /**
+     * @var \App\Services\FileService
+     */
+    private $fileService;
+
+    public function __construct(FileService $fileService) {
+        $this->fileService = $fileService;
+    }
+
     public function addUser(User $userModel):User {
         User::validate($userModel);
 
@@ -37,5 +47,19 @@ class UserService
         }
 
         return false;
+    }
+
+    public function changeUserImage(int $userID, UploadedFile $newProfileImage) {
+        $user = User::getById($userID);
+
+        if(!isset($user))
+            Response::error(__("response.notFoundId"),400);
+
+        $this->fileService->tryRemoveFileByStorageUrl($user->profileImage);
+
+        $user->profileImage = $this->fileService
+            ->saveAndOptimizeImage($newProfileImage, 'profileImages');
+
+        $user->save();
     }
 }
