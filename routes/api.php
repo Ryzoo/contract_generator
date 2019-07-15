@@ -10,6 +10,15 @@ Route::prefix('auth')->group(function () {
     Route::post('/resetPassword', 'AuthController@resetUserPassword');
 });
 
+Route::prefix('elements')->group(function () {
+
+    Route::prefix('blocks')->group(function () {
+        Route::get('/', 'ElementsController@getAllBlockList');
+
+    });
+
+});
+
 Route::prefix('user')->group(function () {
     Route::put('/{id}/basicData', 'UserController@updateUserBasicData');
     Route::post('/{id}/profileImage', 'UserController@updateUserProfileImage');
