@@ -12286,11 +12286,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AccountsView",
   components: {},
   data: function data() {
     return {
+      isLoaded: true,
       headers: [{
         text: this.$t("page.panel.accounts.headers.name"),
         value: "name"
@@ -12307,15 +12313,23 @@ __webpack_require__.r(__webpack_exports__);
         text: this.$t("page.panel.accounts.headers.actions"),
         sortable: false
       }],
-      items: [{
-        id: 0,
-        firstName: "Grzegorz",
-        lastName: "Kastelik",
-        email: "g.kastelik@gmail.com",
-        role: "0",
-        created_at: "2019-07-03 22:01:19"
-      }]
+      items: []
     };
+  },
+  methods: {
+    getUserList: function getUserList() {
+      var _this = this;
+
+      this.isLoaded = false;
+      axios.get("/user").then(function (response) {
+        _this.items = response.data;
+      })["finally"](function () {
+        _this.isLoaded = true;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getUserList();
   }
 });
 
@@ -12554,18 +12568,50 @@ __webpack_require__.r(__webpack_exports__);
         firstName: null,
         lastName: null,
         email: null,
-        role: 0
+        role: null,
+        password: null,
+        rePassword: null
       },
       roleList: []
     };
   },
   methods: {
-    addAccount: function addAccount() {}
+    addAccount: function addAccount() {
+      var _this = this;
+
+      try {
+        var validationArray = [];
+        validationArray[this.$t("form.accountAddForm.field.firstName")] = this.user.firstName;
+        validationArray[this.$t("form.accountAddForm.field.lastName")] = this.user.lastName;
+        validationArray[this.$t("form.accountAddForm.field.email")] = this.user.email;
+        validationArray[this.$t("form.accountAddForm.field.role")] = this.user.role;
+        validationArray[this.$t("form.accountAddForm.field.password")] = this.user.password;
+        validationArray[this.$t("form.accountAddForm.field.rePassword")] = this.user.rePassword;
+        var valid = new window.Validator(validationArray);
+        valid.get(this.$t("form.accountAddForm.field.firstName")).length(3, 50);
+        valid.get(this.$t("form.accountAddForm.field.lastName")).length(3, 50);
+        valid.get(this.$t("form.accountAddForm.field.email")).isEmail();
+        valid.get(this.$t("form.accountAddForm.field.role")).isBetween(0, 1);
+        valid.get(this.$t("form.accountAddForm.field.password")).length(6, 50);
+        valid.get(this.$t("form.accountAddForm.field.rePassword")).length(6, 50).sameAs(this.$t("form.accountAddForm.field.password"));
+      } catch (e) {
+        return;
+      }
+
+      this.isLoaded = false;
+      axios.post("/user", this.user).then(function (response) {
+        notify.push(_this.$t("form.accountAddForm.notify.success"), notify.SUCCESS);
+
+        _this.$router.push("/panel/accounts");
+      })["finally"](function () {
+        _this.isLoaded = true;
+      });
+    }
   },
   mounted: function mounted() {
     for (var i in this.userRoles) {
       this.roleList.push({
-        text: this.$t("user.roles.".concat(i)),
+        text: this.getRoleName(this.userRoles[i]),
         value: this.userRoles[i]
       });
     }
@@ -47571,104 +47617,122 @@ var render = function() {
     "v-flex",
     { attrs: { xs12: "" } },
     [
-      _c(
-        "v-layout",
-        { attrs: { row: "", wrap: "" } },
-        [
-          _c(
-            "v-flex",
-            { attrs: { xs12: "" } },
+      _vm.isLoaded
+        ? _c(
+            "v-layout",
+            { attrs: { row: "", wrap: "" } },
             [
               _c(
-                "v-layout",
-                { staticClass: "justify-end", attrs: { row: "", wrap: "" } },
+                "v-flex",
+                { attrs: { xs12: "" } },
                 [
                   _c(
-                    "v-btn",
+                    "v-layout",
                     {
-                      attrs: { to: { name: "createAccount" }, color: "primary" }
+                      staticClass: "justify-end",
+                      attrs: { row: "", wrap: "" }
                     },
                     [
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(
-                            _vm.$t("page.panel.accounts.button.newAccount")
-                          ) +
-                          "\n                "
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: {
+                            to: { name: "createAccount" },
+                            color: "primary"
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(
+                                _vm.$t("page.panel.accounts.button.newAccount")
+                              ) +
+                              "\n                "
+                          )
+                        ]
                       )
-                    ]
+                    ],
+                    1
                   )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs12: "", "mt-4": "" } },
+                [
+                  _c("v-data-table", {
+                    attrs: { headers: _vm.headers, items: _vm.items },
+                    scopedSlots: _vm._u(
+                      [
+                        {
+                          key: "items",
+                          fn: function(props) {
+                            return [
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      attrs: {
+                                        to: "/panel/account/" + props.item.id
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        _vm._s(props.item.firstName) +
+                                          " " +
+                                          _vm._s(props.item.lastName) +
+                                          "\n                        "
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(props.item.email))]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(_vm._s(_vm.getRoleName(props.item.role)))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(props.item.created_at))]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c(
+                                  "div",
+                                  { staticClass: "table-icons" },
+                                  [
+                                    _c("font-awesome-icon", {
+                                      attrs: { icon: "edit" }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("font-awesome-icon", {
+                                      attrs: { icon: "trash" }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ])
+                            ]
+                          }
+                        }
+                      ],
+                      null,
+                      false,
+                      3791647740
+                    )
+                  })
                 ],
                 1
               )
             ],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-flex",
-            { attrs: { xs12: "", "mt-4": "" } },
-            [
-              _c("v-data-table", {
-                attrs: { headers: _vm.headers, items: _vm.items },
-                scopedSlots: _vm._u([
-                  {
-                    key: "items",
-                    fn: function(props) {
-                      return [
-                        _c(
-                          "td",
-                          [
-                            _c(
-                              "router-link",
-                              {
-                                attrs: { to: "/panel/account/" + props.item.id }
-                              },
-                              [
-                                _vm._v(
-                                  _vm._s(props.item.firstName) +
-                                    " " +
-                                    _vm._s(props.item.lastName)
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(props.item.email))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(props.item.role))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(props.item.created_at))]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c(
-                            "div",
-                            { staticClass: "table-icons" },
-                            [
-                              _c("font-awesome-icon", {
-                                attrs: { icon: "edit" }
-                              }),
-                              _vm._v(" "),
-                              _c("font-awesome-icon", {
-                                attrs: { icon: "trash" }
-                              })
-                            ],
-                            1
-                          )
-                        ])
-                      ]
-                    }
-                  }
-                ])
-              })
-            ],
-            1
           )
-        ],
-        1
-      )
+        : _c("loader")
     ],
     1
   )
@@ -90509,17 +90573,19 @@ function () {
       return this;
     }
   }, {
-    key: "isOnlyNumber",
-    value: function isOnlyNumber(min, max) {
-      this.isString();
-      var re = /^[0-9\+]{8,13}$/;
-      var ret = this.current.length >= min;
+    key: "isBetween",
+    value: function isBetween(min, max) {
+      this.isNotNull();
+      console.log(this.current);
+      var re = parseInt(this.current);
 
-      if (max && ret) {
-        ret = this.current.length <= max;
+      if (re === null || re === undefined) {
+        this.returnError(_lang__WEBPACK_IMPORTED_MODULE_0__["default"].t('validation.numeric', {
+          attribute: this.currentName
+        }));
       }
 
-      if (!re.test(this.current.toLowerCase()) || !ret) {
+      if (!(re >= min && re <= max)) {
         this.returnError(_lang__WEBPACK_IMPORTED_MODULE_0__["default"].t('validation.between.numeric', {
           attribute: this.currentName,
           min: min,
@@ -90628,21 +90694,24 @@ function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @fortawesome/vue-fontawesome */ "./node_modules/@fortawesome/vue-fontawesome/index.es.js");
-/* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuetify */ "./node_modules/vuetify/dist/vuetify.js");
-/* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vuetify__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuetify/dist/vuetify.min.css */ "./node_modules/vuetify/dist/vuetify.min.css");
-/* harmony import */ var vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
-/* harmony import */ var _route__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./route */ "./resources/js/route.js");
-/* harmony import */ var _lang__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./lang */ "./resources/js/lang.js");
+/* harmony import */ var _additionalModules_Enums__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./additionalModules/Enums */ "./resources/js/additionalModules/Enums.js");
+/* harmony import */ var _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/vue-fontawesome */ "./node_modules/@fortawesome/vue-fontawesome/index.es.js");
+/* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuetify */ "./node_modules/vuetify/dist/vuetify.js");
+/* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vuetify__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuetify/dist/vuetify.min.css */ "./node_modules/vuetify/dist/vuetify.min.css");
+/* harmony import */ var vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
+/* harmony import */ var _route__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./route */ "./resources/js/route.js");
+/* harmony import */ var _lang__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./lang */ "./resources/js/lang.js");
+
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-Vue.use(vuetify__WEBPACK_IMPORTED_MODULE_1___default.a, {
+Vue.use(vuetify__WEBPACK_IMPORTED_MODULE_2___default.a, {
   theme: {
     primary: '#d4ac71',
     secondary: '#324a58',
@@ -90653,20 +90722,31 @@ Vue.use(vuetify__WEBPACK_IMPORTED_MODULE_1___default.a, {
     warning: '#FFC107'
   }
 });
-Vue.component('font-awesome-icon', _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_0__["FontAwesomeIcon"]);
+Vue.component('font-awesome-icon', _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"]);
 Vue.component('lazy-img', __webpack_require__(/*! ./components/LazyImg */ "./resources/js/components/LazyImg.vue")["default"]);
 Vue.component('loader', __webpack_require__(/*! ./components/Loader */ "./resources/js/components/Loader.vue")["default"]);
 
 
 
+Vue.mixin({
+  methods: {
+    getRoleName: function getRoleName(roleId) {
+      for (var i in _additionalModules_Enums__WEBPACK_IMPORTED_MODULE_0__["UserRoleEnum"]) {
+        if (_additionalModules_Enums__WEBPACK_IMPORTED_MODULE_0__["UserRoleEnum"][i] == roleId) return this.$t("user.roles.".concat(i));
+      }
+
+      return "---";
+    }
+  }
+});
 var app = new Vue({
   el: '#app',
-  i18n: _lang__WEBPACK_IMPORTED_MODULE_5__["default"],
-  store: _store__WEBPACK_IMPORTED_MODULE_3__["default"],
-  router: _route__WEBPACK_IMPORTED_MODULE_4__["default"]
+  i18n: _lang__WEBPACK_IMPORTED_MODULE_6__["default"],
+  store: _store__WEBPACK_IMPORTED_MODULE_4__["default"],
+  router: _route__WEBPACK_IMPORTED_MODULE_5__["default"]
 });
-window.auth.setStore(_store__WEBPACK_IMPORTED_MODULE_3__["default"]);
-window.auth.setRouter(_route__WEBPACK_IMPORTED_MODULE_4__["default"]);
+window.auth.setStore(_store__WEBPACK_IMPORTED_MODULE_4__["default"]);
+window.auth.setRouter(_route__WEBPACK_IMPORTED_MODULE_5__["default"]);
 
 /***/ }),
 

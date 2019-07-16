@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Helpers\Response;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Collection;
 
 class UserService
 {
@@ -18,11 +19,18 @@ class UserService
     }
 
     public function addUser(User $userModel):User {
+        if(isset($userModel['rePassword']))
+            unset($userModel['rePassword']);
+
         User::validate($userModel);
 
         $userModel->save();
 
         return $userModel;
+    }
+
+    public function getUserList():Collection {
+        return User::all();
     }
 
     public function updateUser(User $userModel) {

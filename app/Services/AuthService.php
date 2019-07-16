@@ -25,9 +25,6 @@ class AuthService {
     public function registerUser(User $userModel, int $userRole):?User {
         $userModel->role = $userRole;
 
-        if(isset($userModel['rePassword']))
-            unset($userModel['rePassword']);
-
         if(isset($userModel['regulationsAccept']))
             unset($userModel['regulationsAccept']);
 

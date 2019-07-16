@@ -26,37 +26,11 @@ class ElementsController extends Controller
         $this->attributeService = $attributeService;
     }
 
-    /**
-     * @OA\Get(
-     *      path="/api/elements/blocks",
-     *      tags={"Blocks"},
-     *      operationId="getAllBlockList",
-     *      summary="Get list of available blocks type",
-     *      description="Get list of available blocks type",
-     *      @OA\Response(
-     *          response=200,
-     *          description="successful operation",
-     *       ),
-     *     )
-     */
     public function getAllBlockList(Request $request) {
         $blockList = $this->blockService->getListOfBlocks();
         Response::success($blockList);
     }
 
-    /**
-     * @OA\Get(
-     *      path="/api/elements/attributes",
-     *      tags={"Attributes"},
-     *      operationId="getAllAttributesList",
-     *      summary="Get list of available attirubtes type",
-     *      description="Get list of available attirubtes type",
-     *      @OA\Response(
-     *          response=200,
-     *          description="successful operation",
-     *       ),
-     *     )
-     */
     public function getAllAttributesList(Request $request) {
         $atributeList = $this->attributeService->getListOfAttributes();
         Response::success($atributeList);

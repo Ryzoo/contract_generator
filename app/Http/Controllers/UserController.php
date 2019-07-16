@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserRole;
 use App\Helpers\Response;
 use App\Helpers\Validator;
 use App\Models\User;
@@ -45,5 +46,18 @@ class UserController extends Controller
         $this->userService->changeUserImage($id, $request->file('image'));
     }
 
+    public function addNewUser(Request $request) {
+        Validator::validate($request->all(),User::$rulesAddRequestCreate);
 
+        $user = new User();
+        $user->fill($request->all());
+
+        $registeredUser = $this->userService->addUser($user);
+
+        Response::success($registeredUser);
+    }
+
+    public function getUserList(Request $request) {
+        Response::success($this->userService->getUserList());
+    }
 }

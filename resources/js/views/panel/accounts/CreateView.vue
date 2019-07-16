@@ -91,20 +91,81 @@ export default {
             firstName: null,
             lastName: null,
             email: null,
-            role: 0
+            role: null,
+            password: null,
+            rePassword: null
           },
           roleList: []
         };
     },
     methods: {
       addAccount(){
+        try {
+          let validationArray = [];
 
+          validationArray[
+              this.$t("form.accountAddForm.field.firstName")
+              ] = this.user.firstName;
+          validationArray[
+              this.$t("form.accountAddForm.field.lastName")
+              ] = this.user.lastName;
+          validationArray[
+              this.$t("form.accountAddForm.field.email")
+              ] = this.user.email;
+          validationArray[
+              this.$t("form.accountAddForm.field.role")
+              ] = this.user.role;
+          validationArray[
+              this.$t("form.accountAddForm.field.password")
+              ] = this.user.password;
+          validationArray[
+              this.$t("form.accountAddForm.field.rePassword")
+              ] = this.user.rePassword;
+
+          let valid = new window.Validator(validationArray);
+
+          valid
+              .get(this.$t("form.accountAddForm.field.firstName"))
+              .length(3, 50);
+          valid
+              .get(this.$t("form.accountAddForm.field.lastName"))
+              .length(3, 50);
+          valid
+              .get(this.$t("form.accountAddForm.field.email"))
+              .isEmail();
+          valid
+              .get(this.$t("form.accountAddForm.field.role"))
+              .isBetween(0,1);
+          valid
+              .get(this.$t("form.accountAddForm.field.password"))
+              .length(6, 50);
+          valid
+              .get(this.$t("form.accountAddForm.field.rePassword"))
+              .length(6, 50)
+              .sameAs(this.$t("form.accountAddForm.field.password"));
+        } catch (e) {
+          return;
+        }
+
+        this.isLoaded = false;
+        axios
+            .post("/user", this.user)
+            .then(response => {
+              notify.push(
+                  this.$t("form.accountAddForm.notify.success"),
+                  notify.SUCCESS
+              );
+              this.$router.push("/panel/accounts");
+            })
+            .finally(() => {
+              this.isLoaded = true;
+            });
       }
     },
     mounted() {
       for (let i in this.userRoles) {
         this.roleList.push({
-              text: this.$t(`user.roles.${i}`),
+              text: this.getRoleName(this.userRoles[i]),
               value: this.userRoles[i]
         });
       }

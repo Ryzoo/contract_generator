@@ -104,6 +104,7 @@ return [
             'add' => 'Add account',
         ],
         'notify' => [
+            'success' => 'New account added.'
         ]
     ]
 
