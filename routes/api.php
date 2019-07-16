@@ -14,7 +14,10 @@ Route::prefix('elements')->group(function () {
 
     Route::prefix('blocks')->group(function () {
         Route::get('/', 'ElementsController@getAllBlockList');
+    });
 
+    Route::prefix('attributes')->group(function () {
+        Route::get('/', 'ElementsController@getAllAttributesList');
     });
 
 });

@@ -1,7 +1,14 @@
+$primary: #d4ac71;
+$secondary: #324a58;
+$accent: #ccbd99;
+$error: #ff675f;
+$info: #35a9f3;
+$success: #77bc7a;
+$warning: #FFC107;
 
 $fontColor: #20333E;
-$dangerColor: #F45549;
+$dangerColor: $error;
 $cancelColor: #7D8D96;
-$actionColor: #446477;
-$confirmColor: #5ABF5D;
-$infoColor: #3E8CD9;
+$actionColor: $primary;
+$confirmColor: $success;
+$infoColor: $info;

@@ -20,7 +20,7 @@
                 >
                 </v-text-field>
                 <v-text-field
-                    prepend-icon="person"
+                    prepend-icon="email"
                     v-model="registerForm.email"
                     :label="$t('form.register.field.email')"
                     type="email"

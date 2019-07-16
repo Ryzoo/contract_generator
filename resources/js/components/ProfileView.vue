@@ -7,9 +7,6 @@
             ></base-data-show>
         </v-flex>
         <v-flex xs12 sm8 lg9 class="pa-1">
-            <v-alert :value="true" type="info">
-                {{ $t("pageMeta.panel.profile.info") }}
-            </v-alert>
             <profile-data-tabs
                 :user-data="user"
                 :editable="editable"

@@ -6,7 +6,7 @@
         <v-card-text class="pb-0">
             <v-form v-if="isLoaded">
                 <v-text-field
-                    prepend-icon="person"
+                    prepend-icon="email"
                     v-model="loginForm.email"
                     :label="$t('form.login.field.email')"
                     type="email"

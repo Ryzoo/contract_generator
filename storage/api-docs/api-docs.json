@@ -1,0 +1,50 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Contract API",
+        "description": "API for contract generator",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/api/elements/blocks": {
+            "get": {
+                "tags": [
+                    "Blocks"
+                ],
+                "summary": "Get list of available blocks type",
+                "description": "Get list of available blocks type",
+                "operationId": "getAllBlockList",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/api/elements/attributes": {
+            "get": {
+                "tags": [
+                    "Attributes"
+                ],
+                "summary": "Get list of available attirubtes type",
+                "description": "Get list of available attirubtes type",
+                "operationId": "getAllAttributesList",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Blocks",
+            "description": "Operation on blocks"
+        },
+        {
+            "name": "Attributes",
+            "description": "Operation on attributes"
+        }
+    ]
+}

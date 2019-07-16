@@ -35,9 +35,7 @@ class Response
 
     public static function success($successMessage = true, $code = 200)
     {
-        Response::json([
-            "success" => $successMessage
-        ],$code);
+        Response::json($successMessage,$code);
     }
 
     public static function redirect($route, $status = null, $error = null)

@@ -30,6 +30,12 @@ return [
                 ]
             ]
         ],
+        'accounts' => [
+            'title' => 'Panel - Accounts',
+            'create' => [
+                'title' => 'Create new account',
+            ],
+        ],
         'agreements' => [
             'title' => 'Panel - Agreements',
             'button' => [

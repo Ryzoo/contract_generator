@@ -14,14 +14,12 @@
             <v-btn
                 v-if="editable"
                 @click="changeProfileImage"
-                small
                 class="mx-auto d-block"
                 color="primary"
                 >{{ $t("form.profileEditForm.button.change_img") }}</v-btn
             >
             <v-btn
                 v-if="canBeSaved"
-                small
                 class="mx-auto d-block"
                 color="success"
                 @click="saveImage"
@@ -33,7 +31,7 @@
                 {{ user.firstName }} {{ user.lastName }}
             </h2>
             <small class="text-xs-center d-block">{{
-                isAdmin ? $t("user.roles.admin") : $t("user.roles.client")
+                isAdmin ? $t("user.roles.ADMINISTRATOR") : $t("user.roles.CLIENT")
             }}</small>
         </div>
         <loader v-else></loader>
