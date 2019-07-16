@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_html/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/panel/agreements/CreateView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/panel/agreements/CreateView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/colors.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/colors.scss" afterDir="false" />
-    </list>
+    <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,8 +71,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/js/views/panel/agreements/CreateView.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="311" column="30" selection-start-line="311" selection-start-column="30" selection-end-line="311" selection-end-column="30" />
+            <state relative-caret-position="203">
+              <caret line="311" column="36" selection-start-line="311" selection-start-column="36" selection-end-line="311" selection-end-column="36" />
               <folding>
                 <element signature="e#4249#5729#0" />
               </folding>
@@ -125,7 +120,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>found</find>
       <find>sync</find>
       <find>mail</find>
       <find>primaryDrawer</find>
@@ -155,6 +149,7 @@
       <find>.application</find>
       <find>gotToData</find>
       <find>aliase</find>
+      <find>prima</find>
     </findStrings>
   </component>
   <component name="FrameworkCommandLineHistory">
@@ -636,7 +631,7 @@
       <workItem from="1563201883027" duration="1612000" />
       <workItem from="1563208796967" duration="106000" />
       <workItem from="1563209116086" duration="9087000" />
-      <workItem from="1563280773095" duration="5285000" />
+      <workItem from="1563280773095" duration="6015000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>
@@ -673,7 +668,14 @@
       <option name="project" value="LOCAL" />
       <updated>1562015457212</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Blocks view v1">
+      <created>1563288996662</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1563288996662</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -709,7 +711,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118698000" />
+    <option name="totallyTimeSpent" value="119428000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -722,7 +724,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2950907" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -801,7 +802,8 @@
     <MESSAGE value="Add agreements view" />
     <MESSAGE value="Add some translations to agreements view" />
     <MESSAGE value="Changes in agreement view" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes in agreement view" />
+    <MESSAGE value="Blocks view v1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Blocks view v1" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>
@@ -1153,8 +1155,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/views/panel/agreements/CreateView.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="311" column="30" selection-start-line="311" selection-start-column="30" selection-end-line="311" selection-end-column="30" />
+        <state relative-caret-position="203">
+          <caret line="311" column="36" selection-start-line="311" selection-start-column="36" selection-end-line="311" selection-end-column="36" />
           <folding>
             <element signature="e#4249#5729#0" />
           </folding>
