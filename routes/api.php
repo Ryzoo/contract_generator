@@ -25,6 +25,7 @@ Route::prefix('elements')->group(function () {
 Route::prefix('user')->group(function () {
     Route::get('/', 'UserController@getUserList');
     Route::post('/', 'UserController@addNewUser');
+    Route::delete('/{id}', 'UserController@removeUserAccount');
     Route::put('/{id}/basicData', 'UserController@updateUserBasicData');
     Route::post('/{id}/profileImage', 'UserController@updateUserProfileImage');
 });

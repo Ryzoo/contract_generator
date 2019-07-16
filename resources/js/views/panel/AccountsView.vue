@@ -22,7 +22,7 @@
                         <td>
                             <div class="table-icons">
                                 <font-awesome-icon icon="edit"/>
-                                <font-awesome-icon icon="trash"/>
+                                <font-awesome-icon @click="tryToRemoveAccount(props.item.id)" icon="trash"/>
                             </div>
                         </td>
                     </template>
@@ -30,6 +30,39 @@
             </v-flex>
         </v-layout>
         <loader v-else></loader>
+
+
+        <v-dialog
+            v-model="deleteDialog"
+            max-width="290"
+        >
+            <v-card>
+                <v-card-title class="headline">{{$t("page.panel.accounts.description.removeTitle")}}</v-card-title>
+
+                <v-card-text>
+                    {{$t("page.panel.accounts.description.remove")}}
+                </v-card-text>
+
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                        color="primary"
+                        flat="flat"
+                        @click="deleteDialog = false"
+                    >
+                        {{$t("page.panel.accounts.button.cancel")}}
+                    </v-btn>
+
+                    <v-btn
+                        color="error"
+                        flat="flat"
+                        @click="removeAccount"
+                    >
+                        {{$t("page.panel.accounts.button.remove")}}
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </v-flex>
 </template>
 
@@ -40,6 +73,7 @@
     components: {},
     data() {
       return {
+        deleteDialog: false,
         isLoaded: true,
         headers: [
           {
@@ -63,10 +97,31 @@
             sortable: false
           }
         ],
-        items: []
+        items: [],
+        removeUserId: null
       };
     },
     methods: {
+      tryToRemoveAccount(id){
+        this.removeUserId = id;
+        this.deleteDialog = true;
+      },
+      removeAccount() {
+        this.isLoaded = false;
+        axios.delete(`/user/${this.removeUserId}`)
+            .then((response) => {
+              this.items = this.items.filter(e=>e.id != this.removeUserId);
+              this.removeUserId = null;
+              this.deleteDialog = false;
+              notify.push(
+                  this.$t("page.panel.accounts.notify.successRemove"),
+                  notify.SUCCESS
+              );
+            })
+            .finally(() => {
+              this.isLoaded = true;
+            })
+      },
       getUserList() {
 
         this.isLoaded = false;

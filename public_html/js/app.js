@@ -12291,11 +12291,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AccountsView",
   components: {},
   data: function data() {
     return {
+      deleteDialog: false,
       isLoaded: true,
       headers: [{
         text: this.$t("page.panel.accounts.headers.name"),
@@ -12313,18 +12347,38 @@ __webpack_require__.r(__webpack_exports__);
         text: this.$t("page.panel.accounts.headers.actions"),
         sortable: false
       }],
-      items: []
+      items: [],
+      removeUserId: null
     };
   },
   methods: {
-    getUserList: function getUserList() {
+    tryToRemoveAccount: function tryToRemoveAccount(id) {
+      this.removeUserId = id;
+      this.deleteDialog = true;
+    },
+    removeAccount: function removeAccount() {
       var _this = this;
 
       this.isLoaded = false;
-      axios.get("/user").then(function (response) {
-        _this.items = response.data;
+      axios["delete"]("/user/".concat(this.removeUserId)).then(function (response) {
+        _this.items = _this.items.filter(function (e) {
+          return e.id != _this.removeUserId;
+        });
+        _this.removeUserId = null;
+        _this.deleteDialog = false;
+        notify.push(_this.$t("page.panel.accounts.notify.successRemove"), notify.SUCCESS);
       })["finally"](function () {
         _this.isLoaded = true;
+      });
+    },
+    getUserList: function getUserList() {
+      var _this2 = this;
+
+      this.isLoaded = false;
+      axios.get("/user").then(function (response) {
+        _this2.items = response.data;
+      })["finally"](function () {
+        _this2.isLoaded = true;
       });
     }
   },
@@ -47711,7 +47765,14 @@ var render = function() {
                                     }),
                                     _vm._v(" "),
                                     _c("font-awesome-icon", {
-                                      attrs: { icon: "trash" }
+                                      attrs: { icon: "trash" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.tryToRemoveAccount(
+                                            props.item.id
+                                          )
+                                        }
+                                      }
                                     })
                                   ],
                                   1
@@ -47723,7 +47784,7 @@ var render = function() {
                       ],
                       null,
                       false,
-                      3791647740
+                      2854011882
                     )
                   })
                 ],
@@ -47732,7 +47793,85 @@ var render = function() {
             ],
             1
           )
-        : _c("loader")
+        : _c("loader"),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          attrs: { "max-width": "290" },
+          model: {
+            value: _vm.deleteDialog,
+            callback: function($$v) {
+              _vm.deleteDialog = $$v
+            },
+            expression: "deleteDialog"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            [
+              _c("v-card-title", { staticClass: "headline" }, [
+                _vm._v(
+                  _vm._s(_vm.$t("page.panel.accounts.description.removeTitle"))
+                )
+              ]),
+              _vm._v(" "),
+              _c("v-card-text", [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.$t("page.panel.accounts.description.remove")) +
+                    "\n            "
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "primary", flat: "flat" },
+                      on: {
+                        click: function($event) {
+                          _vm.deleteDialog = false
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(_vm.$t("page.panel.accounts.button.cancel")) +
+                          "\n                "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "error", flat: "flat" },
+                      on: { click: _vm.removeAccount }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(_vm.$t("page.panel.accounts.button.remove")) +
+                          "\n                "
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
     ],
     1
   )
@@ -90824,7 +90963,9 @@ __webpack_require__.r(__webpack_exports__);
         },
         "accounts": {
           "button": {
-            "newAccount": "Add new account"
+            "newAccount": "Add new account",
+            "cancel": "Cancel",
+            "remove": "Remove"
           },
           "headers": {
             "name": "Name",
@@ -90832,6 +90973,13 @@ __webpack_require__.r(__webpack_exports__);
             "email": "Email",
             "actions": "Actions",
             "created_at": "Created"
+          },
+          "notify": {
+            "successRemove": "Account removed!"
+          },
+          "description": {
+            "remove": "Sure you want to remove account?",
+            "removeTitle": "Remove account"
           }
         }
       }
@@ -90934,7 +91082,9 @@ __webpack_require__.r(__webpack_exports__);
         "button": {
           "add": "Add account"
         },
-        "notify": []
+        "notify": {
+          "success": "New account added."
+        }
       }
     },
     "user": {

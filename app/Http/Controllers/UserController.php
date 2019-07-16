@@ -57,6 +57,11 @@ class UserController extends Controller
         Response::success($registeredUser);
     }
 
+    public function removeUserAccount(Request $request, int $id) {
+        $this->userService->removeUser($id);
+        Response::success();
+    }
+
     public function getUserList(Request $request) {
         Response::success($this->userService->getUserList());
     }

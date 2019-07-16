@@ -63,7 +63,9 @@ export default {
                 },
                 "accounts": {
                     "button": {
-                        "newAccount": "Add new account"
+                        "newAccount": "Add new account",
+                        "cancel": "Cancel",
+                        "remove": "Remove"
                     },
                     "headers": {
                         "name": "Name",
@@ -71,6 +73,13 @@ export default {
                         "email": "Email",
                         "actions": "Actions",
                         "created_at": "Created"
+                    },
+                    "notify": {
+                        "successRemove": "Account removed!"
+                    },
+                    "description": {
+                        "remove": "Sure you want to remove account?",
+                        "removeTitle": "Remove account"
                     }
                 }
             }
@@ -173,7 +182,9 @@ export default {
                 "button": {
                     "add": "Add account"
                 },
-                "notify": []
+                "notify": {
+                    "success": "New account added."
+                }
             }
         },
         "user": {

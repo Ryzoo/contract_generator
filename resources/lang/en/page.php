@@ -12,7 +12,9 @@ return [
         ],
         'accounts' => [
             'button' => [
-                'newAccount' => "Add new account"
+                'newAccount' => "Add new account",
+                'cancel' => "Cancel",
+                'remove' => "Remove",
             ],
             'headers' => [
                 'name' => 'Name',
@@ -20,6 +22,13 @@ return [
                 'email' => 'Email',
                 'actions' => 'Actions',
                 'created_at' => 'Created',
+            ],
+            'notify'=>[
+                "successRemove" => "Account removed!"
+            ],
+            'description'=>[
+                'remove' => "Sure you want to remove account?",
+                'removeTitle' => "Remove account",
             ],
         ]
     ]
