@@ -28,13 +28,7 @@
     font-size: 14px !important;
 }
 
-.v-btn:not(.v-btn--outline).accent,
-.v-btn:not(.v-btn--outline).error,
-.v-btn:not(.v-btn--outline).info,
-.v-btn:not(.v-btn--outline).primary,
-.v-btn:not(.v-btn--outline).secondary,
-.v-btn:not(.v-btn--outline).success,
-.v-btn:not(.v-btn--outline).warning {
+.v-btn:not(.v-btn--outline).primary{
     color: $fontColor !important;
 }
 

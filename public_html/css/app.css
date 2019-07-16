@@ -2609,13 +2609,7 @@
   font-size: 14px !important;
 }
 
-.v-btn:not(.v-btn--outline).accent,
-.v-btn:not(.v-btn--outline).error,
-.v-btn:not(.v-btn--outline).info,
-.v-btn:not(.v-btn--outline).primary,
-.v-btn:not(.v-btn--outline).secondary,
-.v-btn:not(.v-btn--outline).success,
-.v-btn:not(.v-btn--outline).warning {
+.v-btn:not(.v-btn--outline).primary {
   color: #20333E !important;
 }
 
@@ -2681,8 +2675,11 @@ body > .notify-container {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  display: -webkit-box;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
   max-width: 500px;
   width: 100%;
   right: 25px;
@@ -2703,8 +2700,11 @@ body > .notify-container .notify-element {
   color: white;
   padding: 15px;
   position: relative;
-  align-items: center;
+  -webkit-box-align: center;
+          align-items: center;
+  display: -webkit-box;
   display: flex;
+  -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 
@@ -2727,7 +2727,8 @@ body > .notify-container .notify-element.notify-type-3 {
 body > .notify-container .notify-element p {
   font-family: Roboto, sans-serif !important;
   margin: 0;
-  flex: 1;
+  -webkit-box-flex: 1;
+          flex: 1;
   font-size: 15px;
 }
 
@@ -2737,6 +2738,7 @@ body > .notify-container .notify-element .close {
   height: 32px;
   opacity: 0.5;
   margin-left: 5px;
+  -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 
