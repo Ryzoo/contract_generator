@@ -3,7 +3,18 @@
         <div class="builder-container">
             <div class="left-side">
                 <div class="builder-content">
-                    <div v-if="blocks.length > 5"></div>
+                    <div v-if="blocks.length > 0">
+                        <div class="builder-blocks">
+                            <div class="block" v-for="block in blocks">
+                                <details>
+                                    <summary>
+                                        <h3>{{ block.name }}</h3>
+                                    </summary>
+                                    <p>Jakies teks</p>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
                     <div v-else>
                         <div class="empty-elements">
                             <span>Dodaj element</span>
@@ -69,20 +80,25 @@
                     <v-flex class="new-block-container" xs10>
                         <h3>Nazwa bloku</h3>
                         <v-text-field label="Nazwa" outline></v-text-field>
-                    </v-flex>
-                    <v-radio-group>
-                        <v-radio
+                        <v-checkbox
                             v-model="newBlock"
                             label="Zapisz blok jako nowy schemat"
-                            @click="cosik()"
-                        ></v-radio>
-                    </v-radio-group>
+                        ></v-checkbox>
+                        <h3>Wybierz istniejącą kategorię</h3>
+                        <v-select
+                            :items="categoriesNames"
+                            label="Wybierz kategorię"
+                            outline
+                        ></v-select>
+                        <h3>lub dodaj nową</h3>
+                        <v-text-field label="Kategoria" outline></v-text-field>
+                    </v-flex>
                 </v-card-text>
 
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" flat @click="dialog = false">
-                        I accept
+                    <v-btn color="primary mb-4 mr-4" @click="dialog = false">
+                        Zatwierdź
                     </v-btn>
                 </v-card-actions>
             </v-card>
@@ -132,16 +148,22 @@ export default {
                         }
                     ]
                 }
-            ]
+            ],
+            categoriesNames: []
         };
     },
     methods: {
-        cosik() {
-            console.log(this.newBlock);
-            this.newBlock = !this.newBlock;
+        blocksCategoryToSelect(categories) {
+            let arrayOfCategories = [];
+
+            categories.map(x => arrayOfCategories.push(x.name));
+
+            return arrayOfCategories;
         }
     },
-    mounted() {}
+    mounted() {
+        this.categoriesNames = this.blocksCategoryToSelect(this.blocksCategory);
+    }
 };
 </script>
 
@@ -155,6 +177,11 @@ export default {
 .left-side {
     padding-right: 400px;
 }
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
 .right-side {
     position: absolute;
     top: -88px;
@@ -279,6 +306,19 @@ export default {
     }
 }
 .builder-content {
+    .builder-blocks {
+        details {
+            padding: 10px 0;
+            border: 1px solid black;
+            border-radius: 5px;
+            &:hover {
+                cursor: pointer;
+            }
+            summary {
+                display: block;
+            }
+        }
+    }
     .empty-elements {
         border: 1px dashed #707070;
         width: 100%;

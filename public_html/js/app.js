@@ -12411,6 +12411,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CreateAgreementView",
   data: function data() {
@@ -12439,16 +12455,22 @@ __webpack_require__.r(__webpack_exports__);
         blocks: [{
           name: "bloczek2"
         }]
-      }]
+      }],
+      categoriesNames: []
     };
   },
   methods: {
-    cosik: function cosik() {
-      console.log(this.newBlock);
-      this.newBlock = !this.newBlock;
+    blocksCategoryToSelect: function blocksCategoryToSelect(categories) {
+      var arrayOfCategories = [];
+      categories.map(function (x) {
+        return arrayOfCategories.push(x.name);
+      });
+      return arrayOfCategories;
     }
   },
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    this.categoriesNames = this.blocksCategoryToSelect(this.blocksCategory);
+  }
 });
 
 /***/ }),
@@ -12484,7 +12506,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".new-block-container[data-v-3fd7860d] {\n  margin: auto;\n}\n.new-block-container h3[data-v-3fd7860d] {\n  font-weight: 400;\n}\n.left-side[data-v-3fd7860d] {\n  padding-right: 400px;\n}\n.right-side[data-v-3fd7860d] {\n  position: absolute;\n  top: -88px;\n  right: -24px;\n  height: 100vh;\n  padding-top: 64px;\n  margin-top: 0;\n}\n.right-side .sidebar-builder-options[data-v-3fd7860d] {\n  height: 100%;\n  display: flex;\n}\n.right-side .sidebar-builder-options .v-tabs[data-v-3fd7860d] {\n  height: -webkit-min-content;\n  height: -moz-min-content;\n  height: min-content;\n}\n.right-side .sidebar-builder-options .v-tabs .v-tab[data-v-3fd7860d] {\n  padding: 7px 12px;\n  background-color: #ececec;\n  border-radius: 10px 0px 0px 10px;\n  border: 1px solid #ded7c9;\n}\n.right-side .sidebar-builder-options .v-tabs .v-tab[data-v-3fd7860d]:hover {\n  cursor: pointer;\n}\n.right-side .sidebar-builder-options .builder-options-content[data-v-3fd7860d] {\n  background-color: white;\n  z-index: 3;\n  width: 400px;\n}\n.right-side .sidebar-builder-options .builder-options-content h3[data-v-3fd7860d] {\n  text-align: center;\n  padding: 5px 0;\n  background-color: #dabd79;\n}\n.right-side .sidebar-builder-options .builder-options-content .sub-title[data-v-3fd7860d] {\n  display: block;\n  text-align: center;\n  padding: 5px 0;\n  background-color: #f8f8f8;\n}\n.right-side .sidebar-builder-options .builder-options-content .options[data-v-3fd7860d] {\n  width: 100px;\n  height: 100px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border: 2px solid #dabd79;\n  color: #dabd79;\n}\n.right-side .sidebar-builder-options .builder-options-content .options[data-v-3fd7860d]:hover {\n  cursor: pointer;\n}\n.right-side .sidebar-builder-options .builder-options-content .builder-elements[data-v-3fd7860d] {\n  padding: 15px 0;\n  display: flex;\n  justify-content: space-around;\n}\n.right-side .sidebar-builder-options .builder-options-content .block-name[data-v-3fd7860d] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  padding: 15px 0;\n}\n.right-side .sidebar-builder-options .builder-options-content .block-name span[data-v-3fd7860d] {\n  width: 270px;\n  display: flex;\n  height: 40px;\n  justify-content: center;\n  align-items: center;\n  border: 2px solid #dabd79;\n  color: #dabd79;\n}\n.right-side .sidebar-builder-options .builder-options-content .block-name span[data-v-3fd7860d]:hover {\n  cursor: pointer;\n}\n.right-side .sidebar-builder-options .builder-options-content .block-button[data-v-3fd7860d] {\n  padding: 15px 0;\n  display: flex;\n  justify-content: center;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block-info[data-v-3fd7860d] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 15px 0;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block-info .divider[data-v-3fd7860d] {\n  width: 20%;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block-info .divider hr[data-v-3fd7860d] {\n  color: #cacaca;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block-info p[data-v-3fd7860d] {\n  width: 100px;\n  text-align: center;\n  margin: 0;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block[data-v-3fd7860d] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block span[data-v-3fd7860d] {\n  width: 200px;\n  height: 40px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border: 1px solid #dabd79;\n  margin: 15px 0;\n  border-radius: 3px;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block span[data-v-3fd7860d]:hover {\n  cursor: pointer;\n}\n.builder-content .empty-elements[data-v-3fd7860d] {\n  border: 1px dashed #707070;\n  width: 100%;\n  height: 100px;\n  border-radius: 20px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}", ""]);
+exports.push([module.i, ".new-block-container[data-v-3fd7860d] {\n  margin: auto;\n}\n.new-block-container h3[data-v-3fd7860d] {\n  font-weight: 400;\n}\n.left-side[data-v-3fd7860d] {\n  padding-right: 400px;\n}\nsummary[data-v-3fd7860d]::-webkit-details-marker {\n  display: none;\n}\n.right-side[data-v-3fd7860d] {\n  position: absolute;\n  top: -88px;\n  right: -24px;\n  height: 100vh;\n  padding-top: 64px;\n  margin-top: 0;\n}\n.right-side .sidebar-builder-options[data-v-3fd7860d] {\n  height: 100%;\n  display: flex;\n}\n.right-side .sidebar-builder-options .v-tabs[data-v-3fd7860d] {\n  height: -webkit-min-content;\n  height: -moz-min-content;\n  height: min-content;\n}\n.right-side .sidebar-builder-options .v-tabs .v-tab[data-v-3fd7860d] {\n  padding: 7px 12px;\n  background-color: #ececec;\n  border-radius: 10px 0px 0px 10px;\n  border: 1px solid #ded7c9;\n}\n.right-side .sidebar-builder-options .v-tabs .v-tab[data-v-3fd7860d]:hover {\n  cursor: pointer;\n}\n.right-side .sidebar-builder-options .builder-options-content[data-v-3fd7860d] {\n  background-color: white;\n  z-index: 3;\n  width: 400px;\n}\n.right-side .sidebar-builder-options .builder-options-content h3[data-v-3fd7860d] {\n  text-align: center;\n  padding: 5px 0;\n  background-color: #dabd79;\n}\n.right-side .sidebar-builder-options .builder-options-content .sub-title[data-v-3fd7860d] {\n  display: block;\n  text-align: center;\n  padding: 5px 0;\n  background-color: #f8f8f8;\n}\n.right-side .sidebar-builder-options .builder-options-content .options[data-v-3fd7860d] {\n  width: 100px;\n  height: 100px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border: 2px solid #dabd79;\n  color: #dabd79;\n}\n.right-side .sidebar-builder-options .builder-options-content .options[data-v-3fd7860d]:hover {\n  cursor: pointer;\n}\n.right-side .sidebar-builder-options .builder-options-content .builder-elements[data-v-3fd7860d] {\n  padding: 15px 0;\n  display: flex;\n  justify-content: space-around;\n}\n.right-side .sidebar-builder-options .builder-options-content .block-name[data-v-3fd7860d] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  padding: 15px 0;\n}\n.right-side .sidebar-builder-options .builder-options-content .block-name span[data-v-3fd7860d] {\n  width: 270px;\n  display: flex;\n  height: 40px;\n  justify-content: center;\n  align-items: center;\n  border: 2px solid #dabd79;\n  color: #dabd79;\n}\n.right-side .sidebar-builder-options .builder-options-content .block-name span[data-v-3fd7860d]:hover {\n  cursor: pointer;\n}\n.right-side .sidebar-builder-options .builder-options-content .block-button[data-v-3fd7860d] {\n  padding: 15px 0;\n  display: flex;\n  justify-content: center;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block-info[data-v-3fd7860d] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 15px 0;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block-info .divider[data-v-3fd7860d] {\n  width: 20%;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block-info .divider hr[data-v-3fd7860d] {\n  color: #cacaca;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block-info p[data-v-3fd7860d] {\n  width: 100px;\n  text-align: center;\n  margin: 0;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block[data-v-3fd7860d] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block span[data-v-3fd7860d] {\n  width: 200px;\n  height: 40px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border: 1px solid #dabd79;\n  margin: 15px 0;\n  border-radius: 3px;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block span[data-v-3fd7860d]:hover {\n  cursor: pointer;\n}\n.builder-content .builder-blocks details[data-v-3fd7860d] {\n  padding: 10px 0;\n  border: 1px solid black;\n  border-radius: 5px;\n}\n.builder-content .builder-blocks details[data-v-3fd7860d]:hover {\n  cursor: pointer;\n}\n.builder-content .builder-blocks details summary[data-v-3fd7860d] {\n  display: block;\n}\n.builder-content .empty-elements[data-v-3fd7860d] {\n  border: 1px dashed #707070;\n  width: 100%;\n  height: 100px;\n  border-radius: 20px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}", ""]);
 
 // exports
 
@@ -47547,7 +47569,26 @@ var render = function() {
       _c("div", { staticClass: "builder-container" }, [
         _c("div", { staticClass: "left-side" }, [
           _c("div", { staticClass: "builder-content" }, [
-            _vm.blocks.length > 5 ? _c("div") : _c("div", [_vm._m(0)])
+            _vm.blocks.length > 0
+              ? _c("div", [
+                  _c(
+                    "div",
+                    { staticClass: "builder-blocks" },
+                    _vm._l(_vm.blocks, function(block) {
+                      return _c("div", { staticClass: "block" }, [
+                        _c("details", [
+                          _c("summary", [
+                            _c("h3", [_vm._v(_vm._s(block.name))])
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Jakies teks")])
+                        ])
+                      ])
+                    }),
+                    0
+                  )
+                ])
+              : _c("div", [_vm._m(0)])
           ])
         ]),
         _vm._v(" "),
@@ -47671,21 +47712,10 @@ var render = function() {
                       _vm._v(" "),
                       _c("v-text-field", {
                         attrs: { label: "Nazwa", outline: "" }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-radio-group",
-                    [
-                      _c("v-radio", {
+                      }),
+                      _vm._v(" "),
+                      _c("v-checkbox", {
                         attrs: { label: "Zapisz blok jako nowy schemat" },
-                        on: {
-                          click: function($event) {
-                            return _vm.cosik()
-                          }
-                        },
                         model: {
                           value: _vm.newBlock,
                           callback: function($$v) {
@@ -47693,6 +47723,22 @@ var render = function() {
                           },
                           expression: "newBlock"
                         }
+                      }),
+                      _vm._v(" "),
+                      _c("h3", [_vm._v("Wybierz istniejącą kategorię")]),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        attrs: {
+                          items: _vm.categoriesNames,
+                          label: "Wybierz kategorię",
+                          outline: ""
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("h3", [_vm._v("lub dodaj nową")]),
+                      _vm._v(" "),
+                      _c("v-text-field", {
+                        attrs: { label: "Kategoria", outline: "" }
                       })
                     ],
                     1
@@ -47709,14 +47755,18 @@ var render = function() {
                   _c(
                     "v-btn",
                     {
-                      attrs: { color: "primary", flat: "" },
+                      attrs: { color: "primary mb-4 mr-4" },
                       on: {
                         click: function($event) {
                           _vm.dialog = false
                         }
                       }
                     },
-                    [_vm._v("\n                    I accept\n                ")]
+                    [
+                      _vm._v(
+                        "\n                    Zatwierdź\n                "
+                      )
+                    ]
                   )
                 ],
                 1

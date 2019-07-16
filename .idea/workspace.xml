@@ -2,19 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Contracts/Domain/IBlock.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Contracts/EnumIterator.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Enums/BlockType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ElementsController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/Block.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/EmptyBlock.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/PageDivideBlock.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/TextBlock.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/Domain/BlockService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Enums/UserRole.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/UserRole.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public_html/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/views/panel/agreements/CreateView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/panel/agreements/CreateView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/colors.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/colors.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,9 +15,6 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable />
-    </execution>
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -66,80 +54,60 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Models/Domain/Blocks/Block.php">
+        <entry file="file://$PROJECT_DIR$/resources/js/views/panel/AgreementsView.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="961">
-              <caret line="31" column="7" lean-forward="true" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
-              <folding>
-                <element signature="e#46#78#0#PHP" expanded="true" />
-                <element signature="e#125#152#0#PHP" expanded="true" />
-                <element signature="e#180#210#0#PHP" expanded="true" />
-                <element signature="e#264#293#0#PHP" expanded="true" />
-                <element signature="e#322#351#0#PHP" expanded="true" />
-                <element signature="e#384#413#0#PHP" expanded="true" />
-                <element signature="e#215#309#0#PHP" expanded="true" />
-                <element signature="e#688#741#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="-1494">
+              <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/js/layouts/PanelLayout.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="507">
+              <caret line="69" column="20" selection-start-line="69" selection-start-column="20" selection-end-line="69" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Services/Domain/BlockService.php">
+        <entry file="file://$PROJECT_DIR$/resources/js/views/panel/agreements/CreateView.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="7" column="24" lean-forward="true" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+            <state relative-caret-position="174">
+              <caret line="311" column="30" selection-start-line="311" selection-start-column="30" selection-end-line="311" selection-end-column="30" />
               <folding>
-                <element signature="e#334#606#0#PHP" expanded="true" />
-                <element signature="e#612#1050#0#PHP" expanded="true" />
+                <element signature="e#4249#5729#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Models/Domain/Blocks/EmptyBlock.php">
+        <entry file="file://$PROJECT_DIR$/resources/sass/theme.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="17" column="39" lean-forward="true" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
-              <folding>
-                <element signature="e#82#128#0#PHP" expanded="true" />
-                <element signature="e#203#296#0#PHP" expanded="true" />
-                <element signature="e#302#393#0#PHP" expanded="true" />
-                <element signature="e#399#500#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="386">
+              <caret line="44" column="22" selection-start-line="44" selection-start-column="22" selection-end-line="44" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Models/Domain/Blocks/PageDivideBlock.php">
+        <entry file="file://$PROJECT_DIR$/resources/js/route.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="7" column="27" lean-forward="true" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
-              <folding>
-                <element signature="e#88#173#0#PHP" expanded="true" />
-                <element signature="e#214#307#0#PHP" expanded="true" />
-                <element signature="e#313#404#0#PHP" expanded="true" />
-                <element signature="e#410#511#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="253">
+              <caret line="11" column="69" selection-start-line="11" selection-start-column="69" selection-end-line="11" selection-end-column="69" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Models/Domain/Blocks/TextBlock.php">
+        <entry file="file://$PROJECT_DIR$/resources/lang/en/pageMeta.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-              <folding>
-                <element signature="e#108#192#0#PHP" expanded="true" />
-                <element signature="e#201#294#0#PHP" expanded="true" />
-                <element signature="e#300#391#0#PHP" expanded="true" />
-                <element signature="e#397#498#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="989">
+              <caret line="43" column="19" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -207,14 +175,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.txt" root0="SKIP_INSPECTION" />
-  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/js/views/auth/SendResetPasswordTokenView.vue" />
-        <option value="$PROJECT_DIR$/resources/js/views/auth/ResetPasswordView.vue" />
         <option value="$PROJECT_DIR$/resources/lang/en/response.php" />
         <option value="$PROJECT_DIR$/.env.dev" />
         <option value="$PROJECT_DIR$/resources/views/emails/resetPassword.blade.php" />
@@ -241,7 +204,6 @@
         <option value="$PROJECT_DIR$/resources/js/views/panel/AgreementsView.vue" />
         <option value="$PROJECT_DIR$/resources/js/views/panel/CreateAgreementView.vue" />
         <option value="$PROJECT_DIR$/resources/js/route.js" />
-        <option value="$PROJECT_DIR$/resources/js/views/panel/agreements/CreateView.vue" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
         <option value="$PROJECT_DIR$/resources/js/components/ProfileView/BaseDataShow.vue" />
         <option value="$PROJECT_DIR$/config/app.php" />
@@ -264,6 +226,9 @@
         <option value="$PROJECT_DIR$/app/Models/Domain/Blocks/PageDivideBlock.php" />
         <option value="$PROJECT_DIR$/app/Models/Domain/Blocks/TextBlock.php" />
         <option value="$PROJECT_DIR$/app/Services/Domain/BlockService.php" />
+        <option value="$PROJECT_DIR$/resources/js/components/ProfileView/ProfileDataTabs.vue" />
+        <option value="$PROJECT_DIR$/resources/sass/colors.scss" />
+        <option value="$PROJECT_DIR$/resources/js/views/panel/agreements/CreateView.vue" />
       </list>
     </option>
   </component>
@@ -498,7 +463,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -509,165 +473,85 @@
             <path>
               <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Contracts" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Contracts" type="462c0819:PsiDirectoryNode" />
-              <item name="Domain" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Enums" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="ProfileView" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Models" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="auth" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Models" type="462c0819:PsiDirectoryNode" />
-              <item name="Domain" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="panel" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Models" type="462c0819:PsiDirectoryNode" />
-              <item name="Domain" type="462c0819:PsiDirectoryNode" />
-              <item name="Blocks" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="panel" type="462c0819:PsiDirectoryNode" />
+              <item name="agreements" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Services" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="lang" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Services" type="462c0819:PsiDirectoryNode" />
-              <item name="Domain" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="composer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="laravel" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="framework" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="framework" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="framework" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Illuminate" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="framework" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Illuminate" type="462c0819:PsiDirectoryNode" />
-              <item name="Foundation" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="framework" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Illuminate" type="462c0819:PsiDirectoryNode" />
-              <item name="Pipeline" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="framework" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Illuminate" type="462c0819:PsiDirectoryNode" />
-              <item name="Routing" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="framework" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Illuminate" type="462c0819:PsiDirectoryNode" />
-              <item name="Routing" type="462c0819:PsiDirectoryNode" />
-              <item name="Middleware" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="sass" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -752,6 +636,7 @@
       <workItem from="1563201883027" duration="1612000" />
       <workItem from="1563208796967" duration="106000" />
       <workItem from="1563209116086" duration="9087000" />
+      <workItem from="1563280773095" duration="5285000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>
@@ -824,7 +709,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112679000" />
+    <option name="totallyTimeSpent" value="118698000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -836,10 +721,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1026" extended-state="6" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19090909" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2950907" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -853,7 +738,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.41390374" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.33368984" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.33333334" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="12" weight="0.32941177" />
       <window_info active="true" anchor="bottom" id="Command Line Tools Console" order="13" weight="0.32941177" />
@@ -928,66 +813,6 @@
     <select />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="20" column="52" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
-          <folding>
-            <element signature="e#24#86#0" expanded="true" />
-            <element signature="e#608#636#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/ProfileView/BaseDataShow.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="987">
-          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
-          <folding>
-            <element signature="e#1922#2114#0" expanded="true" />
-            <element signature="e#2145#2200#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="225" column="47" lean-forward="true" selection-start-line="225" selection-start-column="47" selection-end-line="225" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/image.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/intervention/image/src/Intervention/Image/Image.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="44" column="3" selection-start-line="44" selection-start-column="3" selection-end-line="44" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storage/app/public/profileImages/1CCFy1irlbrX4rVWm7NYQYOQgo61hxAFw41YKWuc.jpeg" />
-    <entry file="file://$PROJECT_DIR$/storage/app/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storage/app/public/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storage/app/public/default/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/storage/app/public/profileImages/ycbGMiJIQ8RIt58gSuPxJHLNebcD4fHFnCOUwAvi.jpeg" />
     <entry file="file://$PROJECT_DIR$/storage/app/public/profileImages/ovb3VTRnAwMHV4uXE4xrKQduhI3pW4vBFgF9br4P.jpeg" />
     <entry file="file://$PROJECT_DIR$/storage/app/public/profileImages/yODuBbfxfp1HPEkPZQiAFaewLIf85sUce886s2YB.png" />
@@ -1003,12 +828,8 @@
     <entry file="file://$PROJECT_DIR$/storage/app/public/profileImages/bD88TenMNEeMOnoPrKSkwAKOfjIHYaZxFFvplBnk.jpeg" />
     <entry file="file://$PROJECT_DIR$/storage/app/public/profileImages/KQeJkGfWQ4G9uI0bjsJla3jv5x0lIYeBWQfbbz61.png" />
     <entry file="file://$PROJECT_DIR$/storage/app/public/profileImages/Oq83aHj16QRP05zOXSDOSuV1aOq5XigcvNLJZAho.png" />
-    <entry file="file://$PROJECT_DIR$/storage/app/public/profileImages/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storage/app/public/default/profileImage.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/storage/app/public/profileImages/.gitignore" />
+    <entry file="file://$PROJECT_DIR$/storage/app/public/default/profileImage.png" />
     <entry file="file://$PROJECT_DIR$/_ide_helper.php">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1058,9 +879,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Contracts/Domain/Blocks/TextBlock.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Contracts/Domain/Blocks/TextBlock.php" />
     <entry file="file://$PROJECT_DIR$/app/Models/User.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1091,20 +910,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Services/Domain/Blocks/Block.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="7" column="24" lean-forward="true" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Services/Domain/Blocks/TextBlock.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Services/Domain/Blocks/Block.php" />
+    <entry file="file://$PROJECT_DIR$/app/Services/Domain/Blocks/TextBlock.php" />
     <entry file="file://$PROJECT_DIR$/app/Services/AuthService.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1274,6 +1081,82 @@
           <folding>
             <element signature="e#334#606#0#PHP" expanded="true" />
             <element signature="e#612#1050#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/route.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="69" selection-start-line="11" selection-start-column="69" selection-end-line="11" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/en/pageMeta.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="989">
+          <caret line="43" column="19" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/ProfileView/ProfileDataTabs.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="19" column="39" lean-forward="true" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/layouts/PanelLayout.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="507">
+          <caret line="69" column="20" selection-start-line="69" selection-start-column="20" selection-end-line="69" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/sass/app.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/sass/colors.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" column="24" lean-forward="true" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+          <folding>
+            <element signature="e#24#86#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/sass/theme.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="44" column="22" selection-start-line="44" selection-start-column="22" selection-end-line="44" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/views/panel/AgreementsView.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1494">
+          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/views/panel/agreements/CreateView.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="311" column="30" selection-start-line="311" selection-start-column="30" selection-end-line="311" selection-end-column="30" />
+          <folding>
+            <element signature="e#4249#5729#0" />
           </folding>
         </state>
       </provider>
