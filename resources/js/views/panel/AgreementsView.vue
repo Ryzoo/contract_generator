@@ -80,8 +80,4 @@ export default {
 </script>
 
 <style scoped>
-.action-button {
-    display: flex;
-    justify-content: right;
-}
 </style>

@@ -105,7 +105,8 @@
           },
           {
             title: this.$t('navigation.accounts'),
-            icon: "users-cog"
+            icon: "users-cog",
+            link: "/panel/accounts"
           },
           {
             title: this.$t('navigation.settings'),

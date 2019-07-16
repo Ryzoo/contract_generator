@@ -8,12 +8,12 @@ window.Vue = require('vue');
 
 Vue.use(Vuetify, {
     theme: {
-        primary: '#dabd79',
+        primary: '#d4ac71',
         secondary: '#324a58',
         accent: '#ccbd99',
         error: '#FF5252',
         info: '#2196F3',
-        success: '#4CAF50',
+        success: '#77bc7a',
         warning: '#FFC107'
     }
 });

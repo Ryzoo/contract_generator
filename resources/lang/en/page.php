@@ -9,6 +9,18 @@ return [
             'tabs' => [
 
             ]
+        ],
+        'accounts' => [
+            'button' => [
+                'newAccount' => "Add new account"
+            ],
+            'headers' => [
+                'name' => 'Name',
+                'role' => 'Role',
+                'email' => 'Email',
+                'actions' => 'Actions',
+                'created_at' => 'Created',
+            ],
         ]
     ]
 ];

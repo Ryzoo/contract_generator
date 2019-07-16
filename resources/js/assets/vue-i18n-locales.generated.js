@@ -30,6 +30,12 @@ export default {
                         }
                     }
                 },
+                "accounts": {
+                    "title": "Panel - Accounts",
+                    "create": {
+                        "title": "Create new account"
+                    }
+                },
                 "agreements": {
                     "title": "Panel - Agreements",
                     "button": {
@@ -54,6 +60,18 @@ export default {
                         "success_change_img": "Your image are successfuly changed."
                     },
                     "tabs": []
+                },
+                "accounts": {
+                    "button": {
+                        "newAccount": "Add new account"
+                    },
+                    "headers": {
+                        "name": "Name",
+                        "role": "Role",
+                        "email": "Email",
+                        "actions": "Actions",
+                        "created_at": "Created"
+                    }
                 }
             }
         },
@@ -141,12 +159,27 @@ export default {
                 "notify": {
                     "success": "Your basic data are updated now."
                 }
+            },
+            "accountAddForm": {
+                "title": "Add new account",
+                "field": {
+                    "firstName": "FirstName",
+                    "lastName": "LastName",
+                    "email": "Email",
+                    "role": "Role",
+                    "password": "Password",
+                    "rePassword": "Retype password"
+                },
+                "button": {
+                    "add": "Add account"
+                },
+                "notify": []
             }
         },
         "user": {
             "roles": {
-                "admin": "Admin",
-                "client": "Client"
+                "ADMINISTRATOR": "Admin",
+                "CLIENT": "Client"
             }
         },
         "email": {

@@ -88,5 +88,23 @@ return [
         'notify' => [
             'success' => 'Your basic data are updated now.'
         ]
+    ],
+
+    'accountAddForm' => [
+        'title' => "Add new account",
+        'field' => [
+            'firstName' => 'FirstName',
+            'lastName' => 'LastName',
+            'email' => 'Email',
+            'role' => 'Role',
+            'password' => 'Password',
+            'rePassword' => 'Retype password',
+        ],
+        'button' => [
+            'add' => 'Add account',
+        ],
+        'notify' => [
+        ]
     ]
+
 ];
