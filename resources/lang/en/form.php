@@ -102,9 +102,26 @@ return [
         ],
         'button' => [
             'add' => 'Add account',
+            'prev' => 'Back to accounts',
         ],
         'notify' => [
             'success' => 'New account added.'
+        ]
+    ],
+
+    'accountEditForm' => [
+        'title' => "Edit account",
+        'field' => [
+            'firstName' => 'FirstName',
+            'lastName' => 'LastName',
+            'role' => 'Role',
+        ],
+        'button' => [
+            'save' => 'Save account',
+            'prev' => 'Back to accounts',
+        ],
+        'notify' => [
+            'success' => 'Account updated!'
         ]
     ]
 

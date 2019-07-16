@@ -21,7 +21,7 @@
                         <td>{{ props.item.created_at }}</td>
                         <td>
                             <div class="table-icons">
-                                <font-awesome-icon icon="edit"/>
+                                <font-awesome-icon @click="$router.push(`/panel/accounts/${props.item.id}/edit`)" icon="edit"/>
                                 <font-awesome-icon @click="tryToRemoveAccount(props.item.id)" icon="trash"/>
                             </div>
                         </td>

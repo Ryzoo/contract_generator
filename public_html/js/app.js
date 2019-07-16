@@ -12611,6 +12611,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CreateAccountsView",
@@ -12669,6 +12672,147 @@ __webpack_require__.r(__webpack_exports__);
         value: this.userRoles[i]
       });
     }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/panel/accounts/EditView.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/panel/accounts/EditView.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _additionalModules_Enums__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../additionalModules/Enums */ "./resources/js/additionalModules/Enums.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "CreateAccountsView",
+  data: function data() {
+    return {
+      accountId: this.$route.params.id,
+      isLoaded: true,
+      userRoles: _additionalModules_Enums__WEBPACK_IMPORTED_MODULE_0__["UserRoleEnum"],
+      user: {
+        firstName: null,
+        lastName: null,
+        email: null,
+        role: null
+      },
+      roleList: []
+    };
+  },
+  methods: {
+    saveAccount: function saveAccount() {
+      var _this = this;
+
+      try {
+        var validationArray = [];
+        validationArray[this.$t("form.accountEditForm.field.firstName")] = this.user.firstName;
+        validationArray[this.$t("form.accountEditForm.field.lastName")] = this.user.lastName;
+        validationArray[this.$t("form.accountEditForm.field.role")] = this.user.role;
+        var valid = new window.Validator(validationArray);
+        valid.get(this.$t("form.accountEditForm.field.firstName")).length(3, 50);
+        valid.get(this.$t("form.accountEditForm.field.lastName")).length(3, 50);
+        valid.get(this.$t("form.accountEditForm.field.role")).isBetween(0, 1);
+      } catch (e) {
+        return;
+      }
+
+      this.isLoaded = false;
+      axios.put("/user/" + this.accountId, this.user).then(function (response) {
+        notify.push(_this.$t("form.accountEditForm.notify.success"), notify.SUCCESS);
+
+        _this.$router.push("/panel/accounts");
+      })["finally"](function () {
+        _this.isLoaded = true;
+      });
+    },
+    loadAccount: function loadAccount() {
+      var _this2 = this;
+
+      this.isLoaded = false;
+      axios.get("/user/" + this.accountId).then(function (response) {
+        _this2.user = {
+          firstName: response.data.firstName,
+          lastName: response.data.lastName,
+          email: response.data.email,
+          role: response.data.role.toString()
+        };
+      })["catch"](function () {
+        _this2.$router.push("/panel/accounts");
+      })["finally"](function () {
+        _this2.isLoaded = true;
+      });
+    }
+  },
+  mounted: function mounted() {
+    for (var i in this.userRoles) {
+      this.roleList.push({
+        text: this.getRoleName(this.userRoles[i]),
+        value: this.userRoles[i]
+      });
+    }
+
+    this.loadAccount();
   }
 });
 
@@ -47761,7 +47905,16 @@ var render = function() {
                                   { staticClass: "table-icons" },
                                   [
                                     _c("font-awesome-icon", {
-                                      attrs: { icon: "edit" }
+                                      attrs: { icon: "edit" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.$router.push(
+                                            "/panel/accounts/" +
+                                              props.item.id +
+                                              "/edit"
+                                          )
+                                        }
+                                      }
                                     }),
                                     _vm._v(" "),
                                     _c("font-awesome-icon", {
@@ -47784,7 +47937,7 @@ var render = function() {
                       ],
                       null,
                       false,
-                      2854011882
+                      3841943098
                     )
                   })
                 ],
@@ -48297,6 +48450,34 @@ var render = function() {
                                           _c(
                                             "v-btn",
                                             {
+                                              attrs: {
+                                                color: "primary",
+                                                flat: "flat"
+                                              },
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.$router.push(
+                                                    "/panel/accounts"
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                        " +
+                                                  _vm._s(
+                                                    _vm.$t(
+                                                      "form.accountAddForm.button.prev"
+                                                    )
+                                                  ) +
+                                                  "\n                                    "
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-btn",
+                                            {
                                               attrs: { color: "success" },
                                               on: {
                                                 click: function($event) {
@@ -48310,6 +48491,250 @@ var render = function() {
                                                   _vm._s(
                                                     _vm.$t(
                                                       "form.accountAddForm.button.add"
+                                                    )
+                                                  ) +
+                                                  "\n                                    "
+                                              )
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    : _c("loader")
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/panel/accounts/EditView.vue?vue&type=template&id=29b43704&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/panel/accounts/EditView.vue?vue&type=template&id=29b43704&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-flex",
+    { attrs: { xs12: "" } },
+    [
+      _c(
+        "v-layout",
+        { attrs: { row: "", wrap: "" } },
+        [
+          _c(
+            "v-flex",
+            {
+              attrs: {
+                xs12: "",
+                sm10: "",
+                lg8: "",
+                "offset-sm1": "",
+                "offset-lg2": ""
+              }
+            },
+            [
+              _c(
+                "v-card",
+                { staticClass: "pb-3" },
+                [
+                  _c(
+                    "v-toolbar",
+                    { attrs: { dark: "", color: "primary" } },
+                    [
+                      _c("v-toolbar-title", { staticClass: "white--text" }, [
+                        _vm._v(
+                          _vm._s(_vm.$t("form.accountEditForm.title")) +
+                            " - " +
+                            _vm._s(_vm.user.email)
+                        )
+                      ])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm.isLoaded
+                    ? _c(
+                        "v-card-text",
+                        [
+                          _c(
+                            "v-form",
+                            [
+                              _c(
+                                "v-layout",
+                                { attrs: { row: "", wrap: "" } },
+                                [
+                                  _c(
+                                    "v-flex",
+                                    {
+                                      staticClass: "pa-1",
+                                      attrs: { xs12: "", md6: "" }
+                                    },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          "prepend-icon": "person",
+                                          label: _vm.$t(
+                                            "form.accountEditForm.field.firstName"
+                                          ),
+                                          required: ""
+                                        },
+                                        model: {
+                                          value: _vm.user.firstName,
+                                          callback: function($$v) {
+                                            _vm.$set(_vm.user, "firstName", $$v)
+                                          },
+                                          expression: "user.firstName"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-flex",
+                                    {
+                                      staticClass: "pa-1",
+                                      attrs: { xs12: "", md6: "" }
+                                    },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          "prepend-icon": "person",
+                                          label: _vm.$t(
+                                            "form.accountEditForm.field.lastName"
+                                          ),
+                                          required: ""
+                                        },
+                                        model: {
+                                          value: _vm.user.lastName,
+                                          callback: function($$v) {
+                                            _vm.$set(_vm.user, "lastName", $$v)
+                                          },
+                                          expression: "user.lastName"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-flex",
+                                    {
+                                      staticClass: "pa-1",
+                                      attrs: { xs12: "", md6: "" }
+                                    },
+                                    [
+                                      _c("v-select", {
+                                        attrs: {
+                                          "prepend-icon": "verified_user",
+                                          label: _vm.$t(
+                                            "form.accountEditForm.field.role"
+                                          ),
+                                          items: _vm.roleList,
+                                          required: ""
+                                        },
+                                        model: {
+                                          value: _vm.user.role,
+                                          callback: function($$v) {
+                                            _vm.$set(_vm.user, "role", $$v)
+                                          },
+                                          expression: "user.role"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-flex",
+                                    { attrs: { xs12: "" } },
+                                    [
+                                      _c(
+                                        "v-layout",
+                                        {
+                                          staticClass: "justify-end",
+                                          attrs: { row: "", wrap: "" }
+                                        },
+                                        [
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              attrs: {
+                                                color: "primary",
+                                                flat: "flat"
+                                              },
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.$router.push(
+                                                    "/panel/accounts"
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                        " +
+                                                  _vm._s(
+                                                    _vm.$t(
+                                                      "form.accountEditForm.button.prev"
+                                                    )
+                                                  ) +
+                                                  "\n                                    "
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              attrs: { color: "success" },
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.saveAccount()
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                        " +
+                                                  _vm._s(
+                                                    _vm.$t(
+                                                      "form.accountEditForm.button.save"
                                                     )
                                                   ) +
                                                   "\n                                    "
@@ -90715,7 +91140,6 @@ function () {
     key: "isBetween",
     value: function isBetween(min, max) {
       this.isNotNull();
-      console.log(this.current);
       var re = parseInt(this.current);
 
       if (re === null || re === undefined) {
@@ -91080,10 +91504,26 @@ __webpack_require__.r(__webpack_exports__);
           "rePassword": "Retype password"
         },
         "button": {
-          "add": "Add account"
+          "add": "Add account",
+          "prev": "Back to accounts"
         },
         "notify": {
           "success": "New account added."
+        }
+      },
+      "accountEditForm": {
+        "title": "Edit account",
+        "field": {
+          "firstName": "FirstName",
+          "lastName": "LastName",
+          "role": "Role"
+        },
+        "button": {
+          "save": "Save account",
+          "prev": "Back to accounts"
+        },
+        "notify": {
+          "success": "Account updated!"
         }
       }
     },
@@ -91905,6 +92345,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_panel_MyProfileView__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./views/panel/MyProfileView */ "./resources/js/views/panel/MyProfileView.vue");
 /* harmony import */ var _views_panel_AccountsView__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./views/panel/AccountsView */ "./resources/js/views/panel/AccountsView.vue");
 /* harmony import */ var _views_panel_accounts_CreateView__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./views/panel/accounts/CreateView */ "./resources/js/views/panel/accounts/CreateView.vue");
+/* harmony import */ var _views_panel_accounts_EditView__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./views/panel/accounts/EditView */ "./resources/js/views/panel/accounts/EditView.vue");
+
 
 
 
@@ -91967,6 +92409,13 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       component: _views_panel_accounts_CreateView__WEBPACK_IMPORTED_MODULE_14__["default"],
       meta: {
         title: _lang__WEBPACK_IMPORTED_MODULE_3__["default"].t('pageMeta.panel.accounts.create.title')
+      }
+    }, {
+      path: 'accounts/:id/edit',
+      name: 'editAccount',
+      component: _views_panel_accounts_EditView__WEBPACK_IMPORTED_MODULE_15__["default"],
+      meta: {
+        title: _lang__WEBPACK_IMPORTED_MODULE_3__["default"].t('pageMeta.panel.accounts.edit.title')
       }
     }, {
       path: 'my_profile',
@@ -92742,6 +93191,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateView_vue_vue_type_template_id_f11208a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateView_vue_vue_type_template_id_f11208a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/views/panel/accounts/EditView.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/views/panel/accounts/EditView.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EditView_vue_vue_type_template_id_29b43704_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditView.vue?vue&type=template&id=29b43704&scoped=true& */ "./resources/js/views/panel/accounts/EditView.vue?vue&type=template&id=29b43704&scoped=true&");
+/* harmony import */ var _EditView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditView.vue?vue&type=script&lang=js& */ "./resources/js/views/panel/accounts/EditView.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EditView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditView_vue_vue_type_template_id_29b43704_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EditView_vue_vue_type_template_id_29b43704_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "29b43704",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/panel/accounts/EditView.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/panel/accounts/EditView.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/views/panel/accounts/EditView.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./EditView.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/panel/accounts/EditView.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/panel/accounts/EditView.vue?vue&type=template&id=29b43704&scoped=true&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/views/panel/accounts/EditView.vue?vue&type=template&id=29b43704&scoped=true& ***!
+  \***************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditView_vue_vue_type_template_id_29b43704_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./EditView.vue?vue&type=template&id=29b43704&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/panel/accounts/EditView.vue?vue&type=template&id=29b43704&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditView_vue_vue_type_template_id_29b43704_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditView_vue_vue_type_template_id_29b43704_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

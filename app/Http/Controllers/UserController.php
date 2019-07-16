@@ -38,6 +38,26 @@ class UserController extends Controller
         Response::success();
     }
 
+    public function updateUser(Request $request, int $id) {
+        Validator::validate($request->all(),[
+            'firstName' => 'required|min:3|max:50',
+            'lastName'  => 'required|min:3|max:50',
+            'role'  => 'required|digits_between:0,1',
+        ]);
+
+        $userModel = new User();
+        $userModel->fill([
+            'id' => $id,
+            'firstName' => $request->get('firstName'),
+            'lastName'  => $request->get('lastName'),
+            'role'  => $request->get('role'),
+        ]);
+
+        $this->userService->updateUser($userModel);
+
+        Response::success();
+    }
+
     public function updateUserProfileImage(Request $request, int $id) {
         Validator::validate($request->all(),[
             'image' => 'required|image',
@@ -60,6 +80,10 @@ class UserController extends Controller
     public function removeUserAccount(Request $request, int $id) {
         $this->userService->removeUser($id);
         Response::success();
+    }
+
+    public function getUserByID(Request $request, int $id) {
+        Response::success(User::getById($id));
     }
 
     public function getUserList(Request $request) {

@@ -30,7 +30,6 @@ class validation {
   isBetween(min, max) {
     this.isNotNull();
 
-    console.log(this.current);
     const re = parseInt(this.current);
 
     if (re === null || re === undefined) {
