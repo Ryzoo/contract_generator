@@ -21,7 +21,9 @@
                     </v-list-tile-avatar>
 
                     <v-list-tile-content>
-                        <v-list-tile-title> {{user.firstName}} {{user.lastName}} </v-list-tile-title>
+                        <v-list-tile-title>
+                            {{ user.firstName }} {{ user.lastName }}
+                        </v-list-tile-title>
                     </v-list-tile-content>
 
                     <v-list-tile-action>
@@ -41,20 +43,21 @@
                     @click="item.logout ? logout() : null"
                 >
                     <v-list-tile-action>
-                        <font-awesome-icon size="2x" :icon="item.icon"/>
+                        <font-awesome-icon size="2x" :icon="item.icon" />
                     </v-list-tile-action>
 
                     <v-list-tile-content>
-                        <v-list-tile-title >{{item.title}}</v-list-tile-title>
+                        <v-list-tile-title>{{ item.title }}</v-list-tile-title>
                     </v-list-tile-content>
                 </v-list-tile>
             </v-list>
         </v-navigation-drawer>
         <v-toolbar app absolute>
-            <v-toolbar-side-icon dark
+            <v-toolbar-side-icon
+                dark
                 @click.stop="navigationModel = !navigationModel"
             ></v-toolbar-side-icon>
-            <v-toolbar-title>{{$t('pageMeta.appTitle')}}</v-toolbar-title>
+            <v-toolbar-title>{{ $t("pageMeta.appTitle") }}</v-toolbar-title>
         </v-toolbar>
         <v-content>
             <v-container fluid>
@@ -66,62 +69,63 @@
             </v-container>
         </v-content>
         <v-footer app inset>
-            <span class="px-3">&copy; {{ new Date().getFullYear() }} - {{$t('pageMeta.copyright')}}</span>
+            <span class="px-3"
+                >&copy; {{ new Date().getFullYear() }} -
+                {{ $t("pageMeta.copyright") }}</span
+            >
         </v-footer>
     </section>
 </template>
 
 <script>
-  export default {
+export default {
     name: "PanelLayout",
-    data: function () {
-      return {
-        navigationModel: true,
-        mini: false,
-        user: this.$store.getters.authUser,
-        items: [
-          {
-            title: "Dashboard",
-            icon: "poll",
-            link: "/panel/"
-          },
-          {
-            title: "Klienci",
-            icon: "user"
-          },
-          {
-            title: "Umowy",
-            icon: "file-contract",
-            link: "/panel/agreements"
-          },
-          {
-            title: "Schematy",
-            icon: "th"
-          },
-          {
-            title: "Konta",
-            icon: "user"
-          },
-          {
-            title: "Ustawienia",
-            icon: "cog"
-          },
-          {
-            title: "Wyloguj",
-            icon: "sign-out-alt",
-            logout: true
-          }
-        ]
-      }
+    data: function() {
+        return {
+            navigationModel: true,
+            mini: false,
+            user: this.$store.getters.authUser,
+            items: [
+                {
+                    title: "Dashboard",
+                    icon: "poll",
+                    link: "/panel/"
+                },
+                {
+                    title: "Klienci",
+                    icon: "user"
+                },
+                {
+                    title: "Umowy",
+                    icon: "file-contract",
+                    link: "/panel/agreements"
+                },
+                {
+                    title: "Schematy",
+                    icon: "th"
+                },
+                {
+                    title: "Konta",
+                    icon: "user"
+                },
+                {
+                    title: "Ustawienia",
+                    icon: "cog"
+                },
+                {
+                    title: "Wyloguj",
+                    icon: "sign-out-alt",
+                    logout: true
+                }
+            ]
+        };
     },
-    methods:{
-      logout(){
-        auth.logout();
-      }
+    methods: {
+        logout() {
+            auth.logout();
+        }
     }
-  }
+};
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

@@ -2592,7 +2592,7 @@
 
 .theme--light.v-footer,
 .theme--light.v-sheet {
-  color: #324a58 !important;
+  color: #20333E !important;
 }
 
 .theme--light.v-toolbar {
@@ -2601,12 +2601,22 @@
 }
 
 .theme--light.application {
-  color: #324a58 !important;
+  color: #20333E !important;
   background: #f0f3f7 !important;
 }
 
 .v-list--dense .v-list__tile {
   font-size: 14px !important;
+}
+
+.v-btn:not(.v-btn--outline).accent,
+.v-btn:not(.v-btn--outline).error,
+.v-btn:not(.v-btn--outline).info,
+.v-btn:not(.v-btn--outline).primary,
+.v-btn:not(.v-btn--outline).secondary,
+.v-btn:not(.v-btn--outline).success,
+.v-btn:not(.v-btn--outline).warning {
+  color: #20333E !important;
 }
 
 section {
@@ -2671,11 +2681,8 @@ body > .notify-container {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  display: -webkit-box;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-direction: column;
+  flex-direction: column;
   max-width: 500px;
   width: 100%;
   right: 25px;
@@ -2696,11 +2703,8 @@ body > .notify-container .notify-element {
   color: white;
   padding: 15px;
   position: relative;
-  -webkit-box-align: center;
-          align-items: center;
-  display: -webkit-box;
+  align-items: center;
   display: flex;
-  -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 
@@ -2723,8 +2727,7 @@ body > .notify-container .notify-element.notify-type-3 {
 body > .notify-container .notify-element p {
   font-family: Roboto, sans-serif !important;
   margin: 0;
-  -webkit-box-flex: 1;
-          flex: 1;
+  flex: 1;
   font-size: 15px;
 }
 
@@ -2734,7 +2737,6 @@ body > .notify-container .notify-element .close {
   height: 32px;
   opacity: 0.5;
   margin-left: 5px;
-  -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 

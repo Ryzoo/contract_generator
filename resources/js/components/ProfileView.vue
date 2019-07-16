@@ -7,11 +7,8 @@
             ></base-data-show>
         </v-flex>
         <v-flex xs12 sm8 lg9 class="pa-1">
-            <v-alert
-                :value="true"
-                type="info"
-            >
-                {{$t('pageMeta.panel.profile.info')}}
+            <v-alert :value="true" type="info">
+                {{ $t("pageMeta.panel.profile.info") }}
             </v-alert>
             <profile-data-tabs
                 :user-data="user"
@@ -22,27 +19,22 @@
 </template>
 
 <script>
-  import BaseDataShow from "./ProfileView/BaseDataShow";
-  import ProfileDataTabs from "./ProfileView/ProfileDataTabs";
+import BaseDataShow from "./ProfileView/BaseDataShow";
+import ProfileDataTabs from "./ProfileView/ProfileDataTabs";
 
-  export default {
+export default {
     name: "ProfileView",
-    components:{
-      "base-data-show": BaseDataShow,
-      "profile-data-tabs": ProfileDataTabs
+    components: {
+        "base-data-show": BaseDataShow,
+        "profile-data-tabs": ProfileDataTabs
     },
-    props:[
-      "userData",
-      "editable"
-    ],
-    data(){
-      return {
-        user: this.userData
-      }
+    props: ["userData", "editable"],
+    data() {
+        return {
+            user: this.userData
+        };
     }
-  }
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -11,7 +11,7 @@
 
 .theme--light.v-footer,
 .theme--light.v-sheet{
-    color: #324a58 !important;
+    color: $fontColor !important;
 }
 
 
@@ -21,11 +21,21 @@
 }
 
 .theme--light.application{
-    color: #324a58 !important;
+    color: $fontColor !important;
     background: #f0f3f7 !important;
 }
 .v-list--dense .v-list__tile {
     font-size: 14px !important;
+}
+
+.v-btn:not(.v-btn--outline).accent,
+.v-btn:not(.v-btn--outline).error,
+.v-btn:not(.v-btn--outline).info,
+.v-btn:not(.v-btn--outline).primary,
+.v-btn:not(.v-btn--outline).secondary,
+.v-btn:not(.v-btn--outline).success,
+.v-btn:not(.v-btn--outline).warning {
+    color: $fontColor !important;
 }
 
 section {

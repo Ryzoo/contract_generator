@@ -3,7 +3,7 @@
         <div class="builder-container">
             <div class="left-side">
                 <div class="builder-content">
-                    <div v-if="elements.length > 0"></div>
+                    <div v-if="blocks.length > 5"></div>
                     <div v-else>
                         <div class="empty-elements">
                             <span>Dodaj element</span>
@@ -23,40 +23,70 @@
                         <div class="options-section-1">
                             <span class="sub-title">Dodaj elementy</span>
                             <div class="builder-elements">
-                                <div class="text-option options">
-                                    <span>Tekst</span>
-                                </div>
-                                <div class="variable-option options">
-                                    <span>Zmienna</span>
+                                <div
+                                    class="options"
+                                    v-for="element in elementsType"
+                                >
+                                    <span>{{ element.name }}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="options-section-2">
                             <span class="sub-title">Dodane bloki</span>
-                            <div class="block-name">
-                                <span>Dane adresowe</span>
+                            <div class="block-name" v-for="block in blocks">
+                                <span>{{ block.name }}</span>
                             </div>
                         </div>
                         <div class="options-section-3">
                             <span class="sub-title">Dodaj nowy blok</span>
                             <div class="block-button">
-                                <v-btn color="primary">Nowy blok</v-btn>
+                                <v-btn color="primary" @click="dialog = true"
+                                    >Nowy blok</v-btn
+                                >
                             </div>
                             <div class="created-block-info">
                                 <div class="divider"><hr /></div>
-                                <p>lub wybierz istniejący</p>
+                                <p>lub wybierz istniejących kategorii</p>
                                 <div class="divider"><hr /></div>
                             </div>
-                            <div class="created-block">
-                                <span>Kategoria 1</span>
-                                <span>Kategoria 2</span>
-                                <span>Kategoria 3</span>
+                            <div
+                                class="created-block"
+                                v-for="category in blocksCategory"
+                            >
+                                <span>{{ category.name }}</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <v-dialog v-model="dialog" max-width="900">
+            <v-card>
+                <v-card-title class="headline justify-center" primary-title>
+                    Nowy blok
+                </v-card-title>
+                <v-card-text>
+                    <v-flex class="new-block-container" xs10>
+                        <h3>Nazwa bloku</h3>
+                        <v-text-field label="Nazwa" outline></v-text-field>
+                    </v-flex>
+                    <v-radio-group>
+                        <v-radio
+                            v-model="newBlock"
+                            label="Zapisz blok jako nowy schemat"
+                            @click="cosik()"
+                        ></v-radio>
+                    </v-radio-group>
+                </v-card-text>
+
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="primary" flat @click="dialog = false">
+                        I accept
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </section>
 </template>
 
@@ -65,23 +95,66 @@ export default {
     name: "CreateAgreementView",
     data: function() {
         return {
-            elements: [
-                // {
-                //     name: "bloczek",
-                //     type: "block"
-                // },
-                // {
-                //     name: "bloczek2",
-                //     type: "block"
-                // }
+            newBlock: false,
+            dialog: false,
+            blocks: [
+                {
+                    name: "bloczek"
+                },
+                {
+                    name: "bloczek2"
+                }
+            ],
+            elementsType: [
+                {
+                    type: "text",
+                    name: "Tekst"
+                },
+                {
+                    type: "variable",
+                    name: "Zmienna"
+                }
+            ],
+            blocksCategory: [
+                {
+                    name: "Kategoria 1",
+                    blocks: [
+                        {
+                            name: "bloczek"
+                        }
+                    ]
+                },
+                {
+                    name: "Kategoria 2",
+                    blocks: [
+                        {
+                            name: "bloczek2"
+                        }
+                    ]
+                }
             ]
         };
+    },
+    methods: {
+        cosik() {
+            console.log(this.newBlock);
+            this.newBlock = !this.newBlock;
+        }
     },
     mounted() {}
 };
 </script>
 
 <style scoped lang="scss">
+.new-block-container {
+    margin: auto;
+    h3 {
+        font-weight: 400;
+    }
+}
+.left-side {
+    padding-right: 400px;
+}
 .right-side {
     position: absolute;
     top: -88px;
