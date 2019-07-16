@@ -11571,6 +11571,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProfileDataTabs",
@@ -46316,7 +46317,7 @@ var render = function() {
                     _c("v-icon", { staticClass: "pr-2" }, [
                       _vm._v(_vm._s(tab.icon))
                     ]),
-                    _vm._v(" " + _vm._s(tab.name) + "\n        ")
+                    _vm._v("\n            " + _vm._s(tab.name) + "\n        ")
                   ],
                   1
                 )
