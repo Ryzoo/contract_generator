@@ -1,50 +1,45 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Contract API",
-        "description": "API for contract generator",
-        "version": "0.0.0"
+        "title": "My first API",
+        "contact": {
+            "email": "support@example.com"
+        },
+        "version": "1.0.0"
     },
     "paths": {
         "/api/elements/blocks": {
             "get": {
-                "tags": [
-                    "Blocks"
-                ],
-                "summary": "Get list of available blocks type",
-                "description": "Get list of available blocks type",
-                "operationId": "getAllBlockList",
+                "summary": "list blocks",
+                "operationId": "App\\Http\\Controllers\\ElementsController::getAllBlockList",
                 "responses": {
                     "200": {
-                        "description": "successful operation"
+                        "description": "A list with blocks"
                     }
                 }
             }
         },
         "/api/elements/attributes": {
             "get": {
-                "tags": [
-                    "Attributes"
-                ],
-                "summary": "Get list of available attirubtes type",
-                "description": "Get list of available attirubtes type",
-                "operationId": "getAllAttributesList",
+                "summary": "list attributes",
+                "operationId": "App\\Http\\Controllers\\ElementsController::getAllAttributesList",
                 "responses": {
                     "200": {
-                        "description": "successful operation"
+                        "description": "A list with attributes"
+                    }
+                }
+            }
+        },
+        "/api/elements/conditional": {
+            "get": {
+                "summary": "list conditional",
+                "operationId": "App\\Http\\Controllers\\ElementsController::getAllConditionalList",
+                "responses": {
+                    "200": {
+                        "description": "A list with conditional"
                     }
                 }
             }
         }
-    },
-    "tags": [
-        {
-            "name": "Blocks",
-            "description": "Operation on blocks"
-        },
-        {
-            "name": "Attributes",
-            "description": "Operation on attributes"
-        }
-    ]
+    }
 }
