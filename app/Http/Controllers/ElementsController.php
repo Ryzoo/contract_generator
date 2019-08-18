@@ -8,16 +8,6 @@ use App\Services\Domain\BlockService;
 use App\Services\Domain\ConditionalService;
 use Illuminate\Http\Request;
 
-/**
- * @OA\Info(
- *   title="My first API",
- *   version="1.0.0",
- *   @OA\Contact(
- *     email="support@example.com"
- *   )
- * )
- */
-
 class ElementsController extends Controller
 {
     /**

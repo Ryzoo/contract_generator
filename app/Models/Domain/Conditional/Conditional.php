@@ -22,4 +22,7 @@ abstract class Conditional implements IConditional {
         $this->conditionalName = ConditionalType::getName($conditionalType);
     }
 
+    public static function getListFromString(string $value): array {
+
+    }
 }

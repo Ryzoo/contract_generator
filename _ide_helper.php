@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.8.29 on 2019-07-16 15:21:03.
+ * Generated for Laravel 5.8.32 on 2019-08-18 21:38:41.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -17435,13 +17435,13 @@ namespace  {
             /**
              * Dump the current SQL and bindings.
              *
-             * @return void 
+             * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
             public static function dump()
             {
                                 /** @var \Illuminate\Database\Query\Builder $instance */
-                                $instance->dump();
+                                return $instance->dump();
             }
          
             /**

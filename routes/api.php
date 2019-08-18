@@ -13,19 +13,15 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::prefix('elements')->group(function () {
-
     Route::prefix('blocks')->group(function () {
         Route::get('/', 'ElementsController@getAllBlockList');
     });
-
     Route::prefix('attributes')->group(function () {
         Route::get('/', 'ElementsController@getAllAttributesList');
     });
-
     Route::prefix('conditional')->group(function () {
         Route::get('/', 'ElementsController@getAllConditionalList');
     });
-
 });
 
 Route::prefix('user')->group(function () {
@@ -36,4 +32,8 @@ Route::prefix('user')->group(function () {
     Route::delete('/{id}', 'UserController@removeUserAccount');
     Route::put('/{id}/basicData', 'UserController@updateUserBasicData');
     Route::post('/{id}/profileImage', 'UserController@updateUserProfileImage');
+});
+
+Route::prefix('contract')->group(function () {
+    Route::post('/', 'ContractController@addNewContract');
 });

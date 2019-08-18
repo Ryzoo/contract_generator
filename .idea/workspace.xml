@@ -2,16 +2,50 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Contracts/Domain/IConditional.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Enums/ConditionalType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Domain/Conditional/Conditional.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Domain/Conditional/ShowOn.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/Domain/ConditionalService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Services/Domain/ContractService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Services/Domain/FormService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/CreatesApplication.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/TestCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.test" beforeDir="false" afterPath="$PROJECT_DIR$/.env.test" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.phpstorm.meta.php" beforeDir="false" afterPath="$PROJECT_DIR$/.phpstorm.meta.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Contracts/Domain/IAttribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/Domain/IAttribute.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Contracts/Domain/IBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/Domain/IBlock.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ElementsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ElementsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/Block.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/Block.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Conditional/Conditional.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Conditional/Conditional.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Domain/AttributeService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/AttributeService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/Domain/BlockService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/BlockService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/test.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/test.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codeception.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/validation.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/validation.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/api-docs/api-docs.json" beforeDir="false" afterPath="$PROJECT_DIR$/storage/api-docs/api-docs.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/_data/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/_output/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/_support/AcceptanceTester.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/_support/ApiTester.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/_support/FunctionalTester.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/_support/Helper/Acceptance.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/_support/Helper/Api.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/_support/Helper/Functional.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/_support/Helper/Unit.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/_support/UnitTester.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/_support/_generated/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/acceptance.suite.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/acceptance/tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/api.suite.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/api/AuthCest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/functional.suite.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/functional/tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit.suite.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit/AuthServiceTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit/UserServiceTest.php" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -104,9 +138,7 @@
       <path value="$PROJECT_DIR$/vendor/stack/builder" />
       <path value="$PROJECT_DIR$/vendor/wikimedia/composer-merge-plugin" />
       <path value="$PROJECT_DIR$/vendor/easyrdf/easyrdf" />
-      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
-      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
       <path value="$PROJECT_DIR$/vendor/egulias/email-validator" />
       <path value="$PROJECT_DIR$/vendor/symfony/console" />
       <path value="$PROJECT_DIR$/vendor/masterminds/html5" />
@@ -140,10 +172,6 @@
       <path value="$PROJECT_DIR$/vendor/psr/log" />
       <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
       <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
-      <path value="$PROJECT_DIR$/vendor/behat/mink-browserkit-driver" />
-      <path value="$PROJECT_DIR$/vendor/behat/mink-goutte-driver" />
-      <path value="$PROJECT_DIR$/vendor/behat/mink-selenium2-driver" />
-      <path value="$PROJECT_DIR$/vendor/behat/mink" />
       <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
       <path value="$PROJECT_DIR$/vendor/drupal/console" />
       <path value="$PROJECT_DIR$/vendor/drupal/coder" />
@@ -192,8 +220,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
       <path value="$PROJECT_DIR$/vendor/symfony/config" />
       <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
-      <path value="$PROJECT_DIR$/vendor/symfony/dom-crawler" />
-      <path value="$PROJECT_DIR$/vendor/symfony/browser-kit" />
       <path value="$PROJECT_DIR$/vendor/psy/psysh" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
@@ -259,16 +285,6 @@
       <path value="$PROJECT_DIR$/vendor/tijsverkoyen/css-to-inline-styles" />
       <path value="$PROJECT_DIR$/vendor/dragonmantank/cron-expression" />
       <path value="$PROJECT_DIR$/vendor/vlucas/phpdotenv" />
-      <path value="$PROJECT_DIR$/vendor/codeception/codeception" />
-      <path value="$PROJECT_DIR$/vendor/hoa/iterator" />
-      <path value="$PROJECT_DIR$/vendor/hoa/protocol" />
-      <path value="$PROJECT_DIR$/vendor/hoa/console" />
-      <path value="$PROJECT_DIR$/vendor/hoa/exception" />
-      <path value="$PROJECT_DIR$/vendor/hoa/event" />
-      <path value="$PROJECT_DIR$/vendor/hoa/ustring" />
-      <path value="$PROJECT_DIR$/vendor/hoa/stream" />
-      <path value="$PROJECT_DIR$/vendor/hoa/file" />
-      <path value="$PROJECT_DIR$/vendor/hoa/consistency" />
       <path value="$PROJECT_DIR$/vendor/fideloper/proxy" />
       <path value="$PROJECT_DIR$/vendor/laravel/tinker" />
       <path value="$PROJECT_DIR$/vendor/erusev/parsedown" />
@@ -276,8 +292,6 @@
       <path value="$PROJECT_DIR$/vendor/league/flysystem" />
       <path value="$PROJECT_DIR$/vendor/nunomaduro/collision" />
       <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
-      <path value="$PROJECT_DIR$/vendor/codeception/stub" />
-      <path value="$PROJECT_DIR$/vendor/codeception/phpunit-wrapper" />
       <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
       <path value="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server" />
       <path value="$PROJECT_DIR$/vendor/psr/simple-cache" />
@@ -289,7 +303,6 @@
       <path value="$PROJECT_DIR$/vendor/opis/closure" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
-      <path value="$PROJECT_DIR$/vendor/behat/gherkin" />
       <path value="$PROJECT_DIR$/vendor/ramsey/uuid" />
       <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
       <path value="$PROJECT_DIR$/vendor/mockery/mockery" />
@@ -313,6 +326,8 @@
       <path value="$PROJECT_DIR$/vendor/symfony/translation-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php73" />
       <path value="$PROJECT_DIR$/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/vendor/laravel/dusk" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/type" />
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
@@ -335,19 +350,19 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JSON" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Models/Domain" />
+      <recent name="$PROJECT_DIR$/app/Models" />
+      <recent name="$PROJECT_DIR$/storage/app/public" />
+      <recent name="$PROJECT_DIR$/resources/js/views/panel/agreements" />
+      <recent name="$PROJECT_DIR$/app/Jobs/Email" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Models/Domain" />
       <recent name="$PROJECT_DIR$/resources/js/views/panel/accounts" />
       <recent name="$PROJECT_DIR$/resources/js/views/panel" />
       <recent name="$PROJECT_DIR$/app/Enums" />
       <recent name="$PROJECT_DIR$/app/Models/Domain/Blocks" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/storage/app/public" />
-      <recent name="$PROJECT_DIR$/resources/js/views/panel/agreements" />
-      <recent name="$PROJECT_DIR$/app/Jobs/Email" />
-      <recent name="$PROJECT_DIR$/resources/js/views/panel" />
-      <recent name="$PROJECT_DIR$/resources/js/layouts" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -407,7 +422,8 @@
       <workItem from="1563209116086" duration="9087000" />
       <workItem from="1563278957935" duration="17682000" />
       <workItem from="1563378795950" duration="10000" />
-      <workItem from="1565800172167" duration="2151000" />
+      <workItem from="1565800172167" duration="2234000" />
+      <workItem from="1566163620114" duration="6533000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>
