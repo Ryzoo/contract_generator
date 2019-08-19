@@ -20,9 +20,9 @@ class Contract extends ElegantValidator
     ];
 
     public static $rulesAddRequestCreate= array(
-        'attributes'    => 'required|json',
-        'blocks'        => 'required|json',
-        'settings'      => 'required|json',
+        'attributes'    => 'array',
+        'blocks'        => 'array',
+        'settings'      => 'array',
     );
 
     public static $rulesAdd = array(

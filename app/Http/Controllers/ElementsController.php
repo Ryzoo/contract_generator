@@ -31,46 +31,16 @@ class ElementsController extends Controller
         $this->conditionalService = $conditionalService;
     }
 
-    /**
-     * @OA\Get(
-     *   path="/api/elements/blocks",
-     *   summary="list blocks",
-     *   @OA\Response(
-     *     response=200,
-     *     description="A list with blocks"
-     *   )
-     * )
-     */
     public function getAllBlockList(Request $request) {
         $blockList = $this->blockService->getListOfBlocks();
         Response::success($blockList);
     }
 
-    /**
-     * @OA\Get(
-     *   path="/api/elements/attributes",
-     *   summary="list attributes",
-     *   @OA\Response(
-     *     response=200,
-     *     description="A list with attributes"
-     *   )
-     * )
-     */
     public function getAllAttributesList(Request $request) {
         $atributeList = $this->attributeService->getListOfAttributes();
         Response::success($atributeList);
     }
 
-    /**
-     * @OA\Get(
-     *   path="/api/elements/conditional",
-     *   summary="list conditional",
-     *   @OA\Response(
-     *     response=200,
-     *     description="A list with conditional"
-     *   )
-     * )
-     */
     public function getAllConditionalList(Request $request) {
         $conditionalList = $this->conditionalService->getListOfConditional();
         Response::success($conditionalList);

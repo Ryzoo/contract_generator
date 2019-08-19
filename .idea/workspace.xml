@@ -2,50 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Services/Domain/ContractService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/Domain/FormService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/CreatesApplication.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/TestCase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.test" beforeDir="false" afterPath="$PROJECT_DIR$/.env.test" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.phpstorm.meta.php" beforeDir="false" afterPath="$PROJECT_DIR$/.phpstorm.meta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Contracts/Domain/IAttribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/Domain/IAttribute.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Contracts/Domain/IBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/Domain/IBlock.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ElementsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ElementsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/Block.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/Block.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Conditional/Conditional.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Conditional/Conditional.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Domain/AttributeService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/AttributeService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Domain/BlockService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/BlockService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/test.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/test.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codeception.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/validation.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/validation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/_data/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/_output/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/_support/AcceptanceTester.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/_support/ApiTester.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/_support/FunctionalTester.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/_support/Helper/Acceptance.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/_support/Helper/Api.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/_support/Helper/Functional.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/_support/Helper/Unit.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/_support/UnitTester.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/_support/_generated/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/acceptance.suite.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/acceptance/tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/api.suite.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/api/AuthCest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/functional.suite.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/functional/tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit.suite.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit/AuthServiceTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit/UserServiceTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Contract.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Contract.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Domain/FormService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/FormService.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -330,12 +291,6 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/type" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="498" />
-    <option name="y" value="34" />
-    <option name="width" value="1001" />
-    <option name="height" value="1080" />
-  </component>
   <component name="ProjectId" id="1PQJ1MRyKCtaH9Rlv2m6NpJDdQT" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
@@ -344,7 +299,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Models/Domain" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JSON" />
@@ -423,7 +378,9 @@
       <workItem from="1563278957935" duration="17682000" />
       <workItem from="1563378795950" duration="10000" />
       <workItem from="1565800172167" duration="2234000" />
-      <workItem from="1566163620114" duration="6533000" />
+      <workItem from="1566163620114" duration="6560000" />
+      <workItem from="1566225407651" duration="17000" />
+      <workItem from="1566228021091" duration="4938000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>
@@ -494,15 +451,6 @@
     <history-entry file="Test_app - 2019.06.27 at 02h 32m 37s.xml">
       <configuration name="Test app" configurationId="CodeceptionConfigurationType" />
     </history-entry>
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
