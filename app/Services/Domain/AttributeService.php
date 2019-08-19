@@ -6,6 +6,7 @@ namespace App\Services\Domain;
 
 use App\Contracts\Domain\IAttribute;
 use App\Enums\AttributeType;
+use App\Models\Domain\Attributes\Attribute;
 use App\Models\Domain\Attributes\NumberAttribute;
 use Intervention\Image\Exception\NotFoundException;
 
@@ -16,19 +17,10 @@ class AttributeService {
         $attributeTypeList = AttributeType::getList();
 
         foreach($attributeTypeList as $value){
-            array_push($attributeList,$this->getAttributeByType($value));
+            array_push($attributeList, Attribute::getAttributeByType($value));
         }
 
         return $attributeList;
     }
 
-    public function getAttributeByType(int $attributeType):IAttribute {
-        switch ($attributeType)
-        {
-            case AttributeType::NUMBER:
-                return new NumberAttribute();
-        }
-
-        throw new NotFoundException("Attribute {$attributeType} was not found");
-    }
 }

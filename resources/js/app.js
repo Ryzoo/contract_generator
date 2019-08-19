@@ -1,3 +1,5 @@
+import {UserRoleEnum} from "./additionalModules/Enums";
+
 require('./bootstrap');
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import Vuetify from 'vuetify'
@@ -26,11 +28,24 @@ import store from './store';
 import route from './route'
 import i18n from './lang'
 
+
+Vue.mixin({
+    methods:{
+        getRoleName(roleId){
+            for (let i in UserRoleEnum) {
+                if(UserRoleEnum[i] == roleId)
+                    return this.$t(`user.roles.${i}`)
+            }
+            return "---";
+        }
+    }
+});
+
 const app = new Vue({
     el: '#app',
     i18n,
     store,
-    router: route
+    router: route,
 });
 
 window.auth.setStore(store);

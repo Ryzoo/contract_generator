@@ -63,7 +63,9 @@ export default {
                 },
                 "accounts": {
                     "button": {
-                        "newAccount": "Add new account"
+                        "newAccount": "Add new account",
+                        "cancel": "Cancel",
+                        "remove": "Remove"
                     },
                     "headers": {
                         "name": "Name",
@@ -71,6 +73,13 @@ export default {
                         "email": "Email",
                         "actions": "Actions",
                         "created_at": "Created"
+                    },
+                    "notify": {
+                        "successRemove": "Account removed!"
+                    },
+                    "description": {
+                        "remove": "Sure you want to remove account?",
+                        "removeTitle": "Remove account"
                     }
                 }
             }
@@ -171,9 +180,27 @@ export default {
                     "rePassword": "Retype password"
                 },
                 "button": {
-                    "add": "Add account"
+                    "add": "Add account",
+                    "prev": "Back to accounts"
                 },
-                "notify": []
+                "notify": {
+                    "success": "New account added."
+                }
+            },
+            "accountEditForm": {
+                "title": "Edit account",
+                "field": {
+                    "firstName": "FirstName",
+                    "lastName": "LastName",
+                    "role": "Role"
+                },
+                "button": {
+                    "save": "Save account",
+                    "prev": "Back to accounts"
+                },
+                "notify": {
+                    "success": "Account updated!"
+                }
             }
         },
         "user": {

@@ -27,16 +27,16 @@ class validation {
     return this;
   }
 
-  isOnlyNumber(min, max) {
-    this.isString();
-    const re = /^[0-9\+]{8,13}$/;
+  isBetween(min, max) {
+    this.isNotNull();
 
-    let ret = this.current.length >= min;
-    if (max && ret) {
-      ret = this.current.length <= max;
+    const re = parseInt(this.current);
+
+    if (re === null || re === undefined) {
+      this.returnError(i18n.t('validation.numeric',{attribute: this.currentName}));
     }
 
-    if (!re.test(this.current.toLowerCase()) || !ret) {
+    if (!(re >= min && re <= max)) {
       this.returnError(i18n.t('validation.between.numeric',{attribute: this.currentName, min: min, max: max}));
     }
     return this;

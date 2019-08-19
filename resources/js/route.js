@@ -13,6 +13,7 @@ import CreateAgreementView from "./views/panel/agreements/CreateView";
 import MyProfileView from "./views/panel/MyProfileView";
 import AccountsView from "./views/panel/AccountsView";
 import CreateView from "./views/panel/accounts/CreateView";
+import EditView from "./views/panel/accounts/EditView";
 
 Vue.use(VueRouter);
 
@@ -64,6 +65,14 @@ const router = new VueRouter({
           component: CreateView,
           meta: {
             title: i18n.t('pageMeta.panel.accounts.create.title')
+          },
+        },
+        {
+          path: 'accounts/:id/edit',
+          name: 'editAccount',
+          component: EditView,
+          meta: {
+            title: i18n.t('pageMeta.panel.accounts.edit.title')
           },
         },
         {

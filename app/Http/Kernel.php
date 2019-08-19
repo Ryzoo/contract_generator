@@ -1,21 +1,5 @@
 <?php
 
-/**
- * @OA\Info(
- *      version="0.0.0",
- *      title="Contract API",
- *      description="API for contract generator",
- * )
- * @OA\Tag(
- *     name="Blocks",
- *     description="Operation on blocks",
- * )
- * @OA\Tag(
- *     name="Attributes",
- *     description="Operation on attributes",
- * )
- */
-
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;

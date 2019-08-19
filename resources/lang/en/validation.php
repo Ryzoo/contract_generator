@@ -128,8 +128,9 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'array' => [
+            'attributes' => 'Attributes should be json array',
+            'blocks' => 'Blocks should be json array',
         ],
     ],
 

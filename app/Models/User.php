@@ -42,7 +42,7 @@ class User extends ElegantValidator
 
     protected $guarded = [];
 
-    public static $rulesAddRequest = array(
+    public static $rulesAddRequestRegister = array(
         'email'     => 'required|email|unique:users,email|min:6|max:100',
         'firstName' => 'required|min:3|max:50',
         'lastName'  => 'required|min:3|max:50',
@@ -50,6 +50,15 @@ class User extends ElegantValidator
         "rePassword" => "required|same:password",
         "regulationsAccept" => "required|accepted",
         "rodoAccept" => "required|accepted",
+    );
+
+    public static $rulesAddRequestCreate= array(
+        'email'     => 'required|email|unique:users,email|min:6|max:100',
+        'firstName' => 'required|min:3|max:50',
+        'lastName'  => 'required|min:3|max:50',
+        "password" => "required",
+        'role'      => 'required|digits_between:0,1',
+        "rePassword" => "required|same:password",
     );
 
     public static $rulesAdd = array(
