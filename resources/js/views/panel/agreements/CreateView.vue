@@ -5,19 +5,34 @@
                 <div class="builder-content">
                     <div v-if="blocks.length > 0">
                         <div class="builder-blocks">
-                            <div class="block" v-for="block in blocks">
-                                <details>
-                                    <summary>
-                                        <h3>{{ block.name }}</h3>
-                                    </summary>
-                                    <p>Jakies teks</p>
-                                </details>
-                            </div>
+                            <component
+                                v-for="(block, index) in blocks"
+                                :key="index"
+                                :is="block.type"
+                                v-bind="block"
+                            >
+                            </component>
+                            <!--<div class="block" v-for="block in blocks">-->
+                            <!--<details>-->
+                            <!--<summary>-->
+                            <!--<font-awesome-icon-->
+                            <!--icon="chevron-right"-->
+                            <!--class="mx-3"-->
+                            <!--/>-->
+                            <!--<h3>{{ block.name }}</h3>-->
+                            <!--</summary>-->
+                            <!--<p>Jakies teks</p>-->
+                            <!--</details>-->
+                            <!--</div>-->
                         </div>
                     </div>
                     <div v-else>
                         <div class="empty-elements">
                             <span>Dodaj element</span>
+                            <font-awesome-icon
+                                icon="plus-circle"
+                                class="mx-3"
+                            />
                         </div>
                     </div>
                 </div>
@@ -107,18 +122,25 @@
 </template>
 
 <script>
+import Block from "../../../components/Block";
 export default {
     name: "CreateAgreementView",
+    components: {
+        Block
+    },
     data: function() {
         return {
             newBlock: false,
             dialog: false,
             blocks: [
                 {
-                    name: "bloczek"
-                },
-                {
-                    name: "bloczek2"
+                    type: "Blok tekstowy",
+                    content: {
+                        text:
+                            "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną {0}"
+                    },
+                    conditionals: {},
+                    settings: {}
                 }
             ],
             elementsType: [
@@ -306,19 +328,6 @@ summary::-webkit-details-marker {
     }
 }
 .builder-content {
-    .builder-blocks {
-        details {
-            padding: 10px 0;
-            border: 1px solid black;
-            border-radius: 5px;
-            &:hover {
-                cursor: pointer;
-            }
-            summary {
-                display: block;
-            }
-        }
-    }
     .empty-elements {
         border: 1px dashed #707070;
         width: 100%;

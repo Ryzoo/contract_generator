@@ -31,7 +31,9 @@
                 {{ user.firstName }} {{ user.lastName }}
             </h2>
             <small class="text-xs-center d-block">{{
-                isAdmin ? $t("user.roles.ADMINISTRATOR") : $t("user.roles.CLIENT")
+                isAdmin
+                    ? $t("user.roles.ADMINISTRATOR")
+                    : $t("user.roles.CLIENT")
             }}</small>
         </div>
         <loader v-else></loader>
