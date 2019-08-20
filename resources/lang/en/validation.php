@@ -132,6 +132,12 @@ return [
             'attributes' => 'Attributes should be json array',
             'blocks' => 'Blocks should be json array',
         ],
+        'form' => [
+            'not_exist' => 'Form for this contract not exist - this contract is corrupted'
+        ],
+        'attributes' => [
+            'not_exist' => 'Attribute with id: :id not exist in this contract'
+        ]
     ],
 
     /*

@@ -20,13 +20,19 @@ abstract class Attribute implements IAttribute {
      * @var string
      */
     public $attributeName;
-
     /**
      * @var array
      */
     public $settings;
-
+    /**
+     * @var int
+     */
+    public $id;
+    /**
+     * @var string
+     */
     public $name;
+
     public $value;
     public $defaultValue;
 
@@ -35,6 +41,8 @@ abstract class Attribute implements IAttribute {
         $this->attributeName = AttributeType::getName($attributeType);
         $this->settings = [];
         $this->value = null;
+        $this->id = 0;
+        $this->name = "no_name";
         $this->defaultValue = null;
         $this->buildObject();
     }
@@ -90,6 +98,7 @@ abstract class Attribute implements IAttribute {
         $attribute->attributeName = AttributeType::getName($value["type"]);
         $attribute->settings = $value["settings"];
         $attribute->name = $value["name"];
+        $attribute->id = intval($value["id"]);
         $attribute->defaultValue = $value["defaultValue"];
 
         return $attribute;

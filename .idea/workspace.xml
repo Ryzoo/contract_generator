@@ -2,19 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Models/Domain/FormInput.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Contracts/Domain/IAttribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/Domain/IAttribute.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Contracts/Domain/IBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/Domain/IBlock.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Contracts/Domain/IConditional.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/Domain/IConditional.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Attributes/NumberAttribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Attributes/NumberAttribute.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/Block.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/Block.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/EmptyBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/EmptyBlock.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/PageDivideBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/PageDivideBlock.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/TextBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/TextBlock.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Conditional/Conditional.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Conditional/Conditional.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Contract.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Contract.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Form.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Form.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/Domain/FormService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/FormService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/test.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/test.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_18_215600_create_contracts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_18_215600_create_contracts_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_18_221313_create_forms_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_18_221313_create_forms_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/validation.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/validation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,25 +41,18 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@localhost-m1634_contractg" type="feb32156:DbDataSourceImpl" />
+        <item name="m1634_contractg@localhost" type="feb32156:DbDataSourceImpl" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@localhost-m1634_contractg" type="feb32156:DbDataSourceImpl" />
+        <item name="m1634_contractg@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@localhost-m1634_contractg" type="feb32156:DbDataSourceImpl" />
+        <item name="m1634_contractg@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="m1634_contractg: schema" type="76f4a085:MysqlImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@localhost-m1634_contractg" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="m1634_contractg: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="users: table" type="285a2a93:MysqlImplModel$Table" />
+        <item name="m1634_contractg: schema" type="ebfa3cd1:MariaImplModel$Schema" />
       </path>
     </expand>
     <select />
@@ -354,6 +346,21 @@
       <item itemvalue="PHPUnit.phpunit.xml" />
     </list>
   </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@405dfeab" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -390,7 +397,8 @@
       <workItem from="1566225407651" duration="17000" />
       <workItem from="1566228021091" duration="4961000" />
       <workItem from="1566289945769" duration="13000" />
-      <workItem from="1566290939982" duration="9442000" />
+      <workItem from="1566290939982" duration="9473000" />
+      <workItem from="1566329434440" duration="3363000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>
@@ -502,6 +510,17 @@
     <MESSAGE value="Add some translations to agreements view" />
     <MESSAGE value="Changes in agreement view" />
     <option name="LAST_COMMIT_MESSAGE" value="Changes in agreement view" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Services/Domain/FormService.php</url>
+          <line>28</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>

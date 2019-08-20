@@ -15,6 +15,8 @@ class CreateFormsTable extends Migration
     {
         Schema::create('forms', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('contract_id');
+            $table->json('attributesOrder');
             $table->softDeletes();
             $table->timestamps();
         });
