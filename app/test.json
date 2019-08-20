@@ -1,60 +1,190 @@
 {
-    "contract": {
-        "attributes": [
-            {
-                "id": 0,
-                "name": "Fajna zmienna",
-                "type": "number",
-                "defaultValue" : "",
-                "settings": {
-                    // dane specyficzne dla każdego typu
-                }
+    "attributes": [
+        {
+            "name": "Wiek użytkownika",
+            "id": 1,
+            "type": 0,
+            "defaultValue" : 18,
+            "settings": {
+                "min": 18,
+                "max": 30
             }
-        ],
-        "blocks": [
-            {
-                "type": "Blok tekstowy",
-                "content": {
-                    // dane specyficzne dla każdego typu
-                    "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną {0}"
-                },
-                "conditionals": {
-                    "showOn" : [
-                        "{0}",
-                        "=",
-                        "value:ddd",
-                        "&&",
-                        "{1}",
-                        "=",
-                        "value:{3}"
-                    ],
-                    "hideOn" : {}
-                    // wszystkie elementy bedą musiały odpowiedzieć na "pytania" za pomoca query brak odpowiedzi
-                    // oznacza brak użycia
-                },
-                "settings":{}
-            },
-            {
-                "type": "Blok pusty",
-                "content": {
-                    // na ten przykład ten blok potrafi mieć w sobie inne bloki
-                    "blocks": []
-                },
-                "conditionals": {},
-                "settings":{}
-            },
-            {
-                "type": "Podział strony",
-                "content": {},
-                "conditionals": {},
-                "settings": {
-                    // każdy obiekt będzie miał również specyficzne ustawienia
-                    // w tym przypadku obiekt ten może być użyty jedynie w pierwszej lini
-                    // nie można go wsadzać w inne
-                    "onlyFirstLevelIndent": true
-                }
+        },
+        {
+            "name": "Wiek użytkownika",
+            "id": 2,
+            "type": 0,
+            "defaultValue" : 18,
+            "settings": {
+                "min": 18,
+                "max": 30
             }
-        ],
-        "settings": []
-    }
+        },
+        {
+            "name": "Wiek użytkownika",
+            "id": 3,
+            "type": 0,
+            "defaultValue" : 18,
+            "settings": {
+                "min": 18,
+                "max": 30
+            }
+        },
+        {
+            "name": "Wiek użytkownika",
+            "id": 4,
+            "type": 0,
+            "defaultValue" : 18,
+            "settings": {
+                "min": 18,
+                "max": 30
+            }
+        },
+        {
+            "name": "Wiek użytkownika",
+            "id": 5,
+            "type": 0,
+            "defaultValue" : 18,
+            "settings": {
+                "min": 18,
+                "max": 30
+            }
+        }
+    ],
+    "blocks": [
+        {
+            "type": 0,
+            "content": {
+                "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną {2}"
+            },
+            "conditionals": [],
+            "settings":{}
+        },
+        {
+            "type": 1,
+            "content": {
+                "blocks": [
+                    {
+                        "type": 0,
+                        "content": {
+                            "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną"
+                        },
+                        "conditionals": [{
+                            "type": 0,
+                            "content": [
+                                "{1}",
+                                "=",
+                                "value:ddd"
+                            ]
+                        }],
+                        "settings":{}
+                    },{
+                        "type": 0,
+                        "content": {
+                            "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną"
+                        },
+                        "conditionals": [{
+                            "type": 0,
+                            "content": [
+                                "{1}",
+                                "=",
+                                "value:ddd"
+                            ]
+                        }],
+                        "settings":{}
+                    }
+                ]
+            },
+            "conditionals": [
+                {
+                    "type": 0,
+                    "content": [
+                        "{2}",
+                        "=",
+                        "value:ddd"
+                    ]
+                }
+            ],
+            "settings":{}
+        },
+        {
+            "type": 0,
+            "content": {
+                "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną {3}"
+            },
+            "conditionals": [],
+            "settings":{}
+        },
+        {
+            "type": 1,
+            "content": {
+                "blocks": [
+                    {
+                        "type": 1,
+                        "content": {
+                            "blocks": [
+                                {
+                                    "type": 0,
+                                    "content": {
+                                        "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną "
+                                    },
+                                    "conditionals": [{
+                                        "type": 0,
+                                        "content": [
+                                            "{5}",
+                                            "=",
+                                            "value:ddd"
+                                        ]
+                                    }],
+                                    "settings":{}
+                                },{
+                                    "type": 0,
+                                    "content": {
+                                        "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną "
+                                    },
+                                    "conditionals": [{
+                                        "type": 0,
+                                        "content": [
+                                            "{5}",
+                                            "=",
+                                            "value:ddd"
+                                        ]
+                                    }],
+                                    "settings":{}
+                                }
+                            ]
+                        },
+                        "conditionals": [{
+                            "type": 0,
+                            "content": [
+                                "{4}",
+                                "=",
+                                "value:ddd"
+                            ]
+                        }],
+                        "settings":{}
+                    },{
+                        "type": 0,
+                        "content": {
+                            "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną"
+                        },
+                        "conditionals": [{
+                            "type": 0,
+                            "content": [
+                                "{4}",
+                                "=",
+                                "value:ddd"
+                            ]
+                        }],
+                        "settings":{}
+                    }
+                ]
+            },
+            "conditionals": [],
+            "settings":{}
+        }
+    ],
+    "settings": [
+
+    ]
 }

@@ -58,10 +58,11 @@ abstract class Attribute implements IAttribute {
     public static function validate($value):bool {
         Validator::validate($value,[
             "id" => "required|integer",
+            "type" => "required|integer",
             "name" => "required|string",
-            "defaultValue" => "nullable|string",
-            "value" => "nullable|string",
-            "settings" => "required|json",
+            "defaultValue" => "nullable|integer",
+            "value" => "nullable|integer",
+            "settings" => "required",
         ]);
 
         return true;
@@ -75,18 +76,18 @@ abstract class Attribute implements IAttribute {
             Response::error(_('custom.array.attributes'));
 
         foreach ($arrayOfAttributes as $attribute){
-            array_push($returnedArray, self::getFromString($attribute));
+            array_push($returnedArray, self::getFromString((array)$attribute));
         }
 
         return $returnedArray;
     }
 
-    public static function getFromString($value):IAttribute {
+    public static function getFromString(array $value):IAttribute {
         Attribute::validate($value);
-        $attribute = self::getAttributeByType($value["id"]);
+        $attribute = self::getAttributeByType($value["type"]);
 
-        $attribute->attributeType = $value["id"];
-        $attribute->attributeName = AttributeType::getName($value["id"]);
+        $attribute->attributeType = $value["type"];
+        $attribute->attributeName = AttributeType::getName($value["type"]);
         $attribute->settings = $value["settings"];
         $attribute->name = $value["name"];
         $attribute->defaultValue = $value["defaultValue"];
