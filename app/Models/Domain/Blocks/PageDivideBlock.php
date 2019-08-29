@@ -18,4 +18,8 @@ class PageDivideBlock extends Block {
     protected function buildContent() {
         // TODO: Implement buildContent() method.
     }
+
+    protected function validateContent(): bool {
+        return true;
+    }
 }

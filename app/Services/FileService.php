@@ -18,7 +18,6 @@ class FileService
 {
     public function saveFile(UploadedFile $file, $fileStorageFolder): ?string
     {
-        if(!isset($file)) return null;
         return "/storage/" . $file->store($fileStorageFolder);
     }
 
@@ -43,7 +42,9 @@ class FileService
     }
 
     public function tryRemoveFileByStorageUrl(string $fileUrl) {
-        if(!isset($fileUrl) || Str::length($fileUrl) === 0) return null;
+        if(Str::length($fileUrl) === 0)
+            return null;
+
         $fullPath = Str::replaceFirst("/","",$fileUrl);
         $fullPath =  str_replace("/","\\",$fullPath) ;
         $fullPath =  str_replace("storage\\","",$fullPath) ;

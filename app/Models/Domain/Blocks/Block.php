@@ -58,7 +58,7 @@ abstract class Block implements IBlock {
     protected abstract function buildContent();
     protected abstract function validateContent():bool ;
 
-    public static function getBlockByType(int $blockType):IBlock {
+    public static function getBlockByType(int $blockType):Block {
         switch ($blockType)
         {
             case BlockType::TEXT_BLOCK:
@@ -97,7 +97,7 @@ abstract class Block implements IBlock {
         return $returnedArray;
     }
 
-    public static function getFromString(array $value):IBlock {
+    public static function getFromString(array $value):Block {
         Block::validate($value);
         $block = self::getBlockByType($value["type"]);
 

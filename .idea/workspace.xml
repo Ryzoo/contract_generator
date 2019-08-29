@@ -2,18 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Models/Domain/FormInput.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.phpstorm.meta.php" beforeDir="false" afterPath="$PROJECT_DIR$/.phpstorm.meta.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Contracts/Domain/IAttribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/Domain/IAttribute.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Contracts/Domain/IBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/Domain/IBlock.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Contracts/Domain/IConditional.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/Domain/IConditional.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Contracts/EnumIterator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Traits/EnumIterator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Enums/AttributeType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/AttributeType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Enums/BlockType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/BlockType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Enums/ConditionalType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/ConditionalType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Enums/UserRole.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/UserRole.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Helpers/Validator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/Validator.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Contract.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Contract.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Form.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Domain/FormService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/FormService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/test.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/test.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_18_215600_create_contracts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_18_215600_create_contracts_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_18_221313_create_forms_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_18_221313_create_forms_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/validation.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/validation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/Block.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/Block.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/PageDivideBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/PageDivideBlock.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Conditional/Conditional.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Conditional/Conditional.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/FileService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/FileService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Browser/ExampleTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Browser/Pages/HomePage.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Browser/Pages/Page.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Browser/console/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Browser/screenshots/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/DuskTestCase.php" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +40,9 @@
     <execution>
       <executable />
     </execution>
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="356" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -84,7 +101,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpDebugGeneral" xdebug_debug_port="9001" listening_started="true" />
+  <component name="PhpDebugGeneral" xdebug_debug_port="9001" />
   <component name="PhpServers">
     <servers>
       <server host="127.0.0.1" id="0d722a16-9ad1-445f-886b-782c56672046" name="127.0.0.1" port="8000" />
@@ -124,14 +141,12 @@
       <path value="$PROJECT_DIR$/vendor/symfony/class-loader" />
       <path value="$PROJECT_DIR$/vendor/symfony/http-foundation" />
       <path value="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge" />
-      <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
       <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
       <path value="$PROJECT_DIR$/vendor/psr/container" />
       <path value="$PROJECT_DIR$/vendor/doctrine/common" />
       <path value="$PROJECT_DIR$/vendor/psr/http-message" />
       <path value="$PROJECT_DIR$/vendor/doctrine/collections" />
       <path value="$PROJECT_DIR$/vendor/psr/log" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
       <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
       <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
       <path value="$PROJECT_DIR$/vendor/drupal/console" />
@@ -267,7 +282,6 @@
       <path value="$PROJECT_DIR$/vendor/ramsey/uuid" />
       <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
       <path value="$PROJECT_DIR$/vendor/mockery/mockery" />
-      <path value="$PROJECT_DIR$/vendor/facebook/webdriver" />
       <path value="$PROJECT_DIR$/vendor/martinlindhe/laravel-vue-i18n-generator" />
       <path value="$PROJECT_DIR$/vendor/barryvdh/reflection-docblock" />
       <path value="$PROJECT_DIR$/vendor/seld/jsonlint" />
@@ -279,16 +293,25 @@
       <path value="$PROJECT_DIR$/vendor/intervention/image" />
       <path value="$PROJECT_DIR$/vendor/spatie/laravel-image-optimizer" />
       <path value="$PROJECT_DIR$/vendor/spatie/image-optimizer" />
-      <path value="$PROJECT_DIR$/vendor/swagger-api/swagger-ui" />
-      <path value="$PROJECT_DIR$/vendor/darkaonline/l5-swagger" />
-      <path value="$PROJECT_DIR$/vendor/zircote/swagger-php" />
       <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/service-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/translation-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php73" />
       <path value="$PROJECT_DIR$/vendor/symfony/mime" />
-      <path value="$PROJECT_DIR$/vendor/laravel/dusk" />
       <path value="$PROJECT_DIR$/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/vendor/nette/robot-loader" />
+      <path value="$PROJECT_DIR$/vendor/nette/di" />
+      <path value="$PROJECT_DIR$/vendor/nette/neon" />
+      <path value="$PROJECT_DIR$/vendor/nette/schema" />
+      <path value="$PROJECT_DIR$/vendor/nette/finder" />
+      <path value="$PROJECT_DIR$/vendor/nette/utils" />
+      <path value="$PROJECT_DIR$/vendor/nette/php-generator" />
+      <path value="$PROJECT_DIR$/vendor/nette/bootstrap" />
+      <path value="$PROJECT_DIR$/vendor/jean85/pretty-package-versions" />
+      <path value="$PROJECT_DIR$/vendor/phpstan/phpdoc-parser" />
+      <path value="$PROJECT_DIR$/vendor/phpstan/phpstan" />
+      <path value="$PROJECT_DIR$/vendor/ocramius/package-versions" />
+      <path value="$PROJECT_DIR$/vendor/nunomaduro/larastan" />
     </include_path>
   </component>
   <component name="ProjectId" id="1PQJ1MRyKCtaH9Rlv2m6NpJDdQT" />
@@ -299,25 +322,25 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/phpunit.xml" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JSON" />
+    <property name="settings.editor.selected.configurable" value="coverage" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/Models/Domain" />
-      <recent name="$PROJECT_DIR$/app/Models" />
-      <recent name="$PROJECT_DIR$/storage/app/public" />
-      <recent name="$PROJECT_DIR$/resources/js/views/panel/agreements" />
-      <recent name="$PROJECT_DIR$/app/Jobs/Email" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Models/Domain" />
       <recent name="$PROJECT_DIR$/resources/js/views/panel/accounts" />
       <recent name="$PROJECT_DIR$/resources/js/views/panel" />
       <recent name="$PROJECT_DIR$/app/Enums" />
       <recent name="$PROJECT_DIR$/app/Models/Domain/Blocks" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Traits" />
+      <recent name="$PROJECT_DIR$/app/Enums" />
+      <recent name="$PROJECT_DIR$/app/Models/Domain" />
+      <recent name="$PROJECT_DIR$/app/Models" />
+      <recent name="$PROJECT_DIR$/storage/app/public" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -332,19 +355,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Codeception.Test app">
-    <configuration name="Test app" type="CodeceptionConfigurationType" factoryName="Codeception">
-      <PhpTestRunnerSettings configuration_file="$PROJECT_DIR$/codeception.yml" directory="$PROJECT_DIR$/tests" method="" scope="Type" selected_type="All" options="--steps --ansi" use_alternative_configuration_file="true" />
+  <component name="RunManager">
+    <configuration name="Contract Generator" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" directory="$PROJECT_DIR$/tests" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
-    <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner scope="XML" />
-      <method v="2" />
-    </configuration>
-    <list>
-      <item itemvalue="Codeception.Test app" />
-      <item itemvalue="PHPUnit.phpunit.xml" />
-    </list>
   </component>
   <component name="ServiceViewManager">
     <option name="allServicesViewState">
@@ -398,7 +413,9 @@
       <workItem from="1566228021091" duration="4961000" />
       <workItem from="1566289945769" duration="13000" />
       <workItem from="1566290939982" duration="9473000" />
-      <workItem from="1566329434440" duration="3363000" />
+      <workItem from="1566329434440" duration="3419000" />
+      <workItem from="1566399060662" duration="14000" />
+      <workItem from="1567078447722" duration="1268000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>
@@ -437,38 +454,6 @@
     </task>
     <option name="localTasksCounter" value="6" />
     <servers />
-  </component>
-  <component name="TestHistory">
-    <history-entry file="Test_app - 2019.06.27 at 01h 03m 38s.xml">
-      <configuration name="Test app" configurationId="CodeceptionConfigurationType" />
-    </history-entry>
-    <history-entry file="Test_app - 2019.06.27 at 01h 03m 48s.xml">
-      <configuration name="Test app" configurationId="CodeceptionConfigurationType" />
-    </history-entry>
-    <history-entry file="Test_app - 2019.06.27 at 01h 05m 38s.xml">
-      <configuration name="Test app" configurationId="CodeceptionConfigurationType" />
-    </history-entry>
-    <history-entry file="Test_app - 2019.06.27 at 01h 09m 32s.xml">
-      <configuration name="Test app" configurationId="CodeceptionConfigurationType" />
-    </history-entry>
-    <history-entry file="Test_app - 2019.06.27 at 01h 09m 41s.xml">
-      <configuration name="Test app" configurationId="CodeceptionConfigurationType" />
-    </history-entry>
-    <history-entry file="Test_app - 2019.06.27 at 01h 22m 25s.xml">
-      <configuration name="Test app" configurationId="CodeceptionConfigurationType" />
-    </history-entry>
-    <history-entry file="Test_app - 2019.06.27 at 02h 30m 24s.xml">
-      <configuration name="Test app" configurationId="CodeceptionConfigurationType" />
-    </history-entry>
-    <history-entry file="Test_app - 2019.06.27 at 02h 30m 48s.xml">
-      <configuration name="Test app" configurationId="CodeceptionConfigurationType" />
-    </history-entry>
-    <history-entry file="Test_app - 2019.06.27 at 02h 31m 35s.xml">
-      <configuration name="Test app" configurationId="CodeceptionConfigurationType" />
-    </history-entry>
-    <history-entry file="Test_app - 2019.06.27 at 02h 32m 37s.xml">
-      <configuration name="Test app" configurationId="CodeceptionConfigurationType" />
-    </history-entry>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -511,17 +496,6 @@
     <MESSAGE value="Changes in agreement view" />
     <option name="LAST_COMMIT_MESSAGE" value="Changes in agreement view" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Services/Domain/FormService.php</url>
-          <line>28</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>
       <path>
@@ -530,5 +504,8 @@
       </path>
     </expand>
     <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/contract_generator@Contract_Generator.xml" NAME="Contract Generator Coverage Results" MODIFIED="1567079253114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

@@ -31,7 +31,7 @@ abstract class Conditional implements IConditional {
         $this->content = [];
     }
 
-    public static function getConditionalByType(int $conditionalType):IConditional {
+    public static function getConditionalByType(int $conditionalType):Conditional {
         switch ($conditionalType)
         {
             case ConditionalType::SHOW_ON:
@@ -64,7 +64,7 @@ abstract class Conditional implements IConditional {
         return $returnedArray;
     }
 
-    public static function getFromString(array $value):IConditional {
+    public static function getFromString(array $value):Conditional {
         Conditional::validate($value);
         $conditional = self::getConditionalByType($value["type"]);
 

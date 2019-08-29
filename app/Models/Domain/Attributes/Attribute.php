@@ -53,7 +53,7 @@ abstract class Attribute implements IAttribute {
 
     protected abstract function buildSettings();
 
-    public static function getAttributeByType(int $attributeType):IAttribute {
+    public static function getAttributeByType(int $attributeType):Attribute {
         switch ($attributeType)
         {
             case AttributeType::NUMBER:
@@ -90,7 +90,7 @@ abstract class Attribute implements IAttribute {
         return $returnedArray;
     }
 
-    public static function getFromString(array $value):IAttribute {
+    public static function getFromString(array $value):Attribute {
         Attribute::validate($value);
         $attribute = self::getAttributeByType($value["type"]);
 
