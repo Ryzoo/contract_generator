@@ -29,7 +29,7 @@ class FormService {
         $attributesOrder = $form->attributesOrder;
 
         if(!isset($form))
-            Response::error(_("validation.custom.form.not_exist"), 404);
+            throw new \Exception(_("validation.custom.form.not_exist"));
 
         $formCollection = collect();
         foreach ($attributesOrder as $attributeID){

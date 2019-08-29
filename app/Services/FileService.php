@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ryzoo
- * Date: 05.03.19
- * Time: 20:21
- */
-
 namespace App\Services;
 
 use Illuminate\Http\UploadedFile;
@@ -16,38 +9,36 @@ use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
 
 class FileService
 {
-    public function saveFile(UploadedFile $file, $fileStorageFolder): ?string
+    public function saveFile(UploadedFile $file, string $fileStorageFolder): string
     {
-        return "/storage/" . $file->store($fileStorageFolder);
+        return $file->store($fileStorageFolder);
     }
 
-	public function saveAndOptimizeImage(UploadedFile $file, string $fileStorageFolder, int $resize = 1200)
+	public function saveAndOptimizeImage(UploadedFile $file, string $fileStorageFolder, int $widthToResize = 1200): string
 	{
-		$path = self::saveFile($file, $fileStorageFolder);
+		$pathToSavedFile = self::saveFile($file, $fileStorageFolder);
+        $fullFilePath = Storage::path($pathToSavedFile);
 
-		if($path){
-			$fullPath = public_path() . $path;
+        Image::make($file)
+            ->resize($widthToResize, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })
+            ->save($fullFilePath);
 
-			Image::make($file)
-				->resize($resize, null, function ($constraint) {
-					$constraint->aspectRatio();
-					$constraint->upsize();
-				})
-				->save($fullPath);
+        ImageOptimizer::optimize($fullFilePath);
 
-			ImageOptimizer::optimize($fullPath);
-		}
-
-		return $path;
+		return $pathToSavedFile;
     }
 
-    public function tryRemoveFileByStorageUrl(string $fileUrl) {
-        if(Str::length($fileUrl) === 0)
-            return null;
+    public function removeFileUsingFileUrl(string $fileUrl) {
+        if(Str::length($fileUrl) <= 0 || !Str::contains($fileUrl,"/storage/"))
+            throw new \Exception("File url must be a valid url including /storage/ word");
 
-        $fullPath = Str::replaceFirst("/","",$fileUrl);
-        $fullPath =  str_replace("/","\\",$fullPath) ;
-        $fullPath =  str_replace("storage\\","",$fullPath) ;
-        Storage::disk('public')->delete($fullPath);
+        $fileUrlWithoutStorage =  Str::replaceFirst("/storage/","",$fileUrl);
+
+        if(Storage::exists($fileUrlWithoutStorage)){
+            Storage::delete($fileUrlWithoutStorage);
+        }
     }
 }

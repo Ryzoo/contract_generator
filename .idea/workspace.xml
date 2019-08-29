@@ -2,32 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Unit/Services/Domain/AttributeServiceTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Unit/Services/Domain/BlockServiceTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Unit/Services/Domain/ConditionalServiceTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Unit/Services/Domain/ContractServiceTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Unit/Services/FileServiceTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.local" beforeDir="false" afterPath="$PROJECT_DIR$/.env.local" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.test" beforeDir="false" afterPath="$PROJECT_DIR$/.env.testing" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.phpstorm.meta.php" beforeDir="false" afterPath="$PROJECT_DIR$/.phpstorm.meta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Contracts/Domain/IAttribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/Domain/IAttribute.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Contracts/Domain/IBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/Domain/IBlock.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Contracts/Domain/IConditional.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/Domain/IConditional.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Contracts/EnumIterator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Traits/EnumIterator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Enums/AttributeType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/AttributeType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Enums/BlockType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/BlockType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Enums/ConditionalType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/ConditionalType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Enums/UserRole.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/UserRole.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Helpers/ElegantValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/ElegantValidator.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Helpers/Validator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/Validator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/Block.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/Block.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/PageDivideBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/PageDivideBlock.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Conditional/Conditional.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Conditional/Conditional.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Domain/ConditionalService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/ConditionalService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Domain/ContractService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/ContractService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Domain/FormService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/FormService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/FileService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/FileService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Traits/EnumIterator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Traits/EnumIterator.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Browser/ExampleTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Browser/Pages/HomePage.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Browser/Pages/Page.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Browser/console/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Browser/screenshots/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/DuskTestCase.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/UserTest.php" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,7 +34,7 @@
     </execution>
   </component>
   <component name="CoverageViewManager">
-    <option name="myElementSize" value="356" />
+    <option name="myElementSize" value="296" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -321,26 +313,27 @@
     <property name="NewWatcherDialog.advanced.open" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.jetbrains.php.phpunit.codeGeneration.PhpNewTestDialog.defaultLibrary" value="PHPUnit 6+" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/phpunit.xml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/Unit/Services/Domain" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="coverage" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/Models/Domain" />
-      <recent name="$PROJECT_DIR$/resources/js/views/panel/accounts" />
-      <recent name="$PROJECT_DIR$/resources/js/views/panel" />
-      <recent name="$PROJECT_DIR$/app/Enums" />
-      <recent name="$PROJECT_DIR$/app/Models/Domain/Blocks" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/Unit/Services" />
       <recent name="$PROJECT_DIR$/app/Traits" />
       <recent name="$PROJECT_DIR$/app/Enums" />
       <recent name="$PROJECT_DIR$/app/Models/Domain" />
       <recent name="$PROJECT_DIR$/app/Models" />
-      <recent name="$PROJECT_DIR$/storage/app/public" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/Unit/Services/Domain" />
+      <recent name="$PROJECT_DIR$/app/Models/Domain" />
+      <recent name="$PROJECT_DIR$/resources/js/views/panel/accounts" />
+      <recent name="$PROJECT_DIR$/resources/js/views/panel" />
+      <recent name="$PROJECT_DIR$/app/Enums" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -415,7 +408,8 @@
       <workItem from="1566290939982" duration="9473000" />
       <workItem from="1566329434440" duration="3419000" />
       <workItem from="1566399060662" duration="14000" />
-      <workItem from="1567078447722" duration="1268000" />
+      <workItem from="1567078447722" duration="1758000" />
+      <workItem from="1567089254557" duration="8403000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>
@@ -506,6 +500,6 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/contract_generator@Contract_Generator.xml" NAME="Contract Generator Coverage Results" MODIFIED="1567079253114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/contract_generator@Contract_Generator.xml" NAME="Contract Generator Coverage Results" MODIFIED="1567097466696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

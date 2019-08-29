@@ -104,5 +104,4 @@ class User extends ElegantValidator
     public static function getByLoginToken(string $loginToken):?User {
         return User::where("loginToken",$loginToken)->first();
     }
-
 }

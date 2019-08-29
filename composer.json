@@ -16,7 +16,8 @@
         "martinlindhe/laravel-vue-i18n-generator": "^0.1.39",
         "spatie/laravel-image-optimizer": "^1.4",
         "ext-json": "*",
-        "ext-gettext": "*"
+        "ext-gettext": "*",
+        "ext-http": "*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",

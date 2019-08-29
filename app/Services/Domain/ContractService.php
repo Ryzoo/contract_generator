@@ -18,8 +18,7 @@ class ContractService {
         $this->formService = $formService;
     }
 
-    public function addContract(Contract $contract) {
-
+    public function addContract(Contract $contract): Contract {
         DB::transaction(function() use(&$contract) {
             Contract::validate($contract);
             $contract->save();
