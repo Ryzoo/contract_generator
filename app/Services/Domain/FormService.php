@@ -28,9 +28,6 @@ class FormService {
         $form = $contract->form;
         $attributesOrder = $form->attributesOrder;
 
-        if(!isset($form))
-            throw new \Exception(_("validation.custom.form.not_exist"));
-
         $formCollection = collect();
         foreach ($attributesOrder as $attributeID){
             $attribute = $contract->getAttributeByID($attributeID);

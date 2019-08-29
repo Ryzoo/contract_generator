@@ -43,7 +43,7 @@ class UserService
             return $user;
         }
 
-        Response::error(__("response.notFoundId"),400);
+        throw new \Exception(__("response.notFoundId"));
     }
 
     public function removeUser(int $userID):bool {
@@ -57,17 +57,19 @@ class UserService
         return false;
     }
 
-    public function changeUserImage(int $userID, UploadedFile $newProfileImage) {
+    public function changeUserImage(int $userID, UploadedFile $newProfileImage): string {
         $user = User::getById($userID);
 
         if(!isset($user))
-            Response::error(__("response.notFoundId"),400);
+            throw new \Exception(__("response.notFoundId"));
 
-        $this->fileService->tryRemoveFileByStorageUrl($user->profileImage);
+        $this->fileService->removeFileUsingFileUrl($user->profileImage);
 
-        $user->profileImage = $this->fileService
+        $newFilePath = $this->fileService
             ->saveAndOptimizeImage($newProfileImage, 'profileImages');
+        $user->profileImage = \Storage::url($newFilePath);
 
         $user->save();
+        return $newFilePath;
     }
 }

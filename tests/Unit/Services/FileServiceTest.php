@@ -65,6 +65,17 @@ class FileServiceTest extends TestCase
             ->assertMissing($returnedPath);
     }
 
+    public function testRemoveFileUsingFileUrlWithDefaultString()
+    {
+        $defaultFileUrl = $this->fileService->getDefaultFilesUrl()[0];
+
+        $this->assertNotNull($defaultFileUrl);
+
+        $this->fileService
+            ->removeFileUsingFileUrl($defaultFileUrl);
+
+    }
+
     public function testThrowExceptionWhenTryToRemoveFIleUsingBadUrl()
     {
         $this->expectException(\Exception::class);
