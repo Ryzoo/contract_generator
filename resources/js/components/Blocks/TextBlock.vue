@@ -2,7 +2,7 @@
     <div class="block">
         <details>
             <summary>
-                <font-awesome-icon icon="chevron-right" class="mx-3" />
+                <v-icon class="mx-3">fa-chevron-right</v-icon>
                 <h3>{{ content.text }}</h3>
             </summary>
             <editor-menu-bubble
@@ -21,7 +21,7 @@
                             :class="{ 'is-active': isActive.bold() }"
                             @click="commands.bold"
                         >
-                            <font-awesome-icon icon="bold" />
+                            <v-icon>fa-bold</v-icon>
                         </button>
 
                         <button
@@ -29,7 +29,7 @@
                             :class="{ 'is-active': isActive.italic() }"
                             @click="commands.italic"
                         >
-                            <font-awesome-icon icon="italic" />
+                            <v-icon>fa-italic</v-icon>
                         </button>
 
                         <button
@@ -37,7 +37,7 @@
                             :class="{ 'is-active': isActive.code() }"
                             @click="commands.code"
                         >
-                            <font-awesome-icon icon="code" />
+                            <v-icon>fa-code</v-icon>
                         </button>
                     </div>
                 </div>

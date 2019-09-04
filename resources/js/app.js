@@ -1,6 +1,6 @@
 import {UserRoleEnum} from "./additionalModules/Enums";
 import Mapper from "./additionalModules/Mappers";
-import Variable from "./additionalModules/Variable";
+import '@fortawesome/fontawesome-free/css/all.css'
 require('./bootstrap');
 import vuetify from './plugins/vuetify';
 import 'vuetify/dist/vuetify.min.css'
@@ -16,8 +16,7 @@ import i18n from './lang'
 Vue.mixin({
     data: function () {
         return {
-            Mapper: Mapper,
-            Variable
+            Mapper: Mapper
         }
     },
     methods:{
