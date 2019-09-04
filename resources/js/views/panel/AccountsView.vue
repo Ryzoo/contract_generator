@@ -4,7 +4,7 @@
             <v-row>
                 <v-col align="end">
                     <v-btn :to="{ name: 'createAccount' }" color="primary">
-                        {{$t("page.panel.accounts.button.newAccount")}}
+                        {{ $t("page.panel.accounts.button.newAccount") }}
                     </v-btn>
                 </v-col>
             </v-row>
@@ -37,9 +37,12 @@
             max-width="290"
         >
             <v-card>
-                <v-card-title class="headline">{{$t("page.panel.accounts.description.removeTitle")}}</v-card-title>
+                <v-card-title class="headline">{{
+                    $t("page.panel.accounts.description.removeTitle")
+                }}</v-card-title>
+
                 <v-card-text>
-                    {{$t("page.panel.accounts.description.remove")}}
+                    {{ $t("page.panel.accounts.description.remove") }}
                 </v-card-text>
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
@@ -48,7 +51,7 @@
                         text
                         @click="deleteDialog = false"
                     >
-                        {{$t("page.panel.accounts.button.cancel")}}
+                        {{ $t("page.panel.accounts.button.cancel") }}
                     </v-btn>
                     <v-btn
                         color="error"
@@ -63,80 +66,80 @@
 </template>
 
 <script>
-
-  export default {
+export default {
     name: "AccountsView",
     components: {},
     data() {
-      return {
-        deleteDialog: false,
-        isLoaded: true,
-        headers: [
-          {
-            text: this.$t("page.panel.accounts.headers.name"),
-            value: "name"
-          },
-          {
-            text: this.$t("page.panel.accounts.headers.email"),
-            value: "email"
-          },
-          {
-            text: this.$t("page.panel.accounts.headers.role"),
-            value: "role"
-          },
-          {
-            text: this.$t("page.panel.accounts.headers.created_at"),
-            value: "created_at"
-          },
-          {
-            text: this.$t("page.panel.accounts.headers.actions"),
-            value: "action",
-            sortable: false
-          }
-        ],
-        items: [],
-        removeUserId: null
-      };
+        return {
+            deleteDialog: false,
+            isLoaded: true,
+            headers: [
+                {
+                    text: this.$t("page.panel.accounts.headers.name"),
+                    value: "name"
+                },
+                {
+                    text: this.$t("page.panel.accounts.headers.email"),
+                    value: "email"
+                },
+                {
+                    text: this.$t("page.panel.accounts.headers.role"),
+                    value: "role"
+                },
+                {
+                    text: this.$t("page.panel.accounts.headers.created_at"),
+                    value: "created_at"
+                },
+                {
+                    text: this.$t("page.panel.accounts.headers.actions"),
+                    value: "action",
+                    sortable: false
+                }
+            ],
+            items: [],
+            removeUserId: null
+        };
     },
     methods: {
-      tryToRemoveAccount(id) {
-        this.removeUserId = id;
-        this.deleteDialog = true;
-      },
-      removeAccount() {
-        this.isLoaded = false;
-        axios.delete(`/user/${this.removeUserId}`)
-            .then((response) => {
-              this.items = this.items.filter(e => e.id != this.removeUserId);
-              this.removeUserId = null;
-              this.deleteDialog = false;
-              notify.push(
-                  this.$t("page.panel.accounts.notify.successRemove"),
-                  notify.SUCCESS
-              );
-            })
-            .finally(() => {
-              this.isLoaded = true;
-            })
-      },
-      getUserList() {
-        this.isLoaded = false;
-        axios.get("/user")
-            .then((response) => {
-              this.items = response.data.map(e => {
-                e.role = this.getRoleName(e.role);
-                return e;
-              });
-            })
-            .finally(() => {
-              this.isLoaded = true;
-            })
-      }
+        tryToRemoveAccount(id) {
+            this.removeUserId = id;
+            this.deleteDialog = true;
+        },
+        removeAccount() {
+            this.isLoaded = false;
+            axios
+                .delete(`/user/${this.removeUserId}`)
+                .then(response => {
+                    this.items = this.items.filter(
+                        e => e.id != this.removeUserId
+                    );
+                    this.removeUserId = null;
+                    this.deleteDialog = false;
+                    notify.push(
+                        this.$t("page.panel.accounts.notify.successRemove"),
+                        notify.SUCCESS
+                    );
+                })
+                .finally(() => {
+                    this.isLoaded = true;
+                });
+        },
+        getUserList() {
+            this.isLoaded = false;
+            axios
+                .get("/user")
+                .then(response => {
+                    this.items = response.data;
+                })
+                .finally(() => {
+                    this.isLoaded = true;
+                });
+        }
     },
     mounted() {
-      this.getUserList();
+        this.getUserList();
     }
-  };
+};
 </script>
 
 <style scoped></style>

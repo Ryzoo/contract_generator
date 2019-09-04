@@ -3,10 +3,36 @@
         <div class="builder-container">
             <div class="left-side">
                 <div class="builder-content">
-                    <div v-if="blocks.length > 5"></div>
+                    <div v-if="blocks.length > 0">
+                        <div class="builder-blocks">
+                            <component
+                                v-for="(block, index) in blocks"
+                                :key="index"
+                                :is="Mapper.getBlockName(block.type)"
+                                v-bind="block"
+                            >
+                            </component>
+                            <!--<div class="block" v-for="block in blocks">-->
+                            <!--<details>-->
+                            <!--<summary>-->
+                            <!--<font-awesome-icon-->
+                            <!--icon="chevron-right"-->
+                            <!--class="mx-3"-->
+                            <!--/>-->
+                            <!--<h3>{{ block.name }}</h3>-->
+                            <!--</summary>-->
+                            <!--<p>Jakies teks</p>-->
+                            <!--</details>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
                     <div v-else>
                         <div class="empty-elements">
                             <span>Dodaj element</span>
+                            <font-awesome-icon
+                                icon="plus-circle"
+                                class="mx-3"
+                            />
                         </div>
                     </div>
                 </div>
@@ -69,14 +95,19 @@
                     <v-flex class="new-block-container" xs10>
                         <h3>Nazwa bloku</h3>
                         <v-text-field label="Nazwa" outline></v-text-field>
-                    </v-flex>
-                    <v-radio-group>
-                        <v-radio
+                        <v-checkbox
                             v-model="newBlock"
                             label="Zapisz blok jako nowy schemat"
-                            @click="cosik()"
-                        ></v-radio>
-                    </v-radio-group>
+                        ></v-checkbox>
+                        <h3>Wybierz istniejącą kategorię</h3>
+                        <v-select
+                            :items="categoriesNames"
+                            label="Wybierz kategorię"
+                            outline
+                        ></v-select>
+                        <h3>lub dodaj nową</h3>
+                        <v-text-field label="Kategoria" outline></v-text-field>
+                    </v-flex>
                 </v-card-text>
 
                 <v-card-actions>
@@ -91,18 +122,26 @@
 </template>
 
 <script>
+import TextBlock from "../../../components/Blocks/TextBlock";
+
 export default {
     name: "CreateAgreementView",
+    components: {
+        TextBlock
+    },
     data: function() {
         return {
             newBlock: false,
             dialog: false,
             blocks: [
                 {
-                    name: "bloczek"
-                },
-                {
-                    name: "bloczek2"
+                    type: 0,
+                    content: {
+                        text:
+                            "<h1>Lorem ipsum</h1> <br> dolor sit amet, <variable>consectetur</variable> adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                    },
+                    conditionals: {},
+                    settings: {}
                 }
             ],
             elementsType: [
@@ -132,16 +171,22 @@ export default {
                         }
                     ]
                 }
-            ]
+            ],
+            categoriesNames: []
         };
     },
     methods: {
-        cosik() {
-            console.log(this.newBlock);
-            this.newBlock = !this.newBlock;
+        blocksCategoryToSelect(categories) {
+            let arrayOfCategories = [];
+
+            categories.map(x => arrayOfCategories.push(x.name));
+
+            return arrayOfCategories;
         }
     },
-    mounted() {}
+    mounted() {
+        this.categoriesNames = this.blocksCategoryToSelect(this.blocksCategory);
+    }
 };
 </script>
 
@@ -155,6 +200,11 @@ export default {
 .left-side {
     padding-right: 400px;
 }
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
 .right-side {
     position: absolute;
     top: -88px;

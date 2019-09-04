@@ -71,13 +71,16 @@
         </v-content>
 
         <v-footer app inset>
-            <span class="px-3">&copy; {{ new Date().getFullYear() }} - {{$t('pageMeta.copyright')}}</span>
+            <span class="px-3"
+                >&copy; {{ new Date().getFullYear() }} -
+                {{ $t("pageMeta.copyright") }}</span
+            >
         </v-footer>
     </section>
 </template>
 
 <script>
-  export default {
+export default {
     name: "PanelLayout",
     data: function () {
       return {
@@ -125,14 +128,14 @@
         ]
       }
     },
-    methods:{
-      logout(){
-        auth.logout();
-      }
+    methods: {
+        logout() {
+            auth.logout();
+        }
     }
-  }
+};
 </script>
 
-<style lang="scss">
+<style lang="scss"></style>
 
 </style>
