@@ -10,3 +10,7 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .idea/
+
+package-lock\.json
+
+public_html/js/app\.js
