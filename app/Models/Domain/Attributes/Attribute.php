@@ -8,6 +8,7 @@ use App\Contracts\Domain\IAttribute;
 use App\Enums\AttributeType;
 use App\Helpers\Response;
 use App\Helpers\Validator;
+use App\Models\Domain\Conditional\Conditional;
 use App\Services\Domain\AttributeService;
 use Intervention\Image\Exception\NotFoundException;
 
@@ -32,6 +33,10 @@ abstract class Attribute implements IAttribute {
      * @var string
      */
     public $name;
+    /**
+     * @var array
+     */
+    public $conditionals;
 
     public $value;
     public $defaultValue;
@@ -40,6 +45,7 @@ abstract class Attribute implements IAttribute {
         $this->attributeType = $attributeType;
         $this->attributeName = AttributeType::getName($attributeType);
         $this->settings = [];
+        $this->conditionals = [];
         $this->value = null;
         $this->id = 0;
         $this->name = "no_name";
@@ -68,6 +74,7 @@ abstract class Attribute implements IAttribute {
             "id" => "required|integer",
             "type" => "required|integer",
             "name" => "required|string",
+            "conditionals" => "nullable|array",
             "defaultValue" => "nullable|integer",
             "value" => "nullable|integer",
             "settings" => "required",
@@ -98,6 +105,7 @@ abstract class Attribute implements IAttribute {
         $attribute->attributeName = AttributeType::getName($value["type"]);
         $attribute->settings = $value["settings"];
         $attribute->name = $value["name"];
+        $attribute->conditionals = isset($value["conditionals"] ) ? Conditional::getListFromString(json_encode($value["conditionals"])) : [];
         $attribute->id = intval($value["id"]);
         $attribute->defaultValue = $value["defaultValue"];
 

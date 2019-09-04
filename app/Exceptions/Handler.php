@@ -2,8 +2,10 @@
 
 namespace App\Exceptions;
 
+use App\Helpers\Response;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Str;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +48,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        $message = $exception->getMessage();
+
+        if(Str::length($message))
+            Response::error($message);
+
         return parent::render($request, $exception);
     }
 }

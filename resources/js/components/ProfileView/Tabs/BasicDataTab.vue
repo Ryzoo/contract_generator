@@ -1,30 +1,32 @@
 <template>
     <v-card flat>
-        <v-card-text v-if="isLoaded">
+        <v-card-text v-if="isLoaded" >
             <v-form>
-                <v-layout row wrap>
-                    <v-flex xs12 md6 class="pa-1">
-                        <v-text-field
-                            v-model="user.firstName"
-                            :label="$t('form.profileEditForm.field.firstName')"
-                            required
-                        ></v-text-field>
-                    </v-flex>
-                    <v-flex xs12 md6 class="pa-1">
-                        <v-text-field
-                            v-model="user.lastName"
-                            :label="$t('form.profileEditForm.field.lastName')"
-                            required
-                        ></v-text-field>
-                    </v-flex>
-                    <v-flex xs12>
-                        <v-layout row wrap class="justify-end">
-                            <v-btn color="success" @click="saveBasicData()">
-                                {{ $t("form.profileEditForm.button.save") }}
-                            </v-btn>
-                        </v-layout>
-                    </v-flex>
-                </v-layout>
+                <v-container>
+                    <v-row>
+                        <v-col sm="12" md="6" class="pa-1">
+                            <v-text-field
+                                v-model="user.firstName"
+                                :label="$t('form.profileEditForm.field.firstName')"
+                                required
+                            ></v-text-field>
+                        </v-col>
+                        <v-col sm="12" md="6" class="pa-1">
+                            <v-text-field
+                                v-model="user.lastName"
+                                :label="$t('form.profileEditForm.field.lastName')"
+                                required
+                            ></v-text-field>
+                        </v-col>
+                        <v-col sm="12">
+                            <v-row class="justify-end">
+                                <v-btn color="success" @click="saveBasicData()">
+                                    {{ $t("form.profileEditForm.button.save") }}
+                                </v-btn>
+                            </v-row>
+                        </v-col>
+                    </v-row>
+                </v-container>
             </v-form>
         </v-card-text>
         <loader v-else></loader>

@@ -6,35 +6,35 @@
         <v-card-text class="pb-0">
             <v-form v-if="isLoaded">
                 <v-text-field
-                    prepend-icon="person"
+                    prepend-icon="fa-user-edit"
                     v-model="registerForm.firstName"
                     :label="$t('form.register.field.firstName')"
                     type="text"
                 >
                 </v-text-field>
                 <v-text-field
-                    prepend-icon="person"
+                    prepend-icon="fa-user-edit"
                     v-model="registerForm.lastName"
                     :label="$t('form.register.field.lastName')"
                     type="text"
                 >
                 </v-text-field>
                 <v-text-field
-                    prepend-icon="email"
+                    prepend-icon="fa-envelope"
                     v-model="registerForm.email"
                     :label="$t('form.register.field.email')"
                     type="email"
                 >
                 </v-text-field>
                 <v-text-field
-                    prepend-icon="lock"
+                    prepend-icon="fa-lock"
                     v-model="registerForm.password"
                     :label="$t('form.register.field.password')"
                     type="password"
                 >
                 </v-text-field>
                 <v-text-field
-                    prepend-icon="lock"
+                    prepend-icon="fa-lock"
                     v-model="registerForm.rePassword"
                     :label="$t('form.register.field.rePassword')"
                     type="password"
@@ -62,7 +62,7 @@
         <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
-                flat
+                text
                 color="primary"
                 :disabled="!isLoaded"
                 to="/auth/login"

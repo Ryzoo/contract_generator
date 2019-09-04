@@ -1,40 +1,42 @@
 <template>
     <v-card class="pb-3">
-        <div v-if="isLoaded">
-            <v-avatar size="80%" class="mx-auto d-block">
-                <lazy-img :src="user.profileImage" alt="avatar"></lazy-img>
-            </v-avatar>
-            <input
-                type="file"
-                id="profileImageInput"
-                hidden
-                ref="profileImage"
-                @change="profileImageAreChanged"
-            />
-            <v-btn
-                v-if="editable"
-                @click="changeProfileImage"
-                class="mx-auto d-block"
-                color="primary"
+        <v-card-text>
+            <template v-if="isLoaded">
+                <v-avatar size="80%" class="mx-auto d-block mb-2">
+                    <v-img :src="user.profileImage" alt="avatar"></v-img>
+                </v-avatar>
+                <input
+                    type="file"
+                    id="profileImageInput"
+                    hidden
+                    ref="profileImage"
+                    @change="profileImageAreChanged"
+                />
+                <v-btn
+                    v-if="editable"
+                    @click="changeProfileImage"
+                    class="mx-auto d-block"
+                    color="primary"
                 >{{ $t("form.profileEditForm.button.change_img") }}</v-btn
-            >
-            <v-btn
-                v-if="canBeSaved"
-                class="mx-auto d-block"
-                color="success"
-                @click="saveImage"
-            >
-                {{ $t("form.profileEditForm.button.save_img") }}
-            </v-btn>
-            <v-divider class="my-3"></v-divider>
-            <h2 class="text-xs-center">
-                {{ user.firstName }} {{ user.lastName }}
-            </h2>
-            <small class="text-xs-center d-block">{{
-                isAdmin ? $t("user.roles.ADMINISTRATOR") : $t("user.roles.CLIENT")
-            }}</small>
-        </div>
-        <loader v-else></loader>
+                >
+                <v-btn
+                    v-if="canBeSaved"
+                    class="mx-auto d-block"
+                    color="success"
+                    @click="saveImage"
+                >
+                    {{ $t("form.profileEditForm.button.save_img") }}
+                </v-btn>
+                <v-divider class="my-3"></v-divider>
+                <h2 class="text-center">
+                    {{ user.firstName }} {{ user.lastName }}
+                </h2>
+                <small class="text-center d-block">{{
+                    isAdmin ? $t("user.roles.ADMINISTRATOR") : $t("user.roles.CLIENT")
+                    }}</small>
+            </template>
+            <loader v-else></loader>
+        </v-card-text>
     </v-card>
 </template>
 

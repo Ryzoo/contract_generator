@@ -1,18 +1,18 @@
 <template>
-    <v-layout row wrap>
-        <v-flex xs12 sm4 lg3 class="pa-1">
+    <v-row>
+        <v-col xs="12" sm="4" lg="3" class="pa-1">
             <base-data-show
                 :user-data="user"
                 :editable="editable"
             ></base-data-show>
-        </v-flex>
-        <v-flex xs12 sm8 lg9 class="pa-1">
+        </v-col>
+        <v-col xs="12" sm="8" lg="9" class="pa-1">
             <profile-data-tabs
                 :user-data="user"
                 :editable="editable"
             ></profile-data-tabs>
-        </v-flex>
-    </v-layout>
+        </v-col>
+    </v-row>
 </template>
 
 <script>

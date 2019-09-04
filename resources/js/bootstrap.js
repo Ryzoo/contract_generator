@@ -1,6 +1,4 @@
 window._ = require('lodash');
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fas } from '@fortawesome/free-solid-svg-icons'
 
 try {
     window.Popper = require('popper.js').default;
@@ -29,5 +27,3 @@ window.axios.interceptors.response.use(
         return Promise.reject(error);
     }
 );
-
-library.add(fas);

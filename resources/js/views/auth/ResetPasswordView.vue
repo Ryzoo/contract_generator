@@ -8,14 +8,14 @@
         <v-card-text class="pb-0">
             <v-form v-if="isLoaded">
                 <v-text-field
-                    prepend-icon="lock"
+                    prepend-icon="fa-lock"
                     v-model="resetPasswordForm.password"
                     :label="$t('form.resetPasswordForm.field.password')"
                     type="password"
                 >
                 </v-text-field>
                 <v-text-field
-                    prepend-icon="lock"
+                    prepend-icon="fa-lock"
                     v-model="resetPasswordForm.rePassword"
                     :label="$t('form.resetPasswordForm.field.rePassword')"
                     type="password"
@@ -27,7 +27,7 @@
         <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
-                flat
+                text
                 color="primary"
                 to="/auth/login"
                 :disabled="!isLoaded"

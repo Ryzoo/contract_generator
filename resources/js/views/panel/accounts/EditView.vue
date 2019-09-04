@@ -1,57 +1,55 @@
 <template>
-    <v-flex xs12>
-        <v-layout row wrap>
-            <v-flex xs12 sm10 lg8 offset-sm1 offset-lg2>
-                <v-card class="pb-3">
-                    <v-toolbar dark color="primary">
-                        <v-toolbar-title class="white--text">{{$t('form.accountEditForm.title')}} - {{user.email}}</v-toolbar-title>
-                    </v-toolbar>
-                    <v-card-text v-if="isLoaded">
-                        <v-form>
-                            <v-layout row wrap>
-                                <v-flex xs12 md6 class="pa-1">
-                                    <v-text-field
-                                        prepend-icon="person"
-                                        v-model="user.firstName"
-                                        :label="$t('form.accountEditForm.field.firstName')"
-                                        required
-                                    ></v-text-field>
-                                </v-flex>
-                                <v-flex xs12 md6 class="pa-1">
-                                    <v-text-field
-                                        prepend-icon="person"
-                                        v-model="user.lastName"
-                                        :label="$t('form.accountEditForm.field.lastName')"
-                                        required
-                                    ></v-text-field>
-                                </v-flex>
-                                <v-flex xs12 md6 class="pa-1">
-                                    <v-select
-                                        prepend-icon="verified_user"
-                                        v-model="user.role"
-                                        :label="$t('form.accountEditForm.field.role')"
-                                        :items="roleList"
-                                        required
-                                    ></v-select>
-                                </v-flex>
-                                <v-flex xs12>
-                                    <v-layout row wrap class="justify-end">
-                                        <v-btn color="primary" flat="flat" @click="$router.push('/panel/accounts')" >
-                                            {{ $t("form.accountEditForm.button.prev") }}
-                                        </v-btn>
-                                        <v-btn color="success" @click="saveAccount()">
-                                            {{ $t("form.accountEditForm.button.save") }}
-                                        </v-btn>
-                                    </v-layout>
-                                </v-flex>
-                            </v-layout>
-                        </v-form>
-                    </v-card-text>
-                    <loader v-else></loader>
-                </v-card>
-            </v-flex>
-        </v-layout>
-    </v-flex>
+    <v-row align="center" justify="center">
+        <v-col xs="12" sm="10" lg="8">
+            <v-card>
+                <v-toolbar dark color="primary">
+                    <v-toolbar-title class="white--text">{{$t('form.accountEditForm.title')}} - {{user.email}}</v-toolbar-title>
+                </v-toolbar>
+                <v-card-text v-if="isLoaded">
+                    <v-form>
+                       <v-container>
+                           <v-row>
+                               <v-col sm="12" md="6" class="pa-1">
+                                   <v-text-field
+                                       prepend-icon="fa-user-edit"
+                                       v-model="user.firstName"
+                                       :label="$t('form.accountEditForm.field.firstName')"
+                                       required
+                                   ></v-text-field>
+                               </v-col>
+                               <v-col sm="12" md="6" class="pa-1">
+                                   <v-text-field
+                                       prepend-icon="fa-user-edit"
+                                       v-model="user.lastName"
+                                       :label="$t('form.accountEditForm.field.lastName')"
+                                       required
+                                   ></v-text-field>
+                               </v-col>
+                               <v-col sm="12" md="6" class="pa-1">
+                                   <v-select
+                                       prepend-icon="fa-user-tag"
+                                       v-model="user.role"
+                                       :label="$t('form.accountEditForm.field.role')"
+                                       :items="roleList"
+                                       required
+                                   ></v-select>
+                               </v-col>
+                           </v-row>
+                           <v-row align="end" justify="end">
+                               <v-btn color="primary" text @click="$router.push('/panel/accounts')" >
+                                   {{ $t("form.accountEditForm.button.prev") }}
+                               </v-btn>
+                               <v-btn color="success" @click="saveAccount()">
+                                   {{ $t("form.accountEditForm.button.save") }}
+                               </v-btn>
+                           </v-row>
+                       </v-container>
+                    </v-form>
+                </v-card-text>
+                <loader v-else></loader>
+            </v-card>
+        </v-col>
+    </v-row>
 </template>
 
 <script>

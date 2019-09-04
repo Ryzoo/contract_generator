@@ -2,7 +2,9 @@
 
 namespace Tests\Unit\Services\Domain;
 
+use App\Contracts\Domain\IAttribute;
 use App\Models\Domain\Contract;
+use Illuminate\Support\Collection;
 use Tests\TestCase;
 
 class FormServiceTest extends TestCase {
@@ -26,7 +28,18 @@ class FormServiceTest extends TestCase {
 
         $contractCollection = $this->formService->getContractFormForRender($savedContract);
 
+        $this->assertInstanceOf(Collection::class, $contractCollection);
         $this->assertEquals(5, $contractCollection->count());
+
+        foreach ($contractCollection as $formInput){
+            $this->assertNotNull($formInput->attribute);
+            $this->assertInstanceOf(IAttribute::class, $formInput->attribute);
+
+            $attribute = $formInput->attribute;
+
+            $this->assertIsArray($attribute->conditionals);
+        }
+
     }
 
     private function getTestContract(): Contract{

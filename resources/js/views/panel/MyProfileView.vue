@@ -1,7 +1,7 @@
 <template>
-    <v-flex xs12>
+    <v-col>
         <profile-view :user-data="user" :editable="true"></profile-view>
-    </v-flex>
+    </v-col>
 </template>
 
 <script>

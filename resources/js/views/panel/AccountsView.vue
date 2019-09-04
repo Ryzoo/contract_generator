@@ -1,61 +1,57 @@
 <template>
-    <v-flex xs12>
-        <v-layout v-if="isLoaded" row wrap>
-            <v-flex xs12>
-                <v-layout row wrap class="justify-end">
+    <v-row>
+        <v-col v-if="isLoaded">
+            <v-row>
+                <v-col align="end">
                     <v-btn :to="{ name: 'createAccount' }" color="primary">
                         {{$t("page.panel.accounts.button.newAccount")}}
                     </v-btn>
-                </v-layout>
-            </v-flex>
-            <v-flex xs12 mt-4>
-                <v-data-table :headers="headers" :items="items">
-                    <template v-slot:items="props">
-                        <td>
-                            <router-link :to="`/panel/account/${props.item.id}`">{{ props.item.firstName }} {{
-                                props.item.lastName }}
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col xs="12">
+                    <v-data-table
+                        class="elevation-2"
+                        :headers="headers"
+                        :items="items">
+                        <template v-slot:item.name="{ item }">
+                            <router-link :to="`/panel/account/${item.id}`">
+                                {{ item.firstName }} {{ item.lastName }}
                             </router-link>
-                        </td>
-                        <td>{{ props.item.email }}</td>
-                        <td>{{ getRoleName(props.item.role) }}</td>
-                        <td>{{ props.item.created_at }}</td>
-                        <td>
+                        </template>
+                        <template v-slot:item.action="{ item }">
                             <div class="table-icons">
-                                <font-awesome-icon @click="$router.push(`/panel/accounts/${props.item.id}/edit`)" icon="edit"/>
-                                <font-awesome-icon @click="tryToRemoveAccount(props.item.id)" icon="trash"/>
+                                <v-icon @click="$router.push(`/panel/accounts/${item.id}/edit`)">fa-edit</v-icon>
+                                <v-icon @click="tryToRemoveAccount(item.id)">fa-trash</v-icon>
                             </div>
-                        </td>
-                    </template>
-                </v-data-table>
-            </v-flex>
-        </v-layout>
+                        </template>
+                    </v-data-table>
+                </v-col>
+            </v-row>
+        </v-col>
         <loader v-else></loader>
 
-
         <v-dialog
+            persistent
             v-model="deleteDialog"
             max-width="290"
         >
             <v-card>
                 <v-card-title class="headline">{{$t("page.panel.accounts.description.removeTitle")}}</v-card-title>
-
                 <v-card-text>
                     {{$t("page.panel.accounts.description.remove")}}
                 </v-card-text>
-
                 <v-card-actions>
-                    <v-spacer></v-spacer>
+                    <div class="flex-grow-1"></div>
                     <v-btn
                         color="primary"
-                        flat="flat"
+                        text
                         @click="deleteDialog = false"
                     >
                         {{$t("page.panel.accounts.button.cancel")}}
                     </v-btn>
-
                     <v-btn
                         color="error"
-                        flat="flat"
                         @click="removeAccount"
                     >
                         {{$t("page.panel.accounts.button.remove")}}
@@ -63,7 +59,7 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
-    </v-flex>
+    </v-row>
 </template>
 
 <script>
@@ -94,6 +90,7 @@
           },
           {
             text: this.$t("page.panel.accounts.headers.actions"),
+            value: "action",
             sortable: false
           }
         ],
@@ -102,7 +99,7 @@
       };
     },
     methods: {
-      tryToRemoveAccount(id){
+      tryToRemoveAccount(id) {
         this.removeUserId = id;
         this.deleteDialog = true;
       },
@@ -110,7 +107,7 @@
         this.isLoaded = false;
         axios.delete(`/user/${this.removeUserId}`)
             .then((response) => {
-              this.items = this.items.filter(e=>e.id != this.removeUserId);
+              this.items = this.items.filter(e => e.id != this.removeUserId);
               this.removeUserId = null;
               this.deleteDialog = false;
               notify.push(
@@ -123,11 +120,13 @@
             })
       },
       getUserList() {
-
         this.isLoaded = false;
         axios.get("/user")
             .then((response) => {
-              this.items = response.data;
+              this.items = response.data.map(e => {
+                e.role = this.getRoleName(e.role);
+                return e;
+              });
             })
             .finally(() => {
               this.isLoaded = true;

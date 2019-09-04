@@ -2,15 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/Unit/Services/AuthServiceTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Unit/Services/Domain/FormServiceTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Unit/Services/UserServiceTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/plugins/vuetify.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/views/client/contract/ContractForm.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/AuthService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/AuthService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.phpstorm.meta.php" beforeDir="false" afterPath="$PROJECT_DIR$/.phpstorm.meta.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/Domain/FormService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/FormService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/FileService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/FileService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/UserService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/UserService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/Services/FileServiceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Services/FileServiceTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public_html/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public_html/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/LazyImg.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/ProfileView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ProfileView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/ProfileView/BaseDataShow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ProfileView/BaseDataShow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/ProfileView/Tabs/BasicDataTab.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ProfileView/Tabs/BasicDataTab.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/layouts/AuthLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/layouts/AuthLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/layouts/PanelLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/layouts/PanelLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/views/auth/LoginView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/auth/LoginView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/views/auth/RegisterView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/auth/RegisterView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/views/auth/ResetPasswordView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/auth/ResetPasswordView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/views/auth/SendResetPasswordTokenView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/auth/SendResetPasswordTokenView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/views/panel/AccountsView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/panel/AccountsView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/views/panel/AgreementsView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/panel/AgreementsView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/views/panel/MyProfileView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/panel/MyProfileView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/views/panel/accounts/CreateView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/panel/accounts/CreateView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/views/panel/accounts/EditView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/panel/accounts/EditView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/views/panel/agreements/CreateView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/panel/agreements/CreateView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/theme.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/theme.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/theme/table.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/theme/table.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/default.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/default.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/Services/Domain/FormServiceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Services/Domain/FormServiceTest.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -60,9 +89,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Vue Single File Component" />
         <option value="SCSS File" />
         <option value="package.json" />
+        <option value="Vue Single File Component" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -306,25 +336,25 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.jetbrains.php.phpunit.codeGeneration.PhpNewTestDialog.defaultLibrary" value="PHPUnit 6+" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/Unit/Services/Domain" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="coverage" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/tests/Unit/Services" />
-      <recent name="$PROJECT_DIR$/app/Traits" />
-      <recent name="$PROJECT_DIR$/app/Enums" />
-      <recent name="$PROJECT_DIR$/app/Models/Domain" />
-      <recent name="$PROJECT_DIR$/app/Models" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tests/Unit/Services/Domain" />
       <recent name="$PROJECT_DIR$/app/Models/Domain" />
       <recent name="$PROJECT_DIR$/resources/js/views/panel/accounts" />
       <recent name="$PROJECT_DIR$/resources/js/views/panel" />
       <recent name="$PROJECT_DIR$/app/Enums" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/Unit/Services" />
+      <recent name="$PROJECT_DIR$/app/Traits" />
+      <recent name="$PROJECT_DIR$/app/Enums" />
+      <recent name="$PROJECT_DIR$/app/Models/Domain" />
+      <recent name="$PROJECT_DIR$/app/Models" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -344,10 +374,6 @@
       <TestRunner class="Tests\Unit\Services\AuthServiceTest" file="$PROJECT_DIR$/tests/Unit/Services/AuthServiceTest.php" method="testAuthorizeLogedUserThrowNoAccessException" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="AuthServiceTest.testAuthorizeLogedUserThrowNoAccesssEcception" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Unit\Services\AuthServiceTest" file="$PROJECT_DIR$/tests/Unit/Services/AuthServiceTest.php" method="testAuthorizeLogedUserThrowNoAccesssEcception" scope="Method" />
-      <method v="2" />
-    </configuration>
     <configuration name="AuthServiceTest.testLoginUserThrowExceptionWhenBadEmail" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Unit\Services\AuthServiceTest" file="$PROJECT_DIR$/tests/Unit/Services/AuthServiceTest.php" method="testLoginUserThrowExceptionWhenBadEmail" scope="Method" />
       <method v="2" />
@@ -364,13 +390,17 @@
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" directory="$PROJECT_DIR$/tests" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
+    <configuration name="FormServiceTest.testGetContractFormForRender" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\Services\Domain\FormServiceTest" file="$PROJECT_DIR$/tests/Unit/Services/Domain/FormServiceTest.php" method="testGetContractFormForRender" scope="Method" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.FormServiceTest.testGetContractFormForRender" />
         <item itemvalue="PHPUnit.AuthServiceTest.testLoginUserThrowExceptionWhenBadPassword" />
         <item itemvalue="PHPUnit.AuthServiceTest.testLoginUserThrowExceptionWhenBadEmail" />
         <item itemvalue="PHPUnit.AuthServiceTest.testResetUserPasswordThrowBadTokenException" />
         <item itemvalue="PHPUnit.AuthServiceTest.testAuthorizeLogedUserThrowNoAccessException" />
-        <item itemvalue="PHPUnit.AuthServiceTest.testAuthorizeLogedUserThrowNoAccesssEcception" />
       </list>
     </recent_temporary>
   </component>
@@ -430,7 +460,13 @@
       <workItem from="1566399060662" duration="14000" />
       <workItem from="1567078447722" duration="1758000" />
       <workItem from="1567089254557" duration="8403000" />
-      <workItem from="1567101668402" duration="4657000" />
+      <workItem from="1567101668402" duration="5153000" />
+      <workItem from="1567259775569" duration="43000" />
+      <workItem from="1567261233783" duration="1473000" />
+      <workItem from="1567339200490" duration="904000" />
+      <workItem from="1567362348595" duration="13000" />
+      <workItem from="1567492560619" duration="243000" />
+      <workItem from="1567604312477" duration="9738000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>
@@ -521,6 +557,6 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/contract_generator@Contract_Generator.xml" NAME="Contract Generator Coverage Results" MODIFIED="1567106341192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/contract_generator@Contract_Generator.xml" NAME="Contract Generator Coverage Results" MODIFIED="1567492605357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

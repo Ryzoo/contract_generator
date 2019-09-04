@@ -15,27 +15,24 @@
         "lang": "php artisan vue-i18n:generate"
     },
     "devDependencies": {
-        "axios": "^0.18",
-        "cross-env": "^5.1",
-        "jquery": "^3.2",
-        "laravel-mix": "^4.0.7",
-        "lodash": "^4.17.5",
-        "popper.js": "^1.12",
-        "resolve-url-loader": "^2.3.1",
-        "sass": "^1.15.2",
-        "sass-loader": "^7.1.0",
-        "vue": "^2.5.17",
+        "@fortawesome/fontawesome-free": "^5.10.2",
+        "axios": "^0.19",
+        "cross-env": "^5.2",
+        "jquery": "^3.4",
+        "laravel-mix": "^4.1.2",
+        "lodash": "^4.17.15",
+        "popper.js": "^1.15",
+        "resolve-url-loader": "^3.1.0",
+        "sass": "^1.22.10",
+        "sass-loader": "^7.3.1",
+        "vue": "^2.6.10",
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-svg-core": "^1.2.18",
-        "@fortawesome/free-solid-svg-icons": "^5.8.2",
-        "@fortawesome/vue-fontawesome": "^0.1.6",
-        "material-design-icons-iconfont": "^5.0.1",
         "vue-content-loading": "^1.6.0",
-        "vue-i18n": "^8.11.2",
-        "vue-router": "^3.0.6",
-        "vuetify": "^1.5.14",
+        "vue-i18n": "^8.14.0",
+        "vue-router": "^3.1.3",
+        "vuetify": "^2.0.14",
         "vuex": "^3.1.1"
     }
 }

@@ -1,12 +1,22 @@
 <template>
-    <v-container fluid fill-height>
-        <v-layout align-center justify-center>
-            <v-flex xs12 sm8 md4>
+    <v-container
+        class="fill-height"
+        fluid
+    >
+        <v-row
+            align="center"
+            justify="center"
+        >
+            <v-col
+                cols="12"
+                sm="8"
+                md="4"
+            >
                 <v-fade-transition mode="out-in">
                     <router-view></router-view>
                 </v-fade-transition>
-            </v-flex>
-        </v-layout>
+            </v-col>
+        </v-row>
     </v-container>
 </template>
 

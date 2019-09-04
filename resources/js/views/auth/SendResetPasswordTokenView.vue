@@ -8,7 +8,7 @@
         <v-card-text class="pb-0">
             <v-form v-if="isLoaded">
                 <v-text-field
-                    prepend-icon="person"
+                    prepend-icon="fa-envelope"
                     v-model="sendTokenForm.email"
                     :label="$t('form.sendResetTokenForm.field.email')"
                     type="email"
@@ -20,7 +20,7 @@
         <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
-                flat
+                text
                 color="primary"
                 to="/auth/login"
                 :disabled="!isLoaded"

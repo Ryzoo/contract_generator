@@ -1,19 +1,19 @@
 <template>
     <v-card class="elevation-12">
-        <v-toolbar>
+        <v-toolbar flat>
             <v-toolbar-title>{{ $t("form.login.title") }}</v-toolbar-title>
         </v-toolbar>
         <v-card-text class="pb-0">
             <v-form v-if="isLoaded">
                 <v-text-field
-                    prepend-icon="email"
+                    prepend-icon="fa-envelope"
                     v-model="loginForm.email"
                     :label="$t('form.login.field.email')"
                     type="email"
                 >
                 </v-text-field>
                 <v-text-field
-                    prepend-icon="lock"
+                    prepend-icon="fa-lock"
                     v-model="loginForm.password"
                     :label="$t('form.login.field.password')"
                     type="password"
@@ -33,7 +33,7 @@
             <v-spacer></v-spacer>
             <v-btn
                 :disabled="!isLoaded"
-                flat
+                text
                 color="primary"
                 to="/auth/register"
                 >{{ $t("form.login.button.register") }}
@@ -52,8 +52,8 @@ export default {
         return {
             isLoaded: true,
             loginForm: {
-                email: "",
-                password: ""
+                email: "t.client@test.pl",
+                password: "client"
             }
         };
     },

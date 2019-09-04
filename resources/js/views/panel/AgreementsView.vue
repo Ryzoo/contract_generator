@@ -1,39 +1,28 @@
 <template>
-    <v-layout row wrap>
-        <v-flex xs12>
-            <v-layout row wrap class="justify-end">
-                <v-btn :to="{ name: 'createAgreement' }" color="primary">{{
-                    $t("pageMeta.panel.agreements.button.newAgreement")
-                }}</v-btn>
-            </v-layout>
-        </v-flex>
-        <v-flex xs12 mt-4>
-            <v-data-table :headers="headers" :items="items">
-                <template v-slot:items="props">
-                    <td>{{ props.item.name }}</td>
-                    <td>
-                        <span
-                            :class="{
-                                'success--text': props.item.active,
-                                'error--text': !props.item.active
-                            }"
-                        >
-                            {{ props.item.status }}
-                        </span>
-                    </td>
-                    <td>
-                        {{ props.item.date_add }}
-                    </td>
-                    <td>
+    <v-col>
+        <v-row>
+            <v-col align="end">
+                <v-btn :to="{ name: 'createAgreement' }" color="primary">
+                    {{$t("pageMeta.panel.agreements.button.newAgreement")}}
+                </v-btn>
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col xs="12">
+                <v-data-table
+                    class="elevation-2"
+                    :headers="headers"
+                    :items="items">
+                    <template v-slot:item.action="{ item }">
                         <div class="table-icons">
-                            <font-awesome-icon icon="edit" />
-                            <font-awesome-icon icon="trash" />
+                            <v-icon>fa-edit</v-icon>
+                            <v-icon>fa-trash</v-icon>
                         </div>
-                    </td>
-                </template>
-            </v-data-table>
-        </v-flex>
-    </v-layout>
+                    </template>
+                </v-data-table>
+            </v-col>
+        </v-row>
+    </v-col>
 </template>
 
 <script>
@@ -56,6 +45,7 @@ export default {
                 },
                 {
                     text: this.$t("pageMeta.panel.agreements.headers.actions"),
+                    value: "action",
                     sortable: false
                 }
             ],
