@@ -32,6 +32,8 @@
         "@fortawesome/free-solid-svg-icons": "^5.8.2",
         "@fortawesome/vue-fontawesome": "^0.1.6",
         "material-design-icons-iconfont": "^5.0.1",
+        "tiptap": "^1.24.2",
+        "tiptap-extensions": "^1.27.0",
         "vue-content-loading": "^1.6.0",
         "vue-i18n": "^8.11.2",
         "vue-router": "^3.0.6",

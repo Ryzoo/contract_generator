@@ -8,7 +8,7 @@
                             <component
                                 v-for="(block, index) in blocks"
                                 :key="index"
-                                :is="block.type"
+                                :is="Mapper.getBlockName(block.type)"
                                 v-bind="block"
                             >
                             </component>
@@ -122,11 +122,12 @@
 </template>
 
 <script>
-import Block from "../../../components/Block";
+import TextBlock from "../../../components/Blocks/TextBlock";
+
 export default {
     name: "CreateAgreementView",
     components: {
-        Block
+        TextBlock
     },
     data: function() {
         return {
@@ -134,10 +135,10 @@ export default {
             dialog: false,
             blocks: [
                 {
-                    type: "Blok tekstowy",
+                    type: 0,
                     content: {
                         text:
-                            "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną {0}"
+                            "<h1>Lorem ipsum</h1> <br> dolor sit amet, <variable>consectetur</variable> adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                     },
                     conditionals: {},
                     settings: {}

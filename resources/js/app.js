@@ -1,4 +1,6 @@
 import {UserRoleEnum} from "./additionalModules/Enums";
+import Mapper from "./additionalModules/Mappers";
+import Variable from "./additionalModules/Variable";
 
 require('./bootstrap');
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -30,6 +32,12 @@ import i18n from './lang'
 
 
 Vue.mixin({
+    data: function () {
+        return {
+            Mapper: Mapper,
+            Variable
+        }
+    },
     methods:{
         getRoleName(roleId){
             for (let i in UserRoleEnum) {

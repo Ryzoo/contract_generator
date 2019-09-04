@@ -2667,12 +2667,14 @@ table.v-table tbody td {
 }
 
 .table-icons > * {
+  -webkit-transition: all 0.2s;
   transition: all 0.2s;
   box-sizing: content-box;
   padding: 3px;
 }
 
 .table-icons {
+  display: -webkit-box;
   display: flex;
   justify-content: space-around;
 }
@@ -2685,8 +2687,11 @@ body > .notify-container {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  display: -webkit-box;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
   max-width: 500px;
   width: 100%;
   right: 25px;
@@ -2707,8 +2712,11 @@ body > .notify-container .notify-element {
   color: white;
   padding: 15px;
   position: relative;
-  align-items: center;
+  -webkit-box-align: center;
+          align-items: center;
+  display: -webkit-box;
   display: flex;
+  -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 
@@ -2731,7 +2739,8 @@ body > .notify-container .notify-element.notify-type-3 {
 body > .notify-container .notify-element p {
   font-family: Roboto, sans-serif !important;
   margin: 0;
-  flex: 1;
+  -webkit-box-flex: 1;
+          flex: 1;
   font-size: 15px;
 }
 
@@ -2741,6 +2750,7 @@ body > .notify-container .notify-element .close {
   height: 32px;
   opacity: 0.5;
   margin-left: 5px;
+  -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 
