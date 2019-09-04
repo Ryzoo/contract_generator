@@ -1,5 +1,6 @@
 import {UserRoleEnum} from "./additionalModules/Enums";
 import Mapper from "./additionalModules/Mappers";
+import ConditionalParser from "./additionalModules/ConditionalParser";
 import '@fortawesome/fontawesome-free/css/all.css'
 require('./bootstrap');
 import vuetify from './plugins/vuetify';
@@ -13,10 +14,13 @@ import store from './store';
 import route from './route'
 import i18n from './lang'
 
+ConditionalParser.setStore(store);
+
 Vue.mixin({
     data: function () {
         return {
-            Mapper: Mapper
+            Mapper: Mapper,
+            ConditionalParser: ConditionalParser
         }
     },
     methods:{

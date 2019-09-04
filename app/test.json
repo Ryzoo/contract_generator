@@ -1,4 +1,5 @@
 {
+    "name": "Tutaj fajna nazwa - od 5 do 190 znaków",
     "attributesList": [
         {
             "name": "Wiek użytkownika",
@@ -53,18 +54,31 @@
     ],
     "blocks": [
         {
+            "id": 1,
+            "parentId": 0,
             "type": 0,
             "content": {
                 "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną {2}"
             },
-            "conditionals": [],
+            "conditionals": [{
+                "type": 0,
+                "content": [
+                    "{5}",
+                    "==",
+                    "1"
+                ]
+            }],
             "settings":{}
         },
         {
+            "id": 2,
+            "parentId": 0,
             "type": 1,
             "content": {
                 "blocks": [
                     {
+                        "id": 3,
+                        "parentId": 2,
                         "type": 0,
                         "content": {
                             "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną"
@@ -73,12 +87,14 @@
                             "type": 0,
                             "content": [
                                 "{1}",
-                                "=",
-                                "value:ddd"
+                                "==",
+                                "1"
                             ]
                         }],
                         "settings":{}
                     },{
+                        "id": 4,
+                        "parentId": 2,
                         "type": 0,
                         "content": {
                             "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną"
@@ -87,27 +103,27 @@
                             "type": 0,
                             "content": [
                                 "{1}",
-                                "=",
-                                "value:ddd"
+                                "==",
+                                "1"
                             ]
                         }],
                         "settings":{}
                     }
                 ]
             },
-            "conditionals": [
-                {
+            "conditionals": [{
                     "type": 0,
                     "content": [
                         "{2}",
-                        "=",
-                        "value:ddd"
+                        "==",
+                        "1"
                     ]
-                }
-            ],
+            }],
             "settings":{}
         },
         {
+            "id": 5,
+            "parentId": 0,
             "type": 0,
             "content": {
                 "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną {3}"
@@ -116,14 +132,20 @@
             "settings":{}
         },
         {
+            "id": 6,
+            "parentId": 0,
             "type": 1,
             "content": {
                 "blocks": [
                     {
+                        "id": 7,
+                        "parentId": 6,
                         "type": 1,
                         "content": {
                             "blocks": [
                                 {
+                                    "id": 8,
+                                    "parentId": 7,
                                     "type": 0,
                                     "content": {
                                         "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną "
@@ -132,12 +154,14 @@
                                         "type": 0,
                                         "content": [
                                             "{5}",
-                                            "=",
-                                            "value:ddd"
+                                            "==",
+                                            "1"
                                         ]
                                     }],
                                     "settings":{}
                                 },{
+                                    "id": 9,
+                                    "parentId": 7,
                                     "type": 0,
                                     "content": {
                                         "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną "
@@ -146,8 +170,8 @@
                                         "type": 0,
                                         "content": [
                                             "{5}",
-                                            "=",
-                                            "value:ddd"
+                                            "==",
+                                            "1"
                                         ]
                                     }],
                                     "settings":{}
@@ -158,12 +182,14 @@
                             "type": 0,
                             "content": [
                                 "{4}",
-                                "=",
-                                "value:ddd"
+                                "==",
+                                "1"
                             ]
                         }],
                         "settings":{}
                     },{
+                        "id": 10,
+                        "parentId": 6,
                         "type": 0,
                         "content": {
                             "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną"
@@ -172,8 +198,8 @@
                             "type": 0,
                             "content": [
                                 "{4}",
-                                "=",
-                                "value:ddd"
+                                "==",
+                                "1"
                             ]
                         }],
                         "settings":{}

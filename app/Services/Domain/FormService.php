@@ -9,6 +9,15 @@ use Illuminate\Support\Collection;
 
 class FormService {
 
+    /**
+     * @var ConditionalService
+     */
+    private $conditionalService;
+
+    public function __construct(ConditionalService $conditionalService) {
+        $this->conditionalService = $conditionalService;
+    }
+
     public function createFromContract(Contract $contract):Form {
         $blocks = $contract->blocks;
 
@@ -26,13 +35,23 @@ class FormService {
     public function getContractFormForRender(Contract $contract):Collection {
         $form = $contract->form;
         $attributesOrder = $form->attributesOrder;
+        $blockCollection = $contract->getBlockCollection();
 
         $formCollection = collect();
-        foreach ($attributesOrder as $attributeID){
-            $attribute = $contract->getAttributeByID($attributeID);
+        foreach ($attributesOrder as $attributeData){
+            $blockId = $attributeData[0];
+            $attributeId = $attributeData[1];
+            $attribute = $contract->getAttributeByID($attributeId);
+            $attributeConditionals = $this->conditionalService
+                ->findConditionalsInBlockFromId($blockCollection, $blockId);
+
+            $attribute->conditionals = array_reverse($attributeConditionals->toArray());
+
             $formCollection->push(new FormInput($attribute));
         }
 
         return $formCollection;
     }
+
+
 }

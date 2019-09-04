@@ -37,9 +37,9 @@ class TextBlock extends Block {
 
             if(isset($output_array[1] ) && is_array($output_array[1] ))
                 foreach ($output_array[1] as $arrayElement)
-                    $variableArray->push($arrayElement);
+                    $variableArray->push([$this->id, $arrayElement]);
         }
 
-        return $variableArray->uniqueStrict();
+        return $variableArray->uniqueStrict(1);
     }
 }

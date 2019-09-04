@@ -12,4 +12,5 @@ interface IBlock {
     public static function getFromString(array $value): Block;
     public static function getBlockByType(int $blockType): Block;
     public function findVariable(Collection $variableArray): Collection;
+    public function getBlockCollection(Collection $blockCollection): Collection;
 }

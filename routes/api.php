@@ -35,6 +35,7 @@ Route::prefix('user')->group(function () {
 });
 
 Route::prefix('contract')->group(function () {
+    Route::get('/', 'ContractController@getContractList');
     Route::post('/', 'ContractController@addNewContract');
     Route::get('/{id}/form', 'ContractController@getContractForm');
 });

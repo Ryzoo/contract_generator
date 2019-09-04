@@ -8,6 +8,7 @@ use App\Helpers\Response;
 use App\Models\Domain\Attributes\Attribute;
 use App\Models\Domain\Blocks\Block;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 
 class Contract extends ElegantValidator
 {
@@ -16,24 +17,28 @@ class Contract extends ElegantValidator
     protected $guarded = [];
 
     protected $casts = [
+        'name' => 'required|string|between:5,190',
         'attributesList' => 'array',
         'blocks' => 'array',
         'settings' => 'array',
     ];
 
     public static $rulesAddRequestCreate= array(
+        'name' => 'required|string|between:5,190',
         'attributesList'    => 'array',
         'blocks'        => 'array',
         'settings'      => 'array',
     );
 
     public static $rulesAdd = array(
+        'name' => 'required|string|between:5,190',
         'attributesList'    => 'required|json',
         'blocks'        => 'required|json',
         'settings'      => 'required|json',
     );
 
     public static $rulesUpdate = array(
+        'name' => 'required|string|between:5,190',
         'attributesList'    => 'required|json',
         'blocks'        => 'required|json',
         'settings'      => 'required|json',
@@ -71,6 +76,17 @@ class Contract extends ElegantValidator
 //    {
 //        return Settings::getListFromString($value);
 //    }
+
+    public function getBlockCollection():Collection {
+        $currentBlocks = $this->blocks;
+        $blockCollection = collect();
+
+        foreach ($currentBlocks as $block){
+            $blockCollection = $block->getBlockCollection($blockCollection);
+        }
+
+        return $blockCollection;
+    }
 
     /**
      * Set the attributes

@@ -6,6 +6,7 @@ use App\Helpers\Response;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Str;
+use Whoops\Exception\ErrorException;
 
 class Handler extends ExceptionHandler
 {
@@ -50,7 +51,7 @@ class Handler extends ExceptionHandler
     {
         $message = $exception->getMessage();
 
-        if(Str::length($message))
+        if($exception instanceof ErrorException && Str::length($message))
             Response::error($message);
 
         return parent::render($request, $exception);

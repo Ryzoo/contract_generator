@@ -3,6 +3,8 @@
 namespace App\Helpers;
 
 
+use Whoops\Exception\ErrorException;
+
 class Validator {
 
     public static function validate(array $allRequest,array $rules):bool {
@@ -12,9 +14,9 @@ class Validator {
             ->all();
 
         if (count($errors) > 0) {
-            throw new \Exception($errors[0]);
-            return FALSE;
+            throw new ErrorException($errors[0]);
         }
+
         return TRUE;
     }
 

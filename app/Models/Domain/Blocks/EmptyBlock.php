@@ -36,6 +36,16 @@ class EmptyBlock extends Block {
             $variableArray = $block->findVariable($variableArray);
         }
 
-        return $variableArray->uniqueStrict();
+        return $variableArray->uniqueStrict(1);
+    }
+
+    public function getBlockCollection(Collection $blockCollection): Collection{
+        $blockCollection = parent::getBlockCollection($blockCollection);
+
+        foreach ($this->content["blocks"] as $block){
+            $blockCollection = $block->getBlockCollection($blockCollection);
+        }
+
+        return $blockCollection;
     }
 }

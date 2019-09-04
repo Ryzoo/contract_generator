@@ -9,8 +9,8 @@ use App\Services\Domain\ContractService;
 use App\Services\Domain\FormService;
 use Illuminate\Http\Request;
 
-class ContractController extends Controller
-{
+class ContractController extends Controller {
+
     /**
      * @var ContractService
      */
@@ -39,6 +39,14 @@ class ContractController extends Controller
 
     public function getContractForm(Request $request, int $contractID) {
         $contract = Contract::getById($contractID);
-        return $this->formService->getContractFormForRender($contract);
+
+        $formToRender = $this->formService->getContractFormForRender($contract);
+
+        Response::success($formToRender);
+    }
+
+    public function getContractList(Request $request){
+        $contractCollection = $this->contractService->getContractCollection();
+        Response::success($contractCollection);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Services\Domain;
 
 
 use App\Models\Domain\Contract;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class ContractService {
@@ -28,4 +29,9 @@ class ContractService {
 
         return $contract;
     }
+
+    public function getContractCollection(): Collection {
+        return Contract::all();
+    }
+
 }

@@ -21,7 +21,14 @@ abstract class Block implements IBlock {
      * @var string
      */
     public $blockName;
-
+    /**
+     * @var int
+     */
+    public $id;
+    /**
+     * @var int
+     */
+    public $parentId;
     /**
      * @var array
      */
@@ -41,6 +48,8 @@ abstract class Block implements IBlock {
         $this->blockType = $blockType;
         $this->blockName = BlockType::getName($blockType);
         $this->settings = [];
+        $this->id = 0;
+        $this->parentId = 0;
         $this->content = [];
         $this->conditionals = [];
         $this->buildObject();
@@ -74,6 +83,8 @@ abstract class Block implements IBlock {
 
     public static function validate($value):bool {
         Validator::validate($value,[
+            "id" => "required|integer",
+            "parentId" => "required|integer",
             "type" => "required|integer",
             "content" => "nullable",
             "conditionals" => "nullable|array",
@@ -101,6 +112,8 @@ abstract class Block implements IBlock {
         Block::validate($value);
         $block = self::getBlockByType($value["type"]);
 
+        $block->id = $value["id"];
+        $block->parentId = $value["parentId"];
         $block->blockType = $value["type"];
         $block->blockName = BlockType::getName($value["type"]);
         $block->settings = $value["settings"];
@@ -116,9 +129,14 @@ abstract class Block implements IBlock {
         foreach ($this->conditionals as $conditional){
             $conditionalVariablesList = $conditional->getUsedVariable();
             foreach ($conditionalVariablesList as $arrayElement)
-                $variableArray->push($arrayElement);
+                $variableArray->push([$this->parentId, $arrayElement]);
         }
 
-        return $variableArray->uniqueStrict();
+        return $variableArray->uniqueStrict(1);
+    }
+
+    public function getBlockCollection(Collection $blockCollection):Collection {
+        $blockCollection->push($this);
+        return $blockCollection;
     }
 }
