@@ -2,7 +2,9 @@
 
 namespace App\Models\Domain;;
 
+use App\Contracts\Domain\IAttribute;
 use App\Helpers\ElegantValidator;
+use App\Helpers\Response;
 use App\Models\Domain\Attributes\Attribute;
 use App\Models\Domain\Blocks\Block;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,25 +16,25 @@ class Contract extends ElegantValidator
     protected $guarded = [];
 
     protected $casts = [
-        'attributes' => 'array',
+        'attributesList' => 'array',
         'blocks' => 'array',
         'settings' => 'array',
     ];
 
     public static $rulesAddRequestCreate= array(
-        'attributes'    => 'required|json',
-        'blocks'        => 'required|json',
-        'settings'      => 'required|json',
+        'attributesList'    => 'array',
+        'blocks'        => 'array',
+        'settings'      => 'array',
     );
 
     public static $rulesAdd = array(
-        'attributes'    => 'required|json',
+        'attributesList'    => 'required|json',
         'blocks'        => 'required|json',
         'settings'      => 'required|json',
     );
 
     public static $rulesUpdate = array(
-        'attributes'    => 'required|json',
+        'attributesList'    => 'required|json',
         'blocks'        => 'required|json',
         'settings'      => 'required|json',
     );
@@ -43,7 +45,7 @@ class Contract extends ElegantValidator
      * @param  string  $value
      * @return array
      */
-    public function getAttributesAttribute($value): array
+    public function getAttributesListAttribute($value): array
     {
         return Attribute::getListFromString($value);
     }
@@ -76,9 +78,9 @@ class Contract extends ElegantValidator
      * @param  string  $value
      * @return void
      */
-    public function setAttributesAttribute($value)
+    public function setAttributesListAttribute($value)
     {
-        $this->attributes['attributes'] = json_encode($value);
+        $this->attributes['attributesList'] = json_encode($value);
     }
 
     /**
@@ -101,5 +103,30 @@ class Contract extends ElegantValidator
     public function setSettingsAttribute($value)
     {
         $this->attributes['settings'] = json_encode($value);
+    }
+
+    public static function getById(int $contractID):?Contract{
+        $contract = Contract::where("id", $contractID)->first();
+
+        if(!isset($contract))
+            Response::error(__("response.notFoundId"),404);
+
+        return $contract;
+    }
+
+    public function getAttributeByID(int $attributeID):IAttribute {
+        $attributes = $this->attributesList;
+
+        foreach ($attributes as $attribute){
+            if($attribute->id === $attributeID)
+                return $attribute;
+        }
+
+        Response::error(__('validation.attributes.not_exist', ["id" => $attributeID]), 404);
+    }
+
+    public function form()
+    {
+        return $this->hasOne('App\Models\Domain\Form');
     }
 }

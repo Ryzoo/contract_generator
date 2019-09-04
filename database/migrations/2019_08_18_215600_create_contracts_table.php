@@ -15,7 +15,7 @@ class CreateContractsTable extends Migration
     {
         Schema::create('contracts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->json('attributes');
+            $table->json('attributesList');
             $table->json('blocks');
             $table->json('settings');
             $table->softDeletes();

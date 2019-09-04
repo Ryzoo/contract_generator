@@ -10,4 +10,13 @@ class Form extends Model
     use SoftDeletes;
 
     protected $guarded = [];
+
+    protected $casts = [
+        'attributesOrder' => 'array'
+    ];
+
+    public function contract()
+    {
+        return $this->belongsTo('App\Models\Domain\Contract');
+    }
 }

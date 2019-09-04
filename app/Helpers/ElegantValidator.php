@@ -19,10 +19,9 @@ class ElegantValidator extends Model{
 
     public static function validate($data, bool $isUpdate=false):bool {
         if(!isset($data) || !($data instanceof Model)){
-            Response::error(__("validation.bad_object_data"),400);
+            throw new \Exception(__("validation.bad_object_data"));
         }
 
         return Validator::validate($data->getAttributes(),$isUpdate ? static::$rulesUpdate : static::$rulesAdd);
     }
-
 }

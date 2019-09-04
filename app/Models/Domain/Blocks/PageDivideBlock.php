@@ -19,7 +19,7 @@ class PageDivideBlock extends Block {
         // TODO: Implement buildContent() method.
     }
 
-    protected function buildConditionals() {
-        // TODO: Implement buildConditionals() method.
+    protected function validateContent(): bool {
+        return true;
     }
 }

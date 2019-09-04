@@ -13,6 +13,9 @@ class NumberAttribute extends Attribute {
     }
 
     protected function buildSettings() {
-        // TODO: Implement buildSettings() method.
+        $this->settings = [
+            "min" => null,
+            "max" => null
+        ];
     }
 }

@@ -8,6 +8,8 @@ use App\Contracts\Domain\IBlock;
 use App\Enums\BlockType;
 use App\Helpers\Response;
 use App\Helpers\Validator;
+use App\Models\Domain\Conditional\Conditional;
+use Illuminate\Support\Collection;
 use Intervention\Image\Exception\NotFoundException;
 
 abstract class Block implements IBlock {
@@ -46,15 +48,17 @@ abstract class Block implements IBlock {
 
     protected function buildObject(){
         $this->buildSettings();
+    }
+    protected function prepare() {
+        $this->validateContent();
         $this->buildContent();
-        $this->buildConditionals();
     }
 
     protected abstract function buildSettings();
     protected abstract function buildContent();
-    protected abstract function buildConditionals();
+    protected abstract function validateContent():bool ;
 
-    public static function getBlockByType(int $blockType):IBlock {
+    public static function getBlockByType(int $blockType):Block {
         switch ($blockType)
         {
             case BlockType::TEXT_BLOCK:
@@ -70,10 +74,10 @@ abstract class Block implements IBlock {
 
     public static function validate($value):bool {
         Validator::validate($value,[
-            "id" => "required|integer",
-            "content" => "required|json",
-            "conditional" => "required|json",
-            "settings" => "required|json",
+            "type" => "required|integer",
+            "content" => "nullable",
+            "conditionals" => "nullable|array",
+            "settings" => "nullable",
         ]);
 
         return true;
@@ -87,22 +91,34 @@ abstract class Block implements IBlock {
             Response::error(_('custom.array.attributes'));
 
         foreach ($arrayOfBlocks as $block){
-            array_push($returnedArray, self::getFromString($block));
+            array_push($returnedArray, self::getFromString((array)$block));
         }
 
         return $returnedArray;
     }
 
-    public static function getFromString($value):IBlock {
+    public static function getFromString(array $value):Block {
         Block::validate($value);
-        $block = self::getBlockByType($value["id"]);
+        $block = self::getBlockByType($value["type"]);
 
-        $block->blockType = $value["id"];
-        $block->blockName = BlockType::getName($value["id"]);
+        $block->blockType = $value["type"];
+        $block->blockName = BlockType::getName($value["type"]);
         $block->settings = $value["settings"];
-        $block->conditional = $value["conditional"];
-        $block->content = $value["content"];
+        $block->conditionals = Conditional::getListFromString(json_encode($value["conditionals"]));
+        $block->content = (array) $value["content"];
+
+        $block->prepare();
 
         return $block;
+    }
+
+    public function findVariable(Collection $variableArray): Collection{
+        foreach ($this->conditionals as $conditional){
+            $conditionalVariablesList = $conditional->getUsedVariable();
+            foreach ($conditionalVariablesList as $arrayElement)
+                $variableArray->push($arrayElement);
+        }
+
+        return $variableArray->uniqueStrict();
     }
 }

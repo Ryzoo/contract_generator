@@ -11,8 +11,8 @@ class Validator {
             ->errors()
             ->all();
 
-        if (isset($errors) && count($errors) > 0) {
-            Response::error($errors[0], 400);
+        if (count($errors) > 0) {
+            throw new \Exception($errors[0]);
             return FALSE;
         }
         return TRUE;

@@ -4,7 +4,7 @@
 namespace App\Enums;
 
 
-use App\Contracts\EnumIterator;
+use App\Traits\EnumIterator;
 
 class UserRole {
     use EnumIterator;

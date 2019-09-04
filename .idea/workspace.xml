@@ -1,23 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="creator v1">
-      <change afterPath="$PROJECT_DIR$/resources/js/additionalModules/Mappers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/additionalModules/Nodes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/additionalModules/Variable.js" afterDir="false" />
+    <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/tests/Unit/Services/AuthServiceTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Unit/Services/Domain/FormServiceTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Unit/Services/UserServiceTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_html/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_html/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/additionalModules/Enums.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/additionalModules/Enums.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/assets/vue-i18n-locales.generated.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/assets/vue-i18n-locales.generated.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Block.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Blocks/TextBlock.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/panel/AccountsView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/panel/AccountsView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/panel/accounts/CreateView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/panel/accounts/CreateView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/panel/accounts/EditView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/panel/accounts/EditView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/panel/agreements/CreateView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/panel/agreements/CreateView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/AuthService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/AuthService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Domain/FormService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/FormService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/FileService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/FileService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/UserService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/UserService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/Services/FileServiceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Services/FileServiceTest.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +20,12 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="296" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -42,128 +41,21 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@localhost-m1634_contractg" type="feb32156:DbDataSourceImpl" />
+        <item name="m1634_contractg@localhost" type="feb32156:DbDataSourceImpl" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@localhost-m1634_contractg" type="feb32156:DbDataSourceImpl" />
+        <item name="m1634_contractg@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@localhost-m1634_contractg" type="feb32156:DbDataSourceImpl" />
+        <item name="m1634_contractg@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="m1634_contractg: schema" type="76f4a085:MysqlImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@localhost-m1634_contractg" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="m1634_contractg: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="users: table" type="285a2a93:MysqlImplModel$Table" />
+        <item name="m1634_contractg: schema" type="ebfa3cd1:MariaImplModel$Schema" />
       </path>
     </expand>
     <select />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/layouts/PanelLayout.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1035">
-              <caret line="45" column="73" selection-start-line="45" selection-start-column="73" selection-end-line="45" selection-end-column="73" />
-              <folding>
-                <element signature="e#2672#2678#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/views/panel/agreements/CreateView.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3519">
-              <caret line="153" column="35" selection-start-line="153" selection-start-column="35" selection-end-line="153" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/additionalModules/Mappers.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="40" selection-start-column="40" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/additionalModules/Enums.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/test.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="621">
-              <caret line="27" column="28" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/components/Blocks/TextBlock.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1587">
-              <caret line="69" column="10" selection-start-line="69" selection-start-column="10" selection-end-line="69" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/additionalModules/Nodes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/js/additionalModules/Variable.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="736">
-              <caret line="32" column="28" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/lang/en/pageMeta.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1127">
-              <caret line="49" column="19" selection-start-line="49" selection-start-column="19" selection-end-line="49" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
-              <folding>
-                <element signature="e#0#55#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -171,7 +63,6 @@
         <option value="Vue Single File Component" />
         <option value="SCSS File" />
         <option value="package.json" />
-        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -193,20 +84,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/resources/js/additionalModules/Mappers.js" />
-        <option value="$PROJECT_DIR$/resources/js/additionalModules/Enums.js" />
-        <option value="$PROJECT_DIR$/resources/js/additionalModules/Nodes.js" />
-        <option value="$PROJECT_DIR$/resources/js/views/panel/agreements/CreateView.vue" />
-        <option value="$PROJECT_DIR$/resources/js/app.js" />
-        <option value="$PROJECT_DIR$/resources/js/components/Blocks/TextBlock.vue" />
-        <option value="$PROJECT_DIR$/resources/js/additionalModules/Variable.js" />
-      </list>
-    </option>
-  </component>
-  <component name="PhpDebugGeneral" xdebug_debug_port="9001" listening_started="true" />
+  <component name="PhpDebugGeneral" xdebug_debug_port="9001" />
   <component name="PhpServers">
     <servers>
       <server host="127.0.0.1" id="0d722a16-9ad1-445f-886b-782c56672046" name="127.0.0.1" port="8000" />
@@ -246,14 +124,12 @@
       <path value="$PROJECT_DIR$/vendor/symfony/class-loader" />
       <path value="$PROJECT_DIR$/vendor/symfony/http-foundation" />
       <path value="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge" />
-      <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
       <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
       <path value="$PROJECT_DIR$/vendor/psr/container" />
       <path value="$PROJECT_DIR$/vendor/doctrine/common" />
       <path value="$PROJECT_DIR$/vendor/psr/http-message" />
       <path value="$PROJECT_DIR$/vendor/doctrine/collections" />
       <path value="$PROJECT_DIR$/vendor/psr/log" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
       <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
       <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
       <path value="$PROJECT_DIR$/vendor/drupal/console" />
@@ -389,7 +265,6 @@
       <path value="$PROJECT_DIR$/vendor/ramsey/uuid" />
       <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
       <path value="$PROJECT_DIR$/vendor/mockery/mockery" />
-      <path value="$PROJECT_DIR$/vendor/facebook/webdriver" />
       <path value="$PROJECT_DIR$/vendor/martinlindhe/laravel-vue-i18n-generator" />
       <path value="$PROJECT_DIR$/vendor/barryvdh/reflection-docblock" />
       <path value="$PROJECT_DIR$/vendor/seld/jsonlint" />
@@ -401,127 +276,55 @@
       <path value="$PROJECT_DIR$/vendor/intervention/image" />
       <path value="$PROJECT_DIR$/vendor/spatie/laravel-image-optimizer" />
       <path value="$PROJECT_DIR$/vendor/spatie/image-optimizer" />
-      <path value="$PROJECT_DIR$/vendor/swagger-api/swagger-ui" />
-      <path value="$PROJECT_DIR$/vendor/darkaonline/l5-swagger" />
-      <path value="$PROJECT_DIR$/vendor/zircote/swagger-php" />
       <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/service-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/translation-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php73" />
       <path value="$PROJECT_DIR$/vendor/symfony/mime" />
-      <path value="$PROJECT_DIR$/vendor/laravel/dusk" />
       <path value="$PROJECT_DIR$/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/vendor/nette/robot-loader" />
+      <path value="$PROJECT_DIR$/vendor/nette/di" />
+      <path value="$PROJECT_DIR$/vendor/nette/neon" />
+      <path value="$PROJECT_DIR$/vendor/nette/schema" />
+      <path value="$PROJECT_DIR$/vendor/nette/finder" />
+      <path value="$PROJECT_DIR$/vendor/nette/utils" />
+      <path value="$PROJECT_DIR$/vendor/nette/php-generator" />
+      <path value="$PROJECT_DIR$/vendor/nette/bootstrap" />
+      <path value="$PROJECT_DIR$/vendor/jean85/pretty-package-versions" />
+      <path value="$PROJECT_DIR$/vendor/phpstan/phpdoc-parser" />
+      <path value="$PROJECT_DIR$/vendor/phpstan/phpstan" />
+      <path value="$PROJECT_DIR$/vendor/ocramius/package-versions" />
+      <path value="$PROJECT_DIR$/vendor/nunomaduro/larastan" />
     </include_path>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="498" />
-    <option name="y" value="34" />
-    <option name="width" value="1001" />
-    <option name="height" value="1080" />
   </component>
   <component name="ProjectId" id="1PQJ1MRyKCtaH9Rlv2m6NpJDdQT" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="additionalModules" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Blocks" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="layouts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
-  </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="NewWatcherDialog.advanced.open" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.jetbrains.php.phpunit.codeGeneration.PhpNewTestDialog.defaultLibrary" value="PHPUnit 6+" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/Unit/Services/Domain" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JSON" />
+    <property name="settings.editor.selected.configurable" value="coverage" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/Unit/Services" />
+      <recent name="$PROJECT_DIR$/app/Traits" />
+      <recent name="$PROJECT_DIR$/app/Enums" />
+      <recent name="$PROJECT_DIR$/app/Models/Domain" />
+      <recent name="$PROJECT_DIR$/app/Models" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/Unit/Services/Domain" />
       <recent name="$PROJECT_DIR$/app/Models/Domain" />
       <recent name="$PROJECT_DIR$/resources/js/views/panel/accounts" />
       <recent name="$PROJECT_DIR$/resources/js/views/panel" />
       <recent name="$PROJECT_DIR$/app/Enums" />
-      <recent name="$PROJECT_DIR$/app/Models/Domain/Blocks" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/js/components/Blocks" />
-      <recent name="$PROJECT_DIR$/resources/js/components" />
-      <recent name="$PROJECT_DIR$/app/Models/Domain" />
-      <recent name="$PROJECT_DIR$/app/Models" />
-      <recent name="$PROJECT_DIR$/storage/app/public" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -536,19 +339,55 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Codeception.Test app">
-    <configuration name="Test app" type="CodeceptionConfigurationType" factoryName="Codeception">
-      <PhpTestRunnerSettings configuration_file="$PROJECT_DIR$/codeception.yml" directory="$PROJECT_DIR$/tests" method="" scope="Type" selected_type="All" options="--steps --ansi" use_alternative_configuration_file="true" />
+  <component name="RunManager" selected="PHPUnit.Contract Generator">
+    <configuration name="AuthServiceTest.testAuthorizeLogedUserThrowNoAccessException" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\Services\AuthServiceTest" file="$PROJECT_DIR$/tests/Unit/Services/AuthServiceTest.php" method="testAuthorizeLogedUserThrowNoAccessException" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner scope="XML" />
+    <configuration name="AuthServiceTest.testAuthorizeLogedUserThrowNoAccesssEcception" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\Services\AuthServiceTest" file="$PROJECT_DIR$/tests/Unit/Services/AuthServiceTest.php" method="testAuthorizeLogedUserThrowNoAccesssEcception" scope="Method" />
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="Codeception.Test app" />
-      <item itemvalue="PHPUnit.phpunit.xml" />
-    </list>
+    <configuration name="AuthServiceTest.testLoginUserThrowExceptionWhenBadEmail" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\Services\AuthServiceTest" file="$PROJECT_DIR$/tests/Unit/Services/AuthServiceTest.php" method="testLoginUserThrowExceptionWhenBadEmail" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="AuthServiceTest.testLoginUserThrowExceptionWhenBadPassword" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\Services\AuthServiceTest" file="$PROJECT_DIR$/tests/Unit/Services/AuthServiceTest.php" method="testLoginUserThrowExceptionWhenBadPassword" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="AuthServiceTest.testResetUserPasswordThrowBadTokenException" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\Services\AuthServiceTest" file="$PROJECT_DIR$/tests/Unit/Services/AuthServiceTest.php" method="testResetUserPasswordThrowBadTokenException" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Contract Generator" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" directory="$PROJECT_DIR$/tests" use_alternative_configuration_file="true" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHPUnit.AuthServiceTest.testLoginUserThrowExceptionWhenBadPassword" />
+        <item itemvalue="PHPUnit.AuthServiceTest.testLoginUserThrowExceptionWhenBadEmail" />
+        <item itemvalue="PHPUnit.AuthServiceTest.testResetUserPasswordThrowBadTokenException" />
+        <item itemvalue="PHPUnit.AuthServiceTest.testAuthorizeLogedUserThrowNoAccessException" />
+        <item itemvalue="PHPUnit.AuthServiceTest.testAuthorizeLogedUserThrowNoAccesssEcception" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@405dfeab" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -582,9 +421,16 @@
       <workItem from="1563278957935" duration="17682000" />
       <workItem from="1563378795950" duration="10000" />
       <workItem from="1565800172167" duration="2234000" />
-      <workItem from="1566163620114" duration="6533000" />
-      <workItem from="1566318943366" duration="7453000" />
-      <workItem from="1566401371367" duration="42000" />
+      <workItem from="1566163620114" duration="6560000" />
+      <workItem from="1566225407651" duration="17000" />
+      <workItem from="1566228021091" duration="4961000" />
+      <workItem from="1566289945769" duration="13000" />
+      <workItem from="1566290939982" duration="9473000" />
+      <workItem from="1566329434440" duration="3419000" />
+      <workItem from="1566399060662" duration="14000" />
+      <workItem from="1567078447722" duration="1758000" />
+      <workItem from="1567089254557" duration="8403000" />
+      <workItem from="1567101668402" duration="4657000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>
@@ -624,78 +470,6 @@
     <option name="localTasksCounter" value="6" />
     <servers />
   </component>
-  <component name="TestHistory">
-    <history-entry file="Test_app - 2019.06.27 at 01h 03m 38s.xml">
-      <configuration name="Test app" configurationId="CodeceptionConfigurationType" />
-    </history-entry>
-    <history-entry file="Test_app - 2019.06.27 at 01h 03m 48s.xml">
-      <configuration name="Test app" configurationId="CodeceptionConfigurationType" />
-    </history-entry>
-    <history-entry file="Test_app - 2019.06.27 at 01h 05m 38s.xml">
-      <configuration name="Test app" configurationId="CodeceptionConfigurationType" />
-    </history-entry>
-    <history-entry file="Test_app - 2019.06.27 at 01h 09m 32s.xml">
-      <configuration name="Test app" configurationId="CodeceptionConfigurationType" />
-    </history-entry>
-    <history-entry file="Test_app - 2019.06.27 at 01h 09m 41s.xml">
-      <configuration name="Test app" configurationId="CodeceptionConfigurationType" />
-    </history-entry>
-    <history-entry file="Test_app - 2019.06.27 at 01h 22m 25s.xml">
-      <configuration name="Test app" configurationId="CodeceptionConfigurationType" />
-    </history-entry>
-    <history-entry file="Test_app - 2019.06.27 at 02h 30m 24s.xml">
-      <configuration name="Test app" configurationId="CodeceptionConfigurationType" />
-    </history-entry>
-    <history-entry file="Test_app - 2019.06.27 at 02h 30m 48s.xml">
-      <configuration name="Test app" configurationId="CodeceptionConfigurationType" />
-    </history-entry>
-    <history-entry file="Test_app - 2019.06.27 at 02h 31m 35s.xml">
-      <configuration name="Test app" configurationId="CodeceptionConfigurationType" />
-    </history-entry>
-    <history-entry file="Test_app - 2019.06.27 at 02h 32m 37s.xml">
-      <configuration name="Test app" configurationId="CodeceptionConfigurationType" />
-    </history-entry>
-  </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12575000" />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2289221" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info id="npm" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32964823" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.25458467" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32941177" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.41316074" />
-      <window_info anchor="bottom" auto_hide="true" x="27" y="584" width="1884" height="259" id="Terminal" order="10" weight="0.3322546" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="TypeScript" order="12" weight="0.32941177" />
-      <window_info active="true" anchor="bottom" id="Command Line Tools Console" order="13" weight="0.32941177" />
-      <window_info anchor="bottom" id="Database Console" order="14" weight="0.32901832" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" weight="0.32924226" />
-    </layout>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -705,12 +479,6 @@
         <entry key="MAIN">
           <value>
             <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
               <option name="COLUMN_ORDER" />
             </State>
           </value>
@@ -741,8 +509,7 @@
     <MESSAGE value="Add agreements view" />
     <MESSAGE value="Add some translations to agreements view" />
     <MESSAGE value="Changes in agreement view" />
-    <MESSAGE value="creator v1" />
-    <option name="LAST_COMMIT_MESSAGE" value="creator v1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes in agreement view" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>
@@ -753,106 +520,7 @@
     </expand>
     <select />
   </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Models/Domain/Blocks/TextBlock.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Domain/Blocks/Block.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="61" column="40" lean-forward="true" selection-start-line="61" selection-start-column="40" selection-end-line="61" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/views/panel/AgreementsView.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/sass/theme.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/layouts/PanelLayout.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1035">
-          <caret line="45" column="73" selection-start-line="45" selection-start-column="73" selection-end-line="45" selection-end-column="73" />
-          <folding>
-            <element signature="e#2672#2678#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/views/panel/agreements/CreateView.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3519">
-          <caret line="153" column="35" selection-start-line="153" selection-start-column="35" selection-end-line="153" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/additionalModules/Mappers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="40" selection-start-column="40" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/additionalModules/Enums.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/test.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="27" column="28" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/Blocks/TextBlock.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1587">
-          <caret line="69" column="10" selection-start-line="69" selection-start-column="10" selection-end-line="69" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/additionalModules/Nodes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lang/en/pageMeta.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1127">
-          <caret line="49" column="19" selection-start-line="49" selection-start-column="19" selection-end-line="49" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#55#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/additionalModules/Variable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="32" column="28" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/contract_generator@Contract_Generator.xml" NAME="Contract Generator Coverage Results" MODIFIED="1567106341192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

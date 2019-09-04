@@ -1,14 +1,14 @@
 <?php
 
 
-namespace App\Contracts;
+namespace App\Traits;
 
 
 use ReflectionClass;
 
 trait EnumIterator {
 
-    public static function getList()
+    public static function getList(): array
     {
         $refl = new ReflectionClass(__CLASS__);
         return $refl->getConstants();

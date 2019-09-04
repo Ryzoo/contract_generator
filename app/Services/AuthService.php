@@ -38,26 +38,24 @@ class AuthService {
         return $user;
     }
 
-    public function loginUser(string $email, string $password) {
+    public function loginUser(string $email, string $password): User {
         $user = User::getByEmail($email);
         if(isset($user)){
             if(Hash::check($password, $user->password)){
                 $user->loginToken = Str::random(60);
                 $user->save();
                 return $user;
-            }else{
-                Response::error(__("response.badPassword"),400);
             }
-        }else{
-            Response::error(__("response.emailNotFound"),400);
+            throw new \Exception(__("response.badPassword"));
         }
+        throw new \Exception(__("response.emailNotFound"));
     }
 
     public function authorizeLogedUser(string $loginToken) {
         $user = User::getByLoginToken($loginToken);
 
         if(!isset($user))
-            Response::error(__("response.notAuthorized"),401);
+            throw new \Exception(__("response.notAuthorized"),404);
 
         return $user;
     }
@@ -66,7 +64,7 @@ class AuthService {
         $user = User::getByEmail($email);
 
         if(!isset($user))
-            Response::error(__("response.emailNotFound"),400);
+            throw new \Exception(__("response.emailNotFound"),400);
 
         $resetPasswordToken = Str::random(60);
         $user->resetPasswordToken = $resetPasswordToken;
