@@ -1,5 +1,5 @@
 <template>
-    <p> Account {{$route.param()}}</p>
+    <p> Account {{$route.params.id}}</p>
 </template>
 
 <script>
@@ -8,6 +8,5 @@
   }
 </script>
 
-<style scoped>
-
+<style>
 </style>

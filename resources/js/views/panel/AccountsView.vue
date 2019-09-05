@@ -15,7 +15,7 @@
                         :headers="headers"
                         :items="items">
                         <template v-slot:item.name="{ item }">
-                            <router-link :to="`/panel/account/${item.id}`">
+                            <router-link :to="`/panel/accounts/${item.id}`">
                                 {{ item.firstName }} {{ item.lastName }}
                             </router-link>
                         </template>
