@@ -3,11 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_html/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public_html/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/panel/AccountsView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/panel/AccountsView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/ProfileView/BaseDataShow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ProfileView/BaseDataShow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/ProfileView/ProfileDataTabs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ProfileView/ProfileDataTabs.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/views/panel/accounts/AccountPreview.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/panel/accounts/AccountPreview.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/default.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/default.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -437,7 +437,7 @@
       <workItem from="1567604312477" duration="30796000" />
       <workItem from="1567665088842" duration="2675000" />
       <workItem from="1567669741344" duration="578000" />
-      <workItem from="1567670994061" duration="421000" />
+      <workItem from="1567670994061" duration="1396000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>

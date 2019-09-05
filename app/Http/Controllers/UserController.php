@@ -83,7 +83,12 @@ class UserController extends Controller
     }
 
     public function getUserByID(Request $request, int $id) {
-        Response::success(User::getById($id));
+        $user = User::getById($id);
+
+        if(!isset($user))
+            Response::error("User not found", 404);
+
+        Response::success($user);
     }
 
     public function getUserList(Request $request) {

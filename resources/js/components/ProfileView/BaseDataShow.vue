@@ -51,7 +51,7 @@ export default {
             isLoaded: true,
             user: this.userData,
             canBeSaved: false,
-            isAdmin: this.userData.role === UserRoleEnum.ADMINISTRATOR
+            isAdmin: this.userData.role == UserRoleEnum.ADMINISTRATOR
         };
     },
     methods: {

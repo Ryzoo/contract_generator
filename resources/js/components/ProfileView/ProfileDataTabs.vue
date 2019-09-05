@@ -48,7 +48,7 @@ export default {
                     name: this.$t(
                         "pageMeta.panel.profile.tabs.basic_data.name"
                     ),
-                    icon: "id-card",
+                    icon: "fa-id-card",
                     editOnly: true,
                     component: "BasicDataTab"
                 }
