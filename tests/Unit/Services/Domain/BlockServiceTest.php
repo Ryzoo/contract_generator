@@ -3,9 +3,12 @@
 namespace Tests\Unit\Services\Domain;
 
 use App\Enums\BlockType;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class BlockServiceTest extends TestCase {
+    use RefreshDatabase;
+
     /***
      * @var \App\Services\Domain\BlockService
      */

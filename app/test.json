@@ -50,6 +50,16 @@
                 "min": 18,
                 "max": 30
             }
+        },
+        {
+            "name": "Test zagniezdzenia",
+            "id": 7,
+            "type": 0,
+            "defaultValue" : 18,
+            "settings": {
+                "min": 18,
+                "max": 30
+            }
         }
     ],
     "blocks": [
@@ -164,7 +174,7 @@
                                     "parentId": 7,
                                     "type": 0,
                                     "content": {
-                                        "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną "
+                                        "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera {7} zmienną "
                                     },
                                     "conditionals": [{
                                         "type": 0,
@@ -206,7 +216,14 @@
                     }
                 ]
             },
-            "conditionals": [],
+            "conditionals": [{
+                "type": 0,
+                "content": [
+                    "{5}",
+                    "==",
+                    "1"
+                ]
+            }],
             "settings":{}
         }
     ],

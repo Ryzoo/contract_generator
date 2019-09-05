@@ -2,12 +2,15 @@
 
 namespace Tests\Unit\Services;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class FileServiceTest extends TestCase
 {
+    use RefreshDatabase;
+
     /***
      * @var \App\Services\FileService
      */

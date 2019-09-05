@@ -43,6 +43,11 @@ class ContractController extends Controller {
         Response::success($formInputs);
     }
 
+    public function removeContract(Request $request, int $contractID) {
+        $this->contractService->removeContractById($contractID);
+        Response::success();
+    }
+
     public function getContractList(Request $request){
         $contractCollection = $this->contractService->getContractCollection();
         Response::success($contractCollection);

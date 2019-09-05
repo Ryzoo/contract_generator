@@ -34,4 +34,13 @@ class ContractService {
         return Contract::all();
     }
 
+    public function removeContractById(int $contractID){
+        $contract = Contract::getById($contractID);
+
+        DB::transaction(function() use(&$contract) {
+            $contract->form->delete();
+            $contract->delete();
+        });
+    }
+
 }

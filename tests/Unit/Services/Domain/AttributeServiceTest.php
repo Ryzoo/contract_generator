@@ -2,10 +2,13 @@
 
 namespace Tests\Unit\Services\Domain;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Enums\AttributeType;
 
 class AttributeServiceTest extends TestCase {
+    use RefreshDatabase;
+
     /***
      * @var \App\Services\Domain\AttributeService
      */
