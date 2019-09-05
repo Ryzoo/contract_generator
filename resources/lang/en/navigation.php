@@ -4,7 +4,7 @@ return [
     'dashboard' => 'Dashboard',
     'profile' => 'My profile',
     'clients' => 'Clients',
-    'agreements' => 'Agreements',
+    'contract' => 'Contracts',
     'schema' => 'Schemes',
     'accounts' => 'Accounts',
     'settings' => 'Settings',

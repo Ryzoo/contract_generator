@@ -2,7 +2,7 @@
     "name": "Tutaj fajna nazwa - od 5 do 190 znaków",
     "attributesList": [
         {
-            "name": "Wiek użytkownika",
+            "name": "Zwykła zmienna",
             "id": 1,
             "type": 0,
             "defaultValue" : 18,
@@ -12,7 +12,7 @@
             }
         },
         {
-            "name": "Wiek użytkownika",
+            "name": "Zmienna zależna od zmiennej 5 oraz sterująca",
             "id": 2,
             "type": 0,
             "defaultValue" : 18,
@@ -32,17 +32,17 @@
             }
         },
         {
-            "name": "Wiek użytkownika",
+            "name": "Wzrost",
             "id": 4,
             "type": 0,
-            "defaultValue" : 18,
+            "defaultValue" : 170,
             "settings": {
                 "min": 18,
                 "max": 30
             }
         },
         {
-            "name": "Wiek użytkownika",
+            "name": "Zmienna sterująca - niezależna",
             "id": 5,
             "type": 0,
             "defaultValue" : 18,

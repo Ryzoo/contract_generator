@@ -39,10 +39,8 @@ class ContractController extends Controller {
 
     public function getContractForm(Request $request, int $contractID) {
         $contract = Contract::getById($contractID);
-
-        $formToRender = $this->formService->getContractFormForRender($contract);
-
-        Response::success($formToRender);
+        $formInputs = $contract->form->formInputs;
+        Response::success($formInputs);
     }
 
     public function getContractList(Request $request){

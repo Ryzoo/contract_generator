@@ -12,7 +12,7 @@ class Form extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'attributesOrder' => 'array'
+        'formInputs' => 'array'
     ];
 
     public function contract()

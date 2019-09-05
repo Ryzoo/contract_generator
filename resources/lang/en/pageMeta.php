@@ -36,19 +36,10 @@ return [
                 'title' => 'Create new account',
             ],
         ],
-        'agreements' => [
+        'contract' => [
             'title' => 'Panel - Agreements',
-            'button' => [
-                'newAgreement' => 'Add agreement',
-            ],
-            'headers' => [
-                'name' => 'Name',
-                'status' => 'Status',
-                'dateAdd' => 'Add date',
-                'actions' => 'Actions',
-            ],
             'create' => [
-                'title' => 'Create new agreement',
+                'title' => 'Create new contract',
             ],
         ],
     ]

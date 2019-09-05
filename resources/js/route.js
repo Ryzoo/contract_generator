@@ -4,13 +4,12 @@ import PanelLayout from "./layouts/PanelLayout";
 import i18n from "./lang";
 import AuthLayout from "./layouts/AuthLayout";
 import DashboardView from "./views/panel/DashboardView";
-import AgreementsView from "./views/panel/AgreementsView";
+import ContractView from "./views/panel/ContractView";
 import LoginView from "./views/auth/LoginView";
-import SendResetPasswordTokenView
-    from "./views/auth/SendResetPasswordTokenView";
+import SendResetPasswordTokenView from "./views/auth/SendResetPasswordTokenView";
 import RegisterView from "./views/auth/RegisterView";
 import ResetPasswordView from "./views/auth/ResetPasswordView";
-import CreateAgreementView from "./views/panel/agreements/CreateView";
+import CreateContractView from "./views/panel/contracts/CreateView";
 import MyProfileView from "./views/panel/MyProfileView";
 import AccountsView from "./views/panel/AccountsView";
 import CreateView from "./views/panel/accounts/CreateView";
@@ -45,19 +44,19 @@ const router = new VueRouter({
                     }
                 },
                 {
-                    path: 'agreements',
-                    name: 'agreements',
-                    component: AgreementsView,
+                    path: 'contracts',
+                    name: 'contracts',
+                    component: ContractView,
                     meta: {
-                        title: i18n.t('pageMeta.panel.agreements.title')
+                        title: i18n.t('pageMeta.panel.contract.title')
                     }
                 },
                 {
-                    path: 'agreements/create',
-                    name: 'createAgreement',
-                    component: CreateAgreementView,
+                    path: 'contracts/create',
+                    name: 'createContract',
+                    component: CreateContractView,
                     meta: {
-                        title: i18n.t('pageMeta.panel.agreements.create.title')
+                        title: i18n.t('pageMeta.panel.contract.create.title')
                     },
                 },
                 {

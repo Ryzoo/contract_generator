@@ -26,18 +26,18 @@ class FormService {
             $attributesOrder = $block->findVariable($attributesOrder);
         }
 
+        $formInputCollection = self::getFormInputFromContract($contract, $attributesOrder);
+
         return Form::create([
             "contract_id" => $contract->id,
-            "attributesOrder" => $attributesOrder,
+            "formInputs" => $formInputCollection,
         ]);
     }
 
-    public function getContractFormForRender(Contract $contract):Collection {
-        $form = $contract->form;
-        $attributesOrder = $form->attributesOrder;
+    public function getFormInputFromContract(Contract $contract, Collection $attributesOrder):Collection {
         $blockCollection = $contract->getBlockCollection();
-
         $formCollection = collect();
+
         foreach ($attributesOrder as $attributeData){
             $blockId = $attributeData[0];
             $attributeId = $attributeData[1];
@@ -52,6 +52,4 @@ class FormService {
 
         return $formCollection;
     }
-
-
 }

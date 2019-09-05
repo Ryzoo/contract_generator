@@ -103,9 +103,9 @@ export default {
             icon: "fa-users"
           },
           {
-            title: this.$t('navigation.agreements'),
+            title: this.$t('navigation.contract'),
             icon: "fa-file-contract",
-            link: "/panel/agreements"
+            link: "/panel/contracts"
           },
           {
             title: this.$t('navigation.schema'),

@@ -30,6 +30,26 @@ return [
                 'remove' => "Sure you want to remove account?",
                 'removeTitle' => "Remove account",
             ],
+        ],
+        'contracts' => [
+            'button' => [
+                'cancel' => "Cancel",
+                'remove' => "Remove",
+                'newAgreement' => 'Add contract',
+            ],
+            'headers' => [
+                'name' => 'Name',
+                'status' => 'Status',
+                'dateAdd' => 'Add date',
+                'actions' => 'Actions',
+            ],
+            'notify'=>[
+                "successRemove" => "Contract removed!"
+            ],
+            'description'=>[
+                'remove' => "Sure you want to remove contract?",
+                'removeTitle' => "Remove contract",
+            ]
         ]
     ]
 ];
