@@ -12,6 +12,7 @@ import ResetPasswordView from "./views/auth/ResetPasswordView";
 import CreateContractView from "./views/panel/contracts/CreateView";
 import MyProfileView from "./views/panel/MyProfileView";
 import AccountsView from "./views/panel/AccountsView";
+import AccountPreview from "./views/panel/accounts/AccountPreview";
 import CreateView from "./views/panel/accounts/CreateView";
 import EditView from "./views/panel/accounts/EditView";
 import ContractForm from "./views/client/contract/ContractForm";
@@ -81,6 +82,14 @@ const router = new VueRouter({
                     component: EditView,
                     meta: {
                         title: i18n.t('pageMeta.panel.accounts.edit.title')
+                    },
+                },
+                {
+                    path: 'accounts/:id',
+                    name: 'accountPreview',
+                    component: AccountPreview,
+                    meta: {
+                        title: i18n.t('pageMeta.panel.accounts.preview.title')
                     },
                 },
                 {

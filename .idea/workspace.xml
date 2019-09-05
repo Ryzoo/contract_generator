@@ -2,22 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/views/panel/ContractView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/views/panel/accounts/AccountPreview.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Form.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Domain/FormService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/FormService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/test.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/test.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_18_221313_create_forms_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_18_221313_create_forms_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_html/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/assets/vue-i18n-locales.generated.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/assets/vue-i18n-locales.generated.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/layouts/PanelLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/layouts/PanelLayout.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/panel/AgreementsView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/panel/agreements/CreateView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/panel/contracts/CreateView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/navigation.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/navigation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/page.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/page.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/pageMeta.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/pageMeta.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,8 +56,8 @@
       <list>
         <option value="SCSS File" />
         <option value="package.json" />
-        <option value="Vue Single File Component" />
         <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
       </list>
     </option>
   </component>
@@ -445,7 +432,8 @@
       <workItem from="1567362348595" duration="13000" />
       <workItem from="1567492560619" duration="243000" />
       <workItem from="1567604312477" duration="30796000" />
-      <workItem from="1567665088842" duration="2474000" />
+      <workItem from="1567665088842" duration="2675000" />
+      <workItem from="1567669741344" duration="578000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>
