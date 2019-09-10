@@ -4,9 +4,9 @@
 namespace App\Services\Domain;
 
 
+use App\Helpers\PdfRenderer;
 use App\Models\Domain\Contract;
 use App\Repository\Domain\ContractRepository;
-use App\Repository\Domain\FormRepository;
 use Illuminate\Support\Facades\DB;
 
 class ContractService {
@@ -19,6 +19,7 @@ class ContractService {
      * @var \App\Repository\Domain\ContractRepository
      */
     private $contractRepository;
+
 
     public function __construct(FormService $formService, ContractRepository $contractRepository) {
         $this->formService = $formService;
@@ -43,5 +44,15 @@ class ContractService {
             $contract->form->delete();
             $contract->delete();
         });
+    }
+
+    public function renderContract(int $contractID, array $attributes) {
+        $contract = $this->contractRepository->getById($contractID);
+        $blocks = $contract->blocks;
+
+        $pdfRenderer = new PdfRenderer();
+        $pdfRenderer->setParameters($contract, $blocks, $attributes);
+
+        return $pdfRenderer->preparePdf();
     }
 }

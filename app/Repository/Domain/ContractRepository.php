@@ -10,7 +10,7 @@ use Intervention\Image\Exception\NotFoundException;
 
 class ContractRepository {
     public function getContractCollection(): Collection {
-        return Contract::all();
+        return Contract::select(["id","name", "created_at"])->get();
     }
 
     public static function getById(int $contractID):?Contract{

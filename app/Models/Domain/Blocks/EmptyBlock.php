@@ -29,6 +29,10 @@ class EmptyBlock extends Block {
         $this->content["blocks"] = Block::getListFromString( json_encode($this->content["blocks"]) );
     }
 
+    protected function resolveAttributesInContent(array $attributes) {
+        // TODO: Implement resolveAttributesInContent() method.
+    }
+
     public function findVariable(Collection $variableArray): Collection{
         $variableArray = parent::findVariable($variableArray);
 

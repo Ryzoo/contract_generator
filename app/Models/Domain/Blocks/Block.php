@@ -65,7 +65,8 @@ abstract class Block implements IBlock {
 
     protected abstract function buildSettings();
     protected abstract function buildContent();
-    protected abstract function validateContent():bool ;
+    protected abstract function validateContent():bool;
+    protected abstract function resolveAttributesInContent(array $attributes);
 
     public static function getBlockByType(int $blockType):Block {
         switch ($blockType)
@@ -85,7 +86,7 @@ abstract class Block implements IBlock {
         Validator::validate($value,[
             "id" => "required|integer",
             "parentId" => "required|integer",
-            "type" => "required|integer",
+            "blockType" => "required|integer",
             "content" => "nullable",
             "conditionals" => "nullable|array",
             "settings" => "nullable",
@@ -110,12 +111,12 @@ abstract class Block implements IBlock {
 
     public static function getFromString(array $value):Block {
         Block::validate($value);
-        $block = self::getBlockByType($value["type"]);
+        $block = self::getBlockByType($value["blockType"]);
 
         $block->id = $value["id"];
         $block->parentId = $value["parentId"];
-        $block->blockType = $value["type"];
-        $block->blockName = BlockType::getName($value["type"]);
+        $block->blockType = $value["blockType"];
+        $block->blockName = BlockType::getName($value["blockType"]);
         $block->settings = $value["settings"];
         $block->conditionals = Conditional::getListFromString(json_encode($value["conditionals"]));
         $block->content = (array) $value["content"];
@@ -138,5 +139,10 @@ abstract class Block implements IBlock {
     public function getBlockCollection(Collection $blockCollection):Collection {
         $blockCollection->push($this);
         return $blockCollection;
+    }
+
+    public function renderToHtml(array $attributes):string{
+        $this->resolveAttributesInContent($attributes);
+        return "";
     }
 }

@@ -1,7 +1,4 @@
-window._ = require('lodash');
-
 try {
-    window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
 } catch (e) {}
 
@@ -9,7 +6,7 @@ import Notify from "./additionalModules/Notify";
 import Validator from "./additionalModules/Validator";
 import Auth from "./additionalModules/Auth";
 
-window.notify = new Notify();
+window.Notify = window.notify = new Notify();
 window.auth = new Auth();
 window.Validator = Validator;
 

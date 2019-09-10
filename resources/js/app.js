@@ -20,6 +20,7 @@ Vue.mixin({
     data: function () {
         return {
             Mapper: Mapper,
+            Notify: window.Notify,
             ConditionalParser: ConditionalParser
         }
     },

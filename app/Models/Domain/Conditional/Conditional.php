@@ -43,7 +43,7 @@ abstract class Conditional implements IConditional {
 
     public static function validate($value):bool {
         Validator::validate($value,[
-            "type" => "required|integer",
+            "conditionalType" => "required|integer",
             "content" => "required",
         ]);
 
@@ -66,10 +66,10 @@ abstract class Conditional implements IConditional {
 
     public static function getFromString(array $value):Conditional {
         Conditional::validate($value);
-        $conditional = self::getConditionalByType($value["type"]);
+        $conditional = self::getConditionalByType($value["conditionalType"]);
 
-        $conditional->conditionalType = $value["type"];
-        $conditional->conditionalName = ConditionalType::getName($value["type"]);
+        $conditional->conditionalType = $value["conditionalType"];
+        $conditional->conditionalName = ConditionalType::getName($value["conditionalType"]);
         $conditional->content = $value["content"];
 
         return $conditional;

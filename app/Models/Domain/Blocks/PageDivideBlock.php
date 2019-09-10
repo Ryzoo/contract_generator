@@ -22,4 +22,8 @@ class PageDivideBlock extends Block {
     protected function validateContent(): bool {
         return true;
     }
+
+    protected function resolveAttributesInContent(array $attributes) {
+        // TODO: Implement resolveAttributesInContent() method.
+    }
 }

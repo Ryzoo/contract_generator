@@ -18,4 +18,8 @@ class NumberAttribute extends Attribute {
             "max" => null
         ];
     }
+
+    public function getValue(){
+        return intval($this->value);
+    }
 }

@@ -14,7 +14,7 @@
 
         <v-card-actions>
             <div class="flex-grow-1"></div>
-            <v-btn color="primary">Wygeneruj umowę</v-btn>
+            <v-btn color="primary" @click="renderContract()">Wygeneruj umowę</v-btn>
         </v-card-actions>
     </v-card>
     <loader v-else></loader>
@@ -56,6 +56,32 @@
             .finally(() => {
               this.isLoading = false;
             })
+      },
+      renderContract(){
+        this.isLoading = true;
+        axios({
+          url: `/contract/${this.contract.id}/render`,
+          method: 'POST',
+          responseType: 'blob',
+          data: {
+            attributesList: this.$store.getters.formAttributes
+          }
+        })
+            .then((response) => {
+              Notify.push("Render zakończony pomyślnie", Notify.SUCCESS);
+              const url = window.URL.createObjectURL(new Blob([response.data]));
+              const link = document.createElement('a');
+              link.href = url;
+              link.setAttribute('download', 'file.pdf');
+              document.body.appendChild(link);
+              link.click();
+            })
+            .finally(() => {
+              this.isLoading = false;
+            })
+
+
+
       }
     },
     mounted() {
