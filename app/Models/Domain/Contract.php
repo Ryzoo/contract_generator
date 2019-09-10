@@ -121,16 +121,7 @@ class Contract extends ElegantValidator
         $this->attributes['settings'] = json_encode($value);
     }
 
-    public static function getById(int $contractID):?Contract{
-        $contract = Contract::where("id", $contractID)->first();
-
-        if(!isset($contract))
-            Response::error(__("response.notFoundId"),404);
-
-        return $contract;
-    }
-
-    public function getAttributeByID(int $attributeID):IAttribute {
+    public function getAttributeByID(int $attributeID):Attribute {
         $attributes = $this->attributesList;
 
         foreach ($attributes as $attribute){

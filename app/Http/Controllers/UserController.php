@@ -6,6 +6,7 @@ use App\Enums\UserRole;
 use App\Helpers\Response;
 use App\Helpers\Validator;
 use App\Models\User;
+use App\Repository\UserRepository;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 
@@ -16,8 +17,14 @@ class UserController extends Controller
      */
     protected $userService;
 
-    public function __construct(UserService $userService) {
+    /**
+     * @var \App\Repository\UserRepository
+     */
+    private $userRepository;
+
+    public function __construct(UserService $userService, UserRepository $userRepository) {
         $this->userService = $userService;
+        $this->userRepository = $userRepository;
     }
 
     public function updateUserBasicData(Request $request, int $id) {
@@ -83,7 +90,7 @@ class UserController extends Controller
     }
 
     public function getUserByID(Request $request, int $id) {
-        $user = User::getById($id);
+        $user = $this->userRepository->getById($id);
 
         if(!isset($user))
             Response::error("User not found", 404);
@@ -92,6 +99,6 @@ class UserController extends Controller
     }
 
     public function getUserList(Request $request) {
-        Response::success($this->userService->getUserList());
+        Response::success($this->userRepository->getUserList());
     }
 }

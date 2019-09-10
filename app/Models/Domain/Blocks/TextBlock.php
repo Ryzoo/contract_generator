@@ -40,6 +40,6 @@ class TextBlock extends Block {
                     $variableArray->push([$this->id, $arrayElement]);
         }
 
-        return $variableArray->uniqueStrict(1);
+        return $variableArray->uniqueStrict("1");
     }
 }

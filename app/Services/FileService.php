@@ -10,13 +10,9 @@ use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
 
 class FileService
 {
-    private const DEFAULT_FILES_URL= [
+    public const DEFAULT_FILES_URL= [
         "/storage/default/profileImage.png"
     ];
-
-    public function getDefaultFilesUrl(): array {
-        return self::DEFAULT_FILES_URL;
-    }
 
     public function saveFile(UploadedFile $file, string $fileStorageFolder): string
     {
@@ -44,7 +40,7 @@ class FileService
         if(Str::length($fileUrl) <= 0 || !Str::contains($fileUrl,"/storage/"))
             throw new \Exception("File url must be a valid url including /storage/ word");
 
-        if(in_array($fileUrl, $this->getDefaultFilesUrl()))
+        if(in_array($fileUrl, FileService::DEFAULT_FILES_URL))
             return;
 
         $fileUrlWithoutStorage =  Str::replaceFirst("/storage/","",$fileUrl);

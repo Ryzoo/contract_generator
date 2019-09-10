@@ -132,7 +132,7 @@ abstract class Block implements IBlock {
                 $variableArray->push([$this->parentId, $arrayElement]);
         }
 
-        return $variableArray->uniqueStrict(1);
+        return $variableArray->uniqueStrict("1");
     }
 
     public function getBlockCollection(Collection $blockCollection):Collection {

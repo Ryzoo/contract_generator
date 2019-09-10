@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Helpers\Response;
 use App\Models\User;
+use App\Repository\UserRepository;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 
@@ -14,8 +15,20 @@ class UserService
      */
     private $fileService;
 
-    public function __construct(FileService $fileService) {
+    /**
+     * @var \App\Services\UserService
+     */
+    private $userService;
+
+    /**
+     * @var \App\Repository\UserRepository
+     */
+    private $userRepository;
+
+    public function __construct(FileService $fileService, UserService $userService, UserRepository $userRepository) {
         $this->fileService = $fileService;
+        $this->userService = $userService;
+        $this->userRepository = $userRepository;
     }
 
     public function addUser(User $userModel):User {
@@ -29,12 +42,8 @@ class UserService
         return $userModel;
     }
 
-    public function getUserList():Collection {
-        return User::all();
-    }
-
     public function updateUser(User $userModel) {
-        $user = User::getById($userModel->id);
+        $user = $this->userRepository->getById($userModel->id);
 
         if(isset($user)){
             $user->fill($userModel->getAttributes());
@@ -47,7 +56,7 @@ class UserService
     }
 
     public function removeUser(int $userID):bool {
-        $user = User::getById($userID);
+        $user = $this->userRepository->getById($userID);
 
         if(isset($user)){
             $user->delete();
@@ -58,7 +67,7 @@ class UserService
     }
 
     public function changeUserImage(int $userID, UploadedFile $newProfileImage): string {
-        $user = User::getById($userID);
+        $user = $this->userRepository->getById($userID);
 
         if(!isset($user))
             throw new \Exception(__("response.notFoundId"));

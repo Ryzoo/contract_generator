@@ -5,17 +5,24 @@ namespace App\Services\Domain;
 use App\Models\Domain\Contract;
 use App\Models\Domain\Form;
 use App\Models\Domain\FormInput;
+use App\Repository\Domain\ConditionalRepository;
+use App\Repository\Domain\FormRepository;
 use Illuminate\Support\Collection;
 
 class FormService {
-
     /**
      * @var ConditionalService
      */
     private $conditionalService;
 
-    public function __construct(ConditionalService $conditionalService) {
+    /**
+     * @var \App\Repository\Domain\FormRepository
+     */
+    private $formRepository;
+
+    public function __construct(ConditionalService $conditionalService, FormRepository $formRepository) {
         $this->conditionalService = $conditionalService;
+        $this->formRepository = $formRepository;
     }
 
     public function createFromContract(Contract $contract):Form {
@@ -26,30 +33,11 @@ class FormService {
             $attributesOrder = $block->findVariable($attributesOrder);
         }
 
-        $formInputCollection = self::getFormInputFromContract($contract, $attributesOrder);
+        $formInputCollection = $this->formRepository->getFormInputFromContract($contract, $attributesOrder);
 
         return Form::create([
             "contract_id" => $contract->id,
             "formInputs" => $formInputCollection,
         ]);
-    }
-
-    public function getFormInputFromContract(Contract $contract, Collection $attributesOrder):Collection {
-        $blockCollection = $contract->getBlockCollection();
-        $formCollection = collect();
-
-        foreach ($attributesOrder as $attributeData){
-            $blockId = $attributeData[0];
-            $attributeId = $attributeData[1];
-            $attribute = $contract->getAttributeByID($attributeId);
-            $attributeConditionals = $this->conditionalService
-                ->findConditionalsInBlockFromId($blockCollection, $blockId);
-
-            $attribute->conditionals = array_reverse($attributeConditionals->toArray());
-
-            $formCollection->push(new FormInput($attribute));
-        }
-
-        return $formCollection;
     }
 }

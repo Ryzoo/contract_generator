@@ -5,18 +5,24 @@ namespace App\Services\Domain;
 
 
 use App\Models\Domain\Contract;
-use Illuminate\Support\Collection;
+use App\Repository\Domain\ContractRepository;
+use App\Repository\Domain\FormRepository;
 use Illuminate\Support\Facades\DB;
 
 class ContractService {
-
     /**
      * @var FormService
      */
     private $formService;
 
-    public function __construct(FormService $formService) {
+    /**
+     * @var \App\Repository\Domain\ContractRepository
+     */
+    private $contractRepository;
+
+    public function __construct(FormService $formService, ContractRepository $contractRepository) {
         $this->formService = $formService;
+        $this->contractRepository = $contractRepository;
     }
 
     public function addContract(Contract $contract): Contract {
@@ -30,17 +36,12 @@ class ContractService {
         return $contract;
     }
 
-    public function getContractCollection(): Collection {
-        return Contract::all();
-    }
-
     public function removeContractById(int $contractID){
-        $contract = Contract::getById($contractID);
+        $contract = $this->contractRepository->getById($contractID);
 
         DB::transaction(function() use(&$contract) {
             $contract->form->delete();
             $contract->delete();
         });
     }
-
 }
