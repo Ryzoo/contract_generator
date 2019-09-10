@@ -14,9 +14,15 @@ class ContractServiceTest extends TestCase {
      */
     private $contractService;
 
+    /***
+     * @var \App\Repository\Domain\ContractRepository
+     */
+    private $contractRepository;
+
     public function setUp(): void {
         parent::setUp();
         $this->contractService = $this->app->make('App\Services\Domain\ContractService');
+        $this->contractRepository = $this->app->make('App\Repository\Domain\ContractRepository');
     }
 
     public function testAddContract() {
@@ -39,7 +45,7 @@ class ContractServiceTest extends TestCase {
         $notSavedContract->fill( $this->getDefaultDataForContract() );
         $this->contractService->addContract($notSavedContract);
 
-        $allContract = $this->contractService->getContractCollection();
+        $allContract = $this->contractRepository->getContractCollection();
 
         $this->assertEquals(1,$allContract->count());
     }
@@ -49,12 +55,12 @@ class ContractServiceTest extends TestCase {
         $notSavedContract->fill( $this->getDefaultDataForContract() );
         $savedContract = $this->contractService->addContract($notSavedContract);
 
-        $allContract = $this->contractService->getContractCollection();
+        $allContract = $this->contractRepository->getContractCollection();
 
         $this->assertEquals(1,$allContract->count());
         $this->contractService->removeContractById($savedContract->id);
 
-        $allContract = $this->contractService->getContractCollection();
+        $allContract = $this->contractRepository->getContractCollection();
         $this->assertEquals(0,$allContract->count());
     }
 

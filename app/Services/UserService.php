@@ -16,18 +16,12 @@ class UserService
     private $fileService;
 
     /**
-     * @var \App\Services\UserService
-     */
-    private $userService;
-
-    /**
      * @var \App\Repository\UserRepository
      */
     private $userRepository;
 
-    public function __construct(FileService $fileService, UserService $userService, UserRepository $userRepository) {
+    public function __construct(FileService $fileService, UserRepository $userRepository) {
         $this->fileService = $fileService;
-        $this->userService = $userService;
         $this->userRepository = $userRepository;
     }
 

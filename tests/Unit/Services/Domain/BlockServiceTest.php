@@ -10,17 +10,17 @@ class BlockServiceTest extends TestCase {
     use RefreshDatabase;
 
     /***
-     * @var \App\Services\Domain\BlockService
+     * @var \App\Repository\Domain\BlockRepository
      */
-    private $blockService;
+    private $blockRepository;
 
     public function setUp(): void {
         parent::setUp();
-        $this->blockService = $this->app->make('App\Services\Domain\BlockService');
+        $this->blockRepository = $this->app->make('App\Repository\Domain\BlockRepository');
     }
 
     public function testGetListOfBlocks() {
-        $listOfBlocks = $this->blockService->getListOfBlocks();
+        $listOfBlocks = $this->blockRepository->getListOfBlocks();
         $countOfExistBlocksType = count(BlockType::getList());
 
         $this->assertEquals($countOfExistBlocksType, count($listOfBlocks));

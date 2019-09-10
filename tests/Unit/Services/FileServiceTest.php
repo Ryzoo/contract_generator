@@ -70,7 +70,7 @@ class FileServiceTest extends TestCase
 
     public function testRemoveFileUsingFileUrlWithDefaultString()
     {
-        $defaultFileUrl = $this->fileService->getDefaultFilesUrl()[0];
+        $defaultFileUrl = $this->fileService::DEFAULT_FILES_URL[0];
 
         $this->assertNotNull($defaultFileUrl);
 

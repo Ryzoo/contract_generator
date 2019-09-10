@@ -2,30 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Repository/Domain/AttributeRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repository/Domain/BlockRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repository/Domain/ConditionalRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repository/Domain/ContractRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repository/Domain/FormRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repository/UserRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ElementsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ElementsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/Block.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/Block.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/TextBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/TextBlock.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Conditional/Conditional.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Conditional/Conditional.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Contract.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Contract.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/AuthService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/AuthService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Domain/AttributeService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/AttributeService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Domain/BlockService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/BlockService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Domain/ConditionalService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/ConditionalService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Domain/ContractService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/ContractService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Domain/FormService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/FormService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/FileService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/FileService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/UserService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/UserService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_html/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/Services/Domain/AttributeServiceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Services/Domain/AttributeServiceTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/Services/Domain/BlockServiceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Services/Domain/BlockServiceTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/Services/Domain/ConditionalServiceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Services/Domain/ConditionalServiceTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/Services/Domain/ContractServiceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Services/Domain/ContractServiceTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/Services/FileServiceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Services/FileServiceTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/Services/UserServiceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Services/UserServiceTest.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -355,13 +339,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="PHPUnit.AuthServiceTest.testLoginUserThrowExceptionWhenBadEmail">
-    <configuration name="AuthServiceTest.testLoginUserThrowExceptionWhenBadEmail" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Unit\Services\AuthServiceTest" file="$PROJECT_DIR$/tests/Unit/Services/AuthServiceTest.php" method="testLoginUserThrowExceptionWhenBadEmail" scope="Method" />
+  <component name="RunManager" selected="PHPUnit.Contract Generator">
+    <configuration name="AttributeServiceTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\Services\Domain\AttributeServiceTest" configuration_file="$PROJECT_DIR$/phpunit.xml" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/Unit/Services/Domain/AttributeServiceTest.php" scope="Class" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
-    <configuration name="AuthServiceTest.testLoginUserThrowExceptionWhenBadPassword" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Unit\Services\AuthServiceTest" file="$PROJECT_DIR$/tests/Unit/Services/AuthServiceTest.php" method="testLoginUserThrowExceptionWhenBadPassword" scope="Method" />
+    <configuration name="AuthServiceTest.testLoginUserThrowExceptionWhenBadEmail" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\Services\AuthServiceTest" file="$PROJECT_DIR$/tests/Unit/Services/AuthServiceTest.php" method="testLoginUserThrowExceptionWhenBadEmail" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="Contract Generator" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -382,11 +366,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.AttributeServiceTest" />
         <item itemvalue="PHPUnit.AuthServiceTest.testLoginUserThrowExceptionWhenBadEmail" />
         <item itemvalue="PHPUnit.ContractServiceTest.testRemoveContractThrowExceptionWhenNotFound" />
         <item itemvalue="PHPUnit.ContractServiceTest" />
         <item itemvalue="PHPUnit.FormServiceTest.testGetContractFormForRender" />
-        <item itemvalue="PHPUnit.AuthServiceTest.testLoginUserThrowExceptionWhenBadPassword" />
       </list>
     </recent_temporary>
   </component>
@@ -458,7 +442,7 @@
       <workItem from="1567670994061" duration="2997000" />
       <workItem from="1567676649728" duration="1629000" />
       <workItem from="1568038423063" duration="25000" />
-      <workItem from="1568143457584" duration="1919000" />
+      <workItem from="1568143457584" duration="2443000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>
@@ -550,6 +534,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/contract_generator@ContractServiceTest_testRemoveContractThrowExceptionWhenNotFound.xml" NAME="ContractServiceTest.testRemoveContractThrowExceptionWhenNotFound Coverage Results" MODIFIED="1567673772553" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/contract_generator@Contract_Generator.xml" NAME="Contract Generator Coverage Results" MODIFIED="1567676659457" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/contract_generator@Contract_Generator.xml" NAME="Contract Generator Coverage Results" MODIFIED="1568145901489" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
