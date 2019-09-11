@@ -18,8 +18,7 @@ class AttributeResolver {
     public function resolveText(string $text) {
         preg_match_all('/{(\d)}/', $text, $attributeIdList);
 
-        foreach ($attributeIdList as $attribute){
-            $id = $attribute[0];
+        foreach ($attributeIdList[1] as $id){
             $value = $this->getAttributeValueById(intval($id));
             $text = str_replace("{".$id."}",$value, $text);
         }

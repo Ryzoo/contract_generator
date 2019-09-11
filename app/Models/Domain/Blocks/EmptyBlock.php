@@ -4,6 +4,7 @@
 namespace App\Models\Domain\Blocks;
 
 use App\Enums\BlockType;
+use App\Helpers\AttributeResolver;
 use App\Helpers\Validator;
 use Illuminate\Support\Collection;
 
@@ -30,7 +31,11 @@ class EmptyBlock extends Block {
     }
 
     protected function resolveAttributesInContent(array $attributes) {
-        // TODO: Implement resolveAttributesInContent() method.
+        $blockList = $this->content["blocks"];
+
+        foreach ($blockList as $block){
+            $block->resolveAttributesInContent($attributes);
+        }
     }
 
     public function findVariable(Collection $variableArray): Collection{
@@ -52,4 +57,17 @@ class EmptyBlock extends Block {
 
         return $blockCollection;
     }
+
+    public function renderToHtml(array $attributes): string {
+        $htmlString = parent::renderToHtml($attributes);
+        $blockList = $this->content["blocks"];
+
+        foreach ($blockList as $block){
+            $htmlString .= $block->renderToHtml($attributes);
+            $htmlString .= "<br/>";
+        }
+
+        return $htmlString;
+    }
+
 }

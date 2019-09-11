@@ -2,33 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Helpers/AttributeResolver.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Helpers/PdfRenderer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.phpstorm.meta.php" beforeDir="false" afterPath="$PROJECT_DIR$/.phpstorm.meta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Contracts/Domain/IAttribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/Domain/IAttribute.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Attributes/NumberAttribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Attributes/NumberAttribute.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/Block.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/Block.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Helpers/AttributeResolver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/AttributeResolver.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/EmptyBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/EmptyBlock.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/PageDivideBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/PageDivideBlock.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/TextBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/TextBlock.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Conditional/Conditional.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Conditional/Conditional.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repository/Domain/ContractRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repository/Domain/ContractRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Domain/ContractService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/ContractService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/test.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/test.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public_html/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/additionalModules/Validator.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/additionalModules/Validator.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/ContractFormRender.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/ContractFormRender.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/Form/Attributes/NumberAttribute.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/Attributes/NumberAttribute.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/store/modules/formAttributes.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/modules/formAttributes.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -466,7 +447,10 @@
       <workItem from="1567670994061" duration="2997000" />
       <workItem from="1567676649728" duration="1629000" />
       <workItem from="1568038423063" duration="25000" />
-      <workItem from="1568143457584" duration="11519000" />
+      <workItem from="1568143457584" duration="11617000" />
+      <workItem from="1568203223012" duration="31000" />
+      <workItem from="1568211659625" duration="1195000" />
+      <workItem from="1568213784676" duration="4320000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>
@@ -546,21 +530,6 @@
     <MESSAGE value="Add some translations to agreements view" />
     <MESSAGE value="Changes in agreement view" />
     <option name="LAST_COMMIT_MESSAGE" value="Changes in agreement view" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php-line-method">
-          <url>file://$PROJECT_DIR$/app/Services/Domain/ContractService.php</url>
-          <line>48</line>
-          <properties>
-            <option name="className" value="\App\Services\Domain\ContractService" />
-            <option name="methodName" value="renderContract" />
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>
