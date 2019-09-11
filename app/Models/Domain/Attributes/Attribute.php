@@ -64,9 +64,11 @@ abstract class Attribute implements IAttribute {
         {
             case AttributeType::NUMBER:
                 return new NumberAttribute();
+            case AttributeType::TEXT:
+                return new TextAttribute();
         }
 
-        throw new NotFoundException("Attribute {$attributeType} was not found");
+        throw new NotFoundException("Attribute type number:{$attributeType} was not found");
     }
 
     public static function validate($value):bool {

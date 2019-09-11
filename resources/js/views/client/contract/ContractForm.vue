@@ -45,7 +45,6 @@
     methods:{
       selectContract( contractData ){
         this.contractData = contractData;
-        console.log('select', this.contractData);
       }
     }
   }

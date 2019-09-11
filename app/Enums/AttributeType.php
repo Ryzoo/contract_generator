@@ -9,4 +9,5 @@ class AttributeType {
     use EnumIterator;
 
     public const NUMBER = 0;
+    public const TEXT = 1;
 }

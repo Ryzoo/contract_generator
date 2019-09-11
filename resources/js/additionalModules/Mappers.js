@@ -16,8 +16,10 @@ class Mapper {
 
   static getAttributeComponentName(type){
       switch (parseInt(type)) {
-          case AttributeTypeEnum.NUMBER_ATTRIBUTE:
+          case AttributeTypeEnum.NUMBER:
               return "NumberAttribute";
+          case AttributeTypeEnum.TEXT:
+              return "TextAttribute";
           default:
               return "NotFoundAttribute";
       }

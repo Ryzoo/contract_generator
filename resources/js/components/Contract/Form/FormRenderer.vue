@@ -20,12 +20,14 @@
 <script>
     import {ConditionalEnum} from "../../../additionalModules/Enums";
     import NumberAttribute from "./Attributes/NumberAttribute";
+    import TextAttribute from "./Attributes/TextAttribute";
 
   export default {
     name: "FormRenderer",
     props: ["attributes"],
     components:{
-      NumberAttribute
+      NumberAttribute,
+      TextAttribute
     },
     data(){
       return {

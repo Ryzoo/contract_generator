@@ -2,14 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Models/Domain/Attributes/TextAttribute.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/Attributes/TextAttribute.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Helpers/AttributeResolver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/AttributeResolver.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/EmptyBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/EmptyBlock.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Enums/AttributeType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/AttributeType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Attributes/NumberAttribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Attributes/NumberAttribute.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/test.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/test.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public_html/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/additionalModules/ConditionalParser.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/additionalModules/ConditionalParser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/additionalModules/Enums.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/additionalModules/Enums.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/additionalModules/Mappers.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/additionalModules/Mappers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/Form/Attributes/NumberAttribute.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/Attributes/NumberAttribute.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/store/modules/formAttributes.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/modules/formAttributes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/Form/FormRenderer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/FormRenderer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/views/client/contract/ContractForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/client/contract/ContractForm.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -311,25 +317,25 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.jetbrains.php.phpunit.codeGeneration.PhpNewTestDialog.defaultLibrary" value="PHPUnit 6+" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components/Contract/Form/Attributes" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="coverage" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/js/components/Contract/Form/Attributes" />
+      <recent name="$PROJECT_DIR$/app/Models/Domain/Attributes" />
+      <recent name="$PROJECT_DIR$/resources/js/store/modules" />
+      <recent name="$PROJECT_DIR$/tests/Unit/Services/Domain" />
+      <recent name="$PROJECT_DIR$/app/Models/Domain" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Helpers" />
       <recent name="$PROJECT_DIR$/app/Repository/Domain" />
       <recent name="$PROJECT_DIR$/tests/Unit/Services" />
       <recent name="$PROJECT_DIR$/app/Traits" />
       <recent name="$PROJECT_DIR$/app/Enums" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/js/store/modules" />
-      <recent name="$PROJECT_DIR$/tests/Unit/Services/Domain" />
-      <recent name="$PROJECT_DIR$/app/Models/Domain" />
-      <recent name="$PROJECT_DIR$/resources/js/views/panel/accounts" />
-      <recent name="$PROJECT_DIR$/resources/js/views/panel" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -450,7 +456,7 @@
       <workItem from="1568143457584" duration="11617000" />
       <workItem from="1568203223012" duration="31000" />
       <workItem from="1568211659625" duration="1195000" />
-      <workItem from="1568213784676" duration="4320000" />
+      <workItem from="1568213784676" duration="5767000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>

@@ -2,13 +2,13 @@
     "name": "Tutaj fajna nazwa - od 5 do 190 znaków",
     "attributesList": [
         {
-            "attributeName": "Zwykła zmienna",
+            "attributeName": "Imię",
             "id": 1,
-            "attributeType": 0,
-            "defaultValue" : 18,
+            "attributeType": 1,
+            "defaultValue" : "",
             "settings": {
-                "min": 18,
-                "max": 30
+                "lengthMin": 3,
+                "lengthMax": 50
             }
         },
         {
@@ -17,8 +17,8 @@
             "attributeType": 0,
             "defaultValue" : 18,
             "settings": {
-                "min": 18,
-                "max": 30
+                "valueMin": 18,
+                "valueMax": 30
             }
         },
         {
@@ -27,8 +27,8 @@
             "attributeType": 0,
             "defaultValue" : 18,
             "settings": {
-                "min": 18,
-                "max": 30
+                "valueMin": 18,
+                "valueMax": 30
             }
         },
         {
@@ -37,8 +37,8 @@
             "attributeType": 0,
             "defaultValue" : 170,
             "settings": {
-                "min": 18,
-                "max": 30
+                "valueMin": 18,
+                "valueMax": 30
             }
         },
         {
@@ -47,8 +47,8 @@
             "attributeType": 0,
             "defaultValue" : 18,
             "settings": {
-                "min": 18,
-                "max": 30
+                "valueMin": 18,
+                "valueMax": 30
             }
         },
         {
@@ -57,8 +57,8 @@
             "attributeType": 0,
             "defaultValue" : 18,
             "settings": {
-                "min": 18,
-                "max": 30
+                "valueMin": 18,
+                "valueMax": 30
             }
         }
     ],
@@ -76,7 +76,7 @@
                 "content": [
                     "{5}",
                     "==",
-                    "1"
+                    "18"
                 ]
             }],
             "settings":{}
@@ -101,7 +101,7 @@
                             "content": [
                                 "{1}",
                                 "==",
-                                "1"
+                                "18"
                             ]
                         }],
                         "settings":{}
@@ -118,7 +118,7 @@
                             "content": [
                                 "{1}",
                                 "==",
-                                "1"
+                                "18"
                             ]
                         }],
                         "settings":{}
@@ -130,7 +130,7 @@
                     "content": [
                         "{2}",
                         "==",
-                        "1"
+                        "18"
                     ]
             }],
             "settings":{}
@@ -172,7 +172,7 @@
                                         "content": [
                                             "{5}",
                                             "==",
-                                            "1"
+                                            "18"
                                         ]
                                     }],
                                     "settings":{}
@@ -189,7 +189,7 @@
                                         "content": [
                                             "{5}",
                                             "==",
-                                            "1"
+                                            "18"
                                         ]
                                     }],
                                     "settings":{}
@@ -201,7 +201,7 @@
                             "content": [
                                 "{4}",
                                 "==",
-                                "1"
+                                "18"
                             ]
                         }],
                         "settings":{}
@@ -218,7 +218,7 @@
                             "content": [
                                 "{4}",
                                 "==",
-                                "1"
+                                "18"
                             ]
                         }],
                         "settings":{}
@@ -230,7 +230,7 @@
                 "content": [
                     "{5}",
                     "==",
-                    "1"
+                    "18"
                 ]
             }],
             "settings":{}
