@@ -3,12 +3,7 @@
         <v-container>
             <v-row>
                 <component
-                    v-if="
-                        ConditionalParser.validate(
-                            ConditionalEnum.SHOW_ON,
-                            item
-                        )
-                    "
+                    v-if="ConditionalParser.validate(ConditionalEnum.SHOW_ON, item)"
                     v-for="item in attributes"
                     :key="item.id"
                     :is="Mapper.getAttributeComponentName(item.attributeType)"
@@ -23,29 +18,35 @@
 </template>
 
 <script>
-import { ConditionalEnum } from "../../../additionalModules/Enums";
-import NumberAttribute from "./Attributes/NumberAttribute";
+    import {ConditionalEnum} from "../../../additionalModules/Enums";
+    import NumberAttribute from "./Attributes/NumberAttribute";
+    import TextAttribute from "./Attributes/TextAttribute";
 
-export default {
+  export default {
     name: "FormRenderer",
     props: ["attributes"],
-    components: {
-        NumberAttribute
+    components:{
+      NumberAttribute,
+      TextAttribute
     },
-    data() {
-        return {
-            ConditionalEnum: ConditionalEnum
-        };
+    data(){
+      return {
+        ConditionalEnum: ConditionalEnum
+      }
     },
     watch: {
-        attributes(oldValue, newValue) {
-            console.log(oldValue, newValue);
-        }
+      attributes(oldValue, newValue) {
+        console.log(oldValue, newValue);
+      }
     },
     methods: {
-        validateIsShowed(attribute) {}
+      validateIsShowed( attribute ){
+
+      }
     }
-};
+  }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>

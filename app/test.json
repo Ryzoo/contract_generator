@@ -2,63 +2,63 @@
     "name": "Tutaj fajna nazwa - od 5 do 190 znaków",
     "attributesList": [
         {
-            "name": "Zwykła zmienna",
+            "attributeName": "Imię",
             "id": 1,
-            "type": 0,
-            "defaultValue" : 18,
+            "attributeType": 1,
+            "defaultValue" : "",
             "settings": {
-                "min": 18,
-                "max": 30
+                "lengthMin": 3,
+                "lengthMax": 50
             }
         },
         {
-            "name": "Zmienna zależna od zmiennej 5 oraz sterująca",
+            "attributeName": "Zmienna zależna od zmiennej 5 oraz sterująca",
             "id": 2,
-            "type": 0,
+            "attributeType": 0,
             "defaultValue" : 18,
             "settings": {
-                "min": 18,
-                "max": 30
+                "valueMin": 18,
+                "valueMax": 30
             }
         },
         {
-            "name": "Wiek użytkownika",
+            "attributeName": "Wiek użytkownika",
             "id": 3,
-            "type": 0,
+            "attributeType": 0,
             "defaultValue" : 18,
             "settings": {
-                "min": 18,
-                "max": 30
+                "valueMin": 18,
+                "valueMax": 30
             }
         },
         {
-            "name": "Wzrost",
+            "attributeName": "Wzrost",
             "id": 4,
-            "type": 0,
+            "attributeType": 0,
             "defaultValue" : 170,
             "settings": {
-                "min": 18,
-                "max": 30
+                "valueMin": 18,
+                "valueMax": 30
             }
         },
         {
-            "name": "Zmienna sterująca - niezależna",
+            "attributeName": "Zmienna sterująca - niezależna",
             "id": 5,
-            "type": 0,
+            "attributeType": 0,
             "defaultValue" : 18,
             "settings": {
-                "min": 18,
-                "max": 30
+                "valueMin": 18,
+                "valueMax": 30
             }
         },
         {
-            "name": "Test zagniezdzenia",
+            "attributeName": "Test zagniezdzenia",
             "id": 7,
-            "type": 0,
+            "attributeType": 0,
             "defaultValue" : 18,
             "settings": {
-                "min": 18,
-                "max": 30
+                "valueMin": 18,
+                "valueMax": 30
             }
         }
     ],
@@ -66,16 +66,17 @@
         {
             "id": 1,
             "parentId": 0,
-            "type": 0,
+            "blockType": 0,
+            "blockName": "test",
             "content": {
                 "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną {2}"
             },
             "conditionals": [{
-                "type": 0,
+                "conditionalType": 0,
                 "content": [
                     "{5}",
                     "==",
-                    "1"
+                    "18"
                 ]
             }],
             "settings":{}
@@ -83,38 +84,41 @@
         {
             "id": 2,
             "parentId": 0,
-            "type": 1,
+            "blockType": 1,
+            "blockName": "test",
             "content": {
                 "blocks": [
                     {
                         "id": 3,
                         "parentId": 2,
-                        "type": 0,
+                        "blockType": 0,
+                        "blockName": "test",
                         "content": {
-                            "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną"
+                            "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną {1}"
                         },
                         "conditionals": [{
-                            "type": 0,
+                            "conditionalType": 0,
                             "content": [
                                 "{1}",
                                 "==",
-                                "1"
+                                "'Grzegorz'"
                             ]
                         }],
                         "settings":{}
                     },{
                         "id": 4,
                         "parentId": 2,
-                        "type": 0,
+                        "blockType": 0,
+                        "blockName": "test",
                         "content": {
                             "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną"
                         },
                         "conditionals": [{
-                            "type": 0,
+                            "conditionalType": 0,
                             "content": [
                                 "{1}",
                                 "==",
-                                "1"
+                                "18"
                             ]
                         }],
                         "settings":{}
@@ -122,11 +126,11 @@
                 ]
             },
             "conditionals": [{
-                    "type": 0,
+                    "conditionalType": 0,
                     "content": [
                         "{2}",
                         "==",
-                        "1"
+                        "18"
                     ]
             }],
             "settings":{}
@@ -134,7 +138,8 @@
         {
             "id": 5,
             "parentId": 0,
-            "type": 0,
+            "blockType": 0,
+            "blockName": "test",
             "content": {
                 "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną {3}"
             },
@@ -142,46 +147,58 @@
             "settings":{}
         },
         {
+            "id": 15,
+            "parentId": 0,
+            "blockType": 2,
+            "blockName": "asdasd",
+            "content": {},
+            "conditionals": [],
+            "settings":{}
+        },
+        {
             "id": 6,
             "parentId": 0,
-            "type": 1,
+            "blockType": 1,
+            "blockName": "test",
             "content": {
                 "blocks": [
                     {
                         "id": 7,
                         "parentId": 6,
-                        "type": 1,
+                        "blockType": 1,
+                        "blockName": "test",
                         "content": {
                             "blocks": [
                                 {
                                     "id": 8,
                                     "parentId": 7,
-                                    "type": 0,
+                                    "blockType": 0,
                                     "content": {
                                         "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną "
                                     },
                                     "conditionals": [{
-                                        "type": 0,
+                                        "conditionalType": 0,
                                         "content": [
                                             "{5}",
                                             "==",
-                                            "1"
+                                            "18"
                                         ]
                                     }],
                                     "settings":{}
                                 },{
                                     "id": 9,
                                     "parentId": 7,
-                                    "type": 0,
+                                    "blockType": 0,
+                                    "blockName": "test",
                                     "content": {
                                         "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera {7} zmienną "
                                     },
                                     "conditionals": [{
-                                        "type": 0,
+                                        "conditionalType": 0,
                                         "content": [
                                             "{5}",
                                             "==",
-                                            "1"
+                                            "18"
                                         ]
                                     }],
                                     "settings":{}
@@ -189,27 +206,28 @@
                             ]
                         },
                         "conditionals": [{
-                            "type": 0,
+                            "conditionalType": 0,
                             "content": [
                                 "{4}",
                                 "==",
-                                "1"
+                                "18"
                             ]
                         }],
                         "settings":{}
                     },{
                         "id": 10,
                         "parentId": 6,
-                        "type": 0,
+                        "blockType": 0,
+                        "blockName": "test",
                         "content": {
                             "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną"
                         },
                         "conditionals": [{
-                            "type": 0,
+                            "conditionalType": 0,
                             "content": [
                                 "{4}",
                                 "==",
-                                "1"
+                                "18"
                             ]
                         }],
                         "settings":{}
@@ -217,11 +235,11 @@
                 ]
             },
             "conditionals": [{
-                "type": 0,
+                "conditionalType": 0,
                 "content": [
                     "{5}",
                     "==",
-                    "1"
+                    "18"
                 ]
             }],
             "settings":{}

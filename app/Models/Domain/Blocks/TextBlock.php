@@ -4,6 +4,7 @@
 namespace App\Models\Domain\Blocks;
 
 use App\Enums\BlockType;
+use App\Helpers\AttributeResolver;
 use App\Helpers\Validator;
 use Illuminate\Support\Collection;
 
@@ -29,6 +30,11 @@ class TextBlock extends Block {
         return true;
     }
 
+    protected function resolveAttributesInContent(array $attributes) {
+        $attributeResolver = new AttributeResolver($attributes);
+        $this->content["text"]  = $attributeResolver->resolveText($this->content["text"] );
+    }
+
     public function findVariable(Collection $variableArray): Collection{
         $variableArray = parent::findVariable($variableArray);
 
@@ -40,6 +46,11 @@ class TextBlock extends Block {
                     $variableArray->push([$this->id, $arrayElement]);
         }
 
-        return $variableArray->uniqueStrict(1);
+        return $variableArray->uniqueStrict("1");
+    }
+
+    public function renderToHtml(array $attributes): string {
+        $htmlString = parent::renderToHtml($attributes);
+        return $htmlString . $this->content["text"];
     }
 }

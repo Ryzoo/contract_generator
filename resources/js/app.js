@@ -5,6 +5,7 @@ import '@fortawesome/fontawesome-free/css/all.css'
 require('./bootstrap');
 import vuetify from './plugins/vuetify';
 import 'vuetify/dist/vuetify.min.css'
+import Validator from "./additionalModules/Validator";
 
 window.Vue = require('vue');
 
@@ -20,6 +21,8 @@ Vue.mixin({
     data: function () {
         return {
             Mapper: Mapper,
+            Validator: Validator,
+            Notify: window.Notify,
             ConditionalParser: ConditionalParser
         }
     },

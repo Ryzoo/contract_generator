@@ -10,17 +10,17 @@ class ConditionalServiceTest extends TestCase {
     use RefreshDatabase;
 
     /***
-     * @var \App\Services\Domain\ConditionalService
+     * @var \App\Repository\Domain\ConditionalRepository
      */
-    private $conditionalService;
+    private $conditionalRepository;
 
     public function setUp(): void {
         parent::setUp();
-        $this->conditionalService = $this->app->make('App\Services\Domain\ConditionalService');
+        $this->conditionalRepository = $this->app->make('App\Repository\Domain\ConditionalRepository');
     }
 
     public function testGetListOfConditionals() {
-        $listOfConditional = $this->conditionalService->getListOfConditional();
+        $listOfConditional = $this->conditionalRepository->getListOfConditional();
         $countOfExistConditionalType = count(ConditionalType::getList());
 
         $this->assertEquals($countOfExistConditionalType, count($listOfConditional));

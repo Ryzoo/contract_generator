@@ -10,7 +10,8 @@ export const BlockTypeEnum = {
 };
 
 export const AttributeTypeEnum = {
-    NUMBER_ATTRIBUTE: 0,
+    NUMBER: 0,
+    TEXT: 1
 };
 
 export const ConditionalEnum = {

@@ -14,14 +14,4 @@ use Intervention\Image\Exception\NotFoundException;
 
 class BlockService {
 
-    public function getListOfBlocks():array {
-        $blockList = array();
-        $blockTypeList = BlockType::getList();
-
-        foreach($blockTypeList as $value){
-            array_push($blockList, Block::getBlockByType($value));
-        }
-
-        return $blockList;
-    }
 }

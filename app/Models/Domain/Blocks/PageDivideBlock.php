@@ -12,7 +12,9 @@ class PageDivideBlock extends Block {
     }
 
     protected function buildSettings() {
-        // TODO: Implement buildSettings() method.
+        $this->settings = [
+            "availableLevel" => 0,
+        ];
     }
 
     protected function buildContent() {
@@ -22,4 +24,21 @@ class PageDivideBlock extends Block {
     protected function validateContent(): bool {
         return true;
     }
+
+    protected function resolveAttributesInContent(array $attributes) {
+        // TODO: Implement resolveAttributesInContent() method.
+    }
+
+    public function renderToHtml(array $attributes): string {
+        $htmlString = parent::renderToHtml($attributes);
+        return $htmlString . '<div class="page-break"></div>';
+    }
+
+    public function renderAdditionalCss(): string{
+        $cssString = parent::renderAdditionalCss();
+        return $cssString . ".page-break {
+            page-break-after: always;
+        }";
+    }
+
 }

@@ -8,6 +8,7 @@ use App\Helpers\Response;
 use App\Jobs\Email\SendPasswordResetEmail;
 use App\Jobs\Email\SendWelcomeEmail;
 use App\Models\User;
+use App\Repository\UserRepository;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -18,8 +19,14 @@ class AuthService {
      */
     private $userService;
 
-    public function __construct(UserService $userService) {
+    /**
+     * @var \App\Repository\UserRepository
+     */
+    private $userRepository;
+
+    public function __construct(UserService $userService, UserRepository $userRepository) {
         $this->userService = $userService;
+        $this->userRepository = $userRepository;
     }
 
     public function registerUser(User $userModel, int $userRole):?User {
@@ -39,7 +46,7 @@ class AuthService {
     }
 
     public function loginUser(string $email, string $password): User {
-        $user = User::getByEmail($email);
+        $user = $this->userRepository->getByEmail($email);
         if(isset($user)){
             if(Hash::check($password, $user->password)){
                 $user->loginToken = Str::random(60);
@@ -52,7 +59,7 @@ class AuthService {
     }
 
     public function authorizeLogedUser(string $loginToken) {
-        $user = User::getByLoginToken($loginToken);
+        $user = $this->userRepository->getByLoginToken($loginToken);
 
         if(!isset($user))
             throw new \Exception(__("response.notAuthorized"),404);
@@ -61,7 +68,7 @@ class AuthService {
     }
 
     public function sendResetPasswordToken(string $email):string {
-        $user = User::getByEmail($email);
+        $user = $this->userRepository->getByEmail($email);
 
         if(!isset($user))
             throw new \Exception(__("response.emailNotFound"),400);
@@ -76,7 +83,7 @@ class AuthService {
     }
 
     public function resetUserPassword(string $resetToken, string $newPassword) {
-        $user = User::getByResetToken($resetToken);
+        $user = $this->userRepository->getByResetToken($resetToken);
 
         if(!isset($user))
             Response::error(__("response.badResetToken"),400);

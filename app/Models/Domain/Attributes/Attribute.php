@@ -64,19 +64,20 @@ abstract class Attribute implements IAttribute {
         {
             case AttributeType::NUMBER:
                 return new NumberAttribute();
+            case AttributeType::TEXT:
+                return new TextAttribute();
         }
 
-        throw new NotFoundException("Attribute {$attributeType} was not found");
+        throw new NotFoundException("Attribute type number:{$attributeType} was not found");
     }
 
     public static function validate($value):bool {
         Validator::validate($value,[
             "id" => "required|integer",
-            "type" => "required|integer",
-            "name" => "required|string",
+            "attributeType" => "required|integer",
+            "attributeName" => "required|string",
             "conditionals" => "nullable|array",
             "defaultValue" => "nullable|integer",
-            "value" => "nullable|integer",
             "settings" => "required",
         ]);
 
@@ -88,7 +89,7 @@ abstract class Attribute implements IAttribute {
         $returnedArray = [];
 
         if(!is_array($arrayOfAttributes))
-            Response::error(_('custom.array.attributes'));
+            throw new \Exception(_('custom.array.attributes'));
 
         foreach ($arrayOfAttributes as $attribute){
             array_push($returnedArray, self::getFromString((array)$attribute));
@@ -99,16 +100,23 @@ abstract class Attribute implements IAttribute {
 
     public static function getFromString(array $value):Attribute {
         Attribute::validate($value);
-        $attribute = self::getAttributeByType($value["type"]);
+        $attribute = self::getAttributeByType($value["attributeType"]);
 
-        $attribute->attributeType = $value["type"];
-        $attribute->attributeName = AttributeType::getName($value["type"]);
+        $attribute->attributeType = $value["attributeType"];
+        $attribute->attributeName = AttributeType::getName($value["attributeType"]);
         $attribute->settings = $value["settings"];
-        $attribute->name = $value["name"];
+        $attribute->name = $value["attributeName"];
         $attribute->conditionals = isset($value["conditionals"] ) ? Conditional::getListFromString(json_encode($value["conditionals"])) : [];
         $attribute->id = intval($value["id"]);
         $attribute->defaultValue = $value["defaultValue"];
 
+        if(isset($value["value"]))
+            $attribute->value = $value["value"];
+
         return $attribute;
+    }
+
+    public function getValue(){
+        return $this->value;
     }
 }

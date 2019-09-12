@@ -17,9 +17,15 @@ class UserServiceTest extends TestCase {
      */
     private $userService;
 
+    /***
+     * @var \App\Repository\UserRepository
+     */
+    private $userRepository;
+
     public function setUp(): void {
         parent::setUp();
         $this->userService = $this->app->make('App\Services\UserService');
+        $this->userRepository = $this->app->make('App\Repository\UserRepository');
     }
 
     public function testAddUser() {
@@ -80,7 +86,7 @@ class UserServiceTest extends TestCase {
             ->states('client')
             ->create();
 
-        $list = $this->userService->getUserList();
+        $list = $this->userRepository->getUserList();
 
         $this->assertInstanceOf(Collection::class, $list);
         $this->assertEquals(1, $list->count());

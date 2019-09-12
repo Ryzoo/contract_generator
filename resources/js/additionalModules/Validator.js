@@ -14,7 +14,7 @@ class validation {
   }
 
   returnError(errorText) {
-    window.notify.push(errorText, window.notify.ERROR , 4000);
+    window.Notify.push(errorText, window.notify.ERROR , 4000);
     throw "validate failed";
   }
 

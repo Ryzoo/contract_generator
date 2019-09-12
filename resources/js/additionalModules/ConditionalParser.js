@@ -12,8 +12,6 @@ class ConditionalParser{
     }
 
     isConditionalValidAndEqual(content, equalValue){
-        console.log("Now I parse", content);
-
         if(!this.store.getters.formAttributes){
             return !equalValue;
         }
@@ -31,8 +29,6 @@ class ConditionalParser{
 
             return e;
         });
-
-        console.log("Parsing for", contentWithVariables.join(" "), " is ",eval(contentWithVariables.join(" ")));
 
         return eval(contentWithVariables.join(" "));
     }

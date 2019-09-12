@@ -12,15 +12,5 @@ use Intervention\Image\Exception\NotFoundException;
 
 class AttributeService {
 
-    public function getListOfAttributes():array {
-        $attributeList = array();
-        $attributeTypeList = AttributeType::getList();
-
-        foreach($attributeTypeList as $value){
-            array_push($attributeList, Attribute::getAttributeByType($value));
-        }
-
-        return $attributeList;
-    }
 
 }

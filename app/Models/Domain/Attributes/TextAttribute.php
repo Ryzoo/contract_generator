@@ -6,20 +6,20 @@ namespace App\Models\Domain\Attributes;
 
 use App\Enums\AttributeType;
 
-class NumberAttribute extends Attribute {
+class TextAttribute extends Attribute {
 
     public function __construct() {
-        $this->initialize(AttributeType::NUMBER);
+        $this->initialize(AttributeType::TEXT);
     }
 
     protected function buildSettings() {
         $this->settings = [
-            "valueMin" => null,
-            "valueMax" => null
+            "lengthMin" => null,
+            "lengthMax" => null
         ];
     }
 
     public function getValue(){
-        return intval($this->value);
+        return $this->value;
     }
 }

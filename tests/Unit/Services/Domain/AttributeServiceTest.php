@@ -10,17 +10,17 @@ class AttributeServiceTest extends TestCase {
     use RefreshDatabase;
 
     /***
-     * @var \App\Services\Domain\AttributeService
+     * @var \App\Repository\Domain\AttributeRepository
      */
-    private $attributeService;
+    private $attributeRepository;
 
     public function setUp(): void {
         parent::setUp();
-        $this->attributeService = $this->app->make('App\Services\Domain\AttributeService');
+        $this->attributeRepository = $this->app->make('App\Repository\Domain\AttributeRepository');
     }
 
     public function testGetListOfAttributes() {
-        $listOfAttributes = $this->attributeService->getListOfAttributes();
+        $listOfAttributes = $this->attributeRepository->getListOfAttributes();
         $countOfExistAttributeType = count(AttributeType::getList());
 
         $this->assertEquals($countOfExistAttributeType, count($listOfAttributes));
