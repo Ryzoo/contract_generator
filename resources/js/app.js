@@ -8,6 +8,7 @@ import 'vuetify/dist/vuetify.min.css'
 import Validator from "./additionalModules/Validator";
 
 window.Vue = require('vue');
+window.Validator = Validator;
 
 Vue.component('loader', require('./components/Loader').default);
 

@@ -69,7 +69,7 @@ export default {
                     this.$t("form.login.field.password")
                 ] = this.loginForm.password;
 
-                let valid = new window.Validator(validationArray);
+                let valid = new Validator(validationArray);
 
                 valid.get(this.$t("form.login.field.email")).isEmail();
                 valid.get(this.$t("form.login.field.password")).length(6, 50);

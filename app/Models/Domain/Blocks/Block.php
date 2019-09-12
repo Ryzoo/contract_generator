@@ -134,7 +134,7 @@ abstract class Block implements IBlock {
         foreach ($this->conditionals as $conditional){
             $conditionalVariablesList = $conditional->getUsedVariable();
             foreach ($conditionalVariablesList as $arrayElement)
-                $variableArray->push([$this->parentId, $arrayElement]);
+                $variableArray->push([$this->id, $arrayElement]);
         }
 
         return $variableArray->uniqueStrict("1");
