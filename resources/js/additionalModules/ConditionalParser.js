@@ -29,7 +29,7 @@ class ConditionalParser{
 
             return e;
         });
-
+console.log(contentWithVariables.join(" "));
         return eval(contentWithVariables.join(" "));
     }
 
@@ -42,10 +42,10 @@ class ConditionalParser{
 
         if(!findedAttribute){
             console.error(`Var: ${varId} not found`);
-            return null;
+            return "null";
         }
 
-        return findedAttribute.value;
+        return findedAttribute.value || "null";
     }
 }
 

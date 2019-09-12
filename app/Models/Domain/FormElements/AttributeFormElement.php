@@ -18,6 +18,6 @@ class AttributeFormElement extends FormElement {
         parent::__construct($parentBlockId);
         parent::initialize(ElementType::ATTRIBUTE);
         $this->attribute = $attribute;
-        $this->attribute->value = $this->attribute->defaultValue;
+        $this->attribute->value = $this->attribute->value ?? $this->attribute->defaultValue;
     }
 }

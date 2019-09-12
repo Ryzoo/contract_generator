@@ -59,7 +59,6 @@ abstract class FormElement implements IFormElement {
     protected function initialize(int $elementType) {
         $this->elementType = $elementType;
         $this->elementName = ElementType::getName($elementType);
-        $this->parentBlockId = 0;
         $this->conditionals = collect();
         $this->isValid = TRUE;
         $this->isActive = TRUE;
