@@ -86,6 +86,6 @@ abstract class Conditional implements IConditional {
                     $usedVariables->push($arrayElement);
         }
 
-        return $usedVariables->uniqueStrict("1");
+        return $usedVariables;
     }
 }

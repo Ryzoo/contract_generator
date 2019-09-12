@@ -29,7 +29,7 @@ class ConditionalParser{
 
             return e;
         });
-console.log(contentWithVariables.join(" "));
+
         return eval(contentWithVariables.join(" "));
     }
 

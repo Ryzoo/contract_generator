@@ -20,6 +20,6 @@ class TextAttribute extends Attribute {
     }
 
     public function getValue(){
-        return $this->value;
+        return "'{$this->value}'";
     }
 }

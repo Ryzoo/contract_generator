@@ -48,16 +48,22 @@ class PdfRenderer{
     }
 
     public function preparePdf() {
+        $this->addTag("html");
+        $this->addTag("head");
         $this->configurePdf();
         $this->renderAdditionalCss();
+        $this->addTag("/head");
+        $this->addTag("body");
         $this->renderBlocks();
+        $this->addTag("/body");
+        $this->addTag("/html");
 
         $this->pdfInstance->loadHTML($this->fullHtmlText);
         return $this->pdfInstance;
     }
 
     private function configurePdf() {
-        $this->pdfInstance = PDF::setPaper('a4', 'landscape')
+        $this->pdfInstance = PDF::setPaper('a4', 'portrait')
             ->setWarnings(true);
         $this->fullHtmlText .= '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>';
     }
@@ -67,6 +73,8 @@ class PdfRenderer{
 
         foreach ($this->blocks as $block)
             $this->fullHtmlText .= $block->renderAdditionalCss();
+
+        $this->fullHtmlText .= "body { font-family: DejaVu Sans; }";
 
         $this->fullHtmlText .= "</style>";
 
@@ -81,5 +89,9 @@ class PdfRenderer{
                 $this->fullHtmlText .= "<br/>";
             }
         }
+    }
+
+    private function addTag(string $tag){
+        $this->fullHtmlText .= "<{$tag}>";
     }
 }

@@ -41,9 +41,9 @@ class TextBlock extends Block {
 
         preg_match_all('/{(\d)}/', $this->content["text"], $output_array);
 
-        if(isset($output_array[1] ) && is_array($output_array[1] ))
-            foreach ($output_array[1] as $arrayElement)
-                $variableArray->push([$this->id, $arrayElement]);
+        foreach ($output_array[1] as $output){
+            $variableArray->push([$this->id, $output]);
+        }
 
         return $variableArray->uniqueStrict("1");
     }
