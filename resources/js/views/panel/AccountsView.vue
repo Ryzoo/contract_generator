@@ -13,7 +13,8 @@
                     <v-data-table
                         class="elevation-2"
                         :headers="headers"
-                        :items="items">
+                        :items="items"
+                    >
                         <template v-slot:item.name="{ item }">
                             <router-link :to="`/panel/accounts/${item.id}`">
                                 {{ item.firstName }} {{ item.lastName }}
@@ -21,8 +22,17 @@
                         </template>
                         <template v-slot:item.action="{ item }">
                             <div class="table-icons">
-                                <v-icon @click="$router.push(`/panel/accounts/${item.id}/edit`)">fa-edit</v-icon>
-                                <v-icon @click="tryToRemoveAccount(item.id)">fa-trash</v-icon>
+                                <v-icon
+                                    @click="
+                                        $router.push(
+                                            `/panel/accounts/${item.id}/edit`
+                                        )
+                                    "
+                                    >fa-edit</v-icon
+                                >
+                                <v-icon @click="tryToRemoveAccount(item.id)"
+                                    >fa-trash</v-icon
+                                >
                             </div>
                         </template>
                     </v-data-table>
@@ -31,11 +41,7 @@
         </v-col>
         <loader v-else></loader>
 
-        <v-dialog
-            persistent
-            v-model="deleteDialog"
-            max-width="290"
-        >
+        <v-dialog persistent v-model="deleteDialog" max-width="290">
             <v-card>
                 <v-card-title class="headline">{{
                     $t("page.panel.accounts.description.removeTitle")
@@ -46,18 +52,11 @@
                 </v-card-text>
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
-                    <v-btn
-                        color="primary"
-                        text
-                        @click="deleteDialog = false"
-                    >
+                    <v-btn color="primary" text @click="deleteDialog = false">
                         {{ $t("page.panel.accounts.button.cancel") }}
                     </v-btn>
-                    <v-btn
-                        color="error"
-                        @click="removeAccount"
-                    >
-                        {{$t("page.panel.accounts.button.remove")}}
+                    <v-btn color="error" @click="removeAccount">
+                        {{ $t("page.panel.accounts.button.remove") }}
                     </v-btn>
                 </v-card-actions>
             </v-card>

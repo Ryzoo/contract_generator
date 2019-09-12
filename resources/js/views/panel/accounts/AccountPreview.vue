@@ -1,15 +1,17 @@
 <template>
     <v-col v-if="isLoaded">
-        <profile-view v-if="userData" :user-data="userData" :editable="false"></profile-view>
-        <v-alert
-            v-else
-            prominent
-            type="error"
-        >
+        <profile-view
+            v-if="userData"
+            :user-data="userData"
+            :editable="false"
+        ></profile-view>
+        <v-alert v-else prominent type="error">
             <v-row align="center">
                 <v-col class="grow">Taki użytkownik nie istnieje</v-col>
                 <v-col class="shrink">
-                    <v-btn color="secondary" @click="$router.go(-1)">Powrót</v-btn>
+                    <v-btn color="secondary" @click="$router.go(-1)"
+                        >Powrót</v-btn
+                    >
                 </v-col>
             </v-row>
         </v-alert>
@@ -18,39 +20,39 @@
 </template>
 
 <script>
-  import ProfileView from "../../../components/ProfileView";
+import ProfileView from "../../../components/ProfileView";
 
-  export default {
+export default {
     name: "AccountPreview",
     components: {
-      ProfileView
+        ProfileView
     },
     data() {
-      return {
-        isLoaded: true,
-        userData: null
-      }
+        return {
+            isLoaded: true,
+            userData: null
+        };
     },
     methods: {
-      getUserData() {
-        const userID = this.$route.params.id;
-        this.isLoaded = false;
+        getUserData() {
+            const userID = this.$route.params.id;
+            this.isLoaded = false;
 
-        axios.get(`/user/${userID}`)
-            .then((response) => {
-              console.log(response.data);
-              this.userData = response.data;
-            })
-            .finally(() => {
-              this.isLoaded = true;
-            })
-      }
+            axios
+                .get(`/user/${userID}`)
+                .then(response => {
+                    console.log(response.data);
+                    this.userData = response.data;
+                })
+                .finally(() => {
+                    this.isLoaded = true;
+                });
+        }
     },
     mounted() {
-      this.getUserData();
+        this.getUserData();
     }
-  }
+};
 </script>
 
-<style>
-</style>
+<style></style>

@@ -1,20 +1,24 @@
 <template>
     <v-card flat>
-        <v-card-text v-if="isLoaded" >
+        <v-card-text v-if="isLoaded">
             <v-form>
                 <v-container>
                     <v-row>
                         <v-col sm="12" md="6" class="pa-1">
                             <v-text-field
                                 v-model="user.firstName"
-                                :label="$t('form.profileEditForm.field.firstName')"
+                                :label="
+                                    $t('form.profileEditForm.field.firstName')
+                                "
                                 required
                             ></v-text-field>
                         </v-col>
                         <v-col sm="12" md="6" class="pa-1">
                             <v-text-field
                                 v-model="user.lastName"
-                                :label="$t('form.profileEditForm.field.lastName')"
+                                :label="
+                                    $t('form.profileEditForm.field.lastName')
+                                "
                                 required
                             ></v-text-field>
                         </v-col>

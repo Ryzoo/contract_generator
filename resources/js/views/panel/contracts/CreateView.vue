@@ -2,90 +2,175 @@
     <v-col>
         <v-row>
             <div class="builder-container">
-                    <div class="left-side">
-                        <div class="builder-content">
-                            <div v-if="blocks.length > 0">
-                                <div class="builder-blocks">
-                                    <component
-                                        v-for="(block, index) in blocks"
-                                        :key="index"
-                                        :is="Mapper.getBlockName(block.type)"
-                                        v-bind="block"
-                                    >
-                                    </component>
-                                    <!--<div class="block" v-for="block in blocks">-->
-                                    <!--<details>-->
-                                    <!--<summary>-->
-                                    <!--<font-awesome-icon-->
-                                    <!--icon="chevron-right"-->
-                                    <!--class="mx-3"-->
-                                    <!--/>-->
-                                    <!--<h3>{{ block.name }}</h3>-->
-                                    <!--</summary>-->
-                                    <!--<p>Jakies teks</p>-->
-                                    <!--</details>-->
-                                    <!--</div>-->
-                                </div>
-                            </div>
-                            <div v-else>
-                                <div class="empty-elements">
-                                    <span>Dodaj element</span>
-                                    <v-icon
-                                        class="mx-3"
-                                    >fa-plus-circle</v-icon>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <v-navigation-drawer
+                    width="300"
+                    v-model="drawerRight"
+                    app
+                    right
+                >
+                    <!--<v-list dense>-->
+                    <!--<v-list-item @click.stop="right = !right">-->
+                    <!--<v-list-item-action>-->
+                    <!--<v-icon>mdi-exit-to-app</v-icon>-->
+                    <!--</v-list-item-action>-->
+                    <!--<v-list-item-content>-->
+                    <!--<v-list-item-title-->
+                    <!--&gt;Open Temporary Drawer</v-list-item-title-->
+                    <!--&gt;-->
+                    <!--</v-list-item-content>-->
+                    <!--</v-list-item>-->
+                    <!--</v-list>-->
                     <div class="right-side">
                         <div class="sidebar-builder-options">
-                            <div class="v-tabs">
-                                <div class="v-tab">O</div>
-                                <div class="v-tab">U</div>
-                                <div class="v-tab">K</div>
-                            </div>
-                            <div class="builder-options-content">
-                                <h3>Opcje</h3>
-                                <div class="options-section-1">
-                                    <span class="sub-title">Dodaj elementy</span>
-                                    <div class="builder-elements">
-                                        <div
-                                            class="options"
-                                            v-for="element in elementsType"
-                                        >
-                                            <span>{{ element.name }}</span>
+                            <v-tabs slider-size="3" vertical>
+                                <v-tab>O</v-tab>
+                                <v-tab>U</v-tab>
+                                <v-tab>K</v-tab>
+                                <v-tab-item>
+                                    <div class="builder-options-content">
+                                        <h3>Opcje</h3>
+                                        <div class="options-section-1">
+                                            <span class="sub-title"
+                                                >Dodaj elementy</span
+                                            >
+                                            <div class="builder-elements">
+                                                <div
+                                                    class="options"
+                                                    v-for="element in elementsType"
+                                                >
+                                                    <span>{{
+                                                        element.name
+                                                    }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="options-section-2">
+                                            <span class="sub-title"
+                                                >Dodane bloki</span
+                                            >
+                                            <div
+                                                class="block-name"
+                                                v-for="block in blocks"
+                                            >
+                                                <span>{{ block.name }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="options-section-3">
+                                            <span class="sub-title"
+                                                >Dodaj nowy blok</span
+                                            >
+                                            <div class="block-button">
+                                                <v-btn
+                                                    color="primary"
+                                                    @click="dialog = true"
+                                                    >Nowy blok</v-btn
+                                                >
+                                            </div>
+                                            <div class="created-block-info">
+                                                <div class="divider">
+                                                    <hr />
+                                                </div>
+                                                <p>
+                                                    lub wybierz istniejących
+                                                    kategorii
+                                                </p>
+                                                <div class="divider">
+                                                    <hr />
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="created-block"
+                                                v-for="category in blocksCategory"
+                                            >
+                                                <span>{{ category.name }}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="options-section-2">
-                                    <span class="sub-title">Dodane bloki</span>
-                                    <div class="block-name" v-for="block in blocks">
-                                        <span>{{ block.name }}</span>
-                                    </div>
-                                </div>
-                                <div class="options-section-3">
-                                    <span class="sub-title">Dodaj nowy blok</span>
-                                    <div class="block-button">
-                                        <v-btn color="primary" @click="dialog = true"
-                                        >Nowy blok</v-btn
-                                        >
-                                    </div>
-                                    <div class="created-block-info">
-                                        <div class="divider"><hr /></div>
-                                        <p>lub wybierz istniejących kategorii</p>
-                                        <div class="divider"><hr /></div>
-                                    </div>
-                                    <div
-                                        class="created-block"
-                                        v-for="category in blocksCategory"
-                                    >
-                                        <span>{{ category.name }}</span>
-                                    </div>
-                                </div>
+                                </v-tab-item>
+                            </v-tabs>
+                        </div>
+                    </div>
+                </v-navigation-drawer>
+                <v-btn
+                    right
+                    absolute
+                    color="primary"
+                    @click="drawerRight = !drawerRight"
+                >
+                    {{ this.drawerRight ? "Hide settings" : "Show settings" }}
+                </v-btn>
+                <div class="left-side">
+                    <div class="builder-content">
+                        <div v-if="blocks.length > 0">
+                            <div class="builder-blocks">
+                                <component
+                                    v-for="(block, index) in blocks"
+                                    :key="index"
+                                    :is="Mapper.getBlockName(block.type)"
+                                    v-bind="block"
+                                >
+                                </component>
+                            </div>
+                        </div>
+                        <div v-else>
+                            <div class="empty-elements">
+                                <span>Dodaj element</span>
+                                <v-icon class="mx-3">fa-plus-circle</v-icon>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!--<div class="right-side">-->
+                <!--<div class="sidebar-builder-options">-->
+                <!--<div class="v-tabs">-->
+                <!--<div class="v-tab">O</div>-->
+                <!--<div class="v-tab">U</div>-->
+                <!--<div class="v-tab">K</div>-->
+                <!--</div>-->
+                <!--<div class="builder-options-content">-->
+                <!--<h3>Opcje</h3>-->
+                <!--<div class="options-section-1">-->
+                <!--<span class="sub-title">Dodaj elementy</span>-->
+                <!--<div class="builder-elements">-->
+                <!--<div-->
+                <!--class="options"-->
+                <!--v-for="element in elementsType"-->
+                <!--&gt;-->
+                <!--<span>{{ element.name }}</span>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<div class="options-section-2">-->
+                <!--<span class="sub-title">Dodane bloki</span>-->
+                <!--<div class="block-name" v-for="block in blocks">-->
+                <!--<span>{{ block.name }}</span>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<div class="options-section-3">-->
+                <!--<span class="sub-title">Dodaj nowy blok</span>-->
+                <!--<div class="block-button">-->
+                <!--<v-btn-->
+                <!--color="primary"-->
+                <!--@click="dialog = true"-->
+                <!--&gt;Nowy blok</v-btn-->
+                <!--&gt;-->
+                <!--</div>-->
+                <!--<div class="created-block-info">-->
+                <!--<div class="divider"><hr /></div>-->
+                <!--<p>lub wybierz istniejących kategorii</p>-->
+                <!--<div class="divider"><hr /></div>-->
+                <!--</div>-->
+                <!--<div-->
+                <!--class="created-block"-->
+                <!--v-for="category in blocksCategory"-->
+                <!--&gt;-->
+                <!--<span>{{ category.name }}</span>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+            </div>
         </v-row>
         <v-dialog v-model="dialog" max-width="900">
             <v-card>
@@ -132,6 +217,7 @@ export default {
     },
     data: function() {
         return {
+            drawerRight: true,
             newBlock: false,
             dialog: false,
             blocks: [
@@ -198,38 +284,39 @@ export default {
         font-weight: 400;
     }
 }
-.left-side {
-    padding-right: 400px;
-}
 
 summary::-webkit-details-marker {
     display: none;
 }
 
+.left-side {
+    margin-top: 60px;
+}
+
 .right-side {
-    position: absolute;
-    top: -88px;
-    right: -24px;
-    height: 100vh;
-    padding-top: 64px;
-    margin-top: 0;
     .sidebar-builder-options {
         height: 100%;
         display: flex;
-
-        .v-tabs {
-            height: min-content;
+        .v-slide-group__content {
+            width: 40px;
             .v-tab {
-                padding: 7px 12px;
-                background-color: #ececec;
-                border-radius: 10px 0px 0px 10px;
-                border: 1px solid #ded7c9;
-
-                &:hover {
-                    cursor: pointer;
-                }
+                margin-left: 0 !important;
             }
         }
+
+        /*.v-tabs {*/
+        /*height: min-content;*/
+        /*.v-tab {*/
+        /*padding: 7px 12px;*/
+        /*background-color: #ececec;*/
+        /*border-radius: 10px 0px 0px 10px;*/
+        /*border: 1px solid #ded7c9;*/
+
+        /*&:hover {*/
+        /*cursor: pointer;*/
+        /*}*/
+        /*}*/
+        /*}*/
 
         .builder-options-content {
             background-color: white;
