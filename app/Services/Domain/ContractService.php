@@ -37,13 +37,15 @@ class ContractService {
         return $contract;
     }
 
-    public function removeContractById(int $contractID){
-        $contract = $this->contractRepository->getById($contractID);
+    public function removeContractById(array $contractList){
+        foreach ($contractList as $contractId){
+            $contract = $this->contractRepository->getById($contractId);
 
-        DB::transaction(function() use(&$contract) {
-            $contract->form->delete();
-            $contract->delete();
-        });
+            DB::transaction(function() use(&$contract) {
+                $contract->form->delete();
+                $contract->delete();
+            });
+        }
     }
 
     public function renderContract(int $contractID, array $attributes) {

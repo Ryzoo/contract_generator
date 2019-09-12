@@ -66,9 +66,24 @@ class ContractController extends Controller {
     }
 
     public function removeContract(Request $request, int $contractID) {
-        $this->contractService->removeContractById($contractID);
+        $this->contractService->removeContractById([$contractID]);
         Response::success();
     }
+
+    public function removeMultiContract(Request $request) {
+        Validator::validate($request->all(), [
+            "idList" => "required|string"
+        ]);
+
+        $listOfContractId = explode(",", $request->get("idList"));
+
+        if(is_array($listOfContractId)){
+            $this->contractService->removeContractById($listOfContractId);
+        }
+
+        Response::success();
+    }
+
 
     public function getContractList(Request $request){
         $contractCollection = $this->contractRepository->getContractCollection();
