@@ -8,6 +8,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
+use Whoops\Exception\ErrorException;
 
 class UserServiceTest extends TestCase {
     use RefreshDatabase;
@@ -55,7 +56,7 @@ class UserServiceTest extends TestCase {
     }
 
     public function testUpdateUserThrowExceptionWhenUserNotFound() {
-        $this->expectException(\Exception::class);
+        $this->expectException(ErrorException::class);
         $savedUser = factory(User::class)
             ->states('client')
             ->make();
@@ -106,7 +107,7 @@ class UserServiceTest extends TestCase {
     }
 
     public function testChangeUserImageThrowExceptionWhenUserNotFound() {
-        $this->expectException(\Exception::class);
+        $this->expectException(ErrorException::class);
         $uploadedFile = UploadedFile::fake()->image('photo1.jpg');
         $this->userService->changeUserImage(-1, $uploadedFile);
     }

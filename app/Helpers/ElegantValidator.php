@@ -4,6 +4,7 @@
 namespace App\Helpers;
 
 use Illuminate\Database\Eloquent\Model;
+use Whoops\Exception\ErrorException;
 
 /**
  * App\Helpers\ElegantValidator
@@ -19,7 +20,7 @@ class ElegantValidator extends Model{
 
     public static function validate($data, bool $isUpdate=false):bool {
         if(!isset($data) || !($data instanceof Model)){
-            throw new \Exception(__("validation.bad_object_data"));
+            throw new ErrorException(__("validation.bad_object_data"));
         }
 
         return Validator::validate($data->getAttributes(),$isUpdate ? static::$rulesUpdate : static::$rulesAdd);

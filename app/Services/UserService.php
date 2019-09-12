@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Repository\UserRepository;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
+use Whoops\Exception\ErrorException;
 
 class UserService
 {
@@ -46,7 +47,7 @@ class UserService
             return $user;
         }
 
-        throw new \Exception(__("response.notFoundId"));
+        throw new ErrorException(__("response.notFoundId"));
     }
 
     public function removeUser(int $userID):bool {
@@ -64,7 +65,7 @@ class UserService
         $user = $this->userRepository->getById($userID);
 
         if(!isset($user))
-            throw new \Exception(__("response.notFoundId"));
+            throw new ErrorException(__("response.notFoundId"));
 
         $this->fileService->removeFileUsingFileUrl($user->profileImage);
 

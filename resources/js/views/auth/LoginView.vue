@@ -78,8 +78,7 @@ export default {
             }
 
             this.isLoaded = false;
-            axios
-                .post("/auth/login", this.loginForm)
+            axios.post("/auth/login", this.loginForm)
                 .then(response => {
                     notify.push(
                         this.$t("form.login.notify.success"),

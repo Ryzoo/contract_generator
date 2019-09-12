@@ -9,6 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Tests\TestCase;
+use Whoops\Exception\ErrorException;
 
 class AuthServiceTest extends TestCase {
     use RefreshDatabase;
@@ -51,7 +52,7 @@ class AuthServiceTest extends TestCase {
     }
 
     public function testLoginUserThrowExceptionWhenBadEmail() {
-        $this->expectException(\Exception::class);
+        $this->expectException(ErrorException::class);
 
         $email = 'test';
         $password = 'client';
@@ -60,7 +61,7 @@ class AuthServiceTest extends TestCase {
     }
 
     public function testLoginUserThrowExceptionWhenBadPassword() {
-        $this->expectException(\Exception::class);
+        $this->expectException(ErrorException::class);
 
         $email = 't.client@test.pl';
         $password = 'client';
@@ -90,7 +91,7 @@ class AuthServiceTest extends TestCase {
     }
 
     public function testAuthorizeLogedUserThrowNoAccessException() {
-        $this->expectException(\Exception::class);
+        $this->expectException(ErrorException::class);
         $this->authService->authorizeLogedUser("test");
     }
 
@@ -111,7 +112,7 @@ class AuthServiceTest extends TestCase {
     }
 
     public function testSendResetPasswordTokenThrowExceptionWhenNotFoundUser() {
-        $this->expectException(\Exception::class);
+        $this->expectException(ErrorException::class);
 
         $this->authService->sendResetPasswordToken("bad@email.com");
     }
@@ -135,7 +136,7 @@ class AuthServiceTest extends TestCase {
     }
 
     public function testResetUserPasswordThrowBadTokenException() {
-        $this->expectException(\Exception::class);
+        $this->expectException(ErrorException::class);
 
         $this->authService->resetUserPassword("test", "test");
     }

@@ -44,7 +44,7 @@ class EmptyBlock extends Block {
 
         /** @var \App\Models\Domain\Blocks\Block $block */
         foreach ($this->content["blocks"] as $block){
-            $variableArray->push($block->findVariable($contract));
+            $variableArray->merge($block->findVariable($contract));
         }
 
         return $variableArray->uniqueStrict("1");
