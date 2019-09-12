@@ -5,7 +5,7 @@ namespace App\Helpers;
 
 
 use App\Models\Domain\Contract;
-use Barryvdh\DomPDF\PDF;
+use PDF;
 
 class PdfRenderer{
     /**
@@ -24,7 +24,7 @@ class PdfRenderer{
     private $attributes;
 
     /**
-     * @var PDF
+     * @var \PDF
      */
     private $pdfInstance;
 
@@ -44,7 +44,7 @@ class PdfRenderer{
         $this->attributes = $attributes;
     }
 
-    public function preparePdf():PDF {
+    public function preparePdf(): PDF {
         $this->configurePdf();
         $this->renderAdditionalCss();
         $this->renderBlocks();
@@ -54,7 +54,7 @@ class PdfRenderer{
     }
 
     private function configurePdf() {
-        $this->pdfInstance = \PDF::setPaper('a4', 'landscape')
+        $this->pdfInstance = PDF::setPaper('a4', 'landscape')
             ->setWarnings(true);
         $this->fullHtmlText .= '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>';
     }

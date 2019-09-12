@@ -4,6 +4,9 @@
 namespace App\Models\Domain\Blocks;
 
 use App\Enums\BlockType;
+use App\Models\Domain\Contract;
+use App\Models\Domain\FormElements\PageDividerFormElement;
+use Illuminate\Support\Collection;
 
 class PageDivideBlock extends Block {
 
@@ -39,6 +42,12 @@ class PageDivideBlock extends Block {
         return $cssString . ".page-break {
             page-break-after: always;
         }";
+    }
+
+    public function getFormElements(Contract $contract): Collection{
+        $formElements = parent::getFormElements($contract);
+        $formElements->push( new PageDividerFormElement($this->id) );
+        return $formElements;
     }
 
 }

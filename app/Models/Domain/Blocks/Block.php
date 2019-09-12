@@ -9,6 +9,8 @@ use App\Enums\BlockType;
 use App\Helpers\Response;
 use App\Helpers\Validator;
 use App\Models\Domain\Conditional\Conditional;
+use App\Models\Domain\Contract;
+use App\Models\Domain\FormElements\AttributeFormElement;
 use Illuminate\Support\Collection;
 use Intervention\Image\Exception\NotFoundException;
 
@@ -126,7 +128,9 @@ abstract class Block implements IBlock {
         return $block;
     }
 
-    public function findVariable(Collection $variableArray): Collection{
+    public function findVariable(Contract $contract): Collection{
+        $variableArray = collect();
+
         foreach ($this->conditionals as $conditional){
             $conditionalVariablesList = $conditional->getUsedVariable();
             foreach ($conditionalVariablesList as $arrayElement)
@@ -134,6 +138,16 @@ abstract class Block implements IBlock {
         }
 
         return $variableArray->uniqueStrict("1");
+    }
+
+    public function getFormElements(Contract $contract): Collection{
+        $variableArray = $this->findVariable($contract);
+
+        $variableArray->map(function(int $parentBlockId, int $attributeId) use ($contract){
+            return new AttributeFormElement($parentBlockId, $contract->getAttributeByID($attributeId));
+        });
+
+        return $variableArray;
     }
 
     public function getBlockCollection(Collection $blockCollection):Collection {

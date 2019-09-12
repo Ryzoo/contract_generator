@@ -4,8 +4,8 @@
 namespace App\Models\Domain\Blocks;
 
 use App\Enums\BlockType;
-use App\Helpers\AttributeResolver;
 use App\Helpers\Validator;
+use App\Models\Domain\Contract;
 use Illuminate\Support\Collection;
 
 class EmptyBlock extends Block {
@@ -33,24 +33,27 @@ class EmptyBlock extends Block {
     protected function resolveAttributesInContent(array $attributes) {
         $blockList = $this->content["blocks"];
 
+        /** @var \App\Models\Domain\Blocks\Block $block */
         foreach ($blockList as $block){
             $block->resolveAttributesInContent($attributes);
         }
     }
 
-    public function findVariable(Collection $variableArray): Collection{
-        $variableArray = parent::findVariable($variableArray);
+    public function findVariable(Contract $contract): Collection{
+        $variableArray = parent::findVariable($contract);
 
+        /** @var \App\Models\Domain\Blocks\Block $block */
         foreach ($this->content["blocks"] as $block){
-            $variableArray = $block->findVariable($variableArray);
+            $variableArray->push($block->findVariable($contract));
         }
 
-        return $variableArray->uniqueStrict(1);
+        return $variableArray->uniqueStrict("1");
     }
 
     public function getBlockCollection(Collection $blockCollection): Collection{
         $blockCollection = parent::getBlockCollection($blockCollection);
 
+        /** @var \App\Models\Domain\Blocks\Block $block */
         foreach ($this->content["blocks"] as $block){
             $blockCollection = $block->getBlockCollection($blockCollection);
         }
@@ -62,6 +65,7 @@ class EmptyBlock extends Block {
         $htmlString = parent::renderToHtml($attributes);
         $blockList = $this->content["blocks"];
 
+        /** @var \App\Models\Domain\Blocks\Block $block */
         foreach ($blockList as $block){
             $htmlString .= $block->renderToHtml($attributes);
             $htmlString .= "<br/>";
