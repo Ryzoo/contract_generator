@@ -9,11 +9,6 @@ use App\Models\Domain\Blocks\Block;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 
-/**
- * @property Collection blocks
- * @property int id
- * @property Collection attributesList
- */
 class Contract extends ElegantValidator
 {
     use SoftDeletes;
@@ -128,7 +123,7 @@ class Contract extends ElegantValidator
         $this->attributes['settings'] = json_encode($value);
     }
 
-    public function getAttributeByID(int $attributeID):Attribute {
+    public function getAttributeByID(int $attributeID):?Attribute {
         $attributes = $this->attributesList;
 
         foreach ($attributes as $attribute){

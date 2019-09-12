@@ -5,29 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Contracts/Domain/IFormElement.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Enums/ElementType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Domain/FormElements/AttributeFormElement.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Domain/FormElements/FormElement.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Domain/FormElements/PageDividerFormElement.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Contracts/Domain/IBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/Domain/IBlock.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Helpers/PdfRenderer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/PdfRenderer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ElementsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ElementsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/Block.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/Block.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/EmptyBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/EmptyBlock.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/PageDivideBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/PageDivideBlock.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/TextBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/TextBlock.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Domain/Contract.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Contract.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Form.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/FormInput.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repository/Domain/FormRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Domain/AttributeService.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Domain/BlockService.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Domain/ConditionalService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/ConditionalService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Domain/FormService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/FormService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_18_221313_create_forms_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_18_221313_create_forms_table.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -471,7 +450,7 @@
       <workItem from="1568211659625" duration="1195000" />
       <workItem from="1568213784676" duration="5767000" />
       <workItem from="1568293217342" duration="4296000" />
-      <workItem from="1568298662733" duration="2971000" />
+      <workItem from="1568298662733" duration="3331000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>
