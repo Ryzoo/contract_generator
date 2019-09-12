@@ -2,20 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Models/Domain/Attributes/TextAttribute.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/Attributes/TextAttribute.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Enums/AttributeType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/AttributeType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Contracts/Domain/IBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/Domain/IBlock.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Helpers/PdfRenderer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/PdfRenderer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Attributes/NumberAttribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Attributes/NumberAttribute.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/Block.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/Block.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/PageDivideBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/PageDivideBlock.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/test.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/test.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public_html/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/additionalModules/ConditionalParser.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/additionalModules/ConditionalParser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/additionalModules/Enums.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/additionalModules/Enums.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/additionalModules/Mappers.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/additionalModules/Mappers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/Form/Attributes/NumberAttribute.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/Attributes/NumberAttribute.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/Form/FormRenderer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/FormRenderer.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/client/contract/ContractForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/client/contract/ContractForm.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -457,6 +451,7 @@
       <workItem from="1568203223012" duration="31000" />
       <workItem from="1568211659625" duration="1195000" />
       <workItem from="1568213784676" duration="5767000" />
+      <workItem from="1568293217342" duration="1363000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>

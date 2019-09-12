@@ -78,7 +78,6 @@ abstract class Attribute implements IAttribute {
             "attributeName" => "required|string",
             "conditionals" => "nullable|array",
             "defaultValue" => "nullable|integer",
-            "value" => "nullable|integer",
             "settings" => "required",
         ]);
 

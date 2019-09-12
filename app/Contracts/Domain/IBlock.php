@@ -13,4 +13,6 @@ interface IBlock {
     public static function getBlockByType(int $blockType): Block;
     public function findVariable(Collection $variableArray): Collection;
     public function getBlockCollection(Collection $blockCollection): Collection;
+    public function renderToHtml(array $attributes): string;
+    public function renderAdditionalCss(): string;
 }

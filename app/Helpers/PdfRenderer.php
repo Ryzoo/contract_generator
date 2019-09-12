@@ -46,6 +46,7 @@ class PdfRenderer{
 
     public function preparePdf():PDF {
         $this->configurePdf();
+        $this->renderAdditionalCss();
         $this->renderBlocks();
 
         $this->pdfInstance->loadHTML($this->fullHtmlText);
@@ -55,6 +56,17 @@ class PdfRenderer{
     private function configurePdf() {
         $this->pdfInstance = \PDF::setPaper('a4', 'landscape')
             ->setWarnings(true);
+        $this->fullHtmlText .= '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>';
+    }
+
+    public function renderAdditionalCss() {
+        $this->fullHtmlText .= "<style>";
+
+        foreach ($this->blocks as $block)
+            $this->fullHtmlText .= $block->renderAdditionalCss();
+
+        $this->fullHtmlText .= "</style>";
+
     }
 
     private function renderBlocks() {

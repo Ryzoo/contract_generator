@@ -94,14 +94,14 @@
                         "blockType": 0,
                         "blockName": "test",
                         "content": {
-                            "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną"
+                            "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną {1}"
                         },
                         "conditionals": [{
                             "conditionalType": 0,
                             "content": [
                                 "{1}",
                                 "==",
-                                "18"
+                                "'Grzegorz'"
                             ]
                         }],
                         "settings":{}
@@ -143,6 +143,15 @@
             "content": {
                 "text": "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną {3}"
             },
+            "conditionals": [],
+            "settings":{}
+        },
+        {
+            "id": 15,
+            "parentId": 0,
+            "blockType": 2,
+            "blockName": "asdasd",
+            "content": {},
             "conditionals": [],
             "settings":{}
         },

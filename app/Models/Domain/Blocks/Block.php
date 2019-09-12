@@ -145,4 +145,8 @@ abstract class Block implements IBlock {
         $this->resolveAttributesInContent($attributes);
         return "";
     }
+
+    public function renderAdditionalCss(): string{
+        return "";
+    }
 }
