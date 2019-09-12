@@ -8,6 +8,7 @@ use App\Models\Domain\Attributes\Attribute;
 use App\Models\Domain\Blocks\Block;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
+use Whoops\Exception\ErrorException;
 
 class Contract extends ElegantValidator
 {
@@ -49,7 +50,7 @@ class Contract extends ElegantValidator
      * @param string $value
      *
      * @return Collection
-     * @throws \Exception
+     * @throws ErrorException
      */
     public function getAttributesListAttribute($value): Collection
     {
@@ -131,7 +132,7 @@ class Contract extends ElegantValidator
                 return $attribute;
         }
 
-        Response::error(__('validation.attributes.not_exist', ["id" => $attributeID]), 404);
+        throw new ErrorException(__('validation.attributes.not_exist', ["id" => $attributeID]), 404);
         return null;
     }
 

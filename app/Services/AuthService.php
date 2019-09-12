@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Repository\UserRepository;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Whoops\Exception\ErrorException;
 
 class AuthService {
 
@@ -53,16 +54,16 @@ class AuthService {
                 $user->save();
                 return $user;
             }
-            throw new \Exception(__("response.badPassword"));
+            throw new ErrorException(__("response.badPassword"), 401);
         }
-        throw new \Exception(__("response.emailNotFound"));
+        throw new ErrorException(__("response.emailNotFound"), 401);
     }
 
     public function authorizeLogedUser(string $loginToken) {
         $user = $this->userRepository->getByLoginToken($loginToken);
 
         if(!isset($user))
-            throw new \Exception(__("response.notAuthorized"),404);
+            throw new ErrorException(__("response.notAuthorized"),401);
 
         return $user;
     }
@@ -71,7 +72,7 @@ class AuthService {
         $user = $this->userRepository->getByEmail($email);
 
         if(!isset($user))
-            throw new \Exception(__("response.emailNotFound"),400);
+            throw new ErrorException(__("response.emailNotFound"),400);
 
         $resetPasswordToken = Str::random(60);
         $user->resetPasswordToken = $resetPasswordToken;
@@ -86,7 +87,7 @@ class AuthService {
         $user = $this->userRepository->getByResetToken($resetToken);
 
         if(!isset($user))
-            Response::error(__("response.badResetToken"),400);
+            throw new ErrorException(__("response.badResetToken"),400);
 
         $user->setPasswordAttribute($newPassword);
         $user->save();

@@ -9,7 +9,7 @@ use App\Enums\ConditionalType;
 use App\Helpers\Response;
 use App\Helpers\Validator;
 use Illuminate\Support\Collection;
-use Intervention\Image\Exception\NotFoundException;
+use Whoops\Exception\ErrorException;
 
 abstract class Conditional implements IConditional {
     /**
@@ -38,7 +38,7 @@ abstract class Conditional implements IConditional {
                 return new ShowOn();
         }
 
-        throw new NotFoundException("Conditional {$conditionalType} was not found");
+        throw new ErrorException("Conditional {$conditionalType} was not found");
     }
 
     public static function validate($value):bool {

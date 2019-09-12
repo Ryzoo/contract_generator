@@ -6,7 +6,7 @@ namespace App\Repository\Domain;
 
 use App\Models\Domain\Contract;
 use Illuminate\Support\Collection;
-use Intervention\Image\Exception\NotFoundException;
+use Whoops\Exception\ErrorException;
 
 class ContractRepository {
     public function getContractCollection(): Collection {
@@ -17,7 +17,7 @@ class ContractRepository {
         $contract = Contract::where("id", $contractID)->first();
 
         if(!isset($contract))
-            throw new NotFoundException("Contract {$contractID} was not found");
+            throw new ErrorException("Contract {$contractID} was not found");
 
         return $contract;
     }

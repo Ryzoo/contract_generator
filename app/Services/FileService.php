@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
+use Whoops\Exception\ErrorException;
 
 class FileService
 {
@@ -38,7 +39,7 @@ class FileService
 
     public function removeFileUsingFileUrl(string $fileUrl) {
         if(Str::length($fileUrl) <= 0 || !Str::contains($fileUrl,"/storage/"))
-            throw new \Exception("File url must be a valid url including /storage/ word");
+            throw new ErrorException("File url must be a valid url including /storage/ word");
 
         if(in_array($fileUrl, FileService::DEFAULT_FILES_URL))
             return;

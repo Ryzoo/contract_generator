@@ -23,7 +23,7 @@ class FormService {
 
         /* @var $block \App\Models\Domain\Blocks\Block */
         foreach ($blocks as $block){
-            $elementsCollection->push($block->getFormElements($contract));
+            $elementsCollection->merge($block->getFormElements($contract));
         }
         $elementsCollection = $elementsCollection->uniqueStrict("1");
 

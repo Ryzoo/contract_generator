@@ -142,12 +142,15 @@ abstract class Block implements IBlock {
 
     public function getFormElements(Contract $contract): Collection{
         $variableArray = $this->findVariable($contract);
+        $elementCollection = collect();
 
-        $variableArray->map(function(int $parentBlockId, int $attributeId) use ($contract){
-            return new AttributeFormElement($parentBlockId, $contract->getAttributeByID($attributeId));
+        $variableArray->map(function($element) use ($contract, $elementCollection){
+            $parentBlockId = intval($element[0]);
+            $attributeId = intval($element[1]);
+            $elementCollection->push(new AttributeFormElement($parentBlockId, $contract->getAttributeByID($attributeId)));
         });
 
-        return $variableArray;
+        return $elementCollection;
     }
 
     public function getBlockCollection(Collection $blockCollection):Collection {
