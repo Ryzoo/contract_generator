@@ -6,23 +6,10 @@ use App\Helpers\Response;
 use App\Repository\Domain\AttributeRepository;
 use App\Repository\Domain\BlockRepository;
 use App\Repository\Domain\ConditionalRepository;
-use App\Services\Domain\AttributeService;
-use App\Services\Domain\BlockService;
 use App\Services\Domain\ConditionalService;
-use Illuminate\Http\Request;
 
 class ElementsController extends Controller
 {
-    /**
-     * @var BlockService
-     */
-    private $blockService;
-
-    /**
-     * @var AttributeService
-     */
-    private $attributeService;
-
     /**
      * @var ConditionalService
      */
@@ -43,27 +30,25 @@ class ElementsController extends Controller
      */
     private $attributeRepository;
 
-    public function __construct(BlockService $blockService, AttributeService $attributeService, ConditionalService $conditionalService,
+    public function __construct(ConditionalService $conditionalService,
                                 BlockRepository $blockRepository, ConditionalRepository $conditionalRepository, AttributeRepository $attributeRepository) {
-        $this->blockService = $blockService;
-        $this->attributeService = $attributeService;
         $this->conditionalService = $conditionalService;
         $this->blockRepository = $blockRepository;
         $this->conditionalRepository = $conditionalRepository;
         $this->attributeRepository = $attributeRepository;
     }
 
-    public function getAllBlockList(Request $request) {
+    public function getAllBlockList() {
         $blockList = $this->blockRepository->getListOfBlocks();
         Response::success($blockList);
     }
 
-    public function getAllAttributesList(Request $request) {
+    public function getAllAttributesList() {
         $attributeList = $this->attributeRepository->getListOfAttributes();
         Response::success($attributeList);
     }
 
-    public function getAllConditionalList(Request $request) {
+    public function getAllConditionalList() {
         $conditionalList = $this->conditionalRepository->getListOfConditional();
         Response::success($conditionalList);
     }

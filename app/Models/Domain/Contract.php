@@ -2,7 +2,6 @@
 
 namespace App\Models\Domain;;
 
-use App\Contracts\Domain\IAttribute;
 use App\Helpers\ElegantValidator;
 use App\Helpers\Response;
 use App\Models\Domain\Attributes\Attribute;
@@ -47,35 +46,38 @@ class Contract extends ElegantValidator
     /**
      * Get the attributes list
      *
-     * @param  string  $value
-     * @return array
+     * @param string $value
+     *
+     * @return Collection
+     * @throws \Exception
      */
-    public function getAttributesListAttribute($value): array
+    public function getAttributesListAttribute($value): Collection
     {
-        return Attribute::getListFromString($value);
+        return collect(Attribute::getListFromString($value));
     }
 
     /**
      * Get the blocks list
      *
-     * @param  string  $value
-     * @return array
+     * @param string $value
+     *
+     * @return \Illuminate\Support\Collection
      */
-    public function getBlocksAttribute($value): array
+    public function getBlocksAttribute($value): Collection
     {
-        return Block::getListFromString($value);
+        return collect(Block::getListFromString($value));
     }
 
-//    /**
-//     * Get the settings list
-//     *
-//     * @param  string  $value
-//     * @return array
-//     */
-//    public function getSettingsAttribute($value): array
-//    {
-//        return Settings::getListFromString($value);
-//    }
+    /**
+     * Get the settings list
+     *
+     * @param  string  $value
+     * @return Collection
+     */
+    public function getSettingsAttribute($value): Collection
+    {
+        return collect(json_decode($value));
+    }
 
     public function getBlockCollection():Collection {
         $currentBlocks = $this->blocks;
@@ -121,7 +123,7 @@ class Contract extends ElegantValidator
         $this->attributes['settings'] = json_encode($value);
     }
 
-    public function getAttributeByID(int $attributeID):Attribute {
+    public function getAttributeByID(int $attributeID):?Attribute {
         $attributes = $this->attributesList;
 
         foreach ($attributes as $attribute){
@@ -130,6 +132,7 @@ class Contract extends ElegantValidator
         }
 
         Response::error(__('validation.attributes.not_exist', ["id" => $attributeID]), 404);
+        return null;
     }
 
     public function form()

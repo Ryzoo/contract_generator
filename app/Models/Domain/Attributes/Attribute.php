@@ -6,13 +6,12 @@ namespace App\Models\Domain\Attributes;
 
 use App\Contracts\Domain\IAttribute;
 use App\Enums\AttributeType;
-use App\Helpers\Response;
 use App\Helpers\Validator;
 use App\Models\Domain\Conditional\Conditional;
-use App\Services\Domain\AttributeService;
+use Exception;
 use Intervention\Image\Exception\NotFoundException;
 
-abstract class Attribute implements IAttribute {
+abstract class Attribute implements IAttribute  {
     /**
      * @var int
      */
@@ -89,7 +88,7 @@ abstract class Attribute implements IAttribute {
         $returnedArray = [];
 
         if(!is_array($arrayOfAttributes))
-            throw new \Exception(_('custom.array.attributes'));
+            throw new Exception(_('custom.array.attributes'));
 
         foreach ($arrayOfAttributes as $attribute){
             array_push($returnedArray, self::getFromString((array)$attribute));

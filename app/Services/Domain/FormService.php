@@ -4,40 +4,35 @@ namespace App\Services\Domain;
 
 use App\Models\Domain\Contract;
 use App\Models\Domain\Form;
-use App\Models\Domain\FormInput;
-use App\Repository\Domain\ConditionalRepository;
-use App\Repository\Domain\FormRepository;
-use Illuminate\Support\Collection;
 
 class FormService {
+
     /**
      * @var ConditionalService
      */
     private $conditionalService;
 
-    /**
-     * @var \App\Repository\Domain\FormRepository
-     */
-    private $formRepository;
-
-    public function __construct(ConditionalService $conditionalService, FormRepository $formRepository) {
+    public function __construct(ConditionalService $conditionalService) {
         $this->conditionalService = $conditionalService;
-        $this->formRepository = $formRepository;
     }
 
     public function createFromContract(Contract $contract):Form {
         $blocks = $contract->blocks;
 
-        $attributesOrder = collect();
-        foreach ($blocks as $block){
-            $attributesOrder = $block->findVariable($attributesOrder);
-        }
+        $elementsCollection = collect();
 
-        $formInputCollection = $this->formRepository->getFormInputFromContract($contract, $attributesOrder);
+        /* @var $block \App\Models\Domain\Blocks\Block */
+        foreach ($blocks as $block){
+            $elementsCollection->push($block->getFormElements($contract));
+        }
+        $elementsCollection = $elementsCollection->uniqueStrict("1");
+
+        $elementsCollection = $this->conditionalService
+            ->initializeFormElementsConditional($contract, $elementsCollection);
 
         return Form::create([
             "contract_id" => $contract->id,
-            "formInputs" => $formInputCollection,
+            "formElements" => $elementsCollection,
         ]);
     }
 }
