@@ -28,11 +28,11 @@ class PageDivideBlock extends Block {
         return true;
     }
 
-    protected function resolveAttributesInContent(array $attributes) {
+    protected function resolveAttributesInContent(Collection $formElements) {
         // TODO: Implement resolveAttributesInContent() method.
     }
 
-    public function renderToHtml(array $attributes): string {
+    public function renderToHtml(Collection $attributes): string {
         $htmlString = parent::renderToHtml($attributes);
         return $htmlString . '<div class="page-break"></div>';
     }

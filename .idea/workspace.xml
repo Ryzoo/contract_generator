@@ -5,13 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Traits/ConditionalValidator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/FormElements/AttributeFormElements.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/Validators/AttributeValidator.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Contracts/Domain/IBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/Domain/IBlock.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Contracts/Domain/IFormElement.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/Domain/IFormElement.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Helpers/AttributeResolver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/AttributeResolver.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Helpers/PdfRenderer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/PdfRenderer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/Block.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/Block.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/EmptyBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/EmptyBlock.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/PageDivideBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/PageDivideBlock.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Blocks/TextBlock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Blocks/TextBlock.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Form.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/FormElements/AttributeFormElement.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/FormElements/AttributeFormElement.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/FormElements/FormElement.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/FormElements/FormElement.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/Domain/ContractService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/ContractService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/test.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/test.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public_html/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/additionalModules/ConditionalParser.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/additionalModules/ConditionalParser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/additionalModules/Enums.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/additionalModules/Enums.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/additionalModules/Mappers.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/additionalModules/Mappers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/ContractFormRender.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/ContractFormRender.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/Form/Attributes/NumberAttribute.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/Attributes/NumberAttribute.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/Form/Attributes/TextAttribute.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/Attributes/TextAttribute.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/Form/Conditionals/ShowConditional.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/Form/FormRenderer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/FormRenderer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/store/modules/formAttributes.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/modules/formElements.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/views/panel/ContractView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/panel/ContractView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,8 +88,8 @@
       <list>
         <option value="SCSS File" />
         <option value="package.json" />
-        <option value="JavaScript File" />
         <option value="Vue Single File Component" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -456,7 +481,7 @@
       <workItem from="1568213784676" duration="5767000" />
       <workItem from="1568293217342" duration="4296000" />
       <workItem from="1568298662733" duration="5771000" />
-      <workItem from="1568304457173" duration="2449000" />
+      <workItem from="1568304457173" duration="23558000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>
@@ -542,18 +567,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Services/Domain/ContractService.php</url>
-          <line>29</line>
+          <line>30</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Services/Domain/ContractService.php</url>
-          <line>31</line>
+          <line>32</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Services/Domain/FormService.php</url>
-          <line>29</line>
-          <option name="timeStamp" value="3" />
+          <url>file://$PROJECT_DIR$/app/Helpers/PdfRenderer.php</url>
+          <line>50</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

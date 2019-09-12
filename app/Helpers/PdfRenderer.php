@@ -4,7 +4,10 @@
 namespace App\Helpers;
 
 
+use App\Enums\ConditionalType;
+use App\Models\Domain\Conditional\Conditional;
 use App\Models\Domain\Contract;
+use Illuminate\Support\Collection;
 use PDF;
 
 class PdfRenderer{
@@ -14,14 +17,14 @@ class PdfRenderer{
     private $contract;
 
     /**
-     * @var array
+     * @var Collection
      */
     private $blocks;
 
     /**
-     * @var array
+     * @var Collection
      */
-    private $attributes;
+    private $formElements;
 
     /**
      * @var \PDF
@@ -38,13 +41,13 @@ class PdfRenderer{
         $this->fullHtmlText = "";
     }
 
-    public function setParameters(Contract $contract, array $blocks, array $attributes) {
+    public function setParameters(Contract $contract, Collection $blocks, Collection $formElements) {
         $this->contract = $contract;
         $this->blocks = $blocks;
-        $this->attributes = $attributes;
+        $this->formElements = $formElements;
     }
 
-    public function preparePdf(): PDF {
+    public function preparePdf() {
         $this->configurePdf();
         $this->renderAdditionalCss();
         $this->renderBlocks();
@@ -70,9 +73,13 @@ class PdfRenderer{
     }
 
     private function renderBlocks() {
+
+        /** @var \App\Models\Domain\Blocks\Block $block */
         foreach ($this->blocks as $block){
-            $this->fullHtmlText .= $block->renderToHtml($this->attributes);
-            $this->fullHtmlText .= "<br/>";
+            if($block->validateConditions(ConditionalType::SHOW_ON, $this->formElements)){
+                $this->fullHtmlText .= $block->renderToHtml($this->formElements);
+                $this->fullHtmlText .= "<br/>";
+            }
         }
     }
 }

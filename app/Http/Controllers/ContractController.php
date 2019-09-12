@@ -6,6 +6,7 @@ use App\Helpers\Response;
 use App\Helpers\Validator;
 use App\Models\Domain\Attributes\Attribute;
 use App\Models\Domain\Contract;
+use App\Models\Domain\FormElements\FormElement;
 use App\Repository\Domain\ContractRepository;
 use App\Services\Domain\ContractService;
 use App\Services\Domain\FormService;
@@ -48,19 +49,20 @@ class ContractController extends Controller {
 
     public function getContractForm(Request $request, int $contractID) {
         $contract = $this->contractRepository->getById($contractID);
-        $formInputs = $contract->form->formInputs;
+        $formInputs = $contract->form->formElements;
         Response::success($formInputs);
     }
 
     public function renderContractForm(Request $request, int $contractID) {
         Validator::validate($request->all(),[
-            "attributesList" => "required|array"
+            "formElements" => "required|array"
         ]);
 
-        $attributeString = json_encode($request->get("attributesList"));
-        $attributeList = Attribute::getListFromString($attributeString);
+        $formElements = json_encode($request->get("formElements"));
+        $formElementsList = FormElement::getListFromString($formElements);
 
-        $contractPdfFile = $this->contractService->renderContract($contractID, $attributeList);
+        $contractPdfFile = $this->contractService
+            ->renderContract($contractID, $formElementsList);
 
         return $contractPdfFile->stream(Str::random(8).".pdf");
     }

@@ -18,6 +18,8 @@ import i18n from './lang'
 
 ConditionalParser.setStore(store);
 
+window.ConditionalParser = ConditionalParser;
+
 Vue.mixin({
     data: function () {
         return {

@@ -7,6 +7,7 @@ namespace App\Services\Domain;
 use App\Helpers\PdfRenderer;
 use App\Models\Domain\Contract;
 use App\Repository\Domain\ContractRepository;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class ContractService {
@@ -48,12 +49,12 @@ class ContractService {
         }
     }
 
-    public function renderContract(int $contractID, array $attributes) {
+    public function renderContract(int $contractID, Collection $formElements) {
         $contract = $this->contractRepository->getById($contractID);
         $blocks = $contract->blocks;
 
         $pdfRenderer = new PdfRenderer();
-        $pdfRenderer->setParameters($contract, $blocks, $attributes);
+        $pdfRenderer->setParameters($contract, $blocks, $formElements);
 
         return $pdfRenderer->preparePdf();
     }

@@ -13,7 +13,7 @@ interface IBlock {
     public static function getFromString(array $value): Block;
     public static function getBlockByType(int $blockType): Block;
     public function getBlockCollection(Collection $blockCollection): Collection;
-    public function renderToHtml(array $attributes): string;
+    public function renderToHtml(Collection $attributes): string;
     public function renderAdditionalCss(): string;
     public function findVariable(Contract $contract): Collection;
     public function getFormElements(Contract $contract): Collection;

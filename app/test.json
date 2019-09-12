@@ -6,6 +6,7 @@
             "id": 1,
             "attributeType": 1,
             "defaultValue" : "",
+            "placeholder" : "Testowe",
             "settings": {
                 "lengthMin": 3,
                 "lengthMax": 50

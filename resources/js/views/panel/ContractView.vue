@@ -101,6 +101,7 @@
               });
 
               this.removeContractId = null;
+              this.multiSelectedItems = [];
               this.deleteDialog = false;
               notify.push(
                   this.$t("page.panel.contracts.notify.successRemove"),

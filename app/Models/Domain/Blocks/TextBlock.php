@@ -31,8 +31,8 @@ class TextBlock extends Block {
         return true;
     }
 
-    protected function resolveAttributesInContent(array $attributes) {
-        $attributeResolver = new AttributeResolver($attributes);
+    protected function resolveAttributesInContent(Collection $formElements) {
+        $attributeResolver = new AttributeResolver($formElements);
         $this->content["text"]  = $attributeResolver->resolveText($this->content["text"] );
     }
 
@@ -48,7 +48,7 @@ class TextBlock extends Block {
         return $variableArray->uniqueStrict("1");
     }
 
-    public function renderToHtml(array $attributes): string {
+    public function renderToHtml(Collection $attributes): string {
         $htmlString = parent::renderToHtml($attributes);
         return $htmlString . $this->content["text"];
     }

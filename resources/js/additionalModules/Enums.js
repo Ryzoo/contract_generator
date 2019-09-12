@@ -17,3 +17,8 @@ export const AttributeTypeEnum = {
 export const ConditionalEnum = {
     SHOW_ON: 0,
 };
+
+export const FormElementsEnum = {
+    PAGE_BRAKE: 0,
+    ATTRIBUTE: 1,
+};
