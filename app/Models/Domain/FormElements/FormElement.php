@@ -105,7 +105,7 @@ abstract class FormElement implements IFormElement {
         $element->parentBlockId = $value["parentBlockId"];
         $element->elementType = $value["elementType"];
         $element->elementName = ElementType::getName($value["elementType"]);
-        $element->conditionals = Conditional::getListFromString(json_encode($value["conditionals"]));
+        $element->conditionals = collect(Conditional::getListFromString(json_encode($value["conditionals"])));
         $element->isActive = $value["isActive"] == "true";
         $element->isValid = $value["isValid"] == "true";
 

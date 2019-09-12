@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/tests/Unit/Services/Domain/ContractServiceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Services/Domain/ContractServiceTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/FormElements/FormElement.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/FormElements/FormElement.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Traits/ConditionalValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Traits/ConditionalValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public_html/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/mix-manifest.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -450,7 +453,7 @@
       <workItem from="1568213784676" duration="5767000" />
       <workItem from="1568293217342" duration="4296000" />
       <workItem from="1568298662733" duration="5771000" />
-      <workItem from="1568304457173" duration="28076000" />
+      <workItem from="1568304457173" duration="28201000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>

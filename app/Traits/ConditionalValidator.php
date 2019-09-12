@@ -4,9 +4,7 @@
 namespace App\Traits;
 
 
-use App\Enums\ConditionalType;
 use App\Enums\ElementType;
-use App\Models\Domain\Conditional\Conditional;
 use App\Models\Domain\FormElements\AttributeFormElement;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -21,7 +19,7 @@ trait ConditionalValidator {
 
     public function validateConditions(int $conditionalType, Collection $formElements): bool {
         if (!isset($this->conditionals)) {
-            throw new ErrorException("Conditional validator implemented in class without conditionals field");
+            throw new \ErrorException("Conditional validator implemented in class without conditionals field");
         }
 
         $this->formElements = $formElements;
