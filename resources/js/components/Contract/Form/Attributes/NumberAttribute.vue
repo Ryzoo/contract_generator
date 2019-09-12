@@ -1,5 +1,5 @@
 <template>
-    <v-col sm="12" >
+    <v-col sm="12">
         <v-text-field
             :label="attribute.name"
             :value="attribute.value"
@@ -15,20 +15,18 @@
 </template>
 
 <script>
-  export default {
+export default {
     name: "NumberAttribute",
     props: ["attribute"],
     methods: {
-      changeValue( newValue ){
-        this.$store.dispatch('formAttributes_changeAttributeValue', {
-          id: this.attribute.id,
-          value: parseInt(newValue)
-        });
-      }
+        changeValue(newValue) {
+            this.$store.dispatch("formAttributes_changeAttributeValue", {
+                id: this.attribute.id,
+                value: parseInt(newValue)
+            });
+        }
     }
-  }
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

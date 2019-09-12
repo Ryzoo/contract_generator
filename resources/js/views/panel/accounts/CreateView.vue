@@ -16,7 +16,11 @@
                                         <v-text-field
                                             prepend-icon="fa-user-edit"
                                             v-model="user.firstName"
-                                            :label="$t('form.accountAddForm.field.firstName')"
+                                            :label="
+                                                $t(
+                                                    'form.accountAddForm.field.firstName'
+                                                )
+                                            "
                                             required
                                         ></v-text-field>
                                     </v-col>
@@ -24,7 +28,11 @@
                                         <v-text-field
                                             prepend-icon="fa-user-edit"
                                             v-model="user.lastName"
-                                            :label="$t('form.accountAddForm.field.lastName')"
+                                            :label="
+                                                $t(
+                                                    'form.accountAddForm.field.lastName'
+                                                )
+                                            "
                                             required
                                         ></v-text-field>
                                     </v-col>
@@ -32,7 +40,11 @@
                                         <v-text-field
                                             prepend-icon="fa-envelope"
                                             v-model="user.email"
-                                            :label="$t('form.accountAddForm.field.email')"
+                                            :label="
+                                                $t(
+                                                    'form.accountAddForm.field.email'
+                                                )
+                                            "
                                             type="email"
                                             required
                                         ></v-text-field>
@@ -41,7 +53,11 @@
                                         <v-select
                                             prepend-icon="fa-user-tag"
                                             v-model="user.role"
-                                            :label="$t('form.accountAddForm.field.role')"
+                                            :label="
+                                                $t(
+                                                    'form.accountAddForm.field.role'
+                                                )
+                                            "
                                             :items="roleList"
                                             required
                                         ></v-select>
@@ -50,7 +66,11 @@
                                         <v-text-field
                                             prepend-icon="fa-lock"
                                             v-model="user.password"
-                                            :label="$t('form.accountAddForm.field.password')"
+                                            :label="
+                                                $t(
+                                                    'form.accountAddForm.field.password'
+                                                )
+                                            "
                                             type="password"
                                         >
                                         </v-text-field>
@@ -59,18 +79,37 @@
                                         <v-text-field
                                             prepend-icon="fa-lock"
                                             v-model="user.rePassword"
-                                            :label="$t('form.accountAddForm.field.rePassword')"
+                                            :label="
+                                                $t(
+                                                    'form.accountAddForm.field.rePassword'
+                                                )
+                                            "
                                             type="password"
                                         >
                                         </v-text-field>
                                     </v-col>
                                 </v-row>
                                 <v-row align="end" justify="end">
-                                    <v-btn color="primary" text @click="$router.push('/panel/accounts')" >
-                                        {{ $t("form.accountEditForm.button.prev") }}
+                                    <v-btn
+                                        color="primary"
+                                        text
+                                        @click="$router.push('/panel/accounts')"
+                                    >
+                                        {{
+                                            $t(
+                                                "form.accountEditForm.button.prev"
+                                            )
+                                        }}
                                     </v-btn>
-                                    <v-btn color="success" @click="addAccount()">
-                                        {{ $t("form.accountEditForm.button.save") }}
+                                    <v-btn
+                                        color="success"
+                                        @click="addAccount()"
+                                    >
+                                        {{
+                                            $t(
+                                                "form.accountEditForm.button.save"
+                                            )
+                                        }}
                                     </v-btn>
                                 </v-row>
                             </v-container>

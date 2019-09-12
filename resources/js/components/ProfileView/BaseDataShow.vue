@@ -17,7 +17,7 @@
                     @click="changeProfileImage"
                     class="mx-auto d-block"
                     color="primary"
-                >{{ $t("form.profileEditForm.button.change_img") }}</v-btn
+                    >{{ $t("form.profileEditForm.button.change_img") }}</v-btn
                 >
                 <v-btn
                     v-if="canBeSaved"
@@ -32,8 +32,10 @@
                     {{ user.firstName }} {{ user.lastName }}
                 </h2>
                 <small class="text-center d-block">{{
-                    isAdmin ? $t("user.roles.ADMINISTRATOR") : $t("user.roles.CLIENT")
-                    }}</small>
+                    isAdmin
+                        ? $t("user.roles.ADMINISTRATOR")
+                        : $t("user.roles.CLIENT")
+                }}</small>
             </template>
             <loader v-else></loader>
         </v-card-text>
