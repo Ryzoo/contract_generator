@@ -7,6 +7,7 @@ namespace App\Helpers;
 use App\Enums\ConditionalType;
 use App\Models\Domain\Conditional\Conditional;
 use App\Models\Domain\Contract;
+use App\Services\ContractModuleService;
 use Illuminate\Support\Collection;
 use PDF;
 
@@ -65,6 +66,7 @@ class PdfRenderer{
     private function configurePdf() {
         $this->pdfInstance = PDF::setPaper('a4', 'portrait')
             ->setWarnings(true);
+
         $this->fullHtmlText .= '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>';
     }
 

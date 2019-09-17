@@ -246,7 +246,15 @@
             "settings":{}
         }
     ],
-    "settings": [
-
-    ]
+    "settings": {
+        "enabledModules": [
+            "auth"
+        ],
+        "modules": {
+            "auth": {
+                "type": 0,
+                "password": ""
+            }
+        }
+    }
 }

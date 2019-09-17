@@ -59,7 +59,7 @@ class AuthService {
         throw new ErrorException(__("response.emailNotFound"), 401);
     }
 
-    public function authorizeLogedUser(string $loginToken) {
+    public function authorizeLoggedUser(string $loginToken) {
         $user = $this->userRepository->getByLoginToken($loginToken);
 
         if(!isset($user))
