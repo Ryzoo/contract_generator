@@ -5,25 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Enums/Modules/AuthType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Enums/Modules/ContractModulePart.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/AppAuthorization.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/Configuration.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/Contract/Auth.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/Contract/ContractModule.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/Domain/ContractModuleService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Domain/Attributes/SelectAttribute.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/Attributes/SelectAttribute.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Helpers/PdfRenderer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/PdfRenderer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Contract.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Contract.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/AuthService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/AuthService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/test.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/test.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Enums/AttributeType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/AttributeType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Attributes/Attribute.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public_html/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/additionalModules/Enums.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/additionalModules/Enums.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/additionalModules/Mappers.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/additionalModules/Mappers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/Form/FormElements/AttributeFormElements.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/FormElements/AttributeFormElements.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -326,26 +316,26 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.jetbrains.php.phpunit.codeGeneration.PhpNewTestDialog.defaultLibrary" value="PHPUnit 6+" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Models/Domain/FormElements" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components/Contract/Form/Attributes" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="coverage" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/js/components/Contract/Form/Attributes" />
+      <recent name="$PROJECT_DIR$/app/Models/Domain/Attributes" />
+      <recent name="$PROJECT_DIR$/app/Models/Domain/FormElements" />
+      <recent name="$PROJECT_DIR$/resources/js/store/modules" />
+      <recent name="$PROJECT_DIR$/tests/Unit/Services/Domain" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Modules/Contract" />
       <recent name="$PROJECT_DIR$/app/Services/Domain" />
       <recent name="$PROJECT_DIR$/app/Helpers" />
       <recent name="$PROJECT_DIR$/app/Repository/Domain" />
       <recent name="$PROJECT_DIR$/tests/Unit/Services" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/Models/Domain/FormElements" />
-      <recent name="$PROJECT_DIR$/resources/js/components/Contract/Form/Attributes" />
-      <recent name="$PROJECT_DIR$/app/Models/Domain/Attributes" />
-      <recent name="$PROJECT_DIR$/resources/js/store/modules" />
-      <recent name="$PROJECT_DIR$/tests/Unit/Services/Domain" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -470,7 +460,8 @@
       <workItem from="1568293217342" duration="4296000" />
       <workItem from="1568298662733" duration="5771000" />
       <workItem from="1568304457173" duration="28201000" />
-      <workItem from="1568734481640" duration="6850000" />
+      <workItem from="1568734481640" duration="6899000" />
+      <workItem from="1569163345686" duration="1897000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>
@@ -550,22 +541,6 @@
     <MESSAGE value="Add some translations to agreements view" />
     <MESSAGE value="Changes in agreement view" />
     <option name="LAST_COMMIT_MESSAGE" value="Changes in agreement view" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Models/AppAuthorization.php</url>
-          <line>13</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Models/AppAuthorization.php</url>
-          <line>18</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>

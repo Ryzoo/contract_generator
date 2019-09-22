@@ -15,6 +15,7 @@
 <script>
   import NumberAttribute from "./../Attributes/NumberAttribute";
   import TextAttribute from "./../Attributes/TextAttribute";
+  import SelectAttribute from "../Attributes/SelectAttribute";
   import AttributeValidator from "../Validators/AttributeValidator";
 
   export default {
@@ -22,7 +23,8 @@
     props: ["formElement"],
     components: {
       NumberAttribute,
-      TextAttribute
+      TextAttribute,
+      SelectAttribute
     },
     data() {
       return {

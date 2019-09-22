@@ -70,6 +70,8 @@ abstract class Attribute implements IAttribute  {
                 return new NumberAttribute();
             case AttributeType::TEXT:
                 return new TextAttribute();
+            case AttributeType::SELECT:
+                return new SelectAttribute();
         }
 
         throw new NotFoundException("Attribute type number:{$attributeType} was not found");

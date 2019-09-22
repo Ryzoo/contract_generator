@@ -33,6 +33,8 @@ class Mapper {
                 return "NumberAttribute";
             case AttributeTypeEnum.TEXT:
                 return "TextAttribute";
+            case AttributeTypeEnum.SELECT:
+                return "SelectAttribute";
             default:
                 return "NotFoundAttribute";
         }
