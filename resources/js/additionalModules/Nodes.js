@@ -1,4 +1,5 @@
 import { Node } from 'tiptap'
+import { toggleWrap,insertText,setInlineBlockType, replaceText } from 'tiptap-commands'
 
 export default class VariableNode extends Node {
 
@@ -13,7 +14,8 @@ export default class VariableNode extends Node {
       },
       content: 'block+',
       group: 'block',
-      selectable: false,
+      draggable: true,
+      selectable: true,
       // parseDOM and toDOM is still required to make copy and paste work
       parseDOM: [{
         tag: 'variable',
@@ -21,8 +23,12 @@ export default class VariableNode extends Node {
         //   parameters: dom.getAttribute('parameters'),
         // }),
       }],
-      toDOM: () => ['variable',0],
+      toDOM: () => ['div',{ class: 'variable' },0],
     }
+  }
+
+  commands({ type, schema }) {
+    return () => replaceText(type)
   }
 
   // return a vue component
@@ -50,7 +56,7 @@ export default class VariableNode extends Node {
   //       },
   //     },
   //     template: `
-  //           <variable></variable>
+  //           <div class="variable"></div>
   //     `,
   //   }
   // }

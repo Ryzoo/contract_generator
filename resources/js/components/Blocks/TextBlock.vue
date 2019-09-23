@@ -39,6 +39,13 @@
                         >
                             <v-icon>fa-code</v-icon>
                         </button>
+                        <button
+                            class="menububble-button"
+                            :class="{ 'is-active': isActive.code() }"
+                            @click="commands.variable"
+                        >
+                            <v-icon>fa-code</v-icon>
+                        </button>
                     </div>
                 </div>
             </editor-menu-bubble>
@@ -67,7 +74,7 @@ import {
     Underline,
     History
 } from "tiptap-extensions";
-import Cosiek from "../../additionalModules/Nodes";
+import Variable from "../../additionalModules/Nodes";
 
 export default {
     name: "Block",
@@ -105,7 +112,7 @@ export default {
                 new Strike(),
                 new Underline(),
                 new History(),
-                new Cosiek()
+                new Variable()
             ],
             content: this.content.text,
             useBuiltInExtensions: true
@@ -181,13 +188,12 @@ details {
 
         .menububble-button {
             padding: 10px;
+            i {
+                color: white;
+            }
         }
     }
 }
 
-variable {
-    background: #a68fd2 0% 0% no-repeat padding-box;
-    box-shadow: 0px 3px 6px #a68fd2;
-    border-radius: 10px;
-}
+
 </style>
