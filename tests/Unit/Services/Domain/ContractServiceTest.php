@@ -58,7 +58,7 @@ class ContractServiceTest extends TestCase {
         $allContract = $this->contractRepository->getContractCollection();
 
         $this->assertEquals(1,$allContract->count());
-        $this->contractService->removeContractById($savedContract->id);
+        $this->contractService->removeContractById([$savedContract->id]);
 
         $allContract = $this->contractRepository->getContractCollection();
         $this->assertEquals(0,$allContract->count());
@@ -67,7 +67,7 @@ class ContractServiceTest extends TestCase {
     public function testRemoveContractThrowExceptionWhenNotFound(){
         $this->expectException(\Exception::class);
 
-        $this->contractService->removeContractById(100);
+        $this->contractService->removeContractById([100]);
     }
 
     private function getDefaultDataForContract(){

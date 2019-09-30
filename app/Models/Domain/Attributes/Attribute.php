@@ -36,6 +36,10 @@ abstract class Attribute implements IAttribute  {
      * @var array
      */
     public $conditionals;
+    /**
+     * @var string
+     */
+    public $placeholder;
 
     public $value;
     public $defaultValue;
@@ -48,6 +52,7 @@ abstract class Attribute implements IAttribute  {
         $this->value = null;
         $this->id = 0;
         $this->name = "no_name";
+        $this->placeholder = "";
         $this->defaultValue = null;
         $this->buildObject();
     }
@@ -65,6 +70,8 @@ abstract class Attribute implements IAttribute  {
                 return new NumberAttribute();
             case AttributeType::TEXT:
                 return new TextAttribute();
+            case AttributeType::SELECT:
+                return new SelectAttribute();
         }
 
         throw new NotFoundException("Attribute type number:{$attributeType} was not found");
@@ -107,10 +114,15 @@ abstract class Attribute implements IAttribute  {
         $attribute->name = $value["attributeName"];
         $attribute->conditionals = isset($value["conditionals"] ) ? Conditional::getListFromString(json_encode($value["conditionals"])) : [];
         $attribute->id = intval($value["id"]);
-        $attribute->defaultValue = $value["defaultValue"];
+
+        if(isset($value["defaultValue"]))
+            $attribute->defaultValue = $value["defaultValue"];
 
         if(isset($value["value"]))
             $attribute->value = $value["value"];
+
+        if(isset($value["placeholder"]))
+            $attribute->placeholder = $value["placeholder"];
 
         return $attribute;
     }

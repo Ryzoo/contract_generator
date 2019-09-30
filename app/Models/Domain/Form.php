@@ -15,7 +15,7 @@ class Form extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'formInputs' => 'array'
+        'formElements' => 'array'
     ];
 
     public function contract()

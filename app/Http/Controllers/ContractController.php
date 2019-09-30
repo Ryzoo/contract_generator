@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Modules\ContractModulePart;
 use App\Helpers\Response;
 use App\Helpers\Validator;
-use App\Models\Domain\Attributes\Attribute;
 use App\Models\Domain\Contract;
+use App\Models\Domain\FormElements\FormElement;
 use App\Repository\Domain\ContractRepository;
+use App\Services\AuthService;
 use App\Services\Domain\ContractService;
 use App\Services\Domain\FormService;
+use App\Services\Domain\ContractModuleService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -29,10 +32,22 @@ class ContractController extends Controller {
      */
     private $contractRepository;
 
-    public function __construct(ContractService $contractService, FormService $formService, ContractRepository $contractRepository) {
+    /**
+     * @var \App\Services\Domain\ContractModuleService
+     */
+    private $contractModuleService;
+
+    /**
+     * @var \App\Services\AuthService
+     */
+    private $authService;
+
+    public function __construct(ContractService $contractService, FormService $formService, ContractRepository $contractRepository, ContractModuleService $contractModuleService, AuthService $authService) {
         $this->contractService = $contractService;
         $this->formService = $formService;
         $this->contractRepository = $contractRepository;
+        $this->contractModuleService = $contractModuleService;
+        $this->authService = $authService;
     }
 
     public function addNewContract(Request $request) {
@@ -47,26 +62,49 @@ class ContractController extends Controller {
     }
 
     public function getContractForm(Request $request, int $contractID) {
+        Validator::validate($request->all(),[
+            "password" => "nullable|string"
+        ]);
+
         $contract = $this->contractRepository->getById($contractID);
-        $formInputs = $contract->form->formInputs;
-        Response::success($formInputs);
+
+        $this->contractModuleService->runPart($contract, ContractModulePart::GET_CONTRACT, [
+            "password" => $request->get("password") ?? ""
+        ]);
+
+        Response::success($contract->form->formElements);
     }
 
     public function renderContractForm(Request $request, int $contractID) {
         Validator::validate($request->all(),[
-            "attributesList" => "required|array"
+            "formElements" => "required|array"
         ]);
 
-        $attributeString = json_encode($request->get("attributesList"));
-        $attributeList = Attribute::getListFromString($attributeString);
+        $formElements = json_encode($request->get("formElements"));
+        $formElementsList = FormElement::getListFromString($formElements);
 
-        $contractPdfFile = $this->contractService->renderContract($contractID, $attributeList);
+        $contractPdfFile = $this->contractService
+            ->renderContract($contractID, $formElementsList);
 
         return $contractPdfFile->stream(Str::random(8).".pdf");
     }
 
     public function removeContract(Request $request, int $contractID) {
-        $this->contractService->removeContractById($contractID);
+        $this->contractService->removeContractById([$contractID]);
+        Response::success();
+    }
+
+    public function removeMultiContract(Request $request) {
+        Validator::validate($request->all(), [
+            "idList" => "required|string"
+        ]);
+
+        $listOfContractId = explode(",", $request->get("idList"));
+
+        if(is_array($listOfContractId)){
+            $this->contractService->removeContractById($listOfContractId);
+        }
+
         Response::success();
     }
 

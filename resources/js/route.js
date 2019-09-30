@@ -155,7 +155,10 @@ router.beforeEach((to, from, next) => {
     }
 
     if (to.matched.some(record => record.meta.noRequireAuthorization)) {
-        next();
+        window.auth.checkAuth()
+            .finally(()=>{
+                next();
+            });
     }
     else {
         if (to.path !== '/login') {

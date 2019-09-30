@@ -3,7 +3,7 @@
         <v-text-field
             :label="attribute.name"
             :value="attribute.value"
-            :placeholder="String(attribute.defaultValue)"
+            :placeholder="String(attribute.placeholder)"
             :error="validationError.length > 0"
             :error-messages="validationError"
             outlined
@@ -17,48 +17,10 @@
 <script>
   export default {
     name: "NumberAttribute",
-    props: ["attribute"],
-    data(){
-      return {
-        settings: {
-          valueMin: this.attribute.settings.valueMin,
-          valueMax: this.attribute.settings.valueMax,
-        },
-        validationError: ""
-      }
-    },
+    props: ["attribute", "validationError"],
     methods: {
       changeValue( newValue ){
-        const isValidValue = this.isValid(newValue);
-
-        if(isValidValue)
-            this.$store.dispatch('formAttributes_changeAttributeValue', {
-              id: this.attribute.id,
-              value: parseInt(newValue)
-            });
-        else
-          this.$store.dispatch('formAttributes_setValidError', {
-            id: this.attribute.id
-          });
-      },
-      isValid(newValue){
-        this.validationError = "";
-
-        if(!newValue) return true;
-
-        const intValue = parseInt(newValue);
-
-        if(this.settings.valueMin && intValue < parseInt(this.settings.valueMin)){
-          this.validationError = this.$t('validation.min.numeric',{attribute: this.attribute.name, min:this.settings.valueMin});
-          return false;
-        }
-
-        if(this.settings.valueMax && intValue > parseInt(this.settings.valueMax)){
-          this.validationError = this.$t('validation.max.numeric',{attribute: this.attribute.name, max:this.settings.valueMax});
-          return false;
-        }
-
-        return true;
+        this.$emit("change-value", parseInt(newValue));
       }
     }
   }

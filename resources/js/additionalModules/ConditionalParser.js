@@ -1,5 +1,5 @@
 
-import { ConditionalEnum } from "./Enums";
+import {ConditionalEnum, FormElementsEnum} from "./Enums";
 
 class ConditionalParser{
     setStore(store){
@@ -12,7 +12,7 @@ class ConditionalParser{
     }
 
     isConditionalValidAndEqual(content, equalValue){
-        if(!this.store.getters.formAttributes){
+        if(!this.store.getters.formElements){
             return !equalValue;
         }
 
@@ -34,15 +34,18 @@ class ConditionalParser{
     }
 
     getVariableValue(varId){
-        const allAttributes = this.store.getters.formAttributes;
-        const findedAttribute = allAttributes.find(e => e.id == varId);
+        const allAttributes = this.store.getters.formElements
+            .filter(e => e.elementType === FormElementsEnum.ATTRIBUTE)
+            .map(e => e.attribute);
+
+        const findedAttribute = allAttributes.find(e => e.id === parseInt(varId));
 
         if(!findedAttribute){
             console.error(`Var: ${varId} not found`);
-            return null;
+            return "null";
         }
 
-        return findedAttribute.value;
+        return findedAttribute.value || "null";
     }
 }
 

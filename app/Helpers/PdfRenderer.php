@@ -4,7 +4,11 @@
 namespace App\Helpers;
 
 
+use App\Enums\ConditionalType;
+use App\Models\Domain\Conditional\Conditional;
 use App\Models\Domain\Contract;
+use App\Services\ContractModuleService;
+use Illuminate\Support\Collection;
 use PDF;
 
 class PdfRenderer{
@@ -14,14 +18,14 @@ class PdfRenderer{
     private $contract;
 
     /**
-     * @var array
+     * @var Collection
      */
     private $blocks;
 
     /**
-     * @var array
+     * @var Collection
      */
-    private $attributes;
+    private $formElements;
 
     /**
      * @var \PDF
@@ -38,24 +42,31 @@ class PdfRenderer{
         $this->fullHtmlText = "";
     }
 
-    public function setParameters(Contract $contract, array $blocks, array $attributes) {
+    public function setParameters(Contract $contract, Collection $blocks, Collection $formElements) {
         $this->contract = $contract;
         $this->blocks = $blocks;
-        $this->attributes = $attributes;
+        $this->formElements = $formElements;
     }
 
-    public function preparePdf(): PDF {
+    public function preparePdf() {
+        $this->addTag("html");
+        $this->addTag("head");
         $this->configurePdf();
         $this->renderAdditionalCss();
+        $this->addTag("/head");
+        $this->addTag("body");
         $this->renderBlocks();
+        $this->addTag("/body");
+        $this->addTag("/html");
 
         $this->pdfInstance->loadHTML($this->fullHtmlText);
         return $this->pdfInstance;
     }
 
     private function configurePdf() {
-        $this->pdfInstance = PDF::setPaper('a4', 'landscape')
+        $this->pdfInstance = PDF::setPaper('a4', 'portrait')
             ->setWarnings(true);
+
         $this->fullHtmlText .= '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>';
     }
 
@@ -65,14 +76,24 @@ class PdfRenderer{
         foreach ($this->blocks as $block)
             $this->fullHtmlText .= $block->renderAdditionalCss();
 
+        $this->fullHtmlText .= "body { font-family: DejaVu Sans; }";
+
         $this->fullHtmlText .= "</style>";
 
     }
 
     private function renderBlocks() {
+
+        /** @var \App\Models\Domain\Blocks\Block $block */
         foreach ($this->blocks as $block){
-            $this->fullHtmlText .= $block->renderToHtml($this->attributes);
-            $this->fullHtmlText .= "<br/>";
+            if($block->validateConditions(ConditionalType::SHOW_ON, $this->formElements)){
+                $this->fullHtmlText .= $block->renderToHtml($this->formElements);
+                $this->fullHtmlText .= "<br/>";
+            }
         }
+    }
+
+    private function addTag(string $tag){
+        $this->fullHtmlText .= "<{$tag}>";
     }
 }

@@ -4,6 +4,7 @@
 namespace App\Models\Domain\Blocks;
 
 use App\Enums\BlockType;
+use App\Enums\ConditionalType;
 use App\Helpers\Validator;
 use App\Models\Domain\Contract;
 use Illuminate\Support\Collection;
@@ -30,12 +31,12 @@ class EmptyBlock extends Block {
         $this->content["blocks"] = Block::getListFromString( json_encode($this->content["blocks"]) );
     }
 
-    protected function resolveAttributesInContent(array $attributes) {
+    protected function resolveAttributesInContent(Collection $formElements) {
         $blockList = $this->content["blocks"];
 
         /** @var \App\Models\Domain\Blocks\Block $block */
         foreach ($blockList as $block){
-            $block->resolveAttributesInContent($attributes);
+            $block->resolveAttributesInContent($formElements);
         }
     }
 
@@ -44,7 +45,7 @@ class EmptyBlock extends Block {
 
         /** @var \App\Models\Domain\Blocks\Block $block */
         foreach ($this->content["blocks"] as $block){
-            $variableArray->merge($block->findVariable($contract));
+            $variableArray = $variableArray->merge($block->findVariable($contract));
         }
 
         return $variableArray->uniqueStrict("1");
@@ -61,14 +62,16 @@ class EmptyBlock extends Block {
         return $blockCollection;
     }
 
-    public function renderToHtml(array $attributes): string {
+    public function renderToHtml(Collection $attributes): string {
         $htmlString = parent::renderToHtml($attributes);
         $blockList = $this->content["blocks"];
 
         /** @var \App\Models\Domain\Blocks\Block $block */
         foreach ($blockList as $block){
-            $htmlString .= $block->renderToHtml($attributes);
-            $htmlString .= "<br/>";
+            if($block->validateConditions(ConditionalType::SHOW_ON, $attributes)){
+                $htmlString .= $block->renderToHtml($attributes);
+                $htmlString .= "<br/>";
+            }
         }
 
         return $htmlString;

@@ -4,15 +4,17 @@
 namespace App\Helpers;
 
 
+use App\Enums\ElementType;
+use Illuminate\Support\Collection;
+
 class AttributeResolver {
-
     /**
-     * @var array
+     * @var \Illuminate\Support\Collection
      */
-    private $attributes;
+    private $formElements;
 
-    public function __construct(array $attributes) {
-        $this->attributes = $attributes;
+    public function __construct(Collection $formElements) {
+        $this->formElements = $formElements;
     }
 
     public function resolveText(string $text) {
@@ -27,11 +29,14 @@ class AttributeResolver {
     }
 
     private function getAttributeValueById(int $id){
-        foreach ($this->attributes as $attribute){
-            if(intval($attribute->id) === $id)
-                return $attribute->getValue();
-        }
+        $attribute = $this->formElements
+            ->where("elementType", ElementType::ATTRIBUTE)
+            ->map(function($e){
+                return $e->attribute;
+            })
+            ->where("id", $id)
+            ->first();
 
-        return "";
+        return isset($attribute) ? $attribute->getValue() : "";
     }
 }

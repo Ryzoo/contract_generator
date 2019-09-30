@@ -6,15 +6,21 @@ namespace App\Models\Domain\Blocks;
 
 use App\Contracts\Domain\IBlock;
 use App\Enums\BlockType;
+use App\Enums\ConditionalType;
 use App\Helpers\Response;
 use App\Helpers\Validator;
 use App\Models\Domain\Conditional\Conditional;
 use App\Models\Domain\Contract;
 use App\Models\Domain\FormElements\AttributeFormElement;
+use App\Traits\ConditionalValidator;
 use Illuminate\Support\Collection;
 use Intervention\Image\Exception\NotFoundException;
+use Whoops\Exception\ErrorException;
 
 abstract class Block implements IBlock {
+
+    use ConditionalValidator;
+
     /**
      * @var int
      */
@@ -68,7 +74,7 @@ abstract class Block implements IBlock {
     protected abstract function buildSettings();
     protected abstract function buildContent();
     protected abstract function validateContent():bool;
-    protected abstract function resolveAttributesInContent(array $attributes);
+    protected abstract function resolveAttributesInContent(Collection $formElements);
 
     public static function getBlockByType(int $blockType):Block {
         switch ($blockType)
@@ -102,7 +108,7 @@ abstract class Block implements IBlock {
         $returnedArray = [];
 
         if(!is_array($arrayOfBlocks))
-            Response::error(_('custom.array.attributes'));
+            throw new ErrorException(_('custom.array.attributes'), 500);
 
         foreach ($arrayOfBlocks as $block){
             array_push($returnedArray, self::getFromString((array)$block));
@@ -158,7 +164,7 @@ abstract class Block implements IBlock {
         return $blockCollection;
     }
 
-    public function renderToHtml(array $attributes):string{
+    public function renderToHtml(Collection $attributes):string{
         $this->resolveAttributesInContent($attributes);
         return "";
     }

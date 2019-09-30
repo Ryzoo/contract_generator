@@ -133,7 +133,17 @@ class Contract extends ElegantValidator
         }
 
         throw new ErrorException(__('validation.attributes.not_exist', ["id" => $attributeID]), 404);
-        return null;
+    }
+
+    public function checkContractEnabledModules( string $moduleName ): bool{
+        $enabledModules = isset($this->settings['enabledModules']) ? $this->settings['enabledModules'] : [];
+
+        foreach ($enabledModules as $enabledModule) {
+            if($enabledModule === $moduleName)
+                return true;
+        }
+
+        return false;
     }
 
     public function form()

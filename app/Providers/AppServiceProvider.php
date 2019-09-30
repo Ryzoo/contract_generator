@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\AppAuthorization;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+
     /**
      * Register any application services.
      *
@@ -15,6 +17,10 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind('path.public', function() {
           return base_path('public_html');
+        });
+
+        $this->app->singleton('AppAuthorization', function () {
+            return new AppAuthorization();
         });
     }
 

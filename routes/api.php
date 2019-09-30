@@ -40,4 +40,5 @@ Route::prefix('contract')->group(function () {
     Route::get('/{id}/form', 'ContractController@getContractForm');
     Route::post('/{id}/render', 'ContractController@renderContractForm');
     Route::delete('/{id}', 'ContractController@removeContract');
+    Route::delete('/', 'ContractController@removeMultiContract');
 });

@@ -10,4 +10,5 @@ class AttributeType {
 
     public const NUMBER = 0;
     public const TEXT = 1;
+    public const SELECT = 2;
 }

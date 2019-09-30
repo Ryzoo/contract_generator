@@ -23,9 +23,9 @@ class FormService {
 
         /* @var $block \App\Models\Domain\Blocks\Block */
         foreach ($blocks as $block){
-            $elementsCollection->merge($block->getFormElements($contract));
+            $elementsCollection = $elementsCollection->merge($block->getFormElements($contract));
         }
-        $elementsCollection = $elementsCollection->uniqueStrict("1");
+        $elementsCollection = $elementsCollection->unique();
 
         $elementsCollection = $this->conditionalService
             ->initializeFormElementsConditional($contract, $elementsCollection);

@@ -2,20 +2,52 @@
     <v-card
         v-if="!isLoading"
         color="#446477"
-        dark
     >
         <v-card-text class="white--text">
             <div class="headline mb-2">{{contract.name}}</div>
             <v-divider></v-divider>
-            <form-renderer
-                :attributes="attributesList"
-            ></form-renderer>
-        </v-card-text>
+            <v-stepper v-model="actualStep">
+                <v-stepper-header>
+                    <template v-for="step in stepList">
+                        <v-stepper-step
+                            :key="`${step.id}-header`"
+                            :complete="actualStep > step.id"
+                            :step="step.id"
+                        >
+                            Krok: {{step.id}}
+                        </v-stepper-step>
 
-        <v-card-actions>
-            <div class="flex-grow-1"></div>
-            <v-btn color="primary" @click="renderContract()">Wygeneruj umowę</v-btn>
-        </v-card-actions>
+                        <v-divider
+                            v-if="step.id < stepList.length - 1"
+                            :key="step.id"
+                        ></v-divider>
+                    </template>
+                </v-stepper-header>
+
+                <v-stepper-items>
+                    <v-stepper-content
+                        v-for="step in stepList"
+                        :key="`${step.id}-content`"
+                        :step="step.id"
+                    >
+                        <form-renderer
+                            :formElements="step.content"
+                        ></form-renderer>
+
+                        <v-container>
+                            <v-row>
+                                <v-col align="end">
+                                    <v-btn text v-if="actualStep > 1 && actualStep <= stepList.length" @click="goBackStep">Go back</v-btn>
+                                    <v-btn color="primary" v-if="actualStep < stepList.length" @click="goToNextStep">Go next</v-btn>
+                                    <v-btn color="success" v-if="actualStep === stepList.length" @click="renderContract">Render contract</v-btn>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+
+                    </v-stepper-content>
+                </v-stepper-items>
+            </v-stepper>
+        </v-card-text>
     </v-card>
     <loader v-else></loader>
 </template>
@@ -32,11 +64,12 @@
     data() {
       return {
         isLoading: false,
+        actualStep: 1
       }
     },
     computed: {
-      attributesList () {
-        return this.$store.getters.formAttributes;
+      stepList(){
+        return Object.assign([],this.$store.getters.formElementsStepList);
       }
     },
     watch: {
@@ -47,11 +80,27 @@
       }
     },
     methods: {
+      goBackStep(){
+        this.actualStep = this.actualStep === 1 ? 1 : this.actualStep-1;
+      },
+      goToNextStep(){
+        if(this.isCurrentStepValid()){
+          this.actualStep = this.actualStep === this.stepList.length ? this.actualStep : this.actualStep+1;
+        }
+      },
+      isCurrentStepValid(){
+        if(!this.stepList[this.actualStep].content.every(e=>e.isValid)){
+          Notify.push("Complete all elements of this page correctly",Notify.WARNING);
+          return false;
+        }
+
+        return true;
+      },
       loadContractForm() {
         this.isLoading = true;
         axios.get(`/contract/${this.contract.id}/form`)
             .then((response) => {
-              this.$store.dispatch("setAttributes", response.data.map(e => e.attribute));
+              this.$store.dispatch("formElements_set", response.data);
             })
             .finally(() => {
               this.isLoading = false;
@@ -64,7 +113,7 @@
           method: 'POST',
           responseType: 'blob',
           data: {
-            attributesList: this.$store.getters.formAttributes
+            formElements: this.$store.getters.formElements
           }
         })
             .then((response) => {
@@ -79,9 +128,6 @@
             .finally(() => {
               this.isLoading = false;
             })
-
-
-
       }
     },
     mounted() {

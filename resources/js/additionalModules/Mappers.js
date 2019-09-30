@@ -1,4 +1,8 @@
-import {AttributeTypeEnum, BlockTypeEnum} from "./Enums";
+import {
+    FormElementsEnum,
+    AttributeTypeEnum,
+    BlockTypeEnum
+} from "./Enums";
 
 class Mapper {
   static getBlockName(type) {
@@ -14,16 +18,27 @@ class Mapper {
     }
   }
 
-  static getAttributeComponentName(type){
+  static getElementFormComponentName(type){
       switch (parseInt(type)) {
-          case AttributeTypeEnum.NUMBER:
-              return "NumberAttribute";
-          case AttributeTypeEnum.TEXT:
-              return "TextAttribute";
+          case FormElementsEnum.ATTRIBUTE:
+              return "AttributeFormElements";
           default:
-              return "NotFoundAttribute";
+              return "NotFoundFormElements";
       }
   }
+
+    static getAttributeComponentName(type){
+        switch (parseInt(type)) {
+            case AttributeTypeEnum.NUMBER:
+                return "NumberAttribute";
+            case AttributeTypeEnum.TEXT:
+                return "TextAttribute";
+            case AttributeTypeEnum.SELECT:
+                return "SelectAttribute";
+            default:
+                return "NotFoundAttribute";
+        }
+    }
 }
 
 export default Mapper;

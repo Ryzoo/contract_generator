@@ -6,16 +6,16 @@ namespace App\Models\Domain\Attributes;
 
 use App\Enums\AttributeType;
 
-class TextAttribute extends Attribute {
+class SelectAttribute extends Attribute {
 
     public function __construct() {
-        $this->initialize(AttributeType::TEXT);
+        $this->initialize(AttributeType::SELECT);
     }
 
     protected function buildSettings() {
         $this->settings = [
-            "lengthMin" => null,
-            "lengthMax" => null
+            "isMultiSelect" => false,
+            "items" => []
         ];
     }
 

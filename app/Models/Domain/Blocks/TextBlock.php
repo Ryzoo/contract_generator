@@ -31,8 +31,8 @@ class TextBlock extends Block {
         return true;
     }
 
-    protected function resolveAttributesInContent(array $attributes) {
-        $attributeResolver = new AttributeResolver($attributes);
+    protected function resolveAttributesInContent(Collection $formElements) {
+        $attributeResolver = new AttributeResolver($formElements);
         $this->content["text"]  = $attributeResolver->resolveText($this->content["text"] );
     }
 
@@ -41,14 +41,14 @@ class TextBlock extends Block {
 
         preg_match_all('/{(\d)}/', $this->content["text"], $output_array);
 
-        if(isset($output_array[1] ) && is_array($output_array[1] ))
-            foreach ($output_array[1] as $arrayElement)
-                $variableArray->push([$this->id, $arrayElement]);
+        foreach ($output_array[1] as $output){
+            $variableArray->push([$this->id, $output]);
+        }
 
         return $variableArray->uniqueStrict("1");
     }
 
-    public function renderToHtml(array $attributes): string {
+    public function renderToHtml(Collection $attributes): string {
         $htmlString = parent::renderToHtml($attributes);
         return $htmlString . $this->content["text"];
     }

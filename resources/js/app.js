@@ -8,6 +8,7 @@ import 'vuetify/dist/vuetify.min.css'
 import Validator from "./additionalModules/Validator";
 
 window.Vue = require('vue');
+window.Validator = Validator;
 
 Vue.component('loader', require('./components/Loader').default);
 
@@ -16,6 +17,8 @@ import route from './route'
 import i18n from './lang'
 
 ConditionalParser.setStore(store);
+
+window.ConditionalParser = ConditionalParser;
 
 Vue.filter('truncate', function (text, clamp) {
     return text.slice(0, 50) + (50 < text.length ? clamp || '...' : '')

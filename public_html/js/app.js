@@ -2085,26 +2085,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2130,21 +2110,6 @@ __webpack_require__.r(__webpack_exports__);
       keepInBounds: true,
       editor: null
     };
-  },
-  methods: {
-    onDragStart: function onDragStart(event) {
-      event.dataTransfer.setData('text/plain', event.target.id);
-    },
-    onDragOver: function onDragOver(event) {
-      event.preventDefault();
-    },
-    onDrop: function onDrop(event) {
-      var id = event.dataTransfer.getData('text');
-      var draggableElement = document.getElementById(id);
-      var dropzone = event.target;
-      dropzone.appendChild(draggableElement);
-      event.dataTransfer.clearData();
-    }
   },
   mounted: function mounted() {
     this.editor = new tiptap__WEBPACK_IMPORTED_MODULE_0__["Editor"]({
@@ -4396,6 +4361,92 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CreateAgreementView",
@@ -4408,21 +4459,6 @@ __webpack_require__.r(__webpack_exports__);
       newBlock: false,
       dialog: false,
       blocks: [{
-        type: 0,
-        content: {
-          text: "<h1>Lorem ipsum</h1> <br> dolor sit amet, <variable>consectetur</variable> adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        },
-        conditionals: {},
-        settings: {},
-        nested: [{
-          type: 0,
-          content: {
-            text: "<h1>Lorem ipsum</h1> <br> dolor sit amet, <variable>consectetur</variable> adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-          },
-          conditionals: {},
-          settings: {}
-        }]
-      }, {
         type: 0,
         content: {
           text: "<h1>Lorem ipsum</h1> <br> dolor sit amet, <variable>consectetur</variable> adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -4479,7 +4515,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "details[data-v-a1c2f63c] {\n  padding: 10px 0;\n  border: 1px solid #d4ac71;\n  border-radius: 5px;\n  transition: all 0.3s;\n  position: relative;\n}\ndetails[data-v-a1c2f63c]:hover {\n  cursor: pointer;\n}\ndetails[open][data-v-a1c2f63c]:hover {\n  border: 4px solid #d4ac71;\n  box-shadow: 0px 3px 6px 0px #d4ac71;\n}\ndetails[open] > summary[data-v-a1c2f63c] {\n  border-bottom: 1px solid #d4ac71;\n  padding-bottom: 10px;\n}\ndetails[open] > summary i[data-v-a1c2f63c] {\n  transform: rotate(90deg);\n}\ndetails[open] > *[data-v-a1c2f63c]:not(:first-child) {\n  padding: 0 15px;\n  margin-top: 16px;\n}\ndetails summary[data-v-a1c2f63c] {\n  display: flex;\n  align-items: center;\n  text-transform: capitalize;\n}\ndetails summary svg[data-v-a1c2f63c] {\n  transition: all 0.2s;\n}\ndetails summary[data-v-a1c2f63c]:focus {\n  outline: none;\n}\n.menububble-container[data-v-a1c2f63c] {\n  position: absolute;\n  transition: 0.3s;\n  opacity: 0;\n  z-index: 3;\n}\n.menububble-container.is-active[data-v-a1c2f63c] {\n  opacity: 1;\n}\n.menububble-container .menububble[data-v-a1c2f63c] {\n  width: -webkit-max-content;\n  width: -moz-max-content;\n  width: max-content;\n  display: flex;\n  justify-content: center;\n  background: linear-gradient(to bottom, #3d3646 0%, #2a272f 100%);\n  color: white;\n  border-radius: 5px;\n}\n.menububble-container .menububble .menububble-button[data-v-a1c2f63c] {\n  padding: 10px;\n}\n.menububble-container .menububble .menububble-button i[data-v-a1c2f63c] {\n  color: white;\n}", ""]);
+exports.push([module.i, "details[data-v-a1c2f63c] {\n  padding: 10px 0;\n  border: 1px solid #d4ac71;\n  border-radius: 5px;\n  margin-bottom: 20px;\n  transition: all 0.3s;\n  position: relative;\n}\ndetails[data-v-a1c2f63c]:hover {\n  cursor: pointer;\n}\ndetails[open][data-v-a1c2f63c]:hover {\n  border: 4px solid #d4ac71;\n  box-shadow: 0px 3px 6px 0px #d4ac71;\n}\ndetails[open] summary[data-v-a1c2f63c] {\n  border-bottom: 1px solid #d4ac71;\n  padding-bottom: 10px;\n}\ndetails[open] summary svg[data-v-a1c2f63c] {\n  transform: rotate(90deg);\n}\ndetails[open] > *[data-v-a1c2f63c]:not(:first-child) {\n  padding: 0 15px;\n  margin-top: 16px;\n}\ndetails summary[data-v-a1c2f63c] {\n  display: flex;\n  align-items: center;\n  text-transform: capitalize;\n}\ndetails summary svg[data-v-a1c2f63c] {\n  transition: all 0.2s;\n}\ndetails summary[data-v-a1c2f63c]:focus {\n  outline: none;\n}\n.menububble-container[data-v-a1c2f63c] {\n  position: absolute;\n  transition: 0.3s;\n  opacity: 0;\n  z-index: 3;\n}\n.menububble-container.is-active[data-v-a1c2f63c] {\n  opacity: 1;\n}\n.menububble-container .menububble[data-v-a1c2f63c] {\n  width: -webkit-max-content;\n  width: -moz-max-content;\n  width: max-content;\n  display: flex;\n  justify-content: center;\n  background: linear-gradient(to bottom, #3d3646 0%, #2a272f 100%);\n  color: white;\n  border-radius: 5px;\n}\n.menububble-container .menububble .menububble-button[data-v-a1c2f63c] {\n  padding: 10px;\n}\nvariable[data-v-a1c2f63c] {\n  background: #a68fd2 0% 0% no-repeat padding-box;\n  box-shadow: 0px 3px 6px #a68fd2;\n  border-radius: 10px;\n}", ""]);
 
 // exports
 
@@ -4517,7 +4553,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".builder-container[data-v-cac28d0e] {\n  width: 100%;\n}\n.new-block-container[data-v-cac28d0e] {\n  margin: auto;\n}\n.new-block-container h3[data-v-cac28d0e] {\n  font-weight: 400;\n}\nsummary[data-v-cac28d0e]::-webkit-details-marker {\n  display: none;\n}\n.left-side[data-v-cac28d0e] {\n  margin-top: 60px;\n}\n.right-side .sidebar-builder-options[data-v-cac28d0e] {\n  height: 100%;\n  display: flex;\n  /*.v-tabs {*/\n  /*height: min-content;*/\n  /*.v-tab {*/\n  /*padding: 7px 12px;*/\n  /*background-color: #ececec;*/\n  /*border-radius: 10px 0px 0px 10px;*/\n  /*border: 1px solid #ded7c9;*/\n  /*&:hover {*/\n  /*cursor: pointer;*/\n  /*}*/\n  /*}*/\n  /*}*/\n}\n.right-side .sidebar-builder-options .v-slide-group__content .v-tab[data-v-cac28d0e] {\n  margin-left: 0 !important;\n}\n.right-side .sidebar-builder-options .builder-options-content[data-v-cac28d0e] {\n  background-color: white;\n  z-index: 3;\n  width: 400px;\n}\n.right-side .sidebar-builder-options .builder-options-content h3[data-v-cac28d0e] {\n  text-align: center;\n  padding: 5px 0;\n  background-color: #dabd79;\n}\n.right-side .sidebar-builder-options .builder-options-content .sub-title[data-v-cac28d0e] {\n  display: block;\n  text-align: center;\n  padding: 5px 0;\n  background-color: #f8f8f8;\n}\n.right-side .sidebar-builder-options .builder-options-content .options[data-v-cac28d0e] {\n  width: 100px;\n  height: 100px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border: 2px solid #dabd79;\n  color: #dabd79;\n}\n.right-side .sidebar-builder-options .builder-options-content .options[data-v-cac28d0e]:hover {\n  cursor: pointer;\n}\n.right-side .sidebar-builder-options .builder-options-content .builder-elements[data-v-cac28d0e] {\n  padding: 15px 0;\n  display: flex;\n  justify-content: space-around;\n}\n.right-side .sidebar-builder-options .builder-options-content .block-name[data-v-cac28d0e] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  padding: 15px 0;\n}\n.right-side .sidebar-builder-options .builder-options-content .block-name span[data-v-cac28d0e] {\n  width: 270px;\n  display: flex;\n  height: 40px;\n  justify-content: center;\n  align-items: center;\n  border: 2px solid #dabd79;\n  color: #dabd79;\n}\n.right-side .sidebar-builder-options .builder-options-content .block-name span[data-v-cac28d0e]:hover {\n  cursor: pointer;\n}\n.right-side .sidebar-builder-options .builder-options-content .block-button[data-v-cac28d0e] {\n  padding: 15px 0;\n  display: flex;\n  justify-content: center;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block-info[data-v-cac28d0e] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 15px 0;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block-info .divider[data-v-cac28d0e] {\n  width: 20%;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block-info .divider hr[data-v-cac28d0e] {\n  color: #cacaca;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block-info p[data-v-cac28d0e] {\n  width: 100px;\n  text-align: center;\n  margin: 0;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block[data-v-cac28d0e] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block span[data-v-cac28d0e] {\n  width: 200px;\n  height: 40px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border: 1px solid #dabd79;\n  margin: 15px 0;\n  border-radius: 3px;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block span[data-v-cac28d0e]:hover {\n  cursor: pointer;\n}\n.builder-content .empty-elements[data-v-cac28d0e] {\n  border: 1px dashed #707070;\n  width: 100%;\n  height: 100px;\n  border-radius: 20px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}", ""]);
+exports.push([module.i, ".new-block-container[data-v-cac28d0e] {\n  margin: auto;\n}\n.new-block-container h3[data-v-cac28d0e] {\n  font-weight: 400;\n}\nsummary[data-v-cac28d0e]::-webkit-details-marker {\n  display: none;\n}\n.left-side[data-v-cac28d0e] {\n  margin-top: 60px;\n}\n.right-side .sidebar-builder-options[data-v-cac28d0e] {\n  height: 100%;\n  display: flex;\n  /*.v-tabs {*/\n  /*height: min-content;*/\n  /*.v-tab {*/\n  /*padding: 7px 12px;*/\n  /*background-color: #ececec;*/\n  /*border-radius: 10px 0px 0px 10px;*/\n  /*border: 1px solid #ded7c9;*/\n  /*&:hover {*/\n  /*cursor: pointer;*/\n  /*}*/\n  /*}*/\n  /*}*/\n}\n.right-side .sidebar-builder-options .v-slide-group__content[data-v-cac28d0e] {\n  width: 40px;\n}\n.right-side .sidebar-builder-options .v-slide-group__content .v-tab[data-v-cac28d0e] {\n  margin-left: 0 !important;\n}\n.right-side .sidebar-builder-options .builder-options-content[data-v-cac28d0e] {\n  background-color: white;\n  z-index: 3;\n  width: 400px;\n}\n.right-side .sidebar-builder-options .builder-options-content h3[data-v-cac28d0e] {\n  text-align: center;\n  padding: 5px 0;\n  background-color: #dabd79;\n}\n.right-side .sidebar-builder-options .builder-options-content .sub-title[data-v-cac28d0e] {\n  display: block;\n  text-align: center;\n  padding: 5px 0;\n  background-color: #f8f8f8;\n}\n.right-side .sidebar-builder-options .builder-options-content .options[data-v-cac28d0e] {\n  width: 100px;\n  height: 100px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border: 2px solid #dabd79;\n  color: #dabd79;\n}\n.right-side .sidebar-builder-options .builder-options-content .options[data-v-cac28d0e]:hover {\n  cursor: pointer;\n}\n.right-side .sidebar-builder-options .builder-options-content .builder-elements[data-v-cac28d0e] {\n  padding: 15px 0;\n  display: flex;\n  justify-content: space-around;\n}\n.right-side .sidebar-builder-options .builder-options-content .block-name[data-v-cac28d0e] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  padding: 15px 0;\n}\n.right-side .sidebar-builder-options .builder-options-content .block-name span[data-v-cac28d0e] {\n  width: 270px;\n  display: flex;\n  height: 40px;\n  justify-content: center;\n  align-items: center;\n  border: 2px solid #dabd79;\n  color: #dabd79;\n}\n.right-side .sidebar-builder-options .builder-options-content .block-name span[data-v-cac28d0e]:hover {\n  cursor: pointer;\n}\n.right-side .sidebar-builder-options .builder-options-content .block-button[data-v-cac28d0e] {\n  padding: 15px 0;\n  display: flex;\n  justify-content: center;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block-info[data-v-cac28d0e] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 15px 0;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block-info .divider[data-v-cac28d0e] {\n  width: 20%;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block-info .divider hr[data-v-cac28d0e] {\n  color: #cacaca;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block-info p[data-v-cac28d0e] {\n  width: 100px;\n  text-align: center;\n  margin: 0;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block[data-v-cac28d0e] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block span[data-v-cac28d0e] {\n  width: 200px;\n  height: 40px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border: 1px solid #dabd79;\n  margin: 15px 0;\n  border-radius: 3px;\n}\n.right-side .sidebar-builder-options .builder-options-content .created-block span[data-v-cac28d0e]:hover {\n  cursor: pointer;\n}\n.builder-content .empty-elements[data-v-cac28d0e] {\n  border: 1px dashed #707070;\n  width: 100%;\n  height: 100px;\n  border-radius: 20px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}", ""]);
 
 // exports
 
@@ -47087,29 +47123,13 @@ var render = function() {
   return _c("div", { staticClass: "block" }, [
     _c(
       "details",
-      {
-        attrs: { draggable: "true" },
-        on: {
-          dragstart: function($event) {
-            return _vm.onDragStart($event)
-          },
-          dragover: function($event) {
-            return _vm.onDragOver($event)
-          },
-          drop: function($event) {
-            return _vm.onDrop($event)
-          }
-        }
-      },
       [
         _c(
           "summary",
           [
             _c("v-icon", { staticClass: "mx-3" }, [_vm._v("fa-chevron-right")]),
             _vm._v(" "),
-            _c("h3", { staticClass: "pr-2" }, [
-              _vm._v(_vm._s(_vm._f("truncate")(_vm.content.text)))
-            ])
+            _c("h3", [_vm._v(_vm._s(_vm.content.text))])
           ],
           1
         ),
@@ -47169,17 +47189,6 @@ var render = function() {
                           },
                           [_c("v-icon", [_vm._v("fa-code")])],
                           1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "menububble-button",
-                            class: { "is-active": isActive.code() },
-                            on: { click: commands.variable }
-                          },
-                          [_c("v-icon", [_vm._v("fa-code")])],
-                          1
                         )
                       ])
                     ]
@@ -47190,57 +47199,7 @@ var render = function() {
           ])
         }),
         _vm._v(" "),
-        _c("editor-content", { attrs: { editor: _vm.editor } }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "hr-line" },
-          [
-            _c("hr", { staticClass: "line" }),
-            _vm._v(" "),
-            _c(
-              "v-btn",
-              {
-                staticClass: "mx-3",
-                attrs: { text: "", icon: "" },
-                on: {
-                  click: function($event) {
-                    return _vm.$emit("openDialog")
-                  }
-                }
-              },
-              [_c("v-icon", [_vm._v("fa-plus-circle")])],
-              1
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _vm._t("default")
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "hr-line" },
-      [
-        _c("hr", { staticClass: "line" }),
-        _vm._v(" "),
-        _c(
-          "v-btn",
-          {
-            staticClass: "mx-3",
-            attrs: { text: "", icon: "" },
-            on: {
-              click: function($event) {
-                return _vm.$emit("openDialog")
-              }
-            }
-          },
-          [_c("v-icon", [_vm._v("fa-plus-circle")])],
-          1
-        )
+        _c("editor-content", { attrs: { editor: _vm.editor } })
       ],
       1
     )
@@ -50104,7 +50063,7 @@ var render = function() {
             _c(
               "v-navigation-drawer",
               {
-                attrs: { width: "490", app: "", right: "" },
+                attrs: { width: "300", app: "", right: "" },
                 model: {
                   value: _vm.drawerRight,
                   callback: function($$v) {
@@ -50297,39 +50256,11 @@ var render = function() {
                           return _c(
                             _vm.Mapper.getBlockName(block.type),
                             _vm._b(
-                              {
-                                key: index,
-                                tag: "component",
-                                on: {
-                                  openDialog: function($event) {
-                                    _vm.dialog = true
-                                  }
-                                }
-                              },
+                              { key: index, tag: "component" },
                               "component",
                               block,
                               false
-                            ),
-                            _vm._l(block.nested, function(nestedBlock, index) {
-                              return _c(
-                                _vm.Mapper.getBlockName(nestedBlock.type),
-                                _vm._b(
-                                  {
-                                    key: index,
-                                    tag: "component",
-                                    on: {
-                                      openDialog: function($event) {
-                                        _vm.dialog = true
-                                      }
-                                    }
-                                  },
-                                  "component",
-                                  nestedBlock,
-                                  false
-                                )
-                              )
-                            }),
-                            1
+                            )
                           )
                         }),
                         1
@@ -50359,7 +50290,6 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          ref: "newBlockDialog",
           attrs: { "max-width": "900" },
           model: {
             value: _vm.dialog,
@@ -50443,7 +50373,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("I accept")]
+                    [_vm._v("\n                    I accept\n                ")]
                   )
                 ],
                 1
@@ -103383,7 +103313,6 @@ function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return VariableNode; });
 /* harmony import */ var tiptap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tiptap */ "./node_modules/tiptap/dist/tiptap.esm.js");
-/* harmony import */ var tiptap_commands__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tiptap-commands */ "./node_modules/tiptap-commands/dist/commands.esm.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -103404,7 +103333,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-
 var VariableNode =
 /*#__PURE__*/
 function (_Node) {
@@ -103417,12 +103345,29 @@ function (_Node) {
   }
 
   _createClass(VariableNode, [{
-    key: "commands",
-    value: function commands(_ref) {
-      var type = _ref.type,
-          schema = _ref.schema;
-      return function () {
-        return Object(tiptap_commands__WEBPACK_IMPORTED_MODULE_1__["replaceText"])(type);
+    key: "name",
+    get: function get() {
+      return 'variable';
+    }
+  }, {
+    key: "schema",
+    get: function get() {
+      return {
+        // here you have to specify all values that can be stored in this node
+        attrs: {},
+        content: 'block+',
+        group: 'block',
+        selectable: false,
+        // parseDOM and toDOM is still required to make copy and paste work
+        parseDOM: [{
+          tag: 'variable' // getAttrs: dom => ({
+          //   parameters: dom.getAttribute('parameters'),
+          // }),
+
+        }],
+        toDOM: function toDOM() {
+          return ['variable', 0];
+        }
       };
     } // return a vue component
     // this can be an object or an imported component
@@ -103449,40 +103394,11 @@ function (_Node) {
     //       },
     //     },
     //     template: `
-    //           <div class="variable"></div>
+    //           <variable></variable>
     //     `,
     //   }
     // }
 
-  }, {
-    key: "name",
-    get: function get() {
-      return 'variable';
-    }
-  }, {
-    key: "schema",
-    get: function get() {
-      return {
-        // here you have to specify all values that can be stored in this node
-        attrs: {},
-        content: 'block+',
-        group: 'block',
-        draggable: true,
-        selectable: true,
-        // parseDOM and toDOM is still required to make copy and paste work
-        parseDOM: [{
-          tag: 'variable' // getAttrs: dom => ({
-          //   parameters: dom.getAttribute('parameters'),
-          // }),
-
-        }],
-        toDOM: function toDOM() {
-          return ['div', {
-            "class": 'variable'
-          }, 0];
-        }
-      };
-    }
   }]);
 
   return VariableNode;
@@ -103779,9 +103695,6 @@ Vue.component('loader', __webpack_require__(/*! ./components/Loader */ "./resour
 
 
 _additionalModules_ConditionalParser__WEBPACK_IMPORTED_MODULE_2__["default"].setStore(_store__WEBPACK_IMPORTED_MODULE_7__["default"]);
-Vue.filter('truncate', function (text, clamp) {
-  return text.slice(0, 50) + (50 < text.length ? clamp || '...' : '');
-});
 Vue.mixin({
   data: function data() {
     return {
@@ -106504,8 +106417,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/node/contract_generator/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/node/contract_generator/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/ryzo/Documents/Projekty/contract_generator/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/ryzo/Documents/Projekty/contract_generator/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

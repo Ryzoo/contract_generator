@@ -1,47 +1,33 @@
 <template>
     <v-form>
         <v-container>
-            <v-row>
-                <component
-                    v-if="ConditionalParser.validate(ConditionalEnum.SHOW_ON, item)"
-                    v-for="item in attributes"
-                    :key="item.id"
-                    :is="Mapper.getAttributeComponentName(item.attributeType)"
-                    v-bind="{
-                        attribute: item
-                    }"
-                >
-                </component>
-            </v-row>
+            <component
+                v-for="(formElement, index) in formElements"
+                v-if="formElement.isActive"
+                :key="index"
+                :is="Mapper.getElementFormComponentName(formElement.elementType)"
+                v-bind="{
+                    formElement: Object.assign({},formElement)
+                }"
+            >
+            </component>
         </v-container>
     </v-form>
 </template>
 
 <script>
-    import {ConditionalEnum} from "../../../additionalModules/Enums";
-    import NumberAttribute from "./Attributes/NumberAttribute";
-    import TextAttribute from "./Attributes/TextAttribute";
+  import {ConditionalEnum} from "../../../additionalModules/Enums";
+  import AttributeFormElements from "./FormElements/AttributeFormElements";
 
   export default {
     name: "FormRenderer",
-    props: ["attributes"],
+    props: ["formElements"],
     components:{
-      NumberAttribute,
-      TextAttribute
+      AttributeFormElements
     },
-    data(){
+    data() {
       return {
         ConditionalEnum: ConditionalEnum
-      }
-    },
-    watch: {
-      attributes(oldValue, newValue) {
-        console.log(oldValue, newValue);
-      }
-    },
-    methods: {
-      validateIsShowed( attribute ){
-
       }
     }
   }

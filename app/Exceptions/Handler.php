@@ -51,6 +51,7 @@ class Handler extends ExceptionHandler
     {
         $message = $exception->getMessage();
         $code = $exception->getCode() ?? 500;
+        $code = $code === 0 ? 500 : $code;
 
         if($exception instanceof ErrorException && Str::length($message))
             Response::error($message, $code);
