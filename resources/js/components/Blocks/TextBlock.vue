@@ -1,9 +1,9 @@
 <template>
     <div class="block">
-        <details>
+        <details draggable="true" @dragstart="onDragStart($event)" @dragover='onDragOver($event)' @drop='onDrop($event)'>
             <summary>
                 <v-icon class="mx-3">fa-chevron-right</v-icon>
-                <h3>{{ content.text }}</h3>
+                <h3 class="pr-2">{{ content.text | truncate}}</h3>
             </summary>
             <editor-menu-bubble
                 :editor="editor"
@@ -50,7 +50,20 @@
                 </div>
             </editor-menu-bubble>
             <editor-content :editor="editor" />
+            <div class="hr-line">
+                <hr class="line">
+                <v-btn @click="$emit('openDialog')" class="mx-3" text icon>
+                    <v-icon>fa-plus-circle</v-icon>
+                </v-btn>
+            </div>
+            <slot></slot>
         </details>
+        <div class="hr-line">
+            <hr class="line">
+            <v-btn @click="$emit('openDialog')" class="mx-3" text icon>
+                <v-icon>fa-plus-circle</v-icon>
+            </v-btn>
+        </div>
     </div>
 </template>
 
@@ -93,6 +106,22 @@ export default {
             editor: null
         };
     },
+    methods: {
+      onDragStart(event) {
+        event.dataTransfer.setData('text/plain', event.target.id);
+      },
+      onDragOver(event) {
+        event.preventDefault();
+      },
+      onDrop(event) {
+        const id = event.dataTransfer.getData('text');
+        const draggableElement = document.getElementById(id);
+        const dropzone = event.target;
+
+        dropzone.appendChild(draggableElement);
+        event.dataTransfer.clearData();
+      }
+    },
     mounted() {
         this.editor = new Editor({
             extensions: [
@@ -131,7 +160,6 @@ details {
     padding: 10px 0;
     border: 1px solid $primary;
     border-radius: 5px;
-    margin-bottom: 20px;
     transition: all 0.3s;
     position: relative;
     &:hover {
@@ -142,11 +170,11 @@ details {
             border: 4px solid $primary;
             box-shadow: 0px 3px 6px 0px $primary;
         }
-        summary {
+        & > summary {
             border-bottom: 1px solid $primary;
             padding-bottom: 10px;
 
-            svg {
+            i {
                 transform: rotate(90deg);
             }
         }

@@ -17,6 +17,10 @@ import i18n from './lang'
 
 ConditionalParser.setStore(store);
 
+Vue.filter('truncate', function (text, clamp) {
+    return text.slice(0, 50) + (50 < text.length ? clamp || '...' : '')
+});
+
 Vue.mixin({
     data: function () {
         return {

@@ -33,9 +33,26 @@ section {
 }
 
 .variable {
-    background: #a68fd2 0% 0% no-repeat padding-box;
-    box-shadow: 0px 3px 6px #a68fd2;
+    background: $primary 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px $primary;
     border-radius: 10px;
+}
+
+.hr-line {
+    display: flex;
+    align-items: center;
+
+    i {
+        color: $primary !important;
+    }
+
+    .line {
+        border: none;
+        border-top: 2px dashed $primary;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 100%;
+    }
 }
 
 @import "theme/table";

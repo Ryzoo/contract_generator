@@ -65,7 +65,16 @@
                                     :key="index"
                                     :is="Mapper.getBlockName(block.type)"
                                     v-bind="block"
+                                    v-on:openDialog="dialog = true"
                                 >
+                                    <component
+                                        v-for="(nestedBlock, index) in block.nested"
+                                        :key="index"
+                                        :is="Mapper.getBlockName(nestedBlock.type)"
+                                        v-bind="nestedBlock"
+                                        v-on:openDialog="dialog = true"
+                                    >
+                                    </component>
                                 </component>
                             </div>
                         </div>
@@ -79,7 +88,7 @@
                 </div>
             </div>
         </v-row>
-        <v-dialog v-model="dialog" max-width="900">
+        <v-dialog ref="newBlockDialog" v-model="dialog" max-width="900">
             <v-card>
                 <v-card-title class="headline justify-center" primary-title>
                     Nowy blok
@@ -126,6 +135,24 @@
         newBlock: false,
         dialog: false,
         blocks: [
+          {
+            type: 0,
+            content: {
+              text: "<h1>Lorem ipsum</h1> <br> dolor sit amet, <variable>consectetur</variable> adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            },
+            conditionals: {},
+            settings: {},
+            nested: [
+              {
+                type: 0,
+                content: {
+                  text: "<h1>Lorem ipsum</h1> <br> dolor sit amet, <variable>consectetur</variable> adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                },
+                conditionals: {},
+                settings: {}
+              }
+            ]
+          },
           {
             type: 0,
             content: {
@@ -182,6 +209,10 @@
 </script>
 
 <style scoped lang="scss">
+    .builder-container {
+        width: 100%;
+    }
+
     .new-block-container {
         margin: auto;
 
