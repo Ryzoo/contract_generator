@@ -55,4 +55,51 @@ section {
     }
 }
 
+//BLOCKS
+
+details {
+    padding: 10px 0;
+    border: 1px solid $primary;
+    border-radius: 5px;
+    transition: all 0.2s;
+    position: relative;
+    &[open] {
+        &.active {
+            border: 3px solid $primary;
+            box-shadow: 0px 3px 6px 0px $primary;
+        }
+        & > summary {
+            border-bottom: 1px solid $primary;
+            padding-bottom: 10px;
+
+            i {
+                transform: rotate(90deg);
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+
+        }
+        & > *:not(:first-child) {
+            padding: 0 15px;
+            margin-top: 16px;
+        }
+    }
+    summary {
+        display: flex;
+        align-items: center;
+        text-transform: capitalize;
+        svg {
+            transition: all 0.2s;
+        }
+        &:focus {
+            outline: none;
+        }
+    }
+
+    summary::-webkit-details-marker {
+        display: none;
+    }
+}
 @import "theme/table";

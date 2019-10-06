@@ -23,7 +23,7 @@
                                         <div class="options-section-2">
                                             <span class="sub-title">Dodane bloki</span>
                                             <div class="block-name" v-for="block in blocks">
-                                                <span>{{ block.name }}</span>
+                                                <span>{{ block.blockName }}</span>
                                             </div>
                                         </div>
                                         <div class="options-section-3">
@@ -49,6 +49,57 @@
                                         </div>
                                     </div>
                                 </v-tab-item>
+                                <v-tab-item>
+                                    <div class="builder-options-content">
+                                        <h3>Bloki</h3>
+                                        <div class="options-section-1">
+                                            <span class="sub-title">Logika</span>
+                                            <div class="builder-elements">
+                                                <div class="select-options">
+                                                    <!--<v-select-->
+                                                    <!--:items="blockOptions"-->
+                                                    <!--label="Blok"-->
+                                                    <!--outlined-->
+                                                    <!--color="primary"-->
+                                                    <!--dense>-->
+                                                    <!--</v-select>-->
+                                                    <!--<p>ten blok gdy</p>-->
+                                                    <!--<v-select-->
+                                                        <!--:items="termOptions"-->
+                                                        <!--label="Warunki"-->
+                                                        <!--outlined-->
+                                                        <!--color="primary"-->
+                                                        <!--dense>-->
+                                                    <!--</v-select>-->
+                                                    <!--<p>warunki pasują do</p>-->
+                                                    <v-select
+                                                        :items="attributesName"
+                                                        label="Zmienna"
+                                                        outlined
+                                                        color="primary"
+                                                        dense>
+                                                    </v-select>
+                                                    <div class="w-50">
+                                                        <v-select
+                                                            :items="operatorOptions"
+                                                            label="Operator"
+                                                            outlined
+                                                            color="primary"
+                                                            dense>
+                                                        </v-select>
+                                                        <v-select
+                                                            :items="termOptions"
+                                                            label="Wyrażenie"
+                                                            outlined
+                                                            color="primary"
+                                                            dense>
+                                                        </v-select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </v-tab-item>
                             </v-tabs>
                         </div>
                     </div>
@@ -63,18 +114,19 @@
                                 <component
                                     v-for="(block, index) in blocks"
                                     :key="index"
-                                    :is="Mapper.getBlockName(block.type)"
+                                    :is="Mapper.getBlockName(block.blockType)"
                                     v-bind="block"
                                     v-on:openDialog="dialog = true"
+                                    v-on:getAttributes="getAttributes()"
                                 >
-                                    <component
-                                        v-for="(nestedBlock, index) in block.nested"
-                                        :key="index"
-                                        :is="Mapper.getBlockName(nestedBlock.type)"
-                                        v-bind="nestedBlock"
-                                        v-on:openDialog="dialog = true"
-                                    >
-                                    </component>
+                                    <!--<component-->
+                                        <!--v-for="(nestedBlock, index) in block.nested"-->
+                                        <!--:key="index"-->
+                                        <!--:is="Mapper.getBlockName(nestedBlock.type)"-->
+                                        <!--v-bind="nestedBlock"-->
+                                        <!--v-on:openDialog="dialog = true"-->
+                                    <!--&gt;-->
+                                    <!--</component>-->
                                 </component>
                             </div>
                         </div>
@@ -123,43 +175,162 @@
 
 <script>
   import TextBlock from "../../../components/Blocks/TextBlock";
+  import EmptyBlock from "../../../components/Blocks/EmptyBlock";
 
   export default {
     name: "CreateAgreementView",
     components: {
-      TextBlock
+      TextBlock,
+      EmptyBlock
     },
     data: function () {
       return {
         drawerRight: true,
         newBlock: false,
         dialog: false,
-        blocks: [
+        attributesName: [],
+        operatorOptions: [{operator: "==", name: "equal"}],
+        attributesList: [
           {
-            type: 0,
-            content: {
-              text: "<h1>Lorem ipsum</h1> <br> dolor sit amet, <variable>consectetur</variable> adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            },
-            conditionals: {},
-            settings: {},
-            nested: [
-              {
-                type: 0,
-                content: {
-                  text: "<h1>Lorem ipsum</h1> <br> dolor sit amet, <variable>consectetur</variable> adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                },
-                conditionals: {},
-                settings: {}
-              }
-            ]
+            attributeName: "Imię",
+            id: 1,
+            attributeType: 1,
+            defaultValue : "",
+            placeholder : "Testowe",
+            settings: {
+              lengthMin: 3,
+              lengthMax: 50
+            }
           },
           {
-            type: 0,
+            attributeName: "Zmienna zależna od zmiennej 5 oraz sterująca",
+            id: 2,
+            attributeType: 0,
+            defaultValue: 18,
+            settings: {
+              valueMin: 18,
+              valueMax: 30
+            }
+          },
+          {
+            attributeName: "Wiek użytkownika",
+            id: 3,
+            attributeType: 2,
+            defaultValue: null,
+            settings: {
+              isMultiSelect: true,
+              items: [
+                "Powyżej 20",
+                "Poniżej 20"
+              ]
+            }
+          },
+          {
+            attributeName: "Wzrost",
+            id: 4,
+            attributeType: 0,
+            defaultValue : 170,
+            settings: {
+              valueMin: 18,
+              valueMax: 30
+            }
+          },
+          {
+            attributeName: "Zmienna sterująca - niezależna",
+            id: 5,
+            attributeType: 0,
+            defaultValue: 18,
+            settings: {
+              valueMin: 18,
+              valueMax: 30
+            }
+          },
+          {
+            attributeName: "Test zagniezdzenia",
+            id: 7,
+            attributeType: 0,
+            defaultValue: 18,
+            settings: {
+              valueMin: 18,
+              valueMax: 30
+            }
+          }
+        ],
+        blocks: [
+          {
+            id: 1,
+            parentId: 0,
+            blockName: "test",
+            blockType: 0,
             content: {
-              text: "<h1>Lorem ipsum</h1> <br> dolor sit amet, <variable>consectetur</variable> adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+              text: "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną <variable value='2'>nazwa jakas czy tam teskt</variable>"
             },
-            conditionals: {},
-            settings: {}
+            conditionals: [
+              {
+                conditionalType: 0,
+                content: [
+                    "5",
+                    "==",
+                    "18"
+                ]
+              }
+            ],
+            settings: {},
+          },
+          {
+            id: 2,
+            parentId: 0,
+            blockType: 1,
+            blockName: "test",
+            content: {
+              blocks: [
+                {
+                  id: 3,
+                  parentId: 2,
+                  blockType: 0,
+                  blockName: "test",
+                  content: {
+                    text: "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną <variable value='1'>costam</variable>"
+                  },
+                  conditionals: [{
+                    conditionalType: 0,
+                    content: [
+                      "1",
+                      "==",
+                      "'Grzegorz'"
+                    ]
+                  }],
+                  settings: {}
+                },
+                {
+                  id: 4,
+                  parentId: 2,
+                  blockType: 0,
+                  blockName: "test",
+                  content: {
+                    text: "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną"
+                  },
+                  conditionals: [{
+                    conditionalType: 0,
+                    content: [
+                      "1",
+                      "==",
+                      "18"
+                    ]
+                  }],
+                  settings: {}
+                }
+              ]
+            },
+            conditionals: [{
+              conditionalType: 0,
+              content: [
+                "2",
+                "==",
+                "18"
+              ]
+            }],
+            settings:{}
           }
         ],
         elementsType: [
@@ -190,7 +361,14 @@
             ]
           }
         ],
-        categoriesNames: []
+        categoriesNames: [],
+        blockOptions:[
+            "Pokaż",
+            "Schowaj"
+        ],
+        termOptions:[
+            "Wszystkie",
+        ]
       };
     },
     methods: {
@@ -200,6 +378,26 @@
         categories.map(x => arrayOfCategories.push(x.name));
 
         return arrayOfCategories;
+      },
+      getAttributes() {
+        let blockId = $('.active').parent().attr("blockid");
+        let conditionals = this.getConditionalFromBlock(blockId);
+        let attributesId = [];
+
+        conditionals.map(x => attributesId.push(Number(x.content[0])));
+
+        let attributes = attributesId.map(x => this.attributesList.find(y => y.id === x));
+
+        attributes.map(x => {
+          this.attributesName.push(
+              {
+                text: x.attributeName,
+                value: x.id
+              })
+        });
+      },
+      getConditionalFromBlock(id) {
+        return this.blocks.find(x => x.id === Number(id)).conditionals;
       }
     },
     mounted() {
@@ -219,10 +417,6 @@
         h3 {
             font-weight: 400;
         }
-    }
-
-    summary::-webkit-details-marker {
-        display: none;
     }
 
     .left-side {
@@ -290,6 +484,10 @@
                     padding: 15px 0;
                     display: flex;
                     justify-content: space-around;
+
+                    .select-options {
+                        width: 100%;
+                    }
                 }
 
                 .block-name {

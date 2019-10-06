@@ -8,22 +8,22 @@ export default class VariableNode extends Node {
   }
 
   get schema() {
+
     return {
       // here you have to specify all values that can be stored in this node
       attrs: {
+        id: {default: undefined}
       },
-      content: 'block+',
+      content: 'text*',
       group: 'block',
       draggable: true,
       selectable: true,
       // parseDOM and toDOM is still required to make copy and paste work
       parseDOM: [{
         tag: 'variable',
-        // getAttrs: dom => ({
-        //   parameters: dom.getAttribute('parameters'),
-        // }),
+        getAttrs: dom => ( {id: dom.getAttribute("value")} ),
       }],
-      toDOM: () => ['div',{ class: 'variable' },0],
+      toDOM: (node) => ( ['div',{ class: 'variable', 'data-id': node.attrs.id},0] ),
     }
   }
 

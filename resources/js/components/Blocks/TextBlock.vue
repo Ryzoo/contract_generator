@@ -1,9 +1,9 @@
 <template>
-    <div class="block">
-        <details draggable="true" @dragstart="onDragStart($event)" @dragover='onDragOver($event)' @drop='onDrop($event)'>
+    <div class="block" :blockid="id">
+        <details @click="setActive($event)">
             <summary>
                 <v-icon class="mx-3">fa-chevron-right</v-icon>
-                <h3 class="pr-2">{{ content.text | truncate}}</h3>
+                <h3 class="pr-2">{{ blockName | truncate}}</h3>
             </summary>
             <editor-menu-bubble
                 :editor="editor"
@@ -90,11 +90,13 @@ import {
 import Variable from "../../additionalModules/Nodes";
 
 export default {
-    name: "Block",
+    name: "TextBlock",
     props: {
+        id: { required: true },
         content: { required: true },
+        blockName: { required: true },
         conditionals: { required: true },
-        settings: { required: true }
+        settings: { required: true },
     },
     components: {
         EditorContent,
@@ -107,19 +109,12 @@ export default {
         };
     },
     methods: {
-      onDragStart(event) {
-        event.dataTransfer.setData('text/plain', event.target.id);
-      },
-      onDragOver(event) {
-        event.preventDefault();
-      },
-      onDrop(event) {
-        const id = event.dataTransfer.getData('text');
-        const draggableElement = document.getElementById(id);
-        const dropzone = event.target;
-
-        dropzone.appendChild(draggableElement);
-        event.dataTransfer.clearData();
+      setActive(e){
+        if (!e.target.closest("details").classList.contains("active")) {
+          $('details.active').removeClass("active");
+          e.target.closest("details").classList.add("active");
+          this.$emit("getAttributes");
+        }
       }
     },
     mounted() {
@@ -154,48 +149,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../../sass/colors";
-
-details {
-    padding: 10px 0;
-    border: 1px solid $primary;
-    border-radius: 5px;
-    transition: all 0.3s;
-    position: relative;
-    &:hover {
-        cursor: pointer;
-    }
-    &[open] {
-        &:hover {
-            border: 4px solid $primary;
-            box-shadow: 0px 3px 6px 0px $primary;
-        }
-        & > summary {
-            border-bottom: 1px solid $primary;
-            padding-bottom: 10px;
-
-            i {
-                transform: rotate(90deg);
-            }
-        }
-        & > *:not(:first-child) {
-            padding: 0 15px;
-            margin-top: 16px;
-        }
-    }
-    summary {
-        display: flex;
-        align-items: center;
-        text-transform: capitalize;
-        svg {
-            transition: all 0.2s;
-        }
-        &:focus {
-            outline: none;
-        }
-    }
-}
-
 .menububble-container {
     position: absolute;
     transition: 0.3s;
@@ -222,6 +175,4 @@ details {
         }
     }
 }
-
-
 </style>
