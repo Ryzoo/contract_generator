@@ -77,7 +77,9 @@
                                                         label="Zmienna"
                                                         outlined
                                                         color="primary"
-                                                        dense>
+                                                        dense
+                                                        :value="attributeValue"
+                                                    >
                                                     </v-select>
                                                     <div class="w-50">
                                                         <v-select
@@ -85,15 +87,16 @@
                                                             label="Operator"
                                                             outlined
                                                             color="primary"
-                                                            dense>
+                                                            dense
+                                                            :value="operatorValue"
+                                                        >
                                                         </v-select>
-                                                        <v-select
-                                                            :items="termOptions"
+                                                        <v-text-field
                                                             label="Wyrażenie"
                                                             outlined
                                                             color="primary"
-                                                            dense>
-                                                        </v-select>
+                                                            :value="termValue"
+                                                        ></v-text-field>
                                                     </div>
                                                 </div>
                                             </div>
@@ -176,6 +179,7 @@
 <script>
   import TextBlock from "../../../components/Blocks/TextBlock";
   import EmptyBlock from "../../../components/Blocks/EmptyBlock";
+  import Operators from "../../../additionalModules/Operators";
 
   export default {
     name: "CreateAgreementView",
@@ -189,7 +193,10 @@
         newBlock: false,
         dialog: false,
         attributesName: [],
-        operatorOptions: [{operator: "==", name: "equal"}],
+        operatorOptions: Operators,
+        termValue: "",
+        attributeValue: "",
+        operatorValue: "",
         attributesList: [
           {
             attributeName: "Imię",
@@ -384,7 +391,12 @@
         let conditionals = this.getConditionalFromBlock(blockId);
         let attributesId = [];
 
-        conditionals.map(x => attributesId.push(Number(x.content[0])));
+        conditionals.map(x => {
+          attributesId.push(Number(x.content[0]));
+          this.operatorValue = x.content[1];
+          this.attributeValue = Number(x.content[0]);
+          this.termValue = x.content[2];
+        });
 
         let attributes = attributesId.map(x => this.attributesList.find(y => y.id === x));
 

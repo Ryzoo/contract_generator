@@ -4416,6 +4416,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Blocks_TextBlock__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../components/Blocks/TextBlock */ "./resources/js/components/Blocks/TextBlock.vue");
 /* harmony import */ var _components_Blocks_EmptyBlock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../components/Blocks/EmptyBlock */ "./resources/js/components/Blocks/EmptyBlock.vue");
+/* harmony import */ var _additionalModules_Operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../additionalModules/Operators */ "./resources/js/additionalModules/Operators.js");
 //
 //
 //
@@ -4591,6 +4592,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4605,10 +4610,10 @@ __webpack_require__.r(__webpack_exports__);
       newBlock: false,
       dialog: false,
       attributesName: [],
-      operatorOptions: [{
-        operator: "==",
-        name: "equal"
-      }],
+      operatorOptions: _additionalModules_Operators__WEBPACK_IMPORTED_MODULE_2__["default"],
+      termValue: "",
+      attributeValue: "",
+      operatorValue: "",
       attributesList: [{
         attributeName: "Imię",
         id: 1,
@@ -4756,7 +4761,10 @@ __webpack_require__.r(__webpack_exports__);
       var conditionals = this.getConditionalFromBlock(blockId);
       var attributesId = [];
       conditionals.map(function (x) {
-        return attributesId.push(Number(x.content[0]));
+        attributesId.push(Number(x.content[0]));
+        _this.operatorValue = x.content[1];
+        _this.attributeValue = Number(x.content[0]);
+        _this.termValue = x.content[2];
       });
       var attributes = attributesId.map(function (x) {
         return _this.attributesList.find(function (y) {
@@ -50898,7 +50906,8 @@ var render = function() {
                                                 label: "Zmienna",
                                                 outlined: "",
                                                 color: "primary",
-                                                dense: ""
+                                                dense: "",
+                                                value: _vm.attributeValue
                                               }
                                             }),
                                             _vm._v(" "),
@@ -50912,17 +50921,17 @@ var render = function() {
                                                     label: "Operator",
                                                     outlined: "",
                                                     color: "primary",
-                                                    dense: ""
+                                                    dense: "",
+                                                    value: _vm.operatorValue
                                                   }
                                                 }),
                                                 _vm._v(" "),
-                                                _c("v-select", {
+                                                _c("v-text-field", {
                                                   attrs: {
-                                                    items: _vm.termOptions,
                                                     label: "Wyrażenie",
                                                     outlined: "",
                                                     color: "primary",
-                                                    dense: ""
+                                                    value: _vm.termValue
                                                   }
                                                 })
                                               ],
@@ -104268,6 +104277,32 @@ function () {
 
 
 ;
+
+/***/ }),
+
+/***/ "./resources/js/additionalModules/Operators.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/additionalModules/Operators.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var operators = [{
+  value: "==",
+  text: "równe"
+}, {
+  value: "!=",
+  text: "różne"
+}, {
+  value: ">",
+  text: "większe"
+}, {
+  value: "<",
+  text: "mniejsze"
+}];
+/* harmony default export */ __webpack_exports__["default"] = (operators);
 
 /***/ }),
 

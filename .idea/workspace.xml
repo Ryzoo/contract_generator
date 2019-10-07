@@ -4,16 +4,11 @@
     <option name="SCOPE_TYPE" value="10" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="Changes in agreement view">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/Blocks/EmptyBlock.vue" afterDir="false" />
+    <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/additionalModules/Operators.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_html/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public_html/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_html/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/additionalModules/Nodes.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/additionalModules/Nodes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Blocks/TextBlock.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Blocks/TextBlock.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/views/panel/contracts/CreateView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/panel/contracts/CreateView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/theme.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/theme.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,30 +54,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/js/views/panel/contracts/CreateView.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="183" column="16" lean-forward="true" selection-start-line="183" selection-start-column="16" selection-end-line="183" selection-end-column="16" />
+            <state relative-caret-position="4013">
+              <caret line="396" column="52" selection-start-line="396" selection-start-column="52" selection-end-line="396" selection-end-column="52" />
               <folding>
                 <element signature="n#v-tab-item#0;n#v-tabs#0;n#div#0;n#div#0;n#v-navigation-drawer#0;n#div#0;n#v-row#0;n#v-col#0;n#template#0;n#!!top" />
                 <element signature="n#v-dialog#0;n#v-col#0;n#template#0;n#!!top" />
-                <element signature="e#7106#7167#0" expanded="true" />
-                <element signature="e#9440#9610#0" />
-                <element signature="e#9636#9963#0" />
+                <element signature="e#10121#10182#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/additionalModules/Mappers.js">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/js/additionalModules/Operators.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="16" column="31" lean-forward="true" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
-              <folding>
-                <element signature="e#0#89#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="161">
+              <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -91,7 +81,19 @@
         <entry file="file://$PROJECT_DIR$/resources/js/additionalModules/Enums.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="575">
-              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/js/additionalModules/Mappers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="368">
+              <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#89#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -99,8 +101,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/js/components/Blocks/EmptyBlock.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="621">
-              <caret line="39" column="10" lean-forward="true" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="38" />
+            <state relative-caret-position="897">
+              <caret line="39" column="10" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -108,7 +110,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/js/components/Blocks/TextBlock.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="598">
+            <state relative-caret-position="1219">
               <caret line="115" column="38" selection-start-line="115" selection-start-column="38" selection-end-line="115" selection-end-column="38" />
               <folding>
                 <element signature="n#editor-menu-bubble#0;n#details#0;n#div#0;n#template#0;n#!!top" />
@@ -120,8 +122,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/sass/theme.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="72" column="33" lean-forward="true" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="33" />
+            <state relative-caret-position="1656">
+              <caret line="72" column="33" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -129,7 +131,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
+            <state relative-caret-position="345">
               <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
               <folding>
                 <element signature="e#0#55#0" expanded="true" />
@@ -157,8 +159,8 @@
       <list>
         <option value="SCSS File" />
         <option value="package.json" />
-        <option value="JavaScript File" />
         <option value="Vue Single File Component" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -195,6 +197,7 @@
         <option value="$PROJECT_DIR$/resources/js/components/Blocks/EmptyBlock.vue" />
         <option value="$PROJECT_DIR$/resources/js/components/Blocks/TextBlock.vue" />
         <option value="$PROJECT_DIR$/resources/js/views/panel/contracts/CreateView.vue" />
+        <option value="$PROJECT_DIR$/resources/js/additionalModules/Operators.js" />
       </list>
     </option>
   </component>
@@ -460,6 +463,13 @@
               <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="contract_generator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="contract_generator" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -659,7 +669,8 @@
       <workItem from="1569163345686" duration="1897000" />
       <workItem from="1569949370658" duration="1465000" />
       <workItem from="1570277154999" duration="13779000" />
-      <workItem from="1570363703598" duration="14444000" />
+      <workItem from="1570363703598" duration="14538000" />
+      <workItem from="1570469642237" duration="4975000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>
@@ -696,17 +707,24 @@
       <option name="project" value="LOCAL" />
       <updated>1562015457212</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Changes in agreement view v2">
+      <created>1570379532811</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1570379532812</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29703000" />
+    <option name="totallyTimeSpent" value="34772000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2673426" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2705443" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -773,7 +791,8 @@
     <MESSAGE value="Add agreements view" />
     <MESSAGE value="Add some translations to agreements view" />
     <MESSAGE value="Changes in agreement view" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes in agreement view" />
+    <MESSAGE value="Changes in agreement view v2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes in agreement view v2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>
@@ -789,16 +808,6 @@
     <SUITE FILE_PATH="coverage/contract_generator@Contract_Generator.xml" NAME="Contract Generator Coverage Results" MODIFIED="1568303969871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/js/additionalModules/Nodes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/sass/colors.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -809,33 +818,16 @@
     <entry file="file://$PROJECT_DIR$/resources/sass/app.scss">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#55#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/sass/theme.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="72" column="33" lean-forward="true" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/components/Blocks/EmptyBlock.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="39" column="10" lean-forward="true" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="38" />
+        <state relative-caret-position="897">
+          <caret line="39" column="10" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/components/Blocks/TextBlock.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
+        <state relative-caret-position="1219">
           <caret line="115" column="38" selection-start-line="115" selection-start-column="38" selection-end-line="115" selection-end-column="38" />
           <folding>
             <element signature="n#editor-menu-bubble#0;n#details#0;n#div#0;n#template#0;n#!!top" />
@@ -843,34 +835,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/additionalModules/Enums.js">
+    <entry file="file://$PROJECT_DIR$/resources/sass/theme.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        <state relative-caret-position="1656">
+          <caret line="72" column="33" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="33" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/additionalModules/Nodes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/additionalModules/Validator.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/additionalModules/ConditionalParser.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/additionalModules/Mappers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="16" column="31" lean-forward="true" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+        <state relative-caret-position="368">
+          <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
           <folding>
             <element signature="e#0#89#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/additionalModules/Enums.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/views/panel/contracts/CreateView.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="183" column="16" lean-forward="true" selection-start-line="183" selection-start-column="16" selection-end-line="183" selection-end-column="16" />
+        <state relative-caret-position="4013">
+          <caret line="396" column="52" selection-start-line="396" selection-start-column="52" selection-end-line="396" selection-end-column="52" />
           <folding>
             <element signature="n#v-tab-item#0;n#v-tabs#0;n#div#0;n#div#0;n#v-navigation-drawer#0;n#div#0;n#v-row#0;n#v-col#0;n#template#0;n#!!top" />
             <element signature="n#v-dialog#0;n#v-col#0;n#template#0;n#!!top" />
-            <element signature="e#7106#7167#0" expanded="true" />
-            <element signature="e#9440#9610#0" />
-            <element signature="e#9636#9963#0" />
+            <element signature="e#10121#10182#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/additionalModules/Operators.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
         </state>
       </provider>
     </entry>
