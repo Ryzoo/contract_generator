@@ -10,7 +10,7 @@ use Whoops\Exception\ErrorException;
 
 class ContractRepository {
     public function getContractCollection(): Collection {
-        return Contract::select(["id","name", "created_at"])->get();
+        return Contract::select(["id", "name", "created_at"])->get();
     }
 
     public static function getById(int $contractID):?Contract{

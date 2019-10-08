@@ -112,4 +112,9 @@ class ContractController extends Controller {
         $contractCollection = $this->contractRepository->getContractCollection();
         Response::success($contractCollection);
     }
+
+    public function getInformationAboutContractModules(Request $request, int $contractID) {
+        $contract = $this->contractRepository->getById($contractID);
+        Response::success($this->contractModuleService->getModuleInformation($contract));
+    }
 }
