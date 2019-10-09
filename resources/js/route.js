@@ -16,6 +16,7 @@ import AccountPreview from "./views/panel/accounts/AccountPreview";
 import CreateView from "./views/panel/accounts/CreateView";
 import EditView from "./views/panel/accounts/EditView";
 import ContractForm from "./views/client/contract/ContractForm";
+import CreateBaseView from "./views/panel/contracts/CreateBaseView";
 
 Vue.use(VueRouter);
 
@@ -51,6 +52,14 @@ const router = new VueRouter({
                     meta: {
                         title: i18n.t('pageMeta.panel.contract.title')
                     }
+                },
+                {
+                    path: 'contracts/new',
+                    name: 'createContract',
+                    component: CreateBaseView,
+                    meta: {
+                        title: i18n.t('pageMeta.panel.contract.create.title')
+                    },
                 },
                 {
                     path: 'contracts/create',
