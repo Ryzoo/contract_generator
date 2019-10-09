@@ -7,6 +7,7 @@ use App\Helpers\Response;
 use App\Helpers\Validator;
 use App\Models\Domain\Contract;
 use App\Models\Domain\FormElements\FormElement;
+use App\Modules\Configuration;
 use App\Repository\Domain\ContractRepository;
 use App\Services\AuthService;
 use App\Services\Domain\ContractService;
@@ -42,12 +43,20 @@ class ContractController extends Controller {
      */
     private $authService;
 
-    public function __construct(ContractService $contractService, FormService $formService, ContractRepository $contractRepository, ContractModuleService $contractModuleService, AuthService $authService) {
+    /**
+     * @var \App\Modules\Configuration
+     */
+    private $configuration;
+
+    public function __construct(ContractService $contractService, FormService $formService,
+                                ContractRepository $contractRepository, ContractModuleService $contractModuleService,
+                                AuthService $authService, Configuration $configuration) {
         $this->contractService = $contractService;
         $this->formService = $formService;
         $this->contractRepository = $contractRepository;
         $this->contractModuleService = $contractModuleService;
         $this->authService = $authService;
+        $this->configuration = $configuration;
     }
 
     public function addNewContract(Request $request) {
@@ -115,6 +124,11 @@ class ContractController extends Controller {
     public function getContractList(Request $request) {
         $contractCollection = $this->contractRepository->getContractCollection();
         Response::success($contractCollection);
+    }
+
+    public function getAvailableModules(Request $request) {
+        $availableModules = $this->configuration->availableModules;
+        Response::success($availableModules);
     }
 
     public function getInformationAboutContractModules(Request $request, int $contractID) {

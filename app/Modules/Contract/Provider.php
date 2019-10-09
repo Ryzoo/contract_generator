@@ -3,6 +3,7 @@
 
 namespace App\Modules\Contract;
 
+use App\Enums\Modules\ContractModulesAvailablePlace;
 use App\Services\Domain\ContractService;
 use App\Enums\AvailableRenderActionsHook;
 use App\Enums\Modules\ContractModulePart;
@@ -20,6 +21,10 @@ class Provider extends ContractModule {
 
     public function __construct(ContractService $contractService) {
         $this->name = "provider";
+        $this->description = "provider";
+        $this->icon = "fas fa-file-export";
+        $this->isActive = true;
+        $this->place = ContractModulesAvailablePlace::FINISHER;
 
         $actions = [];
         $actions["action-" . AvailableRenderActionsHook::AFTER_FORM_END] = "ProviderForContractView";

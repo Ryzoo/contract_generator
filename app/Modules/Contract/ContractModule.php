@@ -7,6 +7,10 @@ use App\Models\Domain\Contract;
 
 abstract class ContractModule {
     public $name;
+    public $description;
+    public $icon;
+    public $place;
+    public $isActive;
 
     /**
      * @var Contract

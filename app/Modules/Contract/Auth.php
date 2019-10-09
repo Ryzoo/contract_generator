@@ -7,6 +7,7 @@ namespace App\Modules\Contract;
 use App\Enums\AvailableRenderActionsHook;
 use App\Enums\Modules\AuthType;
 use App\Enums\Modules\ContractModulePart;
+use App\Enums\Modules\ContractModulesAvailablePlace;
 use App\Helpers\Response;
 use App\Models\Domain\Contract;
 
@@ -14,6 +15,10 @@ class Auth extends ContractModule {
 
     public function __construct() {
         $this->name = "auth";
+        $this->description = "auth";
+        $this->icon = "fas fa-unlock-alt";
+        $this->isActive = true;
+        $this->place = ContractModulesAvailablePlace::PRE_FORM;
 
         $actions = [];
         $actions["action-".AvailableRenderActionsHook::BEFORE_FORM_RENDER] = "AuthBeforeRenderView";

@@ -5,10 +5,12 @@ namespace App\Repository\Domain;
 
 
 use App\Models\Domain\Contract;
+use App\Modules\Configuration;
 use Illuminate\Support\Collection;
 use Whoops\Exception\ErrorException;
 
 class ContractRepository {
+
     public function getContractCollection(): Collection {
         return Contract::select(["id", "name", "created_at"])->get();
     }

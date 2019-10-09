@@ -5,20 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="Changes in agreement view v2">
-      <change afterPath="$PROJECT_DIR$/app/Enums/Modules/ContractProviderType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/Modules/Provider/Enums.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Enums/Modules/ContractModulesAvailablePlace.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Enums/Modules/ContractModulePart.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/Modules/ContractModulePart.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Configuration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Configuration.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Modules/Contract/Auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Contract/Auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Modules/Contract/ContractModule.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Contract/ContractModule.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Modules/Contract/Provider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Contract/Provider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Domain/ContractModuleService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/ContractModuleService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/test.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/test.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repository/Domain/ContractRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repository/Domain/ContractRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public_html/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/ContractFormRender.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/ContractFormRender.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/Form/ActionRenderer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/ActionRenderer.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/Form/Modules/Provider/ProviderForContractView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/Modules/Provider/ProviderForContractView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/store/modules/contractModules.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/modules/contractModules.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -464,7 +459,9 @@
       <workItem from="1569163345686" duration="2798000" />
       <workItem from="1569323357046" duration="181000" />
       <workItem from="1570602436126" duration="4654000" />
-      <workItem from="1570607737766" duration="414000" />
+      <workItem from="1570607737766" duration="1088000" />
+      <workItem from="1570617771901" duration="1672000" />
+      <workItem from="1570643354747" duration="611000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>
@@ -558,18 +555,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Modules/Contract/Provider.php</url>
-          <line>48</line>
+          <line>53</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Http/Controllers/ContractController.php</url>
-          <line>83</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Http/Controllers/ContractController.php</url>
-          <line>88</line>
-          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
