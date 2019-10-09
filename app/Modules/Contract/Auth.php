@@ -4,8 +4,10 @@
 namespace App\Modules\Contract;
 
 
+use App\Enums\AvailableRenderActionsHook;
 use App\Enums\Modules\AuthType;
 use App\Enums\Modules\ContractModulePart;
+use App\Enums\Modules\ContractModulesAvailablePlace;
 use App\Helpers\Response;
 use App\Models\Domain\Contract;
 
@@ -13,9 +15,18 @@ class Auth extends ContractModule {
 
     public function __construct() {
         $this->name = "auth";
+        $this->description = "auth";
+        $this->icon = "fas fa-unlock-alt";
+        $this->isActive = true;
+        $this->place = ContractModulesAvailablePlace::PRE_FORM;
+
+        $actions = [];
+        $actions["action-".AvailableRenderActionsHook::BEFORE_FORM_RENDER] = "AuthBeforeRenderView";
+
+        $this->setHooksComponents($actions);
     }
 
-    public function run(Contract $contract, int $partType, array $attributes = []) {
+    public function run(Contract &$contract, int $partType, array $attributes = []) {
         parent::run($contract, $partType, $attributes);
 
         switch ($partType){
@@ -27,7 +38,7 @@ class Auth extends ContractModule {
     }
 
     private function checkAuthorization(): bool{
-        $authType = $this->getModuleSettings("type") ?? 0;
+        $authType = $this->getModuleSettings("type") ?? AuthType::ALL;
 
         switch ($authType){
             case AuthType::LOGIN:
@@ -51,5 +62,13 @@ class Auth extends ContractModule {
             default:
                 return true;
         }
+    }
+
+    protected function preventSettingsShow(?array $settings): array{
+        $settings = parent::preventSettingsShow($settings);
+
+        $settings["password"] = "****";
+
+        return $settings;
     }
 }

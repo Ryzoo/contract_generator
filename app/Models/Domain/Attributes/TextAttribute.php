@@ -15,7 +15,8 @@ class TextAttribute extends Attribute {
     protected function buildSettings() {
         $this->settings = [
             "lengthMin" => null,
-            "lengthMax" => null
+            "lengthMax" => null,
+            "required" => null
         ];
     }
 

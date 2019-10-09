@@ -36,9 +36,11 @@ Route::prefix('user')->group(function () {
 
 Route::prefix('contract')->group(function () {
     Route::get('/', 'ContractController@getContractList');
+    Route::get('/modules', 'ContractController@getAvailableModules');
     Route::post('/', 'ContractController@addNewContract');
     Route::get('/{id}/form', 'ContractController@getContractForm');
     Route::post('/{id}/render', 'ContractController@renderContractForm');
+    Route::get('/{id}/modules', 'ContractController@getInformationAboutContractModules');
     Route::delete('/{id}', 'ContractController@removeContract');
     Route::delete('/', 'ContractController@removeMultiContract');
 });

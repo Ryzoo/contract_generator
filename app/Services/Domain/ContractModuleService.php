@@ -6,6 +6,7 @@ namespace App\Services\Domain;
 
 use App\Models\Domain\Contract;
 use App\Modules\Configuration;
+use Illuminate\Support\Collection;
 
 class ContractModuleService {
 
@@ -18,12 +19,33 @@ class ContractModuleService {
         $this->configuration = $configuration;
     }
 
-    public function runPart(Contract $contract, int $partType, array $attributes = []){
+    public function runPart(Contract &$contract, int $partType, array $attributes = []){
+
+        /** @var \App\Modules\Contract\ContractModule $module */
         foreach ($this->configuration->availableModules as $module){
             if($contract->checkContractEnabledModules($module->name)){
-                $module->run($contract, $partType, $attributes);
+                $returnData = $module->run($contract, $partType, $attributes);
+
+                if(isset($returnData) && gettype($returnData) !== "boolean")
+                    return $returnData;
             }
         }
+
+        return null;
+    }
+
+    public function getModuleInformation(Contract $contract): Collection {
+        $moduleInformationCollection = collect();
+
+        /** @var \App\Modules\Contract\ContractModule $module */
+        foreach ($this->configuration->availableModules as $module){
+            if($contract->checkContractEnabledModules($module->name)){
+                $module->init($contract);
+                $moduleInformationCollection->push($module->getInformation());
+            }
+        }
+
+        return $moduleInformationCollection;
     }
 
 }

@@ -24,3 +24,11 @@ export const FormElementsEnum = {
     PAGE_BRAKE: 0,
     ATTRIBUTE: 1,
 };
+
+export const AvailableRenderActionsHook = {
+    BEFORE_FORM_RENDER: 0,
+    FORM_RENDER: 1,
+    BEFORE_FORM_END: 2,
+    AFTER_FORM_END: 3,
+};
+

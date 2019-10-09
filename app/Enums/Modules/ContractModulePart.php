@@ -9,5 +9,6 @@ class ContractModulePart {
     use EnumIterator;
 
     public const GET_CONTRACT = 0;
+    public const RENDER_CONTRACT = 1;
 }
 
