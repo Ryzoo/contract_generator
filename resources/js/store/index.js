@@ -11,7 +11,7 @@ export default new Vuex.Store({
     modules: {
         authUser: authUserModule,
         formElements: formElementsModule,
-        block: blockModule
+        block: blockModule,
         contractModules: contractModulesModule
     }
 });
