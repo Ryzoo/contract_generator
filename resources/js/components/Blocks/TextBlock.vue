@@ -50,20 +50,7 @@
                 </div>
             </editor-menu-bubble>
             <editor-content :editor="editor" />
-            <div class="hr-line">
-                <hr class="line">
-                <v-btn @click="$emit('openDialog')" class="mx-3" text icon>
-                    <v-icon>fa-plus-circle</v-icon>
-                </v-btn>
-            </div>
-            <slot></slot>
         </details>
-        <div class="hr-line">
-            <hr class="line">
-            <v-btn @click="$emit('openDialog')" class="mx-3" text icon>
-                <v-icon>fa-plus-circle</v-icon>
-            </v-btn>
-        </div>
     </div>
 </template>
 

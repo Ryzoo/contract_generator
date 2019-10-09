@@ -5,24 +5,20 @@
                 <v-icon class="mx-3">fa-chevron-right</v-icon>
                 <h3 class="pr-2">{{ blockName | truncate}}</h3>
             </summary>
-            <div class="hr-line">
-                <hr class="line">
-                <v-btn @click="$emit('openDialog')" class="mx-3" text icon>
-                    <v-icon>fa-plus-circle</v-icon>
-                </v-btn>
-            </div>
-            <slot></slot>
+            <ContainerBlock
+                v-for="block in filterParentBlocks"
+                :block="block"
+                :key="block.id"
+                :divider="block.isDivider"
+                :level="id"
+            >
+            </ContainerBlock>
         </details>
-        <div class="hr-line">
-            <hr class="line">
-            <v-btn @click="$emit('openDialog')" class="mx-3" text icon>
-                <v-icon>fa-plus-circle</v-icon>
-            </v-btn>
-        </div>
     </div>
 </template>
 
 <script>
+
   export default {
     name: "EmptyBlock",
     props: {
@@ -32,6 +28,22 @@
       conditionals: { required: true },
       settings: { required: true }
     },
+    computed: {
+      filterParentBlocks() {
+        let filteredBlocks = this.content.blocks.filter(x => x.parentId === this.id);
+        let obj = {isDivider: true};
+        let arr = [
+          obj,
+        ];
+
+        filteredBlocks.map(x => {
+          arr.push(x);
+          arr.push(obj);
+        });
+
+        return arr;
+      }
+    },
     methods: {
       setActive(e){
         if(!e.target.closest("details").classList.contains("active")) {
@@ -40,6 +52,8 @@
           this.$emit("getAttributes");
         }
       }
+    },
+    mounted() {
     }
   }
 </script>

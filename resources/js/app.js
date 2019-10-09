@@ -11,6 +11,7 @@ window.Vue = require('vue');
 window.Validator = Validator;
 
 Vue.component('loader', require('./components/Loader').default);
+Vue.component('ContainerBlock', require('./components/Blocks/ContainerBlock').default);
 
 import store from './store';
 import route from './route'
