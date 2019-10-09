@@ -24,9 +24,14 @@ class ContractModuleService {
         /** @var \App\Modules\Contract\ContractModule $module */
         foreach ($this->configuration->availableModules as $module){
             if($contract->checkContractEnabledModules($module->name)){
-                $module->run($contract, $partType, $attributes);
+                $returnData = $module->run($contract, $partType, $attributes);
+
+                if(isset($returnData) && gettype($returnData) !== "boolean")
+                    return $returnData;
             }
         }
+
+        return null;
     }
 
     public function getModuleInformation(Contract $contract): Collection {

@@ -62,31 +62,35 @@ class ContractController extends Controller {
     }
 
     public function getContractForm(Request $request, int $contractID) {
-        Validator::validate($request->all(),[
-            "password" => "nullable|string"
+        Validator::validate($request->all(), [
+            "password" => "nullable|string",
         ]);
 
         $contract = $this->contractRepository->getById($contractID);
 
         $this->contractModuleService->runPart($contract, ContractModulePart::GET_CONTRACT, [
-            "password" => $request->get("password") ?? ""
+            "password" => $request->get("password") ?? "",
         ]);
 
         Response::success($contract->form->formElements);
     }
 
     public function renderContractForm(Request $request, int $contractID) {
-        Validator::validate($request->all(),[
-            "formElements" => "required|array"
+        Validator::validate($request->all(), [
+            "formElements" => "required|array",
         ]);
 
-        $formElements = json_encode($request->get("formElements"));
-        $formElementsList = FormElement::getListFromString($formElements);
+        $contract = $this->contractRepository->getById($contractID);
+        $returnData = $this->contractModuleService->runPart($contract, ContractModulePart::RENDER_CONTRACT, [
+            "formElements" => $request->get("formElements"),
+            "contract" => $contract,
+        ]);
 
-        $contractPdfFile = $this->contractService
-            ->renderContract($contractID, $formElementsList);
+        if (isset($returnData)) {
+            return $returnData;
+        }
 
-        return $contractPdfFile->stream(Str::random(8).".pdf");
+        Response::success();
     }
 
     public function removeContract(Request $request, int $contractID) {
@@ -96,19 +100,19 @@ class ContractController extends Controller {
 
     public function removeMultiContract(Request $request) {
         Validator::validate($request->all(), [
-            "idList" => "required|string"
+            "idList" => "required|string",
         ]);
 
         $listOfContractId = explode(",", $request->get("idList"));
 
-        if(is_array($listOfContractId)){
+        if (is_array($listOfContractId)) {
             $this->contractService->removeContractById($listOfContractId);
         }
 
         Response::success();
     }
 
-    public function getContractList(Request $request){
+    public function getContractList(Request $request) {
         $contractCollection = $this->contractRepository->getContractCollection();
         Response::success($contractCollection);
     }

@@ -11,8 +11,7 @@
             ></action-renderer>
         </v-card-text>
 
-        <v-card-text class="white--text"
-                     v-if="currentAction === availableActionsHook.FORM_RENDER || currentAction === availableActionsHook.BEFORE_FORM_END">
+        <v-card-text class="white--text" v-if="currentAction === availableActionsHook.FORM_RENDER">
             <div class="headline mb-2">{{contract.name}}</div>
             <v-divider></v-divider>
             <v-stepper v-model="actualStep">
@@ -40,24 +39,17 @@
                         :step="step.id"
                     >
                         <form-renderer
-                            v-if="currentAction === availableActionsHook.FORM_RENDER"
                             :formElements="step.content"
                         ></form-renderer>
 
-                        <action-renderer
-                            v-if="currentAction === availableActionsHook.BEFORE_FORM_END"
-                            v-model="currentAction"
-                            :contract="contract"
-                        ></action-renderer>
-
-                        <v-container v-if="currentAction === availableActionsHook.FORM_RENDER">
+                        <v-container>
                             <v-row>
                                 <v-col align="end">
                                     <v-btn text v-if="actualStep > 1 && actualStep <= stepList.length"
                                            @click="goBackStep">Go back
                                     </v-btn>
-                                    <v-btn color="primary" v-if="actualStep < stepList.length" @click="goToNextStep">Go
-                                        next
+                                    <v-btn color="primary" v-if="actualStep < stepList.length"
+                                           @click="goToNextStep">Go next
                                     </v-btn>
                                     <v-btn color="success" v-if="actualStep === stepList.length"
                                            @click="finishContractForm">Finish
@@ -71,12 +63,13 @@
             </v-stepper>
         </v-card-text>
 
-        <v-card-text class="white--text" v-if="currentAction === availableActionsHook.AFTER_FORM_END">
+        <v-card-text class="white--text" v-if="currentAction === availableActionsHook.BEFORE_FORM_END || currentAction === availableActionsHook.AFTER_FORM_END">
             <action-renderer
                 v-model="currentAction"
                 :contract="contract"
             ></action-renderer>
         </v-card-text>
+
     </v-card>
     <loader v-else></loader>
 </template>
@@ -93,7 +86,7 @@
       FormRenderer,
       ActionRenderer
     },
-    data() {
+    data(){
       return {
         isLoading: true,
         actualStep: 1,
@@ -108,6 +101,10 @@
       }
     },
     watch: {
+      actualStep(vv) {
+        this.$forceUpdate();
+        console.log(vv);
+      },
       contract(oldValue, newValue) {
         if (oldValue !== newValue) {
           this.init();
@@ -121,15 +118,10 @@
       goToNextStep() {
         if (this.isCurrentStepValid()) {
           this.actualStep = this.actualStep === this.stepList.length ? this.actualStep : this.actualStep + 1;
-
-          if (this.actualStep === this.stepList.length) {
-            this.currentAction = this.availableActionsHook.BEFORE_FORM_END;
-          }
-
         }
       },
       isCurrentStepValid() {
-        if (!this.stepList[this.actualStep-1].content.every(e => e.isValid)) {
+        if (!this.stepList[this.actualStep - 1].content.every(e => e.isValid)) {
           Notify.push("Complete all elements of this page correctly", Notify.WARNING);
           return false;
         }
@@ -138,29 +130,28 @@
       },
       loadContractForm(additionalAttributes) {
         this.isLoading = true;
-
-        let defaultAttributeObject = {};
-
-        additionalAttributes.map( x => {
-          Object.assign(defaultAttributeObject, x);
-        });
-
-        const additionalParam = defaultAttributeObject ? new URLSearchParams(defaultAttributeObject).toString() : "";
+        const additionalParam = this.getAttributesFromArrayWithObject(additionalAttributes);
 
         axios.get(`/contract/${this.contract.id}/form?${additionalParam}`)
             .then((response) => {
               this.$store.dispatch("formElements_set", response.data);
             })
-            .catch(()=>{
+            .catch(() => {
               this.currentAction = this.availableActionsHook.BEFORE_FORM_RENDER;
             })
             .finally(() => {
               this.isLoading = false;
             })
       },
+      getAttributesFromArrayWithObject(additionalAttributes) {
+        let defaultAttributeObject = {};
+        additionalAttributes.map(x => {
+          Object.assign(defaultAttributeObject, x);
+        });
+        return defaultAttributeObject ? new URLSearchParams(defaultAttributeObject).toString() : "";
+      },
       finishContractForm() {
-        this.currentAction = this.availableActionsHook.AFTER_FORM_END;
-        console.log(this.currentAction);
+        this.currentAction = this.availableActionsHook.BEFORE_FORM_END;
       },
       init() {
         this.currentAction = this.availableActionsHook.BEFORE_FORM_RENDER;

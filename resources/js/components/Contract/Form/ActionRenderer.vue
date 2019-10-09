@@ -28,10 +28,17 @@
       ProviderForContractView
     },
     props: [
-        "value",
-        "contract"
+      "value",
+      "contract"
     ],
-    data(){
+
+    watch: {
+      value(newValue) {
+        this.$forceUpdate();
+        this.buildActions();
+      },
+    },
+    data() {
       return {
         actualModule: null,
         actualModuleIndex: -1,
@@ -39,38 +46,48 @@
         moduleAttributeArray: []
       }
     },
-    computed:{
-      currentModulesTree(){
+    computed: {
+      currentModulesTree() {
         return this.$store.getters.getContractModulesForAction(this.value);
       },
     },
-    methods:{
-      finishAction(moduleAttributeArray){
-        if(moduleAttributeArray)
+    methods: {
+      finishAction(moduleAttributeArray) {
+        if (moduleAttributeArray) {
           this.moduleAttributeArray.push(moduleAttributeArray);
+        }
 
-        if(this.buildModule(this.actualModuleIndex + 1))
+        if (this.buildModule(this.actualModuleIndex + 1)) {
           return;
+        }
 
         this.$emit("action-pass", this.moduleAttributeArray);
 
-        switch(this.value){
+        switch (this.value) {
           case AvailableRenderActionsHook.BEFORE_FORM_RENDER:
-          case AvailableRenderActionsHook.BEFORE_FORM_END:
             this.$emit("input", AvailableRenderActionsHook.FORM_RENDER);
             break;
+          case AvailableRenderActionsHook.BEFORE_FORM_END:
+            this.$emit("input", AvailableRenderActionsHook.AFTER_FORM_END);
+            break;
         }
-
       },
-      buildActions(){
-        if(this.currentModulesTree.length === 0)
+      buildActions() {
+        this.actualModule = null;
+        this.actualModuleIndex = -1;
+        this.actualHookName = null;
+        this.moduleAttributeArray = [];
+
+        if (this.currentModulesTree.length === 0) {
           this.finishAction();
+        }
 
         this.buildModule(0);
       },
-      buildModule(index){
-        if(index >= this.currentModulesTree.length)
+      buildModule(index) {
+        if (index >= this.currentModulesTree.length) {
           return false;
+        }
 
 
         this.actualModule = this.currentModulesTree[index];
