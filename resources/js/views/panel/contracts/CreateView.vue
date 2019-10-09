@@ -29,7 +29,7 @@
                                         <div class="options-section-3">
                                             <span class="sub-title">Dodaj nowy blok</span>
                                             <div class="block-button">
-                                                <v-btn color="primary" @click="dialog = true">Nowy blok</v-btn>
+                                                <v-btn color="primary" @click="addBlockDialog = true">Nowy blok</v-btn>
                                             </div>
                                             <div class="created-block-info">
                                                 <div class="divider">
@@ -112,89 +112,41 @@
                 </v-btn>
                 <div class="left-side">
                     <div class="builder-content">
-                        <div v-if="blocks.length > 0">
-                            <div class="builder-blocks">
-                                <component
-                                    v-for="(block, index) in blocks"
-                                    :key="index"
-                                    :is="Mapper.getBlockName(block.blockType)"
-                                    v-bind="block"
-                                    v-on:openDialog="dialog = true"
-                                    v-on:getAttributes="getAttributes()"
-                                >
-                                    <!--<component-->
-                                        <!--v-for="(nestedBlock, index) in block.nested"-->
-                                        <!--:key="index"-->
-                                        <!--:is="Mapper.getBlockName(nestedBlock.type)"-->
-                                        <!--v-bind="nestedBlock"-->
-                                        <!--v-on:openDialog="dialog = true"-->
-                                    <!--&gt;-->
-                                    <!--</component>-->
-                                </component>
-                            </div>
-                        </div>
-                        <div v-else>
-                            <div class="empty-elements">
-                                <span>Dodaj element</span>
-                                <v-icon class="mx-3">fa-plus-circle</v-icon>
-                            </div>
+                        <div class="builder-blocks">
+                            <ContainerBlock
+                                v-for="(block, index) in filterParentBlocks"
+                                :block="block"
+                                :key="block.id"
+                                :divider="block.isDivider"
+                                :level="0"
+                                :blockIndex="index"
+                            >
+                            </ContainerBlock>
                         </div>
                     </div>
                 </div>
             </div>
         </v-row>
-        <v-dialog ref="newBlockDialog" v-model="dialog" max-width="900">
-            <v-card>
-                <v-card-title class="headline justify-center" primary-title>
-                    Nowy blok
-                </v-card-title>
-                <v-card-text>
-                    <v-flex class="new-block-container" xs10>
-                        <h3>Nazwa bloku</h3>
-                        <v-text-field label="Nazwa" outline></v-text-field>
-                        <v-checkbox
-                            v-model="newBlock"
-                            label="Zapisz blok jako nowy schemat"
-                        ></v-checkbox>
-                        <h3>Wybierz istniejącą kategorię</h3>
-                        <v-select
-                            :items="categoriesNames"
-                            label="Wybierz kategorię"
-                            outline
-                        ></v-select>
-                        <h3>lub dodaj nową</h3>
-                        <v-text-field label="Kategoria" outline></v-text-field>
-                    </v-flex>
-                </v-card-text>
 
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="primary" text @click="dialog = false">I accept</v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
     </v-col>
 </template>
 
 <script>
-  import TextBlock from "../../../components/Blocks/TextBlock";
-  import EmptyBlock from "../../../components/Blocks/EmptyBlock";
-  import Operators from "../../../additionalModules/Operators";
+  import Selector from "../../../additionalModules/StaticSelectors";
+  import { mapGetters } from 'vuex';
 
   export default {
     name: "CreateAgreementView",
-    components: {
-      TextBlock,
-      EmptyBlock
-    },
     data: function () {
       return {
+        parentBlockId: 0,
         drawerRight: true,
         newBlock: false,
-        dialog: false,
         attributesName: [],
-        operatorOptions: Operators,
+        operatorOptions: Selector.Operators,
         termValue: "",
+        selectedBlockType: undefined,
+        blockName: "",
         attributeValue: "",
         operatorValue: "",
         attributesList: [
@@ -263,83 +215,6 @@
             }
           }
         ],
-        blocks: [
-          {
-            id: 1,
-            parentId: 0,
-            blockName: "test",
-            blockType: 0,
-            content: {
-              text: "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną <variable value='2'>nazwa jakas czy tam teskt</variable>"
-            },
-            conditionals: [
-              {
-                conditionalType: 0,
-                content: [
-                    "5",
-                    "==",
-                    "18"
-                ]
-              }
-            ],
-            settings: {},
-          },
-          {
-            id: 2,
-            parentId: 0,
-            blockType: 1,
-            blockName: "test",
-            content: {
-              blocks: [
-                {
-                  id: 3,
-                  parentId: 2,
-                  blockType: 0,
-                  blockName: "test",
-                  content: {
-                    text: "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną <variable value='1'>costam</variable>"
-                  },
-                  conditionals: [{
-                    conditionalType: 0,
-                    content: [
-                      "1",
-                      "==",
-                      "'Grzegorz'"
-                    ]
-                  }],
-                  settings: {}
-                },
-                {
-                  id: 4,
-                  parentId: 2,
-                  blockType: 0,
-                  blockName: "test",
-                  content: {
-                    text: "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną"
-                  },
-                  conditionals: [{
-                    conditionalType: 0,
-                    content: [
-                      "1",
-                      "==",
-                      "18"
-                    ]
-                  }],
-                  settings: {}
-                }
-              ]
-            },
-            conditionals: [{
-              conditionalType: 0,
-              content: [
-                "2",
-                "==",
-                "18"
-              ]
-            }],
-            settings:{}
-          }
-        ],
         elementsType: [
           {
             type: "text",
@@ -378,6 +253,25 @@
         ]
       };
     },
+    computed: {
+      filterParentBlocks() {
+        let filteredBlocks = this.blocks.filter(x => !x.parentId);
+        let obj = {isDivider: true};
+        let arr = [
+          obj,
+        ];
+
+        filteredBlocks.map(x => {
+          arr.push(x);
+          arr.push(obj);
+        });
+
+        return arr;
+      },
+      ...mapGetters({
+        blocks: 'allBlocks'
+      })
+    },
     methods: {
       blocksCategoryToSelect(categories) {
         let arrayOfCategories = [];
@@ -386,34 +280,116 @@
 
         return arrayOfCategories;
       },
-      getAttributes() {
-        let blockId = $('.active').parent().attr("blockid");
-        let conditionals = this.getConditionalFromBlock(blockId);
-        let attributesId = [];
 
-        conditionals.map(x => {
-          attributesId.push(Number(x.content[0]));
-          this.operatorValue = x.content[1];
-          this.attributeValue = Number(x.content[0]);
-          this.termValue = x.content[2];
-        });
+      // getAttributes() {
+      //   let blockId = $('.active').parent().attr("blockid");
+      //   let conditionals = this.getConditionalFromBlock(blockId);
+      //   let attributesId = [];
+      //
+      //   conditionals.map(x => {
+      //     attributesId.push(Number(x.content[0]));
+      //     this.operatorValue = x.content[1];
+      //     this.attributeValue = Number(x.content[0]);
+      //     this.termValue = x.content[2];
+      //   });
+      //
+      //   let attributes = attributesId.map(x => this.attributesList.find(y => y.id === x));
+      //
+      //   attributes.map(x => {
+      //     this.attributesName.push(
+      //         {
+      //           text: x.attributeName,
+      //           value: x.id
+      //         })
+      //   });
+      // },
 
-        let attributes = attributesId.map(x => this.attributesList.find(y => y.id === x));
-
-        attributes.map(x => {
-          this.attributesName.push(
-              {
-                text: x.attributeName,
-                value: x.id
-              })
-        });
-      },
-      getConditionalFromBlock(id) {
-        return this.blocks.find(x => x.id === Number(id)).conditionals;
-      }
+      // getConditionalFromBlock(id) {
+      //   return this.blocks.find(x => x.id === Number(id)).conditionals;
+      // },
     },
     mounted() {
       this.categoriesNames = this.blocksCategoryToSelect(this.blocksCategory);
+
+      // let apiBlock = [
+      //   {
+      //     id: 1,
+      //     parentId: 0,
+      //     blockName: "test",
+      //     blockType: 0,
+      //     content: {
+      //       text: "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną <variable value='2'>nazwa jakas czy tam teskt</variable>"
+      //     },
+      //     conditionals: [
+      //       {
+      //         conditionalType: 0,
+      //         content: [
+      //           "5",
+      //           "==",
+      //           "18"
+      //         ]
+      //       }
+      //     ],
+      //     settings: {},
+      //   },
+      //   {
+      //     id: 2,
+      //     parentId: 0,
+      //     blockType: 1,
+      //     blockName: "test",
+      //     content: {
+      //       blocks: [
+      //         {
+      //           id: 3,
+      //           parentId: 2,
+      //           blockType: 0,
+      //           blockName: "test",
+      //           content: {
+      //             text: "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną <variable value='1'>costam</variable>"
+      //           },
+      //           conditionals: [{
+      //             conditionalType: 0,
+      //             content: [
+      //               "1",
+      //               "==",
+      //               "'Grzegorz'"
+      //             ]
+      //           }],
+      //           settings: {}
+      //         },
+      //         {
+      //           id: 4,
+      //           parentId: 2,
+      //           blockType: 0,
+      //           blockName: "test",
+      //           content: {
+      //             text: "Tutaj bardzo fajny tekst <b>sformatowany</b>. W tym miejscu zawiera zmienną"
+      //           },
+      //           conditionals: [{
+      //             conditionalType: 0,
+      //             content: [
+      //               "1",
+      //               "==",
+      //               "18"
+      //             ]
+      //           }],
+      //           settings: {}
+      //         }
+      //       ]
+      //     },
+      //     conditionals: [{
+      //       conditionalType: 0,
+      //       content: [
+      //         "2",
+      //         "==",
+      //         "18"
+      //       ]
+      //     }],
+      //     settings:{}
+      //   }
+      // ];
+
+      // this.$store.dispatch('block_set', apiBlock);
     }
   };
 </script>
@@ -571,18 +547,6 @@
                     }
                 }
             }
-        }
-    }
-
-    .builder-content {
-        .empty-elements {
-            border: 1px dashed #707070;
-            width: 100%;
-            height: 100px;
-            border-radius: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
     }
 </style>
