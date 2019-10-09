@@ -39,18 +39,22 @@
 
         thisElement.isValid = isValidValue;
 
-        if(newValue)
-            thisElement.attribute.value = newValue;
+        if (newValue) {
+          thisElement.attribute.value = newValue;
+        }
 
         this.$store.dispatch('formElements_change', {
           element: thisElement
         });
       },
-      isValid(newValue) {
+      isValid(newValue, showError) {
         let validatorResult = AttributeValidator.validate(this.formElement.attribute, newValue);
         this.validationError = validatorResult.errorMessage;
         return validatorResult.status;
       }
+    },
+    mounted() {
+      this.changeValue(this.formElement.attribute.defaultValue);
     }
   }
 </script>

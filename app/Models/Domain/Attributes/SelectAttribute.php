@@ -15,7 +15,8 @@ class SelectAttribute extends Attribute {
     protected function buildSettings() {
         $this->settings = [
             "isMultiSelect" => false,
-            "items" => []
+            "items" => [],
+            "required" => null
         ];
     }
 

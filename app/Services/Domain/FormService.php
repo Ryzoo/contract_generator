@@ -2,8 +2,10 @@
 
 namespace App\Services\Domain;
 
+use App\Enums\ElementType;
 use App\Models\Domain\Contract;
 use App\Models\Domain\Form;
+use Illuminate\Support\Collection;
 
 class FormService {
 
@@ -23,7 +25,8 @@ class FormService {
 
         /* @var $block \App\Models\Domain\Blocks\Block */
         foreach ($blocks as $block){
-            $elementsCollection = $elementsCollection->merge($block->getFormElements($contract));
+            $elements = $this->reduceElementsWithSameAttribute($block->getFormElements($contract), $elementsCollection);
+            $elementsCollection = $elementsCollection->merge($elements);
         }
         $elementsCollection = $elementsCollection->unique();
 
@@ -34,5 +37,21 @@ class FormService {
             "contract_id" => $contract->id,
             "formElements" => $elementsCollection,
         ]);
+    }
+
+    private function reduceElementsWithSameAttribute(Collection $newElements, Collection $existElements): Collection {
+        return $newElements->reject(function ($value, $key) use($existElements){
+
+            if($value->elementType === ElementType::ATTRIBUTE){
+                return $existElements->some(function($item) use($value){
+                    if($item->elementType !== ElementType::ATTRIBUTE)
+                        return false;
+
+                    return $value->attribute == $item->attribute;
+                });
+            }
+
+            return false;
+        });
     }
 }

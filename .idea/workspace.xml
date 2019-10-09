@@ -5,25 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="Changes in agreement view v2">
-      <change afterPath="$PROJECT_DIR$/app/Enums/AvailableRenderActionsHook.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/Contract/Provider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/ActionRenderer.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/Modules/Auth/AuthBeforeRenderView.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/Modules/Auth/Enums.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/Modules/Provider/ProviderForContractView.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/store/modules/contractModules.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContractController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Configuration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Configuration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Contract/Auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Contract/Auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Contract/ContractModule.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Contract/ContractModule.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repository/Domain/ContractRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repository/Domain/ContractRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Domain/ContractModuleService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/ContractModuleService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Attributes/NumberAttribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Attributes/NumberAttribute.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Attributes/SelectAttribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Attributes/SelectAttribute.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Domain/Attributes/TextAttribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Domain/Attributes/TextAttribute.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Domain/FormService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Domain/FormService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public_html/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/additionalModules/Enums.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/additionalModules/Enums.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/ContractFormRender.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/ContractFormRender.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/Form/Attributes/SelectAttribute.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/Attributes/SelectAttribute.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/Form/FormElements/AttributeFormElements.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/FormElements/AttributeFormElements.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/Form/Validators/AttributeValidator.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/Validators/AttributeValidator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/store/modules/formElements.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/modules/formElements.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -316,12 +308,6 @@
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-dompdf" />
       <path value="$PROJECT_DIR$/vendor/nwidart/laravel-modules" />
     </include_path>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="498" />
-    <option name="y" value="34" />
-    <option name="width" value="1001" />
-    <option name="height" value="1080" />
   </component>
   <component name="ProjectId" id="1PQJ1MRyKCtaH9Rlv2m6NpJDdQT" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />

@@ -4,7 +4,7 @@ class AttributeValidator{
     validate(attribute, newValue){
         this.initialize(attribute, newValue);
 
-        if (this.isEmptyOrDefault())
+        if (!this.validateRequired())
             return this.response;
 
         if (!this.validateValueMax())
@@ -37,8 +37,8 @@ class AttributeValidator{
     isEmptyOrDefault(){
         return this.isEmpty() || this.isDefault();
     }
+
     isEmpty(){
-        console.log(this.value.length);
         return this.value === null || this.value === undefined || this.value === "" || (this.value.length === undefined && isNaN(this.value));
     }
     isDefault(){
@@ -51,6 +51,17 @@ class AttributeValidator{
         return String(this.value).length > 0;
     }
 
+    validateRequired(){
+
+        if(!!this.settings.required && this.isEmpty()){
+            const validationError = i18n.t('validation.required', {
+                attribute: this.attribute.name,
+            });
+            return this.setResponse(validationError,false);
+        }
+
+        return this.setResponse("",true);
+    }
     validateValueMax(){
         if (this.settings.valueMax) {
 

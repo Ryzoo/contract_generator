@@ -26,7 +26,7 @@
     },
     methods: {
       changeValue(newValue) {
-        this.$emit("change-value", newValue.join(","))
+        this.$emit("change-value", !!this.attribute.settings.isMultiSelect ? newValue.join(",") : newValue)
       }
     }
   };
