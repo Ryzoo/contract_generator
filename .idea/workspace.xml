@@ -5,7 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="Changes in agreement view v2">
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/Form/Modules/Provider/ProviderForContractView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/Modules/Provider/ProviderForContractView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/Contract/Modules/Auth/AuthConfigView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/Contract/Modules/Provider/ProviderConfigView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/Contract/New/ContractModuleConfiguration.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/Contract/New/DefaultConfigModuleView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Modules/Contract/Auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Contract/Auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Modules/Contract/ContractModule.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Contract/ContractModule.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Modules/Contract/Provider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Contract/Provider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public_html/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/additionalModules/Enums.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/additionalModules/Enums.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/additionalModules/Mappers.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/additionalModules/Mappers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/Form/ActionRenderer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/ActionRenderer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/Form/Modules/Auth/AuthBeforeRenderView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/Modules/Auth/AuthBeforeRenderView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/Form/Modules/Auth/Enums.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/Modules/Auth/Enums.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/Form/Modules/Provider/Enums.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/Modules/Provider/Enums.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/Form/Modules/Provider/ProviderForContractView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/Modules/Provider/ProviderForContractView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/views/panel/contracts/CreateBaseView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/panel/contracts/CreateBaseView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/views/panel/contracts/CreateView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/panel/contracts/CreateView.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,6 +75,7 @@
         <option value="SCSS File" />
         <option value="package.json" />
         <option value="JavaScript File" />
+        <option value="XSLT Stylesheet" />
         <option value="Vue Single File Component" />
       </list>
     </option>
@@ -315,19 +333,19 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/js/components/Contract/Form" />
-      <recent name="$PROJECT_DIR$/app/Modules/Contract" />
-      <recent name="$PROJECT_DIR$/app/Services/Domain" />
-      <recent name="$PROJECT_DIR$/app/Helpers" />
-      <recent name="$PROJECT_DIR$/app/Repository/Domain" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Modules/Contract" />
       <recent name="$PROJECT_DIR$/resources/js/store/modules" />
       <recent name="$PROJECT_DIR$/resources/js/components/Contract/Form/Attributes" />
       <recent name="$PROJECT_DIR$/app/Models/Domain/Attributes" />
       <recent name="$PROJECT_DIR$/app/Models/Domain/FormElements" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/js/components/Contract/New" />
+      <recent name="$PROJECT_DIR$/resources/js/components/Contract" />
+      <recent name="$PROJECT_DIR$/resources/js/components/Contract/Form" />
+      <recent name="$PROJECT_DIR$/app/Modules/Contract" />
+      <recent name="$PROJECT_DIR$/app/Services/Domain" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -454,7 +472,8 @@
       <workItem from="1570607737766" duration="1088000" />
       <workItem from="1570617771901" duration="1672000" />
       <workItem from="1570643354747" duration="2241000" />
-      <workItem from="1570732318984" duration="2152000" />
+      <workItem from="1570732318984" duration="2868000" />
+      <workItem from="1570737225931" duration="6346000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>
@@ -548,7 +567,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Modules/Contract/Provider.php</url>
-          <line>53</line>
+          <line>54</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

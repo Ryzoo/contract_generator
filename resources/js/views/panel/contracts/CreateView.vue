@@ -107,6 +107,15 @@
                         </div>
                     </div>
                 </v-navigation-drawer>
+<!--                <div>-->
+<!--                    <h1>Edytujesz: Ttutaj fajna nazwa tego czegos</h1>-->
+<!--                    <div>-->
+<!--                        <v-btn text color="primary">Powrót</v-btn>-->
+<!--                        <v-btn outlined color="primary">Zapisz</v-btn>-->
+<!--                        <v-btn color="primary">Zapisz i wyjdź</v-btn>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <v-divider></v-divider>-->
                 <v-btn right absolute color="primary" @click="drawerRight = !drawerRight">
                     {{ this.drawerRight ? "Hide settings" : "Show settings" }}
                 </v-btn>

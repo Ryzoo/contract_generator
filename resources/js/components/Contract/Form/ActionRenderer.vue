@@ -18,8 +18,8 @@
 
 <script>
   import {AvailableRenderActionsHook} from "./../../../additionalModules/Enums";
-  import AuthBeforeRenderView from "./Modules/Auth/AuthBeforeRenderView";
-  import ProviderForContractView from "./Modules/Provider/ProviderForContractView";
+  import AuthBeforeRenderView from "../Modules/Auth/AuthBeforeRenderView";
+  import ProviderForContractView from "../Modules/Provider/ProviderForContractView";
 
   export default {
     name: "ActionRenderer",

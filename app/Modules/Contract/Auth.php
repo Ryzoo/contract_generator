@@ -19,6 +19,7 @@ class Auth extends ContractModule {
         $this->icon = "fas fa-unlock-alt";
         $this->isActive = true;
         $this->place = ContractModulesAvailablePlace::PRE_FORM;
+        $this->configComponent = "AuthConfigView";
 
         $actions = [];
         $actions["action-".AvailableRenderActionsHook::BEFORE_FORM_RENDER] = "AuthBeforeRenderView";

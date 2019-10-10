@@ -25,6 +25,7 @@ class Provider extends ContractModule {
         $this->icon = "fas fa-file-export";
         $this->isActive = true;
         $this->place = ContractModulesAvailablePlace::FINISHER;
+        $this->configComponent = "ProviderConfigView";
 
         $actions = [];
         $actions["action-" . AvailableRenderActionsHook::AFTER_FORM_END] = "ProviderForContractView";

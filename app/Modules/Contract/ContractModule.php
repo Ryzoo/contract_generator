@@ -11,6 +11,7 @@ abstract class ContractModule {
     public $icon;
     public $place;
     public $isActive;
+    public $configComponent;
 
     /**
      * @var Contract

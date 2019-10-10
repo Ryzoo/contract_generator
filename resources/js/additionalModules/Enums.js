@@ -32,3 +32,8 @@ export const AvailableRenderActionsHook = {
     AFTER_FORM_END: 3,
 };
 
+export const ContractModulesAvailablePlace = {
+    PRE_FORM: 0,
+    POST_FORM: 1,
+    FINISHER: 2,
+};
