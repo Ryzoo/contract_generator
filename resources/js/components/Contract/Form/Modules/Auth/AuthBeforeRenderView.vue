@@ -1,6 +1,6 @@
 <template>
     <section>
-        <h3>Ten kontroler ma włączony moduł autoryzacji</h3>
+        <h3>Ta umowa ma włączony moduł autoryzacji</h3>
         <v-divider dark class="my-3"></v-divider>
         <div v-if="actualAuthType == AuthType.LOGIN">
             <p>Pozwolenie na wgląd mają tylko <b>zalogowani użytkownicy</b></p>

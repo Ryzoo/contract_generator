@@ -45,7 +45,13 @@ class ConditionalParser{
             return "null";
         }
 
-        return findedAttribute.value || "null";
+        const currValue = findedAttribute.value || "null";
+
+        return this.isNumeric(currValue) ? currValue : `'${currValue}'`;
+    }
+
+    isNumeric(n){
+        return !isNaN(parseFloat(n)) && isFinite(n);
     }
 }
 

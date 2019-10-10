@@ -6,6 +6,7 @@ namespace App\Helpers;
 
 use App\Enums\ElementType;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class AttributeResolver {
     /**
@@ -37,6 +38,15 @@ class AttributeResolver {
             ->where("id", $id)
             ->first();
 
-        return isset($attribute) ? $attribute->getValue() : "";
+        $value = isset($attribute) ? $attribute->getValue() : "";
+
+        return $this->escapeValue($value);
+    }
+
+    private function escapeValue( string $value) {
+        if(Str::endsWith($value, "'") && Str::startsWith($value, "'"))
+            $value = Str::substr($value,1, Str::length($value) - 2 );
+
+        return $value;
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <section v-if="!isLoading">
+    <section v-if="isLoading">
         <h3>Ten kontroler ma włączony moduł dostarczania umowy</h3>
         <v-divider dark class="my-3"></v-divider>
         <p>Aktualnie wybrany jest tryb renderowania pliku pdf do przeglądarki</p>

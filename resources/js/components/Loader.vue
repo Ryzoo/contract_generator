@@ -7,8 +7,8 @@
         ></v-progress-circular>
         <vcl-code
             class="placeholder-loader"
-            primary="#f7f7f7"
-            secondary="#f0f0f0"
+            primary="#6b8a9c"
+            secondary="#a9c9dc"
         ></vcl-code>
     </div>
 </template>
