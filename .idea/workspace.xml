@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1291001-6572-4891-9fc9-343a64748fec" name="Default Changelist" comment="Changes in agreement view v2">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Helpers/AttributeResolver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/AttributeResolver.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_html/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/additionalModules/ConditionalParser.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/additionalModules/ConditionalParser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/Form/Modules/Auth/AuthBeforeRenderView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/Modules/Auth/AuthBeforeRenderView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Contract/Form/Modules/Provider/ProviderForContractView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Contract/Form/Modules/Provider/ProviderForContractView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Loader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Loader.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -460,7 +454,7 @@
       <workItem from="1570607737766" duration="1088000" />
       <workItem from="1570617771901" duration="1672000" />
       <workItem from="1570643354747" duration="2241000" />
-      <workItem from="1570732318984" duration="2108000" />
+      <workItem from="1570732318984" duration="2152000" />
     </task>
     <task id="LOCAL-00001" summary="Add missing comma in package.json">
       <created>1559650653665</created>
