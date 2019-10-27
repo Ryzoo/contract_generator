@@ -14,3 +14,4 @@
 Route::get('/{any}', function () {
     return view('default');
 })->where('any', '^(?!api|storage|docs).*$|');
+

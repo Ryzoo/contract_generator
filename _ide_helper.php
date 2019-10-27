@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 6.0.0 on 2019-09-10 20:54:24.
+ * Generated for Laravel 6.0.0 on 2019-10-27 21:28:34.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -14880,6 +14880,183 @@ namespace Barryvdh\DomPDF {
  
 }
 
+namespace PragmaRX\Version\Package { 
+
+    /**
+     * 
+     *
+     */ 
+    class Facade {
+        
+        /**
+         * Get a version.
+         *
+         * @param $type
+         * @return string 
+         * @static 
+         */ 
+        public static function getGit()
+        {
+                        /** @var \PragmaRX\Version\Package\Version $instance */
+                        return $instance->getGit();
+        }
+        
+        /**
+         * Get the current version.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function current()
+        {
+                        /** @var \PragmaRX\Version\Package\Version $instance */
+                        return $instance->current();
+        }
+        
+        /**
+         * Get the current object instance.
+         *
+         * @return \PragmaRX\Version\Package\Version 
+         * @static 
+         */ 
+        public static function instance()
+        {
+                        /** @var \PragmaRX\Version\Package\Version $instance */
+                        return $instance->instance();
+        }
+        
+        /**
+         * Get a properly formatted version.
+         *
+         * @param $type
+         * @return mixed|null 
+         * @static 
+         */ 
+        public static function format($type = null)
+        {
+                        /** @var \PragmaRX\Version\Package\Version $instance */
+                        return $instance->format($type);
+        }
+        
+        /**
+         * Get a properly formatted version.
+         *
+         * @param $type
+         * @return bool 
+         * @static 
+         */ 
+        public static function isInAbsorbMode()
+        {
+                        /** @var \PragmaRX\Version\Package\Version $instance */
+                        return $instance->isInAbsorbMode();
+        }
+        
+        /**
+         * Set the config file stub.
+         *
+         * @param string $configFileStub
+         * @static 
+         */ 
+        public static function setConfigFileStub($configFileStub)
+        {
+                        /** @var \PragmaRX\Version\Package\Version $instance */
+                        return $instance->setConfigFileStub($configFileStub);
+        }
+        
+        /**
+         * Load package YAML configuration.
+         *
+         * @param $path
+         * @return \Illuminate\Support\Collection 
+         * @static 
+         */ 
+        public static function loadConfig($path = null)
+        {
+                        /** @var \PragmaRX\Version\Package\Version $instance */
+                        return $instance->loadConfig($path);
+        }
+         
+    }
+ 
+}
+
+namespace PragmaRX\Yaml\Package { 
+
+    /**
+     * 
+     *
+     */ 
+    class Facade {
+        
+        /**
+         * Load yaml files from directory and add to Laravel config.
+         *
+         * @param string $path
+         * @param string $configKey
+         * @return \PragmaRX\Yaml\Package\Collection 
+         * @static 
+         */ 
+        public static function loadToConfig($path, $configKey)
+        {
+                        /** @var \PragmaRX\Yaml\Package\Yaml $instance */
+                        return $instance->loadToConfig($path, $configKey);
+        }
+        
+        /**
+         * Load all yaml files from a directory.
+         *
+         * @param $path
+         * @return \Illuminate\Support\Collection 
+         * @static 
+         */ 
+        public static function loadFromDirectory($path)
+        {
+                        /** @var \PragmaRX\Yaml\Package\Yaml $instance */
+                        return $instance->loadFromDirectory($path);
+        }
+        
+        /**
+         * Load yaml file.
+         *
+         * @param $file
+         * @return mixed|string 
+         * @static 
+         */ 
+        public static function loadFile($file)
+        {
+                        /** @var \PragmaRX\Yaml\Package\Yaml $instance */
+                        return $instance->loadFile($file);
+        }
+        
+        /**
+         * Remove extension from file name.
+         *
+         * @param $dirty
+         * @return \Illuminate\Support\Collection|mixed 
+         * @static 
+         */ 
+        public static function cleanArrayKeysRecursive($dirty)
+        {
+                        /** @var \PragmaRX\Yaml\Package\Yaml $instance */
+                        return $instance->cleanArrayKeysRecursive($dirty);
+        }
+        
+        /**
+         * Get this object instance.
+         *
+         * @return \PragmaRX\Yaml\Package\Yaml 
+         * @static 
+         */ 
+        public static function instance()
+        {
+                        /** @var \PragmaRX\Yaml\Package\Yaml $instance */
+                        return $instance->instance();
+        }
+         
+    }
+ 
+}
+
 namespace Spatie\LaravelImageOptimizer\Facades { 
 
     /**
@@ -17772,6 +17949,10 @@ namespace  {
     class Image extends \Intervention\Image\Facades\Image {}
 
     class PDF extends \Barryvdh\DomPDF\Facade {}
+
+    class Version extends \PragmaRX\Version\Package\Facade {}
+
+    class Yaml extends \PragmaRX\Yaml\Package\Facade {}
 
     class ImageOptimizer extends \Spatie\LaravelImageOptimizer\Facades\ImageOptimizer {}
  
