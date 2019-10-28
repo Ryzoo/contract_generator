@@ -12,6 +12,12 @@ yarn-error.log
 .idea/
 
 package-lock\.json
+composer\.lock
+
+package-lock.json
+composer.lock
+
+package-lock.json
 
 public_html/js/app\.js
 
