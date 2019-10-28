@@ -10,6 +10,8 @@
     "require": {
         "php": "^7.3",
         "barryvdh/laravel-dompdf": "^0.8.5",
+        "binarytorch/larecipe": "^2.2",
+        "binarytorch/larecipe-swagger": "^0.2.0",
         "fideloper/proxy": "^4.0",
         "intervention/image": "^2.5",
         "laravel/framework": "6.0",
