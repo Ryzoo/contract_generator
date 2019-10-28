@@ -2,4 +2,4 @@
 
 namespace Deployer;
 
-task('copy', "cp -LR ../../current ../../public_html/actual 2>/dev/null");
+task('copy', "cp -LRf ../../current ../../public_html/actual 2>/dev/null");
