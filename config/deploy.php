@@ -95,6 +95,7 @@ return [
         'application' => env('APP_NAME', 'Laravel'),
         'repository' => 'https://github.com/Ryzoo/contract_generator.git',
         'branch' => 'dev',
+        'http_user' => 'www-data',
         'user' => 'Ryzoo'
     ],
 
