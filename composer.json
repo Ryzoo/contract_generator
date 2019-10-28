@@ -16,7 +16,6 @@
         "laravel/tinker": "^1.0",
         "lorisleiva/laravel-deployer": "^0.2.13",
         "martinlindhe/laravel-vue-i18n-generator": "^0.1.39",
-        "pragmarx/version": "^1.0",
         "spatie/laravel-image-optimizer": "^1.4"
     },
     "require-dev": {
@@ -58,8 +57,7 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi",
-            "@php artisan version:refresh"
+            "@php artisan package:discover --ansi"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
