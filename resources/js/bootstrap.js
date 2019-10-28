@@ -9,7 +9,7 @@ window.Notify = window.notify = new Notify();
 window.auth = new Auth();
 
 window.axios = require('axios');
-window.axios.defaults.baseURL = 'http://localhost/api';
+window.axios.defaults.baseURL = 'http://localhost:8000/api';
 window.axios.defaults.headers.post['Content-Type'] = 'application/json';
 window.axios.interceptors.response.use(
     function(response) {

@@ -46,10 +46,19 @@
     },
     methods: {
       setActive(e){
-        if(!e.target.closest("details").classList.contains("active")) {
+        if(!e.target.closest("details").classList.contains("active") && !e.target.closest("details").hasAttribute("open")) {
           $('details.active').removeClass("active");
           e.target.closest("details").classList.add("active");
           this.$emit("getAttributes");
+
+          let blockId = $('.active').parent().attr("blockid");
+          let allBlocks = this.$store.getters.allBlocks;
+          let activeBlock = allBlocks.find(x => x.id === Number(blockId));
+
+          this.$store.dispatch('block_setActiveBlock', activeBlock);
+        } else {
+          $('details.active').removeClass("active");
+          this.$store.dispatch('block_setActiveBlock', []);
         }
       }
     },

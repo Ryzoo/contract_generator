@@ -19,23 +19,23 @@
                     Nowy blok
                 </v-card-title>
                 <v-card-text>
-                    <v-flex class="new-block-container" xs10>
-                        <h3>Nazwa bloku</h3>
-                        <v-text-field v-model="newBlock.blockName" label="Nazwa" outline></v-text-field>
-                        <v-select
-                            v-model="newBlock.blockType"
-                            :items="blockTypes"
-                            label="Typ bloku"
-                            outline
-                        >
-                        </v-select>
+                    <v-flex class="new-block-container">
+                        <!--<v-text-field v-model="newBlock.blockName" label="Nazwa" outline></v-text-field>-->
+                        <!--<v-select-->
+                            <!--v-model="newBlock.blockType"-->
+                            <!--:items="blockTypes"-->
+                            <!--label="Typ bloku"-->
+                            <!--outline-->
+                        <!--&gt;-->
+                        <!--</v-select>-->
+
+                        <div class="builder-elements">
+                            <div @click="addBlock(block.value)" class="options" v-for="block in blockTypes">
+                                <span>{{block.text}}</span>
+                            </div>
+                        </div>
                     </v-flex>
                 </v-card-text>
-
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="primary" text @click="addBlock()">Dodaj</v-btn>
-                </v-card-actions>
             </v-card>
         </v-dialog>
     </div>
@@ -66,8 +66,8 @@
       }
     },
     methods: {
-      addBlock() {
-        console.log(this.buttonIndex);
+      addBlock(blockType) {
+        this.newBlock.blockType = blockType;
 
         if (this.newBlock.blockType === 0)
           this.newBlock.content = { text: "" };
@@ -91,7 +91,7 @@
         if (blocks.length > 0 && this.newBlock.parentId !== 0)
             blocks = this.addNewBlockToCurrentBlocks(blocks, this.newBlock);
         else
-          blocks.splice(this.buttonIndex-1, 0, this.newBlock);
+          blocks.splice(this.buttonIndex/2, 0, this.newBlock);
 
         this.$store.dispatch('block_set', blocks);
         this.addBlockDialog = false;
@@ -137,6 +137,32 @@
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+    }
+
+    .new-block-container {
+        .options {
+            width: 150px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #dabd79;
+            color: #dabd79;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        .builder-elements {
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-around;
+
+            .select-options {
+                width: 100%;
+            }
         }
     }
 </style>

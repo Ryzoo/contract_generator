@@ -6,9 +6,9 @@
                     <div class="right-side">
                         <div class="sidebar-builder-options">
                             <v-tabs slider-size="3" vertical>
-                                <v-tab>O</v-tab>
-                                <v-tab>U</v-tab>
-                                <v-tab>K</v-tab>
+                                <v-tab><v-icon size="26">fab fa-elementor</v-icon></v-tab>
+                                <v-tab><v-icon size="26">fa-cog</v-icon></v-tab>
+                                <v-tab><v-icon size="26">fa-code</v-icon></v-tab>
                                 <v-tab-item>
                                     <div class="builder-options-content">
                                         <h3>Opcje</h3>
@@ -51,11 +51,27 @@
                                 </v-tab-item>
                                 <v-tab-item>
                                     <div class="builder-options-content">
-                                        <h3>Bloki</h3>
+                                        <h2>Opcje bloku</h2>
                                         <div class="options-section-1">
+                                            <span class="sub-title">Konfiguruj blok</span>
+                                            <v-text-field v-model="activeBlock.blockName" label="Nazwa" outline></v-text-field>
+                                        </div>
+                                        <div class="options-section-2">
                                             <span class="sub-title">Logika</span>
                                             <div class="builder-elements">
                                                 <div class="select-options">
+                                                    <div class="w-50">
+                                                        <span>Akcja</span>
+                                                        <v-select
+                                                            :items="attributesName"
+                                                            label="Pokaż"
+                                                            outlined
+                                                            color="primary"
+                                                            dense
+                                                            :value="attributeValue"
+                                                        >
+                                                        </v-select>
+                                                    </div>
                                                     <!--<v-select-->
                                                     <!--:items="blockOptions"-->
                                                     <!--label="Blok"-->
@@ -72,15 +88,7 @@
                                                         <!--dense>-->
                                                     <!--</v-select>-->
                                                     <!--<p>warunki pasują do</p>-->
-                                                    <v-select
-                                                        :items="attributesName"
-                                                        label="Zmienna"
-                                                        outlined
-                                                        color="primary"
-                                                        dense
-                                                        :value="attributeValue"
-                                                    >
-                                                    </v-select>
+
                                                     <div class="w-50">
                                                         <v-select
                                                             :items="operatorOptions"
@@ -152,6 +160,7 @@
         drawerRight: true,
         newBlock: false,
         attributesName: [],
+        activeBlock: [],
         operatorOptions: Selector.Operators,
         termValue: "",
         selectedBlockType: undefined,
@@ -281,7 +290,18 @@
         blocks: 'allBlocks'
       })
     },
+    created() {
+      this.$store.watch(
+          (state, getters) => getters.activeBlock,
+          (newValue, oldValue) => {
+            this.activeBlock = newValue;
+          },
+      );
+    },
     methods: {
+      proba(){
+        console.log(this.$store.getters.activeBlock);
+      },
       blocksCategoryToSelect(categories) {
         let arrayOfCategories = [];
 
@@ -450,10 +470,11 @@
                 z-index: 3;
                 width: 400px;
 
-                h3 {
+                h2 {
                     text-align: center;
                     padding: 5px 0;
                     background-color: #dabd79;
+                    color: white;
                 }
 
                 .sub-title {
@@ -464,8 +485,8 @@
                 }
 
                 .options {
-                    width: 100px;
-                    height: 100px;
+                    width: 150px;
+                    height: 80px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
