@@ -65,9 +65,7 @@ return [
         ],
 
         // Deployment is done and live
-        'done' => [
-            //
-        ],
+        'done' => ['copy'],
 
         // Deployment succeeded.
         'success' => [
@@ -147,7 +145,7 @@ return [
     */
 
     'include' => [
-        //
+        'recipe/copy_recipe.php',
     ],
 
     /*
