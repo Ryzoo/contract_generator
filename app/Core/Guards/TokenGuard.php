@@ -23,7 +23,7 @@ class TokenGuard implements Guard {
     }
 
     public function user () {
-        if (!is_null($this->user))
+        if (isset($this->user))
             return $this->user;
 
         $user = null;
