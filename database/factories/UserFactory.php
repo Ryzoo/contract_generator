@@ -10,15 +10,22 @@ $factory->define(User::class, function (Faker $faker) {
         'firstName' => $faker->firstName,
         'lastName' => $faker->lastName,
         'email' => $faker->unique()->safeEmail,
-        'password' => 'secret',
-        'loginToken' => Str::random(60),
+        'password' => Hash::make('secret'),
+        'loginToken' => Str::random(80),
     ];
 });
 
-$factory->state(User::class, 'admin', [
-    'role' => \App\Core\Enums\UserRole::ADMIN
-]);
+$factory->state(User::class, 'admin',[]);
+$factory->state(User::class, 'client', []);
 
-$factory->state(User::class, 'client', [
-    'role' => \App\Core\Enums\UserRole::CLIENT
-]);
+$factory->afterCreatingState(User::class, 'admin', function ($user, $faker) {
+    $role = \jeremykenedy\LaravelRoles\Models\Role::where('slug', '=', 'admin')->first();
+    $user->attachRole($role);
+});
+
+$factory->afterCreatingState(User::class, 'client', function ($user, $faker) {
+    $role = \jeremykenedy\LaravelRoles\Models\Role::where('slug', '=', 'user')->first();
+    $user->attachRole($role);
+});
+
+

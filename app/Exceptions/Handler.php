@@ -4,12 +4,18 @@ namespace App\Exceptions;
 
 use App\Helpers\Response;
 use Exception;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Str;
 use Whoops\Exception\ErrorException;
 
 class Handler extends ExceptionHandler
 {
+
+    protected function unauthenticated($request, AuthenticationException $exception) {
+        return Response::error("",401);
+    }
+
     /**
      * A list of the exception types that are not reported.
      *

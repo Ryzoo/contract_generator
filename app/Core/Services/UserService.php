@@ -28,8 +28,6 @@ class UserService
         if(isset($userModel['rePassword']))
             unset($userModel['rePassword']);
 
-        User::validate($userModel);
-
         $userModel->save();
 
         return $userModel;
@@ -40,7 +38,6 @@ class UserService
 
         if(isset($user)){
             $user->fill($userModel->getAttributes());
-            User::validate($user,true);
             $user->save();
             return $user;
         }

@@ -73,8 +73,6 @@ class UserController extends Controller
     }
 
     public function addNewUser(Request $request) {
-        Validator::validate($request->all(),User::$rulesAddRequestCreate);
-
         $user = new User();
         $user->fill($request->all());
 

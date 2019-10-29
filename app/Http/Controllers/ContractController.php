@@ -8,7 +8,6 @@ use App\Helpers\Validator;
 use App\Core\Models\Domain\Contract;
 use App\Core\Modules\Configuration;
 use App\Core\Repository\Domain\ContractRepository;
-use App\Core\Services\AuthService;
 use App\Core\Services\Domain\ContractService;
 use App\Core\Services\Domain\FormService;
 use App\Core\Services\Domain\ContractModuleService;
@@ -37,23 +36,17 @@ class ContractController extends Controller {
     private $contractModuleService;
 
     /**
-     * @var \App\Core\Services\AuthService
-     */
-    private $authService;
-
-    /**
      * @var \App\Core\Modules\Configuration
      */
     private $configuration;
 
     public function __construct(ContractService $contractService, FormService $formService,
                                 ContractRepository $contractRepository, ContractModuleService $contractModuleService,
-                                AuthService $authService, Configuration $configuration) {
+                                Configuration $configuration) {
         $this->contractService = $contractService;
         $this->formService = $formService;
         $this->contractRepository = $contractRepository;
         $this->contractModuleService = $contractModuleService;
-        $this->authService = $authService;
         $this->configuration = $configuration;
     }
 
