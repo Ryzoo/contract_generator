@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Services\Domain;
 
-use App\Enums\ConditionalType;
+use App\Core\Enums\ConditionalType;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -10,13 +10,13 @@ class ConditionalServiceTest extends TestCase {
     use RefreshDatabase;
 
     /***
-     * @var \App\Repository\Domain\ConditionalRepository
+     * @var \App\Core\Repository\Domain\ConditionalRepository
      */
     private $conditionalRepository;
 
     public function setUp(): void {
         parent::setUp();
-        $this->conditionalRepository = $this->app->make('App\Repository\Domain\ConditionalRepository');
+        $this->conditionalRepository = $this->app->make('App\Core\Repository\Domain\ConditionalRepository');
     }
 
     public function testGetListOfConditionals() {

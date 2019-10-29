@@ -12,13 +12,13 @@ class FileServiceTest extends TestCase
     use RefreshDatabase;
 
     /***
-     * @var \App\Services\FileService
+     * @var \App\Core\Services\FileService
      */
     private $fileService;
 
     public function setUp(): void {
         parent::setUp();
-        $this->fileService = $this->app->make('App\Services\FileService');
+        $this->fileService = $this->app->make('App\Core\Services\FileService');
     }
 
     public function testSaveFileToFolder()

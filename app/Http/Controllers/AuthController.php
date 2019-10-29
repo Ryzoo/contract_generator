@@ -45,7 +45,7 @@ class AuthController extends Controller
         Response::json($registeredUser);
     }
 
-    public function authorizeLogedUser(Request $request) {
+    public function authorizeLoggedUser(Request $request) {
         $loginToken = $request->bearerToken();
 
         $logedUser = $this->authService->authorizeLoggedUser( $loginToken );

@@ -1,7 +1,7 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-use App\Models\User;
+use App\Core\Models\User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -16,9 +16,9 @@ $factory->define(User::class, function (Faker $faker) {
 });
 
 $factory->state(User::class, 'admin', [
-    'role' => \App\Enums\UserRole::ADMIN
+    'role' => \App\Core\Enums\UserRole::ADMIN
 ]);
 
 $factory->state(User::class, 'client', [
-    'role' => \App\Enums\UserRole::CLIENT
+    'role' => \App\Core\Enums\UserRole::CLIENT
 ]);

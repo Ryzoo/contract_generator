@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Services\Domain;
 
-use App\Models\Domain\Contract;
+use App\Core\Models\Domain\Contract;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -10,19 +10,19 @@ class ContractServiceTest extends TestCase {
     use RefreshDatabase;
 
     /***
-     * @var \App\Services\Domain\ContractService
+     * @var \App\Core\Services\Domain\ContractService
      */
     private $contractService;
 
     /***
-     * @var \App\Repository\Domain\ContractRepository
+     * @var \App\Core\Repository\Domain\ContractRepository
      */
     private $contractRepository;
 
     public function setUp(): void {
         parent::setUp();
-        $this->contractService = $this->app->make('App\Services\Domain\ContractService');
-        $this->contractRepository = $this->app->make('App\Repository\Domain\ContractRepository');
+        $this->contractService = $this->app->make('App\Core\Services\Domain\ContractService');
+        $this->contractRepository = $this->app->make('App\Core\Repository\Domain\ContractRepository');
     }
 
     public function testAddContract() {
@@ -71,7 +71,7 @@ class ContractServiceTest extends TestCase {
     }
 
     private function getDefaultDataForContract(){
-        $jsonDataFromTestFile = file_get_contents(app_path("test.json"));
+        $jsonDataFromTestFile = file_get_contents(app_path("Core/test.json"));
         return json_decode($jsonDataFromTestFile, true);
     }
 

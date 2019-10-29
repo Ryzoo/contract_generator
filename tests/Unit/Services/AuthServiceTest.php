@@ -2,9 +2,9 @@
 
 namespace Tests\Unit\Services;
 
-use App\Enums\UserRole;
+use App\Core\Enums\UserRole;
 use App\Mail\ResetPassword;
-use App\Models\User;
+use App\Core\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -15,13 +15,13 @@ class AuthServiceTest extends TestCase {
     use RefreshDatabase;
 
     /***
-     * @var \App\Services\AuthService
+     * @var \App\Core\Services\AuthService
      */
     private $authService;
 
     public function setUp(): void {
         parent::setUp();
-        $this->authService = $this->app->make('App\Services\AuthService');
+        $this->authService = $this->app->make('App\Core\Services\AuthService');
     }
 
     public function testRegisterUser() {
@@ -74,7 +74,7 @@ class AuthServiceTest extends TestCase {
         $this->authService->loginUser($email,"test");
     }
 
-    public function testAuthorizeLogedUser() {
+    public function testAuthorizeLoggedUser() {
         $email = 't.client@test.pl';
         $password = 'client';
 
@@ -85,14 +85,14 @@ class AuthServiceTest extends TestCase {
 
         $logedUser = $this->authService->loginUser($email,$password);
 
-        $authorizedUser = $this->authService->authorizeLogedUser($logedUser->loginToken);
+        $authorizedUser = $this->authService->authorizeLoggedUser($logedUser->loginToken);
 
         $this->assertInstanceOf(User::class, $authorizedUser);
     }
 
-    public function testAuthorizeLogedUserThrowNoAccessException() {
+    public function testAuthorizeLoggedUserThrowNoAccessException() {
         $this->expectException(ErrorException::class);
-        $this->authService->authorizeLogedUser("test");
+        $this->authService->authorizeLoggedUser("test");
     }
 
     public function testSendResetPasswordToken() {

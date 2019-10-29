@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Services;
 
-use App\Models\User;
+use App\Core\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
@@ -14,19 +14,19 @@ class UserServiceTest extends TestCase {
     use RefreshDatabase;
 
     /***
-     * @var \App\Services\UserService
+     * @var \App\Core\Services\UserService
      */
     private $userService;
 
     /***
-     * @var \App\Repository\UserRepository
+     * @var \App\Core\Repository\UserRepository
      */
     private $userRepository;
 
     public function setUp(): void {
         parent::setUp();
-        $this->userService = $this->app->make('App\Services\UserService');
-        $this->userRepository = $this->app->make('App\Repository\UserRepository');
+        $this->userService = $this->app->make('App\Core\Services\UserService');
+        $this->userRepository = $this->app->make('App\Core\Repository\UserRepository');
     }
 
     public function testAddUser() {

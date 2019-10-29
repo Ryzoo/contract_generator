@@ -4,19 +4,19 @@ namespace Tests\Unit\Services\Domain;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use App\Enums\AttributeType;
+use App\Core\Enums\AttributeType;
 
 class AttributeServiceTest extends TestCase {
     use RefreshDatabase;
 
     /***
-     * @var \App\Repository\Domain\AttributeRepository
+     * @var \App\Core\Repository\Domain\AttributeRepository
      */
     private $attributeRepository;
 
     public function setUp(): void {
         parent::setUp();
-        $this->attributeRepository = $this->app->make('App\Repository\Domain\AttributeRepository');
+        $this->attributeRepository = $this->app->make('App\Core\Repository\Domain\AttributeRepository');
     }
 
     public function testGetListOfAttributes() {
