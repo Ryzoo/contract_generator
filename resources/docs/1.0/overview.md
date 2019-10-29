@@ -21,7 +21,11 @@ Ta konfiguracja pozowli nam na uruchomienie projektu w środowisku dockerowym.
 Kolejnym krokiem o którym należy pamietać jest wejście do kontenera dockerowego i wywołanie komend uruchamiajacych migracje i seed:
 ```php
 docker-compose exec --user=laradock workspace bash
+composer install
+npm install
 php artisan migrate:fresh --seed
+php artisan storage:link
+npm run hot
 ```
 
 

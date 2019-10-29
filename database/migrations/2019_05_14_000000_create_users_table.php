@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('lastName');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('profileImage')->default("/storage/default/profileImage.png");
+            $table->string('profileImage')->default("/storage/default/profile.png");
             $table->integer('role')->default(UserRole::CLIENT);
             $table->string('loginToken')->nullable()->default(null);
             $table->string('resetPasswordToken')->nullable()->default(null);
