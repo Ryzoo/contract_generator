@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Response;
-use App\Repository\Domain\AttributeRepository;
-use App\Repository\Domain\BlockRepository;
-use App\Repository\Domain\ConditionalRepository;
-use App\Services\Domain\ConditionalService;
+use App\Core\Repository\Domain\AttributeRepository;
+use App\Core\Repository\Domain\BlockRepository;
+use App\Core\Repository\Domain\ConditionalRepository;
+use App\Core\Services\Domain\ConditionalService;
 
 class ElementsController extends Controller
 {
@@ -16,17 +16,17 @@ class ElementsController extends Controller
     private $conditionalService;
 
     /**
-     * @var \App\Repository\Domain\BlockRepository
+     * @var \App\Core\Repository\Domain\BlockRepository
      */
     private $blockRepository;
 
     /**
-     * @var \App\Repository\Domain\ConditionalRepository
+     * @var \App\Core\Repository\Domain\ConditionalRepository
      */
     private $conditionalRepository;
 
     /**
-     * @var \App\Repository\Domain\AttributeRepository
+     * @var \App\Core\Repository\Domain\AttributeRepository
      */
     private $attributeRepository;
 

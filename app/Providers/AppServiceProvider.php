@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\AppAuthorization;
+use App\Core\Models\AppAuthorization;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

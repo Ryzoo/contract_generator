@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\UserRole;
 use App\Helpers\Response;
 use App\Helpers\Validator;
-use App\Models\User;
-use App\Repository\UserRepository;
-use App\Services\UserService;
+use App\Core\Models\User;
+use App\Core\Repository\UserRepository;
+use App\Core\Services\UserService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     /**
-     * @var \App\Services\UserService
+     * @var \App\Core\Services\UserService
      */
     protected $userService;
 
     /**
-     * @var \App\Repository\UserRepository
+     * @var \App\Core\Repository\UserRepository
      */
     private $userRepository;
 

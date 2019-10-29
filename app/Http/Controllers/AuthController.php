@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\UserRole;
+use App\Core\Enums\UserRole;
 use App\Helpers\Response;
 use App\Helpers\Validator;
-use App\Models\User;
-use App\Services\AuthService;
+use App\Core\Models\User;
+use App\Core\Services\AuthService;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
     /**
-     * @var \App\Services\AuthService
+     * @var \App\Core\Services\AuthService
      */
     protected $authService;
 

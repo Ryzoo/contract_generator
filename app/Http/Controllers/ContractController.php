@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\Modules\ContractModulePart;
+use App\Core\Enums\Modules\ContractModulePart;
 use App\Helpers\Response;
 use App\Helpers\Validator;
-use App\Models\Domain\Contract;
-use App\Models\Domain\FormElements\FormElement;
-use App\Modules\Configuration;
-use App\Repository\Domain\ContractRepository;
-use App\Services\AuthService;
-use App\Services\Domain\ContractService;
-use App\Services\Domain\FormService;
-use App\Services\Domain\ContractModuleService;
+use App\Core\Models\Domain\Contract;
+use App\Core\Modules\Configuration;
+use App\Core\Repository\Domain\ContractRepository;
+use App\Core\Services\AuthService;
+use App\Core\Services\Domain\ContractService;
+use App\Core\Services\Domain\FormService;
+use App\Core\Services\Domain\ContractModuleService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class ContractController extends Controller {
 
@@ -29,22 +27,22 @@ class ContractController extends Controller {
     private $formService;
 
     /**
-     * @var \App\Repository\Domain\ContractRepository
+     * @var \App\Core\Repository\Domain\ContractRepository
      */
     private $contractRepository;
 
     /**
-     * @var \App\Services\Domain\ContractModuleService
+     * @var \App\Core\Services\Domain\ContractModuleService
      */
     private $contractModuleService;
 
     /**
-     * @var \App\Services\AuthService
+     * @var \App\Core\Services\AuthService
      */
     private $authService;
 
     /**
-     * @var \App\Modules\Configuration
+     * @var \App\Core\Modules\Configuration
      */
     private $configuration;
 
