@@ -3,9 +3,8 @@
 namespace App\Jobs\Email;
 
 use App\Mail\Welcome;
-use App\Models\User;
+use App\Core\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Mail\Mailer;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -31,7 +30,7 @@ class SendWelcomeEmail implements ShouldQueue {
     /**
      * Create a new job instance.
      *
-     * @param \App\Models\User $userModel
+     * @param \App\Core\Models\User $userModel
      */
     public function __construct(User $userModel) {
         $this->userModel = $userModel;

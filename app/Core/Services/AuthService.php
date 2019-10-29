@@ -20,7 +20,7 @@ class AuthService {
     private $userService;
 
     /**
-     * @var \App\Repository\UserRepository
+     * @var \App\Core\Repository\UserRepository
      */
     private $userRepository;
 

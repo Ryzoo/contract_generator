@@ -11,7 +11,7 @@ use Illuminate\Support\Collection;
 class ContractModuleService {
 
     /**
-     * @var \App\Modules\Configuration
+     * @var \App\Core\Modules\Configuration
      */
     private $configuration;
 
@@ -21,7 +21,7 @@ class ContractModuleService {
 
     public function runPart(Contract &$contract, int $partType, array $attributes = []){
 
-        /** @var \App\Modules\Contract\ContractModule $module */
+        /** @var \App\Core\Modules\Contract\ContractModule $module */
         foreach ($this->configuration->availableModules as $module){
             if($contract->checkContractEnabledModules($module->name)){
                 $returnData = $module->run($contract, $partType, $attributes);
@@ -37,7 +37,7 @@ class ContractModuleService {
     public function getModuleInformation(Contract $contract): Collection {
         $moduleInformationCollection = collect();
 
-        /** @var \App\Modules\Contract\ContractModule $module */
+        /** @var \App\Core\Modules\Contract\ContractModule $module */
         foreach ($this->configuration->availableModules as $module){
             if($contract->checkContractEnabledModules($module->name)){
                 $module->init($contract);

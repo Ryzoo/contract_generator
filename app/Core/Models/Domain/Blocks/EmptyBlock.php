@@ -34,7 +34,7 @@ class EmptyBlock extends Block {
     protected function resolveAttributesInContent(Collection $formElements) {
         $blockList = $this->content["blocks"];
 
-        /** @var \App\Models\Domain\Blocks\Block $block */
+        /** @var \App\Core\Models\Domain\Blocks\Block $block */
         foreach ($blockList as $block){
             $block->resolveAttributesInContent($formElements);
         }
@@ -43,7 +43,7 @@ class EmptyBlock extends Block {
     public function findVariable(Contract $contract): Collection{
         $variableArray = parent::findVariable($contract);
 
-        /** @var \App\Models\Domain\Blocks\Block $block */
+        /** @var \App\Core\Models\Domain\Blocks\Block $block */
         foreach ($this->content["blocks"] as $block){
             $variableArray = $variableArray->merge($block->findVariable($contract));
         }
@@ -54,7 +54,7 @@ class EmptyBlock extends Block {
     public function getBlockCollection(Collection $blockCollection): Collection{
         $blockCollection = parent::getBlockCollection($blockCollection);
 
-        /** @var \App\Models\Domain\Blocks\Block $block */
+        /** @var \App\Core\Models\Domain\Blocks\Block $block */
         foreach ($this->content["blocks"] as $block){
             $blockCollection = $block->getBlockCollection($blockCollection);
         }
@@ -66,7 +66,7 @@ class EmptyBlock extends Block {
         $htmlString = parent::renderToHtml($attributes);
         $blockList = $this->content["blocks"];
 
-        /** @var \App\Models\Domain\Blocks\Block $block */
+        /** @var \App\Core\Models\Domain\Blocks\Block $block */
         foreach ($blockList as $block){
             if($block->validateConditions(ConditionalType::SHOW_ON, $attributes)){
                 $htmlString .= $block->renderToHtml($attributes);

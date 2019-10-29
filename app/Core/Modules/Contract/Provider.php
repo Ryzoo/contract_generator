@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
 class Provider extends ContractModule {
 
     /**
-     * @var \App\Modules\Contract\ContractService
+     * @var \App\Core\Services\Domain\ContractService
      */
     private $contractService;
 

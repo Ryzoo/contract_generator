@@ -4,16 +4,14 @@
 namespace App\Helpers;
 
 
-use App\Enums\ConditionalType;
-use App\Models\Domain\Conditional\Conditional;
-use App\Models\Domain\Contract;
-use App\Services\ContractModuleService;
+use App\Core\Enums\ConditionalType;
+use App\Core\Models\Domain\Contract;
 use Illuminate\Support\Collection;
 use PDF;
 
 class PdfRenderer{
     /**
-     * @var \App\Models\Domain\Contract
+     * @var \App\Core\Models\Domain\Contract
      */
     private $contract;
 
@@ -84,7 +82,7 @@ class PdfRenderer{
 
     private function renderBlocks() {
 
-        /** @var \App\Models\Domain\Blocks\Block $block */
+        /** @var \App\Core\Models\Domain\Blocks\Block $block */
         foreach ($this->blocks as $block){
             if($block->validateConditions(ConditionalType::SHOW_ON, $this->formElements)){
                 $this->fullHtmlText .= $block->renderToHtml($this->formElements);

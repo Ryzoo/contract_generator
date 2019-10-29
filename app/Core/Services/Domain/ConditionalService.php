@@ -11,7 +11,7 @@ use Illuminate\Support\Collection;
 
 class ConditionalService {
     /**
-     * @var \App\Repository\Domain\ConditionalRepository
+     * @var \App\Core\Repository\Domain\ConditionalRepository
      */
     private $conditionalRepository;
 

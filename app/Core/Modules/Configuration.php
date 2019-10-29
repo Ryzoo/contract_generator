@@ -10,6 +10,8 @@ use App\Core\Services\Domain\ContractService;
 
 class Configuration {
 
+    public $availableModules;
+
     public function __construct(ContractService $contractService) {
         $this->availableModules = [
             new Auth(),

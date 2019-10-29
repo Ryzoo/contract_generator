@@ -4,7 +4,7 @@
 namespace App\Helpers;
 
 
-use App\Enums\ElementType;
+use App\Core\Enums\ElementType;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 

@@ -17,7 +17,7 @@ class ContractService {
     private $formService;
 
     /**
-     * @var \App\Repository\Domain\ContractRepository
+     * @var \App\Core\Repository\Domain\ContractRepository
      */
     private $contractRepository;
 

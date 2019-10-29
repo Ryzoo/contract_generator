@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\User;
+use App\Core\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -16,7 +16,7 @@ class ResetPassword extends Mailable
     /**
      * Create a new message instance.
      *
-     * @param \App\Models\User $user
+     * @param \App\Core\Models\User $user
      */
     public function __construct(User $user)
     {

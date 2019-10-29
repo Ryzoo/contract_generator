@@ -3,7 +3,7 @@
 namespace App\Jobs\Email;
 
 use App\Mail\ResetPassword;
-use App\Models\User;
+use App\Core\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -30,7 +30,7 @@ class SendPasswordResetEmail implements ShouldQueue {
     /**
      * Create a new job instance.
      *
-     * @param \App\Models\User $userModel
+     * @param \App\Core\Models\User $userModel
      */
     public function __construct(User $userModel) {
         $this->userModel = $userModel;

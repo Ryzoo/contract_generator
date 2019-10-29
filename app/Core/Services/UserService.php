@@ -10,12 +10,12 @@ use Whoops\Exception\ErrorException;
 class UserService
 {
     /**
-     * @var \App\Services\FileService
+     * @var \App\Core\Services\FileService
      */
     private $fileService;
 
     /**
-     * @var \App\Repository\UserRepository
+     * @var \App\Core\Repository\UserRepository
      */
     private $userRepository;
 
