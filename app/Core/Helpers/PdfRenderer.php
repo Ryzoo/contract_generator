@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Helpers;
+namespace App\Core\Helpers;
 
 
 use App\Core\Enums\ConditionalType;

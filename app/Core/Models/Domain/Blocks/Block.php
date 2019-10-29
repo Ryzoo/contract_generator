@@ -6,8 +6,7 @@ namespace App\Core\Models\Domain\Blocks;
 
 use App\Core\Contracts\Domain\IBlock;
 use App\Core\Enums\BlockType;
-use App\Core\Enums\ConditionalType;
-use App\Helpers\Validator;
+use Illuminate\Support\Facades\Validator;
 use App\Core\Models\Domain\Conditional\Conditional;
 use App\Core\Models\Domain\Contract;
 use App\Core\Models\Domain\FormElements\AttributeFormElement;

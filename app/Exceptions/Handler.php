@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-use App\Helpers\Response;
+use App\Core\Helpers\Response;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;

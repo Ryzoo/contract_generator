@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Core\Guards\TokenGuard;
+use App\Guards\TokenGuard;
 use App\Core\Models\AppAuthorization;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;

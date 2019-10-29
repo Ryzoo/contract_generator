@@ -4,8 +4,8 @@
 namespace App\Core\Models\Domain\Blocks;
 
 use App\Core\Enums\BlockType;
-use App\Helpers\AttributeResolver;
-use App\Helpers\Validator;
+use App\Core\Helpers\AttributeResolver;
+use Illuminate\Support\Facades\Validator;
 use App\Core\Models\Domain\Contract;
 use Illuminate\Support\Collection;
 

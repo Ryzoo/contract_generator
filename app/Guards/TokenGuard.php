@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Core\Guards;
+namespace App\Guards;
 
 
 use Illuminate\Auth\GuardHelpers;

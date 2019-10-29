@@ -8,7 +8,7 @@ use App\Core\Enums\AvailableRenderActionsHook;
 use App\Core\Enums\Modules\AuthType;
 use App\Core\Enums\Modules\ContractModulePart;
 use App\Core\Enums\Modules\ContractModulesAvailablePlace;
-use App\Helpers\Response;
+use App\Core\Helpers\Response;
 use App\Core\Models\Domain\Contract;
 
 class Auth extends ContractModule {

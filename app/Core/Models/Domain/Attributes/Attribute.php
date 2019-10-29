@@ -6,9 +6,9 @@ namespace App\Core\Models\Domain\Attributes;
 
 use App\Core\Contracts\Domain\IAttribute;
 use App\Core\Enums\AttributeType;
-use App\Helpers\Validator;
 use App\Core\Models\Domain\Conditional\Conditional;
 use Exception;
+use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Exception\NotFoundException;
 
 abstract class Attribute implements IAttribute  {

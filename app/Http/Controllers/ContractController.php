@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Core\Enums\Modules\ContractModulePart;
-use App\Helpers\Response;
-use App\Helpers\Validator;
+use App\Core\Helpers\Response;
+use Illuminate\Support\Facades\Validator;
 use App\Core\Models\Domain\Contract;
 use App\Core\Modules\Configuration;
 use App\Core\Repository\Domain\ContractRepository;

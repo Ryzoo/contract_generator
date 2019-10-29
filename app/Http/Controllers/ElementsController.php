@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Response;
+use App\Core\Helpers\Response;
 use App\Core\Repository\Domain\AttributeRepository;
 use App\Core\Repository\Domain\BlockRepository;
 use App\Core\Repository\Domain\ConditionalRepository;

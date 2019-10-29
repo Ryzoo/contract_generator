@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Response;
-use App\Helpers\Validator;
+use App\Core\Helpers\Response;
+use Illuminate\Support\Facades\Validator;
 use App\Core\Models\User;
 use App\Core\Repository\UserRepository;
 use App\Core\Services\UserService;

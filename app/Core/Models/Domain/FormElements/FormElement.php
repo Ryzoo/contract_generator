@@ -6,7 +6,7 @@ namespace App\Core\Models\Domain\FormElements;
 
 use App\Core\Contracts\Domain\IFormElement;
 use App\Core\Enums\ElementType;
-use App\Helpers\Validator;
+use Illuminate\Support\Facades\Validator;
 use App\Core\Models\Domain\Attributes\Attribute;
 use App\Core\Models\Domain\Conditional\Conditional;
 use Illuminate\Support\Collection;

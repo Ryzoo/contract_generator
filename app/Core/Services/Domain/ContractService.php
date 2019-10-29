@@ -4,7 +4,7 @@
 namespace App\Core\Services\Domain;
 
 
-use App\Helpers\PdfRenderer;
+use App\Core\Helpers\PdfRenderer;
 use App\Core\Models\Domain\Contract;
 use App\Core\Repository\Domain\ContractRepository;
 use Illuminate\Support\Collection;
@@ -29,7 +29,6 @@ class ContractService {
 
     public function addContract(Contract $contract): Contract {
         DB::transaction(function() use(&$contract) {
-            Contract::validate($contract);
             $contract->save();
 
             $this->formService->createFromContract($contract);

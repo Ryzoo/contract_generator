@@ -6,8 +6,8 @@ namespace App\Core\Models\Domain\Conditional;
 
 use App\Core\Contracts\Domain\IConditional;
 use App\Core\Enums\ConditionalType;
-use App\Helpers\Response;
-use App\Helpers\Validator;
+use App\Core\Helpers\Response;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Collection;
 use Whoops\Exception\ErrorException;
 

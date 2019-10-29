@@ -2,14 +2,14 @@
 
 namespace App\Core\Models\Domain;
 
-use App\Helpers\ElegantValidator;
 use App\Core\Models\Domain\Attributes\Attribute;
 use App\Core\Models\Domain\Blocks\Block;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Whoops\Exception\ErrorException;
 
-class Contract extends ElegantValidator
+class Contract extends Model
 {
     use SoftDeletes;
 
