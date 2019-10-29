@@ -11,51 +11,20 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run()
     {
-        /*
-         * Permission Types
-         *
-         */
-        $Permissionitems = [
-            [
-                'name'        => 'Can View Users',
-                'slug'        => 'view.users',
-                'description' => 'Can view users',
-                'model'       => 'Permission',
-            ],
-            [
-                'name'        => 'Can Create Users',
-                'slug'        => 'create.users',
-                'description' => 'Can create new users',
-                'model'       => 'Permission',
-            ],
-            [
-                'name'        => 'Can Edit Users',
-                'slug'        => 'edit.users',
-                'description' => 'Can edit users',
-                'model'       => 'Permission',
-            ],
-            [
-                'name'        => 'Can Delete Users',
-                'slug'        => 'delete.users',
-                'description' => 'Can delete users',
-                'model'       => 'Permission',
-            ],
-        ];
+        $permissionItems = [];
 
-        /*
-         * Add Permission Items
-         *
-         */
-        foreach ($Permissionitems as $Permissionitem) {
-            $newPermissionitem = config('roles.models.permission')::where('slug', '=', $Permissionitem['slug'])->first();
-            if ($newPermissionitem === null) {
-                $newPermissionitem = config('roles.models.permission')::create([
-                    'name'          => $Permissionitem['name'],
-                    'slug'          => $Permissionitem['slug'],
-                    'description'   => $Permissionitem['description'],
-                    'model'         => $Permissionitem['model'],
+        foreach ($permissionItems as $permissionItem) {
+            $newPermissionItem = \jeremykenedy\LaravelRoles\Models\Permission
+                ::where('slug', '=', $permissionItem['slug'])
+                ->first();
+
+            if (!isset($newPermissionItem))
+                \jeremykenedy\LaravelRoles\Models\Permission::create([
+                    'name'          => $permissionItem['name'],
+                    'slug'          => $permissionItem['slug'],
+                    'description'   => $permissionItem['description'],
+                    'model'         => $permissionItem['model'],
                 ]);
-            }
         }
     }
 }

@@ -4,18 +4,9 @@ use Illuminate\Database\Seeder;
 
 class RolesTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        /*
-         * Role Types
-         *
-         */
-        $RoleItems = [
+        $roleItems = [
             [
                 'name'        => 'Admin',
                 'slug'        => 'admin',
@@ -30,20 +21,19 @@ class RolesTableSeeder extends Seeder
             ],
         ];
 
-        /*
-         * Add Role Items
-         *
-         */
-        foreach ($RoleItems as $RoleItem) {
-            $newRoleItem = config('roles.models.role')::where('slug', '=', $RoleItem['slug'])->first();
-            if ($newRoleItem === null) {
-                $newRoleItem = config('roles.models.role')::create([
-                    'name'          => $RoleItem['name'],
-                    'slug'          => $RoleItem['slug'],
-                    'description'   => $RoleItem['description'],
-                    'level'         => $RoleItem['level'],
+        foreach ($roleItems as $role) {
+            $newRoleItem = \jeremykenedy\LaravelRoles\Models\Role
+                ::where('slug', '=', $role['slug'])
+                ->first();
+
+            if (!isset($newRoleItem))
+                \jeremykenedy\LaravelRoles\Models\Role::create([
+                    'name'          => $role['name'],
+                    'slug'          => $role['slug'],
+                    'description'   => $role['description'],
+                    'level'         => $role['level'],
                 ]);
-            }
+
         }
     }
 }
