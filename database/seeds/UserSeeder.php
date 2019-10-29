@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
         factory(\App\Core\Models\User::class)->states('admin')->create([
             "firstName" => 'test',
             "lastName" => 'admin',
-            "password" => \Illuminate\Support\Facades\Hash::make('admin'),
+            "password" => \Illuminate\Support\Facades\Hash::make('admin1'),
             "email" => 't.admin@test.pl',
         ]);
     }
