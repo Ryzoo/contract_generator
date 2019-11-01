@@ -10,13 +10,28 @@
             </v-fade-transition>
         </div>
         <v-fade-transition mode="out-in">
-            <div class="module-action" v-if="isOn">
+            <div class="module-action" v-if="isOn" @click="configureDialog=true">
                 <v-icon>fa-sliders-h</v-icon>
             </div>
         </v-fade-transition>
         <div class="module-action">
             <v-switch v-model="isOn" color="success" hide-details inset></v-switch>
         </div>
+        <v-dialog v-model="configureDialog"  width="800px">
+            <v-card>
+                <v-card-title>
+                    <span class="headline">Configuration of the module: {{module.name}}</span>
+                </v-card-title>
+                <v-card-text>
+                    <component :ref="module.name" :is="module.configComponent"></component>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn outlined color="primary" @click="configureDialog = false">Close</v-btn>
+                    <v-btn color="primary" @click="saveConfig">Save configuration</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </div>
 </template>
 
@@ -31,13 +46,20 @@
     ],
     data(){
       return {
-        isOn: false
+        isOn: false,
+        configureDialog: false,
       }
     },
     components:{
       AuthConfigView,
       ProviderConfigView,
     },
+    methods:{
+      saveConfig(){
+        this.$refs[this.module.name].saveConfig();
+        this.configureDialog = false
+      }
+    }
   }
 </script>
 

@@ -21,7 +21,7 @@ class Provider extends ContractModule {
 
     public function __construct(ContractService $contractService) {
         $this->name = "provider";
-        $this->description = "provider";
+        $this->description = "Modules that provide access to rendered contract";
         $this->icon = "fas fa-file-export";
         $this->isActive = true;
         $this->place = ContractModulesAvailablePlace::FINISHER;

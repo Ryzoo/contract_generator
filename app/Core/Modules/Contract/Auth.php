@@ -15,7 +15,7 @@ class Auth extends ContractModule {
 
     public function __construct() {
         $this->name = "auth";
-        $this->description = "auth";
+        $this->description = "Module to prevent access to contract by rules like login, password etc.";
         $this->icon = "fas fa-unlock-alt";
         $this->isActive = true;
         $this->place = ContractModulesAvailablePlace::PRE_FORM;
