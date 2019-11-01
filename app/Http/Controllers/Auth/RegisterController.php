@@ -7,6 +7,7 @@ use App\Core\Models\User;
 use App\Core\Traits\ActivationTrait;
 use App\Core\Traits\CaptchaTrait;
 use App\Core\Traits\CaptureIpTrait;
+use App\Jobs\Email\SendWelcomeEmail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
@@ -51,7 +52,7 @@ class RegisterController extends Controller {
     }
 
     protected function registered(Request $request, $user) {
-        event(new Registered($user));
+        SendWelcomeEmail::dispatchNow($user);
         return Response::json($user);
     }
 }

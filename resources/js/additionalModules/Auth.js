@@ -34,7 +34,7 @@ export default class Auth {
     checkAuth(){
         return new Promise((resolve, reject)=>{
             let loginTokenCache = localStorage.getItem("login_token");
-            let loginTokenStore = this.store ? this.store.getters.authUser.loginToken : '';
+            let loginTokenStore = (this.store && this.store.getters.authUser) ? this.store.getters.authUser.loginToken : '';
 
             if(loginTokenStore.length === 0){
                 loginTokenStore = loginTokenCache;

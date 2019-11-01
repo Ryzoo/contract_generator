@@ -60,8 +60,8 @@
       return {
         isLoaded: true,
         resetPasswordForm: {
-          email: '',
-          token: this.$route.params.token,
+          email: this.$route.query.email,
+          token: this.$route.query.token,
           password: "",
           password_confirmation: ""
         }
