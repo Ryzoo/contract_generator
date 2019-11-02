@@ -34,7 +34,18 @@ const Selector = {
       value: BlockTypeEnum.PAGE_DIVIDE_BLOCK,
       text: "Podział strony"
     }
-  ]
+  ],
+
+  VariableType: [
+    {
+      value: 0,
+      text: "Zmienna tekstowa"
+    },
+    {
+      value: 1,
+      text: "Inna zmienna"
+    },
+  ],
 };
 
 export default Selector;

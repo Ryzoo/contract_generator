@@ -4,7 +4,8 @@ const defaultState = {
   blocks: [],
   activeBlock: [],
   idIncrement: 1,
-  currentNewBlockButtonIndex: 0
+  currentNewBlockButtonIndex: 0,
+  variables: [],
 };
 
 const actions = {
@@ -19,6 +20,9 @@ const actions = {
   },
   block_buttonIndex: (context, data) => {
     context.commit('CURRENT_BUTTON_INDEX', data);
+  },
+  block_setVariable: (context, data) => {
+    context.commit('SET_VARIABLE', data);
   },
 };
 
@@ -36,12 +40,16 @@ const mutations = {
   CURRENT_BUTTON_INDEX: (state, data) => {
     state.currentNewBlockButtonIndex = data;
   },
+  SET_VARIABLE: (state, data) => {
+    state.variables = data;
+  },
 };
 
 const getters = {
   allBlocks: state => state.blocks,
   activeBlock: state => state.activeBlock,
   getId: state => state.idIncrement,
+  allVariables: state => state.variables,
 };
 
 export default {
