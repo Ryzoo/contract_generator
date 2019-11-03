@@ -9,7 +9,7 @@ import LoginView from "./views/auth/LoginView";
 import SendResetPasswordTokenView from "./views/auth/SendResetPasswordTokenView";
 import RegisterView from "./views/auth/RegisterView";
 import ResetPasswordView from "./views/auth/ResetPasswordView";
-import CreateContractView from "./views/panel/contracts/CreateView";
+import ContractBuilderView from "./views/panel/contracts/ContractBuilderView";
 import MyProfileView from "./views/panel/MyProfileView";
 import AccountsView from "./views/panel/AccountsView";
 import AccountPreview from "./views/panel/accounts/AccountPreview";
@@ -64,7 +64,7 @@ const router = new VueRouter({
                 {
                     path: 'contracts/create',
                     name: 'createContract',
-                    component: CreateContractView,
+                    component: ContractBuilderView,
                     meta: {
                         title: i18n.t('pageMeta.panel.contract.create.title')
                     },

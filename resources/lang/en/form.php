@@ -1,128 +1,89 @@
 <?php
 
 return [
-    'login' => [
-        'title' => 'Login form',
+    'base' => [
         'field' => [
             'email' => 'Email',
             'password' => 'Password',
+            'firstName' => 'FirstName',
+            'lastName' => 'LastName',
+            'role' => 'Role',
+            'rePassword' => 'Retype password',
+            'regulationsAccept' => 'I accept the Regulations',
+            'rodoAccept' => 'I accept the RODO',
         ],
+        'button' => [
+            'login' => 'Login',
+            'register' => 'Create new account',
+            'reset' => 'Reset',
+            'cancel' => 'Cancel',
+            'remind' => 'Remind',
+            'save' => 'Save',
+            'add' => 'Add'
+        ],
+    ],
+    'login' => [
+        'title' => 'Login form',
         'text' => [
             'forgotPassword' => 'Forgot password?'
         ],
         'link' => [
             'resetPassword' => 'Reset password'
         ],
-        'button' => [
-            'login' => 'Login',
-            'register' => 'Create new account'
-        ],
         'notify' => [
             'success' => 'Logged successfully'
         ]
     ],
-
     'register' => [
         'title' => 'Register form',
-        'field' => [
-            'firstName' => 'FirstName',
-            'lastName' => 'LastName',
-            'email' => 'Email',
-            'password' => 'Password',
-            'rePassword' => 'Retype password',
-            'regulationsAccept' => 'I accept the Regulations',
-            'rodoAccept' => 'I accept the RODO',
-        ],
         'link' => [
             'rodo' => ' Rodo policy',
             'regulations' => ' Site regulations'
         ],
         'button' => [
-            'login' => 'I have account',
-            'register' => 'Register account'
+            'login' => 'I have account'
         ],
         'notify' => [
             'success' => 'Account added successful. Please check your email to confirm.'
         ]
     ],
-
     'sendResetTokenForm' => [
         'title' => 'Send reset password token form',
-        'field' => [
-            'email' => 'Email',
-        ],
-        'button' => [
-            'cancel' => 'Cancel',
-            'remind' => 'Remind'
-        ],
         'notify' => [
             'success' => 'Reset token send to your email. Check your email and use url to reset password.'
         ]
     ],
-
     'resetPasswordForm' => [
         'title' => 'Reset password form',
-        'field' => [
-            'password' => 'Password',
-            'rePassword' => 'Retype password',
-        ],
-        'button' => [
-            'cancel' => 'Cancel',
-            'reset' => 'Reset password'
-        ],
         'notify' => [
             'success' => 'Your password was changed successfully. You can login now'
         ]
     ],
-
     'profileEditForm' => [
-        'field' => [
-            'firstName' => 'FirstName',
-            'lastName' => 'LastName',
-        ],
         'button' => [
             'change_img' => 'Change profile image',
             'save_img' => 'Save current image',
-            'save' => 'Save data',
         ],
         'notify' => [
             'success' => 'Your basic data are updated now.'
         ]
     ],
-
     'accountAddForm' => [
         'title' => "Add new account",
-        'field' => [
-            'firstName' => 'FirstName',
-            'lastName' => 'LastName',
-            'email' => 'Email',
-            'role' => 'Role',
-            'password' => 'Password',
-            'rePassword' => 'Retype password',
-        ],
         'button' => [
-            'add' => 'Add account',
             'prev' => 'Back to accounts',
         ],
         'notify' => [
             'success' => 'New account added.'
         ]
     ],
-
     'accountEditForm' => [
         'title' => "Edit account",
-        'field' => [
-            'firstName' => 'FirstName',
-            'lastName' => 'LastName',
-            'role' => 'Role',
-        ],
         'button' => [
-            'save' => 'Save account',
             'prev' => 'Back to accounts',
         ],
         'notify' => [
             'success' => 'Account updated!'
         ]
     ]
-
 ];
