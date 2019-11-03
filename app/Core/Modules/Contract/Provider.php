@@ -30,6 +30,9 @@ class Provider extends ContractModule {
         $actions = [];
         $actions["action-" . AvailableRenderActionsHook::AFTER_FORM_END] = "ProviderForContractView";
 
+        $this->setDefaultSettings([
+            "type" => ContractProviderType::RENDER
+        ]);
         $this->setHooksComponents($actions);
         $this->contractService = $contractService;
     }

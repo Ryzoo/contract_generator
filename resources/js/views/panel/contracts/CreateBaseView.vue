@@ -11,6 +11,7 @@
                             prepend-icon="fa-file-signature"
                             v-model="contract.name"
                             label="Nazwa umowy"
+                            @change="saveContractDataToStore"
                             required
                         ></v-text-field>
                         <ContractModuleConfiguration/>
@@ -53,20 +54,42 @@
     data() {
       return {
         isLoaded: false,
-        contract: {
-          name: ""
-        }
+        contract: this.$store.getters.getNewContractData
       }
     },
     methods: {
+      saveContractDataToStore(value){
+        this.$store.dispatch("newContract_setName", value);
+      },
       cancelAddContract() {
+        this.$store.dispatch("newContract_clear");
         this.$router.push("/panel/contracts");
       },
       saveAndExit(){
-        this.$router.push("/panel/contracts");
+        this.saveContract(()=>{
+          this.$store.dispatch("newContract_clear");
+          this.$router.push("/panel/contracts/create");
+        });
       },
       saveAndBuild(){
-        this.$router.push("/panel/contracts/create");
+        this.saveContract(()=>{
+          this.$router.push("/panel/contracts/create");
+        });
+      },
+      saveContract(callback){
+        this.isLoaded = false;
+        axios.post(`/contract`, this.$store.getters.getNewContractData)
+            .then(response => {
+              notify.push(
+                  "Umowa zapisana!",
+                  notify.SUCCESS
+              );
+              if(callback)
+                callback();
+            })
+            .finally(() => {
+              this.isLoaded = true;
+            });
       }
     }
   }

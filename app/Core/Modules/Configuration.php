@@ -18,4 +18,16 @@ class Configuration {
             new Provider($contractService),
         ];
     }
+
+    public function getAvailableModules(){
+        $collectionOfModulesInformation = collect();
+
+        /**
+         * @var \App\Core\Modules\Contract\ContractModule $module
+         */
+        foreach ($this->availableModules as $module)
+            $collectionOfModulesInformation->push($module->getInformation());
+
+        return $collectionOfModulesInformation;
+    }
 }

@@ -15,7 +15,7 @@
             </div>
         </v-fade-transition>
         <div class="module-action">
-            <v-switch v-model="isOn" color="success" hide-details inset></v-switch>
+            <v-switch v-model="isOn" @change="changeModuleState" color="success" hide-details inset></v-switch>
         </div>
         <v-dialog v-model="configureDialog"  width="800px">
             <v-card>
@@ -23,7 +23,7 @@
                     <span class="headline">Configuration of the module: {{module.name}}</span>
                 </v-card-title>
                 <v-card-text>
-                    <component :ref="module.name" :is="module.configComponent"></component>
+                    <component :ref="module.name" :module="module" :is="module.configComponent"></component>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
@@ -58,6 +58,13 @@
       saveConfig(){
         this.$refs[this.module.name].saveConfig();
         this.configureDialog = false
+      },
+      changeModuleState(value){
+        this.$store.dispatch("newContract_updateModuleState",{
+          name: this.module.name,
+          value: value,
+          settings: this.module.settings
+        });
       }
     }
   }

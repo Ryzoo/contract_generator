@@ -24,6 +24,10 @@ class Auth extends ContractModule {
         $actions = [];
         $actions["action-".AvailableRenderActionsHook::BEFORE_FORM_RENDER] = "AuthBeforeRenderView";
 
+        $this->setDefaultSettings([
+            "type" => AuthType::ALL,
+            "password" => ""
+        ]);
         $this->setHooksComponents($actions);
     }
 
@@ -67,9 +71,6 @@ class Auth extends ContractModule {
 
     protected function preventSettingsShow(?array $settings): array{
         $settings = parent::preventSettingsShow($settings);
-
-        $settings["password"] = "****";
-
         return $settings;
     }
 }

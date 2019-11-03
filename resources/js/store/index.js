@@ -4,6 +4,7 @@ import authUserModule from "./modules/authUser";
 import formElementsModule from "./modules/formElements";
 import blockModule from "./modules/block";
 import contractModulesModule from "./modules/contractModules";
+import newContractModule from "./modules/newContract"
 
 Vue.use(Vuex);
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
         authUser: authUserModule,
         formElements: formElementsModule,
         block: blockModule,
-        contractModules: contractModulesModule
+        contractModules: contractModulesModule,
+        newContract: newContractModule
     }
 });

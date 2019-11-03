@@ -28,6 +28,12 @@ abstract class ContractModule {
      */
     private $hooksArray;
 
+    /**
+     * @var array
+     */
+    private $defaultSettings;
+
+
     public function run(Contract &$contract, int $partType, array $attributes = []){
         $this->init($contract);
         $this->attributes = $attributes;
@@ -41,12 +47,19 @@ abstract class ContractModule {
         return true;
     }
 
+    protected function setDefaultSettings(array $settings){
+        $this->defaultSettings = $settings;
+    }
+
     protected function setHooksComponents(array $hooksArray){
         $this->hooksArray = $hooksArray;
     }
 
     protected function getModuleSettings(?string $secondKey = null){
-        $moduleSettings = isset(((array)$this->contract->settings["modules"])[$this->name]) ? ((array)$this->contract->settings["modules"])[$this->name] : null;
+        $moduleSettings = (isset($this->contract) && isset(((array)$this->contract->settings["modules"])[$this->name])) ? ((array)$this->contract->settings["modules"])[$this->name] : null;
+
+        if(!isset($moduleSettings))
+            $moduleSettings = $this->defaultSettings;
 
         if(!isset($moduleSettings) || !isset($secondKey))
             return $moduleSettings;
@@ -59,18 +72,19 @@ abstract class ContractModule {
     }
 
     public function getInformation(): array{
-
-        $settings = $this->preventSettingsShow((array)(isset(((array)$this->contract->settings["modules"])[$this->name]) ? ((array)$this->contract->settings["modules"])[$this->name] : []));
         return [
             "name" => $this->name,
             "renderHooks" => $this->hooksArray,
-            "settings" => $settings
+            "settings" => $this->preventSettingsShow($this->getModuleSettings()),
+            "description" => $this->description,
+            "place" => $this->place,
+            "icon" => $this->icon,
+            "configComponent" => $this->configComponent,
         ];
     }
 
     protected function preventSettingsShow(?array $settings): array{
         if(!isset($settings)) return [];
-
         return $settings;
     }
 }

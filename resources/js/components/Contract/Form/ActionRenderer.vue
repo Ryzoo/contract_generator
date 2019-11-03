@@ -89,7 +89,6 @@
           return false;
         }
 
-
         this.actualModule = this.currentModulesTree[index];
         this.actualModuleIndex = index;
         this.actualHookName = this.actualModule.renderHooks[`action-${this.value}`];

@@ -118,7 +118,7 @@ class ContractController extends Controller {
     }
 
     public function getAvailableModules(Request $request) {
-        $availableModules = $this->configuration->availableModules;
+        $availableModules = $this->configuration->getAvailableModules();
         Response::success($availableModules);
     }
 
