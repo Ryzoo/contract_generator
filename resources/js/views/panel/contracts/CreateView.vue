@@ -55,56 +55,79 @@
                                         <div class="options-section-1">
                                             <span class="sub-title">Konfiguruj blok</span>
                                             <v-text-field v-model="activeBlock.blockName" label="Nazwa" outline></v-text-field>
+                                            <div class="block-button">
+                                                <v-btn color="primary" @click="editBlock()">Zapisz</v-btn>
+                                            </div>
                                         </div>
                                         <div class="options-section-2">
                                             <span class="sub-title">Logika</span>
                                             <div class="builder-elements">
                                                 <div class="select-options">
                                                     <div class="w-50">
-                                                        <span>Akcja</span>
                                                         <v-select
-                                                            :items="attributesName"
-                                                            label="Pokaż"
+                                                            :items="blockOptions"
+                                                            label="Akcja"
                                                             outlined
                                                             color="primary"
                                                             dense
-                                                            :value="attributeValue"
                                                         >
                                                         </v-select>
                                                     </div>
-                                                    <!--<v-select-->
-                                                    <!--:items="blockOptions"-->
-                                                    <!--label="Blok"-->
-                                                    <!--outlined-->
-                                                    <!--color="primary"-->
-                                                    <!--dense>-->
-                                                    <!--</v-select>-->
-                                                    <!--<p>ten blok gdy</p>-->
-                                                    <!--<v-select-->
-                                                        <!--:items="termOptions"-->
-                                                        <!--label="Warunki"-->
-                                                        <!--outlined-->
-                                                        <!--color="primary"-->
-                                                        <!--dense>-->
-                                                    <!--</v-select>-->
-                                                    <!--<p>warunki pasują do</p>-->
-
+                                                    <v-text-field v-model="conditional" label="Warunek" outline></v-text-field>
+                                                    <div class="block-button">
+                                                        <v-btn color="primary" @click="addConditional()">Dodaj</v-btn>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </v-tab-item>
+                                <v-tab-item>
+                                    <div class="builder-options-content">
+                                        <h2>Zmienne</h2>
+                                        <div class="options-section-1">
+                                            <span class="sub-title">Konfiguracja zmiennej</span>
+                                            <div class="w-50">
+                                                <v-select
+                                                    :items="variableOptions"
+                                                    label="Typ"
+                                                    outlined
+                                                    color="primary"
+                                                    dense
+                                                    :value="attribute.attributeType"
+                                                >
+                                                </v-select>
+                                                <v-text-field v-model="attribute.attributeName" label="Nazwa" outline></v-text-field>
+                                            </div>
+                                            <v-checkbox
+                                                v-model="attribute.settings.required"
+                                                label="Czy wymagane"
+                                            ></v-checkbox>
+                                            <v-text-field v-model="attribute.settings.lengthMin" label="Min" outline></v-text-field>
+                                            <v-text-field v-model="attribute.settings.lengthMax" label="Max" outline></v-text-field>
+                                            <div class="block-button">
+                                                <v-btn color="primary" @click="saveVariable()">Zapisz</v-btn>
+                                            </div>
+                                        </div>
+                                        <div class="options-section-2">
+                                            <span class="sub-title">Dodaj zmienną</span>
+                                            <div class="builder-elements">
+                                                <div class="select-options">
                                                     <div class="w-50">
                                                         <v-select
-                                                            :items="operatorOptions"
-                                                            label="Operator"
+                                                            :items="variableOptions"
+                                                            label="Typ"
                                                             outlined
                                                             color="primary"
                                                             dense
-                                                            :value="operatorValue"
+                                                            :value="attribute.attributeType"
                                                         >
                                                         </v-select>
-                                                        <v-text-field
-                                                            label="Wyrażenie"
-                                                            outlined
-                                                            color="primary"
-                                                            :value="termValue"
-                                                        ></v-text-field>
+                                                        <v-text-field v-model="attribute.attributeName" label="Nazwa" outline></v-text-field>
+                                                    </div>
+                                                    <v-text-field v-model="conditional" label="Warunek" outline></v-text-field>
+                                                    <div class="block-button">
+                                                        <v-btn color="primary" @click="saveVariable()">Dodaj zmienną</v-btn>
                                                     </div>
                                                 </div>
                                             </div>
@@ -162,77 +185,25 @@
         attributesName: [],
         activeBlock: [],
         operatorOptions: Selector.Operators,
+        variableOptions: Selector.VariableType,
         termValue: "",
         selectedBlockType: undefined,
         blockName: "",
         attributeValue: "",
         operatorValue: "",
-        attributesList: [
-          {
-            attributeName: "Imię",
-            id: 1,
-            attributeType: 1,
-            defaultValue : "",
-            placeholder : "Testowe",
-            settings: {
-              lengthMin: 3,
-              lengthMax: 50
-            }
-          },
-          {
-            attributeName: "Zmienna zależna od zmiennej 5 oraz sterująca",
-            id: 2,
-            attributeType: 0,
-            defaultValue: 18,
-            settings: {
-              valueMin: 18,
-              valueMax: 30
-            }
-          },
-          {
-            attributeName: "Wiek użytkownika",
-            id: 3,
-            attributeType: 2,
-            defaultValue: null,
-            settings: {
-              isMultiSelect: true,
-              items: [
-                "Powyżej 20",
-                "Poniżej 20"
-              ]
-            }
-          },
-          {
-            attributeName: "Wzrost",
-            id: 4,
-            attributeType: 0,
-            defaultValue : 170,
-            settings: {
-              valueMin: 18,
-              valueMax: 30
-            }
-          },
-          {
-            attributeName: "Zmienna sterująca - niezależna",
-            id: 5,
-            attributeType: 0,
-            defaultValue: 18,
-            settings: {
-              valueMin: 18,
-              valueMax: 30
-            }
-          },
-          {
-            attributeName: "Test zagniezdzenia",
-            id: 7,
-            attributeType: 0,
-            defaultValue: 18,
-            settings: {
-              valueMin: 18,
-              valueMax: 30
-            }
+        attributesList: [],
+        attribute: {
+          attributeName: "",
+          id: "",
+          attributeType: "",
+          defaultValue: "",
+          placeholder : "",
+          settings: {
+            required: "",
+            lengthMin: "",
+            lengthMax: ""
           }
-        ],
+        },
         elementsType: [
           {
             type: "text",
@@ -262,9 +233,9 @@
           }
         ],
         categoriesNames: [],
+        conditional: "",
         blockOptions:[
             "Pokaż",
-            "Schowaj"
         ],
         termOptions:[
             "Wszystkie",
@@ -299,8 +270,20 @@
       );
     },
     methods: {
-      proba(){
-        console.log(this.$store.getters.activeBlock);
+      editBlock(blocks = this.blocks) {
+          blocks.map(x => {
+            if (x.id === this.activeBlock.parentId) {
+              x.content.blocks.map(x => {
+                if (x.id === this.activeBlock.id) {
+                  x = this.activeBlock;
+                }
+              })
+            } else if (typeof x.content.blocks != 'undefined' && x.content.blocks.length > 0) {
+              this.editBlock(x.content.blocks)
+            }
+          });
+
+          this.$store.dispatch("block_set", blocks);
       },
       blocksCategoryToSelect(categories) {
         let arrayOfCategories = [];
@@ -308,6 +291,34 @@
         categories.map(x => arrayOfCategories.push(x.name));
 
         return arrayOfCategories;
+      },
+      addConditional() {
+        let blockConditional = {
+          conditionalType: 0,
+          content: this.conditional.split(" ")
+        };
+
+        this.activeBlock.conditionals.push(blockConditional);
+        this.$store.dispatch("block_set", this.activeBlock);
+        this.editBlock();
+      },
+      saveVariable() {
+        this.attributesList.push(this.attribute);
+        this.$store.dispatch("block_setVariable", this.attributesList);
+
+        this.attribute = {
+          attributeName: "",
+          id: "",
+          attributeType: "",
+          defaultValue: "",
+          placeholder : "",
+          settings: {
+            required: "",
+            lengthMin: "",
+            lengthMax: ""
+          }
+        }
+
       },
 
       // getAttributes() {
@@ -339,6 +350,7 @@
     },
     mounted() {
       this.categoriesNames = this.blocksCategoryToSelect(this.blocksCategory);
+      this.attributesList = this.$store.getters.allVariables;
 
       // let apiBlock = [
       //   {
