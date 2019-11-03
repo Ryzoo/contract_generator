@@ -1,6 +1,14 @@
 <template>
     <section>
         <v-navigation-drawer
+            v-if="pageOnCreator"
+            width="490"
+            v-model="navigationRight"
+            app
+            right>
+            <RightSidebar></RightSidebar>
+        </v-navigation-drawer>
+        <v-navigation-drawer
             :mini-variant="mini"
             v-model="navigationModel"
             dark
@@ -21,7 +29,7 @@
                     </v-list-item-avatar>
 
                     <v-list-item-content>
-                        <v-list-item-title> {{user.firstName}} {{user.lastName}} </v-list-item-title>
+                        <v-list-item-title> {{user.firstName}} {{user.lastName}}</v-list-item-title>
                     </v-list-item-content>
 
                     <v-list-item-action>
@@ -45,7 +53,7 @@
                     </v-list-item-avatar>
 
                     <v-list-item-content>
-                        <v-list-item-title >{{item.title}}</v-list-item-title>
+                        <v-list-item-title>{{item.title}}</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
@@ -57,6 +65,12 @@
                 @click.stop="navigationModel = !navigationModel"
             ></v-app-bar-nav-icon>
             <v-toolbar-title>{{$t('pageMeta.appTitle')}}</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-app-bar-nav-icon
+                v-if="pageOnCreator"
+                dark
+                @click.stop="navigationRight = !navigationRight"
+            ></v-app-bar-nav-icon>
         </v-app-bar>
 
         <v-content>
@@ -72,7 +86,7 @@
 
         <v-footer app inset>
             <span class="px-3"
-                >&copy; {{ new Date().getFullYear() }} -
+            >&copy; {{ new Date().getFullYear() }} -
                 {{ $t("pageMeta.copyright") }}</span
             >
         </v-footer>
@@ -80,10 +94,16 @@
 </template>
 
 <script>
-export default {
+  import RightSidebar from "../components/Contract/Builder/RightSidebar";
+
+  export default {
     name: "PanelLayout",
+    components: {
+      RightSidebar
+    },
     data: function () {
       return {
+        navigationRight: true,
         navigationModel: true,
         mini: false,
         user: this.$store.getters.authUser,
@@ -128,14 +148,21 @@ export default {
         ]
       }
     },
+    computed: {
+      pageOnCreator() {
+        return this.$route.path === "/panel/contracts/builder";
+      }
+    },
     methods: {
-        logout() {
-            auth.logout();
-        }
+      logout() {
+        auth.logout();
+      }
     }
-};
+  };
 </script>
 
 <style lang="scss"></style>
 
-</style>
+</
+style
+>

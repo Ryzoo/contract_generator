@@ -72,6 +72,7 @@ const mutations = {
 };
 
 const getters = {
+    getNewContractUpdateState: state => state.mode,
     getNewContractData: state => state.contract,
     getModuleSettings: state => moduleName => state.contract.settings.modules[moduleName],
     newContract_availableModules: state => state.contract.settings.enabledModules
