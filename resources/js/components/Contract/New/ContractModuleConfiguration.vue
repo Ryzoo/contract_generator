@@ -46,7 +46,6 @@
         axios.get(`/contract/modules`)
             .then((response) => {
               this.moduleList = response.data;
-              console.log(this.moduleList);
             })
             .finally(() => {
               this.isLoading = false;

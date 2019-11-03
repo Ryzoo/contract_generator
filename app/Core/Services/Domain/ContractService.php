@@ -27,7 +27,7 @@ class ContractService {
         $this->contractRepository = $contractRepository;
     }
 
-    public function addContract(Contract $contract): Contract {
+    public function createContract(Contract $contract): Contract {
         DB::transaction(function() use(&$contract) {
             $contract->save();
 

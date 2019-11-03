@@ -65,7 +65,14 @@
           value: value,
           settings: this.module.settings
         });
+      },
+      loadDataFromStore(){
+        const allModules = this.$store.getters.newContract_availableModules;
+        this.isOn = allModules.includes(this.module.name);
       }
+    },
+    mounted() {
+      this.loadDataFromStore();
     }
   }
 </script>

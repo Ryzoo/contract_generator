@@ -23,7 +23,7 @@ class FormService {
 
         $elementsCollection = collect();
 
-        /* @var $block \App\Models\Domain\Blocks\Block */
+        /* @var $block \App\Core\Models\Domain\Blocks\Block */
         foreach ($blocks as $block){
             $elements = $this->reduceElementsWithSameAttribute($block->getFormElements($contract), $elementsCollection);
             $elementsCollection = $elementsCollection->merge($elements);
@@ -33,10 +33,17 @@ class FormService {
         $elementsCollection = $this->conditionalService
             ->initializeFormElementsConditional($contract, $elementsCollection);
 
-        return Form::create([
-            "contract_id" => $contract->id,
-            "formElements" => $elementsCollection,
-        ]);
+        if(isset($contract->form)){
+            $contract->form->update([
+                "formElements" => $elementsCollection,
+            ]);
+            return $contract->form;
+        }else{
+            return Form::create([
+                "contract_id" => $contract->id,
+                "formElements" => $elementsCollection,
+            ]);
+        }
     }
 
     private function reduceElementsWithSameAttribute(Collection $newElements, Collection $existElements): Collection {

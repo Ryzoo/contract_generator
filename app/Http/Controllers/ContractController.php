@@ -56,7 +56,7 @@ class ContractController extends Controller {
         $contract = new Contract();
         $contract->fill($request->all());
 
-        $fullContract = $this->contractService->addContract($contract);
+        $fullContract = $this->contractService->createContract($contract);
 
         Response::success($fullContract);
     }
@@ -120,6 +120,22 @@ class ContractController extends Controller {
     public function getAvailableModules(Request $request) {
         $availableModules = $this->configuration->getAvailableModules();
         Response::success($availableModules);
+    }
+
+    public function getContract(Request $request, int $contractID) {
+        $contract = $this->contractRepository->getById($contractID);
+        Response::success($contract);
+    }
+
+    public function updateContract(Request $request, int $contractID) {
+        Validator::validate($request->all(), Contract::$rulesAddRequestCreate);
+
+        $contract = $this->contractRepository->getById($contractID);
+        $contract->fill($request->all());
+
+        $fullContract = $this->contractService->createContract($contract);
+
+        Response::success($fullContract);
     }
 
     public function getInformationAboutContractModules(Request $request, int $contractID) {

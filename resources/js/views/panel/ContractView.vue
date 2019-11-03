@@ -23,7 +23,7 @@
                 >
                     <template v-slot:item.action="{ item }">
                         <div class="table-icons">
-                            <v-icon>fa-edit</v-icon>
+                            <v-icon @click="goToEdit(item.id)">fa-edit</v-icon>
                             <v-icon @click="tryToRemoveContract([item.id])">fa-trash</v-icon>
                         </div>
                     </template>
@@ -67,7 +67,7 @@
             value: "name"
           },
           {
-            text: this.$t("page.panel.contracts.headers.dateAdd"),
+            text: "Update date",
             value: "created_at"
           },
           {
@@ -122,6 +122,9 @@
             .finally(() => {
               this.isLoaded = true;
             });
+      },
+      goToEdit(id){
+        this.$router.push(`contracts/edit/${id}`);
       }
     },
     mounted() {

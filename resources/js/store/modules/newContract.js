@@ -1,4 +1,8 @@
 const defaultState = {
+    mode:{
+        update: false,
+        id: null
+    },
     contract: {
         name: "",
         attributesList: [],
@@ -17,6 +21,9 @@ const actions = {
     newContract_setName: (context, data) => {
         context.commit('NEW_CONTRACT_SET_NAME', data);
     },
+    newContract_setUpdate: (context, data) => {
+        context.commit('NEW_CONTRACT_SET_UPDATE', data);
+    },
     newContract_updateModuleState: (context, data) => {
         context.commit('NEW_CONTRACT_UPDATE_MODULE_STATE', data);
     },
@@ -26,6 +33,11 @@ const actions = {
 };
 
 const mutations = {
+    NEW_CONTRACT_SET_UPDATE: (state, data) => {
+        state.contract = data;
+        state.mode.update = true;
+        state.mode.id = data.id;
+    },
     NEW_CONTRACT_CLEAR: (state, data) => {
         state.contract = {
             name: "",
@@ -35,7 +47,11 @@ const mutations = {
                 enabledModules: [],
                 modules: {}
             }
-        }
+        };
+        state.mode = {
+            update: false,
+            id: null
+        };
     },
     NEW_CONTRACT_SET_NAME: (state, data) => {
         state.contract.name = data;
@@ -58,6 +74,7 @@ const mutations = {
 const getters = {
     getNewContractData: state => state.contract,
     getModuleSettings: state => moduleName => state.contract.settings.modules[moduleName],
+    newContract_availableModules: state => state.contract.settings.enabledModules
 };
 
 export default {

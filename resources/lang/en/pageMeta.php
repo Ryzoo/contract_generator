@@ -32,8 +32,14 @@ return [
         ],
         'contract' => [
             'title' => 'Panel - Agreements',
+            'builder' => [
+                'title' => 'Build contract',
+            ],
             'create' => [
                 'title' => 'Create new contract',
+            ],
+            'edit' => [
+                'title' => 'Edit contract',
             ],
         ],
     ]

@@ -22,13 +22,7 @@ export default {
                     "title": "Panel - Dashboard"
                 },
                 "profile": {
-                    "title": "Panel - My Profile",
-                    "info": "After update, all data will change after you refresh the page",
-                    "tabs": {
-                        "basic_data": {
-                            "name": "Basic data"
-                        }
-                    }
+                    "title": "Panel - My Profile"
                 },
                 "accounts": {
                     "title": "Panel - Accounts",
@@ -38,79 +32,47 @@ export default {
                 },
                 "contract": {
                     "title": "Panel - Agreements",
+                    "builder": {
+                        "title": "Build contract"
+                    },
                     "create": {
                         "title": "Create new contract"
-                    }
-                }
-            }
-        },
-        "page": {
-            "panel": {
-                "profile": {
-                    "base": {
-                        "success_change_img": "Your image are successfuly changed."
                     },
-                    "tabs": []
-                },
-                "accounts": {
-                    "button": {
-                        "newAccount": "Add new account",
-                        "cancel": "Cancel",
-                        "remove": "Remove"
-                    },
-                    "headers": {
-                        "name": "Name",
-                        "role": "Role",
-                        "email": "Email",
-                        "actions": "Actions",
-                        "created_at": "Created"
-                    },
-                    "notify": {
-                        "successRemove": "Account removed!"
-                    },
-                    "description": {
-                        "remove": "Sure you want to remove account?",
-                        "removeTitle": "Remove account"
-                    }
-                },
-                "contracts": {
-                    "button": {
-                        "cancel": "Cancel",
-                        "remove": "Remove",
-                        "newAgreement": "Add contract"
-                    },
-                    "headers": {
-                        "name": "Name",
-                        "status": "Status",
-                        "dateAdd": "Add date",
-                        "actions": "Actions"
-                    },
-                    "notify": {
-                        "successRemove": "Contract removed!"
-                    },
-                    "description": {
-                        "remove": "Sure you want to remove contract?",
-                        "removeTitle": "Remove contract"
+                    "edit": {
+                        "title": "Edit contract"
                     }
                 }
             }
         },
         "form": {
-            "login": {
-                "title": "Login form",
+            "base": {
                 "field": {
                     "email": "Email",
-                    "password": "Password"
+                    "password": "Password",
+                    "firstName": "FirstName",
+                    "lastName": "LastName",
+                    "role": "Role",
+                    "rePassword": "Retype password",
+                    "regulationsAccept": "I accept the Regulations",
+                    "rodoAccept": "I accept the RODO"
                 },
+                "button": {
+                    "login": "Login",
+                    "register": "Create new account",
+                    "reset": "Reset",
+                    "cancel": "Cancel",
+                    "remind": "Remind",
+                    "save": "Save",
+                    "add": "Add"
+                }
+            },
+            "login": {
+                "title": "Login form",
                 "text": {
                     "forgotPassword": "Forgot password?"
                 },
                 "link": {
                     "resetPassword": "Reset password"
-                },
-                "button": {
-                    "login": "Login",
-                    "register": "Create new account"
                 },
                 "notify": {
                     "success": "Logged successfully"
@@ -118,22 +80,12 @@ export default {
             },
             "register": {
                 "title": "Register form",
-                "field": {
-                    "firstName": "FirstName",
-                    "lastName": "LastName",
-                    "email": "Email",
-                    "password": "Password",
-                    "rePassword": "Retype password",
-                    "regulationsAccept": "I accept the Regulations",
-                    "rodoAccept": "I accept the RODO"
-                },
                 "link": {
                     "rodo": " Rodo policy",
                     "regulations": " Site regulations"
                 },
                 "button": {
-                    "login": "I have account",
-                    "register": "Register account"
+                    "login": "I have account"
                 },
                 "notify": {
                     "success": "Account added successful. Please check your email to confirm."
@@ -141,40 +93,20 @@ export default {
             },
             "sendResetTokenForm": {
                 "title": "Send reset password token form",
-                "field": {
-                    "email": "Email"
-                },
-                "button": {
-                    "cancel": "Cancel",
-                    "remind": "Remind"
-                },
                 "notify": {
                     "success": "Reset token send to your email. Check your email and use url to reset password."
                 }
             },
             "resetPasswordForm": {
                 "title": "Reset password form",
-                "field": {
-                    "password": "Password",
-                    "rePassword": "Retype password"
-                },
-                "button": {
-                    "cancel": "Cancel",
-                    "reset": "Reset password"
-                },
                 "notify": {
                     "success": "Your password was changed successfully. You can login now"
                 }
             },
             "profileEditForm": {
-                "field": {
-                    "firstName": "FirstName",
-                    "lastName": "LastName"
-                },
                 "button": {
                     "change_img": "Change profile image",
-                    "save_img": "Save current image",
-                    "save": "Save data"
+                    "save_img": "Save current image"
                 },
                 "notify": {
                     "success": "Your basic data are updated now."
@@ -182,16 +114,7 @@ export default {
             },
             "accountAddForm": {
                 "title": "Add new account",
-                "field": {
-                    "firstName": "FirstName",
-                    "lastName": "LastName",
-                    "email": "Email",
-                    "role": "Role",
-                    "password": "Password",
-                    "rePassword": "Retype password"
-                },
                 "button": {
-                    "add": "Add account",
                     "prev": "Back to accounts"
                 },
                 "notify": {
@@ -200,13 +123,7 @@ export default {
             },
             "accountEditForm": {
                 "title": "Edit account",
-                "field": {
-                    "firstName": "FirstName",
-                    "lastName": "LastName",
-                    "role": "Role"
-                },
                 "button": {
-                    "save": "Save account",
                     "prev": "Back to accounts"
                 },
                 "notify": {
@@ -214,7 +131,7 @@ export default {
                 }
             }
         },
-        "user": {
+        "enums": {
             "roles": {
                 "ADMINISTRATOR": "Admin",
                 "CLIENT": "Client"
