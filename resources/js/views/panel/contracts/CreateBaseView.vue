@@ -115,7 +115,7 @@
       }
     },
     mounted() {
-      if(this.$route.params.id !== null){
+      if(this.$route.params.id !== undefined){
         this.loadContract()
       }else{
         this.isLoaded = true;

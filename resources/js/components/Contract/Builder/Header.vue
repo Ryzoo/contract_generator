@@ -21,6 +21,7 @@
       }
     },
     methods: {
+        //TODO: Map blocks state into contract
       init() {
         this.contract = this.$store.getters.getNewContractData;
       },
