@@ -36,6 +36,12 @@ section {
     background: $primary 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px $primary;
     border-radius: 10px;
+    color: white;
+    padding: 5px;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .hr-line {

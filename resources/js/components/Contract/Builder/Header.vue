@@ -1,7 +1,7 @@
 <template>
     <v-row>
         <v-col>
-            <h3>Budujesz: <span class="light-text">{{this.contract.name}}</span></h3>
+            <h3>Budujesz: <span class="light-text" v-if="contract">{{contract.name}}</span></h3>
         </v-col>
         <v-col md="5" class="d-flex justify-end">
             <v-btn text color="primary" @click="goBack">Powrót</v-btn>
@@ -32,6 +32,10 @@
       saveActual(redirect) {
         this.isLoaded = false;
         const updateState = this.$store.getters.getNewContractUpdateState;
+
+        this.contract.blocks = this.$store.getters.builder_allBlocks;
+        this.contract.attributesList = this.$store.getters.builder_allVariables;
+        this.$store.dispatch("newContract_setUpdate", this.contract);
 
         axios.put(`/contract/${updateState.id}`, this.$store.getters.getNewContractData)
             .then(response => {

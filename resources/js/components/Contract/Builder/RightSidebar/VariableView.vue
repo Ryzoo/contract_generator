@@ -48,6 +48,14 @@
                 </div>
             </div>
         </div>
+        <div class="options-section-3">
+            <span class="sub-title">Lista zmiennych</span>
+            <div class="builder-elements">
+                <div v-for="attribute in attributesList" class="variables-list">
+                    <span class="variable">{{attribute.attributeName}}</span>
+                </div>
+            </div>
+        </div>
     </section>
 </template>
 
@@ -76,12 +84,12 @@
       }
     },
     mounted() {
-      this.attributesList = this.$store.getters.allVariables;
+      this.attributesList = this.$store.getters.builder_allVariables;
     },
     methods:{
       saveVariable() {
         this.attributesList.push(this.attribute);
-        this.$store.dispatch("block_setVariable", this.attributesList);
+        this.$store.dispatch("builder_setVariable", this.attributesList);
 
         this.attribute = {
           attributeName: "",

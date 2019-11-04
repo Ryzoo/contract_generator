@@ -29,6 +29,12 @@ section {
   background: #d4ac71 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 6px #d4ac71;
   border-radius: 10px;
+  color: white;
+  padding: 5px;
+}
+
+.variable:hover {
+  cursor: pointer;
 }
 
 .hr-line {
