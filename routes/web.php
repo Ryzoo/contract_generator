@@ -13,6 +13,9 @@
 
 Route::get('/{any}', function () {
     return view('default');
-})->where('any', '^(?!api|storage|docs).*$|');
+})->where('any', '^(?!api|storage|docs|telescope).*$|');
 
+/**
+ * This route exist there only for get route to password on frontend by name
+ */
 Route::get('/auth/resetPassword',function(){})->name('password.reset');
