@@ -7,10 +7,10 @@
         ></profile-view>
         <v-alert v-else prominent type="error">
             <v-row align="center">
-                <v-col class="grow">Taki użytkownik nie istnieje</v-col>
+                <v-col class="grow">{{$t('pages.panel.accounts.descriptions.user_not_exist')}}</v-col>
                 <v-col class="shrink">
                     <v-btn color="secondary" @click="$router.go(-1)"
-                        >Powrót</v-btn
+                        >{{$t('base.button.back')}}</v-btn
                     >
                 </v-col>
             </v-row>

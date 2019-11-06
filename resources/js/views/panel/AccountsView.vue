@@ -4,7 +4,7 @@
             <v-row>
                 <v-col align="end">
                     <v-btn :to="{ name: 'createAccount' }" color="primary">
-                        {{ $t("page.panel.accounts.button.newAccount") }}
+                        {{ $t("pages.panel.accounts.buttons.new") }}
                     </v-btn>
                 </v-col>
             </v-row>
@@ -43,20 +43,18 @@
 
         <v-dialog persistent v-model="deleteDialog" max-width="290">
             <v-card>
-                <v-card-title class="headline">{{
-                    $t("page.panel.accounts.description.removeTitle")
-                }}</v-card-title>
+                <v-card-title class="headline">{{$t("form.accountRemoveForm.title")}}</v-card-title>
 
                 <v-card-text>
-                    {{ $t("page.panel.accounts.description.remove") }}
+                    {{ $t("form.accountRemoveForm.descriptions.remove") }}
                 </v-card-text>
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
                     <v-btn color="primary" text @click="deleteDialog = false">
-                        {{ $t("page.panel.accounts.button.cancel") }}
+                        {{ $t("base.buttons.cancel") }}
                     </v-btn>
                     <v-btn color="error" @click="removeAccount">
-                        {{ $t("page.panel.accounts.button.remove") }}
+                        {{ $t("base.buttons.remove") }}
                     </v-btn>
                 </v-card-actions>
             </v-card>
@@ -74,23 +72,19 @@ export default {
             isLoaded: true,
             headers: [
                 {
-                    text: this.$t("page.panel.accounts.headers.name"),
+                    text: this.$t("base.headers.name"),
                     value: "name"
                 },
                 {
-                    text: this.$t("page.panel.accounts.headers.email"),
+                    text: this.$t("base.headers.email"),
                     value: "email"
                 },
                 {
-                    text: this.$t("page.panel.accounts.headers.role"),
-                    value: "role"
-                },
-                {
-                    text: this.$t("page.panel.accounts.headers.created_at"),
+                    text: this.$t("base.headers.created"),
                     value: "created_at"
                 },
                 {
-                    text: this.$t("page.panel.accounts.headers.actions"),
+                    text: this.$t("base.headers.actions"),
                     value: "action",
                     sortable: false
                 }

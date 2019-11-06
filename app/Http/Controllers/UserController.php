@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Core\Helpers\Response;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\Users\UserUpdateRequest;
 use App\Core\Models\User;
-use App\Core\Repository\UserRepository;
+use App\Http\Requests\Users\UserAddRequest;
 use App\Core\Services\UserService;
 use Illuminate\Http\Request;
 
@@ -16,86 +16,35 @@ class UserController extends Controller
      */
     protected $userService;
 
-    /**
-     * @var \App\Core\Repository\UserRepository
-     */
-    private $userRepository;
-
-    public function __construct(UserService $userService, UserRepository $userRepository) {
+    public function __construct(UserService $userService) {
         $this->userService = $userService;
-        $this->userRepository = $userRepository;
     }
 
-    public function updateUserBasicData(Request $request, int $id) {
-        Validator::validate($request->all(),[
-            'firstName' => 'required|min:3|max:50',
-            'lastName'  => 'required|min:3|max:50',
-        ]);
-
-        $userModel = new User();
-        $userModel->fill([
-            'id' => $id,
-            'firstName' => $request->get('firstName'),
-            'lastName'  => $request->get('lastName'),
-        ]);
-
-        $this->userService->updateUser($userModel);
-
-        Response::success();
+    public function get(Request $request, int $id) {
+        Response::success(User::findOrFail($id));
     }
 
-    public function updateUser(Request $request, int $id) {
-        Validator::validate($request->all(),[
-            'firstName' => 'required|min:3|max:50',
-            'lastName'  => 'required|min:3|max:50',
-            'role'  => 'required|digits_between:0,1',
-        ]);
-
-        $userModel = new User();
-        $userModel->fill([
-            'id' => $id,
-            'firstName' => $request->get('firstName'),
-            'lastName'  => $request->get('lastName'),
-            'role'  => $request->get('role'),
-        ]);
-
-        $this->userService->updateUser($userModel);
-
-        Response::success();
+    public function getCollection(Request $request) {
+        Response::success(User::all());
     }
 
-    public function updateUserProfileImage(Request $request, int $id) {
-        Validator::validate($request->all(),[
-            'image' => 'required|image',
-        ]);
-
-        $this->userService->changeUserImage($id, $request->file('image'));
-    }
-
-    public function addNewUser(Request $request) {
-        $user = new User();
-        $user->fill($request->all());
-
-        $registeredUser = $this->userService->addUser($user);
-
-        Response::success($registeredUser);
-    }
-
-    public function removeUserAccount(Request $request, int $id) {
-        $this->userService->removeUser($id);
-        Response::success();
-    }
-
-    public function getUserByID(Request $request, int $id) {
-        $user = $this->userRepository->getById($id);
-
-        if(!isset($user))
-            Response::error("User not found", 404);
-
+    public function add(UserAddRequest $request) {
+        $user = User::create($request->validated());
         Response::success($user);
     }
 
-    public function getUserList(Request $request) {
-        Response::success($this->userRepository->getUserList());
+    public function update(UserUpdateRequest $request, int $id) {
+        $userModel = User::findOrFail($id);
+        $userModel->update($request->validated());
+        Response::success($userModel);
+    }
+
+    public function updateImage(UserUpdateRequest $request, int $id) {
+        $newUrl = $this->userService->changeUserImage($id, $request->validated()["image"]);
+        Response::success($newUrl);
+    }
+
+    public function remove(Request $request, int $id) {
+        Response::success(User::destroy($id));
     }
 }

@@ -8,7 +8,7 @@
                             <v-text-field
                                 v-model="user.firstName"
                                 :label="
-                                    $t('form.profileEditForm.field.firstName')
+                                    $t('base.field.firstName')
                                 "
                                 required
                             ></v-text-field>
@@ -17,7 +17,7 @@
                             <v-text-field
                                 v-model="user.lastName"
                                 :label="
-                                    $t('form.profileEditForm.field.lastName')
+                                    $t('base.field.lastName')
                                 "
                                 required
                             ></v-text-field>
@@ -25,7 +25,7 @@
                         <v-col sm="12">
                             <v-row class="justify-end">
                                 <v-btn color="success" @click="saveBasicData()">
-                                    {{ $t("form.profileEditForm.button.save") }}
+                                    {{ $t("base.button.save") }}
                                 </v-btn>
                             </v-row>
                         </v-col>
@@ -44,7 +44,10 @@ export default {
     data() {
         return {
             isLoaded: true,
-            user: this.userData
+            user: {
+              firstName: this.userData.firstName,
+              lastName: this.userData.lastName,
+            }
         };
     },
     methods: {
@@ -53,19 +56,19 @@ export default {
                 let validationArray = [];
 
                 validationArray[
-                    this.$t("form.profileEditForm.field.firstName")
+                    this.$t("base.field.firstName")
                 ] = this.user.firstName;
                 validationArray[
-                    this.$t("form.profileEditForm.field.lastName")
+                    this.$t("base.field.lastName")
                 ] = this.user.lastName;
 
                 let valid = new window.Validator(validationArray);
 
                 valid
-                    .get(this.$t("form.profileEditForm.field.firstName"))
+                    .get(this.$t("base.field.firstName"))
                     .length(3, 50);
                 valid
-                    .get(this.$t("form.profileEditForm.field.lastName"))
+                    .get(this.$t("base.field.lastName"))
                     .length(3, 50);
             } catch (e) {
                 return;
@@ -73,10 +76,10 @@ export default {
 
             this.isLoaded = false;
             axios
-                .put(`/user/${this.user.id}/basicData`, this.user)
+                .put(`/user/${this.userData.id}`, this.user)
                 .then(response => {
                     notify.push(
-                        this.$t("form.profileEditForm.notify.success"),
+                        this.$t("form.accountEditForm.notify.success"),
                         notify.SUCCESS
                     );
                     auth.checkAuth();

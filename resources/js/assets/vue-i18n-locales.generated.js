@@ -1,5 +1,20 @@
 export default {
     "en": {
+        "pages": {
+            "panel": {
+                "accounts": {
+                    "buttons": {
+                        "new": "Add new account"
+                    },
+                    "descriptions": {
+                        "user_not_exist": "This user not exist"
+                    },
+                    "tabs": {
+                        "basic_data": "Basic data"
+                    }
+                }
+            }
+        },
         "pageMeta": {
             "appTitle": "Contract Generator",
             "copyright": "All rights reserved - Contract Generator",
@@ -28,6 +43,12 @@ export default {
                     "title": "Panel - Accounts",
                     "create": {
                         "title": "Create new account"
+                    },
+                    "edit": {
+                        "title": "Edit account"
+                    },
+                    "preview": {
+                        "title": "Preview account"
                     }
                 },
                 "contract": {
@@ -45,27 +66,6 @@ export default {
             }
         },
         "form": {
-            "base": {
-                "field": {
-                    "email": "Email",
-                    "password": "Password",
-                    "firstName": "FirstName",
-                    "lastName": "LastName",
-                    "role": "Role",
-                    "rePassword": "Retype password",
-                    "regulationsAccept": "I accept the Regulations",
-                    "rodoAccept": "I accept the RODO"
-                },
-                "button": {
-                    "login": "Login",
-                    "register": "Create new account",
-                    "reset": "Reset",
-                    "cancel": "Cancel",
-                    "remind": "Remind",
-                    "save": "Save",
-                    "add": "Add"
-                }
-            },
             "login": {
                 "title": "Login form",
                 "text": {
@@ -127,7 +127,14 @@ export default {
                     "prev": "Back to accounts"
                 },
                 "notify": {
-                    "success": "Account updated!"
+                    "success": "Account updated!",
+                    "success_img": "Image updated!"
+                }
+            },
+            "accountRemoveForm": {
+                "title": "Remove account",
+                "descriptions": {
+                    "remove": "Do you want to remove it?"
                 }
             }
         },
@@ -148,6 +155,35 @@ export default {
             "resetPassword": {
                 "subject": "Reset account password",
                 "info": "You send request for reset your password. To end this process please use button below."
+            }
+        },
+        "base": {
+            "field": {
+                "email": "Email",
+                "password": "Password",
+                "firstName": "FirstName",
+                "lastName": "LastName",
+                "role": "Role",
+                "rePassword": "Retype password",
+                "regulationsAccept": "I accept the Regulations",
+                "rodoAccept": "I accept the RODO"
+            },
+            "button": {
+                "login": "Login",
+                "register": "Create new account",
+                "reset": "Reset",
+                "cancel": "Cancel",
+                "remind": "Remind",
+                "save": "Save",
+                "add": "Add",
+                "back": "Back",
+                "edit": "Edit"
+            },
+            "headers": {
+                "name": "Name",
+                "email": "Email",
+                "created": "Created",
+                "actions": "Actions"
             }
         },
         "response": {

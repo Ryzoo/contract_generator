@@ -45,9 +45,7 @@ export default {
             tabModel: null,
             tabsItem: [
                 {
-                    name: this.$t(
-                        "pageMeta.panel.profile.tabs.basic_data.name"
-                    ),
+                    name: this.$t("pages.panel.accounts.tabs.basic_data"),
                     icon: "fa-id-card",
                     editOnly: true,
                     component: "BasicDataTab"

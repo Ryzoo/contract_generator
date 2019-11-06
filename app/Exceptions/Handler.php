@@ -4,9 +4,11 @@ namespace App\Exceptions;
 
 use App\Core\Helpers\Response;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Whoops\Exception\ErrorException;
 
 class Handler extends ExceptionHandler
@@ -60,6 +62,9 @@ class Handler extends ExceptionHandler
         $code = $code === 0 ? 500 : $code;
 
         if($exception instanceof ErrorException && Str::length($message))
+            Response::error($message, $code);
+
+        if($exception instanceof AuthorizationException && Str::length($message))
             Response::error($message, $code);
 
         return parent::render($request, $exception);

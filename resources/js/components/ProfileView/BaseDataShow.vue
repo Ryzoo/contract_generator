@@ -1,5 +1,5 @@
 <template>
-    <v-card class="pb-3">
+    <v-card >
         <v-card-text>
             <template v-if="isLoaded">
                 <v-avatar size="80%" class="mx-auto d-block mb-2">
@@ -17,7 +17,7 @@
                     @click="changeProfileImage"
                     class="mx-auto d-block"
                     color="primary"
-                    >{{ $t("form.profileEditForm.button.change_img") }}</v-btn
+                    >{{ $t("base.button.edit") }}</v-btn
                 >
                 <v-btn
                     v-if="canBeSaved"
@@ -25,17 +25,12 @@
                     color="success"
                     @click="saveImage"
                 >
-                    {{ $t("form.profileEditForm.button.save_img") }}
+                    {{ $t("base.button.save") }}
                 </v-btn>
                 <v-divider class="my-3"></v-divider>
                 <h2 class="text-center">
                     {{ user.firstName }} {{ user.lastName }}
                 </h2>
-                <small class="text-center d-block">{{
-                    isAdmin
-                        ? $t("user.roles.ADMINISTRATOR")
-                        : $t("user.roles.CLIENT")
-                }}</small>
             </template>
             <loader v-else></loader>
         </v-card-text>
@@ -43,8 +38,6 @@
 </template>
 
 <script>
-import { UserRoleEnum } from "../../additionalModules/Enums";
-
 export default {
     name: "BaseDataShow",
     props: ["userData", "editable"],
@@ -53,16 +46,15 @@ export default {
             isLoaded: true,
             user: this.userData,
             canBeSaved: false,
-            isAdmin: this.userData.role == UserRoleEnum.ADMINISTRATOR
         };
     },
     methods: {
         saveImage() {
-            let imagefile = this.$refs.profileImage;
+            let imageFile = this.$refs.profileImage;
 
-            if (imagefile && imagefile.files && imagefile.files[0]) {
+            if (imageFile && imageFile.files && imageFile.files[0]) {
                 let formData = new FormData();
-                formData.append("image", imagefile.files[0]);
+                formData.append("image", imageFile.files[0]);
 
                 this.isLoaded = false;
                 axios
@@ -73,9 +65,7 @@ export default {
                     })
                     .then(() => {
                         notify.push(
-                            this.$t(
-                                "page.panel.profile.base.success_change_img"
-                            ),
+                            this.$t("form.accountEditForm.notify.success_img"),
                             notify.SUCCESS
                         );
                         auth.checkAuth();

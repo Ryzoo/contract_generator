@@ -1,27 +1,6 @@
 <?php
 
 return [
-    'base' => [
-        'field' => [
-            'email' => 'Email',
-            'password' => 'Password',
-            'firstName' => 'FirstName',
-            'lastName' => 'LastName',
-            'role' => 'Role',
-            'rePassword' => 'Retype password',
-            'regulationsAccept' => 'I accept the Regulations',
-            'rodoAccept' => 'I accept the RODO',
-        ],
-        'button' => [
-            'login' => 'Login',
-            'register' => 'Create new account',
-            'reset' => 'Reset',
-            'cancel' => 'Cancel',
-            'remind' => 'Remind',
-            'save' => 'Save',
-            'add' => 'Add'
-        ],
-    ],
     'login' => [
         'title' => 'Login form',
         'text' => [
@@ -83,7 +62,14 @@ return [
             'prev' => 'Back to accounts',
         ],
         'notify' => [
-            'success' => 'Account updated!'
+            'success' => 'Account updated!',
+            'success_img' => 'Image updated!'
         ]
+    ],
+    'accountRemoveForm' => [
+        'title' => "Remove account",
+        'descriptions' => [
+            'remove' => 'Do you want to remove it?',
+        ],
     ]
 ];

@@ -63,7 +63,7 @@ const router = new VueRouter({
                 },
                 {
                     path: 'contracts/edit/:id',
-                    name: 'createContract',
+                    name: 'editContract',
                     component: CreateBaseView,
                     meta: {
                         title: i18n.t('pageMeta.panel.contract.edit.title')
@@ -71,7 +71,7 @@ const router = new VueRouter({
                 },
                 {
                     path: 'contracts/builder',
-                    name: 'createContract',
+                    name: 'buildContract',
                     component: ContractBuilderView,
                     meta: {
                         title: i18n.t('pageMeta.panel.contract.builder.title')

@@ -29,6 +29,12 @@ return [
             'create' => [
                 'title' => 'Create new account',
             ],
+            'edit' => [
+                'title' => 'Edit account',
+            ],
+            'preview' => [
+                'title' => 'Preview account',
+            ],
         ],
         'contract' => [
             'title' => 'Panel - Agreements',

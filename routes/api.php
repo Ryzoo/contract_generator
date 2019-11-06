@@ -22,15 +22,19 @@ Route::group(['middleware' => 'auth:token'], function(){
             Route::get('/', 'ElementsController@getAllConditionalList');
         });
     });
+
     Route::prefix('user')->group(function () {
-        Route::get('/', 'UserController@getUserList');
-        Route::post('/', 'UserController@addNewUser');
-        Route::get('/{id}', 'UserController@getUserByID');
-        Route::put('/{id}', 'UserController@updateUser');
-        Route::delete('/{id}', 'UserController@removeUserAccount');
-        Route::put('/{id}/basicData', 'UserController@updateUserBasicData');
-        Route::post('/{id}/profileImage', 'UserController@updateUserProfileImage');
+        Route::get('/', 'UserController@getCollection');
+        Route::get('/{id}', 'UserController@get');
+
+        Route::post('/', 'UserController@add');
+        Route::post('/{id}/profileImage', 'UserController@updateImage');
+
+        Route::put('/{id}', 'UserController@update');
+
+        Route::delete('/{id}', 'UserController@remove');
     });
+
     Route::prefix('contract')->group(function () {
         Route::get('/', 'ContractController@getContractList');
         Route::get('/modules', 'ContractController@getAvailableModules');
