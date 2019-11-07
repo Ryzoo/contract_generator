@@ -8,6 +8,8 @@
             :error-messages="validationError"
             outlined
             filled
+            :hint="attribute.description"
+            :persistent-hint="!!attribute.description"
             type="number"
             @change="changeValue"
         >

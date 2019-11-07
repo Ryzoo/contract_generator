@@ -9,6 +9,7 @@
             "placeholder" : "",
             "description": "A tutaj fajny opis",
             "additionalInformation": "To jest coś dziwnego",
+            "toAnonymize": true,
             "settings": {
                 "required": true,
                 "lengthMin": 3,
@@ -55,6 +56,8 @@
             "attributeType": 2,
             "defaultValue" : "",
             "placeholder" : "",
+            "description": "A tutaj fajny opis",
+            "additionalInformation": "To jest coś dziwnego",
             "settings": {
                 "required": true,
                 "items": [
