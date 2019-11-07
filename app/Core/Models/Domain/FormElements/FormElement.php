@@ -30,18 +30,30 @@ abstract class FormElement implements IFormElement {
     public $elementName;
 
     /**
-     * @var \Illuminate\Support\Collection
+     * @var array
      */
     public $conditionals;
 
-    /** @var bool */
+    /**
+     * @var bool
+     */
     public $isValid;
 
-    /** @var bool */
+    /**
+     * @var bool
+     */
     public $isActive;
 
     public function __construct(int $parentBlockId) {
         $this->parentBlockId = $parentBlockId;
+    }
+
+    protected function initialize(int $elementType) {
+        $this->elementType = $elementType;
+        $this->elementName = ElementType::getName($elementType);
+        $this->conditionals = collect();
+        $this->isValid = TRUE;
+        $this->isActive = TRUE;
     }
 
     public static function validate($value): bool {
@@ -56,24 +68,18 @@ abstract class FormElement implements IFormElement {
         return TRUE;
     }
 
-    protected function initialize(int $elementType) {
-        $this->elementType = $elementType;
-        $this->elementName = ElementType::getName($elementType);
-        $this->conditionals = collect();
-        $this->isValid = TRUE;
-        $this->isActive = TRUE;
-    }
-
     public static function getFormElementByType(int $formElementType, array $value): FormElement {
-        if(!isset($value["parentBlockId"]))
+        if (!isset($value["parentBlockId"])) {
             throw new ErrorException("Form element can be decoded without parentBlockId field");
+        }
         $parentBlockId = $value["parentBlockId"];
 
         switch ($formElementType) {
             case ElementType::ATTRIBUTE:
-                if(!isset($value["attribute"]))
+                if (!isset($value["attribute"])) {
                     throw new ErrorException("Attribute form element can be decoded without attribute field");
-                $attribute = Attribute::getFromString((array)$value["attribute"]);
+                }
+                $attribute = Attribute::getFromString((array) $value["attribute"]);
                 return new AttributeFormElement($parentBlockId, $attribute);
             case ElementType::PAGE_BRAKE:
                 return new PageDividerFormElement($parentBlockId);
@@ -100,7 +106,7 @@ abstract class FormElement implements IFormElement {
 
     public static function getFromString(array $value): FormElement {
         FormElement::validate($value);
-        $element = self::getFormElementByType((int)$value["elementType"], $value);
+        $element = self::getFormElementByType((int) $value["elementType"], $value);
 
         $element->parentBlockId = $value["parentBlockId"];
         $element->elementType = $value["elementType"];

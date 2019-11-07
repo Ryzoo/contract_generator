@@ -16,6 +16,11 @@ abstract class Attribute implements IAttribute {
     /**
      * @var int
      */
+    public $id;
+
+    /**
+     * @var int
+     */
     public $attributeType;
 
     /**
@@ -27,11 +32,6 @@ abstract class Attribute implements IAttribute {
      * @var array
      */
     public $settings;
-
-    /**
-     * @var int
-     */
-    public $id;
 
     /**
      * @var string
@@ -52,11 +52,22 @@ abstract class Attribute implements IAttribute {
 
     public $defaultValue;
 
+    /**
+     * @var string
+     */
     public $description;
 
+    /**
+     * @var string
+     */
     public $additionalInformation;
 
+    /**
+     * @var bool
+     */
     public $toAnonymize;
+
+    protected abstract function buildSettings();
 
     protected function initialize(int $attributeType) {
         $this->attributeType = $attributeType;
@@ -65,7 +76,7 @@ abstract class Attribute implements IAttribute {
         $this->conditionals = [];
         $this->value = NULL;
         $this->id = 0;
-        $this->toAnonymize = false;
+        $this->toAnonymize = FALSE;
         $this->name = "no_name";
         $this->placeholder = "";
         $this->defaultValue = NULL;
@@ -77,8 +88,6 @@ abstract class Attribute implements IAttribute {
     protected function buildObject() {
         $this->buildSettings();
     }
-
-    protected abstract function buildSettings();
 
     public static function getAttributeByType(int $attributeType): Attribute {
         switch ($attributeType) {
@@ -98,11 +107,8 @@ abstract class Attribute implements IAttribute {
             "id" => "required|integer",
             "attributeType" => "required|integer",
             "attributeName" => "required|string",
-            "conditionals" => "nullable|array",
-            "defaultValue" => "nullable|integer",
-            "description" => "sometimes|required|string",
-            "additionalInformation" => "sometimes|required|string",
-            "settings" => "required",
+            "conditionals" => "sometimes|array",
+            "settings" => "sometimes|required",
         ]);
 
         return TRUE;
@@ -127,33 +133,18 @@ abstract class Attribute implements IAttribute {
         Attribute::validate($value);
         $attribute = self::getAttributeByType($value["attributeType"]);
 
-        $attribute->attributeType = $value["attributeType"];
+        $attribute->attributeType = intval($value["attributeType"]);
         $attribute->attributeName = AttributeType::getName($value["attributeType"]);
         $attribute->settings = $value["settings"];
         $attribute->name = $value["attributeName"];
         $attribute->conditionals = isset($value["conditionals"]) ? Conditional::getListFromString(json_encode($value["conditionals"])) : [];
         $attribute->id = intval($value["id"]);
-
         $attribute->toAnonymize = isset($value["toAnonymize"]) ? $value["toAnonymize"] : false;
-
-        if (isset($value["description"])) {
-            $attribute->description = $value["description"];
-        }
-        if (isset($value["additionalInformation"])) {
-            $attribute->additionalInformation = $value["additionalInformation"];
-        }
-
-        if (isset($value["defaultValue"])) {
-            $attribute->defaultValue = $value["defaultValue"];
-        }
-
-        if (isset($value["value"])) {
-            $attribute->value = $value["value"];
-        }
-
-        if (isset($value["placeholder"])) {
-            $attribute->placeholder = $value["placeholder"];
-        }
+        $attribute->description = isset($value["description"]) ? $value["description"] : "";
+        $attribute->additionalInformation = isset($value["additionalInformation"]) ? $value["additionalInformation"] : "";
+        $attribute->defaultValue = isset($value["defaultValue"]) ? $value["defaultValue"] : NULL;
+        $attribute->value = isset($value["value"]) ? $value["value"] : NULL;
+        $attribute->placeholder = isset($value["placeholder"]) ? $value["placeholder"] : NULL;
 
         return $attribute;
     }

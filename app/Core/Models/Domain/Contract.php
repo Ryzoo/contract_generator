@@ -16,67 +16,26 @@ class Contract extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'name' => 'required|string|between:5,190',
         'attributesList' => 'array',
         'blocks' => 'array',
         'settings' => 'array',
     ];
 
-    public static $rulesAddRequestCreate= array(
-        'name' => 'required|string|between:5,190',
-        'attributesList'    => 'array',
-        'blocks'        => 'array',
-        'settings'      => 'array',
-    );
+    protected $appends = ['attributesList','blocks','settings'];
 
-    public static $rulesAdd = array(
-        'name' => 'required|string|between:5,190',
-        'attributesList'    => 'required|json',
-        'blocks'        => 'required|json',
-        'settings'      => 'required|json',
-    );
-
-    public static $rulesUpdate = array(
-        'name' => 'required|string|between:5,190',
-        'attributesList'    => 'required|json',
-        'blocks'        => 'required|json',
-        'settings'      => 'required|json',
-    );
-
-    /**
-     * Get the attributes list
-     *
-     * @param string $value
-     *
-     * @return Collection
-     * @throws ErrorException
-     */
     public function getAttributesListAttribute($value): Collection
     {
-        return collect(Attribute::getListFromString($value));
+        return collect(Attribute::getListFromString($value ?? $this->attributesList));
     }
 
-    /**
-     * Get the blocks list
-     *
-     * @param string $value
-     *
-     * @return \Illuminate\Support\Collection
-     */
     public function getBlocksAttribute($value): Collection
     {
-        return collect(Block::getListFromString($value));
+        return collect(Block::getListFromString($value ?? $this->blocks));
     }
 
-    /**
-     * Get the settings list
-     *
-     * @param  string  $value
-     * @return Collection
-     */
     public function getSettingsAttribute($value): Collection
     {
-        return collect(json_decode($value));
+        return collect(json_decode($value ?? $this->settings));
     }
 
     public function getBlockCollection():Collection {
@@ -90,39 +49,6 @@ class Contract extends Model
         return $blockCollection;
     }
 
-    /**
-     * Set the attributes
-     *
-     * @param  string  $value
-     * @return void
-     */
-    public function setAttributesListAttribute($value)
-    {
-        $this->attributes['attributesList'] = json_encode($value);
-    }
-
-    /**
-     * Set the blocks
-     *
-     * @param  string  $value
-     * @return void
-     */
-    public function setBlocksAttribute($value)
-    {
-        $this->attributes['blocks'] = json_encode($value);
-    }
-
-    /**
-     * Set the settings
-     *
-     * @param  string  $value
-     * @return void
-     */
-    public function setSettingsAttribute($value)
-    {
-        $this->attributes['settings'] = json_encode($value);
-    }
-
     public function getAttributeByID(int $attributeID):?Attribute {
         $attributes = $this->attributesList;
 
@@ -132,6 +58,21 @@ class Contract extends Model
         }
 
         throw new ErrorException(__('validation.attributes.not_exist', ["id" => $attributeID]), 404);
+    }
+
+    public function setAttributesListAttribute($value)
+    {
+        $this->attributes['attributesList'] = json_encode($value);
+    }
+
+    public function setBlocksAttribute($value)
+    {
+        $this->attributes['blocks'] = json_encode($value);
+    }
+
+    public function setSettingsAttribute($value)
+    {
+        $this->attributes['settings'] = json_encode($value);
     }
 
     public function checkContractEnabledModules( string $moduleName ): bool{
