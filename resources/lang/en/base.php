@@ -20,12 +20,20 @@ return [
         'save' => 'Save',
         'add' => 'Add',
         'back' => 'Back',
-        'edit' => 'Edit'
+        'edit' => 'Edit',
+        'save_exit' => 'Save and exit',
+        'save_build' => 'Save and build'
     ],
     "headers" => [
         "name" => "Name",
         "email" => "Email",
         "created" => "Created",
         "actions" => "Actions",
-    ]
+    ],
+    'descriptions' => [
+        'remove' => 'Do you want to remove it?',
+    ],
+    'notify' => [
+        'remove' => 'Removed successfully!',
+    ],
 ];

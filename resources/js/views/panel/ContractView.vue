@@ -7,7 +7,7 @@
                     Delete selected
                 </v-btn>
                 <v-btn :to="{ name: 'createContract' }" color="primary">
-                    {{ $t("page.panel.contracts.button.newAgreement") }}
+                    {{ $t("pages.panel.contracts.buttons.new_contract") }}
                 </v-btn>
             </v-col>
         </v-row>
@@ -33,20 +33,20 @@
 
         <v-dialog persistent v-model="deleteDialog" max-width="290">
             <v-card>
-                <v-card-title class="headline"
-                >{{ $t("page.panel.contracts.description.removeTitle") }}
+                <v-card-title class="headline">
+                    {{ $t("form.removeContractForm.title") }}
                 </v-card-title>
 
                 <v-card-text>
-                    {{ $t("page.panel.contracts.description.remove") }}
+                    {{ $t("base.description.remove") }}
                 </v-card-text>
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
                     <v-btn color="primary" text @click="deleteDialog = false">
-                        {{ $t("page.panel.contracts.button.cancel") }}
+                        {{ $t("base.button.cancel") }}
                     </v-btn>
                     <v-btn color="error" @click="removeContract">
-                        {{ $t("page.panel.contracts.button.remove") }}
+                        {{ $t("base.button.remove") }}
                     </v-btn>
                 </v-card-actions>
             </v-card>
@@ -63,15 +63,15 @@
         multiSelectedItems: [],
         headers: [
           {
-            text: this.$t("page.panel.contracts.headers.name"),
+            text: this.$t("base.headers.name"),
             value: "name"
           },
           {
-            text: "Update date",
+            text: this.$t("base.headers.created"),
             value: "created_at"
           },
           {
-            text: this.$t("page.panel.contracts.headers.actions"),
+            text: this.$t("base.headers.actions"),
             value: "action",
             sortable: false
           }
@@ -104,7 +104,7 @@
               this.multiSelectedItems = [];
               this.deleteDialog = false;
               notify.push(
-                  this.$t("page.panel.contracts.notify.successRemove"),
+                  this.$t("base.notify.remove"),
                   notify.SUCCESS
               );
             })

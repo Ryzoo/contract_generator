@@ -7,6 +7,8 @@
             "attributeType": 1,
             "defaultValue" : "",
             "placeholder" : "",
+            "description": "A tutaj fajny opis",
+            "additionalInformation": "To jest coś dziwnego",
             "settings": {
                 "required": true,
                 "lengthMin": 3,

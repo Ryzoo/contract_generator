@@ -20,3 +20,5 @@ docker-compose up -d maildev
 ```
 
 Strona z listą maili jest na adresie: `http://localhost:1080/`
+
+Aby działały kolejki musimy odpalić na `php /var/www/artisan queue:work --sleep=3 --tries=3 --daemon`

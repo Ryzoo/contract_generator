@@ -10,7 +10,16 @@
             filled
             type="number"
             @change="changeValue"
-        ></v-text-field>
+        >
+            <template v-slot:append-outer v-if="attribute.additionalInformation && attribute.additionalInformation.length > 0">
+                <v-tooltip right>
+                    <template v-slot:activator="{ on }">
+                        <v-icon color="primary" dark v-on="on">fa-question-circle</v-icon>
+                    </template>
+                    <span>{{attribute.additionalInformation}}</span>
+                </v-tooltip>
+            </template>
+        </v-text-field>
     </v-col>
 </template>
 

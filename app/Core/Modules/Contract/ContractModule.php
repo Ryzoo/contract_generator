@@ -59,10 +59,10 @@ abstract class ContractModule {
         $moduleSettings = (isset($this->contract) && isset(((array)$this->contract->settings["modules"])[$this->name])) ? ((array)$this->contract->settings["modules"])[$this->name] : null;
 
         if(!isset($moduleSettings))
-            $moduleSettings = $this->defaultSettings;
+            $moduleSettings = (array)$this->defaultSettings ?? null;
 
         if(!isset($moduleSettings) || !isset($secondKey))
-            return $moduleSettings;
+            return (array)$moduleSettings;
         else
             return isset(((array)$moduleSettings)[$secondKey]) ? ((array)$moduleSettings)[$secondKey] : null;
     }

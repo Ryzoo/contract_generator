@@ -44,11 +44,11 @@ class Mapper {
     static getModulePlaceName(type) {
         switch (parseInt(type)) {
             case ContractModulesAvailablePlace.FINISHER:
-                return "Moduły kończące";
+                return "End modules";
             case ContractModulesAvailablePlace.POST_FORM:
-                return "Moduły zasad biznesowych";
+                return "Business modules";
             case ContractModulesAvailablePlace.PRE_FORM:
-                return "Moduły wstępne";
+                return "Start modules";
             default:
                 return "NotFoundPlace";
         }

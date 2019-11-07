@@ -82,7 +82,7 @@
         return false;
       },
       checkFinishLogic(){
-        switch(parseInt(this.actualAuthType)){
+        switch(String(this.actualAuthType)){
           case AuthType.ALL:
             this.finishAction();
             break;

@@ -4,13 +4,13 @@
             <v-flex xs12 sm10 lg8 offset-sm1 offset-lg2>
                 <v-card class="pb-3" v-if="isLoaded">
                     <v-toolbar dark color="primary">
-                        <v-toolbar-title class="white--text">Dodawanie nowej umowy</v-toolbar-title>
+                        <v-toolbar-title class="white--text">{{ $t("form.contractAddForm.title") }}</v-toolbar-title>
                     </v-toolbar>
                     <v-card-text>
                         <v-text-field
                             prepend-icon="fa-file-signature"
                             v-model="contract.name"
-                            label="Nazwa umowy"
+                            :label="$t('form.contractAddForm.field.contract_name')"
                             @change="saveContractDataToStore"
                             required
                         ></v-text-field>
@@ -22,18 +22,18 @@
                             text
                             @click="cancelAddContract"
                             color="primary">
-                            Anuluj
+                            {{ $t("base.button.back") }}
                         </v-btn>
                         <v-btn
                             outlined
                             @click="saveAndExit"
                             color="primary">
-                            Zapisz i wyjdź
+                            {{ $t("base.button.save_exit") }}
                         </v-btn>
                         <v-btn
                             @click="saveAndBuild"
                             color="primary">
-                            Zapisz i przejdź do budowy
+                            {{ $t("base.button.save_build") }}
                         </v-btn>
                     </v-card-actions>
                 </v-card>
@@ -92,7 +92,7 @@
 
         request.then(response => {
           notify.push(
-              "Umowa zapisana!",
+              this.$t("form.contractAddForm.notify.success"),
               notify.SUCCESS
           );
           if(callback)

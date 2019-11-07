@@ -12,6 +12,11 @@ return [
             "tabs" => [
                 "basic_data" => "Basic data"
             ]
+        ],
+        "contracts" => [
+            "buttons" => [
+                "new_contract" => "Add new contract"
+            ]
         ]
     ]
 ];

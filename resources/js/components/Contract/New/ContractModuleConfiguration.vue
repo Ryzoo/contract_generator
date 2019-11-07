@@ -1,8 +1,8 @@
 <template>
     <section class="my-5" v-if="!isLoading">
-        <h3>Wybierz moduły które będą dostępne dla tej umowy</h3>
+        <h3>{{ $t("form.contractAddForm.title_modules") }}</h3>
         <v-divider class="my-1"></v-divider>
-        <small>Każdy moduł to pewna odpowiedzialność. Możesz wybrac które moduły maja być aktywne, oraz przejść do konfiguracji każdego z nich w celu ich spersonalizowania.</small>
+        <small>{{ $t("form.contractAddForm.description.modules") }}</small>
         <section
             class="module-section"
             v-for="section in availableSectionList"

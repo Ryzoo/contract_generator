@@ -68,8 +68,21 @@ return [
     ],
     'accountRemoveForm' => [
         'title' => "Remove account",
-        'descriptions' => [
-            'remove' => 'Do you want to remove it?',
+    ],
+    'removeContractForm' => [
+        'title' => "Remove contract",
+    ],
+    'contractAddForm' => [
+        'title' => "Add contract",
+        'title_modules' => 'Wybierz moduły które będą dostępne dla tej umowy',
+        'description' => [
+            'modules' => "Każdy moduł to pewna odpowiedzialność. Możesz wybrac które moduły maja być aktywne, oraz przejść do konfiguracji każdego z nich w celu ich spersonalizowania."
         ],
+        'field' => [
+            "contract_name" => "Contract name"
+        ],
+        'notify' => [
+            'success' => "Contract saved!"
+        ]
     ]
 ];

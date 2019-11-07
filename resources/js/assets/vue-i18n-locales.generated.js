@@ -12,6 +12,11 @@ export default {
                     "tabs": {
                         "basic_data": "Basic data"
                     }
+                },
+                "contracts": {
+                    "buttons": {
+                        "new_contract": "Add new contract"
+                    }
                 }
             }
         },
@@ -132,9 +137,22 @@ export default {
                 }
             },
             "accountRemoveForm": {
-                "title": "Remove account",
-                "descriptions": {
-                    "remove": "Do you want to remove it?"
+                "title": "Remove account"
+            },
+            "removeContractForm": {
+                "title": "Remove contract"
+            },
+            "contractAddForm": {
+                "title": "Add contract",
+                "title_modules": "Wybierz moduły które będą dostępne dla tej umowy",
+                "description": {
+                    "modules": "Każdy moduł to pewna odpowiedzialność. Możesz wybrac które moduły maja być aktywne, oraz przejść do konfiguracji każdego z nich w celu ich spersonalizowania."
+                },
+                "field": {
+                    "contract_name": "Contract name"
+                },
+                "notify": {
+                    "success": "Contract saved!"
                 }
             }
         },
@@ -145,16 +163,14 @@ export default {
             }
         },
         "email": {
-            "welcome_header": "Welcome to Contract Generator",
-            "go_to_page": "Go to page",
-            "thanks": "Thanks",
+            "base": {
+                "welcome_contract": "Welcome to Contract Generator",
+                "go_to_page": "Go to page",
+                "thanks": "Thanks"
+            },
             "welcome": {
                 "subject": "Welcome to Contract Generator",
                 "info": "Your account are created successfully. You can now login and work in app."
-            },
-            "resetPassword": {
-                "subject": "Reset account password",
-                "info": "You send request for reset your password. To end this process please use button below."
             }
         },
         "base": {
@@ -177,13 +193,21 @@ export default {
                 "save": "Save",
                 "add": "Add",
                 "back": "Back",
-                "edit": "Edit"
+                "edit": "Edit",
+                "save_exit": "Save and exit",
+                "save_build": "Save and build"
             },
             "headers": {
                 "name": "Name",
                 "email": "Email",
                 "created": "Created",
                 "actions": "Actions"
+            },
+            "descriptions": {
+                "remove": "Do you want to remove it?"
+            },
+            "notify": {
+                "remove": "Removed successfully!"
             }
         },
         "response": {

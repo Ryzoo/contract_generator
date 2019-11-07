@@ -66,7 +66,7 @@ class ContractController extends Controller {
             "password" => "nullable|string",
         ]);
 
-        $contract = $this->contractRepository->getById($contractID);
+        $contract = Contract::findOrFail($contractID);
 
         $this->contractModuleService->runPart($contract, ContractModulePart::GET_CONTRACT, [
             "password" => $request->get("password") ?? "",
@@ -139,7 +139,7 @@ class ContractController extends Controller {
     }
 
     public function getInformationAboutContractModules(Request $request, int $contractID) {
-        $contract = $this->contractRepository->getById($contractID);
+        $contract = Contract::findOrFail($contractID);
         Response::success($this->contractModuleService->getModuleInformation($contract));
     }
 }

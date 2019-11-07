@@ -11,7 +11,16 @@
             :multiple="!!attribute.settings.isMultiSelect"
             :placeholder="String(attribute.placeholder)"
             @change="changeValue"
-        ></v-select>
+        >
+            <template v-slot:append-outer v-if="attribute.additionalInformation">
+                <v-tooltip right>
+                    <template v-slot:activator="{ on }">
+                        <v-icon dark v-on="on">fa-question-circle</v-icon>
+                    </template>
+                    <span>{{attribute.additionalInformation}}</span>
+                </v-tooltip>
+            </template>
+        </v-select>
     </v-col>
 </template>
 

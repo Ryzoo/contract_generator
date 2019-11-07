@@ -151,7 +151,9 @@
         return defaultAttributeObject ? new URLSearchParams(defaultAttributeObject).toString() : "";
       },
       finishContractForm() {
-        this.currentAction = this.availableActionsHook.BEFORE_FORM_END;
+        if (this.isCurrentStepValid()) {
+          this.currentAction = this.availableActionsHook.BEFORE_FORM_END;
+        }
       },
       init() {
         this.currentAction = this.availableActionsHook.BEFORE_FORM_RENDER;

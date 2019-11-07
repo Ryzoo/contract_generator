@@ -7,7 +7,7 @@
             <v-spacer></v-spacer>
             <v-btn
                 color="success"
-                @click="finishContractForm">
+                @click="renderContract">
                 Renderuj
             </v-btn>
         </v-card-actions>
@@ -29,21 +29,6 @@
       }
     },
     methods: {
-      finishContractForm() {
-
-        switch(parseInt(this.actualRenderType)){
-          case ContractProviderType.RENDER:
-            this.renderContract();
-            break;
-          case AuthType.LOGIN:
-            // TODO
-            break;
-          case AuthType.PASSWORD:
-           // TODO
-            break;
-        }
-      },
-
       renderContract(){
         this.isLoading = true;
         axios({

@@ -7,6 +7,7 @@ use App\Http\Requests\Users\UserUpdateRequest;
 use App\Core\Models\User;
 use App\Http\Requests\Users\UserAddRequest;
 use App\Core\Services\UserService;
+use App\Jobs\Email\SendWelcomeEmail;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -30,6 +31,9 @@ class UserController extends Controller
 
     public function add(UserAddRequest $request) {
         $user = User::create($request->validated());
+
+        SendWelcomeEmail::dispatch($user);
+
         Response::success($user);
     }
 

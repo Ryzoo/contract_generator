@@ -8,8 +8,18 @@
             :error-messages="validationError"
             outlined
             filled
+            append-outer-icon="fa-question-circle"
             @change="changeValue"
-        ></v-text-field>
+        >
+            <template v-slot:append-outer v-if="attribute.additionalInformation">
+                <v-tooltip right>
+                    <template v-slot:activator="{ on }">
+                        <v-icon dark v-on="on">fa-question-circle</v-icon>
+                    </template>
+                    <span>{{attribute.additionalInformation}}</span>
+                </v-tooltip>
+            </template>
+        </v-text-field>
     </v-col>
 </template>
 
