@@ -38,32 +38,45 @@
                         :key="`${step.id}-content`"
                         :step="step.id"
                     >
+                        <v-row v-if="step.content.length > 5">
+                            <v-col align="end">
+                                <v-btn text v-if="actualStep > 1 && actualStep <= stepList.length"
+                                       @click="goBackStep">Go back
+                                </v-btn>
+                                <v-btn color="primary" v-if="actualStep < stepList.length"
+                                       @click="goToNextStep">Go next
+                                </v-btn>
+                                <v-btn color="success" v-if="actualStep === stepList.length"
+                                       @click="finishContractForm">Finish
+                                </v-btn>
+                            </v-col>
+                        </v-row>
+
                         <form-renderer
                             :formElements="step.content"
                         ></form-renderer>
 
-                        <v-container>
-                            <v-row>
-                                <v-col align="end">
-                                    <v-btn text v-if="actualStep > 1 && actualStep <= stepList.length"
-                                           @click="goBackStep">Go back
-                                    </v-btn>
-                                    <v-btn color="primary" v-if="actualStep < stepList.length"
-                                           @click="goToNextStep">Go next
-                                    </v-btn>
-                                    <v-btn color="success" v-if="actualStep === stepList.length"
-                                           @click="finishContractForm">Finish
-                                    </v-btn>
-                                </v-col>
-                            </v-row>
-                        </v-container>
+                        <v-row>
+                            <v-col align="end">
+                                <v-btn text v-if="actualStep > 1 && actualStep <= stepList.length"
+                                       @click="goBackStep">Go back
+                                </v-btn>
+                                <v-btn color="primary" v-if="actualStep < stepList.length"
+                                       @click="goToNextStep">Go next
+                                </v-btn>
+                                <v-btn color="success" v-if="actualStep === stepList.length"
+                                       @click="finishContractForm">Finish
+                                </v-btn>
+                            </v-col>
+                        </v-row>
 
                     </v-stepper-content>
                 </v-stepper-items>
             </v-stepper>
         </v-card-text>
 
-        <v-card-text class="white--text" v-if="currentAction === availableActionsHook.BEFORE_FORM_END || currentAction === availableActionsHook.AFTER_FORM_END">
+        <v-card-text class="white--text"
+                     v-if="currentAction === availableActionsHook.BEFORE_FORM_END || currentAction === availableActionsHook.AFTER_FORM_END">
             <action-renderer
                 v-model="currentAction"
                 :contract="contract"
@@ -86,7 +99,7 @@
       FormRenderer,
       ActionRenderer
     },
-    data(){
+    data() {
       return {
         isLoading: true,
         actualStep: 1,

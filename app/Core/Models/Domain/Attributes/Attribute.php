@@ -56,6 +56,8 @@ abstract class Attribute implements IAttribute {
 
     public $additionalInformation;
 
+    public $toAnonymize;
+
     protected function initialize(int $attributeType) {
         $this->attributeType = $attributeType;
         $this->attributeName = AttributeType::getName($attributeType);
@@ -63,6 +65,7 @@ abstract class Attribute implements IAttribute {
         $this->conditionals = [];
         $this->value = NULL;
         $this->id = 0;
+        $this->toAnonymize = false;
         $this->name = "no_name";
         $this->placeholder = "";
         $this->defaultValue = NULL;
@@ -130,6 +133,8 @@ abstract class Attribute implements IAttribute {
         $attribute->name = $value["attributeName"];
         $attribute->conditionals = isset($value["conditionals"]) ? Conditional::getListFromString(json_encode($value["conditionals"])) : [];
         $attribute->id = intval($value["id"]);
+
+        $attribute->toAnonymize = isset($value["toAnonymize"]) ? $value["toAnonymize"] : false;
 
         if (isset($value["description"])) {
             $attribute->description = $value["description"];

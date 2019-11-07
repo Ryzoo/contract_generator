@@ -6,15 +6,16 @@
             :placeholder="String(attribute.placeholder)"
             :error="validationError.length > 0"
             :error-messages="validationError"
+            :hint="attribute.description"
+            :persistent-hint="!!attribute.description"
             outlined
             filled
-            append-outer-icon="fa-question-circle"
             @change="changeValue"
         >
-            <template v-slot:append-outer v-if="attribute.additionalInformation">
+            <template v-slot:append-outer v-if="attribute.additionalInformation && attribute.additionalInformation.length > 0">
                 <v-tooltip right>
                     <template v-slot:activator="{ on }">
-                        <v-icon dark v-on="on">fa-question-circle</v-icon>
+                        <v-icon color="primary" dark v-on="on">fa-question-circle</v-icon>
                     </template>
                     <span>{{attribute.additionalInformation}}</span>
                 </v-tooltip>
