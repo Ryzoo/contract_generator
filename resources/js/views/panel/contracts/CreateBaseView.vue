@@ -76,7 +76,8 @@
         });
       },
       saveAndBuild(){
-        this.saveContract(()=>{
+        this.saveContract((res)=>{
+          this.$store.dispatch("newContract_setUpdate", res.data);
           this.$router.push("/panel/contracts/builder");
         });
       },
@@ -96,7 +97,7 @@
               notify.SUCCESS
           );
           if(callback)
-            callback();
+            callback(response);
         })
             .finally(() => {
               this.isLoaded = true;
