@@ -59,56 +59,62 @@
       }
     },
     methods: {
-      init(){
+      init() {
         this.contract = this.$store.getters.getNewContractData;
       },
-      saveContractDataToStore(value){
+      saveContractDataToStore(value) {
         this.$store.dispatch("newContract_setName", value);
       },
       cancelAddContract() {
         this.$store.dispatch("newContract_clear");
         this.$router.push("/panel/contracts");
       },
-      saveAndExit(){
-        this.saveContract(()=>{
+      saveAndExit() {
+        this.saveContract(() => {
           this.$store.dispatch("newContract_clear");
           this.$router.push("/panel/contracts");
         });
       },
-      saveAndBuild(){
-        this.saveContract((res)=>{
-          this.$store.dispatch("newContract_setUpdate", res.data);
+      saveAndBuild() {
+        this.saveContract((res) => {
+          this.$store.dispatch("newContract_setUpdate", {
+            id: res.data.id,
+            ...this.$store.getters.getNewContractData
+          });
           this.$router.push("/panel/contracts/builder");
         });
       },
-      saveContract(callback){
+      saveContract(callback) {
         this.isLoaded = false;
         const isEditMode = this.contractId !== null;
         let request = null;
 
-        if(isEditMode)
+        if (isEditMode) {
           request = axios.put(`/contract/${this.contractId}`, this.$store.getters.getNewContractData);
-        else
+        }
+        else {
           request = axios.post(`/contract`, this.$store.getters.getNewContractData);
+        }
 
         request.then(response => {
           notify.push(
               this.$t("form.contractAddForm.notify.success"),
               notify.SUCCESS
           );
-          if(callback)
+          if (callback) {
             callback(response);
+          }
         })
             .finally(() => {
               this.isLoaded = true;
             });
       },
-      loadContract(callback){
+      loadContract(callback) {
         this.isLoaded = false;
         axios.get(`/contract/${this.contractId}`)
             .then(response => {
               this.$store.dispatch("newContract_setUpdate", response.data)
-                  .then(()=>{
+                  .then(() => {
                     this.isLoaded = true;
                     this.init();
                   })
@@ -116,9 +122,10 @@
       }
     },
     mounted() {
-      if(this.$route.params.id !== undefined){
+      if (this.$route.params.id !== undefined) {
         this.loadContract()
-      }else{
+      }
+      else {
         this.isLoaded = true;
         this.init();
       }
