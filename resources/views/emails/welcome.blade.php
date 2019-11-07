@@ -1,12 +1,12 @@
 @component('mail::message')
-# {{__("email.welcome_header")}}
+# {{__("email.base.welcome_contract")}}
 
 {{__("email.welcome.info")}}
 
 @component('mail::button', ['url' => url('/')])
-    {{__("email.go_to_page")}}
+    {{__("email.base.go_to_page")}}
 @endcomponent
 
-{{__("email.thanks")}},<br>
+{{__("email.base.thanks")}},<br>
 {{ config('app.name') }}
 @endcomponent
