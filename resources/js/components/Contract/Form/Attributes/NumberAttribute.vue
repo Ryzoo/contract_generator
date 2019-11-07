@@ -3,7 +3,7 @@
         <v-text-field
             :label="attribute.name"
             :value="attribute.value"
-            :placeholder="String(attribute.placeholder)"
+            :placeholder="attribute.placeholder ? String(attribute.placeholder) : ''"
             :error="validationError.length > 0"
             :error-messages="validationError"
             outlined

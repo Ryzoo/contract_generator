@@ -19,7 +19,7 @@ class AttributeResolver {
     }
 
     public function resolveText(string $text) {
-        preg_match_all('/{(\d)}/', $text, $attributeIdList);
+        preg_match_all('/{(\d+)}/', $text, $attributeIdList);
 
         foreach ($attributeIdList[1] as $id){
             $value = $this->getAttributeValueById(intval($id));

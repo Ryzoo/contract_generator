@@ -11,7 +11,7 @@
             :hint="attribute.description"
             :persistent-hint="!!attribute.description"
             :multiple="!!attribute.settings.isMultiSelect"
-            :placeholder="String(attribute.placeholder)"
+            :placeholder="attribute.placeholder ? String(attribute.placeholder) : ''"
             @change="changeValue"
         >
             <template v-slot:append-outer v-if="attribute.additionalInformation && attribute.additionalInformation.length > 0">

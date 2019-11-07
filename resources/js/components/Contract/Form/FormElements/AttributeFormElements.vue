@@ -17,6 +17,7 @@
   import TextAttribute from "./../Attributes/TextAttribute";
   import SelectAttribute from "../Attributes/SelectAttribute";
   import AttributeValidator from "../Validators/AttributeValidator";
+  import RepeatGroupAttribute from "../Attributes/RepeatGroupAttribute";
 
   export default {
     name: "AttributeFormElements",
@@ -24,7 +25,8 @@
     components: {
       NumberAttribute,
       TextAttribute,
-      SelectAttribute
+      SelectAttribute,
+      RepeatGroupAttribute
     },
     data() {
       return {

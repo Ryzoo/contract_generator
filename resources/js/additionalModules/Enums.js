@@ -13,7 +13,8 @@ export const BlockTypeEnum = {
 export const AttributeTypeEnum = {
     NUMBER: 0,
     TEXT: 1,
-    SELECT: 2
+    SELECT: 2,
+    REPEAT_GROUP: 3
 };
 
 export const ConditionalEnum = {

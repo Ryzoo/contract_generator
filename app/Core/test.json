@@ -2,6 +2,44 @@
     "name": "Umowa zabezpieczona hasłem 1234 z providerem",
     "attributesList": [
         {
+            "attributeName": "Repeat Group",
+            "id": 9,
+            "attributeType": 3,
+            "description": "A tutaj fajny opis",
+            "additionalInformation": "To jest coś dziwnego",
+            "content": [
+                {
+                    "attributeName": "Imię",
+                    "attributeType": 1,
+                    "defaultValue" : "",
+                    "placeholder" : "",
+                    "description": "A tutaj fajny opis",
+                    "additionalInformation": "To jest coś dziwnego",
+                    "toAnonymize": true,
+                    "settings": {
+                        "required": true,
+                        "lengthMin": 3,
+                        "lengthMax": 50
+                    }
+                },{
+                    "attributeName": "Nazwisko",
+                    "attributeType": 1,
+                    "defaultValue" : "",
+                    "placeholder" : "",
+                    "settings": {
+                        "required": true,
+                        "lengthMin": 3,
+                        "lengthMax": 50
+                    }
+                }
+            ],
+            "settings": {
+                "required": true,
+                "lengthMin": 3,
+                "lengthMax": 50
+            }
+        },
+        {
             "attributeName": "Imię",
             "id": 0,
             "attributeType": 1,
@@ -96,11 +134,11 @@
                 "blocks": [
                     {
                         "id": 4,
-                        "parentId": 2,
+                        "parentId": 3,
                         "blockType": 0,
                         "blockName": "test",
                         "content": {
-                            "text": "Ta treść jest ukazana na drugiej stronie o ile uzytkownik ma więcej niż 18lat i wzrost powyżej 150cm jego płeć to - {4}"
+                            "text": "Ta treść jest ukazana na drugiej stronie o ile uzytkownik ma więcej niż 18lat i wzrost powyżej 150cm jego płeć to - {4} - {9}"
                         },
                         "conditionals": [],
                         "settings":{}

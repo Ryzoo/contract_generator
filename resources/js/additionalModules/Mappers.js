@@ -36,6 +36,8 @@ class Mapper {
                 return "TextAttribute";
             case AttributeTypeEnum.SELECT:
                 return "SelectAttribute";
+            case AttributeTypeEnum.REPEAT_GROUP:
+                return "RepeatGroupAttribute";
             default:
                 return "NotFoundAttribute";
         }
