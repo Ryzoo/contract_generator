@@ -124,6 +124,7 @@
             });
       },
       goToEdit(id){
+
         this.$router.push(`contracts/edit/${id}`);
       }
     },

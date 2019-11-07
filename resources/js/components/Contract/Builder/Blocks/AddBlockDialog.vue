@@ -62,8 +62,8 @@
         if (this.newBlock.blockType === 0)
           this.newBlock.content = { text: "" };
 
-        this.newBlock.id = this.$store.getters.builder_getId;
-        this.$store.dispatch('builder_idIncrement');
+        this.newBlock.id = this.$store.getters.builder_getBlockId;
+        this.$store.dispatch('builder_idBlockIncrement');
 
         this.newBlock.blockName = `New block: ${this.newBlock.id}`;
 

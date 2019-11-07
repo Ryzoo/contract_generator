@@ -34,6 +34,7 @@ const actions = {
 
 const mutations = {
     NEW_CONTRACT_SET_UPDATE: (state, data) => {
+      console.log(data);
         state.contract = data;
         state.mode.update = true;
         state.mode.id = data.id;

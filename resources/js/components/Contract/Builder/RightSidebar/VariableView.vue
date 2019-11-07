@@ -51,6 +51,7 @@
         <div class="options-section-3">
             <span class="sub-title">Lista zmiennych</span>
             <div class="builder-elements">
+<!--                TODO: Load into inputs variable settings when click-->
                 <div v-for="attribute in attributesList" class="variables-list">
                     <span class="variable">{{attribute.attributeName}}</span>
                 </div>
@@ -69,7 +70,7 @@
         variableOptions: Selector.VariableType,
         attribute: {
           attributeName: "",
-          id: "",
+          id: this.$store.getters.builder_getVariableId,
           attributeType: "",
           defaultValue: "",
           placeholder: "",
@@ -90,10 +91,11 @@
       saveVariable() {
         this.attributesList.push(this.attribute);
         this.$store.dispatch("builder_setVariable", this.attributesList);
+        this.$store.dispatch("builder_idVariableIncrement");
 
         this.attribute = {
           attributeName: "",
-          id: "",
+          id: this.$store.getters.builder_getVariableId,
           attributeType: "",
           defaultValue: "",
           placeholder : "",
