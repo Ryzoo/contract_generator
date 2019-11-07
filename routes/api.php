@@ -36,15 +36,24 @@ Route::group(['middleware' => 'auth:token'], function(){
     });
 
     Route::prefix('contract')->group(function () {
-        Route::get('/', 'ContractController@getContractList');
-        Route::get('/modules', 'ContractController@getAvailableModules');
-        Route::post('/', 'ContractController@addNewContract');
-        Route::get('/{id}/form', 'ContractController@getContractForm');
-        Route::post('/{id}/render', 'ContractController@renderContractForm');
-        Route::get('/{id}/modules', 'ContractController@getInformationAboutContractModules');
-        Route::get('/{id}', 'ContractController@getContract');
-        Route::put('/{id}', 'ContractController@updateContract');
-        Route::delete('/{id}', 'ContractController@removeContract');
-        Route::delete('/', 'ContractController@removeMultiContract');
+        Route::prefix('modules')->group(function () {
+            Route::get('/', 'Contract\ContractModulesController@getAvailable');
+            Route::get('/{contract}', 'Contract\ContractModulesController@getInformationFromContract');
+        });
+
+        Route::prefix('form')->group(function () {
+            Route::get('/{contract}', 'Contract\ContractFormController@get');
+        });
+
+        Route::get('/', 'ContractController@getCollection');
+        Route::get('/{contract}', 'ContractController@get');
+
+        Route::post('/', 'ContractController@add');
+        Route::post('/{contract}/render', 'ContractController@render');
+
+        Route::put('/{contract}', 'ContractController@update');
+
+        Route::delete('/{contract}', 'ContractController@remove');
+        Route::delete('/', 'ContractController@removeCollection');
     });
 });

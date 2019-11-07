@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Core\Enums\Modules\ContractModulePart;
 use App\Core\Helpers\Response;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\Contracts\ContractAddRequest;
+use App\Http\Requests\Contracts\ContractRemoveCollectionRequest;
+use App\Http\Requests\Contracts\ContractRenderRequest;
+use App\Http\Requests\Contracts\ContractUpdateRequest;
 use App\Core\Models\Domain\Contract;
-use App\Core\Modules\Configuration;
-use App\Core\Repository\Domain\ContractRepository;
 use App\Core\Services\Domain\ContractService;
-use App\Core\Services\Domain\FormService;
 use App\Core\Services\Domain\ContractModuleService;
 use Illuminate\Http\Request;
 
@@ -21,66 +21,25 @@ class ContractController extends Controller {
     private $contractService;
 
     /**
-     * @var FormService
-     */
-    private $formService;
-
-    /**
-     * @var \App\Core\Repository\Domain\ContractRepository
-     */
-    private $contractRepository;
-
-    /**
      * @var \App\Core\Services\Domain\ContractModuleService
      */
     private $contractModuleService;
 
-    /**
-     * @var \App\Core\Modules\Configuration
-     */
-    private $configuration;
-
-    public function __construct(ContractService $contractService, FormService $formService,
-                                ContractRepository $contractRepository, ContractModuleService $contractModuleService,
-                                Configuration $configuration) {
+    public function __construct(ContractService $contractService, ContractModuleService $contractModuleService) {
         $this->contractService = $contractService;
-        $this->formService = $formService;
-        $this->contractRepository = $contractRepository;
         $this->contractModuleService = $contractModuleService;
-        $this->configuration = $configuration;
     }
 
-    public function addNewContract(Request $request) {
-        Validator::validate($request->all(), Contract::$rulesAddRequestCreate);
-
+    public function add(ContractAddRequest $request) {
         $contract = new Contract();
-        $contract->fill($request->all());
+        $contract->fill($request->validated());
 
         $fullContract = $this->contractService->createContract($contract);
 
         Response::success($fullContract);
     }
 
-    public function getContractForm(Request $request, int $contractID) {
-        Validator::validate($request->all(), [
-            "password" => "nullable|string",
-        ]);
-
-        $contract = Contract::findOrFail($contractID);
-
-        $this->contractModuleService->runPart($contract, ContractModulePart::GET_CONTRACT, [
-            "password" => $request->get("password") ?? "",
-        ]);
-
-        Response::success($contract->form->formElements);
-    }
-
-    public function renderContractForm(Request $request, int $contractID) {
-        Validator::validate($request->all(), [
-            "formElements" => "required|array",
-        ]);
-
-        $contract = $this->contractRepository->getById($contractID);
+    public function render(ContractRenderRequest $request, Contract $contract) {
         $returnData = $this->contractModuleService->runPart($contract, ContractModulePart::RENDER_CONTRACT, [
             "formElements" => $request->get("formElements"),
             "contract" => $contract,
@@ -93,16 +52,12 @@ class ContractController extends Controller {
         Response::success();
     }
 
-    public function removeContract(Request $request, int $contractID) {
+    public function remove(Request $request, int $contractID) {
         $this->contractService->removeContractById([$contractID]);
         Response::success();
     }
 
-    public function removeMultiContract(Request $request) {
-        Validator::validate($request->all(), [
-            "idList" => "required|string",
-        ]);
-
+    public function removeCollection(ContractRemoveCollectionRequest $request) {
         $listOfContractId = explode(",", $request->get("idList"));
 
         if (is_array($listOfContractId)) {
@@ -112,34 +67,17 @@ class ContractController extends Controller {
         Response::success();
     }
 
-    public function getContractList(Request $request) {
-        $contractCollection = $this->contractRepository->getContractCollection();
-        Response::success($contractCollection);
+    public function getCollection(Request $request) {
+        Response::success(Contract::all());
     }
 
-    public function getAvailableModules(Request $request) {
-        $availableModules = $this->configuration->getAvailableModules();
-        Response::success($availableModules);
-    }
-
-    public function getContract(Request $request, int $contractID) {
-        $contract = $this->contractRepository->getById($contractID);
+    public function get(Request $request, Contract $contract) {
         Response::success($contract);
     }
 
-    public function updateContract(Request $request, int $contractID) {
-        Validator::validate($request->all(), Contract::$rulesAddRequestCreate);
-
-        $contract = $this->contractRepository->getById($contractID);
-        $contract->fill($request->all());
-
+    public function update(ContractUpdateRequest $request, Contract $contract) {
+        $contract->fill($request->validated());
         $fullContract = $this->contractService->createContract($contract);
-
         Response::success($fullContract);
-    }
-
-    public function getInformationAboutContractModules(Request $request, int $contractID) {
-        $contract = Contract::findOrFail($contractID);
-        Response::success($this->contractModuleService->getModuleInformation($contract));
     }
 }

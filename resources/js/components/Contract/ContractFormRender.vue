@@ -145,7 +145,7 @@
         this.isLoading = true;
         const additionalParam = this.getAttributesFromArrayWithObject(additionalAttributes);
 
-        axios.get(`/contract/${this.contract.id}/form?${additionalParam}`)
+        axios.get(`/contract/form/${this.contract.id}?${additionalParam}`)
             .then((response) => {
               this.$store.dispatch("formElements_set", response.data);
             })
@@ -174,7 +174,7 @@
       },
       loadContractModules() {
         this.isLoading = true;
-        axios.get(`/contract/${this.contract.id}/modules`)
+        axios.get(`/contract/modules/${this.contract.id}`)
             .then((response) => {
               this.$store.dispatch("contractModules_set", response.data);
             })

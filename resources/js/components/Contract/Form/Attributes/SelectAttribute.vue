@@ -1,6 +1,6 @@
 <template>
     <v-col sm="12">
-        <v-select
+        <v-autocomplete
             :items="this.attribute.settings.items"
             outlined
             filled
@@ -22,7 +22,7 @@
                     <span>{{attribute.additionalInformation}}</span>
                 </v-tooltip>
             </template>
-        </v-select>
+        </v-autocomplete>
     </v-col>
 </template>
 
