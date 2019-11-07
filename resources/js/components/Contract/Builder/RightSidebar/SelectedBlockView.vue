@@ -54,6 +54,9 @@
       activeBlock(){
         console.log('now',this.$store.state.builder.builder.activeBlock);
         return this.$store.state.builder.builder.activeBlock;
+      },
+      blocks() {
+        return this.$store.getters.builder_allBlocks;
       }
     },
     methods:{
