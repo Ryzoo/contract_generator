@@ -133,13 +133,13 @@ abstract class Attribute implements IAttribute {
         Attribute::validate($value);
         $attribute = self::getAttributeByType($value["attributeType"]);
 
-        $attribute->attributeType = $value["attributeType"];
+        $attribute->attributeType = intval($value["attributeType"]);
         $attribute->attributeName = AttributeType::getName($value["attributeType"]);
         $attribute->settings = $value["settings"];
         $attribute->name = $value["attributeName"];
         $attribute->conditionals = isset($value["conditionals"]) ? Conditional::getListFromString(json_encode($value["conditionals"])) : [];
         $attribute->id = intval($value["id"]);
-        $attribute->toAnonymize = isset($value["toAnonymize"]) ? $value["toAnonymize"] : FALSE;
+        $attribute->toAnonymize = isset($value["toAnonymize"]) ? $value["toAnonymize"] : false;
         $attribute->description = isset($value["description"]) ? $value["description"] : "";
         $attribute->additionalInformation = isset($value["additionalInformation"]) ? $value["additionalInformation"] : "";
         $attribute->defaultValue = isset($value["defaultValue"]) ? $value["defaultValue"] : NULL;

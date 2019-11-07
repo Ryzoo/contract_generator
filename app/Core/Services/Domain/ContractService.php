@@ -6,7 +6,6 @@ namespace App\Core\Services\Domain;
 
 use App\Core\Helpers\PdfRenderer;
 use App\Core\Models\Domain\Contract;
-use App\Core\Repository\Domain\ContractRepository;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -16,15 +15,9 @@ class ContractService {
      */
     private $formService;
 
-    /**
-     * @var \App\Core\Repository\Domain\ContractRepository
-     */
-    private $contractRepository;
 
-
-    public function __construct(FormService $formService, ContractRepository $contractRepository) {
+    public function __construct(FormService $formService) {
         $this->formService = $formService;
-        $this->contractRepository = $contractRepository;
     }
 
     public function createContract(Contract $contract): Contract {
@@ -39,7 +32,7 @@ class ContractService {
 
     public function removeContractById(array $contractList){
         foreach ($contractList as $contractId){
-            $contract = $this->contractRepository->getById($contractId);
+            $contract = Contract::findOrFail($contractId);
 
             DB::transaction(function() use(&$contract) {
                 $contract->form->delete();
@@ -48,8 +41,8 @@ class ContractService {
         }
     }
 
-    public function renderContract(int $contractID, Collection $formElements) {
-        $contract = $this->contractRepository->getById($contractID);
+    public function renderContract(int $contractId, Collection $formElements) {
+        $contract = Contract::findOrFail($contractId);
         $blocks = $contract->blocks;
 
         $pdfRenderer = new PdfRenderer();

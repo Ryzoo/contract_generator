@@ -16,32 +16,26 @@ class Contract extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'name' => 'required|string|between:5,190',
         'attributesList' => 'array',
         'blocks' => 'array',
         'settings' => 'array',
     ];
 
-    public static $rulesAddRequestCreate= array(
-        'name' => 'required|string|between:5,190',
-        'attributesList'    => 'array',
-        'blocks'        => 'array',
-        'settings'      => 'array',
-    );
+    protected $appends = ['attributesList','blocks','settings'];
 
     public function getAttributesListAttribute($value): Collection
     {
-        return collect(Attribute::getListFromString($value));
+        return collect(Attribute::getListFromString($value ?? $this->attributesList));
     }
 
     public function getBlocksAttribute($value): Collection
     {
-        return collect(Block::getListFromString($value));
+        return collect(Block::getListFromString($value ?? $this->blocks));
     }
 
     public function getSettingsAttribute($value): Collection
     {
-        return collect(json_decode($value));
+        return collect(json_decode($value ?? $this->settings));
     }
 
     public function getBlockCollection():Collection {
