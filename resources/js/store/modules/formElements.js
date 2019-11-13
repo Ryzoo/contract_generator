@@ -21,7 +21,6 @@ const mutations = {
             e.id = index;
             if(e.elementType === FormElementsEnum.ATTRIBUTE){
                 e.attribute.value = e.attribute.defaultValue;
-                console.log(e.isValid);
             }
             return e;
         });

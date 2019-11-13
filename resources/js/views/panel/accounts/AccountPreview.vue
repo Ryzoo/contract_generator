@@ -41,7 +41,6 @@ export default {
             axios
                 .get(`/user/${userID}`)
                 .then(response => {
-                    console.log(response.data);
                     this.userData = response.data;
                 })
                 .finally(() => {

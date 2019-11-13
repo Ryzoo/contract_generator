@@ -30,7 +30,6 @@ const mutations = {
     BUILDER_SET_BLOCK: (state, data) => {
         state.builder.blocks = [];
         state.builder.blocks = data;
-        console.log(state.builder.blocks);
     },
     BUILDER_SET_ACTIVE_BLOCK: (state, data) => {
         state.builder.activeBlock = state.builder.blocks.find(x => x.id === data.id);

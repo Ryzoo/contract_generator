@@ -39,20 +39,31 @@ class AttributeValidator{
     }
 
     isEmpty(){
-        return this.value === null || this.value === undefined || this.value === "" || (this.value.length === undefined && isNaN(this.value));
+        if(this.isArray()){
+            return this.value.length === 0;
+        }else{
+            return this.value === null || this.value === undefined || this.value === "" || (this.value.length === undefined && isNaN(this.value));
+        }
     }
+
+    isArray(){
+        console.log("isarray", Array.isArray(this.value), this.value);
+        return Array.isArray(this.value);
+    }
+
     isDefault(){
         return this.attribute.defaultValue !== null && this.attribute.defaultValue !== undefined && this.attribute.defaultValue === this.value;
     }
+
     isInteger(){
         return !isNaN(parseInt(this.value))
     }
+
     isString(){
         return String(this.value).length > 0;
     }
 
     validateRequired(){
-
         if(!!this.settings.required && this.isEmpty()){
             const validationError = i18n.t('validation.required', {
                 attribute: this.attribute.name,
@@ -107,18 +118,21 @@ class AttributeValidator{
     validateLengthMin(){
         if (this.settings.lengthMin) {
 
-            if(!this.isString()){
+            if(!this.isString() && !this.isArray()){
                 const validationError = i18n.t('validation.string', {
                     attribute: this.attribute.name,
                 });
                 return this.setResponse(validationError,false);
             }
-
-            if(String(this.value).length < parseInt(this.settings.lengthMin)){
-                const validationError = i18n.t('validation.min.string', {
+            if((this.isArray() ? this.value.length :String(this.value).length) < parseInt(this.settings.lengthMin)){
+                const validationError = this.isArray() ? i18n.t('validation.min.array', {
+                    attribute: this.attribute.name,
+                    min: this.settings.lengthMin
+                }) : i18n.t('validation.min.array', {
                     attribute: this.attribute.name,
                     min: this.settings.lengthMin
                 });
+
                 return this.setResponse(validationError,false);
             }
         }
@@ -128,18 +142,22 @@ class AttributeValidator{
     validateLengthMax(){
         if (this.settings.lengthMax) {
 
-            if(!this.isString()){
+            if(!this.isString() && !this.isArray()){
                 const validationError = i18n.t('validation.string', {
                     attribute: this.attribute.name,
                 });
                 return this.setResponse(validationError,false);
             }
 
-            if(String(this.value).length > parseInt(this.settings.lengthMax)){
-                const validationError = i18n.t('validation.min.string', {
+            if((this.isArray() ? this.value.length : String(this.value).length) > parseInt(this.settings.lengthMax)){
+                const validationError = this.isArray() ? i18n.t('validation.max.string', {
+                    attribute: this.attribute.name,
+                    max: this.settings.lengthMax
+                }) : i18n.t('validation.max.array', {
                     attribute: this.attribute.name,
                     max: this.settings.lengthMax
                 });
+
                 return this.setResponse(validationError,false);
             }
         }

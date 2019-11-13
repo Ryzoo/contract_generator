@@ -3,7 +3,6 @@
         <v-autocomplete
             :items="this.attribute.settings.items"
             outlined
-            filled
             :error="validationError.length > 0"
             :error-messages="validationError"
             :label="attribute.name"
@@ -11,6 +10,7 @@
             :hint="attribute.description"
             :persistent-hint="!!attribute.description"
             :multiple="!!attribute.settings.isMultiSelect"
+            :dense="dense"
             :placeholder="attribute.placeholder ? String(attribute.placeholder) : ''"
             @change="changeValue"
         >
@@ -29,7 +29,7 @@
 <script>
   export default {
     name: "SelectAttribute",
-    props: ["attribute", "validationError"],
+    props: ["attribute", "validationError", "dense"],
     data(){
       return {
         currentValue: this.attribute.value

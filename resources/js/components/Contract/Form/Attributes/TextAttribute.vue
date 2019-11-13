@@ -9,7 +9,7 @@
             :hint="attribute.description"
             :persistent-hint="!!attribute.description"
             outlined
-            filled
+            :dense="dense"
             @change="changeValue"
         >
             <template v-slot:append-outer v-if="attribute.additionalInformation && attribute.additionalInformation.length > 0">
@@ -27,7 +27,7 @@
 <script>
 export default {
     name: "NumberAttribute",
-    props: ["attribute", "validationError"],
+    props: ["attribute", "validationError", "dense"],
     methods: {
         changeValue(newValue) {
             this.$emit("change-value", newValue)

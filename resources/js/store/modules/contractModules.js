@@ -17,7 +17,6 @@ const mutations = {
 const getters = {
     availableModules: state => state.availableModules,
     getContractModulesForAction: state => actionType =>{
-        console.log(actionType, state.availableModules);
         return state.availableModules.filter( e => {
             return e.renderHooks && !!e.renderHooks[`action-${actionType}`];
         });

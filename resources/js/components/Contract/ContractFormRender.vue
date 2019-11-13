@@ -3,7 +3,8 @@
         v-if="!isLoading"
         color="#446477"
     >
-        <v-card-text class="white--text" v-if="currentAction === availableActionsHook.BEFORE_FORM_RENDER">
+        <v-card-text class="white--text"
+                     v-if="currentAction === availableActionsHook.BEFORE_FORM_RENDER">
             <action-renderer
                 v-model="currentAction"
                 @action-pass="loadContractForm"
@@ -11,8 +12,8 @@
             ></action-renderer>
         </v-card-text>
 
-        <v-card-text class="white--text" v-if="currentAction === availableActionsHook.FORM_RENDER">
-            <div class="headline mb-2">{{contract.name}}</div>
+        <v-card-text v-if="currentAction === availableActionsHook.FORM_RENDER">
+            <div class="white--text headline mb-2">{{contract.name}}</div>
             <v-divider></v-divider>
             <v-stepper v-model="actualStep">
                 <v-stepper-header>
@@ -116,7 +117,6 @@
     watch: {
       actualStep(vv) {
         this.$forceUpdate();
-        console.log(vv);
       },
       contract(oldValue, newValue) {
         if (oldValue !== newValue) {

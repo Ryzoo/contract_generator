@@ -7,7 +7,7 @@
             :error="validationError.length > 0"
             :error-messages="validationError"
             outlined
-            filled
+            :dense="dense"
             :hint="attribute.description"
             :persistent-hint="!!attribute.description"
             type="number"
@@ -28,7 +28,7 @@
 <script>
   export default {
     name: "NumberAttribute",
-    props: ["attribute", "validationError"],
+    props: ["attribute", "validationError", "dense"],
     methods: {
       changeValue( newValue ){
         this.$emit("change-value", parseInt(newValue));
