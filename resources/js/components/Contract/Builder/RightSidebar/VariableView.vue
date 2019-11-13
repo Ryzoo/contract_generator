@@ -9,17 +9,22 @@
                     outlined
                     color="primary"
                     dense
-                    :value="attribute.attributeType"
+                    v-model="attribute.attributeType"
+                    @change="setSettingsForType"
                 >
                 </v-select>
                 <v-text-field v-model="attribute.attributeName" label="Nazwa" outline></v-text-field>
+                <v-text-field v-model="attribute.placeholder" label="Placeholder" outline></v-text-field>
+                <v-text-field v-model="attribute.description" label="Opis" outline></v-text-field>
+                <v-text-field v-model="attribute.defaultValue" label="Domyślna wartość" outline></v-text-field>
+                <v-text-field v-model="attribute.additionalInformation" label="Dodatkowe informacje" outline></v-text-field>
+                <v-checkbox label="Czy pole ma być anonimowe" v-model="attribute.toAnonymize"></v-checkbox>
             </div>
-            <v-checkbox
-                v-model="attribute.settings.required"
-                label="Czy wymagane"
-            ></v-checkbox>
-            <v-text-field v-model="attribute.settings.lengthMin" label="Min" outline></v-text-field>
-            <v-text-field v-model="attribute.settings.lengthMax" label="Max" outline></v-text-field>
+
+            <VariableSettings
+                :settings="attribute.settings"
+                @save="saveSettingsInput"
+            />
             <div class="block-button">
                 <v-btn color="primary" @click="saveVariable()">Zapisz</v-btn>
             </div>
@@ -35,7 +40,7 @@
                             outlined
                             color="primary"
                             dense
-                            :value="attribute.attributeType"
+                            v-model="attribute.attributeType"
                         >
                         </v-select>
                         <v-text-field v-model="attribute.attributeName" label="Nazwa"
@@ -51,7 +56,7 @@
         <div class="options-section-3">
             <span class="sub-title">Lista zmiennych</span>
             <div class="builder-elements">
-<!--                TODO: Load into inputs variable settings when click-->
+                <!--                TODO: Load into inputs variable settings when click-->
                 <div v-for="attribute in attributesList" class="variables-list">
                     <span class="variable">{{attribute.attributeName}}</span>
                 </div>
@@ -61,54 +66,74 @@
 </template>
 
 <script>
-  import Selector from "../../../../additionalModules/StaticSelectors";
+    import VariableSettings from "./VariableView/VariableSettings";
 
-  export default {
-    name: "VariableView",
-    data(){
-      return {
-        variableOptions: Selector.VariableType,
-        attribute: {
-          attributeName: "",
-          id: this.$store.getters.builder_getVariableId,
-          attributeType: "",
-          defaultValue: "",
-          placeholder: "",
-          settings: {
-            required: "",
-            lengthMin: "",
-            lengthMax: ""
-          }
+    export default {
+        name: "VariableView",
+        components: {
+            VariableSettings
         },
-        conditional: "",
-        attributesList: []
-      }
-    },
-    mounted() {
-      this.attributesList = this.$store.getters.builder_allVariables;
-    },
-    methods:{
-      saveVariable() {
-        this.attributesList.push(this.attribute);
-        this.$store.dispatch("builder_setVariable", this.attributesList);
-        this.$store.dispatch("builder_idVariableIncrement");
+        data() {
+            return {
+                variableOptions: [],
+                attribute: this.getDefaultAttribute(),
+                conditional: "",
+                attributesList: [],
+                allAttributes: []
+            }
+        },
+        mounted() {
+            this.getAllAttributes();
+            this.attributesList = this.$store.getters.builder_allVariables;
+        },
+        methods: {
+            saveSettingsInput(inputData) {
+                this.attribute.settings[inputData.name] = inputData.value;
+            },
+            setSettingsForType() {
+                this.attribute.settings = this.getSettingsForType(this.attribute.attributeType);
+            },
+            getSettingsForType(type) {
+                let attributeType = this.allAttributes.find(x => x.attributeType === type);
+                return attributeType ? attributeType.settings : [];
+            },
+            getAllAttributes() {
+                axios.get("elements/attributes")
+                    .then((res) => {
+                        this.allAttributes = res.data;
+                        this.variableOptions = res.data.map(x => {
+                            return {
+                                value: x.attributeType,
+                                text: x.attributeName
+                            }
+                        })
+                    })
 
-        this.attribute = {
-          attributeName: "",
-          id: this.$store.getters.builder_getVariableId,
-          attributeType: "",
-          defaultValue: "",
-          placeholder : "",
-          settings: {
-            required: "",
-            lengthMin: "",
-            lengthMax: ""
-          }
+
+            },
+            getDefaultAttribute() {
+                return {
+                    attributeName: "",
+                    id: this.$store.getters.builder_getVariableId,
+                    attributeType: -1,
+                    defaultValue: "",
+                    additionalInformation: "",
+                    placeholder: "",
+                    description: "",
+                    toAnonymize: "",
+                    settings: {}
+                }
+            },
+            saveVariable() {
+                this.attributesList.push(this.attribute);
+                this.$store.dispatch("builder_setVariable", this.attributesList);
+                this.$store.dispatch("builder_idVariableIncrement");
+
+                this.attribute = this.getDefaultAttribute();
+
+            },
         }
-
-      },
     }
-  }
 </script>
 
 <style scoped>

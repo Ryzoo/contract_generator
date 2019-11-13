@@ -1,4 +1,6 @@
 <template>
+<!--    TODO: When click edit, right sidebar show up 2nd position-->
+<!--    TODO: Change to own expansion panel-->
     <summary class="block-header">
         <div class="block-header--icon">
             <v-icon class="mx-3">fa-chevron-right</v-icon>

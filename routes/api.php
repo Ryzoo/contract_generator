@@ -45,8 +45,8 @@ Route::group(['middleware' => 'auth:token'], function(){
             Route::get('/{contract}', 'Contract\ContractFormController@get');
         });
 
-        Route::get('/', 'ContractController@getCollection');
         Route::get('/{contract}', 'ContractController@get');
+        Route::get('/', 'ContractController@getCollection');
 
         Route::post('/', 'ContractController@add');
         Route::post('/{contract}/render', 'ContractController@render');
