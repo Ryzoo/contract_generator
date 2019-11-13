@@ -39,7 +39,7 @@ class TextBlock extends Block {
     public function findVariable(Contract $contract): Collection{
         $variableArray = parent::findVariable($contract);
 
-        preg_match_all('/{(\d)}/', $this->content["text"], $output_array);
+        preg_match_all('/{(\d+)}/', $this->content["text"], $output_array);
 
         foreach ($output_array[1] as $output){
             $variableArray->push([$this->id, $output]);

@@ -48,14 +48,6 @@ abstract class FormElement implements IFormElement {
         $this->parentBlockId = $parentBlockId;
     }
 
-    protected function initialize(int $elementType) {
-        $this->elementType = $elementType;
-        $this->elementName = ElementType::getName($elementType);
-        $this->conditionals = collect();
-        $this->isValid = TRUE;
-        $this->isActive = TRUE;
-    }
-
     public static function validate($value): bool {
         Validator::validate($value, [
             "parentBlockId" => "required|integer",
@@ -66,6 +58,14 @@ abstract class FormElement implements IFormElement {
         ]);
 
         return TRUE;
+    }
+
+    protected function initialize(int $elementType) {
+        $this->elementType = $elementType;
+        $this->elementName = ElementType::getName($elementType);
+        $this->conditionals = collect();
+        $this->isValid = TRUE;
+        $this->isActive = TRUE;
     }
 
     public static function getFormElementByType(int $formElementType, array $value): FormElement {
@@ -96,7 +96,7 @@ abstract class FormElement implements IFormElement {
             throw new ErrorException(_('custom.array.attributes'), 500);
         }
 
-        /** @var \App\Models\Domain\FormElements\FormElement $formElement */
+        /** @var \App\Core\Models\Domain\FormElements\FormElement $formElement */
         foreach ($arrayOfElements as $formElement) {
             $returnedArray->push(self::getFromString((array) $formElement));
         }

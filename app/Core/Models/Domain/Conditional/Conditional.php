@@ -82,7 +82,7 @@ abstract class Conditional implements IConditional {
         $usedVariables = collect();
 
         foreach ($this->content as $element) {
-            preg_match_all('/{(\d)}/', $element, $output_array);
+            preg_match_all('/{(\d+)}/', $element, $output_array);
 
             if (isset($output_array[1]) && is_array($output_array[1])) {
                 foreach ($output_array[1] as $arrayElement) {

@@ -44,6 +44,11 @@ abstract class Attribute implements IAttribute {
     public $conditionals;
 
     /**
+     * @var array
+     */
+    public $content;
+
+    /**
      * @var string
      */
     public $placeholder;
@@ -89,6 +94,10 @@ abstract class Attribute implements IAttribute {
         $this->buildSettings();
     }
 
+    protected function parseContent(){
+        $this->content = (isset($this->content) && is_array($this->content) )? self::getListFromString(json_encode($this->content)) : [];
+    }
+
     public static function getAttributeByType(int $attributeType): Attribute {
         switch ($attributeType) {
             case AttributeType::NUMBER:
@@ -97,6 +106,8 @@ abstract class Attribute implements IAttribute {
                 return new TextAttribute();
             case AttributeType::SELECT:
                 return new SelectAttribute();
+            case AttributeType::REPEAT_GROUP:
+                return new RepeatGroupAttribute();
         }
 
         throw new NotFoundException("Attribute type number:{$attributeType} was not found");
@@ -104,7 +115,7 @@ abstract class Attribute implements IAttribute {
 
     public static function validate($value): bool {
         Validator::validate($value, [
-            "id" => "required|integer",
+            "id" => "sometimes|required|integer",
             "attributeType" => "required|integer",
             "attributeName" => "required|string",
             "conditionals" => "sometimes|array",
@@ -138,13 +149,16 @@ abstract class Attribute implements IAttribute {
         $attribute->settings = $value["settings"];
         $attribute->name = $value["attributeName"];
         $attribute->conditionals = isset($value["conditionals"]) ? Conditional::getListFromString(json_encode($value["conditionals"])) : [];
-        $attribute->id = intval($value["id"]);
+        $attribute->id = isset($value["id"]) ? intval($value["id"]) : -1;
         $attribute->toAnonymize = isset($value["toAnonymize"]) ? $value["toAnonymize"] : false;
         $attribute->description = isset($value["description"]) ? $value["description"] : "";
         $attribute->additionalInformation = isset($value["additionalInformation"]) ? $value["additionalInformation"] : "";
         $attribute->defaultValue = isset($value["defaultValue"]) ? $value["defaultValue"] : NULL;
         $attribute->value = isset($value["value"]) ? $value["value"] : NULL;
         $attribute->placeholder = isset($value["placeholder"]) ? $value["placeholder"] : NULL;
+        $attribute->content = isset($value["content"]) ? (array)$value["content"] : [];
+
+        $attribute->parseContent();
 
         return $attribute;
     }
