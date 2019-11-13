@@ -1,5 +1,6 @@
 <template>
     <section>
+<!--        TODO: Create other settings for variable-->
         <template v-for="setting in settingsList">
             <v-checkbox
                 v-if="setting === 'required'"
