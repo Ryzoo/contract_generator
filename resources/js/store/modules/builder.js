@@ -1,6 +1,7 @@
 const defaultState = {
     builder:{
-        idIncrement: 1,
+        idBlockIncrement: 1,
+        idVariableIncrement: 1,
         blocks: [],
         variables: [],
         activeBlock: null,
@@ -15,8 +16,11 @@ const actions = {
     builder_setActiveBlock: (context, data) => {
         context.commit('BUILDER_SET_ACTIVE_BLOCK', data);
     },
-    builder_idIncrement: (context, data) => {
-        context.commit('BUILDER_INCREMENT_ID', data);
+    builder_idBlockIncrement: (context, data) => {
+        context.commit('BUILDER_BLOCK_INCREMENT_ID', data);
+    },
+    builder_idVariableIncrement: (context, data) => {
+        context.commit('BUILDER_VARIABLE_INCREMENT_ID', data);
     },
     builder_buttonIndex: (context, data) => {
         context.commit('BUILDER_CURRENT_BUTTON_INDEX', data);
@@ -34,8 +38,11 @@ const mutations = {
     BUILDER_SET_ACTIVE_BLOCK: (state, data) => {
         state.builder.activeBlock = state.builder.blocks.find(x => x.id === data.id);
     },
-    BUILDER_INCREMENT_ID: (state) => {
-        state.builder.idIncrement += 1;
+    BUILDER_BLOCK_INCREMENT_ID: (state) => {
+        state.builder.idBlockIncrement += 1;
+    },
+    BUILDER_VARIABLE_INCREMENT_ID: (state) => {
+        state.builder.idVariableIncrement += 1;
     },
     BUILDER_CURRENT_BUTTON_INDEX: (state, data) => {
         state.builder.currentNewBlockButtonIndex = data;
@@ -48,7 +55,8 @@ const mutations = {
 const getters = {
     builder_allBlocks: state => state.builder.blocks,
     builder_activeBlock: state => state.builder.activeBlock,
-    builder_getId: state => state.builder.idIncrement,
+    builder_getBlockId: state => state.builder.idBlockIncrement,
+    builder_getVariableId: state => state.builder.idVariableIncrement,
     builder_allVariables: state => state.builder.variables,
 };
 

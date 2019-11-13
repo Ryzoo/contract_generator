@@ -21,9 +21,11 @@
       }
     },
     methods: {
-        //TODO: Map blocks state into contract
+        //TODO: Set the highest id of block and variable
       init() {
         this.contract = this.$store.getters.getNewContractData;
+        this.$store.dispatch("builder_set", this.contract.blocks);
+        this.$store.dispatch("builder_setVariable", this.contract.attributesList);
       },
       goBack() {
         const updateState = this.$store.getters.getNewContractUpdateState;

@@ -7,7 +7,7 @@
                     :is="Mapper.getBlockName(block.blockType)"
                     :block="block"
                     :level="level ? level : 0"
-                >
+                    >
                 </component>
             </details>
         </div>
@@ -43,7 +43,7 @@
           this.$emit("getAttributes");
         }
       }
-    }
+    },
   }
 </script>
 

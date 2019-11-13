@@ -129,7 +129,7 @@ abstract class Block implements IBlock {
         $block->id = intval($value["id"]);
         $block->parentId = intval($value["parentId"]);
         $block->blockType = intval($value["blockType"]);
-        $block->blockName = BlockType::getName($value["blockType"]);
+        $block->blockName = $value["blockName"];
         $block->settings = $value["settings"];
         $block->conditionals = Conditional::getListFromString(json_encode($value["conditionals"]));
         $block->content = (array) $value["content"];

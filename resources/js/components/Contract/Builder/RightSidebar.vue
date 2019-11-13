@@ -99,6 +99,7 @@
             .builder-elements {
                 padding: 15px 0;
                 display: flex;
+                flex-wrap: wrap;
                 justify-content: space-around;
 
                 .select-options {

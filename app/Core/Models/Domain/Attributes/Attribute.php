@@ -34,11 +34,6 @@ abstract class Attribute implements IAttribute {
     public $settings;
 
     /**
-     * @var string
-     */
-    public $name;
-
-    /**
      * @var array
      */
     public $conditionals;
@@ -82,7 +77,6 @@ abstract class Attribute implements IAttribute {
         $this->value = NULL;
         $this->id = 0;
         $this->toAnonymize = FALSE;
-        $this->name = "no_name";
         $this->placeholder = "";
         $this->defaultValue = NULL;
         $this->description = "";
@@ -145,9 +139,8 @@ abstract class Attribute implements IAttribute {
         $attribute = self::getAttributeByType($value["attributeType"]);
 
         $attribute->attributeType = intval($value["attributeType"]);
-        $attribute->attributeName = AttributeType::getName($value["attributeType"]);
+        $attribute->attributeName = $value["attributeName"];
         $attribute->settings = $value["settings"];
-        $attribute->name = $value["attributeName"];
         $attribute->conditionals = isset($value["conditionals"]) ? Conditional::getListFromString(json_encode($value["conditionals"])) : [];
         $attribute->id = isset($value["id"]) ? intval($value["id"]) : -1;
         $attribute->toAnonymize = isset($value["toAnonymize"]) ? $value["toAnonymize"] : false;

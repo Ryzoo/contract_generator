@@ -40,6 +40,7 @@
     },
     computed: {
       filterParentBlocks() {
+          console.log(this.blocks);
         let filteredBlocks = this.blocks.filter(x => !x.parentId);
         let obj = {isDivider: true};
         let arr = [
@@ -54,6 +55,7 @@
         return arr;
       },
       blocks() {
+          console.log(this.$store.getters.builder_allBlocks);
         return this.$store.getters.builder_allBlocks;
       }
     },
