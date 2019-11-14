@@ -21,20 +21,6 @@ class FileServiceTest extends TestCase
         $this->fileService = $this->app->make('App\Core\Services\FileService');
     }
 
-    public function testSaveFileToFolder()
-    {
-        $storageFolder = 'photo';
-        $fileName = 'photo1.jpg';
-        $uploadedFile = UploadedFile::fake()->image($fileName);
-        Storage::fake('local');
-
-        $returnedPath = $this->fileService
-            ->saveFile($uploadedFile, $storageFolder);
-
-        Storage::disk('local')
-            ->assertExists($returnedPath);
-    }
-
     public function testSaveAndOptimizeFile()
     {
         $storageFolder = 'photo';
@@ -57,7 +43,7 @@ class FileServiceTest extends TestCase
         Storage::fake('local');
 
         $returnedPath = $this->fileService
-            ->saveFile($uploadedFile, $storageFolder);
+            ->saveAndOptimizeImage($uploadedFile, $storageFolder);
 
         $fileUrl = Storage::url($returnedPath);
 

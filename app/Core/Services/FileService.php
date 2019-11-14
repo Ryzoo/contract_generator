@@ -14,14 +14,9 @@ class FileService
         "/storage/default/profileImage.png"
     ];
 
-    public function saveFile(UploadedFile $file, string $fileStorageFolder): string
-    {
-        return $file->store($fileStorageFolder);
-    }
-
 	public function saveAndOptimizeImage(UploadedFile $file, string $fileStorageFolder, int $widthToResize = 1200): string
 	{
-		$pathToSavedFile = self::saveFile($file, $fileStorageFolder);
+		$pathToSavedFile = $file->store($fileStorageFolder);
         $fullFilePath = Storage::path($pathToSavedFile);
 
         Image::make($file)

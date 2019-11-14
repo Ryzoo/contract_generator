@@ -3,6 +3,7 @@
 namespace Tests\Unit\Services;
 
 use App\Core\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
@@ -37,7 +38,7 @@ class UserServiceTest extends TestCase {
     }
 
     public function testChangeUserImageThrowExceptionWhenUserNotFound() {
-        $this->expectException(ErrorException::class);
+        $this->expectException(ModelNotFoundException::class);
         $uploadedFile = UploadedFile::fake()->image('photo1.jpg');
         $this->userService->changeUserImage(-1, $uploadedFile);
     }

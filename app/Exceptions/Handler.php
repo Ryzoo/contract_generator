@@ -6,6 +6,7 @@ use App\Core\Helpers\Response;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -66,6 +67,9 @@ class Handler extends ExceptionHandler
 
         if($exception instanceof AuthorizationException && Str::length($message))
             Response::error($message, $code);
+
+        if($exception instanceof ModelNotFoundException)
+            Response::error(trans("response.notFoundId"), $code);
 
         return parent::render($request, $exception);
     }
