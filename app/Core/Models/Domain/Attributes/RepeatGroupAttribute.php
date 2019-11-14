@@ -38,10 +38,10 @@ class RepeatGroupAttribute extends Attribute {
             $attributesValue->push($attributeValue);
         }
 
-        return $this->prepareTable($attributesValue, $attributesName);
+        return $this->prepareHTMLTable($attributesValue, $attributesName);
     }
 
-    private function prepareTable($itemsList, $headers) {
+    private function prepareHTMLTable($itemsList, $headers) {
         $header = "<tr>";
         foreach ($headers as $item){
             $header .= "<th>$item</th>";
