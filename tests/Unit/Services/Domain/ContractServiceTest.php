@@ -14,22 +14,16 @@ class ContractServiceTest extends TestCase {
      */
     private $contractService;
 
-    /***
-     * @var \App\Core\Repository\Domain\ContractRepository
-     */
-    private $contractRepository;
-
     public function setUp(): void {
         parent::setUp();
         $this->contractService = $this->app->make('App\Core\Services\Domain\ContractService');
-        $this->contractRepository = $this->app->make('App\Core\Repository\Domain\ContractRepository');
     }
 
     public function testAddContract() {
         $notSavedContract = new Contract();
         $notSavedContract->fill( $this->getDefaultDataForContract() );
 
-        $savedContract = $this->contractService->addContract($notSavedContract);
+        $savedContract = $this->contractService->createContract($notSavedContract);
 
         $contractBlocks = $savedContract->blocks;
         $contractAttributesList = $savedContract->attributesList;
@@ -40,28 +34,14 @@ class ContractServiceTest extends TestCase {
         $this->assertNotNull( count($contractSettings));
     }
 
-    public function testGetAllContract(){
-        $notSavedContract = new Contract();
-        $notSavedContract->fill( $this->getDefaultDataForContract() );
-        $this->contractService->addContract($notSavedContract);
-
-        $allContract = $this->contractRepository->getContractCollection();
-
-        $this->assertEquals(1,$allContract->count());
-    }
-
     public function testRemoveContract(){
         $notSavedContract = new Contract();
         $notSavedContract->fill( $this->getDefaultDataForContract() );
-        $savedContract = $this->contractService->addContract($notSavedContract);
+        $savedContract = $this->contractService->createContract($notSavedContract);
 
-        $allContract = $this->contractRepository->getContractCollection();
-
-        $this->assertEquals(1,$allContract->count());
+        $this->assertEquals(1,Contract::all()->count());
         $this->contractService->removeContractById([$savedContract->id]);
-
-        $allContract = $this->contractRepository->getContractCollection();
-        $this->assertEquals(0,$allContract->count());
+        $this->assertEquals(0,Contract::all()->count());
     }
 
     public function testRemoveContractThrowExceptionWhenNotFound(){

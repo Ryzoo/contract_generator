@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 6.0.0 on 2019-10-28 17:09:51.
+ * Generated for Laravel 6.0.0 on 2019-11-14 19:49:21.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -1641,6 +1641,15 @@ namespace Illuminate\Support\Facades {
     /**
      * 
      *
+     * @method static bool attempt(array $credentials = [], bool $remember = false)
+     * @method static bool once(array $credentials = [])
+     * @method static void login(\Illuminate\Contracts\Auth\Authenticatable $user, bool $remember = false)
+     * @method static \Illuminate\Contracts\Auth\Authenticatable loginUsingId(mixed $id, bool $remember = false)
+     * @method static bool onceUsingId(mixed $id)
+     * @method static bool viaRemember()
+     * @method static void logout()
+     * @method static \Symfony\Component\HttpFoundation\Response|null onceBasic(string $field = 'email',array $extraConditions = [])
+     * @method static null|bool logoutOtherDevices(string $password, string $attribute = 'password')
      * @see \Illuminate\Auth\AuthManager
      * @see \Illuminate\Contracts\Auth\Factory
      * @see \Illuminate\Contracts\Auth\Guard
@@ -1821,53 +1830,26 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Get the currently authenticated user.
+         * 
          *
-         * @return \App\User|null 
          * @static 
          */ 
         public static function user()
         {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        /** @var \App\Guards\TokenGuard $instance */
                         return $instance->user();
         }
         
         /**
-         * Get the ID for the currently authenticated user.
+         * Get the token for the current request.
          *
-         * @return int|null 
+         * @return string 
          * @static 
          */ 
-        public static function id()
+        public static function getTokenForRequest()
         {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        return $instance->id();
-        }
-        
-        /**
-         * Log a user into the application without sessions or cookies.
-         *
-         * @param array $credentials
-         * @return bool 
-         * @static 
-         */ 
-        public static function once($credentials = array())
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        return $instance->once($credentials);
-        }
-        
-        /**
-         * Log the given user ID into the application without sessions or cookies.
-         *
-         * @param mixed $id
-         * @return \App\User|false 
-         * @static 
-         */ 
-        public static function onceUsingId($id)
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        return $instance->onceUsingId($id);
+                        /** @var \App\Guards\TokenGuard $instance */
+                        return $instance->getTokenForRequest();
         }
         
         /**
@@ -1879,304 +1861,20 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function validate($credentials = array())
         {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        /** @var \App\Guards\TokenGuard $instance */
                         return $instance->validate($credentials);
-        }
-        
-        /**
-         * Attempt to authenticate using HTTP Basic Auth.
-         *
-         * @param string $field
-         * @param array $extraConditions
-         * @return \Symfony\Component\HttpFoundation\Response|null 
-         * @static 
-         */ 
-        public static function basic($field = 'email', $extraConditions = array())
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        return $instance->basic($field, $extraConditions);
-        }
-        
-        /**
-         * Perform a stateless HTTP Basic login attempt.
-         *
-         * @param string $field
-         * @param array $extraConditions
-         * @return \Symfony\Component\HttpFoundation\Response|null 
-         * @static 
-         */ 
-        public static function onceBasic($field = 'email', $extraConditions = array())
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        return $instance->onceBasic($field, $extraConditions);
-        }
-        
-        /**
-         * Attempt to authenticate a user using the given credentials.
-         *
-         * @param array $credentials
-         * @param bool $remember
-         * @return bool 
-         * @static 
-         */ 
-        public static function attempt($credentials = array(), $remember = false)
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        return $instance->attempt($credentials, $remember);
-        }
-        
-        /**
-         * Log the given user ID into the application.
-         *
-         * @param mixed $id
-         * @param bool $remember
-         * @return \App\User|false 
-         * @static 
-         */ 
-        public static function loginUsingId($id, $remember = false)
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        return $instance->loginUsingId($id, $remember);
-        }
-        
-        /**
-         * Log a user into the application.
-         *
-         * @param \Illuminate\Contracts\Auth\Authenticatable $user
-         * @param bool $remember
-         * @return void 
-         * @static 
-         */ 
-        public static function login($user, $remember = false)
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        $instance->login($user, $remember);
-        }
-        
-        /**
-         * Log the user out of the application.
-         *
-         * @return void 
-         * @static 
-         */ 
-        public static function logout()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        $instance->logout();
-        }
-        
-        /**
-         * Log the user out of the application on their current device only.
-         *
-         * @return void 
-         * @static 
-         */ 
-        public static function logoutCurrentDevice()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        $instance->logoutCurrentDevice();
-        }
-        
-        /**
-         * Invalidate other sessions for the current user.
-         * 
-         * The application must be using the AuthenticateSession middleware.
-         *
-         * @param string $password
-         * @param string $attribute
-         * @return bool|null 
-         * @static 
-         */ 
-        public static function logoutOtherDevices($password, $attribute = 'password')
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        return $instance->logoutOtherDevices($password, $attribute);
-        }
-        
-        /**
-         * Register an authentication attempt event listener.
-         *
-         * @param mixed $callback
-         * @return void 
-         * @static 
-         */ 
-        public static function attempting($callback)
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        $instance->attempting($callback);
-        }
-        
-        /**
-         * Get the last user we attempted to authenticate.
-         *
-         * @return \App\User 
-         * @static 
-         */ 
-        public static function getLastAttempted()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        return $instance->getLastAttempted();
-        }
-        
-        /**
-         * Get a unique identifier for the auth session value.
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function getName()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        return $instance->getName();
-        }
-        
-        /**
-         * Get the name of the cookie used to store the "recaller".
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function getRecallerName()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        return $instance->getRecallerName();
-        }
-        
-        /**
-         * Determine if the user was authenticated via "remember me" cookie.
-         *
-         * @return bool 
-         * @static 
-         */ 
-        public static function viaRemember()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        return $instance->viaRemember();
-        }
-        
-        /**
-         * Get the cookie creator instance used by the guard.
-         *
-         * @return \Illuminate\Contracts\Cookie\QueueingFactory 
-         * @throws \RuntimeException
-         * @static 
-         */ 
-        public static function getCookieJar()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        return $instance->getCookieJar();
-        }
-        
-        /**
-         * Set the cookie creator instance used by the guard.
-         *
-         * @param \Illuminate\Contracts\Cookie\QueueingFactory $cookie
-         * @return void 
-         * @static 
-         */ 
-        public static function setCookieJar($cookie)
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        $instance->setCookieJar($cookie);
-        }
-        
-        /**
-         * Get the event dispatcher instance.
-         *
-         * @return \Illuminate\Contracts\Events\Dispatcher 
-         * @static 
-         */ 
-        public static function getDispatcher()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        return $instance->getDispatcher();
-        }
-        
-        /**
-         * Set the event dispatcher instance.
-         *
-         * @param \Illuminate\Contracts\Events\Dispatcher $events
-         * @return void 
-         * @static 
-         */ 
-        public static function setDispatcher($events)
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        $instance->setDispatcher($events);
-        }
-        
-        /**
-         * Get the session store used by the guard.
-         *
-         * @return \Illuminate\Contracts\Session\Session 
-         * @static 
-         */ 
-        public static function getSession()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        return $instance->getSession();
-        }
-        
-        /**
-         * Return the currently cached user.
-         *
-         * @return \App\User|null 
-         * @static 
-         */ 
-        public static function getUser()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        return $instance->getUser();
-        }
-        
-        /**
-         * Set the current user.
-         *
-         * @param \Illuminate\Contracts\Auth\Authenticatable $user
-         * @return \Illuminate\Auth\SessionGuard 
-         * @static 
-         */ 
-        public static function setUser($user)
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        return $instance->setUser($user);
-        }
-        
-        /**
-         * Get the current request instance.
-         *
-         * @return \Symfony\Component\HttpFoundation\Request 
-         * @static 
-         */ 
-        public static function getRequest()
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        return $instance->getRequest();
-        }
-        
-        /**
-         * Set the current request instance.
-         *
-         * @param \Symfony\Component\HttpFoundation\Request $request
-         * @return \Illuminate\Auth\SessionGuard 
-         * @static 
-         */ 
-        public static function setRequest($request)
-        {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
-                        return $instance->setRequest($request);
         }
         
         /**
          * Determine if current user is authenticated. If not, throw an exception.
          *
-         * @return \App\User 
+         * @return \App\Core\Models\User 
          * @throws \Illuminate\Auth\AuthenticationException
          * @static 
          */ 
         public static function authenticate()
         {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        /** @var \App\Guards\TokenGuard $instance */
                         return $instance->authenticate();
         }
         
@@ -2188,7 +1886,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function hasUser()
         {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        /** @var \App\Guards\TokenGuard $instance */
                         return $instance->hasUser();
         }
         
@@ -2200,7 +1898,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function check()
         {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        /** @var \App\Guards\TokenGuard $instance */
                         return $instance->check();
         }
         
@@ -2212,8 +1910,33 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function guest()
         {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        /** @var \App\Guards\TokenGuard $instance */
                         return $instance->guest();
+        }
+        
+        /**
+         * Get the ID for the currently authenticated user.
+         *
+         * @return int|null 
+         * @static 
+         */ 
+        public static function id()
+        {
+                        /** @var \App\Guards\TokenGuard $instance */
+                        return $instance->id();
+        }
+        
+        /**
+         * Set the current user.
+         *
+         * @param \Illuminate\Contracts\Auth\Authenticatable $user
+         * @return \App\Guards\TokenGuard 
+         * @static 
+         */ 
+        public static function setUser($user)
+        {
+                        /** @var \App\Guards\TokenGuard $instance */
+                        return $instance->setUser($user);
         }
         
         /**
@@ -2224,7 +1947,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function getProvider()
         {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        /** @var \App\Guards\TokenGuard $instance */
                         return $instance->getProvider();
         }
         
@@ -2237,47 +1960,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function setProvider($provider)
         {
-                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        /** @var \App\Guards\TokenGuard $instance */
                         $instance->setProvider($provider);
-        }
-        
-        /**
-         * Register a custom macro.
-         *
-         * @param string $name
-         * @param object|callable $macro
-         * @return void 
-         * @static 
-         */ 
-        public static function macro($name, $macro)
-        {
-                        \Illuminate\Auth\SessionGuard::macro($name, $macro);
-        }
-        
-        /**
-         * Mix another object into the class.
-         *
-         * @param object $mixin
-         * @param bool $replace
-         * @return void 
-         * @throws \ReflectionException
-         * @static 
-         */ 
-        public static function mixin($mixin, $replace = true)
-        {
-                        \Illuminate\Auth\SessionGuard::mixin($mixin, $replace);
-        }
-        
-        /**
-         * Checks if macro is registered.
-         *
-         * @param string $name
-         * @return bool 
-         * @static 
-         */ 
-        public static function hasMacro($name)
-        {
-                        return \Illuminate\Auth\SessionGuard::hasMacro($name);
         }
          
     }
@@ -14880,183 +14564,6 @@ namespace Barryvdh\DomPDF {
  
 }
 
-namespace PragmaRX\Version\Package { 
-
-    /**
-     * 
-     *
-     */ 
-    class Facade {
-        
-        /**
-         * Get a version.
-         *
-         * @param $type
-         * @return string 
-         * @static 
-         */ 
-        public static function getGit()
-        {
-                        /** @var \PragmaRX\Version\Package\Version $instance */
-                        return $instance->getGit();
-        }
-        
-        /**
-         * Get the current version.
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function current()
-        {
-                        /** @var \PragmaRX\Version\Package\Version $instance */
-                        return $instance->current();
-        }
-        
-        /**
-         * Get the current object instance.
-         *
-         * @return \PragmaRX\Version\Package\Version 
-         * @static 
-         */ 
-        public static function instance()
-        {
-                        /** @var \PragmaRX\Version\Package\Version $instance */
-                        return $instance->instance();
-        }
-        
-        /**
-         * Get a properly formatted version.
-         *
-         * @param $type
-         * @return mixed|null 
-         * @static 
-         */ 
-        public static function format($type = null)
-        {
-                        /** @var \PragmaRX\Version\Package\Version $instance */
-                        return $instance->format($type);
-        }
-        
-        /**
-         * Get a properly formatted version.
-         *
-         * @param $type
-         * @return bool 
-         * @static 
-         */ 
-        public static function isInAbsorbMode()
-        {
-                        /** @var \PragmaRX\Version\Package\Version $instance */
-                        return $instance->isInAbsorbMode();
-        }
-        
-        /**
-         * Set the config file stub.
-         *
-         * @param string $configFileStub
-         * @static 
-         */ 
-        public static function setConfigFileStub($configFileStub)
-        {
-                        /** @var \PragmaRX\Version\Package\Version $instance */
-                        return $instance->setConfigFileStub($configFileStub);
-        }
-        
-        /**
-         * Load package YAML configuration.
-         *
-         * @param $path
-         * @return \Illuminate\Support\Collection 
-         * @static 
-         */ 
-        public static function loadConfig($path = null)
-        {
-                        /** @var \PragmaRX\Version\Package\Version $instance */
-                        return $instance->loadConfig($path);
-        }
-         
-    }
- 
-}
-
-namespace PragmaRX\Yaml\Package { 
-
-    /**
-     * 
-     *
-     */ 
-    class Facade {
-        
-        /**
-         * Load yaml files from directory and add to Laravel config.
-         *
-         * @param string $path
-         * @param string $configKey
-         * @return \PragmaRX\Yaml\Package\Collection 
-         * @static 
-         */ 
-        public static function loadToConfig($path, $configKey)
-        {
-                        /** @var \PragmaRX\Yaml\Package\Yaml $instance */
-                        return $instance->loadToConfig($path, $configKey);
-        }
-        
-        /**
-         * Load all yaml files from a directory.
-         *
-         * @param $path
-         * @return \Illuminate\Support\Collection 
-         * @static 
-         */ 
-        public static function loadFromDirectory($path)
-        {
-                        /** @var \PragmaRX\Yaml\Package\Yaml $instance */
-                        return $instance->loadFromDirectory($path);
-        }
-        
-        /**
-         * Load yaml file.
-         *
-         * @param $file
-         * @return mixed|string 
-         * @static 
-         */ 
-        public static function loadFile($file)
-        {
-                        /** @var \PragmaRX\Yaml\Package\Yaml $instance */
-                        return $instance->loadFile($file);
-        }
-        
-        /**
-         * Remove extension from file name.
-         *
-         * @param $dirty
-         * @return \Illuminate\Support\Collection|mixed 
-         * @static 
-         */ 
-        public static function cleanArrayKeysRecursive($dirty)
-        {
-                        /** @var \PragmaRX\Yaml\Package\Yaml $instance */
-                        return $instance->cleanArrayKeysRecursive($dirty);
-        }
-        
-        /**
-         * Get this object instance.
-         *
-         * @return \PragmaRX\Yaml\Package\Yaml 
-         * @static 
-         */ 
-        public static function instance()
-        {
-                        /** @var \PragmaRX\Yaml\Package\Yaml $instance */
-                        return $instance->instance();
-        }
-         
-    }
- 
-}
-
 namespace Spatie\LaravelImageOptimizer\Facades { 
 
     /**
@@ -17949,10 +17456,6 @@ namespace  {
     class Image extends \Intervention\Image\Facades\Image {}
 
     class PDF extends \Barryvdh\DomPDF\Facade {}
-
-    class Version extends \PragmaRX\Version\Package\Facade {}
-
-    class Yaml extends \PragmaRX\Yaml\Package\Facade {}
 
     class ImageOptimizer extends \Spatie\LaravelImageOptimizer\Facades\ImageOptimizer {}
  
