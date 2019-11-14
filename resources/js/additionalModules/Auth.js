@@ -7,7 +7,7 @@ export default class Auth {
 
     login(userData, route){
         this.authorize(userData);
-        this.router.push( (route && route.length > 0)? route : '/panel');
+        this.router.push( (route && route.length > 0)? route : '/panel/admin');
     }
 
     authorize(userData){

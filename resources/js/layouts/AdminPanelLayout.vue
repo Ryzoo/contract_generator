@@ -111,12 +111,12 @@
           {
             title: this.$t('navigation.dashboard'),
             icon: "fa-poll",
-            link: "/panel/dashboard"
+            link: "/panel/admin/dashboard"
           },
           {
             title: this.$t('navigation.profile'),
             icon: "fa-user-tie",
-            link: "/panel/my_profile"
+            link: "/panel/admin/my_profile"
           },
           {
             title: this.$t('navigation.clients'),
@@ -125,7 +125,7 @@
           {
             title: this.$t('navigation.contract'),
             icon: "fa-file-contract",
-            link: "/panel/contracts"
+            link: "/panel/admin/contracts"
           },
           {
             title: this.$t('navigation.schema'),
@@ -134,7 +134,7 @@
           {
             title: this.$t('navigation.accounts'),
             icon: "fa-users-cog",
-            link: "/panel/accounts"
+            link: "/panel/admin/accounts"
           },
           {
             title: this.$t('navigation.settings'),
@@ -150,7 +150,7 @@
     },
     computed: {
       pageOnCreator() {
-        return this.$route.path === "/panel/contracts/builder";
+        return this.$route.path === "/panel/admin/contracts/builder";
       }
     },
     methods: {

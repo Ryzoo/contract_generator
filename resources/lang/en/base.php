@@ -17,6 +17,7 @@ return [
         'reset' => 'Reset',
         'cancel' => 'Cancel',
         'remind' => 'Remind',
+        'remove' => 'Remove',
         'save' => 'Save',
         'add' => 'Add',
         'back' => 'Back',
@@ -30,7 +31,7 @@ return [
         "created" => "Created",
         "actions" => "Actions",
     ],
-    'descriptions' => [
+    'description' => [
         'remove' => 'Do you want to remove it?',
     ],
     'notify' => [

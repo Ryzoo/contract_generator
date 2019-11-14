@@ -1,22 +1,22 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import PanelLayout from "./layouts/PanelLayout";
+import AdminPanelLayout from "./layouts/AdminPanelLayout";
 import i18n from "./lang";
 import AuthLayout from "./layouts/AuthLayout";
-import DashboardView from "./views/panel/DashboardView";
-import ContractView from "./views/panel/ContractView";
+import DashboardView from "./views/panel/admin/DashboardView";
+import ContractView from "./views/panel/admin/ContractView";
 import LoginView from "./views/auth/LoginView";
 import SendResetPasswordTokenView from "./views/auth/SendResetPasswordTokenView";
 import RegisterView from "./views/auth/RegisterView";
 import ResetPasswordView from "./views/auth/ResetPasswordView";
-import ContractBuilderView from "./views/panel/contracts/ContractBuilderView";
-import MyProfileView from "./views/panel/MyProfileView";
-import AccountsView from "./views/panel/AccountsView";
-import AccountPreview from "./views/panel/accounts/AccountPreview";
-import CreateView from "./views/panel/accounts/CreateView";
-import EditView from "./views/panel/accounts/EditView";
+import ContractBuilderView from "./views/panel/admin/contracts/ContractBuilderView";
+import MyProfileView from "./views/panel/admin/MyProfileView";
+import AccountsView from "./views/panel/admin/AccountsView";
+import AccountPreview from "./views/panel/admin/accounts/AccountPreview";
+import CreateView from "./views/panel/admin/accounts/CreateView";
+import EditView from "./views/panel/admin/accounts/EditView";
 import ContractForm from "./views/client/contract/ContractForm";
-import CreateBaseView from "./views/panel/contracts/CreateBaseView";
+import CreateBaseView from "./views/panel/admin/contracts/CreateBaseView";
 
 Vue.use(VueRouter);
 
@@ -31,10 +31,10 @@ const router = new VueRouter({
                 noRequireAuthorization: true
             }
         },
-        {path: '/', redirect: 'panel'},
+        {path: '/', redirect: 'auth/login'},
         {
-            path: '/panel',
-            component: PanelLayout,
+            path: '/panel/admin',
+            component: AdminPanelLayout,
             children: [
                 {path: '/', redirect: 'dashboard'},
                 {
@@ -42,7 +42,7 @@ const router = new VueRouter({
                     name: 'dashboard',
                     component: DashboardView,
                     meta: {
-                        title: i18n.t('pageMeta.panel.dashboard.title')
+                        title: i18n.t('pageMeta.panel.admin.dashboard.title')
                     }
                 },
                 {
@@ -50,7 +50,7 @@ const router = new VueRouter({
                     name: 'contracts',
                     component: ContractView,
                     meta: {
-                        title: i18n.t('pageMeta.panel.contract.title')
+                        title: i18n.t('pageMeta.panel.admin.contract.title')
                     }
                 },
                 {
@@ -58,7 +58,7 @@ const router = new VueRouter({
                     name: 'createContract',
                     component: CreateBaseView,
                     meta: {
-                        title: i18n.t('pageMeta.panel.contract.create.title')
+                        title: i18n.t('pageMeta.panel.admin.contract.create.title')
                     },
                 },
                 {
@@ -66,7 +66,7 @@ const router = new VueRouter({
                     name: 'editContract',
                     component: CreateBaseView,
                     meta: {
-                        title: i18n.t('pageMeta.panel.contract.edit.title')
+                        title: i18n.t('pageMeta.panel.admin.contract.edit.title')
                     },
                 },
                 {
@@ -74,7 +74,7 @@ const router = new VueRouter({
                     name: 'buildContract',
                     component: ContractBuilderView,
                     meta: {
-                        title: i18n.t('pageMeta.panel.contract.builder.title')
+                        title: i18n.t('pageMeta.panel.admin.contract.builder.title')
                     },
                 },
                 {
@@ -82,7 +82,7 @@ const router = new VueRouter({
                     name: 'accounts',
                     component: AccountsView,
                     meta: {
-                        title: i18n.t('pageMeta.panel.accounts.title')
+                        title: i18n.t('pageMeta.panel.admin.accounts.title')
                     }
                 },
                 {
@@ -90,7 +90,7 @@ const router = new VueRouter({
                     name: 'createAccount',
                     component: CreateView,
                     meta: {
-                        title: i18n.t('pageMeta.panel.accounts.create.title')
+                        title: i18n.t('pageMeta.panel.admin.accounts.create.title')
                     },
                 },
                 {
@@ -98,7 +98,7 @@ const router = new VueRouter({
                     name: 'editAccount',
                     component: EditView,
                     meta: {
-                        title: i18n.t('pageMeta.panel.accounts.edit.title')
+                        title: i18n.t('pageMeta.panel.admin.accounts.edit.title')
                     },
                 },
                 {
@@ -106,7 +106,7 @@ const router = new VueRouter({
                     name: 'accountPreview',
                     component: AccountPreview,
                     meta: {
-                        title: i18n.t('pageMeta.panel.accounts.preview.title')
+                        title: i18n.t('pageMeta.panel.admin.accounts.preview.title')
                     },
                 },
                 {
@@ -114,7 +114,7 @@ const router = new VueRouter({
                     name: 'my_profile',
                     component: MyProfileView,
                     meta: {
-                        title: i18n.t('pageMeta.panel.profile.title')
+                        title: i18n.t('pageMeta.panel.admin.profile.title')
                     }
                 },
             ]

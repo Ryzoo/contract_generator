@@ -13,9 +13,9 @@
 </template>
 
 <script>
-  import Header from "../../../components/Contract/Builder/Header";
-  import ContainerBlock from "../../../components/Contract/Builder/Blocks/ContainerBlock";
-  import BlockLayout from "../../../components/Contract/Builder/BlockLayout";
+  import Header from "../../../../components/Contract/Builder/Header";
+  import ContainerBlock from "../../../../components/Contract/Builder/Blocks/ContainerBlock";
+  import BlockLayout from "../../../../components/Contract/Builder/BlockLayout";
 
   export default {
     name: "CreateAgreementView",

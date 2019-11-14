@@ -29,7 +29,7 @@
       },
       goBack() {
         const updateState = this.$store.getters.getNewContractUpdateState;
-        this.$router.push(`/panel/contracts/edit/${updateState.id}`);
+        this.$router.push(`/panel/admin/contracts/edit/${updateState.id}`);
       },
       saveActual(redirect) {
         this.isLoaded = false;
@@ -46,7 +46,7 @@
                   notify.SUCCESS
               );
               if (redirect)
-                this.$router.push("/panel/contracts")
+                this.$router.push("/panel/admin/contracts")
             })
             .finally(() => {
               this.isLoaded = true;

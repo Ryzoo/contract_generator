@@ -18,35 +18,37 @@ return [
         ],
     ],
     'panel' => [
-        'dashboard' => [
-            'title' => 'Panel - Dashboard',
-        ],
-        'profile' => [
-            'title' => 'Panel - My Profile',
-        ],
-        'accounts' => [
-            'title' => 'Panel - Accounts',
-            'create' => [
-                'title' => 'Create new account',
+        'admin' => [
+            'dashboard' => [
+                'title' => 'Panel - Dashboard',
             ],
-            'edit' => [
-                'title' => 'Edit account',
+            'profile' => [
+                'title' => 'Panel - My Profile',
             ],
-            'preview' => [
-                'title' => 'Preview account',
+            'accounts' => [
+                'title' => 'Panel - Accounts',
+                'create' => [
+                    'title' => 'Create new account',
+                ],
+                'edit' => [
+                    'title' => 'Edit account',
+                ],
+                'preview' => [
+                    'title' => 'Preview account',
+                ],
             ],
-        ],
-        'contract' => [
-            'title' => 'Panel - Agreements',
-            'builder' => [
-                'title' => 'Build contract',
+            'contract' => [
+                'title' => 'Panel - Agreements',
+                'builder' => [
+                    'title' => 'Build contract',
+                ],
+                'create' => [
+                    'title' => 'Create new contract',
+                ],
+                'edit' => [
+                    'title' => 'Edit contract',
+                ],
             ],
-            'create' => [
-                'title' => 'Create new contract',
-            ],
-            'edit' => [
-                'title' => 'Edit contract',
-            ],
-        ],
+        ]
     ]
 ];

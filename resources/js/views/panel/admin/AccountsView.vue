@@ -16,7 +16,7 @@
                         :items="items"
                     >
                         <template v-slot:item.name="{ item }">
-                            <router-link :to="`/panel/accounts/${item.id}`">
+                            <router-link :to="`/panel/admin/accounts/${item.id}`">
                                 {{ item.firstName }} {{ item.lastName }}
                             </router-link>
                         </template>
@@ -25,7 +25,7 @@
                                 <v-icon
                                     @click="
                                         $router.push(
-                                            `/panel/accounts/${item.id}/edit`
+                                            `/panel/admin/accounts/${item.id}/edit`
                                         )
                                     "
                                     >fa-edit</v-icon
@@ -46,15 +46,15 @@
                 <v-card-title class="headline">{{$t("form.accountRemoveForm.title")}}</v-card-title>
 
                 <v-card-text>
-                    {{ $t("form.accountRemoveForm.descriptions.remove") }}
+                    {{ $t("base.description.remove") }}
                 </v-card-text>
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
                     <v-btn color="primary" text @click="deleteDialog = false">
-                        {{ $t("base.buttons.cancel") }}
+                        {{ $t("base.button.cancel") }}
                     </v-btn>
                     <v-btn color="error" @click="removeAccount">
-                        {{ $t("base.buttons.remove") }}
+                        {{ $t("base.button.remove") }}
                     </v-btn>
                 </v-card-actions>
             </v-card>
