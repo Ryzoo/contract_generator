@@ -21,27 +21,27 @@ class FormService {
     public function createFromContract(Contract $contract):Form {
         $blocks = $contract->blocks;
 
-        $elementsCollection = collect();
+        $formElementsCollection = collect();
 
         /* @var $block \App\Core\Models\Domain\Blocks\Block */
         foreach ($blocks as $block){
-            $elements = $this->reduceElementsWithSameAttribute($block->getFormElements($contract), $elementsCollection);
-            $elementsCollection = $elementsCollection->merge($elements);
+            $elements = $this->reduceElementsWithSameAttribute($block->getFormElements($contract), $formElementsCollection);
+            $formElementsCollection = $formElementsCollection->merge($elements);
         }
-        $elementsCollection = $elementsCollection->unique();
+        $formElementsCollection = $formElementsCollection->unique();
 
-        $elementsCollection = $this->conditionalService
-            ->initializeFormElementsConditional($contract, $elementsCollection);
+        $formElementsCollection = $this->conditionalService
+            ->initializeConditionalInFormElementsCollection($contract, $formElementsCollection);
 
         if(isset($contract->form)){
             $contract->form->update([
-                "formElements" => $elementsCollection,
+                "formElements" => $formElementsCollection,
             ]);
             return $contract->form;
         }else{
             return Form::create([
                 "contract_id" => $contract->id,
-                "formElements" => $elementsCollection,
+                "formElements" => $formElementsCollection,
             ]);
         }
     }

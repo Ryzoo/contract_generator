@@ -30,6 +30,14 @@ class ContractController extends Controller {
         $this->contractModuleService = $contractModuleService;
     }
 
+    public function getCollection(Request $request) {
+        Response::success(Contract::all());
+    }
+
+    public function get(Request $request, Contract $contract) {
+        Response::success($contract);
+    }
+
     public function add(ContractAddRequest $request) {
         $contract = new Contract();
         $contract->fill($request->validated());
@@ -39,17 +47,10 @@ class ContractController extends Controller {
         Response::success($fullContract);
     }
 
-    public function render(ContractRenderRequest $request, Contract $contract) {
-        $returnData = $this->contractModuleService->runPart($contract, ContractModulePart::RENDER_CONTRACT, [
-            "formElements" => $request->get("formElements"),
-            "contract" => $contract,
-        ]);
-
-        if (isset($returnData)) {
-            return $returnData;
-        }
-
-        Response::success();
+    public function update(ContractUpdateRequest $request, Contract $contract) {
+        $contract->fill($request->validated());
+        $fullContract = $this->contractService->createContract($contract);
+        Response::success($fullContract);
     }
 
     public function remove(Request $request, int $contractID) {
@@ -67,17 +68,16 @@ class ContractController extends Controller {
         Response::success();
     }
 
-    public function getCollection(Request $request) {
-        Response::success(Contract::all());
-    }
+    public function render(ContractRenderRequest $request, Contract $contract) {
+        $returnData = $this->contractModuleService->runPart($contract, ContractModulePart::RENDER_CONTRACT, [
+            "formElements" => $request->get("formElements"),
+            "contract" => $contract,
+        ]);
 
-    public function get(Request $request, Contract $contract) {
-        Response::success($contract);
-    }
+        if (isset($returnData)) {
+            return $returnData;
+        }
 
-    public function update(ContractUpdateRequest $request, Contract $contract) {
-        $contract->fill($request->validated());
-        $fullContract = $this->contractService->createContract($contract);
-        Response::success($fullContract);
+        Response::success();
     }
 }

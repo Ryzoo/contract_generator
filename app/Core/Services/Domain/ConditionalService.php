@@ -19,12 +19,12 @@ class ConditionalService {
         $this->conditionalRepository = $conditionalRepository;
     }
 
-    public function initializeFormElementsConditional(Contract $contract, Collection $elementsCollection):Collection {
+    public function initializeConditionalInFormElementsCollection(Contract $contract, Collection $formElementsCollection):Collection {
         $blockCollection = $contract->getBlockCollection();
         $formCollection = collect();
 
         /** @var FormElement $element */
-        foreach ($elementsCollection as $element){
+        foreach ($formElementsCollection as $element){
             $conditionals = $this->conditionalRepository
                 ->getConditionalsFromBlockWithId($blockCollection, $element->parentBlockId);
 

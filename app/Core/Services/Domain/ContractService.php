@@ -15,7 +15,6 @@ class ContractService {
      */
     private $formService;
 
-
     public function __construct(FormService $formService) {
         $this->formService = $formService;
     }

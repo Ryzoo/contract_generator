@@ -9,7 +9,6 @@ use App\Core\Modules\Configuration;
 use Illuminate\Support\Collection;
 
 class ContractModuleService {
-
     /**
      * @var \App\Core\Modules\Configuration
      */
