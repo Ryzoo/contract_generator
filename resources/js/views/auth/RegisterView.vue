@@ -8,41 +8,41 @@
                 <v-text-field
                     prepend-icon="fa-user-edit"
                     v-model="registerForm.firstName"
-                    :label="$t('form.register.field.firstName')"
+                    :label="$t('base.field.firstName')"
                     type="text"
                 >
                 </v-text-field>
                 <v-text-field
                     prepend-icon="fa-user-edit"
                     v-model="registerForm.lastName"
-                    :label="$t('form.register.field.lastName')"
+                    :label="$t('base.field.lastName')"
                     type="text"
                 >
                 </v-text-field>
                 <v-text-field
                     prepend-icon="fa-envelope"
                     v-model="registerForm.email"
-                    :label="$t('form.register.field.email')"
+                    :label="$t('base.field.email')"
                     type="email"
                 >
                 </v-text-field>
                 <v-text-field
                     prepend-icon="fa-lock"
                     v-model="registerForm.password"
-                    :label="$t('form.register.field.password')"
+                    :label="$t('base.field.password')"
                     type="password"
                 >
                 </v-text-field>
                 <v-text-field
                     prepend-icon="fa-lock"
                     v-model="registerForm.rePassword"
-                    :label="$t('form.register.field.rePassword')"
+                    :label="$t('base.field.rePassword')"
                     type="password"
                 >
                 </v-text-field>
                 <v-checkbox v-model="registerForm.rodoAccept">
                     <template v-slot:label>
-                        {{ $t("form.register.field.rodoAccept") }}:
+                        {{ $t("base.field.rodoAccept") }}:
                         <a target="_blank" href="http://google.pl" @click.stop>
                             {{ $t("form.register.link.rodo") }}
                         </a>
@@ -50,7 +50,7 @@
                 </v-checkbox>
                 <v-checkbox v-model="registerForm.regulationsAccept">
                     <template v-slot:label>
-                        {{ $t("form.register.field.regulationsAccept") }}:
+                        {{ $t("base.field.regulationsAccept") }}:
                         <a target="_blank" href="http://google.pl" @click.stop>
                             {{ $t("form.register.link.regulations") }}
                         </a>
@@ -66,13 +66,13 @@
                 color="primary"
                 :disabled="!isLoaded"
                 to="/auth/login"
-                >{{ $t("form.register.button.login") }}</v-btn
+                >{{ $t("base.button.login") }}</v-btn
             >
             <v-btn
                 color="primary"
                 :disabled="!isLoaded"
                 @click="sendRegisterForm"
-                >{{ $t("form.register.button.register") }}</v-btn
+                >{{ $t("base.button.register") }}</v-btn
             >
         </v-card-actions>
     </v-card>

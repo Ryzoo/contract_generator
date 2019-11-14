@@ -11,21 +11,21 @@
                 <v-text-field
                     prepend-icon="fa-envelope"
                     v-model="resetPasswordForm.email"
-                    :label="$t('form.register.field.email')"
+                    :label="$t('base.field.email')"
                     type="email"
                 >
                 </v-text-field>
                 <v-text-field
                     prepend-icon="fa-lock"
                     v-model="resetPasswordForm.password"
-                    :label="$t('form.resetPasswordForm.field.password')"
+                    :label="$t('base.field.password')"
                     type="password"
                 >
                 </v-text-field>
                 <v-text-field
                     prepend-icon="fa-lock"
                     v-model="resetPasswordForm.password_confirmation"
-                    :label="$t('form.resetPasswordForm.field.rePassword')"
+                    :label="$t('base.field.rePassword')"
                     type="password"
                 >
                 </v-text-field>
@@ -39,14 +39,14 @@
                 color="primary"
                 to="/auth/login"
                 :disabled="!isLoaded"
-            >{{ $t("form.resetPasswordForm.button.cancel") }}
+            >{{ $t("fbase.button.cancel") }}
             </v-btn
             >
             <v-btn
                 color="primary"
                 :disabled="!isLoaded"
                 @click="sendResetPassword"
-            >{{ $t("form.resetPasswordForm.button.reset") }}
+            >{{ $t("base.button.reset") }}
             </v-btn
             >
         </v-card-actions>

@@ -8,14 +8,14 @@
                 <v-text-field
                     prepend-icon="fa-envelope"
                     v-model="loginForm.email"
-                    :label="$t('form.login.field.email')"
+                    :label="$t('base.field.email')"
                     type="email"
                 >
                 </v-text-field>
                 <v-text-field
                     prepend-icon="fa-lock"
                     v-model="loginForm.password"
-                    :label="$t('form.login.field.password')"
+                    :label="$t('base.field.password')"
                     type="password"
                 >
                 </v-text-field>
@@ -36,10 +36,10 @@
                 text
                 color="primary"
                 to="/auth/register"
-                >{{ $t("form.login.button.register") }}
+                >{{ $t("base.button.register") }}
             </v-btn>
             <v-btn :disabled="!isLoaded" color="primary" @click="sendLoginForm"
-                >{{ $t("form.login.button.login") }}
+                >{{ $t("base.button.login") }}
             </v-btn>
         </v-card-actions>
     </v-card>

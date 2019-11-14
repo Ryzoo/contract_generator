@@ -10,7 +10,7 @@
                 <v-text-field
                     prepend-icon="fa-envelope"
                     v-model="sendTokenForm.email"
-                    :label="$t('form.sendResetTokenForm.field.email')"
+                    :label="$t('base.field.email')"
                     type="email"
                 >
                 </v-text-field>
@@ -24,13 +24,13 @@
                 color="primary"
                 to="/auth/login"
                 :disabled="!isLoaded"
-                >{{ $t("form.sendResetTokenForm.button.cancel") }}</v-btn
+                >{{ $t("base.button.cancel") }}</v-btn
             >
             <v-btn
                 color="primary"
                 :disabled="!isLoaded"
                 @click="sendResetToken"
-                >{{ $t("form.sendResetTokenForm.button.remind") }}</v-btn
+                >{{ $t("base.button.remind") }}</v-btn
             >
         </v-card-actions>
     </v-card>
