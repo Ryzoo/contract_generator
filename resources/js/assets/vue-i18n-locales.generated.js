@@ -227,7 +227,12 @@ export default {
             "contract": "Contracts",
             "schema": "Schemes",
             "accounts": "Accounts",
-            "settings": "Settings",
+            "settings": {
+                "main": "Settings",
+                "policies": "Policies",
+                "account": "Accounts",
+                "my_profile": "My profile"
+            },
             "logout": "Logout"
         },
         "validation": {

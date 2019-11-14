@@ -10,11 +10,11 @@ import SendResetPasswordTokenView from "./views/auth/SendResetPasswordTokenView"
 import RegisterView from "./views/auth/RegisterView";
 import ResetPasswordView from "./views/auth/ResetPasswordView";
 import ContractBuilderView from "./views/panel/admin/contracts/ContractBuilderView";
-import MyProfileView from "./views/panel/admin/MyProfileView";
-import AccountsView from "./views/panel/admin/AccountsView";
-import AccountPreview from "./views/panel/admin/accounts/AccountPreview";
-import CreateView from "./views/panel/admin/accounts/CreateView";
-import EditView from "./views/panel/admin/accounts/EditView";
+import MyProfileView from "./views/panel/admin/settings/MyProfileView";
+import AccountsView from "./views/panel/admin/settings/AccountsView";
+import AccountPreview from "./views/panel/admin/settings/accounts/AccountPreview";
+import CreateView from "./views/panel/admin/settings/accounts/CreateView";
+import EditView from "./views/panel/admin/settings/accounts/EditView";
 import ContractForm from "./views/client/contract/ContractForm";
 import CreateBaseView from "./views/panel/admin/contracts/CreateBaseView";
 
@@ -78,7 +78,7 @@ const router = new VueRouter({
                     },
                 },
                 {
-                    path: 'accounts',
+                    path: 'settings/accounts',
                     name: 'accounts',
                     component: AccountsView,
                     meta: {
@@ -86,7 +86,7 @@ const router = new VueRouter({
                     }
                 },
                 {
-                    path: 'accounts/create',
+                    path: 'settings/accounts/create',
                     name: 'createAccount',
                     component: CreateView,
                     meta: {
@@ -94,7 +94,7 @@ const router = new VueRouter({
                     },
                 },
                 {
-                    path: 'accounts/:id/edit',
+                    path: 'settings/accounts/:id/edit',
                     name: 'editAccount',
                     component: EditView,
                     meta: {
@@ -102,7 +102,7 @@ const router = new VueRouter({
                     },
                 },
                 {
-                    path: 'accounts/:id',
+                    path: 'settings/accounts/:id',
                     name: 'accountPreview',
                     component: AccountPreview,
                     meta: {
@@ -110,7 +110,7 @@ const router = new VueRouter({
                     },
                 },
                 {
-                    path: 'my_profile',
+                    path: 'settings/my_profile',
                     name: 'my_profile',
                     component: MyProfileView,
                     meta: {

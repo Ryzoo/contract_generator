@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ProfileView from "../../../components/ProfileView";
+import ProfileView from "../../../../components/ProfileView";
 
 export default {
     name: "MyProfileView",

@@ -42,20 +42,54 @@
             <v-list class="pt-0" dense>
                 <v-divider light></v-divider>
 
-                <v-list-item
-                    v-for="item in items"
-                    :key="item.title"
-                    :to="item.link ? item.link : null"
-                    @click="item.logout ? logout() : null"
-                >
-                    <v-list-item-avatar>
-                        <v-icon>{{item.icon}}</v-icon>
-                    </v-list-item-avatar>
+                <template v-for="item in items">
+                    <v-list-item
+                        link
+                        :key="item.title"
+                        v-if="!item.elements"
+                        :prepend-icon="item.icon"
+                        :to="item.link ? item.link : null"
+                        @click="item.logout ? logout() : null"
+                    >
+                        <v-list-item-action>
+                            <v-icon>{{item.icon}}</v-icon>
+                        </v-list-item-action>
 
-                    <v-list-item-content>
-                        <v-list-item-title>{{item.title}}</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
+                        <v-list-item-content>
+                            <v-list-item-title>{{item.title}}</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                    <v-list-group
+                        v-else
+                        value="true"
+                        class="white--text"
+                    >
+                        <template v-slot:activator>
+                            <v-list-item-action>
+                                <v-icon>{{item.icon}}</v-icon>
+                            </v-list-item-action>
+
+                            <v-list-item>
+                                <v-list-item-content>
+                                    <v-list-item-title>{{item.title}}</v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </template>
+
+                        <v-list-item
+                            v-for="(element, i) in item.elements"
+                            :key="i"
+                            :to="element.link ? element.link : null"
+                            link
+                        >
+                            <v-list-item-content>
+                                <v-list-item-title>
+                                    {{ element.title }}
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </v-list-group>
+                </template>
             </v-list>
         </v-navigation-drawer>
 
@@ -110,39 +144,39 @@
         items: [
           {
             title: this.$t('navigation.dashboard'),
-            icon: "fa-poll",
+            icon: "fa-poll fa-fw",
             link: "/panel/admin/dashboard"
           },
           {
-            title: this.$t('navigation.profile'),
-            icon: "fa-user-tie",
-            link: "/panel/admin/my_profile"
-          },
-          {
-            title: this.$t('navigation.clients'),
-            icon: "fa-users"
-          },
-          {
             title: this.$t('navigation.contract'),
-            icon: "fa-file-contract",
+            icon: "fa-file-contract fa-fw",
             link: "/panel/admin/contracts"
           },
           {
             title: this.$t('navigation.schema'),
-            icon: "fa-th"
+            icon: "fa-th fa-fw"
           },
           {
-            title: this.$t('navigation.accounts'),
-            icon: "fa-users-cog",
-            link: "/panel/admin/accounts"
-          },
-          {
-            title: this.$t('navigation.settings'),
-            icon: "fa-cog"
+            title: this.$t('navigation.settings.main'),
+            icon: "fa-cog fa-fw",
+            elements: [
+              {
+                title: this.$t('navigation.settings.policies'),
+                link: "/panel/admin/settings/policies"
+              },
+              {
+                title: this.$t('navigation.settings.account'),
+                link: "/panel/admin/settings/accounts"
+              },
+              {
+                title: this.$t('navigation.settings.my_profile'),
+                link: "/panel/admin/settings/my_profile"
+              }
+            ]
           },
           {
             title: this.$t('navigation.logout'),
-            icon: "fa-sign-out-alt",
+            icon: "fa-sign-out-alt fa-fw",
             logout: true
           }
         ]
@@ -161,8 +195,35 @@
   };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+    .v-list-group{
+        color: white !important;
 
-</
-style
->
+        .v-list-group__items{
+            background: #22343f !important;
+        }
+
+        .v-list-item--active{
+            color: white !important;
+            background-color: #637580 !important;
+        }
+    }
+
+    .v-list-group__header.v-list-item--active{
+        background-color: #3d5766 !important;
+    }
+
+    .v-list-group__header{
+        color: white !important;
+
+        &>.v-list-item__action{
+            min-width: 30px !important;
+        }
+
+        &>.v-list-item{
+            padding: 0 !important;
+        }
+
+
+    }
+</style>
