@@ -80,11 +80,11 @@
     data() {
       return {
         keepInBounds: true,
-        editor: null
+        editor: null,
       };
     },
     mounted() {
-      this.editor = new Editor({
+        this.editor = new Editor({
         extensions: [
           new Blockquote(),
           new BulletList(),
@@ -105,13 +105,16 @@
           new Variable()
         ],
         content: this.block.content.text,
+            onUpdate: ({ getHTML }) => {
+                this.block.content.text = getHTML();
+            },
         useBuiltInExtensions: true
       });
     },
     beforeDestroy() {
-      this.editor.destroy();
+        this.editor.destroy();
     }
-  };
+  }
 </script>
 
 <style lang="scss" scoped>

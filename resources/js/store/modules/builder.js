@@ -19,8 +19,14 @@ const actions = {
     builder_idBlockIncrement: (context, data) => {
         context.commit('BUILDER_BLOCK_INCREMENT_ID', data);
     },
+    builder_setIdBlockIncrement: (context, data) => {
+        context.commit('BUILDER_BLOCK_SET_INCREMENT_ID', data);
+    },
     builder_idVariableIncrement: (context, data) => {
         context.commit('BUILDER_VARIABLE_INCREMENT_ID', data);
+    },
+    builder_setIdVariableIncrement: (context, data) => {
+        context.commit('BUILDER_VARIABLE_SET_INCREMENT_ID', data);
     },
     builder_buttonIndex: (context, data) => {
         context.commit('BUILDER_CURRENT_BUTTON_INDEX', data);
@@ -41,8 +47,14 @@ const mutations = {
     BUILDER_BLOCK_INCREMENT_ID: (state) => {
         state.builder.idBlockIncrement += 1;
     },
+    BUILDER_BLOCK_SET_INCREMENT_ID: (state, data) => {
+        state.builder.idBlockIncrement = data;
+    },
     BUILDER_VARIABLE_INCREMENT_ID: (state) => {
         state.builder.idVariableIncrement += 1;
+    },
+    BUILDER_VARIABLE_SET_INCREMENT_ID: (state, data) => {
+        state.builder.idVariableIncrement = data;
     },
     BUILDER_CURRENT_BUTTON_INDEX: (state, data) => {
         state.builder.currentNewBlockButtonIndex = data;

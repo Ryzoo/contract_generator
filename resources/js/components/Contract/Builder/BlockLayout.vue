@@ -18,29 +18,10 @@
     name: "BlockLayout",
     data: function () {
       return {
-        blocksCategory: [
-          {
-            name: "Kategoria 1",
-            blocks: [
-              {
-                name: "bloczek"
-              }
-            ]
-          },
-          {
-            name: "Kategoria 2",
-            blocks: [
-              {
-                name: "bloczek2"
-              }
-            ]
-          }
-        ],
       }
     },
     computed: {
       filterParentBlocks() {
-          console.log(this.blocks);
         let filteredBlocks = this.blocks.filter(x => !x.parentId);
         let obj = {isDivider: true};
         let arr = [
@@ -55,7 +36,6 @@
         return arr;
       },
       blocks() {
-          console.log(this.$store.getters.builder_allBlocks);
         return this.$store.getters.builder_allBlocks;
       }
     },
@@ -67,9 +47,41 @@
 
         return arrayOfCategories;
       },
+        setHighestBlockId() {
+          let blockId = this.$store.getters.builder_getBlockId;
+
+            this.blocks.map((block) => {
+                if (block.id > blockId) {
+                    blockId = block.id;
+
+                    if (typeof block.content.blocks != 'undefined' && block.content.blocks.length > 0) {
+                        setHighestBlockId()
+                    }
+                }
+            });
+
+            this.$store.dispatch('builder_setIdBlockIncrement', blockId);
+        },
+        setHighestVariableId() {
+            const variables = this.$store.getters.builder_allVariables;
+            let variableId = this.$store.getters.builder_getVariableId;
+
+            variables.map((variable) => {
+                if (variable.id > variableId) {
+                    variableId = variable.id;
+
+                    if (typeof variable.content != 'undefined' && variable.content.length > 0) {
+                        setHighestVariableId()
+                    }
+                }
+            });
+
+            this.$store.dispatch('builder_setIdVariableIncrement', variableId);
+        },
     },
     mounted() {
-      this.categoriesNames = this.blocksCategoryToSelect(this.blocksCategory);
+        this.setHighestBlockId();
+        this.setHighestVariableId();
     }
   }
 </script>

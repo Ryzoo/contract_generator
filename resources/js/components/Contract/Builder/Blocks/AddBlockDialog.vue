@@ -34,6 +34,7 @@
 
 <script>
   import Selector from "../../../../additionalModules/StaticSelectors";
+  import {BlockTypeEnum} from "../../../../additionalModules/Enums";
 
   export default {
     name: "AddBlockDialog",
@@ -59,11 +60,11 @@
       addBlock(blockType) {
         this.newBlock.blockType = blockType;
 
-        if (this.newBlock.blockType === 0)
+        if (this.newBlock.blockType === BlockTypeEnum.TEXT_BLOCK)
           this.newBlock.content = { text: "" };
 
-        this.newBlock.id = this.$store.getters.builder_getBlockId;
         this.$store.dispatch('builder_idBlockIncrement');
+        this.newBlock.id = this.$store.getters.builder_getBlockId;
 
         this.newBlock.blockName = `New block: ${this.newBlock.id}`;
 
