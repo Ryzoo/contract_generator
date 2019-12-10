@@ -44,7 +44,7 @@ section {
   width: 100%;
 }
 
-details {
+.accordion-header {
   padding: 10px 0;
   border: 1px solid #d4ac71;
   border-radius: 5px;
@@ -53,31 +53,39 @@ details {
   position: relative;
 }
 
-details[open].active {
+.accordion-header section {
+  display: none;
+}
+
+.accordion-header.active {
   border: 3px solid #d4ac71;
   box-shadow: 0px 3px 6px 0px #d4ac71;
 }
 
-details[open] > summary {
+.accordion-header.active section {
+  display: block;
+}
+
+.accordion-header.active > .accordion-body {
   border-bottom: 1px solid #d4ac71;
   padding-bottom: 10px;
 }
 
-details[open] > summary i {
+.accordion-header.active > .accordion-body i.rotate {
   -webkit-transform: rotate(90deg);
           transform: rotate(90deg);
 }
 
-details[open] > summary:hover {
+.accordion-header.active > .accordion-body:hover {
   cursor: pointer;
 }
 
-details[open] > *:not(:first-child) {
+.accordion-header.active > *:not(:first-child) {
   padding: 0 15px;
   margin-top: 16px;
 }
 
-details summary {
+.accordion-header .accordion-body {
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;
@@ -85,16 +93,16 @@ details summary {
   text-transform: capitalize;
 }
 
-details summary svg {
+.accordion-header .accordion-body svg {
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
 
-details summary:focus {
+.accordion-header .accordion-body:focus {
   outline: none;
 }
 
-details summary::-webkit-details-marker {
+.accordion-header .accordion-body::-webkit-details-marker {
   display: none;
 }
 

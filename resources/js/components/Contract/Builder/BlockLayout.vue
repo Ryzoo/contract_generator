@@ -87,20 +87,4 @@
 </script>
 
 <style lang="scss">
-    details[open] > *:not(:first-child) {
-        box-sizing: border-box;
-    }
-
-    details[open] > summary i {
-        transform: rotate(0deg) !important;
-        transition: all .2s;
-
-        &:hover {
-            color: #d4ac71 !important;
-        }
-    }
-
-    details[open] > summary .block-header--icon i {
-        transform: rotate(90deg) !important;
-    }
 </style>

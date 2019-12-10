@@ -10,7 +10,7 @@
 }
 
 .theme--light.v-footer,
-.theme--light.v-sheet{
+.theme--light.v-sheet {
     color: $fontColor !important;
 }
 
@@ -20,10 +20,11 @@
     color: white !important;
 }
 
-.theme--light.application{
+.theme--light.application {
     color: $fontColor !important;
     background: #f0f3f7 !important;
 }
+
 .v-list--dense .v-list__tile {
     font-size: 14px !important;
 }
@@ -31,7 +32,6 @@
 section {
     width: 100%;
 }
-
 
 
 .hr-line {
@@ -53,22 +53,30 @@ section {
 
 //BLOCKS
 
-details {
+.accordion-header {
     padding: 10px 0;
     border: 1px solid $primary;
     border-radius: 5px;
     transition: all 0.2s;
     position: relative;
-    &[open] {
-        &.active {
-            border: 3px solid $primary;
-            box-shadow: 0px 3px 6px 0px $primary;
+
+    section {
+        display: none;
+    }
+
+    &.active {
+        border: 3px solid $primary;
+        box-shadow: 0px 3px 6px 0px $primary;
+
+        section {
+            display: block;
         }
-        & > summary {
+
+        & > .accordion-body {
             border-bottom: 1px solid $primary;
             padding-bottom: 10px;
 
-            i {
+            i.rotate {
                 transform: rotate(90deg);
             }
 
@@ -77,25 +85,30 @@ details {
             }
 
         }
+
         & > *:not(:first-child) {
             padding: 0 15px;
             margin-top: 16px;
         }
     }
-    summary {
+
+    .accordion-body {
         display: flex;
         align-items: center;
         text-transform: capitalize;
+
         svg {
             transition: all 0.2s;
         }
+
         &:focus {
             outline: none;
         }
     }
 
-    summary::-webkit-details-marker {
+    .accordion-body::-webkit-details-marker {
         display: none;
     }
 }
+
 @import "theme/table";

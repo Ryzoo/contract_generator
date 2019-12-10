@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="block" :blockid="block.id" v-if="!divider">
-            <details @click="setActive($event)">
+            <div class="accordion-header" @click="setActive($event)">
                 <BlockHeader :block="block"></BlockHeader>
                 <component
                     :is="Mapper.getBlockName(block.blockType)"
@@ -9,7 +9,7 @@
                     :level="level ? level : 0"
                     >
                 </component>
-            </details>
+            </div>
         </div>
         <AddBlockDialog :buttonIndex="blockIndex" :block="block" :level="level ? level : 0" v-else></AddBlockDialog>
     </section>
@@ -37,9 +37,9 @@
     },
     methods: {
       setActive(e){
-        if (!e.target.closest("details").classList.contains("active")) {
-          $('details.active').removeClass("active");
-          e.target.closest("details").classList.add("active");
+        if (!e.target.closest(".accordion-header").classList.contains("active")) {
+          $('.accordion-header.active').removeClass("active");
+          e.target.closest(".accordion-header").classList.add("active");
           this.$emit("getAttributes");
         }
       }
@@ -47,6 +47,5 @@
   }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
 </style>
