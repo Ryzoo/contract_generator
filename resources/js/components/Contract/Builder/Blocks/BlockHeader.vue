@@ -9,8 +9,8 @@
             <h3 class="pr-2">{{ block.blockName | truncate}}</h3>
         </div>
         <div class="block-header--action">
-            <v-icon class="mx-3" @click="editContract">fa-edit</v-icon>
-            <v-icon class="mx-3" @click="removeContract">fa-trash</v-icon>
+            <v-icon class="mx-3" @click="editBlock($event)">fa-edit</v-icon>
+            <v-icon class="mx-3" @click="removeBlock">fa-trash</v-icon>
         </div>
     </div>
 </template>
@@ -20,10 +20,16 @@
     name: "BlockHeader",
     props: ["block"],
     methods:{
-      editContract(){
+      editBlock(e){
         this.$store.dispatch("builder_setActiveBlock", this.block);
+
+        if (e.target.closest(".accordion-header").classList.contains("active")) {
+            e.target.closest(".accordion-header").classList.remove("active");
+        } else {
+            e.target.closest(".accordion-header").classList.add("active");
+        }
       },
-      removeContract(){
+      removeBlock(){
           // TODO: implement remove there
         console.log("TODO: implement remove there");
       }

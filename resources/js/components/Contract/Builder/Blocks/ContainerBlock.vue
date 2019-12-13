@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="block" :blockid="block.id" v-if="!divider">
-            <div class="accordion-header" @click="setActive($event)">
+            <div class="accordion-header">
                 <BlockHeader :block="block"></BlockHeader>
                 <component
                     :is="Mapper.getBlockName(block.blockType)"
@@ -34,15 +34,6 @@
       divider: {},
       level: {},
       blockIndex: {}
-    },
-    methods: {
-      setActive(e){
-        if (!e.target.closest(".accordion-header").classList.contains("active")) {
-          $('.accordion-header.active').removeClass("active");
-          e.target.closest(".accordion-header").classList.add("active");
-          this.$emit("getAttributes");
-        }
-      }
     },
   }
 </script>
