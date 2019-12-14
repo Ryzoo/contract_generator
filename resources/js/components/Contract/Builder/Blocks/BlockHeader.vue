@@ -1,6 +1,5 @@
 <template>
 <!--    TODO: When click edit, right sidebar show up 2nd position-->
-<!--    TODO: Change to own expansion panel-->
     <div class="block-header accordion-body">
         <div class="block-header--icon">
             <v-icon class="mx-3 rotate">fa-chevron-right</v-icon>

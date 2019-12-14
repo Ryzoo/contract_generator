@@ -1,6 +1,6 @@
 <template>
     <div class="sidebar-builder-options">
-        <v-tabs slider-size="3" vertical>
+        <v-tabs v-model="activeTab" slider-size="3" vertical>
             <template v-for="element in sidebarElements">
                 <v-tab>
                     <v-icon size="26">{{element.icon}}</v-icon>
@@ -8,7 +8,7 @@
                 <v-tab-item>
                     <div class="builder-options-content">
                         <h2>{{element.name}}</h2>
-                        <component :is="element.tabViewComponent"></component>
+                      <component :is="element.tabViewComponent"/>
                     </div>
                 </v-tab-item>
             </template>
@@ -30,6 +30,7 @@
     },
     data() {
       return {
+        activeTab: null,
         sidebarElements: [
           {
             name: "Dostępne bloki",

@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="block-details">
         <editor-menu-bubble
             :editor="editor"
             :keep-in-bounds="keepInBounds"

@@ -2,7 +2,7 @@
     <section>
         <div class="options-section-1">
             <span class="sub-title">Konfiguruj blok</span>
-            <v-text-field v-model="block.blockName" label="Nazwa" outline></v-text-field>
+            <v-text-field v-model="block.blockName" label="Nazwa" outline/>
             <div class="block-button">
                 <v-btn color="primary" @click="editBlock()">Zapisz</v-btn>
             </div>
@@ -21,7 +21,7 @@
                         >
                         </v-select>
                     </div>
-                    <v-text-field v-model="block.conditional" label="Warunek" outline></v-text-field>
+                    <v-text-field v-model="block.conditional" label="Warunek" outline/>
                     <div class="block-button">
                         <v-btn color="primary" @click="addConditional()">Dodaj</v-btn>
                     </div>
