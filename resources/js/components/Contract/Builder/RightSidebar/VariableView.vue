@@ -118,7 +118,6 @@
                 this.$store.dispatch("builder_idVariableIncrement");
 
                 this.attribute = this.getDefaultAttribute();
-
             },
         }
     }

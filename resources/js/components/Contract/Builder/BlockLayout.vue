@@ -46,34 +46,36 @@
 
         return arrayOfCategories;
       },
-      setHighestBlockId() {
+      setHighestBlockId(blocks = this.blocks) {
         let blockId = this.$store.getters.builder_getBlockId;
 
-        this.blocks.map((block) => {
+        blocks.forEach((block) => {
           if (block.id > blockId) {
             blockId = block.id;
+            this.$store.dispatch('builder_setIdBlockIncrement', blockId);
+          }
 
-            if (typeof block.content.blocks != 'undefined' && block.content.blocks.length > 0) {
-              setHighestBlockId()
-            }
+          if (typeof block.content.blocks !== 'undefined' && block.content.blocks.length > 0) {
+            this.setHighestBlockId(block.content.blocks)
+            blockId = this.$store.getters.builder_getBlockId;
           }
         });
 
         this.$store.dispatch('builder_setIdBlockIncrement', blockId);
       },
-      setHighestVariableId() {
-        const variables = this.$store.getters.builder_allVariables;
+      setHighestVariableId(variables = this.$store.getters.builder_allVariables) {
         let variableId = this.$store.getters.builder_getVariableId;
 
-        variables.map((variable) => {
+        variables.forEach((variable) => {
           if (variable.id > variableId) {
             variableId = variable.id;
-
-            if (typeof variable.content != 'undefined' && variable.content.length > 0) {
-              setHighestVariableId()
-            }
+          }
+          if (typeof variable.content !== 'undefined' && variable.content.length > 0) {
+            this.setHighestVariableId()
           }
         });
+
+        console.log(variableId)
 
         this.$store.dispatch('builder_setIdVariableIncrement', variableId);
       },
