@@ -1,18 +1,18 @@
 <template>
-    <section>
-        <div class="block" :blockid="block.id" v-if="!divider">
-            <div class="accordion-header">
-                <BlockHeader :block="block"></BlockHeader>
-                <component
-                    :is="Mapper.getBlockName(block.blockType)"
-                    :block="block"
-                    :level="level ? level : 0"
-                    >
-                </component>
-            </div>
-        </div>
-        <AddBlockDialog :buttonIndex="blockIndex" :block="block" :level="level ? level : 0" v-else></AddBlockDialog>
-    </section>
+  <section>
+    <div class="block" :blockid="block.id" v-if="!divider">
+      <div class="accordion-header">
+        <BlockHeader :block="block"></BlockHeader>
+        <component
+          :is="Mapper.getBlockName(block.blockType)"
+          :block="block"
+          :level="level ? level : 0"
+        >
+        </component>
+      </div>
+    </div>
+    <AddBlockDialog :buttonIndex="blockIndex" :block="block" :level="level ? level : 0" v-else></AddBlockDialog>
+  </section>
 </template>
 
 <script>
@@ -30,7 +30,7 @@
       AddBlockDialog
     },
     props: {
-      block: { required: true },
+      block: {required: true},
       divider: {},
       level: {},
       blockIndex: {}

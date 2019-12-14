@@ -1,42 +1,42 @@
 <template>
-    <section>
-        <div class="options-section-1">
-            <span class="sub-title">Konfiguruj blok</span>
-            <v-text-field v-model="block.blockName" label="Nazwa" outline/>
-            <div class="block-button">
-                <v-btn color="primary" @click="editBlock()">Zapisz</v-btn>
-            </div>
+  <section>
+    <div class="options-section-1">
+      <span class="sub-title">Konfiguruj blok</span>
+      <v-text-field v-model="block.blockName" label="Nazwa" outline/>
+      <div class="block-button">
+        <v-btn color="primary" @click="editBlock()">Zapisz</v-btn>
+      </div>
+    </div>
+    <div class="options-section-2">
+      <span class="sub-title">Logika</span>
+      <div class="builder-elements">
+        <div class="select-options">
+          <div class="w-50">
+            <v-select
+              :items="blockOptions"
+              label="Akcja"
+              outlined
+              color="primary"
+              dense
+            >
+            </v-select>
+          </div>
+          <v-text-field v-model="block.conditional" label="Warunek" outline/>
+          <div class="block-button">
+            <v-btn color="primary" @click="addConditional()">Dodaj</v-btn>
+          </div>
         </div>
-        <div class="options-section-2">
-            <span class="sub-title">Logika</span>
-            <div class="builder-elements">
-                <div class="select-options">
-                    <div class="w-50">
-                        <v-select
-                            :items="blockOptions"
-                            label="Akcja"
-                            outlined
-                            color="primary"
-                            dense
-                        >
-                        </v-select>
-                    </div>
-                    <v-text-field v-model="block.conditional" label="Warunek" outline/>
-                    <div class="block-button">
-                        <v-btn color="primary" @click="addConditional()">Dodaj</v-btn>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
   export default {
     name: "SelectedBlockView",
-    data(){
+    data() {
       return {
-        block:{
+        block: {
           blockName: "",
           conditionals: ""
         },
@@ -45,20 +45,20 @@
         ],
       }
     },
-    watch:{
-      activeBlock(value){
+    watch: {
+      activeBlock(value) {
         this.initBlock();
       }
     },
     computed: {
-      activeBlock(){
+      activeBlock() {
         return this.$store.state.builder.builder.activeBlock;
       },
       blocks() {
         return this.$store.getters.builder_allBlocks;
       }
     },
-    methods:{
+    methods: {
       addConditional() {
         let blockConditional = {
           conditionalType: 0,
@@ -77,19 +77,20 @@
                 x = this.activeBlock;
               }
             })
-          } else if (typeof x.content.blocks != 'undefined' && x.content.blocks.length > 0) {
+          }
+          else if (typeof x.content.blocks != 'undefined' && x.content.blocks.length > 0) {
             this.editBlock(x.content.blocks)
           }
         });
 
         this.$store.dispatch("builder_set", blocks);
       },
-      initBlock(){
+      initBlock() {
         this.block = this.activeBlock;
       }
     },
     mounted() {
-      if(this.activeBlock){
+      if (this.activeBlock) {
         this.initBlock();
       }
     }
