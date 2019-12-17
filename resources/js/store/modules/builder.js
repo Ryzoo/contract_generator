@@ -22,8 +22,8 @@ const actions = {
     builder_setIdBlockIncrement: (context, data) => {
         context.commit('BUILDER_BLOCK_SET_INCREMENT_ID', data);
     },
-    builder_idVariableIncrement: (context, data) => {
-        context.commit('BUILDER_VARIABLE_INCREMENT_ID', data);
+    builder_idVariableIncrement: (context) => {
+        context.commit('BUILDER_VARIABLE_INCREMENT_ID');
     },
     builder_setIdVariableIncrement: (context, data) => {
         context.commit('BUILDER_VARIABLE_SET_INCREMENT_ID', data);
@@ -42,7 +42,6 @@ const mutations = {
         state.builder.blocks = data;
     },
     BUILDER_SET_ACTIVE_BLOCK: (state, data) => {
-        console.log(data)
         state.builder.activeBlock = state.builder.blocks.find(x => x.id === data.id);
     },
     BUILDER_BLOCK_INCREMENT_ID: (state) => {

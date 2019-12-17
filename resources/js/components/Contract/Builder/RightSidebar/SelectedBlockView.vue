@@ -21,7 +21,7 @@
             >
             </v-select>
           </div>
-          <v-text-field v-model="block.conditional" label="Warunek" outline/>
+          <v-text-field v-model="conditional" label="Warunek" outline/>
           <div class="block-button">
             <v-btn color="primary" @click="addConditional()">Dodaj</v-btn>
           </div>
@@ -43,6 +43,7 @@
         blockOptions: [
           "Pokaż",
         ],
+          conditional: ''
       }
     },
     watch: {
@@ -66,7 +67,7 @@
         };
 
         this.activeBlock.conditionals.push(blockConditional);
-        this.$store.dispatch("builder_set", this.activeBlock);
+        this.$store.dispatch("builder_setActiveBlock", this.activeBlock);
         this.editBlock();
       },
       editBlock(blocks = this.blocks) {

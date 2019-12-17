@@ -111,4 +111,11 @@ section {
     }
 }
 
+.variable {
+    width: min-content;
+    padding: 4px;
+    background-color: $primary;
+    border-radius: 10px;
+}
+
 @import "theme/table";

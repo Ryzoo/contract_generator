@@ -75,9 +75,8 @@
           }
         });
 
-        console.log(variableId)
-
         this.$store.dispatch('builder_setIdVariableIncrement', variableId);
+        this.$store.dispatch('builder_idVariableIncrement');
       },
     },
     mounted() {
