@@ -107,6 +107,7 @@
         navigatedVariableIndex: 0,
         insertMention: () => {},
         observer: null,
+        variableSuggestions: this.mapAttributesList(),
       };
     },
     mounted() {
@@ -129,7 +130,7 @@
           new Underline(),
           new History(),
           new Mention({
-            items: () => this.mapAttributesList(),
+            items: () => this.variableSuggestions,
             onEnter: ({ items, query, range, command, virtualNode }) => {
                 this.query = query;
                 this.filteredVariables = items;
@@ -179,9 +180,16 @@
           }),
           new Variable()
         ],
-        content: this.block.content.text,
+        content: this.parseBlockContent(),
           onUpdate: ({ getHTML }) => {
-            this.block.content.text = getHTML();
+            //TODO: Send all html not only with mention
+            let html = getHTML();
+            let element = $(html);
+            element.find(".mention").each(function() {
+                $(this).replaceWith(`{${$(this).attr("data-mention-id")}}`)
+            })
+
+            this.block.content.text = element.prop("outerHTML");
           },
         useBuiltInExtensions: true,
 
@@ -196,6 +204,19 @@
       },
     },
     methods:{
+      parseBlockContent() {
+          if (this.block.content.text !== null) {
+              const matches = this.block.content.text.split('{')
+                  .filter((v) => v.indexOf('}') > -1)
+                  .map((value) => parseInt(value.split('}')[0]));
+
+              matches.forEach((id) => {
+                  this.block.content.text = this.block.content.text.replace(`{${id}}`, `<span class="mention variable" data-mention-id='${id}' contenteditable="false">@${this.variableSuggestions.find((x) => x.id === id).name}</span>`)
+              })
+          }
+
+          return this.block.content.text;
+      },
       mapAttributesList() {
         const attributesList = this.$store.getters.builder_allVariables;
         const items = [];
@@ -216,7 +237,7 @@
           this.navigatedVariableIndex = (this.navigatedVariableIndex + 1) % this.filteredVariables.length
       },
       enterHandler() {
-          const variable = this.filteredVariables[this.navigatedVariableIndex]
+          const variable = this.filteredVariables[this.navigatedVariableIndex];
           if (variable) {
               this.selectVariable(variable)
           }
@@ -250,7 +271,7 @@
           if (MutationObserver) {
               this.observer = new MutationObserver(() => {
                   this.popup.popperInstance.scheduleUpdate()
-              })
+              });
               this.observer.observe(this.$refs.suggestions, {
                   childList: true,
                   subtree: true,
@@ -260,7 +281,7 @@
       },
       destroyPopup() {
           if (this.popup) {
-              this.popup.destroy()
+              this.popup.destroy();
               this.popup = null
           }
           if (this.observer) {

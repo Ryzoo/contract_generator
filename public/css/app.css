@@ -106,6 +106,7 @@ section {
   display: none;
 }
 
+.mention,
 .variable {
   width: -webkit-min-content;
   width: -moz-min-content;

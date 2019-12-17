@@ -1,5 +1,5 @@
 import { Node } from 'tiptap'
-import { toggleWrap,insertText,setInlineBlockType, replaceText } from 'tiptap-commands'
+import { replaceText } from 'tiptap-commands'
 
 export default class VariableNode extends Node {
 
