@@ -247,7 +247,6 @@
               arrow: true,
               arrowType: 'round',
           })
-          // we have to update tippy whenever the DOM is updated
           if (MutationObserver) {
               this.observer = new MutationObserver(() => {
                   this.popup.popperInstance.scheduleUpdate()
