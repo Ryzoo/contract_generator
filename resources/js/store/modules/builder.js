@@ -42,7 +42,7 @@ const mutations = {
         state.builder.blocks = data;
     },
     BUILDER_SET_ACTIVE_BLOCK: (state, data) => {
-        state.builder.activeBlock = state.builder.blocks.find(x => x.id === data.id);
+        state.builder.activeBlock = data;
     },
     BUILDER_BLOCK_INCREMENT_ID: (state) => {
         state.builder.idBlockIncrement += 1;

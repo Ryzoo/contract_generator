@@ -17,11 +17,12 @@
               label="Akcja"
               outlined
               color="primary"
+              v-model="conditional.conditionalType"
               dense
             >
             </v-select>
           </div>
-          <v-text-field v-model="conditional" label="Warunek" outline/>
+          <v-text-field v-model="conditional.content" label="Warunek" outline/>
           <div class="block-button">
             <v-btn color="primary" @click="addConditional()">Dodaj</v-btn>
           </div>
@@ -32,6 +33,7 @@
 </template>
 
 <script>
+    import {ConditionalEnum} from "./../../../../additionalModules/Enums";
   export default {
     name: "SelectedBlockView",
     data() {
@@ -41,9 +43,9 @@
           conditionals: ""
         },
         blockOptions: [
-          "Pokaż",
+          "SHOW_ON",
         ],
-          conditional: ''
+          conditional: this.getInitialConditional()
       }
     },
     watch: {
@@ -60,13 +62,20 @@
       }
     },
     methods: {
+        getInitialConditional() {
+            return {
+                content: "",
+                conditionalType: -1,
+            }
+        },
       addConditional() {
         let blockConditional = {
-          conditionalType: 0,
-          content: this.conditional.split(" ")
+          conditionalType: parseInt(ConditionalEnum[this.conditional.conditionalType]),
+          content: this.conditional.content.split(" ")
         };
 
-        this.activeBlock.conditionals.push(blockConditional);
+        // this.activeBlock.conditionals.push(blockConditional);
+        this.activeBlock.conditionals = [blockConditional];
         this.$store.dispatch("builder_setActiveBlock", this.activeBlock);
         this.editBlock();
       },
@@ -88,6 +97,13 @@
       },
       initBlock() {
         this.block = this.activeBlock;
+          this.conditional = this.getInitialConditional();
+        this.block.conditionals.forEach((conditional) => {
+            this.conditional = {
+                content: conditional.content.join(" "),
+                conditionalType: conditional.conditionalName
+            }
+        })
       }
     },
     mounted() {
