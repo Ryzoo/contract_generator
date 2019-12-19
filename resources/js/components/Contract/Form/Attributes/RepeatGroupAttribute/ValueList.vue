@@ -5,7 +5,7 @@
         >
             <v-list-item-content>
                 <v-list-item-title v-text="element.map(x=>x.value).join(', ')"></v-list-item-title>
-                <v-list-item-subtitle v-text="'Kolejno: ' + element.map(x=>x.name).join(', ')"></v-list-item-subtitle>
+                <v-list-item-subtitle v-text="'Kolejno: ' + element.map(x=>x.attributeName).join(', ')"></v-list-item-subtitle>
             </v-list-item-content>
 
             <v-list-item-action>

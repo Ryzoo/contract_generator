@@ -29,7 +29,7 @@ class RepeatGroupAttribute extends Attribute {
 
             foreach ($attributes as $attribute) {
                 if ($attributesName->count() < count($attributes)) {
-                    $attributesName->push($attribute->name);
+                    $attributesName->push($attribute->attributeName);
                 }
 
                 $attributeValue->push($attribute->value);

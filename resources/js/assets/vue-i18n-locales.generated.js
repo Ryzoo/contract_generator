@@ -13,6 +13,11 @@ export default {
                         "basic_data": "Basic data"
                     }
                 },
+                "roles": {
+                    "buttons": {
+                        "new": "Add new role"
+                    }
+                },
                 "contracts": {
                     "buttons": {
                         "new_contract": "Add new contract"
@@ -44,6 +49,9 @@ export default {
                     },
                     "profile": {
                         "title": "Panel - My Profile"
+                    },
+                    "roles": {
+                        "title": "Panel - Manage roles"
                     },
                     "accounts": {
                         "title": "Panel - Accounts",
@@ -141,8 +149,14 @@ export default {
             "accountRemoveForm": {
                 "title": "Remove account"
             },
+            "roleRemoveForm": {
+                "title": "Remove role"
+            },
             "removeContractForm": {
-                "title": "Remove contract"
+                "title": "Remove contract",
+                "notify": {
+                    "success": "Role removed!"
+                }
             },
             "contractAddForm": {
                 "title": "Add contract",
@@ -204,7 +218,8 @@ export default {
                 "name": "Name",
                 "email": "Email",
                 "created": "Created",
-                "actions": "Actions"
+                "actions": "Actions",
+                "descriptions": "Descriptions"
             },
             "description": {
                 "remove": "Do you want to remove it?"
@@ -229,7 +244,7 @@ export default {
             "accounts": "Accounts",
             "settings": {
                 "main": "Settings",
-                "policies": "Policies",
+                "roles": "Roles",
                 "account": "Accounts",
                 "my_profile": "My profile"
             },

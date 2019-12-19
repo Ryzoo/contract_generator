@@ -2,7 +2,7 @@
     <v-row>
         <v-col v-if="isLoaded">
             <v-row>
-                <v-col align="end">
+                <v-col>
                     <v-btn :to="{ name: 'createAccount' }" color="primary">
                         {{ $t("pages.panel.accounts.buttons.new") }}
                     </v-btn>

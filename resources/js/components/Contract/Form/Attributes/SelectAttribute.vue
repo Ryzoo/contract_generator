@@ -5,7 +5,7 @@
             outlined
             :error="validationError.length > 0"
             :error-messages="validationError"
-            :label="attribute.name"
+            :label="attribute.attributeName"
             :value="currentValue"
             :hint="attribute.description"
             :persistent-hint="!!attribute.description"

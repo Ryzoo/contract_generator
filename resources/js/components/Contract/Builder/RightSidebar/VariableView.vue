@@ -65,7 +65,6 @@
         mounted() {
             this.getAllAttributes();
             this.attributesList = this.$store.getters.builder_allVariables;
-            console.log(this.$store.getters.builder_getVariableId)
         },
         methods: {
             editAttribute(attribute) {

@@ -1,7 +1,7 @@
 <template>
     <v-col sm="12" >
         <v-text-field
-            :label="attribute.name"
+            :label="attribute.attributeName"
             :value="attribute.value"
             :placeholder="attribute.placeholder ? String(attribute.placeholder) : ''"
             :error="validationError.length > 0"

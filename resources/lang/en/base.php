@@ -30,6 +30,7 @@ return [
         "email" => "Email",
         "created" => "Created",
         "actions" => "Actions",
+        "descriptions" => "Descriptions",
     ],
     'description' => [
         'remove' => 'Do you want to remove it?',

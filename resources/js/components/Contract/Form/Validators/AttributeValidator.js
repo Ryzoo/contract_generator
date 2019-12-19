@@ -47,7 +47,6 @@ class AttributeValidator{
     }
 
     isArray(){
-        console.log("isarray", Array.isArray(this.value), this.value);
         return Array.isArray(this.value);
     }
 
@@ -66,7 +65,7 @@ class AttributeValidator{
     validateRequired(){
         if(!!this.settings.required && this.isEmpty()){
             const validationError = i18n.t('validation.required', {
-                attribute: this.attribute.name,
+                attribute: this.attribute.attributeName,
             });
             return this.setResponse(validationError,false);
         }
@@ -78,14 +77,14 @@ class AttributeValidator{
 
             if(!this.isInteger()){
                 const validationError = i18n.t('validation.numeric', {
-                    attribute: this.attribute.name,
+                    attribute: this.attribute.attributeName,
                 });
                 return this.setResponse(validationError,false);
             }
 
             if(parseInt(this.value) > parseInt(this.settings.valueMax)){
                 const validationError = i18n.t('validation.max.numeric', {
-                    attribute: this.attribute.name,
+                    attribute: this.attribute.attributeName,
                     max: this.settings.valueMax
                 });
                 return this.setResponse(validationError,false);
@@ -99,14 +98,14 @@ class AttributeValidator{
 
             if(!this.isInteger()){
                 const validationError = i18n.t('validation.numeric', {
-                    attribute: this.attribute.name,
+                    attribute: this.attribute.attributeName,
                 });
                 return this.setResponse(validationError,false);
             }
 
             if(parseInt(this.value) < parseInt(this.settings.valueMin)){
                 const validationError = i18n.t('validation.min.numeric', {
-                    attribute: this.attribute.name,
+                    attribute: this.attribute.attributeName,
                     min: this.settings.valueMin
                 });
                 return this.setResponse(validationError,false);
@@ -120,16 +119,16 @@ class AttributeValidator{
 
             if(!this.isString() && !this.isArray()){
                 const validationError = i18n.t('validation.string', {
-                    attribute: this.attribute.name,
+                    attribute: this.attribute.attributeName,
                 });
                 return this.setResponse(validationError,false);
             }
             if((this.isArray() ? this.value.length :String(this.value).length) < parseInt(this.settings.lengthMin)){
                 const validationError = this.isArray() ? i18n.t('validation.min.array', {
-                    attribute: this.attribute.name,
+                    attribute: this.attribute.attributeName,
                     min: this.settings.lengthMin
                 }) : i18n.t('validation.min.array', {
-                    attribute: this.attribute.name,
+                    attribute: this.attribute.attributeName,
                     min: this.settings.lengthMin
                 });
 
@@ -144,17 +143,17 @@ class AttributeValidator{
 
             if(!this.isString() && !this.isArray()){
                 const validationError = i18n.t('validation.string', {
-                    attribute: this.attribute.name,
+                    attribute: this.attribute.attributeName,
                 });
                 return this.setResponse(validationError,false);
             }
 
             if((this.isArray() ? this.value.length : String(this.value).length) > parseInt(this.settings.lengthMax)){
                 const validationError = this.isArray() ? i18n.t('validation.max.string', {
-                    attribute: this.attribute.name,
+                    attribute: this.attribute.attributeName,
                     max: this.settings.lengthMax
                 }) : i18n.t('validation.max.array', {
-                    attribute: this.attribute.name,
+                    attribute: this.attribute.attributeName,
                     max: this.settings.lengthMax
                 });
 

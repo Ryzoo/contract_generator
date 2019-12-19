@@ -161,8 +161,8 @@
             icon: "fa-cog fa-fw",
             elements: [
               {
-                title: this.$t('navigation.settings.policies'),
-                link: "/panel/admin/settings/policies"
+                title: this.$t('navigation.settings.roles'),
+                link: "/panel/admin/settings/roles"
               },
               {
                 title: this.$t('navigation.settings.account'),

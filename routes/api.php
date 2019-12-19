@@ -23,6 +23,17 @@ Route::group(['middleware' => 'auth:token'], function(){
         });
     });
 
+    Route::prefix('role')->group(function () {
+        Route::get('/', 'RoleController@getCollection');
+        Route::get('/{id}', 'RoleController@get');
+
+        Route::post('/', 'RoleController@add');
+
+        Route::put('/{id}', 'RoleController@update');
+
+        Route::delete('/{id}', 'RoleController@remove');
+    });
+
     Route::prefix('user')->group(function () {
         Route::get('/', 'UserController@getCollection');
         Route::get('/{id}', 'UserController@get');

@@ -46,13 +46,12 @@
       changeValue(newValue, attribute) {
         if (newValue) {
           this.attributesList = this.attributesList.map(x => {
-            if (x.name === attribute.name) {
+            if (x.attributeName === attribute.attributeName) {
               x.value = newValue;
             }
             return x;
           });
         }
-
       },
       isValid(newValue, attribute) {
         let validatorResult = AttributeValidator.validate(attribute, newValue);
@@ -60,7 +59,7 @@
         let index = -1;
 
         this.attributesList.map((element, i) => {
-          if (element.name === attribute.name) {
+          if (element.attributeName === attribute.attributeName) {
             index = i;
           }
         });
