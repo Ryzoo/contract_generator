@@ -25,12 +25,7 @@
       v-model="showAttributeModal"
       scrollable
       max-width="500px">
-      <v-card>
-        <v-card-title>Attribute configuration</v-card-title>
-        <v-divider/>
-        <v-card-text>
-        </v-card-text>
-      </v-card>
+        <VariableView @close="showAttributeModal=false"/>
     </v-dialog>
   </v-row>
 </template>
@@ -39,8 +34,8 @@
   import Header from "../../../../components/Contract/Builder/Header";
   import ContainerBlock from "../../../../components/Contract/Builder/Blocks/ContainerBlock";
   import BlockLayout from "../../../../components/Contract/Builder/BlockLayout";
-  import SelectedBlockView from "../../../../components/Contract/Builder/RightSidebar/SelectedBlockView";
-  import BlockConfigurationModal from "../../../../components/Contract/Builder/Modals/BlockConfigurationModal";
+  import SelectedBlockView from "../../../../components/Contract/Builder/Modals/SelectedBlockView";
+  import VariableView from "../../../../components/Contract/Builder/Modals/VariableView";
 
   export default {
     name: "CreateAgreementView",
@@ -49,7 +44,7 @@
       BlockLayout,
       ContainerBlock,
       SelectedBlockView,
-      BlockConfigurationModal
+      VariableView,
     },
     data() {
       return {
