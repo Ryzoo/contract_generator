@@ -175,14 +175,14 @@
         ],
         content: this.parseBlockContent(),
           onUpdate: ({ getHTML }) => {
-            //TODO: Send all html not only with mention
             let html = getHTML();
-            let element = $(html);
+            let element = $(`<div>${html}</div>`);
+
             element.find(".mention").each(function() {
                 $(this).replaceWith(`{${$(this).attr("data-mention-id")}}`)
-            })
+            });
 
-            this.block.content.text = element.prop("outerHTML");
+            this.block.content.text = element.prop("innerHTML");
           },
         useBuiltInExtensions: true,
 
