@@ -4,8 +4,8 @@
     <v-divider/>
     <v-card-text>
       <div class="variables-list">
-          <span v-for="attribute in attributesList" class="variable" @click="editVariable(attribute)">{{attribute.attributeName}}<div><v-icon
-            @click="deleteVariable($event, attribute)" class="delete-variable" small>fa-times</v-icon></div></span>
+          <span v-for="attribute in $store.getters.builder_allVariables" class="variable" @click="editVariable(attribute)">{{attribute.attributeName}}<div><v-icon
+            @click="tryToRemoveAttribute($event, attribute)" class="delete-variable" small>fa-times</v-icon></div></span>
       </div>
     </v-card-text>
     <v-card-actions>
@@ -14,11 +14,32 @@
       <v-btn color="primary" @click="addNewAttribute">Add new variable</v-btn>
     </v-card-actions>
 
+    <v-dialog persistent v-model="deleteDialog" max-width="290">
+      <v-card>
+        <v-card-title class="headline">
+          {{ $t("pages.panel.contracts.builder.removeAttributeTitle") }}
+        </v-card-title>
+
+        <v-card-text>
+          {{ $t("base.description.remove") }}
+        </v-card-text>
+        <v-card-actions>
+          <div class="flex-grow-1"></div>
+          <v-btn color="primary" text @click="deleteDialog = false">
+            {{ $t("base.button.cancel") }}
+          </v-btn>
+          <v-btn color="error" @click="removeAttribute">
+            {{ $t("base.button.remove") }}
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
     <v-dialog
       v-model="showAddEditModal"
       scrollable
       max-width="500px">
-      <CreateEditVariable :editAttribute="attribute" :attributesList="attributesList" @close="showAddEditModal=false"/>
+      <CreateEditVariable :editAttribute="attribute" :attributesList="$store.getters.builder_allVariables" @close="showAddEditModal=false"/>
     </v-dialog>
   </v-card>
 </template>
@@ -34,18 +55,24 @@
     data() {
       return {
         showAddEditModal: false,
+        deleteDialog: false,
         variableOptions: [],
-        attributesList: [],
         attribute: null,
         allAttributes: [],
         isNewAttribute: true,
+        removedAttribute: null
       }
     },
-    mounted() {
-      this.getAllAttributes();
-      this.attributesList = this.$store.getters.builder_allVariables;
-    },
     methods: {
+      tryToRemoveAttribute(e, attribute){
+        e.stopPropagation();
+        this.removedAttribute = attribute;
+        this.deleteDialog = true;
+      },
+      removeAttribute(){
+        this.$store.dispatch("builder_removeVariable", this.removedAttribute.id);
+        this.deleteDialog = false;
+      },
       addNewAttribute() {
         this.attribute = null;
         this.showAddEditModal = true;
@@ -57,11 +84,6 @@
         this.attribute = attribute;
         this.showAddEditModal = true;
       },
-      deleteVariable(e, attribute) {
-        e.stopPropagation();
-        this.attributesList = this.attributesList.filter((item) => item.id !== attribute.id)
-        this.$store.dispatch("builder_setVariable", this.attributesList);
-      }
     }
   }
 </script>

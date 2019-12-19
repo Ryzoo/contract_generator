@@ -7,17 +7,17 @@
                         <v-toolbar-title class="white--text">{{ $t("form.contractAddForm.title") }}</v-toolbar-title>
                     </v-toolbar>
                     <v-card-text>
-                        <v-text-field
-                            prepend-icon="fa-file-signature"
-                            v-model="contract.name"
-                            :label="$t('form.contractAddForm.field.contract_name')"
-                            @change="saveContractDataToStore"
-                            required
-                        ></v-text-field>
+                      <v-text-field
+                        prepend-icon="fa-file-signature"
+                        v-model="contract.name"
+                        :label="$t('form.contractAddForm.field.contract_name')"
+                        @change="saveContractDataToStore"
+                        required
+                      />
                         <ContractModuleConfiguration/>
                     </v-card-text>
                     <v-card-actions>
-                        <v-spacer></v-spacer>
+                      <v-spacer/>
                         <v-btn
                             text
                             @click="cancelAddContract"
@@ -37,7 +37,7 @@
                         </v-btn>
                     </v-card-actions>
                 </v-card>
-                <loader v-else></loader>
+              <loader v-else/>
             </v-flex>
         </v-layout>
     </v-flex>

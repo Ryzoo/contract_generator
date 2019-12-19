@@ -27,7 +27,8 @@ return [
                 "attributeList" => "List of attributes",
                 "savedNotify" => "Contract saved successfully",
                 "addBLock" => "Add block",
-                "newBlock" => "New block"
+                "newBlock" => "New block",
+                "removeAttributeTitle" => "Remove attribute"
             ]
         ]
     ],
