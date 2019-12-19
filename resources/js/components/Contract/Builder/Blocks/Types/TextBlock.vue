@@ -34,13 +34,6 @@
                     >
                         <v-icon>fa-code</v-icon>
                     </button>
-                    <button
-                        class="menububble-button"
-                        :class="{ 'is-active': isActive.code() }"
-                        @click="commands.variable"
-                    >
-                        <v-icon>fa-code</v-icon>
-                    </button>
                 </div>
             </div>
         </editor-menu-bubble>
@@ -200,8 +193,10 @@
           return this.filteredVariables.length
       },
       showSuggestions() {
+          this.variableSuggestions = this.mapAttributesList();
           return this.query || this.hasResults
       },
+
     },
     methods:{
       parseBlockContent() {
