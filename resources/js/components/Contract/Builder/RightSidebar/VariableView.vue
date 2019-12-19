@@ -38,7 +38,7 @@
                 </v-row>
                 <v-divider class="my-3"></v-divider>
                 <div class="variables-list">
-                    <span v-for="attribute in attributesList" class="variable" @click="editAttribute(attribute)">{{attribute.attributeName}}</span>
+                    <span v-for="attribute in attributesList" class="variable" @click="editVariable(attribute)">{{attribute.attributeName}}<div><v-icon @click="deleteVariable($event, attribute)" class="delete-variable" small>fa-times</v-icon></div></span>
                 </div>
             </div>
         </div>
@@ -67,7 +67,7 @@
             this.attributesList = this.$store.getters.builder_allVariables;
         },
         methods: {
-            editAttribute(attribute) {
+            editVariable(attribute) {
                 this.isNewAttribute = false;
                 this.attribute = attribute;
             },
@@ -113,12 +113,30 @@
                 this.isNewAttribute = true;
             },
             saveVariable() {
-                this.attributesList.push(this.attribute);
+                let isNew = true;
+
+                this.attributesList.map((attribute) => {
+                    if (attribute.id === this.attribute.id) {
+                        attribute = this.attribute;
+                        isNew = false;
+                    }
+
+                    return attribute;
+                });
+
+                if (isNew) {
+                    this.attributesList.push(this.attribute);
+                }
                 this.$store.dispatch("builder_setVariable", this.attributesList);
                 this.$store.dispatch("builder_idVariableIncrement");
 
                 this.attribute = this.getDefaultAttribute();
             },
+            deleteVariable(e, attribute) {
+                e.stopPropagation();
+                this.attributesList = this.attributesList.filter((item) => item.id !== attribute.id)
+                this.$store.dispatch("builder_setVariable", this.attributesList);
+            }
         }
     }
 </script>
@@ -135,6 +153,12 @@
             border-radius: 5px;
             color: white;
             margin: 5px;
+            display: flex;
+
+            .delete-variable {
+                padding: 0 5px;
+                margin-left: 10px;
+            }
 
             &:hover {
                 cursor: pointer;
