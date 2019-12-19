@@ -8,7 +8,7 @@
             @click="deleteVariable($event, attribute)" class="delete-variable" small>fa-times</v-icon></div></span>
       </div>
       <div v-else class="no-variables">
-        <h2>Nie dodano jeszcze żadnej zmiennej</h2>
+        <h2>{{ $t("pages.panel.contracts.builder.noVariables") }}</h2>
       </div>
     </v-card-text>
     <v-card-actions>
@@ -21,7 +21,7 @@
       v-model="showAddEditModal"
       scrollable
       max-width="500px">
-      <CreateEditVariable :editAttribute="attribute" :attributesList="attributesList" @close="showAddEditModal=false"/>
+      <CreateEditVariable :editAttribute="attribute" :isNewAttribute="isNewAttribute" :attributesList="attributesList" @close="showAddEditModal=false"/>
     </v-dialog>
   </v-card>
 </template>
@@ -50,6 +50,7 @@
     methods: {
       addNewAttribute() {
         this.attribute = null;
+        this.isNewAttribute = true;
         this.showAddEditModal = true;
       },
       pushCloseEvent() {
@@ -57,6 +58,7 @@
       },
       editVariable(attribute) {
         this.attribute = attribute;
+        this.isNewAttribute = false;
         this.showAddEditModal = true;
       },
       deleteVariable(e, attribute) {
