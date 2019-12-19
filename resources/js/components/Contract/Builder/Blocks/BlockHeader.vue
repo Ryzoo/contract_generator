@@ -5,7 +5,10 @@
       <v-icon class="mx-3 rotate">fa-chevron-right</v-icon>
     </div>
     <div class="block-header--content">
-      <h3 class="pr-2"><div class="block-header--type">EMPTY BLOCK</div>{{ block.blockName | truncate}}</h3>
+      <h3 class="pr-2">
+        <div class="block-header--type">EMPTY BLOCK</div>
+        {{ block.blockName | truncate}}
+      </h3>
     </div>
     <div class="block-header--action">
       <v-icon class="mx-3" @click="editBlock($event)">fa-edit</v-icon>
@@ -30,8 +33,21 @@
         }
       },
       removeBlock() {
-        // TODO: implement remove there
-        console.log("TODO: implement remove there");
+        const newBlocks = this.removeFromData(this.$store.getters.builder_allBlocks, this.block.id)
+        this.$store.dispatch("builder_set", newBlocks)
+      },
+      removeFromData(dataArray, idToRemove) {
+        if (dataArray.find(x => x.id === idToRemove)) {
+          return dataArray.filter(x => x.id !== idToRemove)
+        }
+        else {
+          return dataArray.map(x => {
+            if (x.content.blocks) {
+              x.content.blocks = this.removeFromData(x.content.blocks, idToRemove)
+            }
+            return x
+          })
+        }
       }
     }
   }
