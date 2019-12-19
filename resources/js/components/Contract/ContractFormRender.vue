@@ -5,16 +5,16 @@
     >
         <v-card-text class="white--text"
                      v-if="currentAction === availableActionsHook.BEFORE_FORM_RENDER">
-            <action-renderer
-                v-model="currentAction"
-                @action-pass="loadContractForm"
-                :contract="contract"
-            ></action-renderer>
+          <action-renderer
+            v-model="currentAction"
+            @action-pass="loadContractForm"
+            :contract="contract"
+          />
         </v-card-text>
 
         <v-card-text v-if="currentAction === availableActionsHook.FORM_RENDER">
             <div class="white--text headline mb-2">{{contract.name}}</div>
-            <v-divider></v-divider>
+          <v-divider/>
             <v-stepper v-model="actualStep">
                 <v-stepper-header>
                     <template v-for="step in stepList">
@@ -26,10 +26,10 @@
                             Krok: {{step.id}}
                         </v-stepper-step>
 
-                        <v-divider
-                            v-if="step.id < stepList.length - 1"
-                            :key="step.id"
-                        ></v-divider>
+                      <v-divider
+                        v-if="step.id < stepList.length - 1"
+                        :key="step.id"
+                      />
                     </template>
                 </v-stepper-header>
 
@@ -53,9 +53,9 @@
                             </v-col>
                         </v-row>
 
-                        <form-renderer
-                            :formElements="step.content"
-                        ></form-renderer>
+                      <form-renderer
+                        :formElements="step.content"
+                      />
 
                         <v-row>
                             <v-col align="end">
@@ -78,14 +78,14 @@
 
         <v-card-text class="white--text"
                      v-if="currentAction === availableActionsHook.BEFORE_FORM_END || currentAction === availableActionsHook.AFTER_FORM_END">
-            <action-renderer
-                v-model="currentAction"
-                :contract="contract"
-            ></action-renderer>
+          <action-renderer
+            v-model="currentAction"
+            :contract="contract"
+          />
         </v-card-text>
 
     </v-card>
-    <loader v-else></loader>
+  <loader v-else/>
 </template>
 
 <script>

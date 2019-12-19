@@ -8,7 +8,7 @@
         </div>
         <div v-else class="empty-elements">
             <v-btn @click="addBlockDialog = true" tile outlined color="primary">
-                <span>Dodaj blok</span>
+                <span>{{$t("pages.panel.contracts.builder.addBLock")}}</span>
                 <v-icon class="mx-3">fa-plus-circle</v-icon>
             </v-btn>
         </div>
@@ -16,7 +16,7 @@
         <v-dialog ref="newBlockDialog" v-model="addBlockDialog" max-width="900">
             <v-card>
                 <v-card-title class="headline justify-center" primary-title>
-                    Nowy blok
+                  {{$t("pages.panel.contracts.builder.newBlock")}}
                 </v-card-title>
                 <v-card-text>
                     <v-flex class="new-block-container">

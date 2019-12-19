@@ -2,16 +2,16 @@
     <v-container class="fill-height">
         <v-row align="center" justify="center">
             <v-col sm="12" md="4" lg="3">
-                <contract-list
-                    @selected="selectContract"
-                ></contract-list>
+              <contract-list
+                @selected="selectContract"
+              />
             </v-col>
             <v-col sm="12" md="8" lg="9">
                 <v-fade-transition mode="out-in">
-                    <contract-form-render
-                        v-if="contractData"
-                        :contract="contractData"
-                    ></contract-form-render>
+                  <contract-form-render
+                    v-if="contractData"
+                    :contract="contractData"
+                  />
                     <v-alert
                         v-else
                         border="top"
@@ -19,7 +19,7 @@
                         type="info"
                         elevation="2"
                     >
-                        Wybierz jedną z umów po prawej stronie.
+                        {{ $t("pages.form.selectOneContract") }}
                     </v-alert>
                 </v-fade-transition>
             </v-col>
