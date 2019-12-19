@@ -39,4 +39,7 @@
 </script>
 
 <style lang="scss" scoped>
+  .block {
+    margin: 8px;
+  }
 </style>

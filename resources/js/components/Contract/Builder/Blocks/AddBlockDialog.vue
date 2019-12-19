@@ -112,6 +112,7 @@
 </script>
 
 <style lang="scss" scoped>
+  @import "./../../../../../sass/colors";
     .builder-content {
         .empty-elements {
             border: 1px dashed #707070;
@@ -148,5 +149,22 @@
                 width: 100%;
             }
         }
+    }
+
+    .hr-line {
+      display: flex;
+      align-items: center;
+
+      i {
+        color: $primary !important;
+      }
+
+      .line {
+        border: none;
+        border-top: 2px dashed #d5d5d5;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 100%;
+      }
     }
 </style>

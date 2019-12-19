@@ -37,7 +37,7 @@
                 </div>
             </div>
         </editor-menu-bubble>
-        <editor-content :editor="editor"/>
+        <editor-content class="editor-container" :editor="editor"/>
 
       <div class="suggestion-list" v-show="showSuggestions" ref="suggestions">
         <template v-if="hasResults">
@@ -382,4 +382,11 @@
         border-right-color: #2a272f;
       }
     }
+
+  .editor-container {
+    border: 2px solid #cfcfcf;
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin: 10px;
+  }
 </style>
