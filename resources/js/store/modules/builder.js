@@ -34,6 +34,9 @@ const actions = {
     builder_setVariable: (context, data) => {
         context.commit('BUILDER_SET_VARIABLE', data);
     },
+    builder_removeVariable: (context, data) => {
+      context.commit('BUILDER_REMOVE_VARIABLE', data);
+    },
 };
 
 const mutations = {
@@ -61,6 +64,9 @@ const mutations = {
     },
     BUILDER_SET_VARIABLE: (state, data) => {
         state.builder.variables = data;
+    },
+    BUILDER_REMOVE_VARIABLE: (state, Id) => {
+      state.builder.variables = state.builder.variables.filter((item) => item.id !== Id);
     },
 };
 

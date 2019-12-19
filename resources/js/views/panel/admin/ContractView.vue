@@ -52,7 +52,7 @@
             </v-card>
         </v-dialog>
     </v-col>
-    <loader v-else></loader>
+  <loader v-else/>
 </template>
 
 <script>
