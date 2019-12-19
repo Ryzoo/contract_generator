@@ -1,7 +1,7 @@
 <template>
     <section class="my-5" v-if="!isLoading">
         <h3>{{ $t("form.contractAddForm.title_modules") }}</h3>
-        <v-divider class="my-1"></v-divider>
+      <v-divider class="my-1"/>
         <small>{{ $t("form.contractAddForm.description.modules") }}</small>
         <section
             class="module-section"
@@ -16,7 +16,7 @@
             </DefaultConfigModuleView>
         </section>
     </section>
-    <loader v-else></loader>
+  <loader v-else/>
 </template>
 
 <script>

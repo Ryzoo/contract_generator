@@ -80,9 +80,9 @@ return [
     ],
     'contractAddForm' => [
         'title' => "Add contract",
-        'title_modules' => 'Wybierz moduły które będą dostępne dla tej umowy',
+        'title_modules' => 'Select modules for this contract',
         'description' => [
-            'modules' => "Każdy moduł to pewna odpowiedzialność. Możesz wybrac które moduły maja być aktywne, oraz przejść do konfiguracji każdego z nich w celu ich spersonalizowania."
+            'modules' => "Each module is a certain responsibility. You can choose which modules are to be active, and go to the configuration of each one to personalize them."
         ],
         'field' => [
             "contract_name" => "Contract name"

@@ -10,21 +10,21 @@
                             @click="emitSelectContract(item)"
                         >
                             <v-list-item-content>
-                                <v-list-item-title
-                                    v-text="item.name"
-                                ></v-list-item-title>
+                              <v-list-item-title
+                                v-text="item.name"
+                              />
                             </v-list-item-content>
                         </v-list-item>
                     </v-list-item-group>
                 </v-list>
-                <loader v-else></loader>
+              <loader v-else/>
             </v-card>
             <v-alert
                 v-if="!isLoading && !contractItems.length"
                 width="100%"
                 type="error"
             >
-                Brak umów!
+                {{$t("pages.form.noContract")}}
             </v-alert>
         </v-row>
     </v-col>

@@ -5,34 +5,34 @@ const Selector = {
     Operators: [
         {
             value: "==",
-            text: "równe"
+            text: "equal"
         },
         {
             value: "!=",
-            text: "różne"
+            text: "not equal"
         },
         {
             value: ">",
-            text: "większe"
+            text: "larger"
         },
         {
             value: "<",
-            text: "mniejsze"
+            text: "lower"
         }
     ],
 
     BlockType: [
         {
             value: BlockTypeEnum.TEXT_BLOCK,
-            text: "Tekstowy"
+            text: "Text"
         },
         {
             value: BlockTypeEnum.EMPTY_BLOCK,
-            text: "Pusty"
+            text: "Container"
         },
         {
             value: BlockTypeEnum.PAGE_DIVIDE_BLOCK,
-            text: "Podział strony"
+            text: "Page breaker"
         }
     ],
 

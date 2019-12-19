@@ -1,13 +1,13 @@
 <template>
     <v-row>
         <v-col>
-            <h3>Budujesz: <span class="light-text" v-if="contract">{{contract.name}}</span></h3>
-            <v-btn color="primary mt-3" small @click="showAttributeModal">Lista zmiennych</v-btn>
+            <h3>{{$t("pages.panel.contracts.builder.header")}} <span class="light-text" v-if="contract">{{contract.name}}</span></h3>
+            <v-btn color="primary mt-3" small @click="showAttributeModal">{{$t("pages.panel.contracts.builder.attributeList")}}</v-btn>
         </v-col>
         <v-col md="5" class="d-flex justify-end">
-            <v-btn text color="primary" @click="goBack">Powrót</v-btn>
-            <v-btn class="mx-2" outlined color="primary" @click="saveActual(false)">Zapisz</v-btn>
-            <v-btn color="primary" @click="saveActual(true)">Zapisz i wyjdź</v-btn>
+            <v-btn text color="primary" @click="goBack">{{$t("base.button.back")}}</v-btn>
+            <v-btn class="mx-2" outlined color="primary" @click="saveActual(false)">{{$t("base.button.save")}}</v-btn>
+            <v-btn color="primary" @click="saveActual(true)">{{$t("base.button.save_exit")}}</v-btn>
         </v-col>
     </v-row>
 </template>
@@ -45,7 +45,7 @@
         axios.put(`/contract/${updateState.id}`, this.$store.getters.getNewContractData)
             .then(response => {
               notify.push(
-                  "Umowa zapisana!",
+                 $t("pages.panel.contracts.builder.savedNotify"),
                   notify.SUCCESS
               );
               if (redirect)

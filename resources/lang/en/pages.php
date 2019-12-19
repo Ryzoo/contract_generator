@@ -21,7 +21,18 @@ return [
         "contracts" => [
             "buttons" => [
                 "new_contract" => "Add new contract"
+            ],
+            "builder" => [
+                "header" => "You build:",
+                "attributeList" => "List of attributes",
+                "savedNotify" => "Contract saved successfully",
+                "addBLock" => "Add block",
+                "newBlock" => "New block"
             ]
         ]
+    ],
+    "form" => [
+        "noContract" => "No available contract to select!",
+        "selectOneContract" => "Select one of contract form list on left."
     ]
 ];

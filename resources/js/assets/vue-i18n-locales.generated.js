@@ -21,8 +21,19 @@ export default {
                 "contracts": {
                     "buttons": {
                         "new_contract": "Add new contract"
+                    },
+                    "builder": {
+                        "header": "You build:",
+                        "attributeList": "List of attributes",
+                        "savedNotify": "Contract saved successfully",
+                        "addBLock": "Add block",
+                        "newBlock": "New block"
                     }
                 }
+            },
+            "form": {
+                "noContract": "No available contract to select!",
+                "selectOneContract": "Select one of contract form list on left."
             }
         },
         "pageMeta": {
@@ -160,9 +171,9 @@ export default {
             },
             "contractAddForm": {
                 "title": "Add contract",
-                "title_modules": "Wybierz moduły które będą dostępne dla tej umowy",
+                "title_modules": "Select modules for this contract",
                 "description": {
-                    "modules": "Każdy moduł to pewna odpowiedzialność. Możesz wybrac które moduły maja być aktywne, oraz przejść do konfiguracji każdego z nich w celu ich spersonalizowania."
+                    "modules": "Each module is a certain responsibility. You can choose which modules are to be active, and go to the configuration of each one to personalize them."
                 },
                 "field": {
                     "contract_name": "Contract name"
