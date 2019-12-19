@@ -8,7 +8,7 @@
             @click="tryToRemoveAttribute($event, attribute)" class="delete-variable" small>fa-times</v-icon></div></span>
       </div>
       <div v-else class="no-variables">
-        <h2>{{ $t("pages.panel.contracts.builder.noVariables") }}</h2>
+        <h2>{{$t("pages.panel.contracts.builder.noVariables")}}</h2>
       </div>
     </v-card-text>
     <v-card-actions>

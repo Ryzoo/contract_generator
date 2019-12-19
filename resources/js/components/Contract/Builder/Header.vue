@@ -45,7 +45,7 @@
         axios.put(`/contract/${updateState.id}`, this.$store.getters.getNewContractData)
             .then(response => {
               notify.push(
-                 $t("pages.panel.contracts.builder.savedNotify"),
+                 this.$t("pages.panel.contracts.builder.savedNotify"),
                   notify.SUCCESS
               );
               if (redirect)
