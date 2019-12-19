@@ -1,66 +1,42 @@
 <template>
   <v-card>
-    <v-card-title>Attribute configuration:</v-card-title>
+    <v-card-title>Attribute list:</v-card-title>
     <v-divider/>
-    <div class="options-section-1">
-      <span class="sub-title">{{isNewAttribute ? "Dodaj nową zmienną" : "Edycja zmiennej"}}</span>
-      <v-select
-        :items="variableOptions"
-        label="Typ"
-        outlined
-        color="primary"
-        dense
-        v-model="attribute.attributeType"
-        @change="setSettingsForType"
-      >
-      </v-select>
-      <v-text-field v-model="attribute.attributeName" label="Nazwa" outline/>
-      <v-text-field v-model="attribute.placeholder" label="Placeholder" outline/>
-      <v-text-field v-model="attribute.description" label="Opis" outline/>
-      <v-text-field v-model="attribute.defaultValue" label="Domyślna wartość" outline/>
-      <v-text-field v-model="attribute.additionalInformation" label="Dodatkowe informacje" outline/>
-      <v-checkbox label="Czy pole ma być anonimowe" v-model="attribute.toAnonymize"/>
-      <VariableSettings
-        :settings="attribute.settings"
-        @save="saveSettingsInput"
-      />
-      <div class="block-button">
-        <v-btn color="primary" @click="saveVariable()">Zapisz</v-btn>
-      </div>
-    </div>
-    <div class="options-section-2">
-      <span class="sub-title">Lista zmiennych</span>
-      <div class="flex-column">
-        <v-row class="justify-center mt-2">
-          <v-btn color="primary" @click="resetToDefault">Dodaj nową</v-btn>
-        </v-row>
-        <v-divider class="my-3"/>
-        <div class="variables-list">
+    <v-card-text>
+      <div class="variables-list">
           <span v-for="attribute in attributesList" class="variable" @click="editVariable(attribute)">{{attribute.attributeName}}<div><v-icon
             @click="deleteVariable($event, attribute)" class="delete-variable" small>fa-times</v-icon></div></span>
-        </div>
       </div>
-    </div>
+    </v-card-text>
     <v-card-actions>
       <v-spacer/>
-      <v-btn color="primary" outlined @click="pushCloseEvent">Cancel</v-btn>
+      <v-btn color="primary" outlined @click="pushCloseEvent">Exit</v-btn>
+      <v-btn color="primary" @click="addNewAttribute">Add new variable</v-btn>
     </v-card-actions>
+
+    <v-dialog
+      v-model="showAddEditModal"
+      scrollable
+      max-width="500px">
+      <CreateEditVariable :editAttribute="attribute" :attributesList="attributesList" @close="showAddEditModal=false"/>
+    </v-dialog>
   </v-card>
 </template>
 
 <script>
-  import VariableSettings from "./VariableView/VariableSettings";
+  import CreateEditVariable from "./VariableView/CreateEditVariable";
 
   export default {
     name: "VariableView",
     components: {
-      VariableSettings
+      CreateEditVariable
     },
     data() {
       return {
+        showAddEditModal: false,
         variableOptions: [],
-        attribute: this.getDefaultAttribute(),
         attributesList: [],
+        attribute: null,
         allAttributes: [],
         isNewAttribute: true,
       }
@@ -70,73 +46,16 @@
       this.attributesList = this.$store.getters.builder_allVariables;
     },
     methods: {
+      addNewAttribute() {
+        this.attribute = null;
+        this.showAddEditModal = true;
+      },
       pushCloseEvent() {
         this.$emit('close');
       },
       editVariable(attribute) {
-        this.isNewAttribute = false;
         this.attribute = attribute;
-      },
-      saveSettingsInput(inputData) {
-        this.attribute.settings[inputData.name] = inputData.value;
-      },
-      setSettingsForType() {
-        this.attribute.settings = this.getSettingsForType(this.attribute.attributeType);
-      },
-      getSettingsForType(type) {
-        let attributeType = this.allAttributes.find(x => x.attributeType === type);
-        return attributeType ? attributeType.settings : [];
-      },
-      getAllAttributes() {
-        axios.get("elements/attributes")
-          .then((res) => {
-            this.allAttributes = res.data;
-            this.variableOptions = res.data.map(x => {
-              return {
-                value: x.attributeType,
-                text: x.attributeName
-              }
-            })
-          })
-
-
-      },
-      getDefaultAttribute() {
-        return {
-          attributeName: "",
-          id: this.$store.getters.builder_getVariableId,
-          attributeType: -1,
-          defaultValue: "",
-          additionalInformation: "",
-          placeholder: "",
-          description: "",
-          toAnonymize: "",
-          settings: {}
-        }
-      },
-      resetToDefault() {
-        this.attribute = this.getDefaultAttribute();
-        this.isNewAttribute = true;
-      },
-      saveVariable() {
-        let isNew = true;
-
-        this.attributesList.map((attribute) => {
-          if (attribute.id === this.attribute.id) {
-            attribute = this.attribute;
-            isNew = false;
-          }
-
-          return attribute;
-        });
-
-        if (isNew) {
-          this.attributesList.push(this.attribute);
-        }
-        this.$store.dispatch("builder_setVariable", this.attributesList);
-        this.$store.dispatch("builder_idVariableIncrement");
-
-        this.attribute = this.getDefaultAttribute();
+        this.showAddEditModal = true;
       },
       deleteVariable(e, attribute) {
         e.stopPropagation();

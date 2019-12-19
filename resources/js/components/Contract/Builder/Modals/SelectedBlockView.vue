@@ -23,14 +23,20 @@
             outlined
             color="primary"
             v-model="conditional.conditionalType"
-            dense
+            hide-details
           >
           </v-select>
         </v-col>
 
         <v-col sm="12">
-          <v-text-field v-model="conditional.content" label="Warunek" outline/>
-          <v-btn color="primary" @click="addConditional()">Dodaj</v-btn>
+          <v-row>
+            <v-col sm="10">
+              <v-text-field v-model="conditional.content" label="Conditional" outline/>
+            </v-col>
+            <v-col sm="2">
+              <v-btn color="primary" @click="addConditional()">Add</v-btn>
+            </v-col>
+          </v-row>
         </v-col>
       </v-tab-item>
     </v-tabs>
