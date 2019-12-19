@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section v-if="activeBlock">
     <div class="options-section-1">
       <span class="sub-title">Konfiguruj blok</span>
       <v-text-field v-model="block.blockName" label="Nazwa" outline/>
@@ -29,6 +29,15 @@
         </div>
       </div>
     </div>
+  </section>
+  <section v-else>
+    <v-alert
+      class="pa-5 ma-5"
+      dense
+      type="info"
+    >
+      Select any of block in the builder first!
+    </v-alert>
   </section>
 </template>
 

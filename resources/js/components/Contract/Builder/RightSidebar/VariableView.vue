@@ -131,10 +131,9 @@
 
         .variable {
             background: #dabd79 0% 0% no-repeat padding-box;
-            box-shadow: 0px 3px 6px #dabd79;
-            border-radius: 10px;
+            padding: 3px 8px;
+            border-radius: 5px;
             color: white;
-            padding: 5px;
             margin: 5px;
 
             &:hover {

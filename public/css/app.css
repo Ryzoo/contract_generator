@@ -30,9 +30,10 @@ section {
   width: -webkit-min-content;
   width: -moz-min-content;
   width: min-content;
-  padding: 4px;
   background-color: #d4ac71;
-  border-radius: 10px;
+  padding: 3px 8px;
+  border-radius: 5px;
+  color: white;
 }
 
 .table-icons {

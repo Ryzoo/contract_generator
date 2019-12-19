@@ -54,6 +54,11 @@
 </script>
 
 <style lang="scss">
+
+  .theme--light.v-tabs>.v-tabs-bar {
+    background-color: #f8f8f8;
+  }
+
   .sidebar-builder-options {
     height: 100%;
     display: flex;
