@@ -3,9 +3,12 @@
     <v-card-title>Attribute list:</v-card-title>
     <v-divider/>
     <v-card-text>
-      <div class="variables-list">
+      <div v-if="attributesList.length > 0" class="variables-list">
           <span v-for="attribute in attributesList" class="variable" @click="editVariable(attribute)">{{attribute.attributeName}}<div><v-icon
             @click="deleteVariable($event, attribute)" class="delete-variable" small>fa-times</v-icon></div></span>
+      </div>
+      <div v-else class="no-variables">
+        <h2>Nie dodano jeszcze żadnej zmiennej</h2>
       </div>
     </v-card-text>
     <v-card-actions>
@@ -42,7 +45,6 @@
       }
     },
     mounted() {
-      this.getAllAttributes();
       this.attributesList = this.$store.getters.builder_allVariables;
     },
     methods: {
@@ -59,7 +61,7 @@
       },
       deleteVariable(e, attribute) {
         e.stopPropagation();
-        this.attributesList = this.attributesList.filter((item) => item.id !== attribute.id)
+        this.attributesList = this.attributesList.filter((item) => item.id !== attribute.id);
         this.$store.dispatch("builder_setVariable", this.attributesList);
       }
     }
@@ -89,6 +91,13 @@
         cursor: pointer;
       }
     }
+  }
+
+  .no-variables {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    opacity: 0.3;
   }
 
 </style>
