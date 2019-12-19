@@ -47,9 +47,7 @@ class Auth extends ContractModule {
 
         switch ($authType){
             case AuthType::LOGIN:
-                $loggedUser = resolve("AppAuthorization")->getCurrentUser();
-
-                if($loggedUser != null)
+                if( \Illuminate\Support\Facades\Auth::user() != null)
                     return true;
                 else{
                     Response::error("Musisz być zalogowany, żeby przeglądać ten formularz", 401);

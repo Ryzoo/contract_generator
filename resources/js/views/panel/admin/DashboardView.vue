@@ -1,11 +1,16 @@
 <template>
-    <h1>test</h1>
+  <ContractForm/>
 </template>
 
 <script>
-export default {
-    name: "Dashboard"
-};
+  import ContractForm from "../../client/contract/ContractForm";
+
+  export default {
+    name: "Dashboard",
+    components: {
+      ContractForm
+    }
+  };
 </script>
 
 <style scoped></style>
