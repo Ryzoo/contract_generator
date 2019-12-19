@@ -9,7 +9,7 @@ return [
     'accounts' => 'Accounts',
     'settings' => [
         'main' => 'Settings',
-        'policies' => 'Policies',
+        'roles' => 'Roles',
         'account' => 'Accounts',
         'my_profile' => 'My profile',
     ],

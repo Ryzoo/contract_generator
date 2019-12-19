@@ -25,6 +25,9 @@ return [
             'profile' => [
                 'title' => 'Panel - My Profile',
             ],
+            'roles' => [
+                'title' => 'Panel - Manage roles',
+            ],
             'accounts' => [
                 'title' => 'Panel - Accounts',
                 'create' => [

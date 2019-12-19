@@ -1,20 +1,21 @@
 <template>
-    <v-col sm="12" :class="{'repeat-group-container': true, 'error-is': validationError}">
-        <h3>{{attribute.name}} <v-tooltip right>
-            <template v-slot:activator="{ on }">
-                <v-icon color="primary" dark v-on="on">fa-question-circle</v-icon>
-            </template>
-            <span>{{attribute.additionalInformation}}</span>
-        </v-tooltip>
-        </h3>
-        <small>{{attribute.description}}</small>
-        <v-divider class="my-3"></v-divider>
-        <small class="error--text" v-if="validationError">{{validationError}}</small>
-        <v-divider class="my-3"></v-divider>
-        <AddForm @add="addValue" :attributes="attribute.content"></AddForm>
-        <v-divider class="my-3"></v-divider>
-        <ValueList @remove="removeElement" :values="valueList"></ValueList>
-    </v-col>
+  <v-col sm="12" :class="{'repeat-group-container': true, 'error-is': validationError}">
+    <h3>{{attribute.attributeName}}
+      <v-tooltip right>
+        <template v-slot:activator="{ on }">
+          <v-icon color="primary" dark v-on="on">fa-question-circle</v-icon>
+        </template>
+        <span>{{attribute.additionalInformation}}</span>
+      </v-tooltip>
+    </h3>
+    <small>{{attribute.description}}</small>
+    <v-divider class="my-3"/>
+    <small class="error--text" v-if="validationError">{{validationError}}</small>
+    <v-divider class="my-3"/>
+    <AddForm @add="addValue" :attributes="attribute.content"/>
+    <v-divider class="my-3"/>
+    <ValueList @remove="removeElement" :values="valueList"/>
+  </v-col>
 </template>
 
 <script>
@@ -24,30 +25,30 @@
   export default {
     name: "RepeatGroupAttribute",
     props: ["attribute", "validationError"],
-    components:{
+    components: {
       AddForm,
       ValueList
     },
-    data(){
-        return {
-          valueList:[],
-        }
+    data() {
+      return {
+        valueList: [],
+      }
     },
-    watch:{
-      attribute(attribute){
+    watch: {
+      attribute(attribute) {
         this.valueList = attribute.value ? attribute.value : []
       }
     },
     methods: {
-      addValue( newValue ){
+      addValue(newValue) {
         this.valueList.push(newValue);
         this.changeValue();
       },
-      removeElement( element ){
-        this.valueList = this.valueList.filter( x => x !== element);
+      removeElement(element) {
+        this.valueList = this.valueList.filter(x => x !== element);
         this.changeValue();
       },
-      changeValue(){
+      changeValue() {
         this.$emit("change-value", this.valueList);
       }
     }
@@ -55,13 +56,13 @@
 </script>
 
 <style scoped>
-    .repeat-group-container {
-        border: 2px solid #dadada;
-        padding: 25px;
-        border-radius: 10px;
-    }
+  .repeat-group-container {
+    border: 2px solid #dadada;
+    padding: 25px;
+    border-radius: 10px;
+  }
 
-    .repeat-group-container.error-is{
-        border: 2px solid #ff675f;
-    }
+  .repeat-group-container.error-is {
+    border: 2px solid #ff675f;
+  }
 </style>

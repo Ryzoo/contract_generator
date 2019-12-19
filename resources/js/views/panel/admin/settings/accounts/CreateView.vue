@@ -57,8 +57,8 @@
                                 <v-row align="end" justify="end">
                                     <v-btn
                                         color="primary"
-                                        text
-                                        @click="$router.push('/panel/admin/accounts')"
+                                        textpanel
+                                        @click="$router.push('/panel/admin/settings/accounts')"
                                     >
                                         {{ $t("base.button.back") }}
                                     </v-btn>

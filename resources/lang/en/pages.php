@@ -13,6 +13,11 @@ return [
                 "basic_data" => "Basic data"
             ]
         ],
+        "roles" => [
+            "buttons" => [
+                "new" => "Add new role"
+            ],
+        ],
         "contracts" => [
             "buttons" => [
                 "new_contract" => "Add new contract"

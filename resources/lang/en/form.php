@@ -69,8 +69,14 @@ return [
     'accountRemoveForm' => [
         'title' => "Remove account",
     ],
+    'roleRemoveForm' => [
+        'title' => "Remove role",
+    ],
     'removeContractForm' => [
         'title' => "Remove contract",
+        'notify' => [
+            'success' => "Role removed!"
+        ]
     ],
     'contractAddForm' => [
         'title' => "Add contract",
