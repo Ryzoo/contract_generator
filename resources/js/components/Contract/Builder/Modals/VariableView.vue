@@ -78,6 +78,7 @@
       },
       addNewAttribute() {
         this.attribute = null;
+        this.isNewAttribute = true;
         this.showAddEditModal = true;
       },
       pushCloseEvent() {
