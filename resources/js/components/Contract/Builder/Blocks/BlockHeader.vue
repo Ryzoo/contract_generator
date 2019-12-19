@@ -22,15 +22,15 @@
     name: "BlockHeader",
     props: ["block"],
     methods: {
+      showBlockModal() {
+      },
       editBlock(e) {
-        this.$store.dispatch("builder_setActiveBlock", this.block);
+        this.$store.dispatch("builder_setActiveBlock", this.block)
+          .then(() => {
+            this.$emit("show-block-modal")
+          })
 
-        if (e.target.closest(".accordion-header").classList.contains("active")) {
-          e.target.closest(".accordion-header").classList.remove("active");
-        }
-        else {
-          e.target.closest(".accordion-header").classList.add("active");
-        }
+        e.target.closest(".accordion-header").classList.toggle("active");
       },
       removeBlock() {
         const newBlocks = this.removeFromData(this.$store.getters.builder_allBlocks, this.block.id)

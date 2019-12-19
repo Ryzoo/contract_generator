@@ -18,30 +18,16 @@
 
 <script>
   import VariableView from "./RightSidebar/VariableView";
-  import BlocksView from "./RightSidebar/BlocksView";
-  import SelectedBlockView from "./RightSidebar/SelectedBlockView";
 
   export default {
     name: "RightSidebar",
     components: {
-      SelectedBlockView,
-      BlocksView,
       VariableView
     },
     data() {
       return {
         activeTab: null,
         sidebarElements: [
-          {
-            name: "Dostępne bloki",
-            icon: "fab fa-elementor",
-            tabViewComponent: "BlocksView"
-          },
-          {
-            name: "Konfiguracja bloku",
-            icon: "fa-cog",
-            tabViewComponent: "SelectedBlockView"
-          },
           {
             name: "Zmienne",
             icon: "fa-code",

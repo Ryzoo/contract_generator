@@ -2,6 +2,7 @@
     <v-row>
         <v-col>
             <h3>Budujesz: <span class="light-text" v-if="contract">{{contract.name}}</span></h3>
+            <v-btn color="primary mt-3" small @click="showAttributeModal">Lista zmiennych</v-btn>
         </v-col>
         <v-col md="5" class="d-flex justify-end">
             <v-btn text color="primary" @click="goBack">Powrót</v-btn>
@@ -21,7 +22,9 @@
       }
     },
     methods: {
-        //TODO: Set the highest id of block and variable
+      showAttributeModal(){
+        this.$emit('show-attribute-modal');
+      },
       init() {
         this.contract = this.$store.getters.getNewContractData;
         this.$store.dispatch("builder_set", this.contract.blocks);

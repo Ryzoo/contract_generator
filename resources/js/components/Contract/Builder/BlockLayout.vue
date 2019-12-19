@@ -4,6 +4,7 @@
       <ContainerBlock
         v-for="(block, index) in filterParentBlocks"
         :block="block"
+        @show-block-modal="showBlockModal"
         :key="block.id"
         :divider="block.isDivider"
         :blockIndex="index"
@@ -39,12 +40,8 @@
       }
     },
     methods: {
-      blocksCategoryToSelect(categories) {
-        let arrayOfCategories = [];
-
-        categories.map(x => arrayOfCategories.push(x.name));
-
-        return arrayOfCategories;
+      showBlockModal(){
+        this.$emit("show-block-modal")
       },
       setHighestBlockId(blocks = this.blocks) {
         let blockId = this.$store.getters.builder_getBlockId;

@@ -1,52 +1,56 @@
 <template>
-  <section v-if="activeBlock">
-    <div class="options-section-1">
-      <span class="sub-title">Konfiguruj blok</span>
-      <v-text-field v-model="block.blockName" label="Nazwa" outline/>
-      <div class="block-button">
-        <v-btn color="primary" @click="editBlock()">Zapisz</v-btn>
-      </div>
-    </div>
-    <div class="options-section-2">
-      <span class="sub-title">Logika</span>
-      <div class="builder-elements">
-        <div class="select-options">
-          <div class="w-50">
-            <v-select
-              :items="blockOptions"
-              label="Akcja"
-              outlined
-              color="primary"
-              v-model="conditional.conditionalType"
-              dense
-            >
-            </v-select>
-          </div>
+  <v-card>
+    <v-card-title>Block configuration:
+    <small class="pl-3" style="color: #7a7a7a">{{block.blockName}}</small></v-card-title>
+    <v-divider/>
+    <v-tabs background-color="secondary" v-model="currentTab" dark grow>
+      <v-tabs-slider/>
+
+      <v-tab :key="0" href="#tab-0">Basic</v-tab>
+      <v-tab :key="1" href="#tab-1">Logic</v-tab>
+
+      <v-tab-item :key="0" value="tab-0">
+        <v-col sm="12">
+          <v-text-field v-model="block.blockName" label="Block name" outline/>
+        </v-col>
+      </v-tab-item>
+
+      <v-tab-item :key="1" value="tab-1">
+        <v-col sm="12">
+          <v-select
+            :items="blockOptions"
+            label="Action"
+            outlined
+            color="primary"
+            v-model="conditional.conditionalType"
+            dense
+          >
+          </v-select>
+        </v-col>
+
+        <v-col sm="12">
           <v-text-field v-model="conditional.content" label="Warunek" outline/>
-          <div class="block-button">
-            <v-btn color="primary" @click="addConditional()">Dodaj</v-btn>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section v-else>
-    <v-alert
-      class="pa-5 ma-5"
-      dense
-      type="info"
-    >
-      Select any of block in the builder first!
-    </v-alert>
-  </section>
+          <v-btn color="primary" @click="addConditional()">Dodaj</v-btn>
+        </v-col>
+      </v-tab-item>
+    </v-tabs>
+    <v-card-actions>
+      <v-spacer/>
+      <v-btn color="primary" outlined @click="pushCloseEvent">Cancel</v-btn>
+      <v-btn color="primary" @click="saveBlockConfiguration">Save</v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
+
 <script>
-    import {ConditionalEnum} from "./../../../../additionalModules/Enums";
+  import {ConditionalEnum} from "./../../../../additionalModules/Enums";
+
   export default {
     name: "SelectedBlockView",
     data() {
       return {
+        currentTab: null,
         block: {
           blockName: "",
           conditionals: ""
@@ -54,7 +58,7 @@
         blockOptions: [
           "SHOW_ON",
         ],
-          conditional: this.getInitialConditional()
+        conditional: this.getInitialConditional()
       }
     },
     watch: {
@@ -71,12 +75,19 @@
       }
     },
     methods: {
-        getInitialConditional() {
-            return {
-                content: "",
-                conditionalType: -1,
-            }
-        },
+      pushCloseEvent() {
+        this.$emit('close');
+      },
+      saveBlockConfiguration() {
+        this.editBlock();
+        this.pushCloseEvent();
+      },
+      getInitialConditional() {
+        return {
+          content: "",
+          conditionalType: -1,
+        }
+      },
       addConditional() {
         let blockConditional = {
           conditionalType: parseInt(ConditionalEnum[this.conditional.conditionalType]),
@@ -97,7 +108,7 @@
               }
             })
           }
-          else if (typeof x.content.blocks != 'undefined' && x.content.blocks.length > 0) {
+          else if (x.content.blocks) {
             this.editBlock(x.content.blocks)
           }
         });
@@ -106,12 +117,12 @@
       },
       initBlock() {
         this.block = this.activeBlock;
-          this.conditional = this.getInitialConditional();
+        this.conditional = this.getInitialConditional();
         this.block.conditionals.forEach((conditional) => {
-            this.conditional = {
-                content: conditional.content.join(" "),
-                conditionalType: conditional.conditionalName
-            }
+          this.conditional = {
+            content: conditional.content.join(" "),
+            conditionalType: conditional.conditionalName
+          }
         })
       }
     },

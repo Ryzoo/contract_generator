@@ -1,28 +1,61 @@
 <template>
-    <v-row>
-        <v-col sm="12">
-            <Header></Header>
-        </v-col>
-        <v-col sm="12">
-            <v-divider class="mb-3"></v-divider>
-        </v-col>
-        <v-col sm="12">
-            <BlockLayout></BlockLayout>
-        </v-col>
-    </v-row>
+  <v-row>
+    <v-col sm="12">
+      <Header
+        @show-attribute-modal="showAttributeModal = true"
+      />
+    </v-col>
+    <v-col sm="12">
+      <v-divider class="mb-3"/>
+    </v-col>
+    <v-col sm="12">
+      <BlockLayout
+        @show-block-modal="showBlockModal = true"
+      />
+    </v-col>
+
+    <v-dialog
+      v-model="showBlockModal"
+      scrollable
+      max-width="500px">
+          <SelectedBlockView @close="showBlockModal=false"/>
+    </v-dialog>
+
+    <v-dialog
+      v-model="showAttributeModal"
+      scrollable
+      max-width="500px">
+      <v-card>
+        <v-card-title>Attribute configuration</v-card-title>
+        <v-divider/>
+        <v-card-text>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
+  </v-row>
 </template>
 
 <script>
   import Header from "../../../../components/Contract/Builder/Header";
   import ContainerBlock from "../../../../components/Contract/Builder/Blocks/ContainerBlock";
   import BlockLayout from "../../../../components/Contract/Builder/BlockLayout";
+  import SelectedBlockView from "../../../../components/Contract/Builder/RightSidebar/SelectedBlockView";
+  import BlockConfigurationModal from "../../../../components/Contract/Builder/Modals/BlockConfigurationModal";
 
   export default {
     name: "CreateAgreementView",
-    components:{
+    components: {
       Header,
       BlockLayout,
-      ContainerBlock
+      ContainerBlock,
+      SelectedBlockView,
+      BlockConfigurationModal
+    },
+    data() {
+      return {
+        showAttributeModal: false,
+        showBlockModal: false,
+      }
     }
   };
 </script>

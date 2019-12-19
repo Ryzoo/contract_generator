@@ -1,17 +1,28 @@
 <template>
   <section>
-    <div class="block" :blockid="block.id" v-if="!divider">
+    <div
+      class="block"
+      :blockid="block.id"
+      v-if="!divider">
+
       <div class="accordion-header">
-        <BlockHeader :block="block"></BlockHeader>
+        <BlockHeader
+          @show-block-modal="showBlockModal"
+          :block="block"
+        />
         <component
           :is="Mapper.getBlockName(block.blockType)"
           :block="block"
           :level="level ? level : 0"
-        >
-        </component>
+        />
       </div>
+
     </div>
-    <AddBlockDialog :buttonIndex="blockIndex" :block="block" :level="level ? level : 0" v-else></AddBlockDialog>
+    <AddBlockDialog
+      v-else
+      :buttonIndex="blockIndex"
+      :block="block"
+      :level="level ? level : 0"/>
   </section>
 </template>
 
@@ -35,6 +46,11 @@
       level: {},
       blockIndex: {}
     },
+    methods: {
+      showBlockModal() {
+        this.$emit("show-block-modal")
+      },
+    }
   }
 </script>
 
