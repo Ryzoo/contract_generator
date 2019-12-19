@@ -4,7 +4,7 @@
     <small class="pl-3" style="color: #7a7a7a">{{block.blockName}}</small></v-card-title>
     <v-divider/>
     <v-tabs background-color="secondary" v-model="currentTab" dark grow>
-      <v-tabs-slider/>
+      <v-tabs-slider color="primary" />
 
       <v-tab :key="0" href="#tab-0">Basic</v-tab>
       <v-tab :key="1" href="#tab-1">Logic</v-tab>
