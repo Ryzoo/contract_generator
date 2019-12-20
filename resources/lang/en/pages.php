@@ -28,7 +28,8 @@ return [
                 "savedNotify" => "Contract saved successfully",
                 "addBLock" => "Add block",
                 "newBlock" => "New block",
-                "removeAttributeTitle" => "Remove attribute"
+                "removeAttributeTitle" => "Remove attribute",
+                "noVariables" => "No variable has been added yet",
             ]
         ]
     ],

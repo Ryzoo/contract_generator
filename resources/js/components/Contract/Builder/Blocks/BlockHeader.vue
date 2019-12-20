@@ -2,7 +2,7 @@
   <!--    TODO: When click edit, right sidebar show up 2nd position-->
   <div class="block-header accordion-body">
     <div class="block-header--icon">
-      <v-icon class="mx-3 rotate">fa-chevron-right</v-icon>
+      <v-icon class="mx-3 rotate" @click="toggleBlock($event)">fa-chevron-right</v-icon>
     </div>
     <div class="block-header--content">
       <h3 class="pr-2">
@@ -11,7 +11,7 @@
       </h3>
     </div>
     <div class="block-header--action">
-      <v-icon class="mx-3" @click="editBlock($event)">fa-edit</v-icon>
+      <v-icon class="mx-3" @click="editBlock()">fa-edit</v-icon>
       <v-icon class="mx-3" @click="removeBlock">fa-trash</v-icon>
     </div>
   </div>
@@ -24,12 +24,13 @@
     methods: {
       showBlockModal() {
       },
-      editBlock(e) {
+      editBlock() {
         this.$store.dispatch("builder_setActiveBlock", this.block)
           .then(() => {
             this.$emit("show-block-modal")
           })
-
+      },
+      toggleBlock(e) {
         e.target.closest(".accordion-header").classList.toggle("active");
       },
       removeBlock() {

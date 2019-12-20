@@ -1,98 +1,59 @@
 export default {
     "en": {
-        "pages": {
-            "panel": {
-                "accounts": {
-                    "buttons": {
-                        "new": "Add new account"
-                    },
-                    "descriptions": {
-                        "user_not_exist": "This user not exist"
-                    },
-                    "tabs": {
-                        "basic_data": "Basic data"
-                    }
-                },
-                "roles": {
-                    "buttons": {
-                        "new": "Add new role"
-                    }
-                },
-                "contracts": {
-                    "buttons": {
-                        "new_contract": "Add new contract"
-                    },
-                    "builder": {
-                        "header": "You build:",
-                        "attributeList": "List of attributes",
-                        "savedNotify": "Contract saved successfully",
-                        "addBLock": "Add block",
-                        "newBlock": "New block",
-                        "removeAttributeTitle": "Remove attribute"
-                    }
-                }
+        "base": {
+            "field": {
+                "email": "Email",
+                "password": "Password",
+                "firstName": "FirstName",
+                "lastName": "LastName",
+                "role": "Role",
+                "rePassword": "Retype password",
+                "regulationsAccept": "I accept the Regulations",
+                "rodoAccept": "I accept the RODO"
             },
-            "form": {
-                "noContract": "No available contract to select!",
-                "selectOneContract": "Select one of contract form list on left."
+            "button": {
+                "login": "Login",
+                "register": "Create new account",
+                "reset": "Reset",
+                "cancel": "Cancel",
+                "remind": "Remind",
+                "remove": "Remove",
+                "save": "Save",
+                "add": "Add",
+                "back": "Back",
+                "edit": "Edit",
+                "save_exit": "Save and exit",
+                "save_build": "Save and build"
+            },
+            "headers": {
+                "name": "Name",
+                "email": "Email",
+                "created": "Created",
+                "actions": "Actions",
+                "descriptions": "Descriptions"
+            },
+            "description": {
+                "remove": "Do you want to remove it?"
+            },
+            "notify": {
+                "remove": "Removed successfully!"
             }
         },
-        "pageMeta": {
-            "appTitle": "Contract Generator",
-            "copyright": "All rights reserved - Contract Generator",
-            "auth": {
-                "login": {
-                    "title": "Login"
-                },
-                "register": {
-                    "title": "Register account"
-                },
-                "resetPassword": {
-                    "title": "Reset password"
-                },
-                "sendResetPasswordToken": {
-                    "title": "Reset password token"
-                }
+        "email": {
+            "base": {
+                "welcome_contract": "Welcome to Contract Generator",
+                "go_to_page": "Go to page",
+                "thanks": "Thanks"
             },
-            "panel": {
-                "admin": {
-                    "dashboard": {
-                        "title": "Panel - Dashboard"
-                    },
-                    "profile": {
-                        "title": "Panel - My Profile"
-                    },
-                    "roles": {
-                        "title": "Panel - Manage roles",
-                        "create": {
-                            "title": "Panel - Create role"
-                        }
-                    },
-                    "accounts": {
-                        "title": "Panel - Accounts",
-                        "create": {
-                            "title": "Create new account"
-                        },
-                        "edit": {
-                            "title": "Edit account"
-                        },
-                        "preview": {
-                            "title": "Preview account"
-                        }
-                    },
-                    "contract": {
-                        "title": "Panel - Agreements",
-                        "builder": {
-                            "title": "Build contract"
-                        },
-                        "create": {
-                            "title": "Create new contract"
-                        },
-                        "edit": {
-                            "title": "Edit contract"
-                        }
-                    }
-                }
+            "welcome": {
+                "subject": "Welcome to Contract Generator",
+                "info": "Your account are created successfully. You can now login and work in app."
+            }
+        },
+        "enums": {
+            "roles": {
+                "ADMINISTRATOR": "Admin",
+                "CLIENT": "Client"
             }
         },
         "form": {
@@ -187,69 +148,6 @@ export default {
                 }
             }
         },
-        "enums": {
-            "roles": {
-                "ADMINISTRATOR": "Admin",
-                "CLIENT": "Client"
-            }
-        },
-        "email": {
-            "base": {
-                "welcome_contract": "Welcome to Contract Generator",
-                "go_to_page": "Go to page",
-                "thanks": "Thanks"
-            },
-            "welcome": {
-                "subject": "Welcome to Contract Generator",
-                "info": "Your account are created successfully. You can now login and work in app."
-            }
-        },
-        "base": {
-            "field": {
-                "email": "Email",
-                "password": "Password",
-                "firstName": "FirstName",
-                "lastName": "LastName",
-                "role": "Role",
-                "rePassword": "Retype password",
-                "regulationsAccept": "I accept the Regulations",
-                "rodoAccept": "I accept the RODO"
-            },
-            "button": {
-                "login": "Login",
-                "register": "Create new account",
-                "reset": "Reset",
-                "cancel": "Cancel",
-                "remind": "Remind",
-                "remove": "Remove",
-                "save": "Save",
-                "add": "Add",
-                "back": "Back",
-                "edit": "Edit",
-                "save_exit": "Save and exit",
-                "save_build": "Save and build"
-            },
-            "headers": {
-                "name": "Name",
-                "email": "Email",
-                "created": "Created",
-                "actions": "Actions",
-                "descriptions": "Descriptions"
-            },
-            "description": {
-                "remove": "Do you want to remove it?"
-            },
-            "notify": {
-                "remove": "Removed successfully!"
-            }
-        },
-        "response": {
-            "notFoundId": "Object with this id was not found.",
-            "emailNotFound": "Account with this email not found.",
-            "badPassword": "Password for this account didn't match.",
-            "notAuthorized": "User are not authorized! Please login.",
-            "badResetToken": "Password reset token is incorrect or used before."
-        },
         "navigation": {
             "dashboard": "Dashboard",
             "profile": "My profile",
@@ -264,6 +162,106 @@ export default {
                 "my_profile": "My profile"
             },
             "logout": "Logout"
+        },
+        "pageMeta": {
+            "appTitle": "Contract Generator",
+            "copyright": "All rights reserved - Contract Generator",
+            "auth": {
+                "login": {
+                    "title": "Login"
+                },
+                "register": {
+                    "title": "Register account"
+                },
+                "resetPassword": {
+                    "title": "Reset password"
+                },
+                "sendResetPasswordToken": {
+                    "title": "Reset password token"
+                }
+            },
+            "panel": {
+                "admin": {
+                    "dashboard": {
+                        "title": "Panel - Dashboard"
+                    },
+                    "profile": {
+                        "title": "Panel - My Profile"
+                    },
+                    "roles": {
+                        "title": "Panel - Manage roles"
+                    },
+                    "accounts": {
+                        "title": "Panel - Accounts",
+                        "create": {
+                            "title": "Create new account"
+                        },
+                        "edit": {
+                            "title": "Edit account"
+                        },
+                        "preview": {
+                            "title": "Preview account"
+                        }
+                    },
+                    "contract": {
+                        "title": "Panel - Agreements",
+                        "builder": {
+                            "title": "Build contract"
+                        },
+                        "create": {
+                            "title": "Create new contract"
+                        },
+                        "edit": {
+                            "title": "Edit contract"
+                        }
+                    }
+                }
+            }
+        },
+        "pages": {
+            "panel": {
+                "accounts": {
+                    "buttons": {
+                        "new": "Add new account"
+                    },
+                    "descriptions": {
+                        "user_not_exist": "This user not exist"
+                    },
+                    "tabs": {
+                        "basic_data": "Basic data"
+                    }
+                },
+                "roles": {
+                    "buttons": {
+                        "new": "Add new role"
+                    }
+                },
+                "contracts": {
+                    "buttons": {
+                        "new_contract": "Add new contract"
+                    },
+                    "builder": {
+                        "header": "You build:",
+                        "attributeList": "List of attributes",
+                        "savedNotify": "Contract saved successfully",
+                        "addBLock": "Add block",
+                        "newBlock": "New block",
+                        "removeAttributeTitle": "Remove attribute",
+                        "noVariables": "No variable has been added yet"
+                    }
+                }
+            },
+            "form": {
+                "noContract": "No available contract to select!",
+                "selectOneContract": "Select one of contract form list on left."
+            }
+        },
+        "response": {
+            "notFoundId": "Object with this id was not found.",
+            "emailNotFound": "Account with this email not found.",
+            "badPassword": "Password for this account didn't match.",
+            "notAuthorized": "User are not authorized! Please login.",
+            "badResetToken": "Password reset token is incorrect or used before."
         },
         "validation": {
             "accepted": "The {attribute} must be accepted.",

@@ -58,7 +58,7 @@
   export default {
     name: "CreateEditVariable",
     props:[
-      'attributesList', 'editAttribute'
+      'attributesList', 'editAttribute', 'isNewAttribute'
     ],
     components: {
       VariableSettings
@@ -68,7 +68,6 @@
         variableOptions: [],
         attribute: this.editAttribute || this.getDefaultAttribute(),
         allAttributes: [],
-        isNewAttribute: true,
       }
     },
     watch: {
@@ -141,6 +140,7 @@
         this.$store.dispatch("builder_idVariableIncrement");
 
         this.attribute = this.getDefaultAttribute();
+        this.$emit('close');
       }
     }
   }

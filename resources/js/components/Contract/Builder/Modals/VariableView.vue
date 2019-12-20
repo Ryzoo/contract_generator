@@ -3,9 +3,12 @@
     <v-card-title>Attribute list:</v-card-title>
     <v-divider/>
     <v-card-text>
-      <div class="variables-list">
+      <div v-if="$store.getters.builder_allVariables.length > 0" class="variables-list">
           <span v-for="attribute in $store.getters.builder_allVariables" class="variable" @click="editVariable(attribute)">{{attribute.attributeName}}<div><v-icon
             @click="tryToRemoveAttribute($event, attribute)" class="delete-variable" small>fa-times</v-icon></div></span>
+      </div>
+      <div v-else class="no-variables">
+        <h2>{{$t("pages.panel.contracts.builder.noVariables")}}</h2>
       </div>
     </v-card-text>
     <v-card-actions>
@@ -39,7 +42,7 @@
       v-model="showAddEditModal"
       scrollable
       max-width="500px">
-      <CreateEditVariable :editAttribute="attribute" :attributesList="$store.getters.builder_allVariables" @close="showAddEditModal=false"/>
+      <CreateEditVariable :isNewAttribute="isNewAttribute" :editAttribute="attribute" :attributesList="$store.getters.builder_allVariables" @close="showAddEditModal=false"/>
     </v-dialog>
   </v-card>
 </template>
@@ -75,6 +78,7 @@
       },
       addNewAttribute() {
         this.attribute = null;
+        this.isNewAttribute = true;
         this.showAddEditModal = true;
       },
       pushCloseEvent() {
@@ -82,6 +86,7 @@
       },
       editVariable(attribute) {
         this.attribute = attribute;
+        this.isNewAttribute = false;
         this.showAddEditModal = true;
       },
     }
@@ -111,6 +116,13 @@
         cursor: pointer;
       }
     }
+  }
+
+  .no-variables {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    opacity: 0.3;
   }
 
 </style>
