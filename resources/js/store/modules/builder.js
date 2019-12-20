@@ -51,13 +51,21 @@ const mutations = {
     state.builder.activeBlock = data;
   },
   BUILDER_BLOCK_UPDATE_CONTENT: (state, data) => {
-    state.builder.blocks = state.builder.blocks.map(x => {
-      if(x.id === data.id){
-        x.content = data.content
-      }
+    const updateBlock = (block, data) => {
+      return block.map(x => {
 
-      return x
-    })
+        if(x.id === data.id){
+          x.content = data.content
+        }
+
+        if (x.content.blocks) {
+          x.content.blocks = updateBlock(x.content.blocks, data)
+        }
+        return x
+      })
+    };
+
+    state.builder.blocks = updateBlock(state.builder.blocks, data)
   },
   BUILDER_BLOCK_INCREMENT_ID: (state) => {
     state.builder.idBlockIncrement += 1;

@@ -4,7 +4,7 @@
       :mini-variant="mini"
       v-model="navigationModel"
       dark
-      absolute
+      fixed
       overflow
       app
     >
