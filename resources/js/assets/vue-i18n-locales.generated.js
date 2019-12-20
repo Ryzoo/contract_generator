@@ -27,7 +27,8 @@ export default {
                         "attributeList": "List of attributes",
                         "savedNotify": "Contract saved successfully",
                         "addBLock": "Add block",
-                        "newBlock": "New block"
+                        "newBlock": "New block",
+                        "removeAttributeTitle": "Remove attribute"
                     }
                 }
             },
@@ -62,7 +63,10 @@ export default {
                         "title": "Panel - My Profile"
                     },
                     "roles": {
-                        "title": "Panel - Manage roles"
+                        "title": "Panel - Manage roles",
+                        "create": {
+                            "title": "Panel - Create role"
+                        }
                     },
                     "accounts": {
                         "title": "Panel - Accounts",

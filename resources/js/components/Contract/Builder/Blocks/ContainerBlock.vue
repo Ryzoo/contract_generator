@@ -2,17 +2,17 @@
   <section>
     <div
       class="block"
-      :blockid="block.id"
+      :blockid="currentBlock.id"
       v-if="!divider">
 
       <div class="accordion-header">
         <BlockHeader
           @show-block-modal="showBlockModal"
-          :block="block"
+          :block="currentBlock"
         />
         <component
-          :is="Mapper.getBlockName(block.blockType)"
-          :block="block"
+          :is="Mapper.getBlockName(currentBlock.blockType)"
+          :block="currentBlock"
           :level="level ? level : 0"
         />
       </div>
@@ -21,7 +21,7 @@
     <AddBlockDialog
       v-else
       :buttonIndex="blockIndex"
-      :block="block"
+      :block="currentBlock"
       :level="level ? level : 0"/>
   </section>
 </template>
@@ -46,10 +46,21 @@
       level: {},
       blockIndex: {}
     },
+    data(){
+      return {
+        currentBlock: this.block
+      }
+    },
     methods: {
       showBlockModal() {
         this.$emit("show-block-modal")
       },
+    },
+    watch:{
+      block(newValue){
+        this.currentBlock = newValue;
+        this.$forceUpdate()
+      }
     }
   }
 </script>
