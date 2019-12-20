@@ -7,6 +7,7 @@
             :divider="fBlock.isDivider"
             :level="block.id"
             :blockIndex="index"
+            @show-block-modal="showBlockModal"
         >
         </ContainerBlock>
     </section>
@@ -31,7 +32,12 @@
 
         return arr;
       }
-    }
+    },
+    methods: {
+      showBlockModal() {
+        this.$emit("show-block-modal")
+      },
+    },
   }
 </script>
 
