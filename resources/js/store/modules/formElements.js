@@ -50,7 +50,7 @@ const getters = {
             content: []
         }];
 
-        state.formElements.map(e => {
+        state.formElements.filter(x => x.isActive).map(e => {
             switch (e.elementType) {
                 case FormElementsEnum.PAGE_BRAKE:
                     currentIndex++;
