@@ -3,7 +3,7 @@
     <div
       class="block"
       :blockid="currentBlock.id"
-      v-if="!divider">
+      v-if="!divider && !isPageBreaker()">
 
       <div class="accordion-header">
         <BlockHeader
@@ -19,6 +19,13 @@
       </div>
 
     </div>
+    <div v-else-if="isPageBreaker()" class="block" :blockid="block.id">
+      <component
+              :is="Mapper.getBlockName(currentBlock.blockType)"
+              :block="currentBlock"
+              :level="level ? level : 0"
+      />
+    </div>
     <AddBlockDialog
       v-else
       :buttonIndex="blockIndex"
@@ -30,8 +37,10 @@
 <script>
   import TextBlock from "./Types/TextBlock";
   import EmptyBlock from "./Types/EmptyBlock";
+  import PageDivideBlock from "./Types/PageDivideBlock";
   import AddBlockDialog from "./AddBlockDialog";
   import BlockHeader from "./BlockHeader";
+  import {BlockTypeEnum} from "../../../../additionalModules/Enums";
 
   export default {
     name: "ContainerBlock",
@@ -39,6 +48,7 @@
       BlockHeader,
       TextBlock,
       EmptyBlock,
+      PageDivideBlock,
       AddBlockDialog
     },
     props: {
@@ -56,6 +66,9 @@
       showBlockModal() {
         this.$emit("show-block-modal")
       },
+      isPageBreaker() {
+        return this.block.blockType === BlockTypeEnum.PAGE_DIVIDE_BLOCK
+      }
     },
     watch:{
       block(newValue){
