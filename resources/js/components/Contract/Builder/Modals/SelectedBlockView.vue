@@ -51,11 +51,14 @@
 
 <script>
   import {ConditionalEnum} from "../../../../additionalModules/Enums";
+  import VueQueryBuilder from 'vue-query-builder';
 
   export default {
     name: "SelectedBlockView",
+    components: { VueQueryBuilder },
     data() {
       return {
+        conditionalRules: [],
         currentTab: null,
         block: {
           blockName: "",
