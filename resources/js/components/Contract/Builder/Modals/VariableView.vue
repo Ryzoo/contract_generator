@@ -4,7 +4,7 @@
     <v-divider/>
     <v-card-text>
       <div v-if="$store.getters.builder_allVariables.length > 0" class="variables-list">
-          <span v-for="attribute in $store.getters.builder_allVariables" class="variable" @click="editVariable(attribute)">{{attribute.attributeName}}<div><v-icon
+          <span v-for="attribute in $store.getters.builder_allVariables" class="variable" @click="editVariable(attribute)"><b>[{{attribute.id}}]</b> {{attribute.attributeName}}<div><v-icon
             @click="tryToRemoveAttribute($event, attribute)" class="delete-variable" small>fa-times</v-icon></div></span>
       </div>
       <div v-else class="no-variables">

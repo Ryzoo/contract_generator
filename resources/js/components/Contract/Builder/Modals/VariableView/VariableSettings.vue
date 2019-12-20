@@ -2,12 +2,14 @@
     <section>
 <!--        TODO: Create other settings for variable-->
         <template v-for="setting in settingsList">
-            <v-checkbox
-                v-if="setting === 'required'"
-                :label="setting"
-                @change="saveInput($event, setting)"
-            ></v-checkbox>
-            <v-text-field v-if="setting === 'lengthMin' || setting === 'lengthMax'" :label="setting" @change="saveInput($event, setting)" outline></v-text-field>
+          <v-checkbox
+            hide-details
+            v-if="setting === 'required'"
+            :label="$t('form.variableForm.isRequired')"
+            @change="saveInput($event, setting)"
+          />
+          <v-text-field  hide-details v-if="setting === 'lengthMin' || setting === 'lengthMax'" :label="setting === 'lengthMin'  ? $t('form.variableForm.lengthMin') : $t('form.variableForm.lengthMax')"
+                        @change="saveInput($event, setting)" outline/>
         </template>
     </section>
 </template>

@@ -1,12 +1,12 @@
 <template>
   <v-card>
-    <v-card-title>{{isNewAttribute ? "Add new variable" : "Edit variable"}}</v-card-title>
+    <v-card-title>{{isNewAttribute ? $t("form.variableForm.new.title") : $t("form.variableForm.update.title")}}</v-card-title>
     <v-divider/>
     <v-card-text>
       <v-col sm="12">
         <v-select
           :items="variableOptions"
-          label="Typ"
+          :label="$t('form.variableForm.type')"
           outlined
           dense
           hide-details
@@ -18,22 +18,22 @@
 
       <v-row v-if="attribute.attributeType > -1">
         <v-col sm="12">
-          <v-text-field v-model="attribute.attributeName" label="Nazwa" outline/>
+          <v-text-field hide-details  v-model="attribute.attributeName" :label="$t('form.variableForm.name')" outline/>
         </v-col>
         <v-col sm="12">
-          <v-text-field v-model="attribute.placeholder" label="Placeholder" outline/>
+          <v-text-field hide-details  v-model="attribute.placeholder" :label="$t('form.variableForm.placeholder')" outline/>
         </v-col>
         <v-col sm="12">
-          <v-text-field v-model="attribute.description" label="Opis" outline/>
+          <v-text-field hide-details  v-model="attribute.description" :label="$t('form.variableForm.label')" outline/>
         </v-col>
         <v-col sm="12">
-          <v-text-field v-model="attribute.defaultValue" label="Domyślna wartość" outline/>
+          <v-text-field hide-details  v-model="attribute.defaultValue" :label="$t('form.variableForm.defaultValue')" outline/>
         </v-col>
         <v-col sm="12">
-          <v-text-field v-model="attribute.additionalInformation" label="Dodatkowe informacje" outline/>
+          <v-text-field hide-details  v-model="attribute.additionalInformation" :label="$t('form.variableForm.additionalInformation')" outline/>
         </v-col>
         <v-col sm="12">
-          <v-checkbox label="Czy pole ma być anonimowe" v-model="attribute.toAnonymize"/>
+          <v-checkbox hide-details :label="$t('form.variableForm.forAnonymise')" v-model="attribute.toAnonymize"/>
         </v-col>
         <v-col sm="12">
           <VariableSettings

@@ -97,6 +97,24 @@ export default {
             }
         },
         "form": {
+            "variableForm": {
+                "new": {
+                    "title": "Add new variable"
+                },
+                "update": {
+                    "title": "Update variable"
+                },
+                "forAnonymise": "For anonymise?",
+                "additionalInformation": "Additional Information",
+                "defaultValue": "Default value",
+                "label": "Label",
+                "placeholder": "Placeholder",
+                "name": "Name",
+                "type": "Type",
+                "isRequired": "Is required?",
+                "lengthMin": "Max length",
+                "lengthMax": "Min length"
+            },
             "login": {
                 "title": "Login form",
                 "text": {
