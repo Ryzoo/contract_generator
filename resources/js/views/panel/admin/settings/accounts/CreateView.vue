@@ -11,30 +11,40 @@
                             <v-container>
                                 <v-row row wrap>
                                     <v-col sm="12" md="6" class="pa-1">
-                                        <v-text-field
-                                            prepend-icon="fa-user-edit"
-                                            v-model="user.firstName"
-                                            :label="$t('base.field.firstName')"
-                                            required
-                                        ></v-text-field>
+                                      <v-text-field
+                                        prepend-icon="fa-user-edit"
+                                        v-model="user.firstName"
+                                        :label="$t('base.field.firstName')"
+                                        required
+                                      />
                                     </v-col>
                                     <v-col sm="12" md="6" class="pa-1">
-                                        <v-text-field
-                                            prepend-icon="fa-user-edit"
-                                            v-model="user.lastName"
-                                            :label="$t('base.field.lastName')"
-                                            required
-                                        ></v-text-field>
+                                      <v-text-field
+                                        prepend-icon="fa-user-edit"
+                                        v-model="user.lastName"
+                                        :label="$t('base.field.lastName')"
+                                        required
+                                      />
                                     </v-col>
                                     <v-col sm="12" md="6" class="pa-1">
-                                        <v-text-field
-                                            prepend-icon="fa-envelope"
-                                            v-model="user.email"
-                                            :label="$t('base.field.email')"
-                                            type="email"
-                                            required
-                                        ></v-text-field>
+                                      <v-text-field
+                                        prepend-icon="fa-envelope"
+                                        v-model="user.email"
+                                        :label="$t('base.field.email')"
+                                        type="email"
+                                        required
+                                      />
                                     </v-col>
+                                  <v-col sm="12" md="6" class="pa-1">
+                                    <v-select
+                                      prepend-icon="fa-shield-alt"
+                                      v-model="user.roles"
+                                      :items="roleList"
+                                      chips
+                                      :label="$t('base.field.role')"
+                                      multiple
+                                    />
+                                  </v-col>
                                     <v-col sm="12" md="6" class="pa-1">
                                         <v-text-field
                                             prepend-icon="fa-lock"
@@ -57,7 +67,7 @@
                                 <v-row align="end" justify="end">
                                     <v-btn
                                         color="primary"
-                                        textpanel
+                                        text
                                         @click="$router.push('/panel/admin/settings/accounts')"
                                     >
                                         {{ $t("base.button.back") }}
@@ -72,7 +82,7 @@
                             </v-container>
                         </v-form>
                     </v-card-text>
-                    <loader v-else></loader>
+                  <loader v-else/>
                 </v-card>
             </v-flex>
         </v-layout>
@@ -90,11 +100,27 @@ export default {
         lastName: null,
         email: null,
         password: null,
-        password_confirmation: null
-      }
+        password_confirmation: null,
+        roles: []
+      },
+      roleList: []
     }
   },
   methods: {
+    getRoleList () {
+      this.isLoaded = false
+      axios
+        .get('/role')
+        .then(response => {
+          this.roleList = response.data.map(x => ({
+            text: x.name,
+            value: x.id
+          }))
+        })
+        .finally(() => {
+          this.isLoaded = true
+        })
+    },
     addAccount () {
       try {
         const validationArray = []
@@ -134,14 +160,17 @@ export default {
             this.$t('form.accountAddForm.notify.success'),
             notify.SUCCESS
           )
-          this.$router.push('/panel/admin/accounts')
+          this.$router.push('/panel/admin/settings/accounts')
         })
         .finally(() => {
           this.isLoaded = true
         })
     }
+  },
+  mounted () {
+    this.getRoleList()
   }
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss"/>

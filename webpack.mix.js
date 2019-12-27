@@ -15,7 +15,7 @@ mix.webpackConfig({
     rules: [
       {
         enforce: 'pre',
-        exclude: /node_modules/,
+        exclude: /node_modules|vue-i18n-locales\.generated\.js/,
         loader: 'eslint-loader',
         test: /\.(js|vue)?$/
       },

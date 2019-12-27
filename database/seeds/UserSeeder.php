@@ -1,5 +1,6 @@
 <?php
 
+use App\Core\Models\User;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -11,17 +12,17 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Core\Models\User::class)->states('client')->create([
+        factory(User::class)->states('client')->create([
             "firstName" => 'test',
             "lastName" => 'client',
-            "password" => \Illuminate\Support\Facades\Hash::make('client'),
+            "password" => Hash::make('client'),
             "email" => 't.client@test.pl',
         ]);
 
-        factory(\App\Core\Models\User::class)->states('admin')->create([
+        factory(User::class)->states('admin')->create([
             "firstName" => 'test',
             "lastName" => 'admin',
-            "password" => \Illuminate\Support\Facades\Hash::make('admin1'),
+            "password" => Hash::make('admin1'),
             "email" => 't.admin@test.pl',
         ]);
     }

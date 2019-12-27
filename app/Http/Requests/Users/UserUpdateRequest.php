@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Users;
 
+use App\Core\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +15,12 @@ class UserUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::hasUser() && Auth::user()->hasPermission('update.users');
+        $user = User::find($this->route('id'));
+
+        if(isset($user))
+            $user->user_id = $user->id;
+
+        return Auth::hasUser() && (Auth::user()->hasPermission('manage.users') || Auth::user()->allowed('manage.users', $user));
     }
 
     /**
@@ -29,6 +35,7 @@ class UserUpdateRequest extends FormRequest
             "lastName" => "sometimes|required|between:3,255",
             "email" => "sometimes|required|email|unique:users",
             "image" => "sometimes|required|image",
+            "roles" => "array",
             "password" => "sometimes|required|between:3,255|confirmed",
         ];
     }

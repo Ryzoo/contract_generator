@@ -14,7 +14,7 @@ class RoleAddRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::hasUser();
+        return Auth::hasUser() && Auth::user()->hasPermission('manage.roles');
     }
 
     /**
@@ -26,9 +26,10 @@ class RoleAddRequest extends FormRequest
     {
         return [
             "name" => "required|string|between:3,255",
-            "slug" => "required|string|between:3,255",
+            "slug" => "required|string|unique:roles|between:3,255",
             "description" => "string|between:3,255",
             "level" => "numeric|between:0,10",
+            "permission" => "array",
         ];
     }
 }

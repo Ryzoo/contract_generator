@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth:token'], function(){
 
     Route::prefix('role')->group(function () {
         Route::get('/', 'RoleController@getCollection');
+        Route::get('/permission', 'RoleController@getPermission');
         Route::get('/{id}', 'RoleController@get');
 
         Route::post('/', 'RoleController@add');

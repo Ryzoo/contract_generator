@@ -71,7 +71,19 @@ return [
             'prev' => 'Back to accounts',
         ],
         'notify' => [
-            'success' => 'New account added.'
+            'success' => 'New account created.'
+        ]
+    ],
+    'roleAddForm' => [
+        'title' => "Add new role",
+        'notify' => [
+            'success' => 'New role created.'
+        ]
+    ],
+    'roleEditForm' => [
+        'title' => "Edit role",
+        'notify' => [
+            'success' => 'Role updated.'
         ]
     ],
     'accountEditForm' => [

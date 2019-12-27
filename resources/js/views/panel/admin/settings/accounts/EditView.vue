@@ -27,12 +27,22 @@
                                     required
                                   />
                                 </v-col>
+                              <v-col sm="12" md="6" class="pa-1">
+                                <v-select
+                                  prepend-icon="fa-shield-alt"
+                                  v-model="user.roles"
+                                  :items="roleList"
+                                  chips
+                                  :label="$t('base.field.role')"
+                                  multiple
+                                />
+                              </v-col>
                             </v-row>
                             <v-row align="end" justify="end">
                                 <v-btn
                                     color="primary"
                                     text
-                                    @click="$router.push('/panel/admin/accounts')"
+                                    @click="$router.push('/panel/admin/settings/accounts')"
                                 >
                                     {{ $t("base.button.back") }}
                                 </v-btn>
@@ -58,13 +68,29 @@ export default {
       accountId: this.$route.params.id,
       isLoaded: true,
       email: null,
+      roleList: [],
       user: {
         firstName: null,
-        lastName: null
+        lastName: null,
+        roles: []
       }
     }
   },
   methods: {
+    getRoleList () {
+      this.isLoaded = false
+      axios
+        .get('/role')
+        .then(response => {
+          this.roleList = response.data.map(x => ({
+            text: x.name,
+            value: x.id
+          }))
+        })
+        .finally(() => {
+          this.isLoaded = true
+        })
+    },
     saveAccount () {
       try {
         const validationArray = []
@@ -91,7 +117,7 @@ export default {
             this.$t('form.accountEditForm.notify.success'),
             notify.SUCCESS
           )
-          this.$router.push('/panel/admin/accounts')
+          this.$router.push('/panel/admin/settings/accounts')
         })
         .finally(() => {
           this.isLoaded = true
@@ -104,13 +130,14 @@ export default {
         .then(response => {
           this.user = {
             firstName: response.data.firstName,
-            lastName: response.data.lastName
+            lastName: response.data.lastName,
+            roles: response.data.roles.map(x => x.id)
           }
 
           this.email = response.data.email
         })
         .catch(() => {
-          this.$router.push('/panel/admin/accounts')
+          this.$router.push('/panel/admin/settings/accounts')
         })
         .finally(() => {
           this.isLoaded = true
@@ -119,8 +146,9 @@ export default {
   },
   mounted () {
     this.loadAccount()
+    this.getRoleList()
   }
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss"/>

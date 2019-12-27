@@ -18,6 +18,7 @@ import AccountPreview
   from './views/panel/admin/settings/accounts/AccountPreview'
 import CreateView from './views/panel/admin/settings/accounts/CreateView'
 import EditView from './views/panel/admin/settings/accounts/EditView'
+import EditRoleView from './views/panel/admin/settings/roles/EditView'
 import ContractForm from './views/client/contract/ContractForm'
 import CreateBaseView from './views/panel/admin/contracts/CreateBaseView'
 import RolesView from './views/panel/admin/settings/RolesView'
@@ -136,6 +137,14 @@ const router = new VueRouter({
           component: CreateRolesView,
           meta: {
             title: i18n.t('pageMeta.panel.admin.roles.create.title')
+          }
+        },
+        {
+          path: 'settings/roles/:id/edit',
+          name: 'editRole',
+          component: EditRoleView,
+          meta: {
+            title: i18n.t('pageMeta.panel.admin.roles.edit.title')
           }
         }
       ]

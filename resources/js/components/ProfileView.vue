@@ -1,16 +1,16 @@
 <template>
     <v-row>
         <v-col xs="12" sm="4" lg="3" class="pa-1">
-            <base-data-show
-                :user-data="user"
-                :editable="editable"
-            ></base-data-show>
+          <base-data-show
+            :user-data="user"
+            :editable="editable"
+          />
         </v-col>
         <v-col xs="12" sm="8" lg="9" class="pa-1">
-            <profile-data-tabs
-                :user-data="user"
-                :editable="editable"
-            ></profile-data-tabs>
+          <profile-data-tabs
+            :user-data="user"
+            :editable="editable"
+          />
         </v-col>
     </v-row>
 </template>

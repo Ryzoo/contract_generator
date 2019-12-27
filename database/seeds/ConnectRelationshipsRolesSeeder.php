@@ -1,0 +1,19 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use jeremykenedy\LaravelRoles\Models\Permission;
+use jeremykenedy\LaravelRoles\Models\Role;
+
+class ConnectRelationshipsRolesSeeder extends Seeder
+{
+    public function run()
+    {
+        $permissions = Permission::all();
+        $roleAdmin = Role::where('name', '=', 'Admin')
+            ->first();
+
+        foreach ($permissions as $permission)
+            $roleAdmin->attachPermission($permission);
+
+    }
+}

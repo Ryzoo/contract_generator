@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Core\Helpers\Response;
+use App\Http\Requests\UserDeleteRequest;
 use App\Http\Requests\Users\UserUpdateRequest;
 use App\Core\Models\User;
 use App\Http\Requests\Users\UserAddRequest;
@@ -22,24 +23,27 @@ class UserController extends Controller
     }
 
     public function get(Request $request, int $id) {
-        Response::success(User::findOrFail($id));
+        Response::success(User::with('roles')->findOrFail($id));
     }
 
     public function getCollection(Request $request) {
-        Response::success(User::all());
+        Response::success(User::with('roles')->get());
     }
 
     public function add(UserAddRequest $request) {
-        $user = User::create($request->validated());
+        $requestData = collect($request->validated());
+        $userModel = User::create($requestData->except(['roles'])->toArray());
+        $userModel->syncRoles($requestData['roles']);
 
-        SendWelcomeEmail::dispatch($user);
-
-        Response::success($user);
+        SendWelcomeEmail::dispatch($userModel);
+        Response::success($userModel);
     }
 
     public function update(UserUpdateRequest $request, int $id) {
+        $requestData = collect($request->validated());
         $userModel = User::findOrFail($id);
-        $userModel->update($request->validated());
+        $userModel->update($requestData->except(['roles'])->toArray());
+        $userModel->syncRoles($requestData['roles']);
         Response::success($userModel);
     }
 
@@ -48,7 +52,7 @@ class UserController extends Controller
         Response::success($newUrl);
     }
 
-    public function remove(Request $request, int $id) {
+    public function remove(UserDeleteRequest $request, int $id) {
         Response::success(User::destroy($id));
     }
 }

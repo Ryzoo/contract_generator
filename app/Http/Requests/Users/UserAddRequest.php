@@ -14,7 +14,7 @@ class UserAddRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::hasUser() && Auth::user()->hasPermission('create.users');
+        return Auth::hasUser() && Auth::user()->hasPermission('manage.users');
     }
 
     /**
@@ -28,6 +28,7 @@ class UserAddRequest extends FormRequest
             "firstName" => "required|between:3,255",
             "lastName" => "required|between:3,255",
             "email" => "required|email|unique:users",
+            "roles" => "array",
             "password" => "required|between:3,255|confirmed",
         ];
     }

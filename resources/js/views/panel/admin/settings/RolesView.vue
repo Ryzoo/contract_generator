@@ -18,7 +18,7 @@
             <template v-slot:item.name="{ item }">
                 {{ item.name }}
             </template>
-            <template v-slot:item.name="{ item }">
+            <template v-slot:item.description="{ item }">
               {{ item.description }}
             </template>
             <template v-slot:item.action="{ item }">
@@ -31,7 +31,7 @@
         </v-col>
       </v-row>
     </v-col>
-    <loader v-else></loader>
+    <loader v-else/>
 
     <v-dialog persistent v-model="deleteDialog" max-width="290">
       <v-card>
@@ -123,4 +123,4 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped/>
