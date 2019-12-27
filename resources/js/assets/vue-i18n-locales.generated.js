@@ -10,7 +10,8 @@ export default {
                         "user_not_exist": "This user not exist"
                     },
                     "tabs": {
-                        "basic_data": "Basic data"
+                        "basic_data": "Basic data",
+                        "change_password": "Change password"
                     }
                 },
                 "roles": {
@@ -192,6 +193,11 @@ export default {
                     "success_img": "Image updated!"
                 }
             },
+            "accountChangePasswordForm": {
+                "notify": {
+                    "success": "Password changed!"
+                }
+            },
             "accountRemoveForm": {
                 "title": "Remove account"
             },
@@ -248,6 +254,8 @@ export default {
                 "level": "Level",
                 "permission": "Permission",
                 "rePassword": "Retype password",
+                "newPassword": "New password",
+                "actualPassword": "Actual password",
                 "regulationsAccept": "I accept the Regulations",
                 "rodoAccept": "I accept the RODO"
             },

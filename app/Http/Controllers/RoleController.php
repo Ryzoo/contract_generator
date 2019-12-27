@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Core\Helpers\Response;
-use App\Http\Requests\RoleDeleteRequest;
 use App\Http\Requests\Roles\RoleUpdateRequest;
 use App\Http\Requests\Roles\RoleAddRequest;
 use App\Core\Services\RoleService;
+use App\Http\Requests\Users\RoleDeleteRequest;
 use Illuminate\Http\Request;
 use jeremykenedy\LaravelRoles\Models\Permission;
 use jeremykenedy\LaravelRoles\Models\Role;

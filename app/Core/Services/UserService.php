@@ -4,6 +4,7 @@ namespace App\Core\Services;
 
 use App\Core\Models\User;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
@@ -14,6 +15,14 @@ class UserService
 
     public function __construct(FileService $fileService) {
         $this->fileService = $fileService;
+    }
+
+    public function changeUserPassword(int $userID, string $newPassword)
+    {
+        $user = User::findOrFail($userID);
+        $user->update([
+            'password' => Hash::make($newPassword)
+        ]);
     }
 
     public function changeUserImage(int $userID, UploadedFile $newProfileImage): string {

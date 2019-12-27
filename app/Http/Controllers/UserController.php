@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Core\Helpers\Response;
-use App\Http\Requests\UserDeleteRequest;
+use App\Http\Requests\Users\UserDeleteRequest;
+use App\Http\Requests\Users\UserPasswordChangeRequest;
 use App\Http\Requests\Users\UserUpdateRequest;
 use App\Core\Models\User;
 use App\Http\Requests\Users\UserAddRequest;
@@ -50,6 +51,12 @@ class UserController extends Controller
     public function updateImage(UserUpdateRequest $request, int $id) {
         $newUrl = $this->userService->changeUserImage($id, $request->validated()["image"]);
         Response::success($newUrl);
+    }
+
+    public function changePassword(UserPasswordChangeRequest $request, int $id)
+    {
+        $this->userService->changeUserPassword($id, $request->validated()["password"]);
+        Response::success();
     }
 
     public function remove(UserDeleteRequest $request, int $id) {

@@ -65,16 +65,16 @@ export default {
         const validationArray = []
 
         validationArray[
-          this.$t('form.login.field.email')
+          this.$t('base.field.email')
         ] = this.loginForm.email
         validationArray[
-          this.$t('form.login.field.password')
+          this.$t('base.field.password')
         ] = this.loginForm.password
 
         const valid = new Validator(validationArray)
 
-        valid.get(this.$t('form.login.field.email')).isEmail()
-        valid.get(this.$t('form.login.field.password')).length(6, 50)
+        valid.get(this.$t('base.field.email')).isEmail()
+        valid.get(this.$t('base.field.password')).length(3, 255)
       } catch (e) {
         return
       }

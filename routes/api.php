@@ -43,8 +43,11 @@ Route::group(['middleware' => 'auth:token'], function(){
         Route::post('/{id}/profileImage', 'UserController@updateImage');
 
         Route::put('/{id}', 'UserController@update');
+        Route::put('/{id}/change-password', 'UserController@changePassword');
 
         Route::delete('/{id}', 'UserController@remove');
+
+
     });
 
     Route::prefix('contract')->group(function () {

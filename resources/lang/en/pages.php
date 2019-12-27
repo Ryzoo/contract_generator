@@ -10,7 +10,8 @@ return [
                 "user_not_exist" => "This user not exist"
             ],
             "tabs" => [
-                "basic_data" => "Basic data"
+                "basic_data" => "Basic data",
+                "change_password" => "Change password"
             ]
         ],
         "roles" => [

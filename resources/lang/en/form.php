@@ -96,6 +96,11 @@ return [
             'success_img' => 'Image updated!'
         ]
     ],
+    'accountChangePasswordForm' => [
+        'notify' => [
+            'success' => 'Password changed!',
+        ]
+    ],
     'accountRemoveForm' => [
         'title' => "Remove account",
     ],

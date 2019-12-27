@@ -1,6 +1,6 @@
 <template>
     <v-card>
-        <v-tabs v-model="tabModel" background-color="primary" grow show-arrows>
+        <v-tabs v-model="tabModel" background-color="primary" grow show-arrows dark>
           <v-tabs-slider/>
             <v-tab
                 v-for="(tab, index) in computedTabsItem"
@@ -30,11 +30,13 @@
 
 <script>
 import BasicDataTab from './Tabs/BasicDataTab'
+import ChangePasswordTab from './Tabs/ChangePasswordTab'
 
 export default {
   name: 'ProfileDataTabs',
   components: {
-    BasicDataTab
+    BasicDataTab,
+    ChangePasswordTab
   },
   props: ['userData', 'editable'],
   data () {
@@ -47,6 +49,12 @@ export default {
           icon: 'fa-id-card',
           editOnly: true,
           component: 'BasicDataTab'
+        },
+        {
+          name: this.$t('pages.panel.accounts.tabs.change_password'),
+          icon: 'fa-key',
+          editOnly: true,
+          component: 'ChangePasswordTab'
         }
       ]
     }

@@ -5,22 +5,22 @@
                 <v-container>
                     <v-row>
                         <v-col sm="12" md="6" class="pa-1">
-                            <v-text-field
-                                v-model="user.firstName"
-                                :label="
+                          <v-text-field
+                            v-model="user.firstName"
+                            :label="
                                     $t('base.field.firstName')
                                 "
-                                required
-                            ></v-text-field>
+                            required
+                          />
                         </v-col>
                         <v-col sm="12" md="6" class="pa-1">
-                            <v-text-field
-                                v-model="user.lastName"
-                                :label="
+                          <v-text-field
+                            v-model="user.lastName"
+                            :label="
                                     $t('base.field.lastName')
                                 "
-                                required
-                            ></v-text-field>
+                            required
+                          />
                         </v-col>
                         <v-col sm="12">
                             <v-row class="justify-end">
@@ -33,7 +33,7 @@
                 </v-container>
             </v-form>
         </v-card-text>
-        <loader v-else></loader>
+      <loader v-else/>
     </v-card>
 </template>
 

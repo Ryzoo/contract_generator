@@ -1,10 +1,10 @@
 <template>
     <v-col v-if="isLoaded">
-        <profile-view
-            v-if="userData"
-            :user-data="userData"
-            :editable="false"
-        ></profile-view>
+      <profile-view
+        v-if="userData"
+        :user-data="userData"
+        :editable="false"
+      />
         <v-alert v-else prominent type="error">
             <v-row align="center">
                 <v-col class="grow">{{$t('pages.panel.accounts.descriptions.user_not_exist')}}</v-col>
@@ -16,7 +16,7 @@
             </v-row>
         </v-alert>
     </v-col>
-    <loader v-else></loader>
+  <loader v-else/>
 </template>
 
 <script>

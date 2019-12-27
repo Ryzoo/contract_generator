@@ -13,6 +13,8 @@ return [
         'level' => 'Level',
         'permission' => 'Permission',
         'rePassword' => 'Retype password',
+        'newPassword' => 'New password',
+        'actualPassword' => 'Actual password',
         'regulationsAccept' => 'I accept the Regulations',
         'rodoAccept' => 'I accept the RODO',
     ],
