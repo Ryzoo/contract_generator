@@ -10,6 +10,7 @@
                     v-model="loginForm.email"
                     :label="$t('base.field.email')"
                     type="email"
+                    color="secondary"
                 >
                 </v-text-field>
                 <v-text-field
@@ -17,6 +18,7 @@
                     v-model="loginForm.password"
                     :label="$t('base.field.password')"
                     type="password"
+                    color="secondary"
                 >
                 </v-text-field>
                 <small class="ma-0"
@@ -27,13 +29,13 @@
                 </small>
                 <br />
             </v-form>
-            <loader v-else></loader>
+          <loader v-else/>
         </v-card-text>
         <v-card-actions>
-            <v-spacer></v-spacer>
+          <v-spacer/>
             <v-btn
                 :disabled="!isLoaded"
-                text
+                outlined
                 color="primary"
                 to="/auth/register"
                 >{{ $t("base.button.register") }}
@@ -47,51 +49,51 @@
 
 <script>
 export default {
-    name: "LoginView",
-    data() {
-        return {
-            isLoaded: true,
-            loginForm: {
-                email: "t.client@test.pl",
-                password: "client"
-            }
-        };
-    },
-    methods: {
-        sendLoginForm() {
-            try {
-                let validationArray = [];
-
-                validationArray[
-                    this.$t("form.login.field.email")
-                ] = this.loginForm.email;
-                validationArray[
-                    this.$t("form.login.field.password")
-                ] = this.loginForm.password;
-
-                let valid = new Validator(validationArray);
-
-                valid.get(this.$t("form.login.field.email")).isEmail();
-                valid.get(this.$t("form.login.field.password")).length(6, 50);
-            } catch (e) {
-                return;
-            }
-
-            this.isLoaded = false;
-            axios.post("/auth/login", this.loginForm)
-                .then(response => {
-                    notify.push(
-                        this.$t("form.login.notify.success"),
-                        notify.SUCCESS
-                    );
-                    auth.login(response.data, this.$route.query.redirect);
-                })
-                .finally(() => {
-                    this.isLoaded = true;
-                });
-        }
+  name: 'LoginView',
+  data () {
+    return {
+      isLoaded: true,
+      loginForm: {
+        email: 't.client@test.pl',
+        password: 'client'
+      }
     }
-};
+  },
+  methods: {
+    sendLoginForm () {
+      try {
+        const validationArray = []
+
+        validationArray[
+          this.$t('form.login.field.email')
+        ] = this.loginForm.email
+        validationArray[
+          this.$t('form.login.field.password')
+        ] = this.loginForm.password
+
+        const valid = new Validator(validationArray)
+
+        valid.get(this.$t('form.login.field.email')).isEmail()
+        valid.get(this.$t('form.login.field.password')).length(6, 50)
+      } catch (e) {
+        return
+      }
+
+      this.isLoaded = false
+      axios.post('/auth/login', this.loginForm)
+        .then(response => {
+          notify.push(
+            this.$t('form.login.notify.success'),
+            notify.SUCCESS
+          )
+          auth.login(response.data, this.$route.query.redirect)
+        })
+        .finally(() => {
+          this.isLoaded = true
+        })
+    }
+  }
+}
 </script>
 
-<style scoped></style>
+<style scoped/>

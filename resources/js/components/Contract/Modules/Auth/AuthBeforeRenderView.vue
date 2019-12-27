@@ -38,67 +38,66 @@
 </template>
 
 <script>
-  import {AuthType} from "./Enums";
+import { AuthType } from './Enums'
 
-  export default {
-    name: "AuthBeforeRenderView",
-    props: [
-      'actualModule'
-    ],
-    data() {
-      return {
-        password: "",
-        AuthType: AuthType,
-        actualAuthType: this.actualModule.settings.type
-      }
-    },
-    methods: {
-      finishAction() {
-        this.$emit("finish", [])
-      },
-      finishWithPassword(){
-        if(!this.password) return;
-
-        try {
-          let validationArray = [];
-          validationArray["Hasło"] = this.password;
-
-          let valid = new Validator(validationArray);
-
-          valid.get("Hasło").length(1, 250);
-        } catch (e) {
-          return false;
-        }
-
-        this.$emit("finish", {
-          "password": this.password
-        })
-      },
-      finishAsLoggedUser(){
-        const user = this.$store.getters.authUser;
-        if(user && user.email && user.loginToken)
-          this.finishAction();
-
-        return false;
-      },
-      checkFinishLogic(){
-        switch(String(this.actualAuthType)){
-          case AuthType.ALL:
-            this.finishAction();
-            break;
-          case AuthType.LOGIN:
-            this.finishAsLoggedUser();
-            break;
-          case AuthType.PASSWORD:
-            this.finishWithPassword();
-            break;
-        }
-      }
-    },
-    mounted() {
-      this.checkFinishLogic();
+export default {
+  name: 'AuthBeforeRenderView',
+  props: [
+    'actualModule'
+  ],
+  data () {
+    return {
+      password: '',
+      AuthType: AuthType,
+      actualAuthType: this.actualModule.settings.type
     }
+  },
+  methods: {
+    finishAction () {
+      this.$emit('finish', [])
+    },
+    finishWithPassword () {
+      if (!this.password) return
+
+      try {
+        const validationArray = []
+        validationArray['Hasło'] = this.password
+
+        const valid = new Validator(validationArray)
+
+        valid.get('Hasło').length(1, 250)
+      } catch (e) {
+        return false
+      }
+
+      this.$emit('finish', {
+        password: this.password
+      })
+    },
+    finishAsLoggedUser () {
+      const user = this.$store.getters.authUser
+      if (user && user.email && user.loginToken) { this.finishAction() }
+
+      return false
+    },
+    checkFinishLogic () {
+      switch (String(this.actualAuthType)) {
+        case AuthType.ALL:
+          this.finishAction()
+          break
+        case AuthType.LOGIN:
+          this.finishAsLoggedUser()
+          break
+        case AuthType.PASSWORD:
+          this.finishWithPassword()
+          break
+      }
+    }
+  },
+  mounted () {
+    this.checkFinishLogic()
   }
+}
 </script>
 
 <style scoped>

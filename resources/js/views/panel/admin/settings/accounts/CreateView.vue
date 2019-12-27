@@ -80,69 +80,68 @@
 </template>
 
 <script>
-  export default {
-    name: "CreateAccountsView",
-    data: function () {
-      return {
-        isLoaded: true,
-        user: {
-          firstName: null,
-          lastName: null,
-          email: null,
-          password: null,
-          password_confirmation: null
-        }
-      };
-    },
-    methods: {
-      addAccount() {
-        try {
-          let validationArray = [];
-
-          validationArray[this.$t("base.field.firstName")] = this.user.firstName;
-          validationArray[this.$t("base.field.lastName")] = this.user.lastName;
-          validationArray[this.$t("base.field.email")] = this.user.email;
-          validationArray[this.$t("base.field.password")] = this.user.password;
-          validationArray[this.$t("base.field.rePassword")] = this.user.password_confirmation;
-
-          let valid = new window.Validator(validationArray);
-
-          valid.get(this.$t("base.field.firstName"))
-              .length(3, 50);
-
-          valid.get(this.$t("base.field.lastName"))
-              .length(3, 50);
-
-          valid.get(this.$t("base.field.email"))
-              .isEmail();
-
-          valid.get(this.$t("base.field.password"))
-              .length(6, 50);
-
-          valid.get(this.$t("base.field.rePassword"))
-              .length(6, 50)
-              .sameAs(this.$t("base.field.password"));
-        }
-        catch (e) {
-          return;
-        }
-
-        this.isLoaded = false;
-        axios
-            .post("/user", this.user)
-            .then(response => {
-              notify.push(
-                  this.$t("form.accountAddForm.notify.success"),
-                  notify.SUCCESS
-              );
-              this.$router.push("/panel/admin/accounts");
-            })
-            .finally(() => {
-              this.isLoaded = true;
-            });
+export default {
+  name: 'CreateAccountsView',
+  data: function () {
+    return {
+      isLoaded: true,
+      user: {
+        firstName: null,
+        lastName: null,
+        email: null,
+        password: null,
+        password_confirmation: null
       }
     }
-  };
+  },
+  methods: {
+    addAccount () {
+      try {
+        const validationArray = []
+
+        validationArray[this.$t('base.field.firstName')] = this.user.firstName
+        validationArray[this.$t('base.field.lastName')] = this.user.lastName
+        validationArray[this.$t('base.field.email')] = this.user.email
+        validationArray[this.$t('base.field.password')] = this.user.password
+        validationArray[this.$t('base.field.rePassword')] = this.user.password_confirmation
+
+        const valid = new window.Validator(validationArray)
+
+        valid.get(this.$t('base.field.firstName'))
+          .length(3, 50)
+
+        valid.get(this.$t('base.field.lastName'))
+          .length(3, 50)
+
+        valid.get(this.$t('base.field.email'))
+          .isEmail()
+
+        valid.get(this.$t('base.field.password'))
+          .length(6, 50)
+
+        valid.get(this.$t('base.field.rePassword'))
+          .length(6, 50)
+          .sameAs(this.$t('base.field.password'))
+      } catch (e) {
+        return
+      }
+
+      this.isLoaded = false
+      axios
+        .post('/user', this.user)
+        .then(response => {
+          notify.push(
+            this.$t('form.accountAddForm.notify.success'),
+            notify.SUCCESS
+          )
+          this.$router.push('/panel/admin/accounts')
+        })
+        .finally(() => {
+          this.isLoaded = true
+        })
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss"></style>

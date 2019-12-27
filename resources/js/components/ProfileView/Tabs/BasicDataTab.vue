@@ -39,57 +39,57 @@
 
 <script>
 export default {
-    name: "BasicDataTab",
-    props: ["userData", "editable"],
-    data() {
-        return {
-            isLoaded: true,
-            user: {
-              firstName: this.userData.firstName,
-              lastName: this.userData.lastName,
-            }
-        };
-    },
-    methods: {
-        saveBasicData() {
-            try {
-                let validationArray = [];
-
-                validationArray[
-                    this.$t("base.field.firstName")
-                ] = this.user.firstName;
-                validationArray[
-                    this.$t("base.field.lastName")
-                ] = this.user.lastName;
-
-                let valid = new window.Validator(validationArray);
-
-                valid
-                    .get(this.$t("base.field.firstName"))
-                    .length(3, 50);
-                valid
-                    .get(this.$t("base.field.lastName"))
-                    .length(3, 50);
-            } catch (e) {
-                return;
-            }
-
-            this.isLoaded = false;
-            axios
-                .put(`/user/${this.userData.id}`, this.user)
-                .then(response => {
-                    notify.push(
-                        this.$t("form.accountEditForm.notify.success"),
-                        notify.SUCCESS
-                    );
-                    auth.checkAuth();
-                })
-                .finally(() => {
-                    this.isLoaded = true;
-                });
-        }
+  name: 'BasicDataTab',
+  props: ['userData', 'editable'],
+  data () {
+    return {
+      isLoaded: true,
+      user: {
+        firstName: this.userData.firstName,
+        lastName: this.userData.lastName
+      }
     }
-};
+  },
+  methods: {
+    saveBasicData () {
+      try {
+        const validationArray = []
+
+        validationArray[
+          this.$t('base.field.firstName')
+        ] = this.user.firstName
+        validationArray[
+          this.$t('base.field.lastName')
+        ] = this.user.lastName
+
+        const valid = new window.Validator(validationArray)
+
+        valid
+          .get(this.$t('base.field.firstName'))
+          .length(3, 50)
+        valid
+          .get(this.$t('base.field.lastName'))
+          .length(3, 50)
+      } catch (e) {
+        return
+      }
+
+      this.isLoaded = false
+      axios
+        .put(`/user/${this.userData.id}`, this.user)
+        .then(response => {
+          notify.push(
+            this.$t('form.accountEditForm.notify.success'),
+            notify.SUCCESS
+          )
+          auth.checkAuth()
+        })
+        .finally(() => {
+          this.isLoaded = true
+        })
+    }
+  }
+}
 </script>
 
 <style scoped></style>

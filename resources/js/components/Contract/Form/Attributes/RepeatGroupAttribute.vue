@@ -19,40 +19,40 @@
 </template>
 
 <script>
-  import AddForm from "./RepeatGroupAttribute/AddForm";
-  import ValueList from "./RepeatGroupAttribute/ValueList";
+import AddForm from './RepeatGroupAttribute/AddForm'
+import ValueList from './RepeatGroupAttribute/ValueList'
 
-  export default {
-    name: "RepeatGroupAttribute",
-    props: ["attribute", "validationError"],
-    components: {
-      AddForm,
-      ValueList
+export default {
+  name: 'RepeatGroupAttribute',
+  props: ['attribute', 'validationError'],
+  components: {
+    AddForm,
+    ValueList
+  },
+  data () {
+    return {
+      valueList: []
+    }
+  },
+  watch: {
+    attribute (attribute) {
+      this.valueList = attribute.value ? attribute.value : []
+    }
+  },
+  methods: {
+    addValue (newValue) {
+      this.valueList.push(newValue)
+      this.changeValue()
     },
-    data() {
-      return {
-        valueList: [],
-      }
+    removeElement (element) {
+      this.valueList = this.valueList.filter(x => x !== element)
+      this.changeValue()
     },
-    watch: {
-      attribute(attribute) {
-        this.valueList = attribute.value ? attribute.value : []
-      }
-    },
-    methods: {
-      addValue(newValue) {
-        this.valueList.push(newValue);
-        this.changeValue();
-      },
-      removeElement(element) {
-        this.valueList = this.valueList.filter(x => x !== element);
-        this.changeValue();
-      },
-      changeValue() {
-        this.$emit("change-value", this.valueList);
-      }
+    changeValue () {
+      this.$emit('change-value', this.valueList)
     }
   }
+}
 </script>
 
 <style scoped>

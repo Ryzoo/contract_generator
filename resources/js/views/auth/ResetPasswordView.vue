@@ -54,70 +54,68 @@
 </template>
 
 <script>
-  export default {
-    name: "ResetPasswordView",
-    data() {
-      return {
-        isLoaded: true,
-        resetPasswordForm: {
-          email: this.$route.query.email,
-          token: this.$route.query.token,
-          password: "",
-          password_confirmation: ""
-        }
-      };
-    },
-    methods: {
-      sendResetPassword() {
-        try {
-          let validationArray = [];
-
-
-          validationArray[
-              this.$t('form.register.field.email')
-              ] = this.resetPasswordForm.email;
-          validationArray[
-              this.$t("form.resetPasswordForm.field.password")
-              ] = this.resetPasswordForm.password;
-          validationArray[
-              this.$t("form.resetPasswordForm.field.rePassword")
-              ] = this.resetPasswordForm.password_confirmation;
-
-          let valid = new window.Validator(validationArray);
-
-          valid
-              .get(this.$t('form.register.field.email'))
-              .isEmail();
-
-          valid
-              .get(this.$t("form.resetPasswordForm.field.password"))
-              .length(6, 50);
-
-          valid
-              .get(this.$t("form.resetPasswordForm.field.rePassword"))
-              .length(6, 50)
-              .sameAs(this.$t("form.resetPasswordForm.field.password"));
-        }
-        catch (e) {
-          return;
-        }
-
-        this.isLoaded = false;
-        axios
-            .post("/auth/resetPassword", this.resetPasswordForm)
-            .then(response => {
-              notify.push(
-                  this.$t("form.resetPasswordForm.notify.success"),
-                  notify.SUCCESS
-              );
-              this.$router.push("/auth/login");
-            })
-            .finally(() => {
-              this.isLoaded = true;
-            });
+export default {
+  name: 'ResetPasswordView',
+  data () {
+    return {
+      isLoaded: true,
+      resetPasswordForm: {
+        email: this.$route.query.email,
+        token: this.$route.query.token,
+        password: '',
+        password_confirmation: ''
       }
     }
-  };
+  },
+  methods: {
+    sendResetPassword () {
+      try {
+        const validationArray = []
+
+        validationArray[
+          this.$t('form.register.field.email')
+        ] = this.resetPasswordForm.email
+        validationArray[
+          this.$t('form.resetPasswordForm.field.password')
+        ] = this.resetPasswordForm.password
+        validationArray[
+          this.$t('form.resetPasswordForm.field.rePassword')
+        ] = this.resetPasswordForm.password_confirmation
+
+        const valid = new window.Validator(validationArray)
+
+        valid
+          .get(this.$t('form.register.field.email'))
+          .isEmail()
+
+        valid
+          .get(this.$t('form.resetPasswordForm.field.password'))
+          .length(6, 50)
+
+        valid
+          .get(this.$t('form.resetPasswordForm.field.rePassword'))
+          .length(6, 50)
+          .sameAs(this.$t('form.resetPasswordForm.field.password'))
+      } catch (e) {
+        return
+      }
+
+      this.isLoaded = false
+      axios
+        .post('/auth/resetPassword', this.resetPasswordForm)
+        .then(response => {
+          notify.push(
+            this.$t('form.resetPasswordForm.notify.success'),
+            notify.SUCCESS
+          )
+          this.$router.push('/auth/login')
+        })
+        .finally(() => {
+          this.isLoaded = true
+        })
+    }
+  }
+}
 </script>
 
 <style scoped></style>

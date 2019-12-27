@@ -32,31 +32,31 @@
 
 <script>
 export default {
-    name: "ContractList",
-    data: () => ({
-        contractItems: [],
-        isLoading: false
-    }),
-    methods: {
-        emitSelectContract(selectedContract) {
-            this.$emit("selected", selectedContract);
-        },
-        getContractList() {
-            this.isLoading = true;
-            axios
-                .get("/contract")
-                .then(response => {
-                    this.contractItems = response.data;
-                })
-                .finally(() => {
-                    this.isLoading = false;
-                });
-        }
+  name: 'ContractList',
+  data: () => ({
+    contractItems: [],
+    isLoading: false
+  }),
+  methods: {
+    emitSelectContract (selectedContract) {
+      this.$emit('selected', selectedContract)
     },
-    mounted() {
-        this.getContractList();
+    getContractList () {
+      this.isLoading = true
+      axios
+        .get('/contract')
+        .then(response => {
+          this.contractItems = response.data
+        })
+        .finally(() => {
+          this.isLoading = false
+        })
     }
-};
+  },
+  mounted () {
+    this.getContractList()
+  }
+}
 </script>
 
 <style scoped></style>

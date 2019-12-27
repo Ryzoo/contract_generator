@@ -1,29 +1,29 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import AdminPanelLayout from "./layouts/AdminPanelLayout";
-import i18n from "./lang";
-import AuthLayout from "./layouts/AuthLayout";
-import DashboardView from "./views/panel/admin/DashboardView";
-import ContractView from "./views/panel/admin/ContractView";
-import LoginView from "./views/auth/LoginView";
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import AdminPanelLayout from './layouts/AdminPanelLayout'
+import i18n from './lang'
+import AuthLayout from './layouts/AuthLayout'
+import DashboardView from './views/panel/admin/DashboardView'
+import ContractView from './views/panel/admin/ContractView'
+import LoginView from './views/auth/LoginView'
 import SendResetPasswordTokenView
-  from "./views/auth/SendResetPasswordTokenView";
-import RegisterView from "./views/auth/RegisterView";
-import ResetPasswordView from "./views/auth/ResetPasswordView";
+  from './views/auth/SendResetPasswordTokenView'
+import RegisterView from './views/auth/RegisterView'
+import ResetPasswordView from './views/auth/ResetPasswordView'
 import ContractBuilderView
-  from "./views/panel/admin/contracts/ContractBuilderView";
-import MyProfileView from "./views/panel/admin/settings/MyProfileView";
-import AccountsView from "./views/panel/admin/settings/AccountsView";
+  from './views/panel/admin/contracts/ContractBuilderView'
+import MyProfileView from './views/panel/admin/settings/MyProfileView'
+import AccountsView from './views/panel/admin/settings/AccountsView'
 import AccountPreview
-  from "./views/panel/admin/settings/accounts/AccountPreview";
-import CreateView from "./views/panel/admin/settings/accounts/CreateView";
-import EditView from "./views/panel/admin/settings/accounts/EditView";
-import ContractForm from "./views/client/contract/ContractForm";
-import CreateBaseView from "./views/panel/admin/contracts/CreateBaseView";
-import RolesView from "./views/panel/admin/settings/RolesView";
-import CreateRolesView from "./views/panel/admin/settings/roles/CreateView";
+  from './views/panel/admin/settings/accounts/AccountPreview'
+import CreateView from './views/panel/admin/settings/accounts/CreateView'
+import EditView from './views/panel/admin/settings/accounts/EditView'
+import ContractForm from './views/client/contract/ContractForm'
+import CreateBaseView from './views/panel/admin/contracts/CreateBaseView'
+import RolesView from './views/panel/admin/settings/RolesView'
+import CreateRolesView from './views/panel/admin/settings/roles/CreateView'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const router = new VueRouter({
   mode: 'history',
@@ -36,12 +36,12 @@ const router = new VueRouter({
         noRequireAuthorization: true
       }
     },
-    {path: '/', redirect: 'auth/login'},
+    { path: '/', redirect: 'auth/login' },
     {
       path: '/panel/admin',
       component: AdminPanelLayout,
       children: [
-        {path: '/', redirect: 'dashboard'},
+        { path: '/', redirect: 'dashboard' },
         {
           path: 'dashboard',
           name: 'dashboard',
@@ -64,7 +64,7 @@ const router = new VueRouter({
           component: CreateBaseView,
           meta: {
             title: i18n.t('pageMeta.panel.admin.contract.create.title')
-          },
+          }
         },
         {
           path: 'contracts/edit/:id',
@@ -72,7 +72,7 @@ const router = new VueRouter({
           component: CreateBaseView,
           meta: {
             title: i18n.t('pageMeta.panel.admin.contract.edit.title')
-          },
+          }
         },
         {
           path: 'contracts/builder',
@@ -80,7 +80,7 @@ const router = new VueRouter({
           component: ContractBuilderView,
           meta: {
             title: i18n.t('pageMeta.panel.admin.contract.builder.title')
-          },
+          }
         },
         {
           path: 'settings/accounts',
@@ -96,7 +96,7 @@ const router = new VueRouter({
           component: CreateView,
           meta: {
             title: i18n.t('pageMeta.panel.admin.accounts.create.title')
-          },
+          }
         },
         {
           path: 'settings/accounts/:id/edit',
@@ -104,7 +104,7 @@ const router = new VueRouter({
           component: EditView,
           meta: {
             title: i18n.t('pageMeta.panel.admin.accounts.edit.title')
-          },
+          }
         },
         {
           path: 'settings/accounts/:id',
@@ -112,7 +112,7 @@ const router = new VueRouter({
           component: AccountPreview,
           meta: {
             title: i18n.t('pageMeta.panel.admin.accounts.preview.title')
-          },
+          }
         },
         {
           path: 'settings/my_profile',
@@ -137,7 +137,7 @@ const router = new VueRouter({
           meta: {
             title: i18n.t('pageMeta.panel.admin.roles.create.title')
           }
-        },
+        }
       ]
     },
     {
@@ -179,56 +179,51 @@ const router = new VueRouter({
             title: i18n.t('pageMeta.auth.resetPassword.title'),
             noRequireAuthorization: true
           }
-        },
+        }
       ]
-    },
-  ],
-});
+    }
+  ]
+})
 
 router.beforeEach((to, from, next) => {
-  const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title);
+  const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title)
 
   if (nearestWithTitle) {
-    document.title = nearestWithTitle.meta.title;
+    document.title = nearestWithTitle.meta.title
   }
 
   if (to.matched.some(record => record.meta.noRequireAuthorization)) {
     window.auth.checkAuth()
       .finally(() => {
-        next();
-      });
-  }
-  else {
+        next()
+      })
+  } else {
     if (to.path !== '/login') {
       window.auth.checkAuth()
         .then((returned) => {
           if (returned) {
-            next();
-          }
-          else {
+            next()
+          } else {
             next({
               path: '/auth/login',
               query: {
-                redirect: to.fullPath ? to.fullPath : null,
+                redirect: to.fullPath ? to.fullPath : null
               }
-            });
+            })
           }
         })
         .catch(() => {
           next({
             path: '/auth/login',
             query: {
-              redirect: to.fullPath ? to.fullPath : null,
+              redirect: to.fullPath ? to.fullPath : null
             }
-          });
-        });
-    }
-    else {
-      next();
+          })
+        })
+    } else {
+      next()
     }
   }
-});
+})
 
-export default router;
-
-
+export default router

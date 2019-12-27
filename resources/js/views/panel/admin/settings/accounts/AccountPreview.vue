@@ -20,38 +20,38 @@
 </template>
 
 <script>
-import ProfileView from "../../../../../components/ProfileView";
+import ProfileView from '../../../../../components/ProfileView'
 
 export default {
-    name: "AccountPreview",
-    components: {
-        ProfileView
-    },
-    data() {
-        return {
-            isLoaded: true,
-            userData: null
-        };
-    },
-    methods: {
-        getUserData() {
-            const userID = this.$route.params.id;
-            this.isLoaded = false;
-
-            axios
-                .get(`/user/${userID}`)
-                .then(response => {
-                    this.userData = response.data;
-                })
-                .finally(() => {
-                    this.isLoaded = true;
-                });
-        }
-    },
-    mounted() {
-        this.getUserData();
+  name: 'AccountPreview',
+  components: {
+    ProfileView
+  },
+  data () {
+    return {
+      isLoaded: true,
+      userData: null
     }
-};
+  },
+  methods: {
+    getUserData () {
+      const userID = this.$route.params.id
+      this.isLoaded = false
+
+      axios
+        .get(`/user/${userID}`)
+        .then(response => {
+          this.userData = response.data
+        })
+        .finally(() => {
+          this.isLoaded = true
+        })
+    }
+  },
+  mounted () {
+    this.getUserData()
+  }
+}
 </script>
 
 <style></style>

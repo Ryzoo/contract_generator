@@ -8,8 +8,12 @@
 }
 
 .theme--light.v-toolbar {
-  background-color: #446477 !important;
+  background: linear-gradient(90deg, #4059BE 0%, #945CFB 100%, #995CFE 100%) !important;
   color: white !important;
+}
+
+.v-application a {
+  color: #D42E37 !important;
 }
 
 .theme--light.application {
@@ -37,14 +41,12 @@ section {
 }
 
 .table-icons {
-  display: -webkit-box;
   display: flex;
   justify-content: space-around;
 }
 
 .table-icons > i {
   font-size: 20px !important;
-  -webkit-transition: all 0.2s !important;
   transition: all 0.2s !important;
   box-sizing: content-box !important;
 }
@@ -52,8 +54,7 @@ section {
 .table-icons > i:hover {
   cursor: pointer !important;
   color: #324a58 !important;
-  -webkit-transform: rotate(30deg) !important;
-          transform: rotate(30deg) !important;
+  transform: rotate(30deg) !important;
 }
 
 body > .notify-container {
@@ -64,11 +65,8 @@ body > .notify-container {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  display: -webkit-box;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-direction: column;
+  flex-direction: column;
   max-width: 500px;
   width: 100%;
   right: 25px;
@@ -89,11 +87,8 @@ body > .notify-container .notify-element {
   color: white;
   padding: 15px;
   position: relative;
-  -webkit-box-align: center;
-          align-items: center;
-  display: -webkit-box;
+  align-items: center;
   display: flex;
-  -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 
@@ -116,8 +111,7 @@ body > .notify-container .notify-element.notify-type-3 {
 body > .notify-container .notify-element p {
   font-family: Roboto, sans-serif !important;
   margin: 0;
-  -webkit-box-flex: 1;
-          flex: 1;
+  flex: 1;
   font-size: 15px;
 }
 
@@ -127,7 +121,6 @@ body > .notify-container .notify-element .close {
   height: 32px;
   opacity: 0.5;
   margin-left: 5px;
-  -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 
@@ -147,12 +140,10 @@ body > .notify-container .notify-element .close:after {
 }
 
 body > .notify-container .notify-element .close:before {
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 body > .notify-container .notify-element .close:after {
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 

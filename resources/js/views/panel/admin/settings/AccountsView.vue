@@ -64,75 +64,75 @@
 
 <script>
 export default {
-    name: "AccountsView",
-    components: {},
-    data() {
-        return {
-            deleteDialog: false,
-            isLoaded: true,
-            headers: [
-                {
-                    text: this.$t("base.headers.name"),
-                    value: "name"
-                },
-                {
-                    text: this.$t("base.headers.email"),
-                    value: "email"
-                },
-                {
-                    text: this.$t("base.headers.created"),
-                    value: "created_at"
-                },
-                {
-                    text: this.$t("base.headers.actions"),
-                    value: "action",
-                    sortable: false
-                }
-            ],
-            items: [],
-            removeUserId: null
-        };
-    },
-    methods: {
-        tryToRemoveAccount(id) {
-            this.removeUserId = id;
-            this.deleteDialog = true;
+  name: 'AccountsView',
+  components: {},
+  data () {
+    return {
+      deleteDialog: false,
+      isLoaded: true,
+      headers: [
+        {
+          text: this.$t('base.headers.name'),
+          value: 'name'
         },
-        removeAccount() {
-            this.isLoaded = false;
-            axios
-                .delete(`/user/${this.removeUserId}`)
-                .then(response => {
-                    this.items = this.items.filter(
-                        e => e.id != this.removeUserId
-                    );
-                    this.removeUserId = null;
-                    this.deleteDialog = false;
-                    notify.push(
-                        this.$t("page.panel.accounts.notify.successRemove"),
-                        notify.SUCCESS
-                    );
-                })
-                .finally(() => {
-                    this.isLoaded = true;
-                });
+        {
+          text: this.$t('base.headers.email'),
+          value: 'email'
         },
-        getUserList() {
-            this.isLoaded = false;
-            axios
-                .get("/user")
-                .then(response => {
-                    this.items = response.data;
-                })
-                .finally(() => {
-                    this.isLoaded = true;
-                });
+        {
+          text: this.$t('base.headers.created'),
+          value: 'created_at'
+        },
+        {
+          text: this.$t('base.headers.actions'),
+          value: 'action',
+          sortable: false
         }
-    },
-    mounted() {
-        this.getUserList();
+      ],
+      items: [],
+      removeUserId: null
     }
-};
+  },
+  methods: {
+    tryToRemoveAccount (id) {
+      this.removeUserId = id
+      this.deleteDialog = true
+    },
+    removeAccount () {
+      this.isLoaded = false
+      axios
+        .delete(`/user/${this.removeUserId}`)
+        .then(response => {
+          this.items = this.items.filter(
+            e => e.id !== this.removeUserId
+          )
+          this.removeUserId = null
+          this.deleteDialog = false
+          notify.push(
+            this.$t('page.panel.accounts.notify.successRemove'),
+            notify.SUCCESS
+          )
+        })
+        .finally(() => {
+          this.isLoaded = true
+        })
+    },
+    getUserList () {
+      this.isLoaded = false
+      axios
+        .get('/user')
+        .then(response => {
+          this.items = response.data
+        })
+        .finally(() => {
+          this.isLoaded = true
+        })
+    }
+  },
+  mounted () {
+    this.getUserList()
+  }
+}
 </script>
 
 <style scoped></style>

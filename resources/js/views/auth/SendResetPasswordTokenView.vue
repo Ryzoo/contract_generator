@@ -38,49 +38,49 @@
 
 <script>
 export default {
-    name: "SendResetPasswordTokenView",
-    data() {
-        return {
-            isLoaded: true,
-            sendTokenForm: {
-                email: ""
-            }
-        };
-    },
-    methods: {
-        sendResetToken() {
-            try {
-                let validationArray = [];
-
-                validationArray[
-                    this.$t("form.sendResetTokenForm.field.email")
-                ] = this.sendTokenForm.email;
-
-                let valid = new window.Validator(validationArray);
-
-                valid
-                    .get(this.$t("form.sendResetTokenForm.field.email"))
-                    .isEmail();
-            } catch (e) {
-                return;
-            }
-
-            this.isLoaded = false;
-            axios
-                .post("/auth/resetPassword/sendToken", this.sendTokenForm)
-                .then(response => {
-                    notify.push(
-                        this.$t("form.sendResetTokenForm.notify.success"),
-                        notify.SUCCESS
-                    );
-                    this.$router.push("/auth/login");
-                })
-                .finally(() => {
-                    this.isLoaded = true;
-                });
-        }
+  name: 'SendResetPasswordTokenView',
+  data () {
+    return {
+      isLoaded: true,
+      sendTokenForm: {
+        email: ''
+      }
     }
-};
+  },
+  methods: {
+    sendResetToken () {
+      try {
+        const validationArray = []
+
+        validationArray[
+          this.$t('form.sendResetTokenForm.field.email')
+        ] = this.sendTokenForm.email
+
+        const valid = new window.Validator(validationArray)
+
+        valid
+          .get(this.$t('form.sendResetTokenForm.field.email'))
+          .isEmail()
+      } catch (e) {
+        return
+      }
+
+      this.isLoaded = false
+      axios
+        .post('/auth/resetPassword/sendToken', this.sendTokenForm)
+        .then(response => {
+          notify.push(
+            this.$t('form.sendResetTokenForm.notify.success'),
+            notify.SUCCESS
+          )
+          this.$router.push('/auth/login')
+        })
+        .finally(() => {
+          this.isLoaded = true
+        })
+    }
+  }
+}
 </script>
 
 <style scoped></style>

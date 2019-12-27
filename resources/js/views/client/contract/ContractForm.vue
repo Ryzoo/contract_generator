@@ -28,26 +28,26 @@
 </template>
 
 <script>
-  import ContractList from "../../../components/Contract/ContractList";
-  import ContractFormRender from "../../../components/Contract/ContractFormRender";
+import ContractList from '../../../components/Contract/ContractList'
+import ContractFormRender from '../../../components/Contract/ContractFormRender'
 
-  export default {
-    name: "ContractForm",
-    components:{
-      ContractList,
-      ContractFormRender
-    },
-    data(){
-      return {
-        contractData: null
-      }
-    },
-    methods:{
-      selectContract( contractData ){
-        this.contractData = contractData;
-      }
+export default {
+  name: 'ContractForm',
+  components: {
+    ContractList,
+    ContractFormRender
+  },
+  data () {
+    return {
+      contractData: null
+    }
+  },
+  methods: {
+    selectContract (contractData) {
+      this.contractData = contractData
     }
   }
+}
 </script>
 
 <style scoped>

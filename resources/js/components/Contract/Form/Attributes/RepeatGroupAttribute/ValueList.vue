@@ -22,15 +22,15 @@
 </template>
 
 <script>
-  export default {
-    name: "ValueList",
-    props: ['values'],
-    methods:{
-      removeElement(element){
-        this.$emit("remove", element);
-      }
+export default {
+  name: 'ValueList',
+  props: ['values'],
+  methods: {
+    removeElement (element) {
+      this.$emit('remove', element)
     }
   }
+}
 </script>
 
 <style scoped>

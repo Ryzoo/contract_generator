@@ -56,82 +56,80 @@
 </template>
 
 <script>
-  export default {
-    name: "AgreementsView",
-    data: function () {
-      return {
-        multiSelectedItems: [],
-        headers: [
-          {
-            text: this.$t("base.headers.name"),
-            value: "name"
-          },
-          {
-            text: this.$t("base.headers.created"),
-            value: "created_at"
-          },
-          {
-            text: this.$t("base.headers.actions"),
-            value: "action",
-            sortable: false
-          }
-        ],
-        contractItems: [],
-        isLoaded: false,
-        removeContractId: null,
-        deleteDialog: false
-      };
-    },
-    methods: {
-      tryToRemoveContract(idArray) {
-        this.removeContractId = idArray;
-        this.deleteDialog = true;
-      },
-      removeContract() {
-        this.isLoaded = false;
-        const idList = this.removeContractId.join(",");
-        axios
-            .delete(`/contract?idList=${idList}`)
-            .then(response => {
-
-              this.removeContractId.map(x => {
-                this.contractItems = this.contractItems.filter(
-                    e => e.id != x
-                );
-              });
-
-              this.removeContractId = null;
-              this.multiSelectedItems = [];
-              this.deleteDialog = false;
-              notify.push(
-                  this.$t("base.notify.remove"),
-                  notify.SUCCESS
-              );
-            })
-            .finally(() => {
-              this.isLoaded = true;
-            });
-      },
-      getContractList() {
-        this.isLoaded = false;
-        axios
-            .get("/contract")
-            .then(response => {
-              this.contractItems = response.data;
-            })
-            .finally(() => {
-              this.isLoaded = true;
-            });
-      },
-      goToEdit(id){
-
-        this.$router.push(`contracts/edit/${id}`);
-      }
-    },
-    mounted() {
-      this.getContractList();
+export default {
+  name: 'AgreementsView',
+  data: function () {
+    return {
+      multiSelectedItems: [],
+      headers: [
+        {
+          text: this.$t('base.headers.name'),
+          value: 'name'
+        },
+        {
+          text: this.$t('base.headers.created'),
+          value: 'created_at'
+        },
+        {
+          text: this.$t('base.headers.actions'),
+          value: 'action',
+          sortable: false
+        }
+      ],
+      contractItems: [],
+      isLoaded: false,
+      removeContractId: null,
+      deleteDialog: false
     }
-  };
+  },
+  methods: {
+    tryToRemoveContract (idArray) {
+      this.removeContractId = idArray
+      this.deleteDialog = true
+    },
+    removeContract () {
+      this.isLoaded = false
+      const idList = this.removeContractId.join(',')
+      axios
+        .delete(`/contract?idList=${idList}`)
+        .then(response => {
+          this.removeContractId.map(x => {
+            this.contractItems = this.contractItems.filter(
+              e => e.id !== x
+            )
+          })
+
+          this.removeContractId = null
+          this.multiSelectedItems = []
+          this.deleteDialog = false
+          notify.push(
+            this.$t('base.notify.remove'),
+            notify.SUCCESS
+          )
+        })
+        .finally(() => {
+          this.isLoaded = true
+        })
+    },
+    getContractList () {
+      this.isLoaded = false
+      axios
+        .get('/contract')
+        .then(response => {
+          this.contractItems = response.data
+        })
+        .finally(() => {
+          this.isLoaded = true
+        })
+    },
+    goToEdit (id) {
+      this.$router.push(`contracts/edit/${id}`)
+    }
+  },
+  mounted () {
+    this.getContractList()
+  }
+}
 </script>
 
 <style scoped></style>

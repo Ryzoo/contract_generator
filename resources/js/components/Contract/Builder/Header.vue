@@ -13,53 +13,52 @@
 </template>
 
 <script>
-  export default {
-    name: "Header",
-    data() {
-      return {
-        contract: null,
-        isLoaded: true
-      }
-    },
-    methods: {
-      showAttributeModal(){
-        this.$emit('show-attribute-modal');
-      },
-      init() {
-        this.contract = this.$store.getters.getNewContractData;
-        this.$store.dispatch("builder_set", this.contract.blocks);
-        this.$store.dispatch("builder_setVariable", this.contract.attributesList);
-      },
-      goBack() {
-        const updateState = this.$store.getters.getNewContractUpdateState;
-        this.$router.push(`/panel/admin/contracts/edit/${updateState.id}`);
-      },
-      saveActual(redirect) {
-        this.isLoaded = false;
-        const updateState = this.$store.getters.getNewContractUpdateState;
-
-        this.contract.blocks = this.$store.getters.builder_allBlocks;
-        this.contract.attributesList = this.$store.getters.builder_allVariables;
-        this.$store.dispatch("newContract_setUpdate", this.contract);
-
-        axios.put(`/contract/${updateState.id}`, this.$store.getters.getNewContractData)
-            .then(response => {
-              notify.push(
-                 this.$t("pages.panel.contracts.builder.savedNotify"),
-                  notify.SUCCESS
-              );
-              if (redirect)
-                this.$router.push("/panel/admin/contracts")
-            })
-            .finally(() => {
-              this.isLoaded = true;
-            });
-      }
-    },
-    mounted() {
-      this.init();
+export default {
+  name: 'Header',
+  data () {
+    return {
+      contract: null,
+      isLoaded: true
     }
+  },
+  methods: {
+    showAttributeModal () {
+      this.$emit('show-attribute-modal')
+    },
+    init () {
+      this.contract = this.$store.getters.getNewContractData
+      this.$store.dispatch('builder_set', this.contract.blocks)
+      this.$store.dispatch('builder_setVariable', this.contract.attributesList)
+    },
+    goBack () {
+      const updateState = this.$store.getters.getNewContractUpdateState
+      this.$router.push(`/panel/admin/contracts/edit/${updateState.id}`)
+    },
+    saveActual (redirect) {
+      this.isLoaded = false
+      const updateState = this.$store.getters.getNewContractUpdateState
+
+      this.contract.blocks = this.$store.getters.builder_allBlocks
+      this.contract.attributesList = this.$store.getters.builder_allVariables
+      this.$store.dispatch('newContract_setUpdate', this.contract)
+
+      axios.put(`/contract/${updateState.id}`, this.$store.getters.getNewContractData)
+        .then(response => {
+          notify.push(
+            this.$t('pages.panel.contracts.builder.savedNotify'),
+            notify.SUCCESS
+          )
+          if (redirect) { this.$router.push('/panel/admin/contracts') }
+        })
+        .finally(() => {
+          this.isLoaded = true
+        })
+    }
+  },
+  mounted () {
+    this.init()
   }
+}
 </script>
 
 <style scoped>

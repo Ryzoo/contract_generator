@@ -3,9 +3,9 @@
 </template>
 
 <script>
-  export default {
-    name: "EditView"
-  }
+export default {
+  name: 'EditView'
+}
 </script>
 
 <style scoped>

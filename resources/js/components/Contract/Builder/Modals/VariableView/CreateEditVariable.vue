@@ -53,97 +53,97 @@
 </template>
 
 <script>
-  import VariableSettings from "./VariableSettings";
+import VariableSettings from './VariableSettings'
 
-  export default {
-    name: "CreateEditVariable",
-    props:[
-      'attributesList', 'editAttribute', 'isNewAttribute'
-    ],
-    components: {
-      VariableSettings
+export default {
+  name: 'CreateEditVariable',
+  props: [
+    'attributesList', 'editAttribute', 'isNewAttribute'
+  ],
+  components: {
+    VariableSettings
+  },
+  data () {
+    return {
+      variableOptions: [],
+      attribute: this.editAttribute || this.getDefaultAttribute(),
+      allAttributes: []
+    }
+  },
+  watch: {
+    editAttribute (newValue) {
+      this.attribute = this.editAttribute || this.getDefaultAttribute()
+    }
+  },
+  mounted () {
+    this.getAllAttributes()
+  },
+  methods: {
+    pushCloseEvent () {
+      this.$emit('close')
     },
-    data() {
-      return {
-        variableOptions: [],
-        attribute: this.editAttribute || this.getDefaultAttribute(),
-        allAttributes: [],
-      }
-    },
-    watch: {
-      editAttribute(newValue){
-        this.attribute = this.editAttribute || this.getDefaultAttribute()
-      }
-    },
-    mounted() {
-      this.getAllAttributes();
-    },
-    methods: {
-      pushCloseEvent() {
-        this.$emit('close');
-      },
-      getAllAttributes() {
-        axios.get("elements/attributes")
-          .then((res) => {
-            this.allAttributes = res.data;
-            this.variableOptions = res.data.map(x => {
-              return {
-                value: x.attributeType,
-                text: x.attributeName
-              }
-            })
+    getAllAttributes () {
+      axios.get('elements/attributes')
+        .then((res) => {
+          this.allAttributes = res.data
+          this.variableOptions = res.data.map(x => {
+            return {
+              value: x.attributeType,
+              text: x.attributeName
+            }
           })
-      },
-      editVariable(attribute) {
-        this.isNewAttribute = false;
-        this.attribute = attribute;
-      },
-      saveSettingsInput(inputData) {
-        this.attribute.settings[inputData.name] = inputData.value;
-      },
-      setSettingsForType() {
-        this.attribute.settings = this.getSettingsForType(this.attribute.attributeType);
-      },
-      getSettingsForType(type) {
-        let attributeType = this.allAttributes.find(x => x.attributeType === type);
-        return attributeType ? attributeType.settings : [];
-      },
-      getDefaultAttribute() {
-        return {
-          attributeName: "",
-          id: this.$store.getters.builder_getVariableId,
-          attributeType: -1,
-          defaultValue: "",
-          additionalInformation: "",
-          placeholder: "",
-          description: "",
-          toAnonymize: "",
-          settings: {}
-        }
-      },
-      saveVariable() {
-        let isNew = true;
-
-        this.attributesList.map((attribute) => {
-          if (attribute.id === this.attribute.id) {
-            attribute = this.attribute;
-            isNew = false;
-          }
-
-          return attribute;
-        });
-
-        if (isNew) {
-          this.attributesList.push(this.attribute);
-        }
-        this.$store.dispatch("builder_setVariable", this.attributesList);
-        this.$store.dispatch("builder_idVariableIncrement");
-
-        this.attribute = this.getDefaultAttribute();
-        this.$emit('close');
+        })
+    },
+    editVariable (attribute) {
+      this.isNewAttribute = false
+      this.attribute = attribute
+    },
+    saveSettingsInput (inputData) {
+      this.attribute.settings[inputData.name] = inputData.value
+    },
+    setSettingsForType () {
+      this.attribute.settings = this.getSettingsForType(this.attribute.attributeType)
+    },
+    getSettingsForType (type) {
+      const attributeType = this.allAttributes.find(x => x.attributeType === type)
+      return attributeType ? attributeType.settings : []
+    },
+    getDefaultAttribute () {
+      return {
+        attributeName: '',
+        id: this.$store.getters.builder_getVariableId,
+        attributeType: -1,
+        defaultValue: '',
+        additionalInformation: '',
+        placeholder: '',
+        description: '',
+        toAnonymize: '',
+        settings: {}
       }
+    },
+    saveVariable () {
+      let isNew = true
+
+      this.attributesList.map((attribute) => {
+        if (attribute.id === this.attribute.id) {
+          attribute = this.attribute
+          isNew = false
+        }
+
+        return attribute
+      })
+
+      if (isNew) {
+        this.attributesList.push(this.attribute)
+      }
+      this.$store.dispatch('builder_setVariable', this.attributesList)
+      this.$store.dispatch('builder_idVariableIncrement')
+
+      this.attribute = this.getDefaultAttribute()
+      this.$emit('close')
     }
   }
+}
 </script>
 
 <style scoped lang="scss"/>

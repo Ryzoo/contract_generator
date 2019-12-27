@@ -2,8 +2,7 @@
     <v-form>
         <v-container>
             <component
-                v-for="(formElement, index) in formElements"
-                v-if="formElement.isActive"
+                v-for="(formElement, index) in activeFormElements"
                 :key="index"
                 :is="Mapper.getElementFormComponentName(formElement.elementType)"
                 v-bind="{
@@ -16,21 +15,26 @@
 </template>
 
 <script>
-  import {ConditionalEnum} from "../../../additionalModules/Enums";
-  import AttributeFormElements from "./FormElements/AttributeFormElements";
+import { ConditionalEnum } from '../../../additionalModules/Enums'
+import AttributeFormElements from './FormElements/AttributeFormElements'
 
-  export default {
-    name: "FormRenderer",
-    props: ["formElements"],
-    components:{
-      AttributeFormElements
-    },
-    data() {
-      return {
-        ConditionalEnum: ConditionalEnum
-      }
+export default {
+  name: 'FormRenderer',
+  props: ['formElements'],
+  components: {
+    AttributeFormElements
+  },
+  data () {
+    return {
+      ConditionalEnum: ConditionalEnum
+    }
+  },
+  computed: {
+    activeFormElements () {
+      return this.formElements.filter(x => x.isActive)
     }
   }
+}
 </script>
 
 <style scoped>

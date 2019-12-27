@@ -12,20 +12,20 @@
                         <v-container>
                             <v-row>
                                 <v-col sm="12" md="6" class="pa-1">
-                                    <v-text-field
-                                        prepend-icon="fa-user-edit"
-                                        v-model="user.firstName"
-                                        :label="$t('base.field.firstName')"
-                                        required
-                                    ></v-text-field>
+                                  <v-text-field
+                                    prepend-icon="fa-user-edit"
+                                    v-model="user.firstName"
+                                    :label="$t('base.field.firstName')"
+                                    required
+                                  />
                                 </v-col>
                                 <v-col sm="12" md="6" class="pa-1">
-                                    <v-text-field
-                                        prepend-icon="fa-user-edit"
-                                        v-model="user.lastName"
-                                        :label="$t('base.field.lastName')"
-                                        required
-                                    ></v-text-field>
+                                  <v-text-field
+                                    prepend-icon="fa-user-edit"
+                                    v-model="user.lastName"
+                                    :label="$t('base.field.lastName')"
+                                    required
+                                  />
                                 </v-col>
                             </v-row>
                             <v-row align="end" justify="end">
@@ -43,7 +43,7 @@
                         </v-container>
                     </v-form>
                 </v-card-text>
-                <loader v-else></loader>
+              <loader v-else/>
             </v-card>
         </v-col>
     </v-row>
@@ -51,78 +51,76 @@
 
 <script>
 
-  export default {
-    name: "CreateAccountsView",
-    data: function () {
-      return {
-        accountId: this.$route.params.id,
-        isLoaded: true,
-        email: null,
-        user: {
-          firstName: null,
-          lastName: null
-        }
-      };
-    },
-    methods: {
-      saveAccount() {
-        try {
-          let validationArray = [];
-
-          validationArray[this.$t("base.field.firstName")] = this.user.firstName;
-          validationArray[this.$t("base.field.lastName")] = this.user.lastName;
-
-          let valid = new window.Validator(validationArray);
-
-          valid.get(this.$t("base.field.firstName"))
-              .length(3, 50);
-
-          valid.get(this.$t("base.field.lastName"))
-              .length(3, 50);
-
-        }
-        catch (e) {
-          return;
-        }
-
-        this.isLoaded = false;
-
-        axios.put(`/user/` + this.accountId, this.user)
-            .then(response => {
-              notify.push(
-                  this.$t("form.accountEditForm.notify.success"),
-                  notify.SUCCESS
-              );
-              this.$router.push("/panel/admin/accounts");
-            })
-            .finally(() => {
-              this.isLoaded = true;
-            });
-      },
-      loadAccount() {
-        this.isLoaded = false;
-
-        axios.get(`/user/` + this.accountId)
-            .then(response => {
-              this.user = {
-                firstName: response.data.firstName,
-                lastName: response.data.lastName,
-              };
-
-              this.email = response.data.email
-            })
-            .catch(() => {
-              this.$router.push("/panel/admin/accounts");
-            })
-            .finally(() => {
-              this.isLoaded = true;
-            });
+export default {
+  name: 'CreateAccountsView',
+  data: function () {
+    return {
+      accountId: this.$route.params.id,
+      isLoaded: true,
+      email: null,
+      user: {
+        firstName: null,
+        lastName: null
       }
-    },
-    mounted() {
-      this.loadAccount();
     }
-  };
+  },
+  methods: {
+    saveAccount () {
+      try {
+        const validationArray = []
+
+        validationArray[this.$t('base.field.firstName')] = this.user.firstName
+        validationArray[this.$t('base.field.lastName')] = this.user.lastName
+
+        const valid = new window.Validator(validationArray)
+
+        valid.get(this.$t('base.field.firstName'))
+          .length(3, 50)
+
+        valid.get(this.$t('base.field.lastName'))
+          .length(3, 50)
+      } catch (e) {
+        return
+      }
+
+      this.isLoaded = false
+
+      axios.put('/user/' + this.accountId, this.user)
+        .then(response => {
+          notify.push(
+            this.$t('form.accountEditForm.notify.success'),
+            notify.SUCCESS
+          )
+          this.$router.push('/panel/admin/accounts')
+        })
+        .finally(() => {
+          this.isLoaded = true
+        })
+    },
+    loadAccount () {
+      this.isLoaded = false
+
+      axios.get('/user/' + this.accountId)
+        .then(response => {
+          this.user = {
+            firstName: response.data.firstName,
+            lastName: response.data.lastName
+          }
+
+          this.email = response.data.email
+        })
+        .catch(() => {
+          this.$router.push('/panel/admin/accounts')
+        })
+        .finally(() => {
+          this.isLoaded = true
+        })
+    }
+  },
+  mounted () {
+    this.loadAccount()
+  }
+}
 </script>
 
 <style scoped lang="scss"></style>

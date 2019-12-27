@@ -35,48 +35,48 @@
 </template>
 
 <script>
-  import TextBlock from "./Types/TextBlock";
-  import EmptyBlock from "./Types/EmptyBlock";
-  import PageDivideBlock from "./Types/PageDivideBlock";
-  import AddBlockDialog from "./AddBlockDialog";
-  import BlockHeader from "./BlockHeader";
-  import {BlockTypeEnum} from "../../../../additionalModules/Enums";
+import TextBlock from './Types/TextBlock'
+import EmptyBlock from './Types/EmptyBlock'
+import PageDivideBlock from './Types/PageDivideBlock'
+import AddBlockDialog from './AddBlockDialog'
+import BlockHeader from './BlockHeader'
+import { BlockTypeEnum } from '../../../../additionalModules/Enums'
 
-  export default {
-    name: "ContainerBlock",
-    components: {
-      BlockHeader,
-      TextBlock,
-      EmptyBlock,
-      PageDivideBlock,
-      AddBlockDialog
+export default {
+  name: 'ContainerBlock',
+  components: {
+    BlockHeader,
+    TextBlock,
+    EmptyBlock,
+    PageDivideBlock,
+    AddBlockDialog
+  },
+  props: {
+    block: { required: true },
+    divider: {},
+    level: {},
+    blockIndex: {}
+  },
+  data () {
+    return {
+      currentBlock: this.block
+    }
+  },
+  methods: {
+    showBlockModal () {
+      this.$emit('show-block-modal')
     },
-    props: {
-      block: {required: true},
-      divider: {},
-      level: {},
-      blockIndex: {}
-    },
-    data(){
-      return {
-        currentBlock: this.block
-      }
-    },
-    methods: {
-      showBlockModal() {
-        this.$emit("show-block-modal")
-      },
-      isPageBreaker() {
-        return this.block.blockType === BlockTypeEnum.PAGE_DIVIDE_BLOCK
-      }
-    },
-    watch:{
-      block(newValue){
-        this.currentBlock = newValue;
-        this.$forceUpdate()
-      }
+    isPageBreaker () {
+      return this.block.blockType === BlockTypeEnum.PAGE_DIVIDE_BLOCK
+    }
+  },
+  watch: {
+    block (newValue) {
+      this.currentBlock = newValue
+      this.$forceUpdate()
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

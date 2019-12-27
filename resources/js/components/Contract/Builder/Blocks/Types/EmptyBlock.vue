@@ -14,31 +14,31 @@
 </template>
 
 <script>
-  export default {
-    name: "EmptyBlock",
-    props: ["block", "level"],
-    computed: {
-      filterParentBlocks() {
-        let filteredBlocks = this.block.content.blocks;
-        let obj = {isDivider: true};
-        let arr = [
-          obj,
-        ];
+export default {
+  name: 'EmptyBlock',
+  props: ['block', 'level'],
+  computed: {
+    filterParentBlocks () {
+      const filteredBlocks = this.block.content.blocks
+      const obj = { isDivider: true }
+      const arr = [
+        obj
+      ]
 
-        filteredBlocks.map(x => {
-          arr.push(x);
-          arr.push(obj);
-        });
+      filteredBlocks.map(x => {
+        arr.push(x)
+        arr.push(obj)
+      })
 
-        return arr;
-      }
-    },
-    methods: {
-      showBlockModal() {
-        this.$emit("show-block-modal")
-      },
-    },
+      return arr
+    }
+  },
+  methods: {
+    showBlockModal () {
+      this.$emit('show-block-modal')
+    }
   }
+}
 </script>
 
 <style scoped>

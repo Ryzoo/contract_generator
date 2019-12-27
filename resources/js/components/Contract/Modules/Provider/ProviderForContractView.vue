@@ -16,44 +16,44 @@
 </template>
 
 <script>
-  import {ContractProviderType} from "./Enums";
+import { ContractProviderType } from './Enums'
 
-  export default {
-    name: "ProviderForContractView",
-    props: ['contract', 'actualModule'],
-    data(){
-      return {
-        ContractProviderType: ContractProviderType,
-        isLoading: false,
-        actualRenderType: this.actualModule.settings.type
-      }
-    },
-    methods: {
-      renderContract(){
-        this.isLoading = true;
-        axios({
-          url: `/contract/${this.contract.id}/render`,
-          method: 'POST',
-          responseType: 'blob',
-          data: {
-            formElements: this.$store.getters.formElements
-          }
+export default {
+  name: 'ProviderForContractView',
+  props: ['contract', 'actualModule'],
+  data () {
+    return {
+      ContractProviderType: ContractProviderType,
+      isLoading: false,
+      actualRenderType: this.actualModule.settings.type
+    }
+  },
+  methods: {
+    renderContract () {
+      this.isLoading = true
+      axios({
+        url: `/contract/${this.contract.id}/render`,
+        method: 'POST',
+        responseType: 'blob',
+        data: {
+          formElements: this.$store.getters.formElements
+        }
+      })
+        .then((response) => {
+          Notify.push('Render zakończony pomyślnie', Notify.SUCCESS)
+          const url = window.URL.createObjectURL(new Blob([response.data]))
+          const link = document.createElement('a')
+          link.href = url
+          link.setAttribute('download', 'file.pdf')
+          document.body.appendChild(link)
+          link.click()
         })
-            .then((response) => {
-              Notify.push("Render zakończony pomyślnie", Notify.SUCCESS);
-              const url = window.URL.createObjectURL(new Blob([response.data]));
-              const link = document.createElement('a');
-              link.href = url;
-              link.setAttribute('download', 'file.pdf');
-              document.body.appendChild(link);
-              link.click();
-            })
-            .finally(() => {
-              this.isLoading = false;
-            })
-      }
+        .finally(() => {
+          this.isLoading = false
+        })
     }
   }
+}
 </script>
 
 <style scoped>

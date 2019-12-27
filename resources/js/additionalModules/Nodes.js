@@ -2,17 +2,15 @@ import { Node } from 'tiptap'
 import { replaceText } from 'tiptap-commands'
 
 export default class VariableNode extends Node {
-
-  get name() {
+  get name () {
     return 'variable'
   }
 
-  get schema() {
-
+  get schema () {
     return {
       // here you have to specify all values that can be stored in this node
       attrs: {
-        id: {default: undefined}
+        id: { default: undefined }
       },
       content: 'text*',
       group: 'block',
@@ -21,13 +19,13 @@ export default class VariableNode extends Node {
       // parseDOM and toDOM is still required to make copy and paste work
       parseDOM: [{
         tag: 'variable',
-        getAttrs: dom => ( {id: dom.getAttribute("value")} ),
+        getAttrs: dom => ({ id: dom.getAttribute('value') })
       }],
-      toDOM: (node) => ( ['div',{ class: 'variable', 'data-id': node.attrs.id},0] ),
+      toDOM: (node) => (['div', { class: 'variable', 'data-id': node.attrs.id }, 0])
     }
   }
 
-  commands({ type, schema }) {
+  commands ({ type, schema }) {
     return () => replaceText(type)
   }
 
@@ -60,5 +58,4 @@ export default class VariableNode extends Node {
   //     `,
   //   }
   // }
-
 }

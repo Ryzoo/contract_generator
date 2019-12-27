@@ -89,104 +89,104 @@
 </template>
 
 <script>
-  import FormRenderer from "./Form/FormRenderer";
-  import ActionRenderer from "./Form/ActionRenderer";
-  import {AvailableRenderActionsHook} from "./../../additionalModules/Enums";
+import FormRenderer from './Form/FormRenderer'
+import ActionRenderer from './Form/ActionRenderer'
+import { AvailableRenderActionsHook } from './../../additionalModules/Enums'
 
-  export default {
-    name: "ContractFormRender",
-    props: ["contract"],
-    components: {
-      FormRenderer,
-      ActionRenderer
-    },
-    data() {
-      return {
-        isLoading: true,
-        actualStep: 1,
-        availableActionsHook: AvailableRenderActionsHook,
-        currentAction: AvailableRenderActionsHook.BEFORE_FORM_RENDER,
-        actionStatus: false
-      }
-    },
-    computed: {
-      stepList() {
-        return Object.assign([], this.$store.getters.formElementsStepList);
-      }
-    },
-    watch: {
-      actualStep(vv) {
-        this.$forceUpdate();
-      },
-      contract(oldValue, newValue) {
-        if (oldValue !== newValue) {
-          this.init();
-        }
-      }
-    },
-    methods: {
-      goBackStep() {
-        this.actualStep = this.actualStep === 1 ? 1 : this.actualStep - 1;
-      },
-      goToNextStep() {
-        if (this.isCurrentStepValid()) {
-          this.actualStep = this.actualStep === this.stepList.length ? this.actualStep : this.actualStep + 1;
-        }
-      },
-      isCurrentStepValid() {
-        if (!this.stepList[this.actualStep - 1].content.filter(x => x.isActive).every(e => e.isValid)) {
-          Notify.push("Complete all elements of this page correctly", Notify.WARNING);
-          return false;
-        }
-
-        return true;
-      },
-      loadContractForm(additionalAttributes) {
-        this.isLoading = true;
-        const additionalParam = this.getAttributesFromArrayWithObject(additionalAttributes);
-
-        axios.get(`/contract/form/${this.contract.id}?${additionalParam}`)
-            .then((response) => {
-              this.$store.dispatch("formElements_set", response.data);
-            })
-            .catch(() => {
-              this.currentAction = this.availableActionsHook.BEFORE_FORM_RENDER;
-            })
-            .finally(() => {
-              this.isLoading = false;
-            })
-      },
-      getAttributesFromArrayWithObject(additionalAttributes) {
-        let defaultAttributeObject = {};
-        additionalAttributes.map(x => {
-          Object.assign(defaultAttributeObject, x);
-        });
-        return defaultAttributeObject ? new URLSearchParams(defaultAttributeObject).toString() : "";
-      },
-      finishContractForm() {
-        if (this.isCurrentStepValid()) {
-          this.currentAction = this.availableActionsHook.BEFORE_FORM_END;
-        }
-      },
-      init() {
-        this.currentAction = this.availableActionsHook.BEFORE_FORM_RENDER;
-        this.loadContractModules();
-      },
-      loadContractModules() {
-        this.isLoading = true;
-        axios.get(`/contract/modules/${this.contract.id}`)
-            .then((response) => {
-              this.$store.dispatch("contractModules_set", response.data);
-            })
-            .finally(() => {
-              this.isLoading = false;
-            })
-      }
-    },
-    mounted() {
-      this.init();
+export default {
+  name: 'ContractFormRender',
+  props: ['contract'],
+  components: {
+    FormRenderer,
+    ActionRenderer
+  },
+  data () {
+    return {
+      isLoading: true,
+      actualStep: 1,
+      availableActionsHook: AvailableRenderActionsHook,
+      currentAction: AvailableRenderActionsHook.BEFORE_FORM_RENDER,
+      actionStatus: false
     }
+  },
+  computed: {
+    stepList () {
+      return Object.assign([], this.$store.getters.formElementsStepList)
+    }
+  },
+  watch: {
+    actualStep (vv) {
+      this.$forceUpdate()
+    },
+    contract (oldValue, newValue) {
+      if (oldValue !== newValue) {
+        this.init()
+      }
+    }
+  },
+  methods: {
+    goBackStep () {
+      this.actualStep = this.actualStep === 1 ? 1 : this.actualStep - 1
+    },
+    goToNextStep () {
+      if (this.isCurrentStepValid()) {
+        this.actualStep = this.actualStep === this.stepList.length ? this.actualStep : this.actualStep + 1
+      }
+    },
+    isCurrentStepValid () {
+      if (!this.stepList[this.actualStep - 1].content.filter(x => x.isActive).every(e => e.isValid)) {
+        Notify.push('Complete all elements of this page correctly', Notify.WARNING)
+        return false
+      }
+
+      return true
+    },
+    loadContractForm (additionalAttributes) {
+      this.isLoading = true
+      const additionalParam = this.getAttributesFromArrayWithObject(additionalAttributes)
+
+      axios.get(`/contract/form/${this.contract.id}?${additionalParam}`)
+        .then((response) => {
+          this.$store.dispatch('formElements_set', response.data)
+        })
+        .catch(() => {
+          this.currentAction = this.availableActionsHook.BEFORE_FORM_RENDER
+        })
+        .finally(() => {
+          this.isLoading = false
+        })
+    },
+    getAttributesFromArrayWithObject (additionalAttributes) {
+      const defaultAttributeObject = {}
+      additionalAttributes.map(x => {
+        Object.assign(defaultAttributeObject, x)
+      })
+      return defaultAttributeObject ? new URLSearchParams(defaultAttributeObject).toString() : ''
+    },
+    finishContractForm () {
+      if (this.isCurrentStepValid()) {
+        this.currentAction = this.availableActionsHook.BEFORE_FORM_END
+      }
+    },
+    init () {
+      this.currentAction = this.availableActionsHook.BEFORE_FORM_RENDER
+      this.loadContractModules()
+    },
+    loadContractModules () {
+      this.isLoading = true
+      axios.get(`/contract/modules/${this.contract.id}`)
+        .then((response) => {
+          this.$store.dispatch('contractModules_set', response.data)
+        })
+        .finally(() => {
+          this.isLoading = false
+        })
+    }
+  },
+  mounted () {
+    this.init()
   }
+}
 </script>
 
 <style scoped>

@@ -36,45 +36,45 @@
 </template>
 
 <script>
-  import AuthConfigView from "../Modules/Auth/AuthConfigView";
-  import ProviderConfigView from "../Modules/Provider/ProviderConfigView";
+import AuthConfigView from '../Modules/Auth/AuthConfigView'
+import ProviderConfigView from '../Modules/Provider/ProviderConfigView'
 
-  export default {
-    name: "DefaultConfigModuleView",
-    props:[
-        "module"
-    ],
-    data(){
-      return {
-        isOn: false,
-        configureDialog: false,
-      }
-    },
-    components:{
-      AuthConfigView,
-      ProviderConfigView,
-    },
-    methods:{
-      saveConfig(){
-        this.$refs[this.module.name].saveConfig();
-        this.configureDialog = false
-      },
-      changeModuleState(value){
-        this.$store.dispatch("newContract_updateModuleState",{
-          name: this.module.name,
-          value: value,
-          settings: this.module.settings
-        });
-      },
-      loadDataFromStore(){
-        const allModules = this.$store.getters.newContract_availableModules;
-        this.isOn = allModules.includes(this.module.name);
-      }
-    },
-    mounted() {
-      this.loadDataFromStore();
+export default {
+  name: 'DefaultConfigModuleView',
+  props: [
+    'module'
+  ],
+  data () {
+    return {
+      isOn: false,
+      configureDialog: false
     }
+  },
+  components: {
+    AuthConfigView,
+    ProviderConfigView
+  },
+  methods: {
+    saveConfig () {
+      this.$refs[this.module.name].saveConfig()
+      this.configureDialog = false
+    },
+    changeModuleState (value) {
+      this.$store.dispatch('newContract_updateModuleState', {
+        name: this.module.name,
+        value: value,
+        settings: this.module.settings
+      })
+    },
+    loadDataFromStore () {
+      const allModules = this.$store.getters.newContract_availableModules
+      this.isOn = allModules.includes(this.module.name)
+    }
+  },
+  mounted () {
+    this.loadDataFromStore()
   }
+}
 </script>
 
 <style scoped lang="scss">

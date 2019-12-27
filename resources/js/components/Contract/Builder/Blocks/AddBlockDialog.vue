@@ -21,7 +21,7 @@
                 <v-card-text>
                     <v-flex class="new-block-container">
                         <div class="builder-elements">
-                            <div @click="addBlock(block.value)" class="options" v-for="block in blockTypes">
+                            <div @click="addBlock(block.value)" class="options" v-for="block in blockTypes" :key="block.id">
                                 <span>{{block.text}}</span>
                             </div>
                         </div>
@@ -33,82 +33,78 @@
 </template>
 
 <script>
-  import Selector from "../../../../additionalModules/StaticSelectors";
-  import {BlockTypeEnum} from "../../../../additionalModules/Enums";
+import Selector from '../../../../additionalModules/StaticSelectors'
+import { BlockTypeEnum } from '../../../../additionalModules/Enums'
 
-  export default {
-    name: "AddBlockDialog",
-    props: ["level", "buttonIndex", "block"],
-    data () {
-      return {
-        addBlockDialog: false,
-        blockTypes: Selector.BlockType,
-        newBlock: {
-          id: 1,
-          parentId: this.level,
-          blockName: "",
-          blockType: "",
-          content: {
-            blocks: []
-          },
-          conditionals: [],
-          settings: {},
-        }
+export default {
+  name: 'AddBlockDialog',
+  props: ['level', 'buttonIndex', 'block'],
+  data () {
+    return {
+      addBlockDialog: false,
+      blockTypes: Selector.BlockType,
+      newBlock: {
+        id: 1,
+        parentId: this.level,
+        blockName: '',
+        blockType: '',
+        content: {
+          blocks: []
+        },
+        conditionals: [],
+        settings: {}
       }
+    }
+  },
+  methods: {
+    addBlock (blockType) {
+      this.newBlock.blockType = blockType
+
+      if (this.newBlock.blockType === BlockTypeEnum.TEXT_BLOCK) { this.newBlock.content = { text: '' } }
+
+      this.$store.dispatch('builder_idBlockIncrement')
+      this.newBlock.id = this.$store.getters.builder_getBlockId
+
+      this.newBlock.blockName = `New block: ${this.newBlock.id}`
+
+      let blocks = this.$store.getters.builder_allBlocks
+
+      if (blocks.length > 0 && this.newBlock.parentId !== 0) { blocks = this.addNewBlockToCurrentBlocks(blocks, this.newBlock) } else { blocks.splice(Math.round(this.buttonIndex / 2), 0, this.newBlock) }
+
+      this.$store.dispatch('builder_set', blocks)
+
+      this.addBlockDialog = false
+      this.newBlock = this.resetBlock()
     },
-    methods: {
-      addBlock(blockType) {
-        this.newBlock.blockType = blockType;
 
-        if (this.newBlock.blockType === BlockTypeEnum.TEXT_BLOCK)
-          this.newBlock.content = { text: "" };
-
-        this.$store.dispatch('builder_idBlockIncrement');
-        this.newBlock.id = this.$store.getters.builder_getBlockId;
-
-        this.newBlock.blockName = `New block: ${this.newBlock.id}`;
-
-        let blocks = this.$store.getters.builder_allBlocks;
-
-        if (blocks.length > 0 && this.newBlock.parentId !== 0)
-            blocks = this.addNewBlockToCurrentBlocks(blocks, this.newBlock);
-        else
-          blocks.splice(Math.round(this.buttonIndex/2), 0, this.newBlock);
-
-        this.$store.dispatch('builder_set', blocks);
-
-        this.addBlockDialog = false;
-        this.newBlock = this.resetBlock();
-      },
-
-      addNewBlockToCurrentBlocks(blocks, newBlock) {
-        blocks = blocks.map(x => {
-          if (x.id === newBlock.parentId) {
-            x.content.blocks.splice(Math.round(this.buttonIndex/2), 0, newBlock);
-          } else if (typeof x.content.blocks != 'undefined' && x.content.blocks.length > 0) {
-            x.content.blocks = this.addNewBlockToCurrentBlocks(x.content.blocks, newBlock)
-          }
-          return x;
-        });
-
-        return blocks;
-      },
-
-      resetBlock() {
-        return {
-          id: 0,
-          parentId: this.level,
-          blockName: "",
-          blockType: undefined,
-          content: {
-            blocks: []
-          },
-          conditionals: [],
-          settings: {},
+    addNewBlockToCurrentBlocks (blocks, newBlock) {
+      blocks = blocks.map(x => {
+        if (x.id === newBlock.parentId) {
+          x.content.blocks.splice(Math.round(this.buttonIndex / 2), 0, newBlock)
+        } else if (typeof x.content.blocks !== 'undefined' && x.content.blocks.length > 0) {
+          x.content.blocks = this.addNewBlockToCurrentBlocks(x.content.blocks, newBlock)
         }
+        return x
+      })
+
+      return blocks
+    },
+
+    resetBlock () {
+      return {
+        id: 0,
+        parentId: this.level,
+        blockName: '',
+        blockType: undefined,
+        content: {
+          blocks: []
+        },
+        conditionals: [],
+        settings: {}
       }
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

@@ -10,6 +10,7 @@
                     v-model="registerForm.firstName"
                     :label="$t('base.field.firstName')"
                     type="text"
+                    color="secondary"
                 >
                 </v-text-field>
                 <v-text-field
@@ -17,6 +18,7 @@
                     v-model="registerForm.lastName"
                     :label="$t('base.field.lastName')"
                     type="text"
+                    color="secondary"
                 >
                 </v-text-field>
                 <v-text-field
@@ -24,6 +26,7 @@
                     v-model="registerForm.email"
                     :label="$t('base.field.email')"
                     type="email"
+                    color="secondary"
                 >
                 </v-text-field>
                 <v-text-field
@@ -31,6 +34,7 @@
                     v-model="registerForm.password"
                     :label="$t('base.field.password')"
                     type="password"
+                    color="secondary"
                 >
                 </v-text-field>
                 <v-text-field
@@ -38,9 +42,11 @@
                     v-model="registerForm.rePassword"
                     :label="$t('base.field.rePassword')"
                     type="password"
+                    color="secondary"
                 >
                 </v-text-field>
-                <v-checkbox v-model="registerForm.rodoAccept">
+                <v-checkbox v-model="registerForm.rodoAccept"
+                            color="secondary">
                     <template v-slot:label>
                         {{ $t("base.field.rodoAccept") }}:
                         <a target="_blank" href="http://google.pl" @click.stop>
@@ -48,7 +54,8 @@
                         </a>
                     </template>
                 </v-checkbox>
-                <v-checkbox v-model="registerForm.regulationsAccept">
+                <v-checkbox v-model="registerForm.regulationsAccept"
+                            color="secondary">
                     <template v-slot:label>
                         {{ $t("base.field.regulationsAccept") }}:
                         <a target="_blank" href="http://google.pl" @click.stop>
@@ -57,10 +64,10 @@
                     </template>
                 </v-checkbox>
             </v-form>
-            <loader v-else></loader>
+          <loader v-else/>
         </v-card-text>
         <v-card-actions>
-            <v-spacer></v-spacer>
+          <v-spacer/>
             <v-btn
                 text
                 color="primary"
@@ -80,88 +87,88 @@
 
 <script>
 export default {
-    name: "RegisterView",
-    data() {
-        return {
-            isLoaded: true,
-            registerForm: {
-                firstName: "",
-                lastName: "",
-                email: "",
-                password: "",
-                rePassword: "",
-                rodoAccept: false,
-                regulationsAccept: false
-            }
-        };
-    },
-    methods: {
-        sendRegisterForm() {
-            try {
-                let validationArray = [];
-
-                validationArray[
-                    this.$t("form.register.field.firstName")
-                ] = this.registerForm.firstName;
-                validationArray[
-                    this.$t("form.register.field.lastName")
-                ] = this.registerForm.lastName;
-                validationArray[
-                    this.$t("form.register.field.email")
-                ] = this.registerForm.email;
-                validationArray[
-                    this.$t("form.register.field.password")
-                ] = this.registerForm.password;
-                validationArray[
-                    this.$t("form.register.field.rePassword")
-                ] = this.registerForm.rePassword;
-                validationArray[
-                    this.$t("form.register.field.rodoAccept")
-                ] = this.registerForm.rodoAccept;
-                validationArray[
-                    this.$t("form.register.field.regulationsAccept")
-                ] = this.registerForm.regulationsAccept;
-
-                let valid = new window.Validator(validationArray);
-
-                valid
-                    .get(this.$t("form.register.field.firstName"))
-                    .length(3, 50);
-                valid
-                    .get(this.$t("form.register.field.lastName"))
-                    .length(3, 50);
-                valid.get(this.$t("form.register.field.email")).isEmail();
-                valid
-                    .get(this.$t("form.register.field.password"))
-                    .length(6, 50);
-                valid
-                    .get(this.$t("form.register.field.rePassword"))
-                    .length(6, 50)
-                    .sameAs(this.$t("form.register.field.password"));
-                valid.get(this.$t("form.register.field.rodoAccept")).isTrue();
-                valid
-                    .get(this.$t("form.register.field.regulationsAccept"))
-                    .isTrue();
-            } catch (e) {
-                return;
-            }
-
-            this.isLoaded = false;
-            axios
-                .post("/auth/register", this.registerForm)
-                .then(response => {
-                    notify.push(
-                        this.$t("form.register.notify.success"),
-                        notify.SUCCESS
-                    );
-                    this.$router.push("/auth/login");
-                })
-                .finally(() => {
-                    this.isLoaded = true;
-                });
-        }
+  name: 'RegisterView',
+  data () {
+    return {
+      isLoaded: true,
+      registerForm: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        rePassword: '',
+        rodoAccept: false,
+        regulationsAccept: false
+      }
     }
-};
+  },
+  methods: {
+    sendRegisterForm () {
+      try {
+        const validationArray = []
+
+        validationArray[
+          this.$t('form.register.field.firstName')
+        ] = this.registerForm.firstName
+        validationArray[
+          this.$t('form.register.field.lastName')
+        ] = this.registerForm.lastName
+        validationArray[
+          this.$t('form.register.field.email')
+        ] = this.registerForm.email
+        validationArray[
+          this.$t('form.register.field.password')
+        ] = this.registerForm.password
+        validationArray[
+          this.$t('form.register.field.rePassword')
+        ] = this.registerForm.rePassword
+        validationArray[
+          this.$t('form.register.field.rodoAccept')
+        ] = this.registerForm.rodoAccept
+        validationArray[
+          this.$t('form.register.field.regulationsAccept')
+        ] = this.registerForm.regulationsAccept
+
+        const valid = new window.Validator(validationArray)
+
+        valid
+          .get(this.$t('form.register.field.firstName'))
+          .length(3, 50)
+        valid
+          .get(this.$t('form.register.field.lastName'))
+          .length(3, 50)
+        valid.get(this.$t('form.register.field.email')).isEmail()
+        valid
+          .get(this.$t('form.register.field.password'))
+          .length(6, 50)
+        valid
+          .get(this.$t('form.register.field.rePassword'))
+          .length(6, 50)
+          .sameAs(this.$t('form.register.field.password'))
+        valid.get(this.$t('form.register.field.rodoAccept')).isTrue()
+        valid
+          .get(this.$t('form.register.field.regulationsAccept'))
+          .isTrue()
+      } catch (e) {
+        return
+      }
+
+      this.isLoaded = false
+      axios
+        .post('/auth/register', this.registerForm)
+        .then(response => {
+          notify.push(
+            this.$t('form.register.notify.success'),
+            notify.SUCCESS
+          )
+          this.$router.push('/auth/login')
+        })
+        .finally(() => {
+          this.isLoaded = true
+        })
+    }
+  }
+}
 </script>
 
 <style scoped></style>

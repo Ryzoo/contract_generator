@@ -27,20 +27,20 @@
 </template>
 
 <script>
-  export default {
-    name: "SelectAttribute",
-    props: ["attribute", "validationError", "dense"],
-    data(){
-      return {
-        currentValue: this.attribute.value
-      }
-    },
-    methods: {
-      changeValue(newValue) {
-        this.$emit("change-value", !!this.attribute.settings.isMultiSelect ? newValue.join(",") : newValue)
-      }
+export default {
+  name: 'SelectAttribute',
+  props: ['attribute', 'validationError', 'dense'],
+  data () {
+    return {
+      currentValue: this.attribute.value
     }
-  };
+  },
+  methods: {
+    changeValue (newValue) {
+      this.$emit('change-value', this.attribute.settings.isMultiSelect ? newValue.join(',') : newValue)
+    }
+  }
+}
 </script>
 
 <style scoped></style>

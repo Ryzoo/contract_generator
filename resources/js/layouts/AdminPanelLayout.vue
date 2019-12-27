@@ -52,6 +52,7 @@
             </v-list-item-content>
           </v-list-item>
           <v-list-group
+            :key="item.title"
             v-else
             value="true"
             class="white--text"
@@ -115,66 +116,66 @@
 </template>
 
 <script>
-  export default {
-    name: "PanelLayout",
-    data: function () {
-      return {
-        navigationRight: true,
-        navigationModel: true,
-        mini: false,
-        user: this.$store.getters.authUser,
-        items: [
-          {
-            title: this.$t('navigation.dashboard'),
-            icon: "fa-poll fa-fw",
-            link: "/panel/admin/dashboard"
-          },
-          {
-            title: this.$t('navigation.contract'),
-            icon: "fa-file-contract fa-fw",
-            link: "/panel/admin/contracts"
-          },
-          {
-            title: this.$t('navigation.schema'),
-            icon: "fa-th fa-fw"
-          },
-          {
-            title: this.$t('navigation.settings.main'),
-            icon: "fa-cog fa-fw",
-            elements: [
-              {
-                title: this.$t('navigation.settings.roles'),
-                link: "/panel/admin/settings/roles"
-              },
-              {
-                title: this.$t('navigation.settings.account'),
-                link: "/panel/admin/settings/accounts"
-              },
-              {
-                title: this.$t('navigation.settings.my_profile'),
-                link: "/panel/admin/settings/my_profile"
-              }
-            ]
-          },
-          {
-            title: this.$t('navigation.logout'),
-            icon: "fa-sign-out-alt fa-fw",
-            logout: true
-          }
-        ]
-      }
-    },
-    computed: {
-      pageOnCreator() {
-        return this.$route.path === "/panel/admin/contracts/builder";
-      }
-    },
-    methods: {
-      logout() {
-        auth.logout();
-      }
+export default {
+  name: 'PanelLayout',
+  data: function () {
+    return {
+      navigationRight: true,
+      navigationModel: true,
+      mini: false,
+      user: this.$store.getters.authUser,
+      items: [
+        {
+          title: this.$t('navigation.dashboard'),
+          icon: 'fa-poll fa-fw',
+          link: '/panel/admin/dashboard'
+        },
+        {
+          title: this.$t('navigation.contract'),
+          icon: 'fa-file-contract fa-fw',
+          link: '/panel/admin/contracts'
+        },
+        {
+          title: this.$t('navigation.schema'),
+          icon: 'fa-th fa-fw'
+        },
+        {
+          title: this.$t('navigation.settings.main'),
+          icon: 'fa-cog fa-fw',
+          elements: [
+            {
+              title: this.$t('navigation.settings.roles'),
+              link: '/panel/admin/settings/roles'
+            },
+            {
+              title: this.$t('navigation.settings.account'),
+              link: '/panel/admin/settings/accounts'
+            },
+            {
+              title: this.$t('navigation.settings.my_profile'),
+              link: '/panel/admin/settings/my_profile'
+            }
+          ]
+        },
+        {
+          title: this.$t('navigation.logout'),
+          icon: 'fa-sign-out-alt fa-fw',
+          logout: true
+        }
+      ]
     }
-  };
+  },
+  computed: {
+    pageOnCreator () {
+      return this.$route.path === '/panel/admin/contracts/builder'
+    }
+  },
+  methods: {
+    logout () {
+      auth.logout()
+    }
+  }
+}
 </script>
 
 <style lang="scss">
@@ -205,7 +206,6 @@
     & > .v-list-item {
       padding: 0 !important;
     }
-
 
   }
 </style>

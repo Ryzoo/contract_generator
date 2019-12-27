@@ -4,8 +4,22 @@
     <v-divider/>
     <v-card-text>
       <div v-if="$store.getters.builder_allVariables.length > 0" class="variables-list">
-          <span v-for="attribute in $store.getters.builder_allVariables" class="variable" @click="editVariable(attribute)"><b>[{{attribute.id}}]</b> {{attribute.attributeName}}<div><v-icon
-            @click="tryToRemoveAttribute($event, attribute)" class="delete-variable" small>fa-times</v-icon></div></span>
+          <span
+            v-for="attribute in $store.getters.builder_allVariables"
+            :key="attribute.id"
+            class="variable" @click="editVariable(attribute)"
+          >
+            <b>[{{attribute.id}}]</b>
+            {{attribute.attributeName}}
+            <div>
+              <v-icon
+                @click="tryToRemoveAttribute($event, attribute)"
+                class="delete-variable"
+                small>
+                fa-times
+              </v-icon>
+            </div>
+          </span>
       </div>
       <div v-else class="no-variables">
         <h2>{{$t("pages.panel.contracts.builder.noVariables")}}</h2>
@@ -42,55 +56,56 @@
       v-model="showAddEditModal"
       scrollable
       max-width="500px">
-      <CreateEditVariable :isNewAttribute="isNewAttribute" :editAttribute="attribute" :attributesList="$store.getters.builder_allVariables" @close="showAddEditModal=false"/>
+      <CreateEditVariable :isNewAttribute="isNewAttribute" :editAttribute="attribute"
+                          :attributesList="$store.getters.builder_allVariables" @close="showAddEditModal=false"/>
     </v-dialog>
   </v-card>
 </template>
 
 <script>
-  import CreateEditVariable from "./VariableView/CreateEditVariable";
+import CreateEditVariable from './VariableView/CreateEditVariable'
 
-  export default {
-    name: "VariableView",
-    components: {
-      CreateEditVariable
+export default {
+  name: 'VariableView',
+  components: {
+    CreateEditVariable
+  },
+  data () {
+    return {
+      showAddEditModal: false,
+      deleteDialog: false,
+      variableOptions: [],
+      attribute: null,
+      allAttributes: [],
+      isNewAttribute: true,
+      removedAttribute: null
+    }
+  },
+  methods: {
+    tryToRemoveAttribute (e, attribute) {
+      e.stopPropagation()
+      this.removedAttribute = attribute
+      this.deleteDialog = true
     },
-    data() {
-      return {
-        showAddEditModal: false,
-        deleteDialog: false,
-        variableOptions: [],
-        attribute: null,
-        allAttributes: [],
-        isNewAttribute: true,
-        removedAttribute: null
-      }
+    removeAttribute () {
+      this.$store.dispatch('builder_removeVariable', this.removedAttribute.id)
+      this.deleteDialog = false
     },
-    methods: {
-      tryToRemoveAttribute(e, attribute){
-        e.stopPropagation();
-        this.removedAttribute = attribute;
-        this.deleteDialog = true;
-      },
-      removeAttribute(){
-        this.$store.dispatch("builder_removeVariable", this.removedAttribute.id);
-        this.deleteDialog = false;
-      },
-      addNewAttribute() {
-        this.attribute = null;
-        this.isNewAttribute = true;
-        this.showAddEditModal = true;
-      },
-      pushCloseEvent() {
-        this.$emit('close');
-      },
-      editVariable(attribute) {
-        this.attribute = attribute;
-        this.isNewAttribute = false;
-        this.showAddEditModal = true;
-      },
+    addNewAttribute () {
+      this.attribute = null
+      this.isNewAttribute = true
+      this.showAddEditModal = true
+    },
+    pushCloseEvent () {
+      this.$emit('close')
+    },
+    editVariable (attribute) {
+      this.attribute = attribute
+      this.isNewAttribute = false
+      this.showAddEditModal = true
     }
   }
+}
 </script>
 
 <style scoped lang="scss">

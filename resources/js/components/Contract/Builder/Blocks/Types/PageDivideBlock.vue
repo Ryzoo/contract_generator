@@ -8,28 +8,28 @@
 </template>
 
 <script>
-    export default {
-        name: "PageDivideBlock",
-        props: ["block"],
-        methods: {
-            removeBlock() {
-                const newBlocks = this.removeFromData(this.$store.getters.builder_allBlocks, this.block.id)
-                this.$store.dispatch("builder_set", newBlocks)
-            },
-            removeFromData(dataArray, idToRemove) {
-                if (dataArray.find(x => x.id === idToRemove)) {
-                    return dataArray.filter(x => x.id !== idToRemove)
-                } else {
-                    return dataArray.map(x => {
-                        if (x.content.blocks) {
-                            x.content.blocks = this.removeFromData(x.content.blocks, idToRemove)
-                        }
-                        return x
-                    })
-                }
-            }
-        }
+export default {
+  name: 'PageDivideBlock',
+  props: ['block'],
+  methods: {
+    removeBlock () {
+      const newBlocks = this.removeFromData(this.$store.getters.builder_allBlocks, this.block.id)
+      this.$store.dispatch('builder_set', newBlocks)
+    },
+    removeFromData (dataArray, idToRemove) {
+      if (dataArray.find(x => x.id === idToRemove)) {
+        return dataArray.filter(x => x.id !== idToRemove)
+      } else {
+        return dataArray.map(x => {
+          if (x.content.blocks) {
+            x.content.blocks = this.removeFromData(x.content.blocks, idToRemove)
+          }
+          return x
+        })
+      }
     }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

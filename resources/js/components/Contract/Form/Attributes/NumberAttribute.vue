@@ -26,15 +26,15 @@
 </template>
 
 <script>
-  export default {
-    name: "NumberAttribute",
-    props: ["attribute", "validationError", "dense"],
-    methods: {
-      changeValue( newValue ){
-        this.$emit("change-value", parseInt(newValue));
-      }
+export default {
+  name: 'NumberAttribute',
+  props: ['attribute', 'validationError', 'dense'],
+  methods: {
+    changeValue (newValue) {
+      this.$emit('change-value', parseInt(newValue))
     }
   }
+}
 </script>
 
 <style scoped>

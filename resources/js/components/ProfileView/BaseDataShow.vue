@@ -39,63 +39,63 @@
 
 <script>
 export default {
-    name: "BaseDataShow",
-    props: ["userData", "editable"],
-    data() {
-        return {
-            isLoaded: true,
-            user: this.userData,
-            canBeSaved: false,
-        };
-    },
-    methods: {
-        saveImage() {
-            let imageFile = this.$refs.profileImage;
-
-            if (imageFile && imageFile.files && imageFile.files[0]) {
-                let formData = new FormData();
-                formData.append("image", imageFile.files[0]);
-
-                this.isLoaded = false;
-                axios
-                    .post(`/user/${this.user.id}/profileImage`, formData, {
-                        headers: {
-                            "Content-Type": "multipart/form-data"
-                        }
-                    })
-                    .then(() => {
-                        notify.push(
-                            this.$t("form.accountEditForm.notify.success_img"),
-                            notify.SUCCESS
-                        );
-                        auth.checkAuth();
-                        this.canBeSaved = false;
-                    })
-                    .finally(() => {
-                        this.isLoaded = true;
-                    });
-            }
-        },
-        changeProfileImage() {
-            $("#profileImageInput").click();
-        },
-        profileImageAreChanged() {
-            let input = this.$refs.profileImage;
-
-            if (input.files && input.files[0]) {
-                let reader = new FileReader();
-
-                reader.onload = e => {
-                    this.user.profileImage = e.target.result;
-                    this.canBeSaved = true;
-                    this.$forceUpdate();
-                };
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
+  name: 'BaseDataShow',
+  props: ['userData', 'editable'],
+  data () {
+    return {
+      isLoaded: true,
+      user: this.userData,
+      canBeSaved: false
     }
-};
+  },
+  methods: {
+    saveImage () {
+      const imageFile = this.$refs.profileImage
+
+      if (imageFile && imageFile.files && imageFile.files[0]) {
+        const formData = new FormData()
+        formData.append('image', imageFile.files[0])
+
+        this.isLoaded = false
+        axios
+          .post(`/user/${this.user.id}/profileImage`, formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          })
+          .then(() => {
+            notify.push(
+              this.$t('form.accountEditForm.notify.success_img'),
+              notify.SUCCESS
+            )
+            auth.checkAuth()
+            this.canBeSaved = false
+          })
+          .finally(() => {
+            this.isLoaded = true
+          })
+      }
+    },
+    changeProfileImage () {
+      $('#profileImageInput').click()
+    },
+    profileImageAreChanged () {
+      const input = this.$refs.profileImage
+
+      if (input.files && input.files[0]) {
+        const reader = new FileReader()
+
+        reader.onload = e => {
+          this.user.profileImage = e.target.result
+          this.canBeSaved = true
+          this.$forceUpdate()
+        }
+
+        reader.readAsDataURL(input.files[0])
+      }
+    }
+  }
+}
 </script>
 
 <style scoped></style>

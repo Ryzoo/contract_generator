@@ -55,72 +55,72 @@
 </template>
 
 <script>
-  export default {
-    name: "RolesView",
-    components: {},
-    data() {
-      return {
-        deleteDialog: false,
-        isLoaded: true,
-        headers: [
-          {
-            text: this.$t("base.headers.name"),
-            value: "name"
-          },
-          {
-            text: this.$t("base.headers.descriptions"),
-            value: "description"
-          },
-          {
-            text: this.$t("base.headers.actions"),
-            value: "action",
-            sortable: false
-          }
-        ],
-        items: [],
-        removeRoleId: null
-      };
-    },
-    methods: {
-      tryToRemove(id) {
-        this.removeRoleId = id;
-        this.deleteDialog = true;
-      },
-      removeRole() {
-        this.isLoaded = false;
-        axios
-          .delete(`/role/${this.removeRoleId}`)
-          .then(response => {
-            this.items = this.items.filter(
-              e => e.id != this.removeRoleId
-            );
-            this.removeRoleId = null;
-            this.deleteDialog = false;
-            notify.push(
-              this.$t("form.roleRemoveForm..notify.successRemove"),
-              notify.SUCCESS
-            );
-          })
-          .finally(() => {
-            this.isLoaded = true;
-          });
-      },
-      getRoleList() {
-        this.isLoaded = false;
-        axios
-          .get("/role")
-          .then(response => {
-            this.items = response.data;
-          })
-          .finally(() => {
-            this.isLoaded = true;
-          });
-      }
-    },
-    mounted() {
-      this.getRoleList();
+export default {
+  name: 'RolesView',
+  components: {},
+  data () {
+    return {
+      deleteDialog: false,
+      isLoaded: true,
+      headers: [
+        {
+          text: this.$t('base.headers.name'),
+          value: 'name'
+        },
+        {
+          text: this.$t('base.headers.descriptions'),
+          value: 'description'
+        },
+        {
+          text: this.$t('base.headers.actions'),
+          value: 'action',
+          sortable: false
+        }
+      ],
+      items: [],
+      removeRoleId: null
     }
-  };
+  },
+  methods: {
+    tryToRemove (id) {
+      this.removeRoleId = id
+      this.deleteDialog = true
+    },
+    removeRole () {
+      this.isLoaded = false
+      axios
+        .delete(`/role/${this.removeRoleId}`)
+        .then(response => {
+          this.items = this.items.filter(
+            e => e.id !== this.removeRoleId
+          )
+          this.removeRoleId = null
+          this.deleteDialog = false
+          notify.push(
+            this.$t('form.roleRemoveForm..notify.successRemove'),
+            notify.SUCCESS
+          )
+        })
+        .finally(() => {
+          this.isLoaded = true
+        })
+    },
+    getRoleList () {
+      this.isLoaded = false
+      axios
+        .get('/role')
+        .then(response => {
+          this.items = response.data
+        })
+        .finally(() => {
+          this.isLoaded = true
+        })
+    }
+  },
+  mounted () {
+    this.getRoleList()
+  }
+}
 </script>
 
 <style scoped></style>

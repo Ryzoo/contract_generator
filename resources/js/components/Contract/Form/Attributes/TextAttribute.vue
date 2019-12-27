@@ -26,14 +26,14 @@
 
 <script>
 export default {
-    name: "NumberAttribute",
-    props: ["attribute", "validationError", "dense"],
-    methods: {
-        changeValue(newValue) {
-            this.$emit("change-value", newValue)
-        }
+  name: 'NumberAttribute',
+  props: ['attribute', 'validationError', 'dense'],
+  methods: {
+    changeValue (newValue) {
+      this.$emit('change-value', newValue)
     }
-};
+  }
+}
 </script>
 
 <style scoped></style>

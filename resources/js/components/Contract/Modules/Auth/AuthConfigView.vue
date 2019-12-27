@@ -28,31 +28,31 @@
 
 <script>
 
-  import {AuthType} from "./Enums";
+import { AuthType } from './Enums'
 
-  export default {
-    name: "AuthConfigView",
-    props: ["module"],
-    data(){
-      return {
-        AuthType: AuthType,
-        items: [
-          {text: "Access for all", value: AuthType.ALL},
-          {text: "Access for logged user", value: AuthType.LOGIN},
-          {text: "Access with password", value: AuthType.PASSWORD},
-        ],
-        settings: this.$store.getters.getModuleSettings(this.module.name) || this.module.settings
-      }
-    },
-    methods:{
-      saveConfig(){
-        this.$store.dispatch("newContract_saveModuleConfig",{
-          name: this.module.name,
-          value: this.settings
-        });
-      }
+export default {
+  name: 'AuthConfigView',
+  props: ['module'],
+  data () {
+    return {
+      AuthType: AuthType,
+      items: [
+        { text: 'Access for all', value: AuthType.ALL },
+        { text: 'Access for logged user', value: AuthType.LOGIN },
+        { text: 'Access with password', value: AuthType.PASSWORD }
+      ],
+      settings: this.$store.getters.getModuleSettings(this.module.name) || this.module.settings
+    }
+  },
+  methods: {
+    saveConfig () {
+      this.$store.dispatch('newContract_saveModuleConfig', {
+        name: this.module.name,
+        value: this.settings
+      })
     }
   }
+}
 </script>
 
 <style scoped>

@@ -2,23 +2,32 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 
-Vue.use(Vuetify);
+Vue.use(Vuetify)
 
 export default new Vuetify({
-    icons: {
-        iconfont: 'fa',
-    },
-    theme: {
-        themes: {
-            light: {
-                primary: '#d4ac71',
-                secondary: '#324a58',
-                accent: '#ccbd99',
-                error: '#ff675f',
-                info: '#35a9f3',
-                success: '#77bc7a',
-                warning: '#FFC107'
-            },
-        },
+  icons: {
+    iconfont: 'fa'
+  },
+  theme: {
+    themes: {
+      light: {
+        primary: '#4b2e7f',
+        secondary: '#4059be',
+        accent: '#995cfe',
+        error: '#D42E37',
+        info: '#35a9f3',
+        success: '#77bc7a',
+        warning: '#ffc107'
+      },
+      dark: {
+        primary: '#4b2e7f',
+        secondary: '#4059be',
+        accent: '#995cfe',
+        error: '#D42E37',
+        info: '#35a9f3',
+        success: '#77bc7a',
+        warning: '#ffc107'
+      }
     }
+  }
 })

@@ -31,26 +31,24 @@
 </template>
 
 <script>
-  import Header from "../../../../components/Contract/Builder/Header";
-  import ContainerBlock from "../../../../components/Contract/Builder/Blocks/ContainerBlock";
-  import BlockLayout from "../../../../components/Contract/Builder/BlockLayout";
-  import SelectedBlockView from "../../../../components/Contract/Builder/Modals/SelectedBlockView";
-  import VariableView from "../../../../components/Contract/Builder/Modals/VariableView";
+import Header from '../../../../components/Contract/Builder/Header'
+import BlockLayout from '../../../../components/Contract/Builder/BlockLayout'
+import SelectedBlockView from '../../../../components/Contract/Builder/Modals/SelectedBlockView'
+import VariableView from '../../../../components/Contract/Builder/Modals/VariableView'
 
-  export default {
-    name: "CreateAgreementView",
-    components: {
-      Header,
-      BlockLayout,
-      ContainerBlock,
-      SelectedBlockView,
-      VariableView,
-    },
-    data() {
-      return {
-        showAttributeModal: false,
-        showBlockModal: false,
-      }
+export default {
+  name: 'CreateAgreementView',
+  components: {
+    Header,
+    BlockLayout,
+    SelectedBlockView,
+    VariableView
+  },
+  data () {
+    return {
+      showAttributeModal: false,
+      showBlockModal: false
     }
-  };
+  }
+}
 </script>

@@ -16,8 +16,12 @@
 
 
 .theme--light.v-toolbar {
-    background-color: #446477 !important;
+    background: linear-gradient(90deg, #4059BE 0%, #945CFB 100%, #995CFE 100%) !important;
     color: white !important;
+}
+
+.v-application a{
+    color: #D42E37 !important;
 }
 
 .theme--light.application {

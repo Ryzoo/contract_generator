@@ -15,29 +15,29 @@
 </template>
 
 <script>
-  import {ContractProviderType} from "./Enums";
+import { ContractProviderType } from './Enums'
 
-  export default {
-    name: "ProviderConfigView",
-    props: ["module"],
-    data(){
-      return {
-        ContractProviderType: ContractProviderType,
-        items: [
-          {text: "Render after finish", value: ContractProviderType.RENDER},
-        ],
-        settings: this.$store.getters.getModuleSettings(this.module.name) || this.module.settings
-      }
-    },
-    methods:{
-      saveConfig(){
-        this.$store.dispatch("newContract_saveModuleConfig",{
-          name: this.module.name,
-          value: this.settings
-        });
-      }
+export default {
+  name: 'ProviderConfigView',
+  props: ['module'],
+  data () {
+    return {
+      ContractProviderType: ContractProviderType,
+      items: [
+        { text: 'Render after finish', value: ContractProviderType.RENDER }
+      ],
+      settings: this.$store.getters.getModuleSettings(this.module.name) || this.module.settings
+    }
+  },
+  methods: {
+    saveConfig () {
+      this.$store.dispatch('newContract_saveModuleConfig', {
+        name: this.module.name,
+        value: this.settings
+      })
     }
   }
+}
 </script>
 
 <style scoped>
