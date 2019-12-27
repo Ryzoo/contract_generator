@@ -109,13 +109,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  @import "./../../../../../sass/colors";
+
   .variables-list {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
 
     .variable {
-      background: #dabd79 0% 0% no-repeat padding-box;
+      background: $primary 0% 0% no-repeat padding-box;
       padding: 3px 8px;
       border-radius: 5px;
       color: white;
