@@ -32,8 +32,6 @@
         </v-list-item>
       </v-list>
       <v-list class="pt-0" dense>
-        <v-divider light></v-divider>
-
         <template v-for="item in items">
           <v-list-item
             link
@@ -41,7 +39,6 @@
             v-if="!item.elements"
             :prepend-icon="item.icon"
             :to="item.link ? item.link : null"
-            @click="item.logout ? logout() : null"
           >
             <v-list-item-action>
               <v-icon>{{item.icon}}</v-icon>
@@ -54,8 +51,6 @@
           <v-list-group
             :key="item.title"
             v-else
-            value="true"
-            class="white--text"
           >
             <template v-slot:activator>
               <v-list-item-action>
@@ -93,6 +88,7 @@
       />
       <v-toolbar-title>{{$t('pageMeta.appTitle')}}</v-toolbar-title>
       <v-spacer/>
+      <v-btn @click="logout()" text dark> <v-icon>fa-sign-out-alt fa-fw</v-icon> {{$t('navigation.logout')}}</v-btn>
     </v-app-bar>
 
     <v-content>
@@ -137,7 +133,8 @@ export default {
         },
         {
           title: this.$t('navigation.schema'),
-          icon: 'fa-th fa-fw'
+          icon: 'fa-th fa-fw',
+          link: '/panel/admin/contracts'
         },
         {
           title: this.$t('navigation.settings.main'),
@@ -156,18 +153,8 @@ export default {
               link: '/panel/admin/settings/my_profile'
             }
           ]
-        },
-        {
-          title: this.$t('navigation.logout'),
-          icon: 'fa-sign-out-alt fa-fw',
-          logout: true
         }
       ]
-    }
-  },
-  computed: {
-    pageOnCreator () {
-      return this.$route.path === '/panel/admin/contracts/builder'
     }
   },
   methods: {
@@ -179,33 +166,5 @@ export default {
 </script>
 
 <style lang="scss">
-  .v-list-group {
-    color: white !important;
 
-    .v-list-group__items {
-      background: #22343f !important;
-    }
-
-    .v-list-item--active {
-      color: white !important;
-      background-color: #637580 !important;
-    }
-  }
-
-  .v-list-group__header.v-list-item--active {
-    background-color: #3d5766 !important;
-  }
-
-  .v-list-group__header {
-    color: white !important;
-
-    & > .v-list-item__action {
-      min-width: 30px !important;
-    }
-
-    & > .v-list-item {
-      padding: 0 !important;
-    }
-
-  }
 </style>
