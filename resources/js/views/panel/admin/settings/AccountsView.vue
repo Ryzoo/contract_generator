@@ -20,6 +20,17 @@
                                 {{ item.firstName }} {{ item.lastName }}
                             </router-link>
                         </template>
+                      <template v-slot:item.roles="{ item }">
+                        <v-chip
+                          class="ma-1"
+                          color="primary"
+                          v-for="role in item.roles"
+                          :key="role.id"
+                          small label
+                        >
+                          {{role.name}}
+                        </v-chip>
+                      </template>
                         <template v-slot:item.action="{ item }">
                             <div class="table-icons">
                                 <v-icon
@@ -39,7 +50,7 @@
                 </v-col>
             </v-row>
         </v-col>
-        <loader v-else></loader>
+      <loader v-else/>
 
         <v-dialog persistent v-model="deleteDialog" max-width="290">
             <v-card>
@@ -78,6 +89,10 @@ export default {
         {
           text: this.$t('base.headers.email'),
           value: 'email'
+        },
+        {
+          text: this.$t('base.headers.roles'),
+          value: 'roles'
         },
         {
           text: this.$t('base.headers.created'),

@@ -35,6 +35,7 @@ return [
         "name" => "Name",
         "email" => "Email",
         "created" => "Created",
+        "roles" => "Roles",
         "actions" => "Actions",
         "descriptions" => "Descriptions",
     ],
