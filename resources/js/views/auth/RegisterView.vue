@@ -10,7 +10,6 @@
                     v-model="registerForm.firstName"
                     :label="$t('base.field.firstName')"
                     type="text"
-                    color="secondary"
                 >
                 </v-text-field>
                 <v-text-field
@@ -18,7 +17,6 @@
                     v-model="registerForm.lastName"
                     :label="$t('base.field.lastName')"
                     type="text"
-                    color="secondary"
                 >
                 </v-text-field>
                 <v-text-field
@@ -26,7 +24,6 @@
                     v-model="registerForm.email"
                     :label="$t('base.field.email')"
                     type="email"
-                    color="secondary"
                 >
                 </v-text-field>
                 <v-text-field
@@ -34,7 +31,6 @@
                     v-model="registerForm.password"
                     :label="$t('base.field.password')"
                     type="password"
-                    color="secondary"
                 >
                 </v-text-field>
                 <v-text-field
@@ -42,11 +38,9 @@
                     v-model="registerForm.rePassword"
                     :label="$t('base.field.rePassword')"
                     type="password"
-                    color="secondary"
                 >
                 </v-text-field>
-                <v-checkbox v-model="registerForm.rodoAccept"
-                            color="secondary">
+                <v-checkbox v-model="registerForm.rodoAccept" >
                     <template v-slot:label>
                         {{ $t("base.field.rodoAccept") }}:
                         <a target="_blank" href="http://google.pl" @click.stop>
@@ -54,8 +48,7 @@
                         </a>
                     </template>
                 </v-checkbox>
-                <v-checkbox v-model="registerForm.regulationsAccept"
-                            color="secondary">
+                <v-checkbox v-model="registerForm.regulationsAccept" >
                     <template v-slot:label>
                         {{ $t("base.field.regulationsAccept") }}:
                         <a target="_blank" href="http://google.pl" @click.stop>

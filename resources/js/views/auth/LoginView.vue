@@ -10,7 +10,6 @@
                     v-model="loginForm.email"
                     :label="$t('base.field.email')"
                     type="email"
-                    color="secondary"
                 >
                 </v-text-field>
                 <v-text-field
@@ -18,7 +17,6 @@
                     v-model="loginForm.password"
                     :label="$t('base.field.password')"
                     type="password"
-                    color="secondary"
                 >
                 </v-text-field>
                 <small class="ma-0"

@@ -36,11 +36,9 @@ export default class Notify {
     const container = document.body.getElementsByClassName('notify-container')[0]
     container.appendChild(notifyElement)
 
-    if (notifyType !== this.ERROR || (notifyType === this.ERROR && this.removeOnError)) {
-      setTimeout(() => {
-        this.removeNotify(notifyElement)
-      }, notifyTime || this.defaultNotifyTime)
-    }
+    setTimeout(() => {
+      this.removeNotify(notifyElement)
+    }, notifyTime || this.defaultNotifyTime)
   }
 
   removeNotify (notify) {
