@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import ContractModuleConfiguration from '../../../../components/Contract/New/ContractModuleConfiguration'
+import ContractModuleConfiguration from '../../../components/Contract/New/ContractModuleConfiguration'
 
 export default {
   name: 'CreateBaseView',
@@ -67,12 +67,12 @@ export default {
     },
     cancelAddContract () {
       this.$store.dispatch('newContract_clear')
-      this.$router.push('/panel/admin/contracts')
+      this.$router.push('/panel/contracts/list')
     },
     saveAndExit () {
       this.saveContract(() => {
         this.$store.dispatch('newContract_clear')
-        this.$router.push('/panel/admin/contracts')
+        this.$router.push('/panel/contracts/list')
       })
     },
     saveAndBuild () {
@@ -81,7 +81,7 @@ export default {
           id: res.data.id,
           ...this.$store.getters.getNewContractData
         })
-        this.$router.push('/panel/admin/contracts/builder')
+        this.$router.push('/panel/contracts/builder')
       })
     },
     saveContract (callback) {

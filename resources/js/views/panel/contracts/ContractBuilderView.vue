@@ -31,10 +31,10 @@
 </template>
 
 <script>
-import Header from '../../../../components/Contract/Builder/Header'
-import BlockLayout from '../../../../components/Contract/Builder/BlockLayout'
-import SelectedBlockView from '../../../../components/Contract/Builder/Modals/SelectedBlockView'
-import VariableView from '../../../../components/Contract/Builder/Modals/VariableView'
+import Header from '../../../components/Contract/Builder/Header'
+import BlockLayout from '../../../components/Contract/Builder/BlockLayout'
+import SelectedBlockView from '../../../components/Contract/Builder/Modals/SelectedBlockView'
+import VariableView from '../../../components/Contract/Builder/Modals/VariableView'
 
 export default {
   name: 'CreateAgreementView',

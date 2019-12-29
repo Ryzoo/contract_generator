@@ -16,7 +16,7 @@
                         :items="items"
                     >
                         <template v-slot:item.name="{ item }">
-                            <router-link :to="`/panel/admin/settings/accounts/${item.id}`">
+                            <router-link :to="`/panel/settings/accounts/${item.id}`">
                                 {{ item.firstName }} {{ item.lastName }}
                             </router-link>
                         </template>
@@ -36,7 +36,7 @@
                                 <v-icon
                                     @click="
                                         $router.push(
-                                            `/panel/admin/settings/accounts/${item.id}/edit`
+                                            `/panel/settings/accounts/${item.id}/edit`
                                         )
                                     "
                                     >fa-edit</v-icon

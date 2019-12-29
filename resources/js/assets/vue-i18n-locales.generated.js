@@ -57,42 +57,40 @@ export default {
                 }
             },
             "panel": {
-                "admin": {
-                    "dashboard": {
-                        "title": "Panel - Dashboard"
+                "dashboard": {
+                    "title": "Panel - Dashboard"
+                },
+                "profile": {
+                    "title": "Panel - My Profile"
+                },
+                "roles": {
+                    "title": "Panel - Manage roles",
+                    "create": {
+                        "title": "Panel - Create role"
+                    }
+                },
+                "accounts": {
+                    "title": "Panel - Accounts",
+                    "create": {
+                        "title": "Panel - Create new account"
                     },
-                    "profile": {
-                        "title": "Panel - My Profile"
+                    "edit": {
+                        "title": "Panel - Edit account"
                     },
-                    "roles": {
-                        "title": "Panel - Manage roles",
-                        "create": {
-                            "title": "Panel - Create role"
-                        }
+                    "preview": {
+                        "title": "Panel - Preview account"
+                    }
+                },
+                "contract": {
+                    "title": "Panel - Contract list",
+                    "builder": {
+                        "title": "Panel - Build contract"
                     },
-                    "accounts": {
-                        "title": "Panel - Accounts",
-                        "create": {
-                            "title": "Create new account"
-                        },
-                        "edit": {
-                            "title": "Edit account"
-                        },
-                        "preview": {
-                            "title": "Preview account"
-                        }
+                    "create": {
+                        "title": "Panel - Create new contract"
                     },
-                    "contract": {
-                        "title": "Panel - Agreements",
-                        "builder": {
-                            "title": "Build contract"
-                        },
-                        "create": {
-                            "title": "Create new contract"
-                        },
-                        "edit": {
-                            "title": "Edit contract"
-                        }
+                    "edit": {
+                        "title": "Panel - Edit contract"
                     }
                 }
             }
@@ -300,8 +298,11 @@ export default {
             "dashboard": "Dashboard",
             "profile": "My profile",
             "clients": "Clients",
-            "contract": "Contracts",
-            "schema": "Schemes",
+            "contract": {
+                "main": "Contracts",
+                "contractList": "Full contract project",
+                "schema": "Part of contract"
+            },
             "accounts": "Accounts",
             "settings": {
                 "main": "Settings",

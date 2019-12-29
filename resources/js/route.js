@@ -3,26 +3,26 @@ import VueRouter from 'vue-router'
 import AdminPanelLayout from './layouts/AdminPanelLayout'
 import i18n from './lang'
 import AuthLayout from './layouts/AuthLayout'
-import DashboardView from './views/panel/admin/DashboardView'
-import ContractView from './views/panel/admin/ContractView'
+import DashboardView from './views/panel/DashboardView'
+import ContractListView from './views/panel/contracts/ContractListView'
 import LoginView from './views/auth/LoginView'
 import SendResetPasswordTokenView
   from './views/auth/SendResetPasswordTokenView'
 import RegisterView from './views/auth/RegisterView'
 import ResetPasswordView from './views/auth/ResetPasswordView'
 import ContractBuilderView
-  from './views/panel/admin/contracts/ContractBuilderView'
-import MyProfileView from './views/panel/admin/settings/MyProfileView'
-import AccountsView from './views/panel/admin/settings/AccountsView'
+  from './views/panel/contracts/ContractBuilderView'
+import MyProfileView from './views/panel/settings/MyProfileView'
+import AccountsView from './views/panel/settings/AccountsView'
 import AccountPreview
-  from './views/panel/admin/settings/accounts/AccountPreview'
-import CreateView from './views/panel/admin/settings/accounts/CreateView'
-import EditView from './views/panel/admin/settings/accounts/EditView'
-import EditRoleView from './views/panel/admin/settings/roles/EditView'
+  from './views/panel/settings/accounts/AccountPreview'
+import CreateView from './views/panel/settings/accounts/CreateView'
+import EditView from './views/panel/settings/accounts/EditView'
+import EditRoleView from './views/panel/settings/roles/EditView'
 import ContractForm from './views/client/contract/ContractForm'
-import CreateBaseView from './views/panel/admin/contracts/CreateBaseView'
-import RolesView from './views/panel/admin/settings/RolesView'
-import CreateRolesView from './views/panel/admin/settings/roles/CreateView'
+import CreateBaseView from './views/panel/contracts/CreateBaseView'
+import RolesView from './views/panel/settings/RolesView'
+import CreateRolesView from './views/panel/settings/roles/CreateView'
 
 Vue.use(VueRouter)
 
@@ -39,7 +39,7 @@ const router = new VueRouter({
     },
     { path: '/', redirect: 'auth/login' },
     {
-      path: '/panel/admin',
+      path: '/panel',
       component: AdminPanelLayout,
       children: [
         { path: '/', redirect: 'dashboard' },
@@ -48,15 +48,15 @@ const router = new VueRouter({
           name: 'dashboard',
           component: DashboardView,
           meta: {
-            title: i18n.t('pageMeta.panel.admin.dashboard.title')
+            title: i18n.t('pageMeta.panel.dashboard.title')
           }
         },
         {
-          path: 'contracts',
-          name: 'contracts',
-          component: ContractView,
+          path: 'contracts/list',
+          name: 'contractList',
+          component: ContractListView,
           meta: {
-            title: i18n.t('pageMeta.panel.admin.contract.title')
+            title: i18n.t('pageMeta.panel.contract.title')
           }
         },
         {
@@ -64,7 +64,7 @@ const router = new VueRouter({
           name: 'createContract',
           component: CreateBaseView,
           meta: {
-            title: i18n.t('pageMeta.panel.admin.contract.create.title')
+            title: i18n.t('pageMeta.panel.contract.create.title')
           }
         },
         {
@@ -72,7 +72,7 @@ const router = new VueRouter({
           name: 'editContract',
           component: CreateBaseView,
           meta: {
-            title: i18n.t('pageMeta.panel.admin.contract.edit.title')
+            title: i18n.t('pageMeta.panel.contract.edit.title')
           }
         },
         {
@@ -80,7 +80,7 @@ const router = new VueRouter({
           name: 'buildContract',
           component: ContractBuilderView,
           meta: {
-            title: i18n.t('pageMeta.panel.admin.contract.builder.title')
+            title: i18n.t('pageMeta.panel.contract.builder.title')
           }
         },
         {
@@ -88,7 +88,7 @@ const router = new VueRouter({
           name: 'accounts',
           component: AccountsView,
           meta: {
-            title: i18n.t('pageMeta.panel.admin.accounts.title')
+            title: i18n.t('pageMeta.panel.accounts.title')
           }
         },
         {
@@ -96,7 +96,7 @@ const router = new VueRouter({
           name: 'createAccount',
           component: CreateView,
           meta: {
-            title: i18n.t('pageMeta.panel.admin.accounts.create.title')
+            title: i18n.t('pageMeta.panel.accounts.create.title')
           }
         },
         {
@@ -104,7 +104,7 @@ const router = new VueRouter({
           name: 'editAccount',
           component: EditView,
           meta: {
-            title: i18n.t('pageMeta.panel.admin.accounts.edit.title')
+            title: i18n.t('pageMeta.panel.accounts.edit.title')
           }
         },
         {
@@ -112,7 +112,7 @@ const router = new VueRouter({
           name: 'accountPreview',
           component: AccountPreview,
           meta: {
-            title: i18n.t('pageMeta.panel.admin.accounts.preview.title')
+            title: i18n.t('pageMeta.panel.accounts.preview.title')
           }
         },
         {
@@ -120,7 +120,7 @@ const router = new VueRouter({
           name: 'my_profile',
           component: MyProfileView,
           meta: {
-            title: i18n.t('pageMeta.panel.admin.profile.title')
+            title: i18n.t('pageMeta.panel.profile.title')
           }
         },
         {
@@ -128,7 +128,7 @@ const router = new VueRouter({
           name: 'roles',
           component: RolesView,
           meta: {
-            title: i18n.t('pageMeta.panel.admin.roles.title')
+            title: i18n.t('pageMeta.panel.roles.title')
           }
         },
         {
@@ -136,7 +136,7 @@ const router = new VueRouter({
           name: 'createRoles',
           component: CreateRolesView,
           meta: {
-            title: i18n.t('pageMeta.panel.admin.roles.create.title')
+            title: i18n.t('pageMeta.panel.roles.create.title')
           }
         },
         {
@@ -144,7 +144,7 @@ const router = new VueRouter({
           name: 'editRole',
           component: EditRoleView,
           meta: {
-            title: i18n.t('pageMeta.panel.admin.roles.edit.title')
+            title: i18n.t('pageMeta.panel.roles.edit.title')
           }
         }
       ]

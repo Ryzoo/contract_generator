@@ -32,7 +32,7 @@ export default {
     },
     goBack () {
       const updateState = this.$store.getters.getNewContractUpdateState
-      this.$router.push(`/panel/admin/contracts/edit/${updateState.id}`)
+      this.$router.push(`/panel/contracts/edit/${updateState.id}`)
     },
     saveActual (redirect) {
       this.isLoaded = false
@@ -48,7 +48,7 @@ export default {
             this.$t('pages.panel.contracts.builder.savedNotify'),
             notify.SUCCESS
           )
-          if (redirect) { this.$router.push('/panel/admin/contracts') }
+          if (redirect) { this.$router.push('/panel/contracts/list') }
         })
         .finally(() => {
           this.isLoaded = true

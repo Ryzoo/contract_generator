@@ -42,7 +42,7 @@
                                 <v-btn
                                     color="primary"
                                     text
-                                    @click="$router.push('/panel/admin/settings/accounts')"
+                                    @click="$router.push('/panel/settings/accounts')"
                                 >
                                     {{ $t("base.button.back") }}
                                 </v-btn>
@@ -117,7 +117,7 @@ export default {
             this.$t('form.accountEditForm.notify.success'),
             notify.SUCCESS
           )
-          this.$router.push('/panel/admin/settings/accounts')
+          this.$router.push('/panel/settings/accounts')
         })
         .finally(() => {
           this.isLoaded = true
@@ -137,7 +137,7 @@ export default {
           this.email = response.data.email
         })
         .catch(() => {
-          this.$router.push('/panel/admin/settings/accounts')
+          this.$router.push('/panel/settings/accounts')
         })
         .finally(() => {
           this.isLoaded = true

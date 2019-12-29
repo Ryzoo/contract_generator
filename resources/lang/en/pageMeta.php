@@ -18,43 +18,41 @@ return [
         ],
     ],
     'panel' => [
-        'admin' => [
-            'dashboard' => [
-                'title' => 'Panel - Dashboard',
+        'dashboard' => [
+            'title' => 'Panel - Dashboard',
+        ],
+        'profile' => [
+            'title' => 'Panel - My Profile',
+        ],
+        'roles' => [
+            'title' => 'Panel - Manage roles',
+            "create" => [
+                "title" => 'Panel - Create role'
+            ]
+        ],
+        'accounts' => [
+            'title' => 'Panel - Accounts',
+            'create' => [
+                'title' => 'Panel - Create new account',
             ],
-            'profile' => [
-                'title' => 'Panel - My Profile',
+            'edit' => [
+                'title' => 'Panel - Edit account',
             ],
-            'roles' => [
-                'title' => 'Panel - Manage roles',
-                "create" => [
-                    "title" => 'Panel - Create role'
-                ]
+            'preview' => [
+                'title' => 'Panel - Preview account',
             ],
-            'accounts' => [
-                'title' => 'Panel - Accounts',
-                'create' => [
-                    'title' => 'Create new account',
-                ],
-                'edit' => [
-                    'title' => 'Edit account',
-                ],
-                'preview' => [
-                    'title' => 'Preview account',
-                ],
-            ],
-            'contract' => [
-                'title' => 'Panel - Agreements',
+        ],
+        'contract' => [
+                'title' => 'Panel - Contract list',
                 'builder' => [
-                    'title' => 'Build contract',
+                    'title' => 'Panel - Build contract',
                 ],
                 'create' => [
-                    'title' => 'Create new contract',
+                    'title' => 'Panel - Create new contract',
                 ],
                 'edit' => [
-                    'title' => 'Edit contract',
+                    'title' => 'Panel - Edit contract',
                 ],
             ],
-        ]
     ]
 ];

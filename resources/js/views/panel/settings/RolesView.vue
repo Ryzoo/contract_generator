@@ -23,7 +23,7 @@
             </template>
             <template v-slot:item.action="{ item }">
               <div class="table-icons">
-                <v-icon @click="$router.push(`/panel/admin/settings/roles/${item.id}/edit`)">fa-edit</v-icon>
+                <v-icon @click="$router.push(`/panel/settings/roles/${item.id}/edit`)">fa-edit</v-icon>
                 <v-icon @click="tryToRemove(item.id)">fa-trash</v-icon>
               </div>
             </template>

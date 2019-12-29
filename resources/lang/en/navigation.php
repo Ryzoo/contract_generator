@@ -4,8 +4,11 @@ return [
     'dashboard' => 'Dashboard',
     'profile' => 'My profile',
     'clients' => 'Clients',
-    'contract' => 'Contracts',
-    'schema' => 'Schemes',
+    'contract' => [
+        'main' => 'Contracts',
+        'contractList' => 'Full contract project',
+        'schema' => 'Part of contract',
+    ],
     'accounts' => 'Accounts',
     'settings' => [
         'main' => 'Settings',

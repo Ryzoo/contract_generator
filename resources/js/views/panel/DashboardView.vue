@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ContractForm from '../../client/contract/ContractForm'
+import ContractForm from '../client/contract/ContractForm'
 
 export default {
   name: 'Dashboard',

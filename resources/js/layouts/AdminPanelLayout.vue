@@ -124,17 +124,21 @@ export default {
         {
           title: this.$t('navigation.dashboard'),
           icon: 'fa-poll fa-fw',
-          link: '/panel/admin/dashboard'
+          link: '/panel/dashboard'
         },
         {
-          title: this.$t('navigation.contract'),
+          title: this.$t('navigation.contract.main'),
           icon: 'fa-file-contract fa-fw',
-          link: '/panel/admin/contracts'
-        },
-        {
-          title: this.$t('navigation.schema'),
-          icon: 'fa-th fa-fw',
-          link: '/panel/admin/contracts'
+          elements: [
+            {
+              title: this.$t('navigation.contract.contractList'),
+              link: '/panel/contracts/list'
+            },
+            {
+              title: this.$t('navigation.contract.schema'),
+              link: '/panel/contracts/schema'
+            }
+          ]
         },
         {
           title: this.$t('navigation.settings.main'),
@@ -142,15 +146,15 @@ export default {
           elements: [
             {
               title: this.$t('navigation.settings.roles'),
-              link: '/panel/admin/settings/roles'
+              link: '/panel/settings/roles'
             },
             {
               title: this.$t('navigation.settings.account'),
-              link: '/panel/admin/settings/accounts'
+              link: '/panel/settings/accounts'
             },
             {
               title: this.$t('navigation.settings.my_profile'),
-              link: '/panel/admin/settings/my_profile'
+              link: '/panel/settings/my_profile'
             }
           ]
         }

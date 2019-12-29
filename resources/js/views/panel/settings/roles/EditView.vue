@@ -52,7 +52,7 @@
                   <v-btn
                     color="primary"
                     text
-                    @click="$router.push('/panel/admin/settings/roles')"
+                    @click="$router.push('/panel/settings/roles')"
                   >
                     {{ $t("base.button.back") }}
                   </v-btn>
@@ -123,7 +123,7 @@ export default {
             this.$t('form.roleEditForm.notify.success'),
             notify.SUCCESS
           )
-          this.$router.push('/panel/admin/settings/roles')
+          this.$router.push('/panel/settings/roles')
         })
         .finally(() => {
           this.isLoaded = true
