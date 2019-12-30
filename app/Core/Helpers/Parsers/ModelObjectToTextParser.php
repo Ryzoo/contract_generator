@@ -20,13 +20,13 @@ class ModelObjectToTextParser
 
         switch ($ruleType) {
             case RuleTypes::TEXT:
-                return TextOperatorParser::parse(`'${$variable}'`, $operatorType, $value ? `'${$value}'` : "''");
+                return TextOperatorParser::parse("'$variable'", $operatorType, $value ? "'$value'" : "''");
             case RuleTypes::NUMBER:
                 return NumberOperatorParser::parse($variable, $operatorType, $value ? intval($value) : -1);
             case RuleTypes::SELECT:
-                return SelectOperatorParser::parse(`'${$variable}'`, $operatorType, $value ? `'${$value}'` : "''");
+                return SelectOperatorParser::parse("'$variable'", $operatorType, $value ? "'$value'" : "''");
             case RuleTypes::MULTI_SELECT:
-                return MultiSelectOperatorParser::parse(`'${$variable}'`, $operatorType, $value ? `'${$value}'` : "''");
+                return MultiSelectOperatorParser::parse("'$variable'", $operatorType, $value ? "'$value'" : "''");
         }
 
         return '';

@@ -16,7 +16,6 @@ class ConditionalParser {
     if (!this.store.getters.formElements) {
       return !equalValue
     }
-
     return this.parseConditionalStringToBool(content) === equalValue
   }
 
@@ -38,16 +37,10 @@ class ConditionalParser {
 
     if (!foundedAttribute) {
       console.error(`Var: ${varId} not found`)
-      return 'null'
+      return ''
     }
 
-    const currValue = foundedAttribute.value || 'null'
-
-    return this.isNumeric(currValue) ? currValue : `'${currValue}'`
-  }
-
-  isNumeric (n) {
-    return !isNaN(parseFloat(n)) && isFinite(n)
+    return foundedAttribute.value || ''
   }
 }
 

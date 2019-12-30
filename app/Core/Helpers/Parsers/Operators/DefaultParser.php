@@ -22,9 +22,9 @@ class DefaultParser
             case OperatorType::N_EMPTY:
                 return "!!${variable}";
             case OperatorType::BEGINS_WITH:
-                return "startsWith(${variable}, ${value})";
+                return "substr($variable, 0, strlen($value)) === $value";
             case OperatorType::ENDS_WITH:
-                return "endsWith(${variable}, ${value})";
+                return "(strlen($value) == 0 || substr($variable, -strlen($value)) === $value)";
             case OperatorType::GREATER:
                 return "strlen(${variable}) > intval(${value})";
             case OperatorType::GREATER_OR_EQUAL:
