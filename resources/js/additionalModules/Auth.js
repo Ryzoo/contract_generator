@@ -9,6 +9,12 @@ export default class Auth {
     this.router.push((route && route.length > 0) ? route : '/panel/')
   }
 
+  checkPermission (permission) {
+    if (!this.store.getters.authUser) { return false }
+
+    return this.store.getters.authUser.permissions.some(x => x.slug === permission)
+  }
+
   authorize (userData) {
     localStorage.setItem('login_token', userData.loginToken)
     window.axios.defaults.headers.common.Authorization = 'Bearer ' + userData.loginToken

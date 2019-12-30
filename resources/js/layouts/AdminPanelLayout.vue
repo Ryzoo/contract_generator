@@ -30,7 +30,7 @@
         </v-list-item>
       </v-list>
       <v-list class="pt-0" dense>
-        <template v-for="item in items">
+        <template v-for="item in calculatedAccessItems">
           <v-list-item
             link
             :key="item.title"
@@ -48,7 +48,7 @@
           </v-list-item>
           <v-list-group
             :key="item.title"
-            v-else
+            v-else-if="item.elements && item.elements.length > 0"
           >
             <template v-slot:activator>
               <v-list-item-action>
@@ -199,6 +199,8 @@
 </template>
 
 <script>
+import { Permissions } from '../additionalModules/Permissions'
+
 export default {
   name: 'PanelLayout',
   data: function () {
@@ -233,11 +235,17 @@ export default {
           elements: [
             {
               title: this.$t('navigation.settings.roles'),
-              link: '/panel/settings/roles'
+              link: '/panel/settings/roles',
+              access: [
+                Permissions.MANAGE_ROLES
+              ]
             },
             {
               title: this.$t('navigation.settings.account'),
-              link: '/panel/settings/accounts'
+              link: '/panel/settings/accounts',
+              access: [
+                Permissions.MANAGE_USERS
+              ]
             }
           ]
         }
@@ -245,6 +253,9 @@ export default {
     }
   },
   computed: {
+    calculatedAccessItems () {
+      return this.calculateAccessArray(this.items)
+    },
     user () {
       const user = this.$store.getters.authUser
       return {
@@ -254,6 +265,21 @@ export default {
     }
   },
   methods: {
+    calculateAccessArray (elements) {
+      return elements.map(x => {
+        x.active = true
+
+        if (x.access) {
+          x.active = x.access.every(z => auth.checkPermission(z))
+        }
+
+        if (x.elements) {
+          x.elements = this.calculateAccessArray(x.elements)
+        }
+
+        return x
+      }).filter(x => x.active)
+    },
     goToProfilePage () {
       this.$router.push('/panel/settings/my_profile')
       this.menu = false
