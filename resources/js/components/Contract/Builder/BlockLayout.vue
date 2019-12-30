@@ -1,15 +1,14 @@
 <template>
   <v-row>
     <v-col sm="12" class="builder-content">
-      <ContainerBlock
-        v-for="(block, index) in filterParentBlocks"
-        :block="block"
-        @show-block-modal="showBlockModal"
-        :key="block.id"
-        :divider="block.isDivider"
-        :blockIndex="index"
-      >
-      </ContainerBlock>
+        <ContainerBlock
+          v-for="(block, index) in filterParentBlocks"
+          :block="block"
+          @show-block-modal="showBlockModal"
+          :key="block.id"
+          :divider="block.isDivider"
+          :blockIndex="index"
+        />
     </v-col>
   </v-row>
 </template>

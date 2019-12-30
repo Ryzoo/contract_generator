@@ -7,9 +7,9 @@
             </v-btn>
         </div>
         <div v-else class="empty-elements">
-            <v-btn @click="addBlockDialog = true" tile outlined color="primary">
-                <span>{{$t("pages.panel.contracts.builder.addBLock")}}</span>
-                <v-icon class="mx-3">fa-plus-circle</v-icon>
+            <v-btn @click="addBlockDialog = true" outlined color="primary">
+                {{$t("pages.panel.contracts.builder.addBLock")}}
+                <v-icon right small>fa-plus-circle</v-icon>
             </v-btn>
         </div>
 
@@ -26,6 +26,19 @@
                             </div>
                         </div>
                     </v-flex>
+                  <v-divider/>
+                  <v-row>
+                    <v-col>
+                      <v-alert
+                        dense
+                        text
+                        class="my-5"
+                        type="info"
+                      >
+                        {{$t("pages.panel.contracts.builder.noPartToReuse")}}
+                      </v-alert>
+                    </v-col>
+                  </v-row>
                 </v-card-text>
             </v-card>
         </v-dialog>

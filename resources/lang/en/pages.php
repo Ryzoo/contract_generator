@@ -28,9 +28,11 @@ return [
                 "attributeList" => "List of attributes",
                 "savedNotify" => "Contract saved successfully",
                 "addBLock" => "Add block",
-                "newBlock" => "Add new block",
+                "newBlock" => "Add new block or use part",
                 "removeAttributeTitle" => "Remove attribute",
+                "removeBlockTitle" => "Remove selected block",
                 "noVariables" => "No variable has been added yet",
+                "noPartToReuse" => "No available part to reuse. Create block construction and use save as part button on it first!"
             ]
         ]
     ],

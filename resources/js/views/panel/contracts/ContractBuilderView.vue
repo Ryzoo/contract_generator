@@ -1,14 +1,12 @@
 <template>
   <v-row>
-    <v-col sm="12">
+    <v-col cols="12">
       <Header
         @show-attribute-modal="showAttributeModal = true"
       />
-    </v-col>
-    <v-col sm="12">
       <v-divider class="mb-3"/>
     </v-col>
-    <v-col sm="12">
+    <v-col cols="12">
       <BlockLayout
         @show-block-modal="showBlockModal = true"
       />

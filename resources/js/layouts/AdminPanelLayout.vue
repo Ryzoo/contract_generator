@@ -16,23 +16,12 @@
         </v-list-item>
 
         <v-list-item tag="div">
-          <v-list-item-avatar @click="goToProfilePage">
-            <v-img :src="user.profileImage"/>
+          <v-list-item-avatar>
+            <v-img src="https://image.flaticon.com/icons/png/512/197/197717.png"/>
           </v-list-item-avatar>
-
-          <v-list-item-content class="text-center" @click="goToProfilePage">
-            <v-list-item-title> {{user.firstName}} {{user.lastName}}</v-list-item-title>
-            <v-list-item-subtitle>
-              <v-chip
-                color="accent"
-                x-small
-                label
-              >
-                {{user.roles.name}}
-              </v-chip>
-            </v-list-item-subtitle>
+          <v-list-item-content class="text-center">
+            {{$t('pageMeta.appTitle')}}
           </v-list-item-content>
-
           <v-list-item-action>
             <v-btn icon @click.stop="mini = !mini">
               <v-icon>fa-chevron-left</v-icon>
@@ -95,9 +84,98 @@
         dark
         @click.stop="navigationModel = !navigationModel"
       />
-      <v-toolbar-title>{{$t('pageMeta.appTitle')}}</v-toolbar-title>
       <v-spacer/>
-      <v-btn @click="logout()" text dark> <v-icon>fa-sign-out-alt fa-fw</v-icon> {{$t('navigation.logout')}}</v-btn>
+
+      <v-menu
+        v-model="menu"
+        :close-on-content-click="false"
+        :nudge-width="200"
+        offset-x
+      >
+        <template v-slot:activator="{ on }">
+          <v-btn
+            text
+            dark
+            v-on="on"
+          >
+            <v-avatar size="30" class="mr-2">
+              <v-img :src="user.profileImage"/>
+            </v-avatar>
+            {{user.firstName}} {{user.lastName}}
+          </v-btn>
+        </template>
+        <v-card
+          v-if="user">
+          <v-list>
+            <v-list-item>
+              <v-list-item-avatar>
+                <v-avatar size="30" class="mr-2">
+                  <v-img :src="user.profileImage"/>
+                </v-avatar>
+              </v-list-item-avatar>
+
+              <v-list-item-content>
+                <v-list-item-title>{{user.firstName}} {{user.lastName}}</v-list-item-title>
+                <v-list-item-subtitle>
+                  <v-chip
+                    v-if="user.roles"
+                    color="accent"
+                    x-small
+                    label
+                  >
+                    {{user.roles.name}}
+                  </v-chip>
+                </v-list-item-subtitle>
+              </v-list-item-content>
+
+              <v-list-item-action>
+                <v-btn
+                  outlined
+                  small
+                  color="primary"
+                  @click="logout()"
+                >
+                  {{$t('navigation.logout')}}
+                  <v-icon small right>fa-sign-out-alt fa-fw</v-icon>
+                </v-btn>
+              </v-list-item-action>
+            </v-list-item>
+          </v-list>
+
+          <v-divider/>
+
+          <v-list
+            dense
+            rounded
+          >
+            <v-list-item-group color="primary">
+              <v-list-item @click="logout">
+                <v-list-item-avatar>
+                  <v-badge color="accent">
+                    <template v-slot:badge>0</template>
+                    <v-icon small>fa-bell fa-fw</v-icon>
+                  </v-badge>
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title>{{$t('navigation.profile.notifications')}}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item @click="goToProfilePage">
+                <v-list-item-avatar><v-icon>fa-users-cog fa-fw</v-icon></v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title>{{$t('navigation.profile.main')}}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
+
+          <v-card-actions>
+            <v-spacer/>
+            <v-btn color="primary" text @click="menu = false">Close</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-menu>
+
     </v-app-bar>
 
     <v-content>
@@ -125,6 +203,7 @@ export default {
   name: 'PanelLayout',
   data: function () {
     return {
+      menu: false,
       navigationRight: true,
       navigationModel: true,
       mini: false,
@@ -159,10 +238,6 @@ export default {
             {
               title: this.$t('navigation.settings.account'),
               link: '/panel/settings/accounts'
-            },
-            {
-              title: this.$t('navigation.settings.my_profile'),
-              link: '/panel/settings/my_profile'
             }
           ]
         }
@@ -174,17 +249,25 @@ export default {
       const user = this.$store.getters.authUser
       return {
         ...user,
-        roles: user.roles.sort((a, b) => b.level - a.level).shift() || null
+        roles: user ? user.roles.sort((a, b) => b.level - a.level).shift() || null : null
       }
     }
   },
   methods: {
     goToProfilePage () {
       this.$router.push('/panel/settings/my_profile')
+      this.menu = false
     },
     logout () {
+      this.menu = false
       auth.logout()
     }
   }
 }
 </script>
+
+<style>
+  .padding-x-full-menu{
+    padding: 0 50px;
+  }
+</style>

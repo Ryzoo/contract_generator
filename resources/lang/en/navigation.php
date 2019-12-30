@@ -2,7 +2,6 @@
 
 return [
     'dashboard' => 'Dashboard',
-    'profile' => 'My profile',
     'clients' => 'Clients',
     'contract' => [
         'main' => 'Contracts',
@@ -14,7 +13,10 @@ return [
         'main' => 'Settings',
         'roles' => 'Roles',
         'account' => 'Accounts',
-        'my_profile' => 'My profile',
+    ],
+    "profile" => [
+        'main' => 'My profile',
+        'notifications' => 'Notifications',
     ],
     'logout' => 'Logout',
 ];

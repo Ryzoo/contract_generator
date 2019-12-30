@@ -4,16 +4,37 @@
     <div class="block-header--icon">
       <v-icon class="mx-3 rotate" @click="toggleBlock($event)">fa-chevron-right</v-icon>
     </div>
-    <div class="block-header--content">
-      <h3 class="pr-2">
-        <div class="block-header--type">EMPTY BLOCK</div>
-        {{ block.blockName | truncate}}
-      </h3>
+    <div class="block-header--content" @click="toggleBlock($event)">
+      <div class="block-header--type">{{ block.blockName | truncate}}</div>
+      <h5 class="pr-2">
+        EMPTY BLOCK
+      </h5>
     </div>
-    <div class="block-header--action">
-      <v-icon class="mx-3" @click="editBlock()">fa-edit</v-icon>
-      <v-icon class="mx-3" @click="removeBlock">fa-trash</v-icon>
+    <div class="block-header--action mr-4">
+      <v-btn small text color="accent" @click="saveAsPart()"> Save as part <v-icon small right>fa-save</v-icon> </v-btn>
+      <v-btn small text color="primary" @click="editBlock()"> Edit <v-icon small right>fa-edit</v-icon> </v-btn>
+      <v-btn small text color="error" @click="deleteDialog=true"> Delete <v-icon small right>fa-trash</v-icon> </v-btn>
     </div>
+
+    <v-dialog persistent v-model="deleteDialog" max-width="350">
+      <v-card>
+        <v-card-title class="headline">
+          {{ $t("pages.panel.contracts.builder.removeBlockTitle") }}
+        </v-card-title>
+        <v-card-text>
+          {{ $t("base.description.remove") }}
+        </v-card-text>
+        <v-card-actions>
+          <div class="flex-grow-1"></div>
+          <v-btn color="primary" text @click="deleteDialog = false">
+            {{ $t("base.button.cancel") }}
+          </v-btn>
+          <v-btn color="error" @click="removeBlock">
+            {{ $t("base.button.remove") }}
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -21,8 +42,14 @@
 export default {
   name: 'BlockHeader',
   props: ['block'],
+  data () {
+    return {
+      deleteDialog: false
+    }
+  },
   methods: {
-    showBlockModal () {
+    saveAsPart () {
+      alert('Not implemented')
     },
     editBlock () {
       this.$store.dispatch('builder_setActiveBlock', this.block)
@@ -60,7 +87,10 @@ export default {
     display: flex;
 
     &--content {
-      flex: 1
+      flex: 1;
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     &--type {

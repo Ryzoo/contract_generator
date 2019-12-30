@@ -28,9 +28,11 @@ export default {
                         "attributeList": "List of attributes",
                         "savedNotify": "Contract saved successfully",
                         "addBLock": "Add block",
-                        "newBlock": "New block",
+                        "newBlock": "Add new block or use part",
                         "removeAttributeTitle": "Remove attribute",
-                        "noVariables": "No variable has been added yet"
+                        "removeBlockTitle": "Remove selected block",
+                        "noVariables": "No variable has been added yet",
+                        "noPartToReuse": "No available part to reuse. Create block construction and use save as part button on it first!"
                     }
                 }
             },
@@ -67,6 +69,9 @@ export default {
                     "title": "Panel - Manage roles",
                     "create": {
                         "title": "Panel - Create role"
+                    },
+                    "edit": {
+                        "title": "Panel - Edit role"
                     }
                 },
                 "accounts": {
@@ -296,7 +301,6 @@ export default {
         },
         "navigation": {
             "dashboard": "Dashboard",
-            "profile": "My profile",
             "clients": "Clients",
             "contract": {
                 "main": "Contracts",
@@ -307,8 +311,11 @@ export default {
             "settings": {
                 "main": "Settings",
                 "roles": "Roles",
-                "account": "Accounts",
-                "my_profile": "My profile"
+                "account": "Accounts"
+            },
+            "profile": {
+                "main": "My profile",
+                "notifications": "Notifications"
             },
             "logout": "Logout"
         },

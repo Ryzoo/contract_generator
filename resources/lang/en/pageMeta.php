@@ -28,6 +28,9 @@ return [
             'title' => 'Panel - Manage roles',
             "create" => [
                 "title" => 'Panel - Create role'
+            ],
+            "edit" => [
+                "title" => 'Panel - Edit role'
             ]
         ],
         'accounts' => [
