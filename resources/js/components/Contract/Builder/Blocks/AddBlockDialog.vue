@@ -13,7 +13,7 @@
             </v-btn>
         </div>
 
-        <v-dialog ref="newBlockDialog" v-model="addBlockDialog" max-width="900">
+        <v-dialog ref="newBlockDialog" v-model="addBlockDialog" max-width="600">
             <v-card>
                 <v-card-title class="headline justify-center" primary-title>
                   {{$t("pages.panel.contracts.builder.newBlock")}}
@@ -109,6 +109,7 @@ export default {
 
 <style lang="scss" scoped>
   @import "./../../../../../sass/colors";
+
     .builder-content {
         .empty-elements {
             border: 1px dashed #707070;
@@ -123,16 +124,20 @@ export default {
 
     .new-block-container {
         .options {
+          margin: 15px;
             width: 150px;
             height: 80px;
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 2px solid #dabd79;
-            color: #dabd79;
+            background: $primary;
+            border-radius: 10px;
+            color: white;
+          transition: all .2s;
 
             &:hover {
                 cursor: pointer;
+              background: $accent;
             }
         }
 
@@ -140,6 +145,7 @@ export default {
             padding: 15px 0;
             display: flex;
             justify-content: space-around;
+          flex-wrap: wrap;
 
             .select-options {
                 width: 100%;

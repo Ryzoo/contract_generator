@@ -23,7 +23,11 @@ class AuthController extends Controller
 
     protected function authorizeLoggedUser(Request $request) {
         $id = Auth::id();
-        return Response::json(User::with('roles')->find($id));
+        $user = User::with('roles')->findOrFail($id);
+        $permissions = $user->getPermissions();
+        $user->permissions = $permissions;
+
+        return Response::json($user);
     }
 
 }

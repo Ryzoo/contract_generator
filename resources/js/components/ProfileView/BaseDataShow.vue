@@ -3,7 +3,7 @@
         <v-card-text>
             <template v-if="isLoaded">
                 <v-avatar size="80%" class="mx-auto d-block mb-2">
-                    <v-img :src="user.profileImage" alt="avatar"></v-img>
+                  <v-img :src="user.profileImage" alt="avatar"/>
                 </v-avatar>
                 <input
                     type="file"

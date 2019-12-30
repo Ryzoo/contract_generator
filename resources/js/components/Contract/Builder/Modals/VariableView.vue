@@ -19,9 +19,15 @@
             {{ attribute.attributeName}}
           </v-chip>
       </div>
-      <div v-else class="no-variables">
-        <h2>{{$t("pages.panel.contracts.builder.noVariables")}}</h2>
-      </div>
+      <v-alert
+        v-else
+        dense
+        text
+        class="mt-5 mb-0"
+        type="info"
+      >
+        {{$t("pages.panel.contracts.builder.noVariables")}}
+      </v-alert>
     </v-card-text>
     <v-card-actions>
       <v-spacer/>
