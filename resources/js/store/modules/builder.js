@@ -39,6 +39,9 @@ const actions = {
   },
   builder_blockUpdateContent: (context, data) => {
     context.commit('BUILDER_BLOCK_UPDATE_CONTENT', data)
+  },
+  builder_changeActiveBlock: (context, data) => {
+    context.commit('BUILDER_ACTIVE_BLOCK_UPDATE', data)
   }
 }
 
@@ -48,6 +51,22 @@ const mutations = {
     state.builder.blocks = data
   },
   BUILDER_SET_ACTIVE_BLOCK: (state, data) => {
+    state.builder.activeBlock = data
+  },
+  BUILDER_ACTIVE_BLOCK_UPDATE: (state, data) => {
+    const updateBlock = (block, data) => {
+      return block.map(x => {
+        if (x.id === data.id) {
+          return data
+        }
+
+        if (x.content.blocks) {
+          x.content.blocks = updateBlock(x.content.blocks, data)
+        }
+        return x
+      })
+    }
+    state.builder.blocks = updateBlock(state.builder.blocks, data)
     state.builder.activeBlock = data
   },
   BUILDER_BLOCK_UPDATE_CONTENT: (state, data) => {
@@ -90,9 +109,7 @@ const mutations = {
       const replaceText = `{${Id}}`
 
       if (x.conditionals) {
-        x.conditionals = x.conditionals.filter(c => {
-          c.content.every(cc => !cc.includes(replaceText))
-        })
+        x.conditionals = x.conditionals.filter(c => !c.content.includes(replaceText))
       }
 
       if (x.content.text) {

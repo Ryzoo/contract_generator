@@ -1,14 +1,14 @@
-const mix = require('laravel-mix');
+const mix = require('laravel-mix')
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+  .sass('resources/sass/app.scss', 'public/css')
 
 mix.options({
-    hmrOptions: {
-        host: 'localhost',
-        port: '8000'
-    },
-});
+  hmrOptions: {
+    host: 'localhost',
+    port: '8000'
+  }
+})
 
 mix.webpackConfig({
   module: {
@@ -18,7 +18,7 @@ mix.webpackConfig({
         exclude: /node_modules|vue-i18n-locales\.generated\.js/,
         loader: 'eslint-loader',
         test: /\.(js|vue)?$/
-      },
+      }
     ]
   }
 })

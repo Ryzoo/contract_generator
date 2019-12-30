@@ -17,7 +17,7 @@
     <v-dialog
       v-model="showBlockModal"
       scrollable
-      max-width="500px">
+      max-width="800px">
           <SelectedBlockView @close="showBlockModal=false"/>
     </v-dialog>
 

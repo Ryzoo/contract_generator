@@ -123,7 +123,7 @@ export default {
         })
     },
     goToEdit (id) {
-      this.$router.push(`contracts/edit/${id}`)
+      this.$router.push(`/panel/contracts/edit/${id}`)
     }
   },
   mounted () {
@@ -132,4 +132,4 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped/>

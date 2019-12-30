@@ -1,5 +1,6 @@
 
 import { FormElementsEnum } from './Enums'
+import ModelObjectToTextParser from './Parsers/ModelObjectToTextParser'
 
 class ConditionalParser {
   setStore (store) {
@@ -8,7 +9,7 @@ class ConditionalParser {
 
   validate (conditionalType, attribute) {
     return attribute.conditionals
-      .every(c => c.conditionalType !== conditionalType || this.isConditionalValidAndEqual(c.content, true))
+      .every(c => parseInt(c.conditionalType) !== parseInt(conditionalType) || this.isConditionalValidAndEqual(ModelObjectToTextParser.parse(JSON.parse(c.content)), true))
   }
 
   isConditionalValidAndEqual (content, equalValue) {
@@ -20,14 +21,9 @@ class ConditionalParser {
   }
 
   parseConditionalStringToBool (content) {
-    const contentWithVariables = content.map(e => {
-      if (e.length >= 3 && e[0] === '{' && e[e.length - 1] === '}') {
-        const varId = parseInt(e.slice(1, e.length - 1))
-        return this.getVariableValue(varId)
-      }
-
-      return e
-    })
+    const contentWithVariables = content
+      .split(' ')
+      .map(e => e.replace(/{(\d+)}/g, (m, id) => this.getVariableValue(parseInt(id))))
 
     // eslint-disable-next-line no-eval
     return eval(contentWithVariables.join(' '))
@@ -38,14 +34,14 @@ class ConditionalParser {
       .filter(e => e.elementType === FormElementsEnum.ATTRIBUTE)
       .map(e => e.attribute)
 
-    const findedAttribute = allAttributes.find(e => e.id === parseInt(varId))
+    const foundedAttribute = allAttributes.find(e => e.id === parseInt(varId))
 
-    if (!findedAttribute) {
+    if (!foundedAttribute) {
       console.error(`Var: ${varId} not found`)
       return 'null'
     }
 
-    const currValue = findedAttribute.value || 'null'
+    const currValue = foundedAttribute.value || 'null'
 
     return this.isNumeric(currValue) ? currValue : `'${currValue}'`
   }

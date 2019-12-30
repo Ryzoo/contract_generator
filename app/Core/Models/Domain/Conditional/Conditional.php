@@ -24,7 +24,7 @@ abstract class Conditional implements IConditional {
     public $conditionalName;
 
     /**
-     * @var array
+     * @var string
      */
     public $content;
 
@@ -79,18 +79,12 @@ abstract class Conditional implements IConditional {
     }
 
     public function getUsedVariable(): Collection {
-        $usedVariables = collect();
+        preg_match_all('/"id": (\d+),/', $this->content, $output_array);
 
-        foreach ($this->content as $element) {
-            preg_match_all('/{(\d+)}/', $element, $output_array);
-
-            if (isset($output_array[1]) && is_array($output_array[1])) {
-                foreach ($output_array[1] as $arrayElement) {
-                    $usedVariables->push($arrayElement);
-                }
-            }
+        if (isset($output_array[1]) && is_array($output_array[1])) {
+            return collect($output_array[1]);
         }
 
-        return $usedVariables;
+        return collect();
     }
 }

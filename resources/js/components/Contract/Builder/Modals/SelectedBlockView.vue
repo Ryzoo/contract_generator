@@ -16,28 +16,10 @@
       </v-tab-item>
 
       <v-tab-item :key="1" value="tab-1">
-        <v-col sm="12">
-          <v-select
-            :items="blockOptions"
-            label="Action"
-            outlined
-            color="primary"
-            v-model="conditional.conditionalType"
-            hide-details
-          >
-          </v-select>
-        </v-col>
-
-        <v-col sm="12">
-          <v-row>
-            <v-col sm="10">
-              <v-text-field v-model="conditional.content" label="Conditional" outline/>
-            </v-col>
-            <v-col sm="2">
-              <v-btn color="primary" @click="addConditional()">Add</v-btn>
-            </v-col>
-          </v-row>
-        </v-col>
+        <QueryBuilder
+          :conditionals="block.conditionals"
+          @conditional-change="onConditionalChange"
+        />
       </v-tab-item>
     </v-tabs>
     <v-card-actions>
@@ -49,36 +31,21 @@
 </template>
 
 <script>
-import { ConditionalEnum } from '../../../../additionalModules/Enums'
+import QueryBuilder from '../../../common/QueryBuilder'
 
 export default {
   name: 'SelectedBlockView',
-  components: { },
+  components: { QueryBuilder },
   data () {
     return {
-      conditionalRules: [],
-      currentTab: null,
-      block: {
-        blockName: '',
-        conditionals: ''
-      },
-      blockOptions: [
-        'SHOW_ON'
-      ],
-      conditional: this.getInitialConditional()
-    }
-  },
-  watch: {
-    activeBlock (value) {
-      this.initBlock()
+      currentTab: null
     }
   },
   computed: {
-    activeBlock () {
-      return this.$store.state.builder.builder.activeBlock
-    },
-    blocks () {
-      return this.$store.getters.builder_allBlocks
+    block () {
+      return {
+        ...this.$store.state.builder.builder.activeBlock
+      }
     }
   },
   methods: {
@@ -86,60 +53,12 @@ export default {
       this.$emit('close')
     },
     saveBlockConfiguration () {
-      this.editBlock()
       this.pushCloseEvent()
+      this.$store.dispatch('builder_changeActiveBlock', this.block)
     },
-    getInitialConditional () {
-      return {
-        content: '',
-        conditionalType: -1
-      }
-    },
-    addConditional () {
-      const blockConditional = {
-        conditionalType: parseInt(ConditionalEnum[this.conditional.conditionalType]),
-        content: this.conditional.content.split(' ')
-      }
-
-      // this.activeBlock.conditionals.push(blockConditional);
-      this.activeBlock.conditionals = [blockConditional]
-      this.$store.dispatch('builder_setActiveBlock', this.activeBlock)
-      this.editBlock()
-    },
-    editBlock (blocks = this.blocks) {
-      blocks.map(x => {
-        if (x.id === this.activeBlock.parentId) {
-          x.content.blocks.map(x => {
-            if (x.id === this.activeBlock.id) {
-              x = this.activeBlock
-            }
-          })
-        } else if (x.content.blocks) {
-          this.editBlock(x.content.blocks)
-        }
-      })
-
-      this.$store.dispatch('builder_set', blocks)
-    },
-    initBlock () {
-      this.block = this.activeBlock
-      this.conditional = this.getInitialConditional()
-      this.block.conditionals.forEach((conditional) => {
-        this.conditional = {
-          content: conditional.content.join(' '),
-          conditionalType: conditional.conditionalName
-        }
-      })
-    }
-  },
-  mounted () {
-    if (this.activeBlock) {
-      this.initBlock()
+    onConditionalChange (newConditionalValue) {
+      this.block.conditionals = newConditionalValue
     }
   }
 }
 </script>
-
-<style scoped>
-
-</style>

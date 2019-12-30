@@ -3,23 +3,21 @@
     <v-card-title>Attribute list:</v-card-title>
     <v-divider/>
     <v-card-text>
-      <div v-if="$store.getters.builder_allVariables.length > 0" class="variables-list">
-          <span
+      <div v-if="$store.getters.builder_allVariables.length > 0"
+           class="text-center">
+          <v-chip
+            class="ma-1"
+            label
+            close
             v-for="attribute in $store.getters.builder_allVariables"
             :key="attribute.id"
-            class="variable" @click="editVariable(attribute)"
+            color="primary"
+            @click="editVariable(attribute)"
+            @click:close="tryToRemoveAttribute(attribute)"
           >
-            <b>[{{attribute.id}}]</b>
-            {{attribute.attributeName}}
-            <div>
-              <v-icon
-                @click="tryToRemoveAttribute($event, attribute)"
-                class="delete-variable"
-                small>
-                fa-times
-              </v-icon>
-            </div>
-          </span>
+            <b>[{{attribute.id}}]&nbsp;</b>
+            {{ attribute.attributeName}}
+          </v-chip>
       </div>
       <div v-else class="no-variables">
         <h2>{{$t("pages.panel.contracts.builder.noVariables")}}</h2>
@@ -57,7 +55,7 @@
       scrollable
       max-width="500px">
       <CreateEditVariable :isNewAttribute="isNewAttribute" :editAttribute="attribute"
-                          :attributesList="$store.getters.builder_allVariables" @close="showAddEditModal=false"/>
+                          :attributesList="$store.getters.builder_allVariables" @close="pushCloseEvent"/>
     </v-dialog>
   </v-card>
 </template>
@@ -82,8 +80,7 @@ export default {
     }
   },
   methods: {
-    tryToRemoveAttribute (e, attribute) {
-      e.stopPropagation()
+    tryToRemoveAttribute (attribute) {
       this.removedAttribute = attribute
       this.deleteDialog = true
     },
@@ -98,6 +95,7 @@ export default {
     },
     pushCloseEvent () {
       this.$emit('close')
+      this.showAddEditModal = false
     },
     editVariable (attribute) {
       this.attribute = attribute

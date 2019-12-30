@@ -4,6 +4,7 @@
 namespace App\Core\Models\Domain\Attributes;
 
 
+use App\Core\Contracts\Domain\IAttribute;
 use App\Core\Enums\AttributeType;
 
 class RepeatGroupAttribute extends Attribute {
@@ -27,12 +28,15 @@ class RepeatGroupAttribute extends Attribute {
         foreach ($this->value as $attributes) {
             $attributeValue = collect();
 
+            /**
+             * @var IAttribute $attribute
+             */
             foreach ($attributes as $attribute) {
                 if ($attributesName->count() < count($attributes)) {
                     $attributesName->push($attribute->attributeName);
                 }
 
-                $attributeValue->push($attribute->value);
+                $attributeValue->push($attribute->getValue());
             }
 
             $attributesValue->push($attributeValue);

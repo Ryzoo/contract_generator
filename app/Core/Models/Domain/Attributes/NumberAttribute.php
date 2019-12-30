@@ -19,8 +19,4 @@ class NumberAttribute extends Attribute {
             "required" => null
         ];
     }
-
-    public function getValue(){
-        return intval($this->value);
-    }
 }

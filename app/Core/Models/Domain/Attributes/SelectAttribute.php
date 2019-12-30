@@ -19,8 +19,4 @@ class SelectAttribute extends Attribute {
             "required" => null
         ];
     }
-
-    public function getValue(){
-        return "'{$this->value}'";
-    }
 }
