@@ -9,16 +9,3 @@ mix.options({
     port: '8000'
   }
 })
-
-mix.webpackConfig({
-  module: {
-    rules: [
-      {
-        enforce: 'pre',
-        exclude: /node_modules|vue-i18n-locales\.generated\.js/,
-        loader: 'eslint-loader',
-        test: /\.(js|vue)?$/
-      }
-    ]
-  }
-})
