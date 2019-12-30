@@ -41,8 +41,8 @@ trait ConditionalValidator
 
     private function isConditionalValidAndEqual($content, bool $equalValue): bool
     {
-        if ($this->conditionalList->count() == 0) {
-            return !$equalValue;
+        if (strlen($content) <= 0) {
+            return $equalValue;
         }
 
         return $this->parseConditionalStringToBool($content) === $equalValue;

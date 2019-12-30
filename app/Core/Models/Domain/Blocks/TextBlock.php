@@ -33,7 +33,7 @@ class TextBlock extends Block {
 
     protected function resolveAttributesInContent(Collection $formElements) {
         $attributeResolver = new AttributeResolver($formElements);
-        $this->content["text"]  = $attributeResolver->resolveText($this->content["text"] );
+        $this->content["text"]  = $attributeResolver->resolveText($this->content["text"]);
     }
 
     public function findVariable(Contract $contract): Collection{
