@@ -17,7 +17,6 @@
         "lint:fix": "./node_modules/.bin/eslint --fix resources/js/ --ext .js,.vue"
     },
     "devDependencies": {
-        "@babel/plugin-proposal-class-properties": "^7.7.4",
         "@fortawesome/fontawesome-free": "^5.12.0",
         "axios": "^0.19",
         "eslint": "^6.8.0",
