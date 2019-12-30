@@ -9,15 +9,15 @@ class RolesSeeder extends Seeder
     {
         $roleItems = [
             [
-                'name'        => 'Admin',
+                'name'        => 'Administrator',
                 'slug'        => 'admin',
-                'description' => 'Admin Role',
-                'level'       => 5,
+                'description' => 'Role with all permission',
+                'level'       => 10,
             ],
             [
-                'name'        => 'User',
-                'slug'        => 'user',
-                'description' => 'User Role',
+                'name'        => 'Client',
+                'slug'        => 'client',
+                'description' => 'Basic role in application for new users',
                 'level'       => 1,
             ],
         ];

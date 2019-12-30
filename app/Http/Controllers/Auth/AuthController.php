@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Core\Models\User;
 use App\Core\Services\AuthService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -21,7 +22,8 @@ class AuthController extends Controller
     }
 
     protected function authorizeLoggedUser(Request $request) {
-        return Response::json(Auth::user());
+        $id = Auth::id();
+        return Response::json(User::with('roles')->find($id));
     }
 
 }

@@ -9,7 +9,7 @@ class ConnectRelationshipsRolesSeeder extends Seeder
     public function run()
     {
         $permissions = Permission::all();
-        $roleAdmin = Role::where('name', '=', 'Admin')
+        $roleAdmin = Role::where('slug', '=', 'admin')
             ->first();
 
         foreach ($permissions as $permission)

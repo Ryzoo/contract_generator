@@ -24,7 +24,7 @@ $factory->afterCreatingState(User::class, 'admin', function ($user, $faker) {
 });
 
 $factory->afterCreatingState(User::class, 'client', function ($user, $faker) {
-    $role = \jeremykenedy\LaravelRoles\Models\Role::where('slug', '=', 'user')->first();
+    $role = \jeremykenedy\LaravelRoles\Models\Role::where('slug', '=', 'client')->first();
     $user->attachRole($role);
 });
 

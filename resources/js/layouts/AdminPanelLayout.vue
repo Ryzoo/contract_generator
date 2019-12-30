@@ -16,12 +16,21 @@
         </v-list-item>
 
         <v-list-item tag="div">
-          <v-list-item-avatar>
+          <v-list-item-avatar @click="goToProfilePage">
             <v-img :src="user.profileImage"/>
           </v-list-item-avatar>
 
-          <v-list-item-content>
+          <v-list-item-content class="text-center" @click="goToProfilePage">
             <v-list-item-title> {{user.firstName}} {{user.lastName}}</v-list-item-title>
+            <v-list-item-subtitle>
+              <v-chip
+                color="accent"
+                x-small
+                label
+              >
+                {{user.roles.name}}
+              </v-chip>
+            </v-list-item-subtitle>
           </v-list-item-content>
 
           <v-list-item-action>
@@ -119,7 +128,6 @@ export default {
       navigationRight: true,
       navigationModel: true,
       mini: false,
-      user: this.$store.getters.authUser,
       items: [
         {
           title: this.$t('navigation.dashboard'),
@@ -161,14 +169,22 @@ export default {
       ]
     }
   },
+  computed: {
+    user () {
+      const user = this.$store.getters.authUser
+      return {
+        ...user,
+        roles: user.roles.sort((a, b) => b.level - a.level).shift() || null
+      }
+    }
+  },
   methods: {
+    goToProfilePage () {
+      this.$router.push('/panel/settings/my_profile')
+    },
     logout () {
       auth.logout()
     }
   }
 }
 </script>
-
-<style lang="scss">
-
-</style>
