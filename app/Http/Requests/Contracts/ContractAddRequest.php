@@ -5,6 +5,7 @@ namespace App\Http\Requests\Contracts;
 
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ContractAddRequest extends FormRequest {
 
@@ -14,7 +15,7 @@ class ContractAddRequest extends FormRequest {
      * @return bool
      */
     public function authorize() {
-        return true;
+        return Auth::hasUser() && Auth::user()->hasPermission('manage.contracts');
     }
 
     /**

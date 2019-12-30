@@ -10,7 +10,8 @@ export default class Auth {
   }
 
   checkPermission (permission) {
-    if (!this.store || !this.store.getters.authUser) { return false }
+    if (!this.store) { return true }
+    if (!this.store.getters.authUser || !this.store.getters.authUser.permissions) { return false }
 
     return this.store.getters.authUser.permissions.some(x => x.slug === permission)
   }

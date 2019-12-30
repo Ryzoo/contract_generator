@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Core\Enums\Modules\ContractModulePart;
 use App\Core\Helpers\Response;
 use App\Http\Requests\Contracts\ContractAddRequest;
+use App\Http\Requests\Contracts\ContractGetRequest;
 use App\Http\Requests\Contracts\ContractRemoveCollectionRequest;
+use App\Http\Requests\Contracts\ContractRemoveRequest;
 use App\Http\Requests\Contracts\ContractRenderRequest;
 use App\Http\Requests\Contracts\ContractUpdateRequest;
 use App\Core\Models\Domain\Contract;
@@ -21,7 +23,7 @@ class ContractController extends Controller {
     private $contractService;
 
     /**
-     * @var \App\Core\Services\Domain\ContractModuleService
+     * @var ContractModuleService
      */
     private $contractModuleService;
 
@@ -34,7 +36,7 @@ class ContractController extends Controller {
         Response::success(Contract::all());
     }
 
-    public function get(Request $request, Contract $contract) {
+    public function get(ContractGetRequest $request, Contract $contract) {
         Response::success($contract);
     }
 
@@ -53,7 +55,7 @@ class ContractController extends Controller {
         Response::success($fullContract);
     }
 
-    public function remove(Request $request, int $contractID) {
+    public function remove(ContractRemoveRequest $request, int $contractID) {
         $this->contractService->removeContractById([$contractID]);
         Response::success();
     }

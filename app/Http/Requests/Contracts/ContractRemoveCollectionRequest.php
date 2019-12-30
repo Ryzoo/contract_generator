@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Contracts;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ContractRemoveCollectionRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class ContractRemoveCollectionRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::hasUser() && Auth::user()->hasPermission('manage.contracts');
     }
 
     /**

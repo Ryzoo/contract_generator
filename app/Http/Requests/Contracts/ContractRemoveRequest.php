@@ -5,7 +5,7 @@ namespace App\Http\Requests\Contracts;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class ContractUpdateRequest extends FormRequest
+class ContractRemoveRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +25,7 @@ class ContractUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|between:5,190',
-            'attributesList'    => 'array',
-            'blocks'        => 'array',
-            'settings'      => 'array',
+            //
         ];
     }
 }

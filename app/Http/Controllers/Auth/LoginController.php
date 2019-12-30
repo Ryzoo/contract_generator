@@ -48,6 +48,9 @@ class LoginController extends Controller
             'loginToken' => Str::random(80)
         ]);
 
+        $permissions = $user->getPermissions();
+        $user->permissions = $permissions;
+
         return Response::json($user);
     }
 }

@@ -76,7 +76,10 @@ const router = new VueRouter({
           name: 'contractList',
           component: ContractListView,
           meta: {
-            title: i18n.t('pageMeta.panel.contract.title')
+            title: i18n.t('pageMeta.panel.contract.title'),
+            access: [
+              Permissions.MANAGE_CONTRACTS
+            ]
           }
         },
         {
@@ -84,7 +87,10 @@ const router = new VueRouter({
           name: 'createContract',
           component: CreateBaseView,
           meta: {
-            title: i18n.t('pageMeta.panel.contract.create.title')
+            title: i18n.t('pageMeta.panel.contract.create.title'),
+            access: [
+              Permissions.MANAGE_CONTRACTS
+            ]
           }
         },
         {
@@ -92,7 +98,10 @@ const router = new VueRouter({
           name: 'editContract',
           component: CreateBaseView,
           meta: {
-            title: i18n.t('pageMeta.panel.contract.edit.title')
+            title: i18n.t('pageMeta.panel.contract.edit.title'),
+            access: [
+              Permissions.MANAGE_CONTRACTS
+            ]
           }
         },
         {
@@ -100,7 +109,10 @@ const router = new VueRouter({
           name: 'buildContract',
           component: ContractBuilderView,
           meta: {
-            title: i18n.t('pageMeta.panel.contract.builder.title')
+            title: i18n.t('pageMeta.panel.contract.builder.title'),
+            access: [
+              Permissions.MANAGE_CONTRACTS
+            ]
           }
         },
         {

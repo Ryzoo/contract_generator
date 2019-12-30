@@ -3,6 +3,14 @@
 return [
     'appTitle' => 'Contract Generator',
     'copyright' => 'All rights reserved - Contract Generator',
+    'common' => [
+        'notFound' => [
+            'title' => '404 Not Found',
+        ],
+        'noAccess' => [
+            'title' => '403 No Access',
+        ]
+    ],
     'auth' => [
         'login' => [
             'title' => 'Login',

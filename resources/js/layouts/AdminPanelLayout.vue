@@ -149,7 +149,7 @@
             rounded
           >
             <v-list-item-group color="primary">
-              <v-list-item @click="logout">
+              <v-list-item @click="showNotifications">
                 <v-list-item-avatar>
                   <v-badge color="accent">
                     <template v-slot:badge>0</template>
@@ -221,11 +221,17 @@ export default {
           elements: [
             {
               title: this.$t('navigation.contract.contractList'),
-              link: '/panel/contracts/list'
+              link: '/panel/contracts/list',
+              access: [
+                Permissions.MANAGE_CONTRACTS
+              ]
             },
             {
               title: this.$t('navigation.contract.schema'),
-              link: '/panel/contracts/schema'
+              link: '/panel/contracts/schema',
+              access: [
+                Permissions.MANAGE_CONTRACTS
+              ]
             }
           ]
         },
@@ -265,6 +271,9 @@ export default {
     }
   },
   methods: {
+    showNotifications () {
+      alert('not implemented')
+    },
     calculateAccessArray (elements) {
       return elements.map(x => {
         x.active = true
