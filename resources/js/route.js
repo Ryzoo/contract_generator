@@ -23,6 +23,10 @@ import ContractForm from './views/client/contract/ContractForm'
 import CreateBaseView from './views/panel/contracts/CreateBaseView'
 import RolesView from './views/panel/settings/RolesView'
 import CreateRolesView from './views/panel/settings/roles/CreateView'
+import NoAccessView from './views/common/NoAccessView'
+import NotFoundView from './views/common/NotFoundView'
+
+import { Permissions } from './additionalModules/Permissions'
 
 Vue.use(VueRouter)
 
@@ -30,6 +34,22 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
+    {
+      path: '/no-access',
+      component: NoAccessView,
+      meta: {
+        title: i18n.t('pageMeta.common.noAccess.title'),
+        noRequireAuthorization: true
+      }
+    },
+    {
+      path: '/not-found',
+      component: NotFoundView,
+      meta: {
+        title: i18n.t('pageMeta.common.notFound.title'),
+        noRequireAuthorization: true
+      }
+    },
     {
       path: '/form',
       component: ContractForm,
@@ -88,7 +108,10 @@ const router = new VueRouter({
           name: 'accounts',
           component: AccountsView,
           meta: {
-            title: i18n.t('pageMeta.panel.accounts.title')
+            title: i18n.t('pageMeta.panel.accounts.title'),
+            access: [
+              Permissions.MANAGE_USERS
+            ]
           }
         },
         {
@@ -96,7 +119,10 @@ const router = new VueRouter({
           name: 'createAccount',
           component: CreateView,
           meta: {
-            title: i18n.t('pageMeta.panel.accounts.create.title')
+            title: i18n.t('pageMeta.panel.accounts.create.title'),
+            access: [
+              Permissions.MANAGE_USERS
+            ]
           }
         },
         {
@@ -104,7 +130,10 @@ const router = new VueRouter({
           name: 'editAccount',
           component: EditView,
           meta: {
-            title: i18n.t('pageMeta.panel.accounts.edit.title')
+            title: i18n.t('pageMeta.panel.accounts.edit.title'),
+            access: [
+              Permissions.MANAGE_USERS
+            ]
           }
         },
         {
@@ -128,7 +157,10 @@ const router = new VueRouter({
           name: 'roles',
           component: RolesView,
           meta: {
-            title: i18n.t('pageMeta.panel.roles.title')
+            title: i18n.t('pageMeta.panel.roles.title'),
+            access: [
+              Permissions.MANAGE_ROLES
+            ]
           }
         },
         {
@@ -136,7 +168,10 @@ const router = new VueRouter({
           name: 'createRoles',
           component: CreateRolesView,
           meta: {
-            title: i18n.t('pageMeta.panel.roles.create.title')
+            title: i18n.t('pageMeta.panel.roles.create.title'),
+            access: [
+              Permissions.MANAGE_ROLES
+            ]
           }
         },
         {
@@ -144,7 +179,10 @@ const router = new VueRouter({
           name: 'editRole',
           component: EditRoleView,
           meta: {
-            title: i18n.t('pageMeta.panel.roles.edit.title')
+            title: i18n.t('pageMeta.panel.roles.edit.title'),
+            access: [
+              Permissions.MANAGE_ROLES
+            ]
           }
         }
       ]
@@ -199,6 +237,18 @@ router.beforeEach((to, from, next) => {
 
   if (nearestWithTitle) {
     document.title = nearestWithTitle.meta.title
+  }
+
+  if (to.matched.length === 0) {
+    next({
+      path: '/not-found'
+    })
+  }
+
+  if (to.meta && to.meta.access && !to.meta.access.every(z => auth.checkPermission(z))) {
+    next({
+      path: '/no-access'
+    })
   }
 
   if (to.matched.some(record => record.meta.noRequireAuthorization)) {
