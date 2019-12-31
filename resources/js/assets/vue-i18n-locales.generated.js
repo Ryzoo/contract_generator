@@ -38,7 +38,12 @@ export default {
             },
             "form": {
                 "noContract": "No available contract to select!",
-                "selectOneContract": "Select one of contract form list on left."
+                "selectOneContract": "Select one of contract form list on left.",
+                "filter": {
+                    "main": "Filter categories forms",
+                    "text": "Filter by name or description",
+                    "categories": "Filter by category"
+                }
             }
         },
         "pageMeta": {
@@ -228,7 +233,8 @@ export default {
                     "modules": "Each module is a certain responsibility. You can choose which modules are to be active, and go to the configuration of each one to personalize them."
                 },
                 "field": {
-                    "contract_name": "Contract name"
+                    "contract_name": "Contract name",
+                    "contract_description": "Contract description"
                 },
                 "notify": {
                     "success": "Contract saved!"
@@ -272,6 +278,7 @@ export default {
             },
             "button": {
                 "login": "Login",
+                "fillIn": "Fill in",
                 "register": "Create new account",
                 "reset": "Reset",
                 "cancel": "Cancel",
@@ -309,6 +316,7 @@ export default {
         },
         "navigation": {
             "dashboard": "Dashboard",
+            "formContract": "Contract forms",
             "clients": "Clients",
             "contract": {
                 "main": "Contracts",

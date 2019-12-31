@@ -1,16 +1,10 @@
 <template>
-  <ContractForm/>
+  <h3 class="text-center">Work in progress</h3>
 </template>
 
 <script>
-import ContractForm from '../client/contract/ContractForm'
 
 export default {
-  name: 'Dashboard',
-  components: {
-    ContractForm
-  }
+  name: 'Dashboard'
 }
 </script>
-
-<style scoped></style>

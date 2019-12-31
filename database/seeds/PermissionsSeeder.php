@@ -27,6 +27,11 @@ class PermissionsSeeder extends Seeder {
                 'name' => "Manage contracts",
                 'slug' => "manage.contracts",
                 'description' => "Can manage all contracts",
+            ],
+            [
+                'name' => "Manage categories",
+                'slug' => "manage.categories",
+                'description' => "Can manage all categories",
             ]
         ];
 

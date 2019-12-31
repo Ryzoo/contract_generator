@@ -52,8 +52,8 @@ export default {
     return {
       isLoaded: true,
       loginForm: {
-        email: 't.client@test.pl',
-        password: 'client'
+        email: 't.admin@test.pl',
+        password: 'admin1'
       }
     }
   },

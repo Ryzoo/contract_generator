@@ -1,45 +1,69 @@
 <template>
-    <v-col>
-        <v-row>
-            <v-card v-if="contractItems.length || isLoading" width="100%">
-                <v-list v-if="!isLoading">
-                    <v-list-item-group>
-                        <v-list-item
-                            v-for="item in contractItems"
-                            :key="item.id"
-                            @click="emitSelectContract(item)"
-                        >
-                            <v-list-item-content>
-                              <v-list-item-title
-                                v-text="item.name"
-                              />
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list-item-group>
-                </v-list>
-              <loader v-else/>
-            </v-card>
-            <v-alert
-                v-if="!isLoading && !contractItems.length"
-                width="100%"
-                type="error"
-            >
-                {{$t("pages.form.noContract")}}
-            </v-alert>
-        </v-row>
-    </v-col>
+      <v-list three-line
+              v-if="contractsList.length && !isLoading"
+      >
+          <v-list-item-group>
+              <v-card v-for="item in contractsList" shaped class="mb-3"
+                      :key="item.id">
+                <v-list-item @click="selectContract(item)">
+                  <v-list-item-content>
+                    <v-list-item-title > {{item.name}}</v-list-item-title>
+                    <v-list-item-subtitle >
+                      <div class="mb-2">{{item.description}}</div>
+                      <v-chip
+                        v-for="category in item.categories"
+                        :key="category.id"
+                        class="mr-1"
+                        label
+                        color="primary"
+                        x-small
+                      >
+                        {{category.name}}
+                      </v-chip>
+                    </v-list-item-subtitle>
+                  </v-list-item-content>
+                  <v-list-item-action>
+                    <v-btn color="primary" small outlined
+                      @click="selectContract(item)">{{$t("base.button.fillIn")}}</v-btn>
+                  </v-list-item-action>
+                </v-list-item>
+              </v-card>
+          </v-list-item-group>
+      </v-list>
+      <v-alert
+          v-else
+          type="info"
+      >
+          {{$t("pages.form.noContract")}}
+      </v-alert>
 </template>
 
 <script>
 export default {
   name: 'ContractList',
+  props: ['searchCategory', 'searchText'],
   data: () => ({
     contractItems: [],
     isLoading: false
   }),
+  computed: {
+    searchData () {
+      return {
+        category: this.searchCategory,
+        text: this.searchText
+      }
+    },
+    contractsList () {
+      return this.contractItems.filter(x => {
+        const textAccept = x.name.toLowerCase().includes(this.searchData.text.toLowerCase()) || x.description.toLowerCase().includes(this.searchData.text.toLowerCase())
+        const categoriesAccept = this.searchData.category.every(y => x.categories.some(z => z.id === y))
+        return textAccept && categoriesAccept
+      })
+    }
+  },
   methods: {
-    emitSelectContract (selectedContract) {
-      this.$emit('selected', selectedContract)
+    selectContract (selectedContract) {
+      this.$router.push(`/client/form/${selectedContract.id}`)
     },
     getContractList () {
       this.isLoading = true
@@ -58,5 +82,3 @@ export default {
   }
 }
 </script>
-
-<style scoped></style>

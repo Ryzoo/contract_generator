@@ -19,7 +19,7 @@ import AccountPreview
 import CreateView from './views/panel/settings/accounts/CreateView'
 import EditView from './views/panel/settings/accounts/EditView'
 import EditRoleView from './views/panel/settings/roles/EditView'
-import ContractForm from './views/client/contract/ContractForm'
+import ContractFormView from './views/client/contract/ContractFormView'
 import CreateBaseView from './views/panel/contracts/CreateBaseView'
 import RolesView from './views/panel/settings/RolesView'
 import CreateRolesView from './views/panel/settings/roles/CreateView'
@@ -27,6 +27,8 @@ import NoAccessView from './views/common/NoAccessView'
 import NotFoundView from './views/common/NotFoundView'
 
 import { Permissions } from './additionalModules/Permissions'
+import ClientPageLayout from './layouts/ClientPageLayout'
+import ContractFormFillView from './views/client/contract/ContractFormFillView'
 
 Vue.use(VueRouter)
 
@@ -50,14 +52,27 @@ const router = new VueRouter({
         noRequireAuthorization: true
       }
     },
-    {
-      path: '/form',
-      component: ContractForm,
-      meta: {
-        noRequireAuthorization: true
-      }
-    },
     { path: '/', redirect: 'auth/login' },
+    {
+      path: '/client',
+      component: ClientPageLayout,
+      children: [
+        {
+          path: 'form',
+          component: ContractFormView,
+          meta: {
+            noRequireAuthorization: true
+          }
+        },
+        {
+          path: 'form/:id',
+          component: ContractFormFillView,
+          meta: {
+            noRequireAuthorization: true
+          }
+        }
+      ]
+    },
     {
       path: '/panel',
       component: AdminPanelLayout,

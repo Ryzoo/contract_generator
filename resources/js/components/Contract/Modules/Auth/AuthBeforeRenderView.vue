@@ -1,40 +1,39 @@
 <template>
-    <section>
-        <h3>Ta umowa ma włączony moduł autoryzacji</h3>
-        <v-divider dark class="my-3"></v-divider>
-        <div v-if="actualAuthType == AuthType.LOGIN">
-            <p>Pozwolenie na wgląd mają tylko <b>zalogowani użytkownicy</b></p>
-            <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn
-                    color="primary"
-                    to="/auth/login">
-                    Przejdź do strony logowania
-                </v-btn>
-            </v-card-actions>
-        </div>
-        <div v-if="actualAuthType == AuthType.PASSWORD">
-            <p>Pozwolenie na wgląd mają tylko <b>osoby znające hasło</b></p>
-            <v-form>
-                <v-text-field
-                    dark
-                    prepend-icon="fa-lock"
-                    v-model="password"
-                    label="Hasło"
-                    type="password"
-                >
-                </v-text-field>
-            </v-form>
-            <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn
-                   color="primary"
-                   @click="checkFinishLogic">
-                    Dalej
-                </v-btn>
-            </v-card-actions>
-        </div>
-    </section>
+  <section>
+    <v-card-title>Ta umowa ma włączony moduł autoryzacji</v-card-title>
+    <v-divider/>
+    <v-card-text v-if="actualAuthType == AuthType.LOGIN">
+      <p>Pozwolenie na wgląd mają tylko <b>zalogowani użytkownicy</b></p>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn
+          color="primary"
+          to="/auth/login">
+          Przejdź do strony logowania
+        </v-btn>
+      </v-card-actions>
+    </v-card-text>
+    <v-card-text v-if="actualAuthType == AuthType.PASSWORD">
+      <p>Pozwolenie na wgląd mają tylko <b>osoby znające hasło</b></p>
+      <v-form>
+        <v-text-field
+          prepend-icon="fa-lock"
+          v-model="password"
+          label="Hasło"
+          type="password"
+        >
+        </v-text-field>
+      </v-form>
+    </v-card-text>
+    <v-card-actions>
+      <v-spacer/>
+      <v-btn
+        color="primary"
+        @click="checkFinishLogic">
+        Dalej
+      </v-btn>
+    </v-card-actions>
+  </section>
 </template>
 
 <script>
@@ -76,7 +75,9 @@ export default {
     },
     finishAsLoggedUser () {
       const user = this.$store.getters.authUser
-      if (user && user.email && user.loginToken) { this.finishAction() }
+      if (user && user.email && user.loginToken) {
+        this.finishAction()
+      }
 
       return false
     },
@@ -99,7 +100,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

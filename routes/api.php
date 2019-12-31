@@ -50,25 +50,37 @@ Route::group(['middleware' => 'auth:token'], function(){
 
     });
 
-    Route::prefix('contract')->group(function () {
-        Route::prefix('modules')->group(function () {
-            Route::get('/', 'Contract\ContractModulesController@getAvailable');
-            Route::get('/{contract}', 'Contract\ContractModulesController@getInformationFromContract');
-        });
+});
 
-        Route::prefix('form')->group(function () {
-            Route::get('/{contract}', 'Contract\ContractFormController@get');
-        });
+Route::prefix('categories')->group(function () {
+    Route::get('/', 'Contract\CategoryController@index');
+    Route::get('/{id}', 'Contract\CategoryController@show')->middleware(['middleware' => 'auth:token']);
 
-        Route::get('/{contract}', 'ContractController@get');
-        Route::get('/', 'ContractController@getCollection');
+    Route::post('/', 'Contract\CategoryController@store')->middleware(['middleware' => 'auth:token']);
 
-        Route::post('/', 'ContractController@add');
-        Route::post('/{contract}/render', 'ContractController@render');
+    Route::put('/{id}', 'Contract\CategoryController@update')->middleware(['middleware' => 'auth:token']);
 
-        Route::put('/{contract}', 'ContractController@update');
+    Route::delete('/{id}', 'Contract\CategoryController@destroy')->middleware(['middleware' => 'auth:token']);
+});
 
-        Route::delete('/{contract}', 'ContractController@remove');
-        Route::delete('/', 'ContractController@removeCollection');
+Route::prefix('contract')->group(function () {
+    Route::prefix('modules')->group(function () {
+        Route::get('/', 'Contract\ContractModulesController@getAvailable');
+        Route::get('/{contract}', 'Contract\ContractModulesController@getInformationFromContract');
     });
+
+    Route::prefix('form')->group(function () {
+        Route::get('/{contract}', 'Contract\ContractFormController@get');
+    });
+
+    Route::get('/{contract}', 'ContractController@get')->middleware(['middleware' => 'auth:token']);
+    Route::get('/', 'ContractController@getCollection');
+
+    Route::post('/', 'ContractController@add')->middleware(['middleware' => 'auth:token']);
+    Route::post('/{contract}/render', 'ContractController@render');
+
+    Route::put('/{contract}', 'ContractController@update')->middleware(['middleware' => 'auth:token']);
+
+    Route::delete('/{contract}', 'ContractController@remove')->middleware(['middleware' => 'auth:token']);
+    Route::delete('/', 'ContractController@removeCollection')->middleware(['middleware' => 'auth:token']);
 });

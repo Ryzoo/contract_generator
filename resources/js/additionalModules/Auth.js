@@ -9,6 +9,10 @@ export default class Auth {
     this.router.push((route && route.length > 0) ? route : '/panel/')
   }
 
+  isAuthorized () {
+    return !!this.store.getters.authUser
+  }
+
   checkPermission (permission) {
     if (!this.store) { return true }
     if (!this.store.getters.authUser || !this.store.getters.authUser.permissions) { return false }

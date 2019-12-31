@@ -26,9 +26,11 @@ class ContractUpdateRequest extends FormRequest
     {
         return [
             'name' => 'required|string|between:5,190',
-            'attributesList'    => 'array',
-            'blocks'        => 'array',
-            'settings'      => 'array',
+            'description' => 'required|string|between:5,190',
+            'attributesList' => 'array',
+            'blocks' => 'array',
+            'settings' => 'array',
+            'categories' => 'array',
         ];
     }
 }

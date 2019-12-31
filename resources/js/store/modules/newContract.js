@@ -5,6 +5,8 @@ const defaultState = {
   },
   contract: {
     name: '',
+    description: '',
+    categories: [],
     attributesList: [],
     blocks: [],
     settings: {
@@ -41,6 +43,8 @@ const mutations = {
   NEW_CONTRACT_CLEAR: (state, data) => {
     state.contract = {
       name: '',
+      description: '',
+      categories: [],
       attributesList: [],
       blocks: [],
       settings: {

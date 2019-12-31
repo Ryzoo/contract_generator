@@ -1,91 +1,93 @@
 <template>
+  <section>
     <v-card
-        v-if="!isLoading"
-        color="#446477"
+      v-if="!isLoading"
+      max-width="800px"
+      class="mx-auto"
+      style="margin-top: -60px;"
     >
-        <v-card-text class="white--text"
-                     v-if="currentAction === availableActionsHook.BEFORE_FORM_RENDER">
-          <action-renderer
-            v-model="currentAction"
-            @action-pass="loadContractForm"
-            :contract="contract"
-          />
-        </v-card-text>
+      <v-card-title v-if="currentAction === availableActionsHook.FORM_RENDER">
+        {{contract.name}}
+      </v-card-title>
+      <v-divider/>
 
-        <v-card-text v-if="currentAction === availableActionsHook.FORM_RENDER">
-            <div class="white--text headline mb-2">{{contract.name}}</div>
-          <v-divider/>
-            <v-stepper v-model="actualStep">
-                <v-stepper-header>
-                    <template v-for="step in stepList">
-                        <v-stepper-step
-                            :key="`${step.id}-header`"
-                            :complete="actualStep > step.id"
-                            :step="step.id"
-                        >
-                            Krok: {{step.id}}
-                        </v-stepper-step>
-
-                      <v-divider
-                        v-if="step.id < stepList.length - 1"
-                        :key="step.id"
-                      />
-                    </template>
-                </v-stepper-header>
-
-                <v-stepper-items>
-                    <v-stepper-content
-                        v-for="step in stepList"
-                        :key="`${step.id}-content`"
-                        :step="step.id"
-                    >
-                        <v-row v-if="step.content.length > 5">
-                            <v-col align="end">
-                                <v-btn text v-if="actualStep > 1 && actualStep <= stepList.length"
-                                       @click="goBackStep">Go back
-                                </v-btn>
-                                <v-btn color="primary" v-if="actualStep < stepList.length"
-                                       @click="goToNextStep">Go next
-                                </v-btn>
-                                <v-btn color="success" v-if="actualStep === stepList.length"
-                                       @click="finishContractForm">Finish
-                                </v-btn>
-                            </v-col>
-                        </v-row>
-
-                      <form-renderer
-                        :formElements="step.content"
-                      />
-
-                        <v-row>
-                            <v-col align="end">
-                                <v-btn text v-if="actualStep > 1 && actualStep <= stepList.length"
-                                       @click="goBackStep">Go back
-                                </v-btn>
-                                <v-btn color="primary" v-if="actualStep < stepList.length"
-                                       @click="goToNextStep">Go next
-                                </v-btn>
-                                <v-btn color="success" v-if="actualStep === stepList.length"
-                                       @click="finishContractForm">Finish
-                                </v-btn>
-                            </v-col>
-                        </v-row>
-
-                    </v-stepper-content>
-                </v-stepper-items>
-            </v-stepper>
-        </v-card-text>
-
-        <v-card-text class="white--text"
-                     v-if="currentAction === availableActionsHook.BEFORE_FORM_END || currentAction === availableActionsHook.AFTER_FORM_END">
-          <action-renderer
-            v-model="currentAction"
-            :contract="contract"
-          />
-        </v-card-text>
-
+      <action-renderer
+        v-if="currentAction === availableActionsHook.BEFORE_FORM_RENDER"
+        v-model="currentAction"
+        @action-pass="loadContractForm"
+        :contract="contract"
+      />
+      <action-renderer
+        v-if="currentAction === availableActionsHook.BEFORE_FORM_END || currentAction === availableActionsHook.AFTER_FORM_END"
+        v-model="currentAction"
+        :contract="contract"
+      />
     </v-card>
-  <loader v-else/>
+    <loader v-else/>
+    <v-row style="max-width: 700px" class="mx-auto mt-5" v-if="currentAction === availableActionsHook.FORM_RENDER">
+      <v-col cols="12">
+        <v-stepper v-model="actualStep">
+          <v-stepper-header>
+            <template v-for="step in stepList">
+              <v-stepper-step
+                :key="`${step.id}-header`"
+                :complete="actualStep > step.id"
+                :step="step.id"
+              >
+                Krok: {{step.id}}
+              </v-stepper-step>
+
+              <v-divider
+                v-if="step.id < stepList.length - 1"
+                :key="step.id"
+              />
+            </template>
+          </v-stepper-header>
+
+          <v-stepper-items>
+            <v-stepper-content
+              v-for="step in stepList"
+              :key="`${step.id}-content`"
+              :step="step.id"
+            >
+              <v-row v-if="step.content.length > 5">
+                <v-col align="end">
+                  <v-btn text v-if="actualStep > 1 && actualStep <= stepList.length"
+                         @click="goBackStep">Go back
+                  </v-btn>
+                  <v-btn color="primary" v-if="actualStep < stepList.length"
+                         @click="goToNextStep">Go next
+                  </v-btn>
+                  <v-btn color="success" v-if="actualStep === stepList.length"
+                         @click="finishContractForm">Finish
+                  </v-btn>
+                </v-col>
+              </v-row>
+
+              <form-renderer
+                :formElements="step.content"
+              />
+
+              <v-row>
+                <v-col align="end">
+                  <v-btn text v-if="actualStep > 1 && actualStep <= stepList.length"
+                         @click="goBackStep">Go back
+                  </v-btn>
+                  <v-btn color="primary" v-if="actualStep < stepList.length"
+                         @click="goToNextStep">Go next
+                  </v-btn>
+                  <v-btn color="success" v-if="actualStep === stepList.length"
+                         @click="finishContractForm">Finish
+                  </v-btn>
+                </v-col>
+              </v-row>
+
+            </v-stepper-content>
+          </v-stepper-items>
+        </v-stepper>
+      </v-col>
+    </v-row>
+  </section>
 </template>
 
 <script>
@@ -95,13 +97,14 @@ import { AvailableRenderActionsHook } from './../../additionalModules/Enums'
 
 export default {
   name: 'ContractFormRender',
-  props: ['contract'],
+  props: ['contractId'],
   components: {
     FormRenderer,
     ActionRenderer
   },
   data () {
     return {
+      contract: null,
       isLoading: true,
       actualStep: 1,
       availableActionsHook: AvailableRenderActionsHook,
@@ -115,7 +118,7 @@ export default {
     }
   },
   watch: {
-    actualStep (vv) {
+    actualStep () {
       this.$forceUpdate()
     },
     contract (oldValue, newValue) {
@@ -145,14 +148,17 @@ export default {
       this.isLoading = true
       const additionalParam = this.getAttributesFromArrayWithObject(additionalAttributes)
 
-      axios.get(`/contract/form/${this.contract.id}?${additionalParam}`)
+      axios.get(`/contract/form/${this.contractId}?${additionalParam}`)
         .then((response) => {
-          this.$store.dispatch('formElements_set', response.data)
+          this.contract = response.data.contract
+          this.$store.dispatch('formElements_set', response.data.formElements)
+            .then(() => {
+              this.currentAction = this.availableActionsHook.FORM_RENDER
+              this.isLoading = false
+            })
         })
         .catch(() => {
           this.currentAction = this.availableActionsHook.BEFORE_FORM_RENDER
-        })
-        .finally(() => {
           this.isLoading = false
         })
     },
@@ -174,7 +180,7 @@ export default {
     },
     loadContractModules () {
       this.isLoading = true
-      axios.get(`/contract/modules/${this.contract.id}`)
+      axios.get(`/contract/modules/${this.contractId}`)
         .then((response) => {
           this.$store.dispatch('contractModules_set', response.data)
         })

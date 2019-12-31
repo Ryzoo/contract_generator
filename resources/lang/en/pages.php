@@ -38,6 +38,11 @@ return [
     ],
     "form" => [
         "noContract" => "No available contract to select!",
-        "selectOneContract" => "Select one of contract form list on left."
+        "selectOneContract" => "Select one of contract form list on left.",
+        "filter" => [
+            "main" => "Filter categories forms",
+            "text" => "Filter by name or description",
+            "categories" => "Filter by category",
+        ]
     ]
 ];

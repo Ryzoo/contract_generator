@@ -120,7 +120,9 @@ return [
             'modules' => "Each module is a certain responsibility. You can choose which modules are to be active, and go to the configuration of each one to personalize them."
         ],
         'field' => [
-            "contract_name" => "Contract name"
+            "contract_name" => "Contract name",
+            "contract_description" => "Contract description",
+            "contract_categories" => "Contract categories",
         ],
         'notify' => [
             'success' => "Contract saved!"

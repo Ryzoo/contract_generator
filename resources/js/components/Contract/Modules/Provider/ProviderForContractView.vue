@@ -1,18 +1,20 @@
 <template>
-    <section v-if="!isLoading">
-        <h3>Ten kontroler ma włączony moduł dostarczania umowy</h3>
-        <v-divider dark class="my-3"></v-divider>
-        <p>Aktualnie wybrany jest tryb renderowania pliku pdf do przeglądarki</p>
-        <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-                color="success"
-                @click="renderContract">
-                Renderuj
-            </v-btn>
-        </v-card-actions>
-    </section>
-    <loader v-else></loader>
+  <section v-if="!isLoading">
+    <v-card-title>Ten kontroler ma włączony moduł dostarczania umowy</v-card-title>
+    <v-divider/>
+    <v-card-text>
+      <p>Aktualnie wybrany jest tryb renderowania pliku pdf do przeglądarki</p>
+    </v-card-text>
+    <v-card-actions>
+      <v-spacer/>
+      <v-btn
+        color="primary"
+        @click="renderContract">
+        Renderuj
+      </v-btn>
+    </v-card-actions>
+  </section>
+  <loader v-else/>
 </template>
 
 <script>
@@ -50,12 +52,9 @@ export default {
         })
         .finally(() => {
           this.isLoading = false
+          this.$router.back()
         })
     }
   }
 }
 </script>
-
-<style scoped>
-
-</style>

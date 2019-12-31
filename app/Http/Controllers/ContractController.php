@@ -13,6 +13,8 @@ use App\Http\Requests\Contracts\ContractUpdateRequest;
 use App\Core\Models\Domain\Contract;
 use App\Core\Services\Domain\ContractService;
 use App\Core\Services\Domain\ContractModuleService;
+use App\Http\Resources\ContractInfo;
+use App\Http\Resources\ContractInfoCollection;
 use Illuminate\Http\Request;
 
 class ContractController extends Controller {
@@ -33,25 +35,35 @@ class ContractController extends Controller {
     }
 
     public function getCollection(Request $request) {
-        Response::success(Contract::all());
+        Response::success(new ContractInfoCollection(Contract::with('categories')->get()));
     }
 
-    public function get(ContractGetRequest $request, Contract $contract) {
+    public function get(ContractGetRequest $request, int $contractId) {
+        $contract = Contract::with('categories')->findOrFail($contractId);
         Response::success($contract);
     }
 
     public function add(ContractAddRequest $request) {
+        $contractData = $request->validated();
+        $contractCategories = $request->validated()['categories'];
+
         $contract = new Contract();
-        $contract->fill($request->validated());
+        $contract->fill(collect($contractData)->except('categories')->toArray());
 
         $fullContract = $this->contractService->createContract($contract);
+        $fullContract->categories()->attach($contractCategories);
 
         Response::success($fullContract);
     }
 
     public function update(ContractUpdateRequest $request, Contract $contract) {
-        $contract->fill($request->validated());
+        $contractData = $request->validated();
+        $contractCategories = $request->validated()['categories'];
+
+        $contract->fill(collect($contractData)->except('categories')->toArray());
         $fullContract = $this->contractService->createContract($contract);
+        $fullContract->categories()->sync($contractCategories);
+
         Response::success($fullContract);
     }
 

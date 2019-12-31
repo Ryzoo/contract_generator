@@ -1,19 +1,15 @@
 <template>
-    <v-form>
-        <v-container>
-            <component
-                v-if="actualModule && actualHookName"
-                :key="actualModuleIndex"
-                :is="actualHookName"
-                v-bind="{
+  <component
+    v-if="actualModule && actualHookName"
+    :key="actualModuleIndex"
+    :is="actualHookName"
+    v-bind="{
                     actualModule: actualModule,
                     contract: contract
                 }"
-                @finish="finishAction"
-            >
-            </component>
-        </v-container>
-    </v-form>
+    @finish="finishAction"
+  >
+  </component>
 </template>
 
 <script>

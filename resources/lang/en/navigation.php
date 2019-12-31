@@ -2,6 +2,7 @@
 
 return [
     'dashboard' => 'Dashboard',
+    'formContract' => 'Contract forms',
     'clients' => 'Clients',
     'contract' => [
         'main' => 'Contracts',

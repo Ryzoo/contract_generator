@@ -90,4 +90,9 @@ class Contract extends Model
     {
         return $this->hasOne('App\Core\Models\Domain\Form');
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany('App\Core\Models\Domain\Category');
+    }
 }

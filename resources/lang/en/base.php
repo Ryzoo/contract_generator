@@ -20,6 +20,7 @@ return [
     ],
     'button' => [
         'login' => 'Login',
+        'fillIn' => 'Fill in',
         'register' => 'Create new account',
         'reset' => 'Reset',
         'cancel' => 'Cancel',

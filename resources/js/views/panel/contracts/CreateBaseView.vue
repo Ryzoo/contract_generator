@@ -14,7 +14,25 @@
                         @change="saveContractDataToStore"
                         required
                       />
-                        <ContractModuleConfiguration/>
+                      <v-textarea
+                        prepend-icon="fa-align-center"
+                        v-model="contract.description"
+                        :label="$t('form.contractAddForm.field.contract_description')"
+                        @change="saveContractDataToStore"
+                        required
+                      />
+                      <v-select
+                        prepend-icon="fa-layer-group"
+                        v-model="contract.categories"
+                        @change="saveContractDataToStore"
+                        chips
+                        multiple
+                        dense
+                        deletable-chips
+                        :items="categories"
+                        :label="$t('form.contractAddForm.field.contract_categories')"
+                      />
+                      <ContractModuleConfiguration/>
                     </v-card-text>
                     <v-card-actions>
                       <v-spacer/>
@@ -53,17 +71,28 @@ export default {
   },
   data () {
     return {
+      categories: [],
       isLoaded: false,
-      contract: [],
+      contract: {
+        ...this.$store.getters.getNewContractData
+      },
       contractId: this.$route.params.id || null
     }
   },
   methods: {
-    init () {
-      this.contract = this.$store.getters.getNewContractData
+    getCategories () {
+      this.isLoaded = false
+      axios.get('/categories')
+        .then(response => {
+          this.categories = response.data.map(x => ({
+            value: x.id,
+            text: x.name
+          }))
+          this.isLoaded = true
+        })
     },
-    saveContractDataToStore (value) {
-      this.$store.dispatch('newContract_setName', value)
+    saveContractDataToStore () {
+      this.$store.dispatch('newContract_setUpdate', this.contract)
     },
     cancelAddContract () {
       this.$store.dispatch('newContract_clear')
@@ -112,20 +141,26 @@ export default {
       this.isLoaded = false
       axios.get(`/contract/${this.contractId}`)
         .then(response => {
-          this.$store.dispatch('newContract_setUpdate', response.data)
+          this.$store.dispatch('newContract_setUpdate', {
+            ...response.data,
+            categories: response.data.categories.map(x => x.id)
+          })
             .then(() => {
+              this.contract = {
+                ...this.$store.getters.getNewContractData
+              }
               this.isLoaded = true
-              this.init()
             })
         })
     }
   },
   mounted () {
+    this.getCategories()
+
     if (this.$route.params.id !== undefined) {
       this.loadContract()
     } else {
       this.isLoaded = true
-      this.init()
     }
   }
 }

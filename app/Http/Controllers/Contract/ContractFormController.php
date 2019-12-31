@@ -8,6 +8,7 @@ use App\Core\Models\Domain\Contract;
 use App\Core\Services\Domain\ContractModuleService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Contracts\ContractFormGetRequest;
+use App\Http\Resources\ContractInfo;
 
 class ContractFormController extends Controller {
 
@@ -26,6 +27,9 @@ class ContractFormController extends Controller {
             "password" => $request->get("password") ?? "",
         ]);
 
-        Response::success($contract->form->formElements);
+        Response::success([
+            "contract" => new ContractInfo($contract),
+            "formElements" => $contract->form->formElements
+        ]);
     }
 }

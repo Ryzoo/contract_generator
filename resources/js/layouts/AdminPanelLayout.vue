@@ -88,9 +88,8 @@
 
       <v-menu
         v-model="menu"
-        :close-on-content-click="false"
-        :nudge-width="200"
-        offset-x
+        bottom
+        offset-y
       >
         <template v-slot:activator="{ on }">
           <v-btn
@@ -104,75 +103,42 @@
             {{user.firstName}} {{user.lastName}}
           </v-btn>
         </template>
-        <v-card
-          v-if="user">
-          <v-list>
-            <v-list-item>
-              <v-list-item-avatar>
-                <v-avatar size="30" class="mr-2">
-                  <v-img :src="user.profileImage"/>
-                </v-avatar>
-              </v-list-item-avatar>
-
-              <v-list-item-content>
-                <v-list-item-title>{{user.firstName}} {{user.lastName}}</v-list-item-title>
-                <v-list-item-subtitle>
-                  <v-chip
-                    v-if="user.roles"
-                    color="accent"
-                    x-small
-                    label
-                  >
-                    {{user.roles.name}}
-                  </v-chip>
-                </v-list-item-subtitle>
-              </v-list-item-content>
-
-              <v-list-item-action>
-                <v-btn
-                  outlined
-                  small
-                  color="primary"
-                  @click="logout()"
-                >
-                  {{$t('navigation.logout')}}
-                  <v-icon small right>fa-sign-out-alt fa-fw</v-icon>
-                </v-btn>
-              </v-list-item-action>
-            </v-list-item>
-          </v-list>
-
-          <v-divider/>
-
-          <v-list
-            dense
-            rounded
-          >
-            <v-list-item-group color="primary">
-              <v-list-item @click="showNotifications">
-                <v-list-item-avatar>
-                  <v-badge color="accent">
-                    <template v-slot:badge>0</template>
-                    <v-icon small>fa-bell fa-fw</v-icon>
-                  </v-badge>
-                </v-list-item-avatar>
-                <v-list-item-content>
-                  <v-list-item-title>{{$t('navigation.profile.notifications')}}</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-              <v-list-item @click="goToProfilePage">
-                <v-list-item-avatar><v-icon>fa-users-cog fa-fw</v-icon></v-list-item-avatar>
-                <v-list-item-content>
-                  <v-list-item-title>{{$t('navigation.profile.main')}}</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list-item-group>
-          </v-list>
-
-          <v-card-actions>
-            <v-spacer/>
-            <v-btn color="primary" text @click="menu = false">Close</v-btn>
-          </v-card-actions>
+        <v-card v-if="user">
+          <v-col cols="12">
+            <v-btn
+              class="mt-1"
+              small
+              text
+              block
+              color="primary"
+              @click="goToProfilePage()"
+            >
+              {{$t('navigation.profile.main')}}
+              <v-icon small right>fa-users-cog fa-fw</v-icon>
+            </v-btn>
+            <v-btn
+              class="mt-1"
+              small
+              block
+              text
+              color="primary"
+              @click="showNotifications()"
+            >
+              {{$t('navigation.profile.notifications')}}
+              <v-icon small right>fa-bell fa-fw</v-icon>
+            </v-btn>
+            <v-btn
+              class="mt-1"
+              small
+              block
+              text
+              color="error"
+              @click="logout()"
+            >
+              {{$t('navigation.logout')}}
+              <v-icon small right>fa-sign-out-alt fa-fw</v-icon>
+            </v-btn>
+          </v-col>
         </v-card>
       </v-menu>
 
@@ -180,7 +146,7 @@
 
     <v-content>
       <v-container
-        class="fill-height"
+        class="fill-height mb-5"
         fluid
       >
         <v-fade-transition mode="out-in">
@@ -214,6 +180,11 @@ export default {
           title: this.$t('navigation.dashboard'),
           icon: 'fa-poll fa-fw',
           link: '/panel/dashboard'
+        },
+        {
+          title: this.$t('navigation.formContract'),
+          icon: 'fa-newspaper fa-fw',
+          link: '/client/form'
         },
         {
           title: this.$t('navigation.contract.main'),
