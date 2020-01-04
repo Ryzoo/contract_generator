@@ -108,10 +108,17 @@ export default {
     this.initEditor()
   },
   watch: {
+    // TODO: Why it is here?
     block: {
       deep: true,
       handler (newValue) {
         this.editor.setContent(this.parseBlockContent(newValue))
+      }
+    },
+    variableUpdated: {
+      deep:true,
+      handler() {
+        this.variableSuggestions = this.mapAttributesList()
       }
     }
   },
@@ -121,7 +128,10 @@ export default {
     },
     showSuggestions () {
       return this.query || this.hasResults
-    }
+    },
+    variableUpdated() {
+      return this.$store.getters.builder_allVariables
+    },
   },
   methods: {
     initEditor () {

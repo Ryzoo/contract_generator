@@ -16,8 +16,11 @@ return [
         'name' => 'Name',
         'type' => 'Type',
         'isRequired' => 'Is required?',
+        'isMultiSelect' => 'Is multi select?',
         'lengthMin' => 'Max length',
         'lengthMax' => 'Min length',
+        'valueMin' => 'Max value',
+        'valueMax' => 'Min value',
     ],
     'login' => [
         'title' => 'Login form',

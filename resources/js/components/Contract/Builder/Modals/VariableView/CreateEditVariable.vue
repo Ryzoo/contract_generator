@@ -33,7 +33,7 @@
           <v-text-field hide-details  v-model="attribute.additionalInformation" :label="$t('form.variableForm.additionalInformation')" outline/>
         </v-col>
         <v-col sm="12">
-          <v-checkbox hide-details :label="$t('form.variableForm.forAnonymise')" v-model="attribute.toAnonymize"/>
+          <v-checkbox hide-details v-model="attribute.toAnonymize" :label="$t('form.variableForm.forAnonymise')"/>
         </v-col>
         <v-col sm="12">
           <VariableSettings
@@ -136,6 +136,8 @@ export default {
       if (isNew) {
         this.attributesList.push(this.attribute)
       }
+
+      console.log(this.attribute)
       this.$store.dispatch('builder_setVariable', this.attributesList)
       this.$store.dispatch('builder_idVariableIncrement')
 

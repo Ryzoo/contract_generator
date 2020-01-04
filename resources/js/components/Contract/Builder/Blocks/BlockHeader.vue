@@ -7,7 +7,7 @@
     <div class="block-header--content" @click="toggleBlock($event)">
       <div class="block-header--type">{{ block.blockName | truncate}}</div>
       <h5 class="pr-2">
-        EMPTY BLOCK
+        {{ toUpper(Mapper.getBlockName(block.blockType)) }}
       </h5>
     </div>
     <div class="block-header--action mr-4">
@@ -48,6 +48,9 @@ export default {
     }
   },
   methods: {
+    toUpper(text) {
+      return text.replace(/([A-Z])/g, ' $1').trim().toUpperCase()
+    },
     saveAsPart () {
       alert('Not implemented')
     },
