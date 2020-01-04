@@ -48,7 +48,7 @@ export default {
     }
   },
   methods: {
-    toUpper(text) {
+    toUpper (text) {
       return text.replace(/([A-Z])/g, ' $1').trim().toUpperCase()
     },
     saveAsPart () {

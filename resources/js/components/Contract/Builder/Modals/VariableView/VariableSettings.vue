@@ -4,7 +4,6 @@
       <v-checkbox
         :key="setting"
         hide-details
-        v-model="required"
         v-if="setting === 'required'"
         :label="$t('form.variableForm.isRequired')"
         @change="saveInput($event, setting)"
@@ -12,7 +11,6 @@
       <v-checkbox
         :key="setting"
         hide-details
-        v-model="isMultiSelect"
         v-if="setting === 'isMultiSelect'"
         :label="$t('form.variableForm.isMultiSelect')"
         @change="saveInput($event, setting)"
@@ -20,7 +18,6 @@
       <v-text-field
         :key="setting"
         hide-details
-        v-model="setting === 'lengthMin' ? lengthMin : lengthMax"
         v-if="setting === 'lengthMin' || setting === 'lengthMax'"
         :label="setting === 'lengthMin' ? $t('form.variableForm.lengthMin') : $t('form.variableForm.lengthMax')"
         @change="saveInput($event, setting)"
@@ -28,7 +25,6 @@
       <v-text-field
         :key="setting"
         hide-details
-        v-model="setting === 'valueMin' ? valueMin : valueMax"
         v-if="setting === 'valueMin' || setting === 'valueMax'"
         :label="setting === 'valueMin' ? $t('form.variableForm.valueMin') : $t('form.variableForm.valueMax')"
         @change="saveInput($event, setting)"

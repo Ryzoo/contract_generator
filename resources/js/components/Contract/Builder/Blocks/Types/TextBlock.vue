@@ -116,8 +116,8 @@ export default {
       }
     },
     variableUpdated: {
-      deep:true,
-      handler() {
+      deep: true,
+      handler () {
         this.variableSuggestions = this.mapAttributesList()
       }
     }
@@ -129,9 +129,9 @@ export default {
     showSuggestions () {
       return this.query || this.hasResults
     },
-    variableUpdated() {
+    variableUpdated () {
       return this.$store.getters.builder_allVariables
-    },
+    }
   },
   methods: {
     initEditor () {
