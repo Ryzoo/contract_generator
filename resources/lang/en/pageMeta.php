@@ -32,6 +32,9 @@ return [
         'profile' => [
             'title' => 'Panel - My Profile',
         ],
+        'formSubmission' => [
+            'title' => 'Panel - My Submission',
+        ],
         'roles' => [
             'title' => 'Panel - Manage roles',
             "create" => [

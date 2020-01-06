@@ -52,7 +52,7 @@ class RegisterController extends Controller {
     }
 
     protected function registered(Request $request, $user) {
-        SendWelcomeEmail::dispatchNow($user);
+        SendWelcomeEmail::dispatch($user);
         return Response::json($user);
     }
 }

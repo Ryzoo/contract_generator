@@ -34,7 +34,7 @@
                 :complete="actualStep > step.id"
                 :step="step.id"
               >
-                Krok: {{step.id}}
+                {{$t("module.base.step")}} {{step.id}}
               </v-stepper-step>
 
               <v-divider
@@ -138,7 +138,7 @@ export default {
     },
     isCurrentStepValid () {
       if (!this.stepList[this.actualStep - 1].content.filter(x => x.isActive).every(e => e.isValid)) {
-        Notify.push('Complete all elements of this page correctly', Notify.ERROR)
+        Notify.push(this.$t('module.notify.completeAllElement'), Notify.ERROR)
         return false
       }
 
@@ -194,7 +194,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

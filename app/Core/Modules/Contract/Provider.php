@@ -3,41 +3,45 @@
 
 namespace App\Core\Modules\Contract;
 
+use App\Core\Enums\ContractFormCompleteStatus;
 use App\Core\Enums\Modules\ContractModulesAvailablePlace;
+use App\Core\Models\Domain\ContractFormComplete;
 use App\Core\Services\Domain\ContractService;
 use App\Core\Enums\AvailableRenderActionsHook;
 use App\Core\Enums\Modules\ContractModulePart;
 use App\Core\Enums\Modules\ContractProviderType;
 use App\Core\Models\Domain\Contract;
-use App\Core\Models\Domain\FormElements\FormElement;
+use App\Jobs\Email\SendRenderEmail;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use mysql_xdevapi\Exception;
 
 class Provider extends ContractModule {
 
     /**
-     * @var \App\Core\Services\Domain\ContractService
+     * @var ContractService
      */
     private $contractService;
 
     public function __construct(ContractService $contractService) {
-        $this->name = "provider";
-        $this->description = "Modules that provide access to rendered contract";
-        $this->icon = "fas fa-file-export";
+        $this->name = 'provider';
+        $this->description = __('module.provider.descriptionConfig');
+        $this->icon = 'fas fa-file-export';
         $this->isActive = true;
         $this->place = ContractModulesAvailablePlace::FINISHER;
-        $this->configComponent = "ProviderConfigView";
+        $this->configComponent = 'ProviderConfigView';
 
         $actions = [];
-        $actions["action-" . AvailableRenderActionsHook::AFTER_FORM_END] = "ProviderForContractView";
+        $actions['action-' . AvailableRenderActionsHook::AFTER_FORM_END] = 'ProviderForContractView';
 
         $this->setDefaultSettings([
-            "type" => ContractProviderType::RENDER
+            'type' => ContractProviderType::RENDER
         ]);
         $this->setHooksComponents($actions);
         $this->contractService = $contractService;
     }
 
-    public function run(Contract &$contract, int $partType, array $attributes = []) {
+    public function run(Contract $contract, int $partType, array $attributes = []) {
         parent::run($contract, $partType, $attributes);
 
         switch ($partType) {
@@ -49,20 +53,39 @@ class Provider extends ContractModule {
     }
 
     private function renderContract() {
-        $contract = $this->getAttribute('contract');
-        $formElements = json_encode($this->getAttribute('formElements'));
-        $formElementsList = FormElement::getListFromString($formElements);
+        /**
+         * @var ContractFormComplete $formComplete
+         */
+        $formComplete = $this->getAttribute('formComplete');
+        $renderType = $this->getModuleSettings('type');
 
-        $renderType = $this->getModuleSettings("type");
+        $contractPdfFile = $this->contractService
+            ->renderContract( $this->contract->id, $formComplete->form_elements);
 
-        switch ($renderType) {
-            case ContractProviderType::RENDER:
-                $contractPdfFile = $this->contractService
-                    ->renderContract($contract->id, $formElementsList);
+        $directory = "renders/{$this->contract->id}/{$formComplete->user->id}/";
+        $filePath = $directory . Str::random(16) . '.pdf';
 
-                return $contractPdfFile->stream(Str::random(8) . ".pdf");
-            default:
-                return false;
+        try {
+            Storage::makeDirectory($directory);
+            Storage::put($filePath, $contractPdfFile->output());
+
+            $formComplete->update([
+                'status' => ContractFormCompleteStatus::AVAILABLE,
+                'render_url' => '/storage/'.$filePath
+            ]);
+
+            switch ($renderType) {
+                case ContractProviderType::EMAIL:
+                    SendRenderEmail::dispatch($formComplete);
+                    break;
+                default:
+                    return false;
+            }
+
+        }catch(Exception $e){
+            $formComplete->update([
+                'status' => ContractFormCompleteStatus::NEW
+            ]);
         }
     }
 }

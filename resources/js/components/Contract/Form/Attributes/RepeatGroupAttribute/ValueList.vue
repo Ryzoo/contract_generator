@@ -4,8 +4,8 @@
             v-for="(element, index) in values" :key="index"
         >
             <v-list-item-content>
-                <v-list-item-title v-text="element.map(x=>x.value).join(', ')"></v-list-item-title>
-                <v-list-item-subtitle v-text="'Kolejno: ' + element.map(x=>x.attributeName).join(', ')"></v-list-item-subtitle>
+              <v-list-item-title v-text="element.map(x=>x.value).join(', ')"/>
+              <v-list-item-subtitle v-text="$t('base.description.inTurn') + element.map(x=>x.attributeName).join(', ')"/>
             </v-list-item-content>
 
             <v-list-item-action>
@@ -16,7 +16,7 @@
         </v-list-item>
 
         <p v-show="values.length === 0" class="text-sm-center">
-            Brak elementów
+          {{$t("base.description.noElements")}}
         </p>
     </section>
 </template>

@@ -29,6 +29,7 @@ import NotFoundView from './views/common/NotFoundView'
 import { Permissions } from './additionalModules/Permissions'
 import ClientPageLayout from './layouts/ClientPageLayout'
 import ContractFormFillView from './views/client/contract/ContractFormFillView'
+import FormSubmissionView from './views/panel/FormSubmissionView'
 
 Vue.use(VueRouter)
 
@@ -84,6 +85,14 @@ const router = new VueRouter({
           component: DashboardView,
           meta: {
             title: i18n.t('pageMeta.panel.dashboard.title')
+          }
+        },
+        {
+          path: 'formSubmission',
+          name: 'formSubmission',
+          component: FormSubmissionView,
+          meta: {
+            title: i18n.t('pageMeta.panel.formSubmission.title')
           }
         },
         {

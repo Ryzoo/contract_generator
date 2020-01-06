@@ -19,5 +19,6 @@ return [
         'main' => 'My profile',
         'notifications' => 'Notifications',
     ],
+    'formSubmission' => 'Form Submissions',
     'logout' => 'Logout',
 ];

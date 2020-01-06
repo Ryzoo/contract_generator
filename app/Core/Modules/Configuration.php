@@ -5,6 +5,7 @@ namespace App\Core\Modules;
 
 
 use App\Core\Modules\Contract\Auth;
+use App\Core\Modules\Contract\ContractModule;
 use App\Core\Modules\Contract\Provider;
 use App\Core\Services\Domain\ContractService;
 
@@ -23,10 +24,11 @@ class Configuration {
         $collectionOfModulesInformation = collect();
 
         /**
-         * @var \App\Core\Modules\Contract\ContractModule $module
+         * @var ContractModule $module
          */
-        foreach ($this->availableModules as $module)
+        foreach ($this->availableModules as $module) {
             $collectionOfModulesInformation->push($module->getInformation());
+        }
 
         return $collectionOfModulesInformation;
     }

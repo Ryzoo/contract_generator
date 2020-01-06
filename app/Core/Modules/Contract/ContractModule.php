@@ -16,7 +16,7 @@ abstract class ContractModule {
     /**
      * @var Contract
      */
-    private $contract;
+    protected $contract;
 
     /**
      * @var array
@@ -34,14 +34,14 @@ abstract class ContractModule {
     private $defaultSettings;
 
 
-    public function run(Contract &$contract, int $partType, array $attributes = []){
+    public function run(Contract $contract, int $partType, array $attributes = []){
         $this->init($contract);
         $this->attributes = $attributes;
 
         return true;
     }
 
-    public function init(Contract &$contract){
+    public function init(Contract $contract){
         $this->contract = $contract;
 
         return true;
@@ -64,22 +64,22 @@ abstract class ContractModule {
         if(!isset($moduleSettings) || !isset($secondKey))
             return (array)$moduleSettings;
         else
-            return isset(((array)$moduleSettings)[$secondKey]) ? ((array)$moduleSettings)[$secondKey] : null;
+            return ((array)$moduleSettings)[$secondKey] ?? null;
     }
 
     protected function getAttribute(string $attributeName){
-        return isset(((array)$this->attributes)[$attributeName]) ? ((array)$this->attributes)[$attributeName] : null;
+        return ((array)$this->attributes)[$attributeName] ?? null;
     }
 
     public function getInformation(): array{
         return [
-            "name" => $this->name,
-            "renderHooks" => $this->hooksArray,
-            "settings" => $this->preventSettingsShow($this->getModuleSettings()),
-            "description" => $this->description,
-            "place" => $this->place,
-            "icon" => $this->icon,
-            "configComponent" => $this->configComponent,
+            'name' => $this->name,
+            'renderHooks' => $this->hooksArray,
+            'settings' => $this->preventSettingsShow($this->getModuleSettings()),
+            'description' => $this->description,
+            'place' => $this->place,
+            'icon' => $this->icon,
+            'configComponent' => $this->configComponent,
         ];
     }
 

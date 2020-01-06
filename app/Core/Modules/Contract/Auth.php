@@ -14,24 +14,24 @@ use App\Core\Models\Domain\Contract;
 class Auth extends ContractModule {
 
     public function __construct() {
-        $this->name = "auth";
-        $this->description = "Module to prevent access to contract by rules like login, password etc.";
-        $this->icon = "fas fa-unlock-alt";
+        $this->name = 'auth';
+        $this->description = __('module.auth.descriptionConfig');
+        $this->icon = 'fas fa-unlock-alt';
         $this->isActive = true;
         $this->place = ContractModulesAvailablePlace::PRE_FORM;
-        $this->configComponent = "AuthConfigView";
+        $this->configComponent = 'AuthConfigView';
 
         $actions = [];
-        $actions["action-".AvailableRenderActionsHook::BEFORE_FORM_RENDER] = "AuthBeforeRenderView";
+        $actions['action-' .AvailableRenderActionsHook::BEFORE_FORM_RENDER] = 'AuthBeforeRenderView';
 
         $this->setDefaultSettings([
-            "type" => AuthType::ALL,
-            "password" => ""
+            'type' => AuthType::LOGIN,
+            'password' => ''
         ]);
         $this->setHooksComponents($actions);
     }
 
-    public function run(Contract &$contract, int $partType, array $attributes = []) {
+    public function run(Contract $contract, int $partType, array $attributes = []) {
         parent::run($contract, $partType, $attributes);
 
         switch ($partType){
@@ -43,27 +43,27 @@ class Auth extends ContractModule {
     }
 
     private function checkAuthorization(): bool{
-        $authType = $this->getModuleSettings("type") ?? AuthType::ALL;
+        $authType = $this->getModuleSettings('type') ?? AuthType::LOGIN;
 
         switch ($authType){
             case AuthType::LOGIN:
                 if( \Illuminate\Support\Facades\Auth::user() != null)
                     return true;
                 else{
-                    Response::error("Musisz być zalogowany, żeby przeglądać ten formularz", 401);
+                    Response::error(__('response.notAuthorized'), 401);
                     return false;
                 }
             case AuthType::PASSWORD:
-                $password = $this->getModuleSettings("password") ?? "";
+                $password = $this->getModuleSettings("password") ?? '';
 
                 if($this->getAttribute('password') === $password)
                     return true;
                 else{
-                    Response::error("Niepoprawne hasło!", 400);
+                    Response::error(__('response.badPassword'), 400);
                     return false;
                 }
             default:
-                return true;
+                return false;
         }
     }
 

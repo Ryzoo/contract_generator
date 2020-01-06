@@ -96,7 +96,7 @@ abstract class FormElement implements IFormElement {
             throw new ErrorException(_('custom.array.attributes'), 500);
         }
 
-        /** @var \App\Core\Models\Domain\FormElements\FormElement $formElement */
+        /** @var FormElement $formElement */
         foreach ($arrayOfElements as $formElement) {
             $returnedArray->push(self::getFromString((array) $formElement));
         }
@@ -105,7 +105,7 @@ abstract class FormElement implements IFormElement {
     }
 
     public static function getFromString(array $value): FormElement {
-        FormElement::validate($value);
+        self::validate($value);
         $element = self::getFormElementByType((int) $value["elementType"], $value);
 
         $element->parentBlockId = $value["parentBlockId"];

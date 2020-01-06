@@ -20,9 +20,6 @@ const actions = {
   newContract_clear: (context, data) => {
     context.commit('NEW_CONTRACT_CLEAR', data)
   },
-  newContract_setName: (context, data) => {
-    context.commit('NEW_CONTRACT_SET_NAME', data)
-  },
   newContract_setUpdate: (context, data) => {
     context.commit('NEW_CONTRACT_SET_UPDATE', data)
   },
@@ -36,7 +33,10 @@ const actions = {
 
 const mutations = {
   NEW_CONTRACT_SET_UPDATE: (state, data) => {
-    state.contract = data
+    state.contract = {
+      ...data,
+      settings: data.settings
+    }
     state.mode.update = true
     state.mode.id = data.id
   },
@@ -57,9 +57,6 @@ const mutations = {
       id: null
     }
   },
-  NEW_CONTRACT_SET_NAME: (state, data) => {
-    state.contract.name = data
-  },
   NEW_CONTRACT_UPDATE_MODULE_STATE: (state, data) => {
     if (!data.value) { state.contract.settings.enabledModules = state.contract.settings.enabledModules.filter(x => x !== data.name) } else {
       state.contract.settings.enabledModules.push(data.name)
@@ -68,7 +65,10 @@ const mutations = {
     }
   },
   NEW_CONTRACT_SAVE_MODULE_CONFIG: (state, data) => {
-    state.contract.settings.modules[data.name] = data.value
+    state.contract.settings.modules = {
+      ...state.contract.settings.modules,
+      [data.name]: data.value
+    }
   }
 }
 

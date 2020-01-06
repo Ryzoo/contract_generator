@@ -40,18 +40,23 @@ export default {
 
       this.contract.blocks = this.$store.getters.builder_allBlocks
       this.contract.attributesList = this.$store.getters.builder_allVariables
-      this.$store.dispatch('newContract_setUpdate', this.contract)
 
-      axios.put(`/contract/${updateState.id}`, this.$store.getters.getNewContractData)
-        .then(response => {
-          notify.push(
-            this.$t('pages.panel.contracts.builder.savedNotify'),
-            notify.SUCCESS
-          )
-          if (redirect) { this.$router.push('/panel/contracts/list') }
-        })
-        .finally(() => {
-          this.isLoaded = true
+      this.$store.dispatch('newContract_setUpdate', this.contract)
+        .then(() => {
+          axios.put(`/contract/${updateState.id}`, this.$store.getters.getNewContractData)
+            .then(response => {
+              notify.push(
+                this.$t('pages.panel.contracts.builder.savedNotify'),
+                notify.SUCCESS
+              )
+              if (redirect) {
+                this.$store.dispatch('newContract_clear')
+                this.$router.push('/panel/contracts/list')
+              }
+            })
+            .finally(() => {
+              this.isLoaded = true
+            })
         })
     }
   },

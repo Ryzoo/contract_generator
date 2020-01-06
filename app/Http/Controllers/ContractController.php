@@ -4,18 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Core\Enums\Modules\ContractModulePart;
 use App\Core\Helpers\Response;
+use App\Core\Models\Domain\ContractFormComplete;
+use App\Core\Models\Domain\FormElements\FormElement;
+use App\Core\Models\User;
 use App\Http\Requests\Contracts\ContractAddRequest;
 use App\Http\Requests\Contracts\ContractGetRequest;
 use App\Http\Requests\Contracts\ContractRemoveCollectionRequest;
 use App\Http\Requests\Contracts\ContractRemoveRequest;
 use App\Http\Requests\Contracts\ContractRenderRequest;
+use App\Http\Requests\Contracts\ContractSubmissionGetRequest;
 use App\Http\Requests\Contracts\ContractUpdateRequest;
 use App\Core\Models\Domain\Contract;
 use App\Core\Services\Domain\ContractService;
 use App\Core\Services\Domain\ContractModuleService;
 use App\Http\Resources\ContractInfo;
 use App\Http\Resources\ContractInfoCollection;
+use App\Http\Resources\ContractSubmissionCollection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ContractController extends Controller {
 
@@ -83,15 +89,27 @@ class ContractController extends Controller {
     }
 
     public function render(ContractRenderRequest $request, Contract $contract) {
-        $returnData = $this->contractModuleService->runPart($contract, ContractModulePart::RENDER_CONTRACT, [
-            "formElements" => $request->get("formElements"),
-            "contract" => $contract,
-        ]);
+        $formElements = FormElement::getListFromString(json_encode($request->get('formElements')));
 
-        if (isset($returnData)) {
-            return $returnData;
+        if(Auth::hasUser()){
+            ContractFormComplete::create([
+                'user_id' => Auth::user()->id,
+                'contract_id' => $contract->id,
+                'form_elements' => $formElements,
+            ]);
         }
 
         Response::success();
+    }
+
+    public function submissions(ContractSubmissionGetRequest $render)
+    {
+        Response::json(
+            new ContractSubmissionCollection(
+                ContractFormComplete::with('contract')
+                    ->where('user_id', Auth::user()->id)
+                    ->get()
+            )
+        );
     }
 }

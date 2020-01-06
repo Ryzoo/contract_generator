@@ -10,7 +10,7 @@ export default class Auth {
   }
 
   isAuthorized () {
-    return !!this.store.getters.authUser
+    return !!this.store.getters.authUser.loginToken
   }
 
   checkPermission (permission) {
@@ -18,6 +18,13 @@ export default class Auth {
     if (!this.store.getters.authUser || !this.store.getters.authUser.permissions) { return false }
 
     return this.store.getters.authUser.permissions.some(x => x.slug === permission)
+  }
+
+  checkRole (role) {
+    if (!this.store) { return true }
+    if (!this.store.getters.authUser || !this.store.getters.authUser.roles) { return false }
+
+    return this.store.getters.authUser.roles.some(x => x.slug === role)
   }
 
   authorize (userData) {

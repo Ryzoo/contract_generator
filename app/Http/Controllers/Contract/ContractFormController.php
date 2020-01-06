@@ -24,12 +24,12 @@ class ContractFormController extends Controller {
     public function get(ContractFormGetRequest $request, Contract $contract) {
 
         $this->contractModuleService->runPart($contract, ContractModulePart::GET_CONTRACT, [
-            "password" => $request->get("password") ?? "",
+            'password' => $request->get('password') ?? '',
         ]);
 
         Response::success([
-            "contract" => new ContractInfo($contract),
-            "formElements" => $contract->form->formElements
+            'contract' => new ContractInfo($contract),
+            'formElements' => $contract->form->formElements
         ]);
     }
 }
