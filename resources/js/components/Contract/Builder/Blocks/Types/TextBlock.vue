@@ -108,13 +108,6 @@ export default {
     this.initEditor()
   },
   watch: {
-    // TODO: Why it is here?
-    block: {
-      deep: true,
-      handler (newValue) {
-        this.editor.setContent(this.parseBlockContent(newValue))
-      }
-    },
     variableUpdated: {
       deep: true,
       handler () {

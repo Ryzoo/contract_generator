@@ -96,6 +96,25 @@ class validation {
     }
     return this
   }
+
+  isArray () {
+    if (!Array.isArray(this.current)) {
+      this.returnError(i18n.t('validation.array', { attribute: this.currentName }))
+    }
+    return this
+  }
+
+  count (min = 0, max = null) {
+    this.isArray()
+    let ret = this.current.length >= min
+    if (max && ret) {
+      ret = this.current.length <= max
+    }
+    if (!ret) {
+      this.returnError(i18n.t('validation.between.array', { attribute: this.currentName, min: min, max: max }))
+    }
+    return this
+  }
 }
 
 export default validation

@@ -104,7 +104,9 @@ export default {
       this.showAddEditModal = false
     },
     editVariable (attribute) {
-      this.attribute = attribute
+      this.attribute = {
+        ...attribute
+      }
       this.isNewAttribute = false
       this.showAddEditModal = true
     }

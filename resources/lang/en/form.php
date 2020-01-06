@@ -17,10 +17,12 @@ return [
         'type' => 'Type',
         'isRequired' => 'Is required?',
         'isMultiSelect' => 'Is multi select?',
-        'lengthMin' => 'Max length',
-        'lengthMax' => 'Min length',
-        'valueMin' => 'Max value',
-        'valueMax' => 'Min value',
+        'lengthMin' => 'Min length',
+        'lengthMax' => 'Max length',
+        'valueMin' => 'Min value',
+        'valueMax' => 'Max value',
+        'items' => 'Items to select in',
+        'itemsHint' => 'Enter word and click enter to add next'
     ],
     'login' => [
         'title' => 'Login form',

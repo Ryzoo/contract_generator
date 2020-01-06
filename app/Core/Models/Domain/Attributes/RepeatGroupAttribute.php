@@ -15,8 +15,8 @@ class RepeatGroupAttribute extends Attribute {
 
     protected function buildSettings() {
         $this->settings = [
-            "valueMin" => NULL,
-            "valueMax" => NULL,
+            "lengthMin" => null,
+            "lengthMax" => null,
             "required" => NULL,
         ];
     }

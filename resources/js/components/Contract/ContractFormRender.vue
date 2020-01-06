@@ -138,7 +138,7 @@ export default {
     },
     isCurrentStepValid () {
       if (!this.stepList[this.actualStep - 1].content.filter(x => x.isActive).every(e => e.isValid)) {
-        Notify.push('Complete all elements of this page correctly', Notify.WARNING)
+        Notify.push('Complete all elements of this page correctly', Notify.ERROR)
         return false
       }
 

@@ -129,8 +129,13 @@ export default {
                 "name": "Name",
                 "type": "Type",
                 "isRequired": "Is required?",
-                "lengthMin": "Max length",
-                "lengthMax": "Min length"
+                "isMultiSelect": "Is multi select?",
+                "lengthMin": "Min length",
+                "lengthMax": "Max length",
+                "valueMin": "Min value",
+                "valueMax": "Max value",
+                "items": "Items to select in",
+                "itemsHint": "Enter word and click enter to add next"
             },
             "login": {
                 "title": "Login form",
@@ -234,7 +239,8 @@ export default {
                 },
                 "field": {
                     "contract_name": "Contract name",
-                    "contract_description": "Contract description"
+                    "contract_description": "Contract description",
+                    "contract_categories": "Contract categories"
                 },
                 "notify": {
                     "success": "Contract saved!"

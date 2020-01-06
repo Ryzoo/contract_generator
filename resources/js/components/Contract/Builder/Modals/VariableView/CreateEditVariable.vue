@@ -1,45 +1,83 @@
 <template>
   <v-card>
-    <v-card-title>{{isNewAttribute ? $t("form.variableForm.new.title") : $t("form.variableForm.update.title")}}</v-card-title>
+    <v-card-title>
+      <v-row class="align-center">
+        <v-col cols="12" md="auto">
+          {{isNewAttribute ? $t("form.variableForm.new.title") : $t("form.variableForm.update.title")}}
+        </v-col>
+        <v-col>
+          <v-select
+            :items="variableOptions"
+            :label="$t('form.variableForm.type')"
+            outlined
+            dense
+            hide-details
+            color="primary"
+            v-model="attribute.attributeType"
+            @change="setSettingsForType"
+          />
+        </v-col>
+      </v-row>
+    </v-card-title>
     <v-divider/>
     <v-card-text>
-      <v-col sm="12">
-        <v-select
-          :items="variableOptions"
-          :label="$t('form.variableForm.type')"
-          outlined
-          dense
-          hide-details
-          color="primary"
-          v-model="attribute.attributeType"
-          @change="setSettingsForType"
-        />
-      </v-col>
-
       <v-row v-if="attribute.attributeType > -1">
         <v-col sm="12">
-          <v-text-field hide-details  v-model="attribute.attributeName" :label="$t('form.variableForm.name')" outline/>
+          <v-text-field
+            hide-details
+            outlined
+            dense
+            v-model="attribute.attributeName"
+            :label="$t('form.variableForm.name')"
+          />
         </v-col>
-        <v-col sm="12">
-          <v-text-field hide-details  v-model="attribute.placeholder" :label="$t('form.variableForm.placeholder')" outline/>
+        <v-col sm="12" class="pb-0" v-if="attribute.attributeType === AttributeTypeEnum.SELECT">
+          <v-combobox
+            outlined
+            persistent-hint
+            :hint="$t('form.variableForm.itemsHint')"
+            dense
+            :items="[]"
+            small-chips
+            multiple
+            clearable
+            deletable-chips
+            v-model="attribute.settings.items"
+            :label="$t('form.variableForm.items')"
+          />
         </v-col>
-        <v-col sm="12">
-          <v-text-field hide-details  v-model="attribute.description" :label="$t('form.variableForm.label')" outline/>
-        </v-col>
-        <v-col sm="12">
-          <v-text-field hide-details  v-model="attribute.defaultValue" :label="$t('form.variableForm.defaultValue')" outline/>
-        </v-col>
-        <v-col sm="12">
-          <v-text-field hide-details  v-model="attribute.additionalInformation" :label="$t('form.variableForm.additionalInformation')" outline/>
-        </v-col>
-        <v-col sm="12">
-          <v-checkbox hide-details v-model="attribute.toAnonymize" :label="$t('form.variableForm.forAnonymise')"/>
-        </v-col>
-        <v-col sm="12">
+        <v-col cols="12" class="py-0">
           <VariableSettings
             :settings="attribute.settings"
+            :currentSettings="settingsForType"
             @save="saveSettingsInput"
           />
+        </v-col>
+        <v-col cols="12">
+          <v-expansion-panels>
+            <v-expansion-panel>
+              <v-expansion-panel-header>Additional configuration</v-expansion-panel-header>
+              <v-expansion-panel-content>
+                <v-row>
+                  <v-col sm="12">
+                    <v-text-field hide-details dense outlined v-model="attribute.placeholder" :label="$t('form.variableForm.placeholder')" outline/>
+                  </v-col>
+                  <v-col sm="12">
+                    <v-text-field hide-details dense outlined v-model="attribute.description" :label="$t('form.variableForm.label')" outline/>
+                  </v-col>
+                  <v-col sm="12">
+                    <v-text-field hide-details dense outlined v-model="attribute.defaultValue" :label="$t('form.variableForm.defaultValue')" outline/>
+                  </v-col>
+                  <v-col sm="12">
+                    <v-text-field hide-details dense outlined v-model="attribute.additionalInformation" :label="$t('form.variableForm.additionalInformation')" outline/>
+                  </v-col>
+                  <v-col sm="12">
+                    <v-checkbox class="mt-0" hide-details dense outlined v-model="attribute.toAnonymize" :label="$t('form.variableForm.forAnonymise')"/>
+                  </v-col>
+                </v-row>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
         </v-col>
       </v-row>
     </v-card-text>
@@ -54,6 +92,7 @@
 
 <script>
 import VariableSettings from './VariableSettings'
+import { AttributeTypeEnum } from '../../../../../additionalModules/Enums'
 
 export default {
   name: 'CreateEditVariable',
@@ -64,10 +103,14 @@ export default {
     VariableSettings
   },
   data () {
+    const attribute = this.editAttribute || this.getDefaultAttribute()
+
     return {
       variableOptions: [],
-      attribute: this.editAttribute || this.getDefaultAttribute(),
-      allAttributes: []
+      attribute: attribute,
+      allAttributes: [],
+      AttributeTypeEnum: AttributeTypeEnum,
+      settingsForType: {}
     }
   },
   watch: {
@@ -92,6 +135,7 @@ export default {
               text: x.attributeName
             }
           })
+          this.settingsForType = this.getSettingsForType(this.attribute.attributeType)
         })
     },
     editVariable (attribute) {
@@ -102,11 +146,11 @@ export default {
       this.attribute.settings[inputData.name] = inputData.value
     },
     setSettingsForType () {
-      this.attribute.settings = this.getSettingsForType(this.attribute.attributeType)
+      this.settingsForType = this.getSettingsForType(this.attribute.attributeType)
     },
     getSettingsForType (type) {
       const attributeType = this.allAttributes.find(x => x.attributeType === type)
-      return attributeType ? attributeType.settings : []
+      return attributeType ? attributeType.settings : {}
     },
     getDefaultAttribute () {
       return {
@@ -121,28 +165,44 @@ export default {
         settings: {}
       }
     },
-    saveVariable () {
-      let isNew = true
+    isValid () {
+      try {
+        const validationArray = []
+        validationArray[this.$t('form.variableForm.name')] = this.attribute.attributeName
 
-      this.attributesList.map((attribute) => {
-        if (attribute.id === this.attribute.id) {
-          attribute = this.attribute
-          isNew = false
+        if (this.attribute.attributeType === AttributeTypeEnum.SELECT) {
+          validationArray[this.$t('form.variableForm.items')] = this.attribute.settings.items
         }
 
-        return attribute
-      })
+        const valid = new Validator(validationArray)
 
-      if (isNew) {
-        this.attributesList.push(this.attribute)
+        valid.get(this.$t('form.variableForm.name')).length(3, 255)
+
+        if (this.attribute.attributeType === AttributeTypeEnum.SELECT) {
+          valid.get(this.$t('form.variableForm.items')).count(1)
+        }
+      } catch (e) {
+        return false
       }
 
-      console.log(this.attribute)
-      this.$store.dispatch('builder_setVariable', this.attributesList)
-      this.$store.dispatch('builder_idVariableIncrement')
+      return true
+    },
+    saveVariable () {
+      if (this.isValid()) {
+        const newSettings = {}
 
-      this.attribute = this.getDefaultAttribute()
-      this.$emit('close')
+        Object.keys(this.settingsForType).forEach(key => {
+          newSettings[key] = this.attribute.settings[key]
+        })
+
+        this.attribute.settings = newSettings
+
+        this.$store.dispatch('builder_editVariable', this.attribute)
+        this.$store.dispatch('builder_idVariableIncrement')
+
+        this.attribute = this.getDefaultAttribute()
+        this.$emit('close')
+      }
     }
   }
 }

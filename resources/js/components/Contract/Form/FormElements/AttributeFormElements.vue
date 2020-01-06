@@ -42,7 +42,7 @@ export default {
       thisElement.isValid = isValidValue
 
       if (newValue) {
-        thisElement.attribute.value = newValue
+        thisElement.attribute.value = Array.isArray(newValue) ? newValue.join(',') : newValue
       }
 
       this.$store.dispatch('formElements_change', {

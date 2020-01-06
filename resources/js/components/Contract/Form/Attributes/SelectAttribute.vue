@@ -32,15 +32,13 @@ export default {
   props: ['attribute', 'validationError', 'dense'],
   data () {
     return {
-      currentValue: this.attribute.value
+      currentValue: this.attribute.value ? this.attribute.value.split(',') : []
     }
   },
   methods: {
     changeValue (newValue) {
-      this.$emit('change-value', this.attribute.settings.isMultiSelect ? newValue.join(',') : newValue)
+      this.$emit('change-value', newValue)
     }
   }
 }
 </script>
-
-<style scoped></style>

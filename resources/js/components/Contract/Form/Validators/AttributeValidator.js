@@ -123,7 +123,7 @@ class AttributeValidator {
         const validationError = this.isArray() ? i18n.t('validation.min.array', {
           attribute: this.attribute.attributeName,
           min: this.settings.lengthMin
-        }) : i18n.t('validation.min.array', {
+        }) : i18n.t('validation.min.string', {
           attribute: this.attribute.attributeName,
           min: this.settings.lengthMin
         })
@@ -145,10 +145,10 @@ class AttributeValidator {
       }
 
       if ((this.isArray() ? this.value.length : String(this.value).length) > parseInt(this.settings.lengthMax)) {
-        const validationError = this.isArray() ? i18n.t('validation.max.string', {
+        const validationError = this.isArray() ? i18n.t('validation.max.array', {
           attribute: this.attribute.attributeName,
           max: this.settings.lengthMax
-        }) : i18n.t('validation.max.array', {
+        }) : i18n.t('validation.max.string', {
           attribute: this.attribute.attributeName,
           max: this.settings.lengthMax
         })
