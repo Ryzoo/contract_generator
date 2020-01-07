@@ -46,6 +46,20 @@
             :label="$t('form.variableForm.items')"
           />
         </v-col>
+        <v-col sm="12" class="pb-0" v-if="attribute.attributeType === AttributeTypeEnum.REPEAT_GROUP">
+          <v-select
+            v-model="selectedVariables"
+            :items="attributesList"
+            item-text="attributeName"
+            item-value="id"
+            :label="$t('form.variableForm.selectVariables')"
+            multiple
+            persistent-hint
+            return-object
+            single-line
+            dense
+          ></v-select>
+        </v-col>
         <v-col cols="12" class="py-0">
           <VariableSettings
             :settings="attribute.settings"
@@ -104,24 +118,34 @@ export default {
   },
   data () {
     const attribute = this.editAttribute || this.getDefaultAttribute()
+    const selectedVariables = this.editAttribute  ? this.getSelectedVariables(attribute) : []
 
     return {
       variableOptions: [],
       attribute: attribute,
       allAttributes: [],
       AttributeTypeEnum: AttributeTypeEnum,
-      settingsForType: {}
+      settingsForType: {},
+      selectedVariables: selectedVariables
     }
   },
   watch: {
     editAttribute (newValue) {
       this.attribute = this.editAttribute || this.getDefaultAttribute()
+      this.selectedVariables = this.editAttribute  ? this.getSelectedVariables(this.attribute) : []
     }
   },
   mounted () {
     this.getAllAttributes()
   },
   methods: {
+    getSelectedVariables (attribute) {
+      if (attribute.content && attribute.content.length > 0){
+        this.selectedVariables = attribute.content
+      }
+
+      return this.selectedVariables
+    },
     pushCloseEvent () {
       this.$emit('close')
     },
@@ -196,6 +220,10 @@ export default {
         })
 
         this.attribute.settings = newSettings
+
+        if (this.attribute.attributeType === AttributeTypeEnum.REPEAT_GROUP) {
+          this.attribute.content = this.selectedVariables
+        }
 
         this.$store.dispatch('builder_editVariable', this.attribute)
         this.$store.dispatch('builder_idVariableIncrement')

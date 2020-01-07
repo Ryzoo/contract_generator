@@ -22,7 +22,8 @@ return [
         'valueMin' => 'Min value',
         'valueMax' => 'Max value',
         'items' => 'Items to select in',
-        'itemsHint' => 'Enter word and click enter to add next'
+        'itemsHint' => 'Enter word and click enter to add next',
+        'selectVariables' => 'Select variables to group'
     ],
     'login' => [
         'title' => 'Login form',

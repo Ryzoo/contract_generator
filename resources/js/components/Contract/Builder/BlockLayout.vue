@@ -66,9 +66,6 @@ export default {
         if (variable.id > variableId) {
           variableId = variable.id
         }
-        if (typeof variable.content !== 'undefined' && variable.content.length > 0) {
-          this.setHighestVariableId()
-        }
       })
 
       this.$store.dispatch('builder_setIdVariableIncrement', variableId)
