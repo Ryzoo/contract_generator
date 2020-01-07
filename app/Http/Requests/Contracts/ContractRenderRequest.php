@@ -24,7 +24,7 @@ class ContractRenderRequest extends FormRequest
     public function rules()
     {
         return [
-            "formElements" => "required|array",
+            'formElements' => 'required|array',
         ];
     }
 }

@@ -15,20 +15,20 @@
             </div>
         </v-fade-transition>
         <div class="module-action">
-            <v-switch v-model="isOn" @change="changeModuleState" color="success" hide-details inset></v-switch>
+            <v-switch v-model="isOn" @change="changeModuleState" color="success" hide-details inset/>
         </div>
         <v-dialog v-model="configureDialog"  width="800px">
             <v-card>
                 <v-card-title>
-                    <span class="headline">Configuration of the module: {{module.name}}</span>
+                    <span class="headline">{{$t('module.header.moduleConfiguration')}} {{module.name}}</span>
                 </v-card-title>
                 <v-card-text>
-                    <component :ref="module.name" :module="module" :is="module.configComponent"></component>
+                    <component :ref="module.name" :module="module" :is="module.configComponent"/>
                 </v-card-text>
                 <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn outlined color="primary" @click="configureDialog = false">Close</v-btn>
-                    <v-btn color="primary" @click="saveConfig">Save configuration</v-btn>
+                    <v-spacer/>
+                    <v-btn outlined color="primary" @click="configureDialog = false">{{$t('base.button.close')}}</v-btn>
+                    <v-btn color="primary" @click="saveConfig">{{$t('base.button.save')}}</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>

@@ -78,6 +78,9 @@ export default {
                 "profile": {
                     "title": "Panel - My Profile"
                 },
+                "formSubmission": {
+                    "title": "Panel - My Submission"
+                },
                 "roles": {
                     "title": "Panel - Manage roles",
                     "create": {
@@ -251,6 +254,46 @@ export default {
             "roles": {
                 "ADMINISTRATOR": "Admin",
                 "CLIENT": "Client"
+            },
+            "contractStatus": [
+                "New",
+                "Pending",
+                "Available",
+                "Delivered"
+            ]
+        },
+        "module": {
+            "provider": {
+                "title": "Provide contract",
+                "description": "Actual mode is render to pdf",
+                "descriptionConfig": "This module determine hom the rendered contract should be provided to user",
+                "successNotify": "Render success",
+                "type": {
+                    "renderAfterFinish": "Render to pdf after finish",
+                    "renderToEmail": "Send to user email"
+                }
+            },
+            "auth": {
+                "title": "Authorization for contract",
+                "authOptions": "Authorization options",
+                "pwdToAccess": "Password to access",
+                "descriptionAuth": "Only person that know the password can access this contract form",
+                "description": "Only logged user can access this contract",
+                "descriptionConfig": "Auth provide some options to determine client access. Choose one:",
+                "successNotify": "Render success",
+                "type": {
+                    "accessForLogged": "Access for logged user",
+                    "accessWithPwd": "Access with password"
+                }
+            },
+            "header": {
+                "moduleConfiguration": "Configuration of the module:"
+            },
+            "base": {
+                "step": "Step:"
+            },
+            "notify": {
+                "completeAllElement": "Fill properly all inputs on this page to go next!"
             }
         },
         "email": {
@@ -262,6 +305,10 @@ export default {
             "welcome": {
                 "subject": "Welcome to Contract Generator",
                 "info": "Your account are created successfully. You can now login and work in app."
+            },
+            "render": {
+                "subject": "New Render from Contract Generator",
+                "info": "Our system render your form submission. It is available from your panel on site. We also send it as attachment in this email."
             }
         },
         "base": {
@@ -284,13 +331,17 @@ export default {
             },
             "button": {
                 "login": "Login",
+                "addElement": "Add next element",
+                "goToLogin": "Go to login page",
                 "fillIn": "Fill in",
                 "register": "Create new account",
                 "reset": "Reset",
                 "cancel": "Cancel",
                 "remind": "Remind",
                 "remove": "Remove",
+                "render": "Render",
                 "save": "Save",
+                "next": "Next",
                 "update": "Update",
                 "add": "Add",
                 "back": "Back",
@@ -303,11 +354,15 @@ export default {
                 "email": "Email",
                 "created": "Created",
                 "roles": "Roles",
+                "status": "Current status",
+                "updated": "Last update",
                 "actions": "Actions",
                 "descriptions": "Descriptions"
             },
             "description": {
-                "remove": "Do you want to remove it?"
+                "remove": "Do you want to remove it?",
+                "noElements": "No elements in list",
+                "inTurn": "In turn"
             },
             "notify": {
                 "remove": "Removed successfully!"
@@ -339,6 +394,7 @@ export default {
                 "main": "My profile",
                 "notifications": "Notifications"
             },
+            "formSubmission": "Form Submissions",
             "logout": "Logout"
         },
         "validation": {

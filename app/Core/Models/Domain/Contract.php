@@ -76,7 +76,7 @@ class Contract extends Model
     }
 
     public function checkContractEnabledModules( string $moduleName ): bool{
-        $enabledModules = isset($this->settings['enabledModules']) ? $this->settings['enabledModules'] : [];
+        $enabledModules = $this->settings['enabledModules'] ?? [];
 
         foreach ($enabledModules as $enabledModule) {
             if($enabledModule === $moduleName)
@@ -89,6 +89,11 @@ class Contract extends Model
     public function form()
     {
         return $this->hasOne('App\Core\Models\Domain\Form');
+    }
+
+    public function completedForm()
+    {
+        return $this->hasMany('App\Core\Models\Domain\ContractFormComplete');
     }
 
     public function categories()

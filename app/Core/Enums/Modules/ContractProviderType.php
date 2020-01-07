@@ -10,5 +10,4 @@ class ContractProviderType {
 
     public const RENDER = 0;
     public const EMAIL = 1;
-    public const TASK = 2;
 }

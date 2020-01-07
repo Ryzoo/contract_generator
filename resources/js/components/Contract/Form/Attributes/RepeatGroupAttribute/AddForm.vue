@@ -14,7 +14,7 @@
         >
         </component>
         <v-row class="justify-center">
-            <v-btn dense color="primary" @click="add">Dodaj kolejny element do listy</v-btn>
+            <v-btn dense color="primary" @click="add">{{$t("base.button.addElement")}}</v-btn>
         </v-row>
     </v-row>
 </template>

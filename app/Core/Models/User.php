@@ -23,4 +23,9 @@ class User extends Authenticatable
     protected $dates = [
         'deleted_at',
     ];
+
+    public function completedForm()
+    {
+        return $this->hasMany('App\Core\Models\Domain\ContractFormComplete');
+    }
 }

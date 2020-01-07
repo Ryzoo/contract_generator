@@ -6,6 +6,8 @@ namespace App\Core\Services\Domain;
 
 use App\Core\Helpers\PdfRenderer;
 use App\Core\Models\Domain\Contract;
+use App\Core\Models\Domain\ContractFormComplete;
+use App\Core\Models\User;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -40,7 +42,7 @@ class ContractService {
         }
     }
 
-    public function renderContract(int $contractId, Collection $formElements) {
+    public function renderContract(int $contractId, Collection $formElements){
         $contract = Contract::findOrFail($contractId);
         $blocks = $contract->blocks;
 

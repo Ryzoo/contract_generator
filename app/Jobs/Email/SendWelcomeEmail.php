@@ -30,7 +30,7 @@ class SendWelcomeEmail implements ShouldQueue {
     /**
      * Create a new job instance.
      *
-     * @param \App\Core\Models\User $userModel
+     * @param User $userModel
      */
     public function __construct(User $userModel) {
         $this->userModel = $userModel;

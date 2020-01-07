@@ -20,13 +20,17 @@ return [
     ],
     'button' => [
         'login' => 'Login',
+        'addElement' => 'Add next element',
+        'goToLogin' => 'Go to login page',
         'fillIn' => 'Fill in',
         'register' => 'Create new account',
         'reset' => 'Reset',
         'cancel' => 'Cancel',
         'remind' => 'Remind',
         'remove' => 'Remove',
+        'render' => 'Render',
         'save' => 'Save',
+        'next' => 'Next',
         'update' => 'Update',
         'add' => 'Add',
         'back' => 'Back',
@@ -39,11 +43,15 @@ return [
         "email" => "Email",
         "created" => "Created",
         "roles" => "Roles",
+        "status" => "Current status",
+        "updated" => "Last update",
         "actions" => "Actions",
         "descriptions" => "Descriptions",
     ],
     'description' => [
         'remove' => 'Do you want to remove it?',
+        'noElements' => 'No elements in list',
+        'inTurn' => 'In turn'
     ],
     'notify' => [
         'remove' => 'Removed successfully!',

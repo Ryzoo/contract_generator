@@ -1,25 +1,27 @@
 <template>
   <section>
-    <v-card-title>Ta umowa ma włączony moduł autoryzacji</v-card-title>
+    <v-card-title>{{$t('module.auth.title')}}</v-card-title>
     <v-divider/>
-    <v-card-text v-if="actualAuthType == AuthType.LOGIN">
-      <p>Pozwolenie na wgląd mają tylko <b>zalogowani użytkownicy</b></p>
+    <v-card-text v-if="actualAuthType === AuthType.LOGIN">
+      <p>{{$t('module.auth.description')}}</p>
       <v-card-actions>
-        <v-spacer></v-spacer>
         <v-btn
+          class="mx-auto"
           color="primary"
           to="/auth/login">
-          Przejdź do strony logowania
+          <v-icon small left>fa-lock-open</v-icon> {{$t('base.button.goToLogin')}}
         </v-btn>
       </v-card-actions>
     </v-card-text>
-    <v-card-text v-if="actualAuthType == AuthType.PASSWORD">
-      <p>Pozwolenie na wgląd mają tylko <b>osoby znające hasło</b></p>
+    <v-card-text v-if="actualAuthType === AuthType.PASSWORD">
+      <p>{{$t('module.auth.descriptionAuth')}}</p>
       <v-form>
         <v-text-field
-          prepend-icon="fa-lock"
+          prepend-inner-icon="fa-lock"
           v-model="password"
-          label="Hasło"
+          hide-details
+          outlined
+          :label="$t('base.field.password')"
           type="password"
         >
         </v-text-field>
@@ -29,8 +31,9 @@
       <v-spacer/>
       <v-btn
         color="primary"
+        :disabled="disableNextButton()"
         @click="checkFinishLogic">
-        Dalej
+        {{$t('base.button.next')}}
       </v-btn>
     </v-card-actions>
   </section>
@@ -51,7 +54,22 @@ export default {
       actualAuthType: this.actualModule.settings.type
     }
   },
+  computed: {
+    isAuthorized () {
+      return auth.isAuthorized()
+    }
+  },
   methods: {
+    disableNextButton () {
+      switch (String(this.actualAuthType)) {
+        case AuthType.LOGIN:
+          return !this.isAuthorized
+        case AuthType.PASSWORD:
+          return !this.password.length
+      }
+
+      return false
+    },
     finishAction () {
       this.$emit('finish', [])
     },
@@ -74,11 +92,9 @@ export default {
       })
     },
     finishAsLoggedUser () {
-      const user = this.$store.getters.authUser
-      if (user && user.email && user.loginToken) {
+      if (this.isAuthorized) {
         this.finishAction()
       }
-
       return false
     },
     checkFinishLogic () {

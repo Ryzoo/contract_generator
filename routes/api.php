@@ -73,8 +73,10 @@ Route::prefix('contract')->group(function () {
         Route::get('/{contract}', 'Contract\ContractFormController@get');
     });
 
+    Route::get('/submissions', 'ContractController@submissions');
     Route::get('/{contract}', 'ContractController@get')->middleware(['middleware' => 'auth:token']);
     Route::get('/', 'ContractController@getCollection');
+
 
     Route::post('/', 'ContractController@add')->middleware(['middleware' => 'auth:token']);
     Route::post('/{contract}/render', 'ContractController@render');

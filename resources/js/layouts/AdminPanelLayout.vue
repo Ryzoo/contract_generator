@@ -166,6 +166,7 @@
 
 <script>
 import { Permissions } from '../additionalModules/Permissions'
+import { Roles } from '../additionalModules/Roles'
 
 export default {
   name: 'PanelLayout',
@@ -179,16 +180,25 @@ export default {
         {
           title: this.$t('navigation.dashboard'),
           icon: 'fa-poll fa-fw',
+          roles: [Roles.ADMIN, Roles.CLIENT],
           link: '/panel/dashboard'
         },
         {
           title: this.$t('navigation.formContract'),
           icon: 'fa-newspaper fa-fw',
+          roles: [Roles.ADMIN, Roles.CLIENT],
           link: '/client/form'
+        },
+        {
+          title: this.$t('navigation.formSubmission'),
+          icon: 'fa-file-contract fa-fw',
+          roles: [Roles.CLIENT],
+          link: '/panel/formSubmission'
         },
         {
           title: this.$t('navigation.contract.main'),
           icon: 'fa-file-contract fa-fw',
+          roles: [Roles.ADMIN],
           elements: [
             {
               title: this.$t('navigation.contract.contractList'),
@@ -209,6 +219,7 @@ export default {
         {
           title: this.$t('navigation.settings.main'),
           icon: 'fa-cog fa-fw',
+          roles: [Roles.ADMIN],
           elements: [
             {
               title: this.$t('navigation.settings.roles'),
@@ -251,6 +262,10 @@ export default {
 
         if (x.access) {
           x.active = x.access.every(z => auth.checkPermission(z))
+        }
+
+        if (x.roles) {
+          x.active = !x.roles.some(z => auth.checkRole(z))
         }
 
         if (x.elements) {

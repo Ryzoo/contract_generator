@@ -1,16 +1,16 @@
 <template>
   <section v-if="!isLoading">
-    <v-card-title>Ten kontroler ma włączony moduł dostarczania umowy</v-card-title>
+    <v-card-title>{{$t('module.provider.title')}}</v-card-title>
     <v-divider/>
     <v-card-text>
-      <p>Aktualnie wybrany jest tryb renderowania pliku pdf do przeglądarki</p>
+      <p>{{$t('module.provider.description')}}</p>
     </v-card-text>
     <v-card-actions>
       <v-spacer/>
       <v-btn
         color="primary"
         @click="renderContract">
-        Renderuj
+        {{$t('base.button.render')}}
       </v-btn>
     </v-card-actions>
   </section>
@@ -42,7 +42,7 @@ export default {
         }
       })
         .then((response) => {
-          Notify.push('Render zakończony pomyślnie', Notify.SUCCESS)
+          Notify.push(this.$t('module.provider.successNotify'), Notify.SUCCESS)
           const url = window.URL.createObjectURL(new Blob([response.data]))
           const link = document.createElement('a')
           link.href = url
