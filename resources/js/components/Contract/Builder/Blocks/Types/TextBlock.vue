@@ -34,6 +34,47 @@
           >
             <v-icon>fa-code</v-icon>
           </button>
+
+          <button
+            class="menububble-button"
+            :class="{ 'is-active': isActive.code() }"
+            @click="commands.underline"
+          >
+            <v-icon>fa-underline</v-icon>
+          </button>
+
+          <button
+            class="menububble-button"
+            :class="{ 'is-active': isActive.code() }"
+            @click="commands.blockquote"
+          >
+            <v-icon>fa-quote-right</v-icon>
+          </button>
+
+          <button
+                  class="menububble-button"
+                  :class="{ 'is-active': isActive.code() }"
+                  @click="commands.bullet_list"
+          >
+            <v-icon>fa-list-ul</v-icon>
+          </button>
+
+          <button
+                  class="menububble-button"
+                  :class="{ 'is-active': isActive.code() }"
+                  @click="commands.ordered_list"
+          >
+            <v-icon>fa-list-ol</v-icon>
+          </button>
+
+          <button
+                  class="menububble-button"
+                  :class="{ 'is-active': isActive.code() }"
+                  @click="commands.heading({ level: 1 })"
+          >
+            <v-icon>fa-heading</v-icon>
+          </button>
+
         </div>
       </div>
     </editor-menu-bubble>
