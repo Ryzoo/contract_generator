@@ -376,10 +376,9 @@ export default {
   .menubar-container {
     position: relative;
     transition: 0.3s;
-    z-index: 3;
+    width: 100%;
 
     .menubar {
-      width: 100%;
       margin: 0 10px;
       display: flex;
       justify-content: left;
