@@ -2,7 +2,7 @@
   <section class="block-details">
     <editor-menu-bar
       :editor="editor"
-      v-slot="{ commands, isActive }"
+      v-slot="{ commands, isActive, getMarkAttrs }"
     >
       <div class="menubar-container">
         <div class="menubar">
@@ -60,6 +60,30 @@
                   @click="commands.ordered_list"
           >
             <v-icon>fa-list-ol</v-icon>
+          </button>
+
+          <button
+                  class="menubar-button"
+                  :class="{ 'is-active': getMarkAttrs('align').textAlign === 'left' }"
+                  @click="commands.align({ textAlign: 'left' })"
+          >
+            <v-icon>fa-align-left</v-icon>
+          </button>
+
+          <button
+                  class="menubar-button"
+                  :class="{ 'is-active': getMarkAttrs('align').textAlign === 'center' }"
+                  @click="commands.align({ textAlign: 'center' })"
+          >
+            <v-icon>fa-align-center</v-icon>
+          </button>
+
+          <button
+                  class="menubar-button"
+                  :class="{ 'is-active': getMarkAttrs('align').textAlign === 'right' }"
+                  @click="commands.align({ textAlign: 'right' })"
+          >
+            <v-icon>fa-align-right</v-icon>
           </button>
 
           <button
@@ -141,7 +165,8 @@ import {
   Mention,
   History
 } from 'tiptap-extensions'
-import ParagraphList from '../../../../../additionalModules/Nodes'
+import ParagraphList from '../../../../../additionalModules/Nodes/ParagraphListNode'
+import Aligment from '../../../../../additionalModules/Nodes/AligmentNode'
 
 export default {
   name: 'TextBlock',
@@ -256,7 +281,8 @@ export default {
               return fuse.search(query)
             }
           }),
-          new ParagraphList()
+          new ParagraphList(),
+            new Aligment()
         ],
         parseOptions: {
           preserveWhitespace: true
