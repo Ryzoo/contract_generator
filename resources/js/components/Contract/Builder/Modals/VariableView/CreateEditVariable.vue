@@ -118,7 +118,7 @@ export default {
   },
   data () {
     const attribute = this.editAttribute || this.getDefaultAttribute()
-    const selectedVariables = this.editAttribute  ? this.getSelectedVariables(attribute) : []
+    const selectedVariables = this.editAttribute ? this.getSelectedVariables(attribute) : []
 
     return {
       variableOptions: [],
@@ -132,7 +132,7 @@ export default {
   watch: {
     editAttribute (newValue) {
       this.attribute = this.editAttribute || this.getDefaultAttribute()
-      this.selectedVariables = this.editAttribute  ? this.getSelectedVariables(this.attribute) : []
+      this.selectedVariables = this.editAttribute ? this.getSelectedVariables(this.attribute) : []
     }
   },
   mounted () {
@@ -140,7 +140,7 @@ export default {
   },
   methods: {
     getSelectedVariables (attribute) {
-      if (attribute.content && attribute.content.length > 0){
+      if (attribute.content && attribute.content.length > 0) {
         this.selectedVariables = attribute.content
       }
 

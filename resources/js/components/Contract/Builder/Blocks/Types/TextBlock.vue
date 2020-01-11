@@ -37,7 +37,7 @@
 
           <button
             class="menububble-button"
-            :class="{ 'is-active': isActive.code() }"
+            :class="{ 'is-active': isActive.underline() }"
             @click="commands.underline"
           >
             <v-icon>fa-underline</v-icon>
@@ -45,7 +45,7 @@
 
           <button
             class="menububble-button"
-            :class="{ 'is-active': isActive.code() }"
+            :class="{ 'is-active': isActive.blockquote() }"
             @click="commands.blockquote"
           >
             <v-icon>fa-quote-right</v-icon>
@@ -53,7 +53,7 @@
 
           <button
                   class="menububble-button"
-                  :class="{ 'is-active': isActive.code() }"
+                  :class="{ 'is-active': isActive.bullet_list() }"
                   @click="commands.bullet_list"
           >
             <v-icon>fa-list-ul</v-icon>
@@ -61,7 +61,7 @@
 
           <button
                   class="menububble-button"
-                  :class="{ 'is-active': isActive.code() }"
+                  :class="{ 'is-active': isActive.ordered_list() }"
                   @click="commands.ordered_list"
           >
             <v-icon>fa-list-ol</v-icon>
@@ -69,10 +69,34 @@
 
           <button
                   class="menububble-button"
-                  :class="{ 'is-active': isActive.code() }"
+                  :class="{ 'is-active': isActive.heading({ level: 1 }) }"
                   @click="commands.heading({ level: 1 })"
           >
-            <v-icon>fa-heading</v-icon>
+            <span class="text-icon">H1</span>
+          </button>
+
+          <button
+                  class="menububble-button"
+                  :class="{ 'is-active': isActive.heading({ level: 1 }) }"
+                  @click="commands.heading({ level: 2 })"
+          >
+            <span class="text-icon">H2</span>
+          </button>
+
+          <button
+                  class="menububble-button"
+                  :class="{ 'is-active': isActive.heading({ level: 1 }) }"
+                  @click="commands.heading({ level: 3 })"
+          >
+            <span class="text-icon">H3</span>
+          </button>
+
+          <button
+                  class="menububble-button"
+                  :class="{ 'is-active': isActive.paragraph_list() }"
+                  @click="commands.paragraph_list"
+          >
+            <span class="text-icon">§</span>
           </button>
 
         </div>
@@ -122,7 +146,7 @@ import {
   Mention,
   History
 } from 'tiptap-extensions'
-import Variable from '../../../../../additionalModules/Nodes'
+import ParagraphList from '../../../../../additionalModules/Nodes'
 
 export default {
   name: 'TextBlock',
@@ -237,7 +261,7 @@ export default {
               return fuse.search(query)
             }
           }),
-          new Variable()
+          new ParagraphList()
         ],
         parseOptions: {
           preserveWhitespace: true
@@ -347,6 +371,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .text-icon {
+    font-weight: bold;
+    font-size: 24px;
+  }
+
   .menububble-container {
     position: absolute;
     transition: 0.3s;
@@ -459,4 +488,5 @@ export default {
     padding: 10px 15px;
     margin: 10px;
   }
+
 </style>
