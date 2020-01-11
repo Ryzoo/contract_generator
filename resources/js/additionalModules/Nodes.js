@@ -31,16 +31,10 @@ export default class ParagraphListNode extends Node {
     return () => toggleList(type, schema.nodes.list_item)
   }
 
-  keys ({ type, schema }) {
-    return {
-      'Shift-Ctrl-9': toggleList(type, schema.nodes.list_item)
-    }
-  }
-
   inputRules ({ type }) {
     return [
       wrappingInputRule(
-        /^(\d+)\.\s$/,
+          /^(§)\s$/,
         type,
         match => ({ order: +match[1] }),
         (match, node) => node.childCount + node.attrs.order === +match[1]

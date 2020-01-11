@@ -1,18 +1,13 @@
 <template>
   <section class="block-details">
-    <editor-menu-bubble
+    <editor-menu-bar
       :editor="editor"
-      :keep-in-bounds="keepInBounds"
-      v-slot="{ commands, isActive, menu }"
+      v-slot="{ commands, isActive }"
     >
-      <div
-        class="menububble-container"
-        :class="{ 'is-active': menu.isActive }"
-        :style="`left: ${menu.left}px; bottom: ${menu.bottom}px;`"
-      >
-        <div class="menububble">
+      <div class="menubar-container">
+        <div class="menubar">
           <button
-            class="menububble-button"
+            class="menubar-button"
             :class="{ 'is-active': isActive.bold() }"
             @click="commands.bold"
           >
@@ -20,7 +15,7 @@
           </button>
 
           <button
-            class="menububble-button"
+            class="menubar-button"
             :class="{ 'is-active': isActive.italic() }"
             @click="commands.italic"
           >
@@ -28,7 +23,7 @@
           </button>
 
           <button
-            class="menububble-button"
+            class="menubar-button"
             :class="{ 'is-active': isActive.code() }"
             @click="commands.code"
           >
@@ -36,7 +31,7 @@
           </button>
 
           <button
-            class="menububble-button"
+            class="menubar-button"
             :class="{ 'is-active': isActive.underline() }"
             @click="commands.underline"
           >
@@ -44,7 +39,7 @@
           </button>
 
           <button
-            class="menububble-button"
+            class="menubar-button"
             :class="{ 'is-active': isActive.blockquote() }"
             @click="commands.blockquote"
           >
@@ -52,7 +47,7 @@
           </button>
 
           <button
-                  class="menububble-button"
+                  class="menubar-button"
                   :class="{ 'is-active': isActive.bullet_list() }"
                   @click="commands.bullet_list"
           >
@@ -60,7 +55,7 @@
           </button>
 
           <button
-                  class="menububble-button"
+                  class="menubar-button"
                   :class="{ 'is-active': isActive.ordered_list() }"
                   @click="commands.ordered_list"
           >
@@ -68,7 +63,7 @@
           </button>
 
           <button
-                  class="menububble-button"
+                  class="menubar-button"
                   :class="{ 'is-active': isActive.heading({ level: 1 }) }"
                   @click="commands.heading({ level: 1 })"
           >
@@ -76,23 +71,23 @@
           </button>
 
           <button
-                  class="menububble-button"
-                  :class="{ 'is-active': isActive.heading({ level: 1 }) }"
+                  class="menubar-button"
+                  :class="{ 'is-active': isActive.heading({ level: 2 }) }"
                   @click="commands.heading({ level: 2 })"
           >
             <span class="text-icon">H2</span>
           </button>
 
           <button
-                  class="menububble-button"
-                  :class="{ 'is-active': isActive.heading({ level: 1 }) }"
+                  class="menubar-button"
+                  :class="{ 'is-active': isActive.heading({ level: 3 }) }"
                   @click="commands.heading({ level: 3 })"
           >
             <span class="text-icon">H3</span>
           </button>
 
           <button
-                  class="menububble-button"
+                  class="menubar-button"
                   :class="{ 'is-active': isActive.paragraph_list() }"
                   @click="commands.paragraph_list"
           >
@@ -101,7 +96,7 @@
 
         </div>
       </div>
-    </editor-menu-bubble>
+    </editor-menu-bar>
     <editor-content class="editor-container" :editor="editor"/>
 
     <div class="suggestion-list" v-show="showSuggestions" ref="suggestions">
@@ -124,7 +119,7 @@
 </template>
 
 <script>
-import { Editor, EditorContent, EditorMenuBubble } from 'tiptap'
+import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
 import Fuse from 'fuse.js'
 import tippy from 'tippy.js'
 import {
@@ -153,7 +148,7 @@ export default {
   props: ['block'],
   components: {
     EditorContent,
-    EditorMenuBubble
+    EditorMenuBar
   },
   data () {
     return {
@@ -371,31 +366,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "./../../../../../../sass/colors";
+
   .text-icon {
     font-weight: bold;
     font-size: 24px;
   }
 
-  .menububble-container {
-    position: absolute;
+  .menubar-container {
+    position: relative;
     transition: 0.3s;
-    opacity: 0;
     z-index: 3;
 
-    &.is-active {
-      opacity: 1;
-    }
-
-    .menububble {
-      width: max-content;
+    .menubar {
+      width: 100%;
+      margin: 0 10px;
       display: flex;
-      justify-content: center;
-      background: linear-gradient(to bottom, #3d3646 0%, #2a272f 100%);
+      justify-content: left;
+      background: $primary;
       color: white;
       border-radius: 5px;
 
-      .menububble-button {
+      .menubar-button {
         padding: 10px;
+
+        &.is-active {
+          background: #2D3F86;
+        }
 
         i {
           color: white;
