@@ -118,6 +118,20 @@
             <span class="text-icon">§</span>
           </button>
 
+          <v-combobox
+                  class="fontsize-selector"
+                  v-model="selectedSize"
+                  :items="fontSizes"
+                  color="white"
+                  light
+                  hide-details
+                  placeholder="Select font size"
+                  dense
+                  outlined
+                  @change="commands.fontSize({fontSize:selectedSize + 'px'})"
+                  @blur="commands.fontSize({fontSize:selectedSize + 'px'})"
+          ></v-combobox>
+
         </div>
       </div>
     </editor-menu-bar>
@@ -167,6 +181,7 @@ import {
 } from 'tiptap-extensions'
 import ParagraphList from '../../../../../additionalModules/Nodes/ParagraphListNode'
 import Aligment from '../../../../../additionalModules/Nodes/AligmentNode'
+import FontSize from '../../../../../additionalModules/Nodes/FontSizeNode'
 
 export default {
   name: 'TextBlock',
@@ -182,6 +197,8 @@ export default {
       query: null,
       suggestionRange: null,
       filteredVariables: [],
+      fontSizes: [8, 10, 12, 14, 16, 18, 20, 24, 36],
+      selectedSize: 0,
       navigatedVariableIndex: 0,
       insertMention: () => {
       },
@@ -282,7 +299,8 @@ export default {
             }
           }),
           new ParagraphList(),
-            new Aligment()
+          new Aligment(),
+          new FontSize()
         ],
         parseOptions: {
           preserveWhitespace: true
@@ -393,6 +411,11 @@ export default {
 
 <style lang="scss" scoped>
   @import "./../../../../../../sass/colors";
+
+  .fontsize-selector {
+    max-width: 100px;
+    align-items: center;
+  }
 
   .text-icon {
     font-weight: bold;

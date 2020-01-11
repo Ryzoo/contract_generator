@@ -34,7 +34,7 @@ export default class ParagraphListNode extends Node {
   inputRules ({ type }) {
     return [
       wrappingInputRule(
-          /^(§)\s$/,
+        /^(§)\s$/,
         type,
         match => ({ order: +match[1] }),
         (match, node) => node.childCount + node.attrs.order === +match[1]
