@@ -45,6 +45,9 @@ const actions = {
   },
   builder_changeActiveBlock: (context, data) => {
     context.commit('BUILDER_ACTIVE_BLOCK_UPDATE', data)
+  },
+  builder_setDraggedBlock: (context, data) => {
+    context.commit('BUILDER_SET_DRAGGED_BLOCK', data)
   }
 }
 
@@ -139,7 +142,33 @@ const mutations = {
 
       return x
     })
-  }
+  },
+  BUILDER_SET_DRAGGED_BLOCK: (state, data) => {
+    let copyOfDraggedBlock = []
+    const updateBlock = (block, data) => {
+      return block.forEach((x, i) => {
+        if (x.id === data.draggedBlockId) {
+          copyOfDraggedBlock = x
+          state.builder.blocks.splice(i, 1)
+          console.log(state.builder.blocks, copyOfDraggedBlock)
+        }
+
+        // if (x.id === data.blockIdWhereToDrag.id) {
+        //   if (data.blockIdWhereToDrag.prev) {
+        //     state.builder.blocks.splice(i, 0, copyOfDraggedBlock)
+        //     } else {
+        //     state.builder.blocks.splice(i-1, 0, copyOfDraggedBlock)
+        //   }
+        // }
+
+        if (x.content.blocks) {
+          x.content.blocks = updateBlock(x.content.blocks, data)
+        }
+      })
+    }
+
+    updateBlock(state.builder.blocks, data)
+  },
 }
 
 const getters = {

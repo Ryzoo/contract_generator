@@ -1,5 +1,5 @@
 <template>
-  <section class="block-details">
+  <section class="block-details block-zone">
     <editor-menu-bar
       :editor="editor"
       v-slot="{ commands, isActive, getMarkAttrs }"

@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="block-draggable">
     <div
       class="block"
       :blockid="currentBlock.id"

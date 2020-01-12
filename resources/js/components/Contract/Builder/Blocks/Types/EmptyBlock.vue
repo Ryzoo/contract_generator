@@ -1,5 +1,5 @@
 <template>
-    <section class="block-details">
+    <section class="block-details block-zone">
         <ContainerBlock
             v-for="(fBlock, index) in filterParentBlocks"
             :block="fBlock"

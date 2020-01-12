@@ -1,5 +1,4 @@
 <template>
-  <!--    TODO: When click edit, right sidebar show up 2nd position-->
   <div class="block-header accordion-body">
     <div class="block-header--icon">
       <v-icon class="mx-3 rotate" @click="toggleBlock($event)">fa-chevron-right</v-icon>
