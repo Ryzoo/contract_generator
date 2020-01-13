@@ -3,7 +3,7 @@ name: Laravel
 on: [push]
 
 jobs:
-  laravel-tests:
+  laravel-tests-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -24,3 +24,7 @@ jobs:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
         run: vendor/bin/phpunit
+      - name: Run deployment
+        run: |
+          php artisan -v deploy:run deploy:unlock production -n -v
+          php artisan -v deploy production -n -v
