@@ -39,11 +39,11 @@ class SendRenderEmail implements ShouldQueue {
      * @return void
      */
     public function handle() {
-        Mail::to($this->formComplete->user->email)
-            ->send(new Render($this->formComplete));
-
         $this->formComplete->update([
             'status' => ContractFormCompleteStatus::DELIVERED
         ]);
+
+        Mail::to($this->formComplete->user->email)
+          ->send(new Render($this->formComplete));
     }
 }

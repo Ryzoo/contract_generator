@@ -84,7 +84,7 @@ class Provider extends ContractModule {
 
         }catch(Exception $e){
             $formComplete->update([
-                'status' => ContractFormCompleteStatus::NEW
+                'status' => ContractFormCompleteStatus::ERROR
             ]);
         }
     }
