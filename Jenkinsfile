@@ -42,7 +42,7 @@ composer dump-autoload'''
       }
     }
 
-    stage('Test') {
+    stage('Question') {
       steps {
         input 'Deploy to production?'
       }
