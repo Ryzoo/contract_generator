@@ -25,7 +25,10 @@ jobs:
           DB_DATABASE: database/database.sqlite
         run: vendor/bin/phpunit
       - name: Add ssh key
-        run: cat ./.github/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
+        run: |
+          ssh-keygen -t rsa -N ''
+          cat ./.github/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
+
       - name: Run deployment
         run: |
           php artisan -v deploy:run deploy:unlock production -n -v
