@@ -117,7 +117,7 @@ return [
             'stage' => 'production',
             'identityFile' =>'~/.ssh/id_rsa',
             'roles' => 'app',
-            'bin/php' => '/usr/local/bin/php74'
+            'bin/php' => '/usr/local/bin/php73'
         ],
     ],
 
