@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'docker/compose'
+      image 'tmaier/docker-compose'
     }
 
   }
