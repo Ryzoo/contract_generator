@@ -10,20 +10,14 @@ pipeline {
       parallel {
         stage('Composer') {
           steps {
-            sh 'composer update && composer install'
+            sh '''composer install
+composer dump-autoload'''
           }
         }
 
         stage('Copy .env') {
           steps {
             sh 'mv .env.testing .env'
-          }
-        }
-
-        stage('test') {
-          steps {
-            sh '''cd laradock
-docker-compose up -d nginx mysql'''
           }
         }
 
