@@ -115,7 +115,7 @@ return [
             'deploy_path' => '~/domains/generatorumowy.pl',
             'user' => 'CMCAdmin',
             'stage' => 'production',
-            'identityFile' =>'~/.ssh/id_rsa',
+            'identityFile' =>'./.github/.ssh/id_rsa',
             'roles' => 'app',
             'bin/php' => '/usr/local/bin/php73'
         ],
