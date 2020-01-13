@@ -15,6 +15,13 @@ pipeline {
           }
         }
 
+        stage('test') {
+          steps {
+            sh '''cd laradock
+docker-compose up -d nginx mysql'''
+          }
+        }
+
       }
     }
 
