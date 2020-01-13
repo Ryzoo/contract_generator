@@ -95,7 +95,6 @@ return [
         'repository' => 'git@github.com:Ryzoo/contract_generator.git',
         'branch' => 'dev',
         'http_user' => 'www-data',
-        'identityFile' =>'./.github/.ssh/id_rsa',
         'user' => 'Ryzoo',
         'composer_options' => 'install --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader --no-suggest'
     ],
@@ -116,7 +115,6 @@ return [
             'deploy_path' => '~/domains/generatorumowy.pl',
             'user' => 'CMCAdmin',
             'stage' => 'production',
-            'identityFile' =>'./.github/.ssh/id_rsa',
             'roles' => 'app',
             'bin/php' => '/usr/local/bin/php73'
         ],
