@@ -92,7 +92,7 @@ return [
 
     'options' => [
         'application' => env('APP_NAME', 'Laravel'),
-        'repository' => 'https://github.com/Ryzoo/contract_generator.git',
+        'repository' => 'git@github.com:Ryzoo/contract_generator.git',
         'branch' => 'dev',
         'http_user' => 'www-data',
         'user' => 'Ryzoo',
@@ -147,7 +147,7 @@ return [
     */
 
     'include' => [
-        'recipe/copy_recipe.php',
+        'deployer/copy_recipe.php',
     ],
 
     /*

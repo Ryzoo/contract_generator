@@ -53,8 +53,8 @@ composer dump-autoload'''
           branch 'dev'
       }
       steps {
-        sh 'php artisan deploy:run deploy:unlock production'
-        sh 'php artisan deploy production -v'
+        sh 'php artisan deploy:run deploy:unlock production -n -vvv'
+        sh 'php artisan deploy production -n -vvv'
       }
     }
 
