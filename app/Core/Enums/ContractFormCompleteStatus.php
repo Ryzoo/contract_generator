@@ -12,4 +12,5 @@ class ContractFormCompleteStatus {
     public const PENDING = 1;
     public const AVAILABLE = 2;
     public const DELIVERED = 3;
+    public const ERROR = 4;
 }

@@ -26,12 +26,12 @@ export default {
         multipleDropzonesItemsDraggingEnabled: true,
         showDropzoneAreas: true,
         onDrop: this.dragBlock,
-          onDragover: this.dragBlockOver,
+        onDragover: this.dragBlockOver
       },
-        blockIdWhereToDrag: {
-          id: 0,
-            prev: false
-        }
+      blockIdWhereToDrag: {
+        id: 0,
+        prev: false
+      }
     }
   },
   computed: {
@@ -55,24 +55,24 @@ export default {
   },
   methods: {
     dragBlock (event) {
-      let draggedBlockId = parseInt($(event.nativeEvent.target.children[0]).attr("blockid"))
-        this.$store.dispatch('builder_setDraggedBlock', { draggedBlockId, blockIdWhereToDrag: this.blockIdWhereToDrag })
+      const draggedBlockId = parseInt($(event.nativeEvent.target.children[0]).attr('blockid'))
+      this.$store.dispatch('builder_setDraggedBlock', { draggedBlockId, blockIdWhereToDrag: this.blockIdWhereToDrag })
     },
-      dragBlockOver (event) {
-        if ($(event.nativeEvent.target).next()[0].children[0].hasAttribute("blockid")) {
-            let block = $(event.nativeEvent.target).next()[0].children[0]
+    dragBlockOver (event) {
+      if ($(event.nativeEvent.target).next()[0].children[0].hasAttribute('blockid')) {
+        const block = $(event.nativeEvent.target).next()[0].children[0]
 
-            this.blockIdWhereToDrag.id = parseInt($(block).attr("blockid"))
-            this.blockIdWhereToDrag.prev = false
-        }
+        this.blockIdWhereToDrag.id = parseInt($(block).attr('blockid'))
+        this.blockIdWhereToDrag.prev = false
+      }
 
-        if ($(event.nativeEvent.target).prev()[0].children[0].hasAttribute("blockid")) {
-            let block = $(event.nativeEvent.target).prev()[0].children[0]
+      if ($(event.nativeEvent.target).prev()[0].children[0].hasAttribute('blockid')) {
+        const block = $(event.nativeEvent.target).prev()[0].children[0]
 
-            this.blockIdWhereToDrag.id = parseInt($(block).attr("blockid"))
-            this.blockIdWhereToDrag.prev = true
-        }
-      },
+        this.blockIdWhereToDrag.id = parseInt($(block).attr('blockid'))
+        this.blockIdWhereToDrag.prev = true
+      }
+    },
     showBlockModal () {
       this.$emit('show-block-modal')
     },

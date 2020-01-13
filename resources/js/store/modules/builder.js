@@ -168,7 +168,7 @@ const mutations = {
     }
 
     updateBlock(state.builder.blocks, data)
-  },
+  }
 }
 
 const getters = {

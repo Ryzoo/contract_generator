@@ -9,6 +9,7 @@ return [
         '0' => "New",
         '1' => "Pending",
         '2' => "Available",
-        '3' => "Delivered"
+        '3' => "Delivered",
+        '4' => "Error"
     ]
 ];

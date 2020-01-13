@@ -6,20 +6,18 @@ use App\Core\Enums\ContractFormCompleteStatus;
 use App\Core\Enums\Modules\ContractModulePart;
 use App\Core\Models\Domain\ContractFormComplete;
 use App\Core\Services\Domain\ContractModuleService;
+use App\Jobs\CancelContractProcess;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class ProcessContractRender extends Command
 {
     /**
-     * The name and signature of the console command.
-     *
      * @var string
      */
     protected $signature = 'contract:render';
 
     /**
-     * The console command description.
-     *
      * @var string
      */
     protected $description = 'Process one of the contract from list';
@@ -28,37 +26,28 @@ class ProcessContractRender extends Command
      */
     private $contractModuleService;
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
     public function __construct(ContractModuleService $contractModuleService)
     {
         parent::__construct();
         $this->contractModuleService = $contractModuleService;
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
     public function handle()
     {
-        $lastContractComplete = ContractFormComplete::with('contract')
+        $lastNewContract = ContractFormComplete::with('contract')
             ->where('status', 'LIKE',ContractFormCompleteStatus::NEW)
-            ->take(1)
-            ->get();
+            ->latest()
+            ->first();
 
-        foreach ($lastContractComplete as $formComplete){
-            $formComplete->update([
-                'status' => ContractFormCompleteStatus::PENDING
-            ]);
+        if(isset($lastNewContract))
+          \App\Jobs\ProcessContractRender::dispatch($this->contractModuleService , $lastNewContract);
 
-            $this->contractModuleService->runPart($formComplete->contract, ContractModulePart::RENDER_CONTRACT, [
-                'formComplete' => $formComplete
-            ]);
-        }
+        $contractToCancel = ContractFormComplete::with('contract')
+          ->where('status', 'LIKE',ContractFormCompleteStatus::PENDING)
+          ->where('updated_at', '<', Carbon::now()->subMinutes(2))
+          ->get();
+
+        if($contractToCancel->count() > 0)
+          CancelContractProcess::dispatch($contractToCancel);
     }
 }

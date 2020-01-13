@@ -2,8 +2,8 @@
 
 namespace App\Mail;
 
+use App\Core\Helpers\Url;
 use App\Core\Models\Domain\ContractFormComplete;
-use App\Core\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -30,6 +30,6 @@ class Render extends Mailable
     {
         return $this->subject(__("email.render.subject"))
             ->markdown('emails.render')
-            ->attachFromStorage($this->formComplete->render_url);
+            ->attachFromStorage(Url::RemoveStorage($this->formComplete->render_url));
     }
 }

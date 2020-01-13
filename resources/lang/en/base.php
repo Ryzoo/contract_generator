@@ -26,6 +26,7 @@ return [
         'register' => 'Create new account',
         'reset' => 'Reset',
         'cancel' => 'Cancel',
+        'close' => 'Zamknij',
         'remind' => 'Remind',
         'remove' => 'Remove',
         'render' => 'Render',

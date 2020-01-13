@@ -11,14 +11,14 @@
             <template v-slot:item.status="{ item }">
               <v-chip
                 class="ma-1"
-                color="primary"
+                :color="getColorFromStatus(item.status)"
                 small label
               >
                 {{$t('enums.contractStatus.'+item.status)}}
               </v-chip>
             </template>
             <template v-slot:item.action="{ item }">
-              <v-btn color="success" v-if="item.status > 1" :href="item.render_url" download>{{$t('base.button.render')}}</v-btn>
+              <v-btn color="success" v-if="item.status == 3 || item.status == 2" type="application/octet-stream" :href="item.render_url" download>{{$t('base.button.render')}}</v-btn>
             </template>
           </v-data-table>
         </v-col>
@@ -58,6 +58,20 @@ export default {
     }
   },
   methods: {
+    getColorFromStatus (status) {
+      switch (parseInt(status)) {
+        case 0:
+          return 'primary'
+        case 1:
+          return 'warning'
+        case 2:
+          return 'success'
+        case 3:
+          return 'success'
+        case 4:
+          return 'error'
+      }
+    },
     getSubmissionList () {
       this.isLoaded = false
       axios
