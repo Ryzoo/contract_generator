@@ -20,23 +20,23 @@ class ContractServiceTest extends TestCase {
     }
 
     public function testAddContract() {
+        $defaultData = collect($this->getDefaultDataForContract())->except('categories');
+
         $notSavedContract = new Contract();
-        $notSavedContract->fill( $this->getDefaultDataForContract() );
+        $notSavedContract->fill( collect($defaultData)->except('categories')->toArray() );
 
         $savedContract = $this->contractService->createContract($notSavedContract);
 
-        $contractBlocks = $savedContract->blocks;
-        $contractAttributesList = $savedContract->attributesList;
-        $contractSettings = $savedContract->settings;
-
-        $this->assertNotNull( count($contractBlocks));
-        $this->assertNotNull( count($contractAttributesList));
-        $this->assertNotNull( count($contractSettings));
+        $this->assertNotNull( count($savedContract->blocks));
+        $this->assertNotNull( count($savedContract->attributesList));
+        $this->assertNotNull( count($savedContract->settings));
     }
 
     public function testRemoveContract(){
+        $defaultData = $this->getDefaultDataForContract();
+
         $notSavedContract = new Contract();
-        $notSavedContract->fill( $this->getDefaultDataForContract() );
+        $notSavedContract->fill( collect($defaultData)->except('categories')->toArray() );
         $savedContract = $this->contractService->createContract($notSavedContract);
 
         $this->assertEquals(1,Contract::all()->count());

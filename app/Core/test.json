@@ -1,178 +1,106 @@
 {
-    "name": "Umowa zabezpieczona hasłem 1234 z providerem",
-    "attributesList": [
-        {
-            "attributeName": "Repeat Group",
-            "id": 9,
-            "attributeType": 3,
-            "description": "A tutaj fajny opis",
-            "additionalInformation": "To jest coś dziwnego",
-            "content": [
-                {
-                    "attributeName": "Imię",
-                    "attributeType": 1,
-                    "defaultValue" : "",
-                    "placeholder" : "",
-                    "description": "A tutaj fajny opis",
-                    "additionalInformation": "To jest coś dziwnego",
-                    "toAnonymize": true,
-                    "settings": {
-                        "required": true,
-                        "lengthMin": 3,
-                        "lengthMax": 50
-                    }
-                },{
-                    "attributeName": "Nazwisko",
-                    "attributeType": 1,
-                    "defaultValue" : "",
-                    "placeholder" : "",
-                    "settings": {
-                        "required": true,
-                        "lengthMin": 3,
-                        "lengthMax": 50
-                    }
-                }
-            ],
-            "settings": {
-                "required": true,
-                "lengthMin": 3,
-                "lengthMax": 50
-            }
-        },
-        {
-            "attributeName": "Imię",
-            "id": 0,
-            "attributeType": 1,
-            "defaultValue" : "",
-            "placeholder" : "",
-            "description": "A tutaj fajny opis",
-            "additionalInformation": "To jest coś dziwnego",
-            "toAnonymize": true,
-            "settings": {
-                "required": true,
-                "lengthMin": 3,
-                "lengthMax": 50
-            }
-        },
-        {
-            "attributeName": "Nazwisko",
-            "id": 1,
-            "attributeType": 1,
-            "defaultValue" : "",
-            "placeholder" : "",
-            "settings": {
-                "required": true,
-                "lengthMin": 3,
-                "lengthMax": 50
-            }
-        },
-        {
-            "attributeName": "Wiek użytkownika",
-            "id": 2,
-            "attributeType": 0,
-            "defaultValue" : 18,
-            "settings": {
-                "required": true,
-                "valueMin": 1,
-                "valueMax": 100
-            }
-        },
-        {
-            "attributeName": "Wzrost",
-            "id": 3,
-            "attributeType": 0,
-            "defaultValue" : 170,
-            "settings": {
-                "required": true,
-                "valueMin": 1,
-                "valueMax": 300
-            }
-        },
-        {
-            "attributeName": "Płeć",
-            "id": 4,
-            "attributeType": 2,
-            "defaultValue" : "",
-            "placeholder" : "",
-            "description": "A tutaj fajny opis",
-            "additionalInformation": "To jest coś dziwnego",
-            "settings": {
-                "required": true,
-                "items": [
-                    "Mężczyzna", "Kobieta"
-                ]
-            }
-        }
-    ],
-    "blocks": [
-        {
-            "id": 1,
-            "parentId": 0,
-            "blockType": 0,
-            "blockName": "test",
-            "content": {
-                "text": "Osoba została przedstawiona jako {0} {1}.<table><tr><td>Wzrost:</td><td>{2}</td></tr><tr><td>Wiek:</td><td>{3}</td></tr></table>"
-            },
-            "conditionals": [],
-            "settings":{}
-        },
-        {
-            "id": 2,
-            "parentId": 0,
-            "blockType": 2,
-            "blockName": "asdasd",
-            "content": {},
-            "conditionals": [],
-            "settings":{}
-        },
-        {
-            "id": 3,
-            "parentId": 0,
-            "blockType": 1,
-            "blockName": "test",
-            "content": {
-                "blocks": [
-                    {
-                        "id": 4,
-                        "parentId": 3,
-                        "blockType": 0,
-                        "blockName": "test",
-                        "content": {
-                            "text": "Ta treść jest ukazana na drugiej stronie o ile uzytkownik ma więcej niż 18lat i wzrost powyżej 150cm jego płeć to - {4} - {9}"
-                        },
-                        "conditionals": [],
-                        "settings":{}
-                    }
-                ]
-            },
-            "conditionals": [{
-                "conditionalType": 0,
-                "content": [
-                    "{2}",
-                    ">=",
-                    "18",
-                    "&&",
-                    "{3}",
-                    ">=",
-                    "150"
-                ]
-            }],
-            "settings":{}
-        }
-    ],
-    "settings": {
-        "enabledModules": [
-            "auth",
-            "provider"
-        ],
-        "modules": {
-            "auth": {
-                "type": 2,
-                "password": "1234"
-            },
-            "provider": {
-                "type": 0
-            }
-        }
+  "id": 2,
+  "name": "Test contract name",
+  "description": "test contract description",
+  "categories": [
+    1,
+    2
+  ],
+  "attributesList": [
+    {
+      "attributeName": "Firstname",
+      "id": 2,
+      "attributeType": 1,
+      "defaultValue": "",
+      "additionalInformation": "",
+      "placeholder": "",
+      "description": "",
+      "toAnonymize": "",
+      "settings": {
+        "required": true
+      }
+    },
+    {
+      "attributeName": "LastName",
+      "id": 3,
+      "attributeType": 1,
+      "defaultValue": "",
+      "additionalInformation": "",
+      "placeholder": "",
+      "description": "",
+      "toAnonymize": "",
+      "settings": {
+        "required": true
+      }
+    },
+    {
+      "attributeName": "Age",
+      "id": 4,
+      "attributeType": 0,
+      "defaultValue": "",
+      "additionalInformation": "",
+      "placeholder": "",
+      "description": "",
+      "toAnonymize": "",
+      "settings": {
+        "required": true
+      }
     }
+  ],
+  "blocks": [
+    {
+      "id": 2,
+      "parentId": 0,
+      "blockName": "New block: 2",
+      "blockType": 1,
+      "content": {
+        "blocks": [
+          {
+            "id": 3,
+            "parentId": 2,
+            "blockName": "New block: 3",
+            "blockType": 0,
+            "content": {
+              "text": "<p>{2} </p>"
+            },
+            "conditionals": [],
+            "settings": {}
+          },
+          {
+            "id": 4,
+            "parentId": 2,
+            "blockName": "New block: 4",
+            "blockType": 0,
+            "content": {
+              "text": "<p>{3} </p>"
+            },
+            "conditionals": [
+              {
+                "conditionalType": 0,
+                "content": "{\n  \"operator\": \"All\",\n  \"children\": [\n    {\n      \"type\": \"rule\",\n      \"query\": {\n        \"id\": 4,\n        \"operator\": 8,\n        \"value\": \"18\",\n        \"ruleType\": 0\n      }\n    }\n  ]\n}"
+              }
+            ],
+            "settings": {}
+          }
+        ]
+      },
+      "conditionals": [],
+      "settings": {}
+    }
+  ],
+  "settings": {
+    "enabledModules": [
+      "auth",
+      "provider"
+    ],
+    "modules": {
+      "auth": {
+        "type": "1",
+        "password": ""
+      },
+      "provider": {
+        "type": "0"
+      }
+    }
+  }
 }
