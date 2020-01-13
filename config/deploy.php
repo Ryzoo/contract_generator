@@ -116,7 +116,7 @@ return [
             'user' => 'CMCAdmin',
             'stage' => 'production',
             'roles' => 'app',
-            'bin/php' => '/usr/local/bin/php73'
+            'bin/php' => '/usr/local/bin/php74'
         ],
     ],
 

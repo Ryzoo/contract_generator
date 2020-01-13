@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    docker {
-      image 'tmaier/docker-compose'
-    }
-
-  }
+  agent any
   stages {
     stage('Install') {
       parallel {
@@ -47,10 +42,19 @@ composer dump-autoload'''
       }
     }
 
-    stage('Deploy - Staging') {
+    stage('Test') {
       steps {
-        sh 'php artisan deploy:run deploy:unlock staging'
-        sh 'php artisan deploy staging -v'
+        input 'Deploy to production?'
+      }
+    }
+
+    stage('Deploy - Production') {
+      when {
+          branch 'dev'
+      }
+      steps {
+        sh 'php artisan deploy:run deploy:unlock production'
+        sh 'php artisan deploy production -v'
       }
     }
 
