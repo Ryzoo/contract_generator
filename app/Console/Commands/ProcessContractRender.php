@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\Core\Enums\ContractFormCompleteStatus;
 use App\Core\Models\Domain\ContractFormComplete;
 use App\Core\Services\Domain\ContractModuleService;
-use App\Jobs\RenderContract;
+use App\Jobs\RenderNewContract;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
@@ -46,7 +46,7 @@ class ProcessContractRender extends Command
         'status' => ContractFormCompleteStatus::PENDING
       ]);
 
-      RenderContract::dispatch($contract, $this->contractModuleService)
+      RenderNewContract::dispatch($contract, $this->contractModuleService)
         ->delay(Carbon::now()->addSeconds(5));
     }
   }
