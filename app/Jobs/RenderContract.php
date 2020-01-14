@@ -19,10 +19,9 @@ class RenderContract implements ShouldQueue
    */
   private $contractFormComplete;
 
-  public function __construct(int $contractFormCompleteId)
+  public function __construct(ContractFormComplete $contractFormComplete)
     {
-      $this->contractFormComplete = ContractFormComplete::with('contract')
-          ->find($contractFormCompleteId);
+      $this->contractFormComplete = $contractFormComplete;
     }
 
     /**
