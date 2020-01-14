@@ -18,16 +18,11 @@ class RenderContract implements ShouldQueue
    * @var ContractFormComplete
    */
   private $contractFormComplete;
-  /**
-   * @var ContractModuleService
-   */
-  private $contractModuleService;
 
-
-  public function __construct(ContractModuleService $contractModuleService, ContractFormComplete $contractFormComplete)
+  public function __construct(int $contractFormCompleteId)
     {
-      $this->contractFormComplete = $contractFormComplete;
-      $this->contractModuleService = $contractModuleService;
+      $this->contractFormComplete = ContractFormComplete::with('contract')
+          ->find($contractFormCompleteId);
     }
 
     /**
@@ -35,9 +30,9 @@ class RenderContract implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(ContractModuleService $contractModuleService)
     {
-        $this->contractModuleService->runPart($this->contractFormComplete->contract,
+        $contractModuleService->runPart($this->contractFormComplete->contract,
           ContractModulePart::RENDER_CONTRACT, [
           'formComplete' => $this->contractFormComplete
         ]);
