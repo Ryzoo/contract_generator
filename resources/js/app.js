@@ -6,7 +6,6 @@ import vuetify from './plugins/vuetify'
 import Vue from 'vue'
 import 'vuetify/dist/vuetify.min.css'
 import Validator from './additionalModules/Validator'
-import VueDraggable from 'vue-draggable'
 
 import store from './store'
 import route from './route'
@@ -21,8 +20,6 @@ Vue.component('ContainerBlock', require('./components/Contract/Builder/Blocks/Co
 ConditionalParser.setStore(store)
 
 window.ConditionalParser = ConditionalParser
-
-Vue.use(VueDraggable)
 
 Vue.filter('truncate', function (text, clamp) {
   return text.slice(0, 50) + (text.length > 50 ? clamp || '...' : '')

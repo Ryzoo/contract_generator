@@ -135,49 +135,36 @@ section {
   color: white;
 }
 
-.paragraph-list {
-  list-style: none;
+.editor-container {
+  counter-reset: paragraph-counter;
 }
 
-.paragraph-list li {
-  padding-left: 1.3em;
+.paragraph-list {
   display: -webkit-box;
   display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
 }
 
-.paragraph-list li:before {
-  content: "\A7   ";
-  display: inline-block;
-  margin-left: -1.3em;
-  width: 1.3em;
+.paragraph-list:before {
+  counter-increment: paragraph-counter;
+  content: "\A7   " counter(paragraph-counter) ". ";
 }
 
-.item-dropzone-area {
-  height: 6rem;
-  background: #888;
-  opacity: 0.8;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-name: nodeInserted;
-          animation-name: nodeInserted;
-  margin-left: 0.6rem;
-  margin-right: 0.6rem;
-}
-
-.table-icons {
+.paragraph-list .table-icons {
   display: -webkit-box;
   display: flex;
   justify-content: space-around;
 }
 
-.table-icons > i {
+.paragraph-list .table-icons > i {
   font-size: 20px !important;
   -webkit-transition: all 0.2s !important;
   transition: all 0.2s !important;
   box-sizing: content-box !important;
 }
 
-.table-icons > i:hover {
+.paragraph-list .table-icons > i:hover {
   cursor: pointer !important;
   color: #324a58 !important;
   -webkit-transform: rotate(30deg) !important;

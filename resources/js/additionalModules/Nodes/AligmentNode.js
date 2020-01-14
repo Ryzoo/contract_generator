@@ -1,4 +1,4 @@
-import { updateMark, markInputRule } from 'tiptap-commands'
+import { updateMark, removeMark, markInputRule } from 'tiptap-commands'
 import { Mark } from 'tiptap'
 
 export default class Align extends Mark {
@@ -11,6 +11,9 @@ export default class Align extends Mark {
       attrs: {
         textAlign: {
           default: 'left'
+        },
+        oldValue: {
+          default: ''
         }
       },
       parseDOM: [
@@ -24,7 +27,7 @@ export default class Align extends Mark {
   }
 
   commands ({ type }) {
-    return attrs => updateMark(type, attrs)
+    return attrs => attrs.textAlign === attrs.oldValue ? removeMark(type) : updateMark(type, attrs)
   }
 
   inputRules ({ type }) {
