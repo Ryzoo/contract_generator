@@ -98,7 +98,7 @@ return [
         'writable_mode' => 'chmod',
         'user' => 'Ryzoo',
         'shared_dirs' => [],
-        'composer_options' => 'install --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader --no-suggest'
+        'composer_options' => 'install'
     ],
 
     /*
