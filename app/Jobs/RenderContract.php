@@ -37,7 +37,8 @@ class RenderContract implements ShouldQueue
      */
     public function handle()
     {
-        $this->contractModuleService->runPart($this->contractFormComplete ->contract, ContractModulePart::RENDER_CONTRACT, [
+        $this->contractModuleService->runPart($this->contractFormComplete->contract,
+          ContractModulePart::RENDER_CONTRACT, [
           'formComplete' => $this->contractFormComplete
         ]);
     }

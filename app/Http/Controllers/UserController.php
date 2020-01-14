@@ -11,6 +11,7 @@ use App\Http\Requests\Users\UserAddRequest;
 use App\Core\Services\UserService;
 use App\Jobs\Email\SendWelcomeEmail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -33,6 +34,8 @@ class UserController extends Controller
 
     public function add(UserAddRequest $request) {
         $requestData = collect($request->validated());
+        $requestData['password'] = Hash::make($requestData['password']);
+
         $userModel = User::create($requestData->except(['roles'])->toArray());
         $userModel->syncRoles($requestData['roles']);
 
