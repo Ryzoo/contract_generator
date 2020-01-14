@@ -1,34 +1,19 @@
-import { wrappingInputRule, toggleList } from 'tiptap-commands'
-import { Node } from 'tiptap'
+import { wrappingInputRule, updateMark, removeMark, markInputRule } from 'tiptap-commands'
+import { Mark } from 'tiptap'
 
-export default class ParagraphListNode extends Node {
+export default class ParagraphListNode extends Mark {
   get name () {
     return 'paragraph_list'
   }
 
   get schema () {
     return {
-      attrs: {
-        order: {
-          default: 1
-        }
-      },
-      content: 'list_item+',
-      group: 'block',
-      parseDOM: [
-        {
-          tag: 'ol',
-          getAttrs: dom => ({
-            order: dom.hasAttribute('start') ? +dom.getAttribute('start') : 1
-          })
-        }
-      ],
-      toDOM: node => (node.attrs.order === 1 ? ['ol', { class: 'paragraph-list' }, 0] : ['ol', { start: node.attrs.order }, 0])
+      toDOM: mark => ['span', { class: 'paragraph-list' }, 0]
     }
   }
 
-  commands ({ type, schema }) {
-    return () => toggleList(type, schema.nodes.list_item)
+  commands ({ type }) {
+    return attrs => updateMark(type, attrs)
   }
 
   inputRules ({ type }) {

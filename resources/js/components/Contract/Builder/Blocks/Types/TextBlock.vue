@@ -65,7 +65,7 @@
           <button
                   class="menubar-button"
                   :class="{ 'is-active': getMarkAttrs('align').textAlign === 'left' }"
-                  @click="commands.align({ textAlign: 'left' })"
+                  @click="commands.align({ textAlign: 'left', oldValue: getMarkAttrs('align').textAlign })"
           >
             <v-icon>fa-align-left</v-icon>
           </button>
@@ -73,7 +73,7 @@
           <button
                   class="menubar-button"
                   :class="{ 'is-active': getMarkAttrs('align').textAlign === 'center' }"
-                  @click="commands.align({ textAlign: 'center' })"
+                  @click="commands.align({ textAlign: 'center', oldValue: getMarkAttrs('align').textAlign })"
           >
             <v-icon>fa-align-center</v-icon>
           </button>
@@ -81,7 +81,7 @@
           <button
                   class="menubar-button"
                   :class="{ 'is-active': getMarkAttrs('align').textAlign === 'right' }"
-                  @click="commands.align({ textAlign: 'right' })"
+                  @click="commands.align({ textAlign: 'right', oldValue: getMarkAttrs('align').textAlign })"
           >
             <v-icon>fa-align-right</v-icon>
           </button>

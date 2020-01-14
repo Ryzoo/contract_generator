@@ -131,18 +131,17 @@ section {
     color: white;
 }
 
-.paragraph-list {
-    list-style: none;
-
-    li {
-        padding-left: 1.3em;
-        display: flex;
-    }
-    li:before {
-        content: "§ ";
-        display: inline-block;
-        margin-left: -1.3em;
-        width: 1.3em;
-    }
+.editor-container {
+  counter-reset: paragraph-counter;
 }
-@import "theme/table";
+.paragraph-list{
+  display: flex;
+  justify-content: center;
+
+  &:before {
+    counter-increment: paragraph-counter;
+    content: "§ " counter(paragraph-counter) ". ";
+  }
+
+  @import "theme/table";
+}
