@@ -139,6 +139,16 @@ section {
   counter-reset: paragraph-counter;
 }
 
+.editor-container ol {
+  counter-reset: section;
+  list-style-type: none;
+}
+
+.editor-container li:before {
+  counter-increment: section;
+  content: counters(section, ".") " ";
+}
+
 .paragraph-list {
   display: -webkit-box;
   display: flex;

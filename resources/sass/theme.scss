@@ -133,6 +133,15 @@ section {
 
 .editor-container {
   counter-reset: paragraph-counter;
+
+    ol {
+        counter-reset: section;
+        list-style-type: none;
+    }
+    li:before {
+        counter-increment: section;
+        content: counters(section, ".") " ";
+    }
 }
 .paragraph-list{
   display: flex;

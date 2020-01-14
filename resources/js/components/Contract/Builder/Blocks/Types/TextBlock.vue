@@ -111,7 +111,7 @@
           </button>
 
           <button
-                  class="menubar-button"
+                  class="menubar-button paragraph-button"
                   :class="{ 'is-active': isActive.paragraph_list() }"
                   @click="commands.paragraph_list"
           >
@@ -412,6 +412,14 @@ export default {
 <style lang="scss" scoped>
   @import "./../../../../../../sass/colors";
 
+  .paragraph-button {
+    padding: 0;
+
+    span {
+      padding: 10px;
+    }
+  }
+
   .fontsize-selector {
     max-width: 100px;
     align-items: center;
@@ -532,6 +540,15 @@ export default {
     border-radius: 10px;
     padding: 10px 15px;
     margin: 10px;
+
+    ol {
+      counter-reset: section;
+      list-style-type: none;
+    }
+    li:before {
+      counter-increment: section;
+      content: counters(section, ".") " ";
+    }
   }
 
 </style>

@@ -1,4 +1,4 @@
-import { wrappingInputRule, updateMark, removeMark, markInputRule } from 'tiptap-commands'
+import { updateMark, removeMark } from 'tiptap-commands'
 import { Mark } from 'tiptap'
 
 export default class ParagraphListNode extends Mark {
@@ -8,22 +8,19 @@ export default class ParagraphListNode extends Mark {
 
   get schema () {
     return {
+      parseDOM: [
+        { tag: 'span.paragraph-list' }
+      ],
       toDOM: mark => ['span', { class: 'paragraph-list' }, 0]
     }
   }
 
   commands ({ type }) {
-    return attrs => updateMark(type, attrs)
-  }
-
-  inputRules ({ type }) {
-    return [
-      wrappingInputRule(
-        /^(§)\s$/,
-        type,
-        match => ({ order: +match[1] }),
-        (match, node) => node.childCount + node.attrs.order === +match[1]
-      )
-    ]
+    return attrs => {
+      if ($(attrs.target).parent().hasClass('is-active')) {
+        return removeMark(type)
+      }
+      return updateMark(type, attrs)
+    }
   }
 }
