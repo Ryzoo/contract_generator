@@ -20,6 +20,16 @@ class ProcessContractRender extends Command
    * @var string
    */
   protected $description = 'Process one of the contract from list';
+  /**
+   * @var ContractModuleService
+   */
+  private $contractModuleService;
+
+  public function __construct(ContractModuleService $contractModuleService)
+  {
+    parent::__construct();
+    $this->contractModuleService = $contractModuleService;
+  }
 
 
   public function handle()
@@ -37,7 +47,7 @@ class ProcessContractRender extends Command
         'status' => ContractFormCompleteStatus::PENDING
       ]);
 
-      RenderContract::dispatch($contract)
+      RenderContract::dispatch($contract, $this->contractModuleService)
         ->delay(Carbon::now()->addSeconds(5));
     }
   }
