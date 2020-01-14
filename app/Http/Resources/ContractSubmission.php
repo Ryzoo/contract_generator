@@ -19,7 +19,7 @@ class ContractSubmission extends JsonResource
             "id" => $this->id,
             "name" => $this->contract->name,
             "render_url" => $this->render_url,
-            "status" => $this->status,
+            "status" => (int)$this->status,
             "updated_at" => (new Carbon($this->updated_at))->diffForHumans()
         ];
     }

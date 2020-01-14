@@ -36,9 +36,5 @@ class AppServiceProvider extends ServiceProvider
             $request = app('request');
             return new TokenGuard($userProvider, $request);
         });
-
-        $this->app->bindMethod(RenderContract::class.'@handle', function ($job, $app) {
-          return $job->handle($app->make(ContractModuleService::class));
-        });
     }
 }
