@@ -31,7 +31,6 @@ class ProcessContractRender extends Command
     $this->contractModuleService = $contractModuleService;
   }
 
-
   public function handle()
   {
     $this->checkNotRenderedAndPending();
