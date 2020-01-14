@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col sm="12" class="builder-content block-zone" v-drag-and-drop:options="options">
+    <v-col sm="12" class="builder-content">
         <ContainerBlock
           v-for="(block, index) in filterParentBlocks"
           :block="block"
@@ -17,22 +17,7 @@
 export default {
   name: 'BlockLayout',
   data: function () {
-    return {
-      options: {
-        dropzoneSelector: '.block-zone',
-        draggableSelector: '.block-draggable',
-        handlerSelector: null,
-        reactivityEnabled: true,
-        multipleDropzonesItemsDraggingEnabled: true,
-        showDropzoneAreas: true,
-        onDrop: this.dragBlock,
-        onDragover: this.dragBlockOver
-      },
-      blockIdWhereToDrag: {
-        id: 0,
-        prev: false
-      }
-    }
+    return {}
   },
   computed: {
     filterParentBlocks () {
@@ -54,25 +39,6 @@ export default {
     }
   },
   methods: {
-    dragBlock (event) {
-      const draggedBlockId = parseInt($(event.nativeEvent.target.children[0]).attr('blockid'))
-      this.$store.dispatch('builder_setDraggedBlock', { draggedBlockId, blockIdWhereToDrag: this.blockIdWhereToDrag })
-    },
-    dragBlockOver (event) {
-      if ($(event.nativeEvent.target).next()[0].children[0].hasAttribute('blockid')) {
-        const block = $(event.nativeEvent.target).next()[0].children[0]
-
-        this.blockIdWhereToDrag.id = parseInt($(block).attr('blockid'))
-        this.blockIdWhereToDrag.prev = false
-      }
-
-      if ($(event.nativeEvent.target).prev()[0].children[0].hasAttribute('blockid')) {
-        const block = $(event.nativeEvent.target).prev()[0].children[0]
-
-        this.blockIdWhereToDrag.id = parseInt($(block).attr('blockid'))
-        this.blockIdWhereToDrag.prev = true
-      }
-    },
     showBlockModal () {
       this.$emit('show-block-modal')
     },

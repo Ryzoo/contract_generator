@@ -152,18 +152,6 @@ section {
   width: 1.3em;
 }
 
-.item-dropzone-area {
-  height: 6rem;
-  background: #888;
-  opacity: 0.8;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-name: nodeInserted;
-          animation-name: nodeInserted;
-  margin-left: 0.6rem;
-  margin-right: 0.6rem;
-}
-
 .table-icons {
   display: -webkit-box;
   display: flex;
