@@ -5,7 +5,7 @@ pipeline {
       parallel {
         stage('Composer') {
           steps {
-            sh 'composer install --verbose --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader --no-suggest && composer dump-autoload'
+            sh 'composer install --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader --no-suggest && composer dump-autoload'
           }
         }
 
