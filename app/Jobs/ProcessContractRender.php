@@ -38,10 +38,6 @@ class ProcessContractRender implements ShouldQueue
      */
     public function handle()
     {
-        $this->contractFormComplete ->update([
-          'status' => ContractFormCompleteStatus::PENDING
-        ]);
-
         $this->contractModuleService->runPart($this->contractFormComplete ->contract, ContractModulePart::RENDER_CONTRACT, [
           'formComplete' => $this->contractFormComplete
         ]);

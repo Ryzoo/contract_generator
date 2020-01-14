@@ -36,11 +36,16 @@ class ProcessContractRender extends Command
     {
         $lastNewContract = ContractFormComplete::with('contract')
             ->where('status', 'LIKE',ContractFormCompleteStatus::NEW)
-            ->latest()
+            ->oldest()
             ->first();
 
-        if(isset($lastNewContract))
-          \App\Jobs\ProcessContractRender::dispatch($this->contractModuleService , $lastNewContract);
+        if(isset($lastNewContract)){
+          $lastNewContract->update([
+            'status' => ContractFormCompleteStatus::PENDING
+          ]);
+
+          \App\Jobs\ProcessContractRender::dispatchNow($this->contractModuleService , $lastNewContract);
+        }
 
         $contractToCancel = ContractFormComplete::with('contract')
           ->where('status', 'LIKE',ContractFormCompleteStatus::PENDING)
@@ -48,6 +53,6 @@ class ProcessContractRender extends Command
           ->get();
 
         if($contractToCancel->count() > 0)
-          CancelContractProcess::dispatch($contractToCancel);
+          CancelContractProcess::dispatchNow($contractToCancel);
     }
 }

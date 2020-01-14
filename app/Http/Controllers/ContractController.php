@@ -108,6 +108,7 @@ class ContractController extends Controller {
             new ContractSubmissionCollection(
                 ContractFormComplete::with('contract')
                     ->where('user_id', Auth::user()->id)
+                    ->latest()
                     ->get()
             )
         );

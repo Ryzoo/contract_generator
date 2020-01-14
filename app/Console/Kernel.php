@@ -28,10 +28,7 @@ class Kernel extends ConsoleKernel
             ->everyMinute()
             ->withoutOverlapping();
 
-        $schedule->command('queue:restart')
-            ->everyFiveMinutes();
-
-        $schedule->command('queue:work --daemon')
+        $schedule->command('queue:work')
             ->everyMinute()
             ->withoutOverlapping();
     }
