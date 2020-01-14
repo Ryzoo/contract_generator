@@ -1,6 +1,10 @@
 name: Laravel
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+      - dev
 
 jobs:
   laravel-tests-deploy:
@@ -24,11 +28,3 @@ jobs:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
         run: vendor/bin/phpunit
-      - name: Init ssh
-        run: cat /dev/zero | ssh-keygen -q -N ""
-      - name: Add ssh key
-        run: cat .github/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-      - name: Run deployment
-        run: |
-          php artisan -v deploy:run deploy:unlock production -n -v
-          php artisan -v deploy production -n -v
