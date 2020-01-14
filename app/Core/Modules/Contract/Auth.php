@@ -54,7 +54,7 @@ class Auth extends ContractModule {
                     return false;
                 }
             case AuthType::PASSWORD:
-                $password = $this->getModuleSettings("password") ?? '';
+                $password = $this->getModuleSettings('password') ?? '';
 
                 if($this->getAttribute('password') === $password)
                     return true;

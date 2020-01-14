@@ -7,6 +7,7 @@ use App\Core\Enums\Modules\ContractModulePart;
 use App\Core\Models\Domain\ContractFormComplete;
 use App\Core\Services\Domain\ContractModuleService;
 use App\Jobs\CancelContractProcess;
+use App\Jobs\RenderContract;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
@@ -34,25 +35,35 @@ class ProcessContractRender extends Command
 
     public function handle()
     {
-        $lastNewContract = ContractFormComplete::with('contract')
+      $this->checkNotRenderedAndPending();
+
+        $lastNewContracts = ContractFormComplete::with('contract')
             ->where('status', 'LIKE',ContractFormCompleteStatus::NEW)
             ->oldest()
-            ->first();
+            ->take(3)
+            ->get();
 
-        if(isset($lastNewContract)){
-          $lastNewContract->update([
+        foreach ($lastNewContracts as $contract){
+          $contract->update([
             'status' => ContractFormCompleteStatus::PENDING
           ]);
 
-          \App\Jobs\ProcessContractRender::dispatchNow($this->contractModuleService , $lastNewContract);
+          RenderContract::dispatch($this->contractModuleService , $contract)
+            ->delay(Carbon::now()->addSeconds(5));
         }
+    }
 
-        $contractToCancel = ContractFormComplete::with('contract')
-          ->where('status', 'LIKE',ContractFormCompleteStatus::PENDING)
-          ->where('updated_at', '<', Carbon::now()->subMinutes(2))
-          ->get();
+    private function checkNotRenderedAndPending(){
+      $contractToCancel = ContractFormComplete::with('contract')
+        ->where('status', 'LIKE',ContractFormCompleteStatus::PENDING)
+        ->where('updated_at', '<', Carbon::now()->subMinutes(2))
+        ->get();
 
-        if($contractToCancel->count() > 0)
-          CancelContractProcess::dispatchNow($contractToCancel);
+      if($contractToCancel->count() > 0)
+        foreach ($this->contractCompleteCollection as $contract){
+          $contract->update([
+            'status' => ContractFormCompleteStatus::ERROR
+          ]);
+        }
     }
 }

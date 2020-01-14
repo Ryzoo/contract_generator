@@ -95,6 +95,7 @@ return [
         'repository' => 'git@github.com:Ryzoo/contract_generator.git',
         'branch' => 'dev',
         'http_user' => 'www-data',
+        'writable_mode' => 'chmod',
         'user' => 'Ryzoo',
         'shared_dirs' => [],
         'composer_options' => 'install --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader --no-suggest'
