@@ -24,12 +24,13 @@ class RenderContract implements ShouldQueue
       $this->contractFormComplete = $contractFormComplete;
     }
 
-    /**
-     * Execute the job.
-     *
-     * @return void
-     */
-    public function handle(ContractModuleService $contractModuleService)
+  /**
+   * Execute the job.
+   *
+   * @param ContractModuleService $contractModuleService
+   * @return void
+   */
+    public function handle(ContractModuleService $contractModuleService): void
     {
         $contractModuleService->runPart($this->contractFormComplete->contract,
           ContractModulePart::RENDER_CONTRACT, [
