@@ -66,29 +66,23 @@ class Provider extends ContractModule {
         $directory = "renders/contract-{$this->contract->id}/user-{$formComplete->user->id}/";
         $filePath = $directory . Str::random(16) . '.pdf';
 
-        try {
-            Storage::put($filePath, $contractPdfFile->output());
+        Storage::put($filePath, $contractPdfFile->output());
 
-            if(!Storage::exists($filePath))
-              throw new \Exception("File not found in $filePath");
+        if(!Storage::exists($filePath))
+          throw new \Exception("File not found in $filePath");
 
-            $formComplete->update([
-                'status' => ContractFormCompleteStatus::AVAILABLE,
-                'render_url' => '/storage/'.$filePath
-            ]);
+        $formComplete->update([
+          'status' => ContractFormCompleteStatus::AVAILABLE,
+          'render_url' => '/storage/'.$filePath
+        ]);
 
-            switch ($renderType) {
-                case ContractProviderType::EMAIL:
-                    SendRenderEmail::dispatch($formComplete)
-                      ->delay(Carbon::now()->addSeconds(5));
-                    break;
-                default:
-                    return false;
-            }
-        }catch(Exception $e){
-            $formComplete->update([
-                'status' => ContractFormCompleteStatus::ERROR
-            ]);
+        switch ($renderType) {
+          case ContractProviderType::EMAIL:
+            SendRenderEmail::dispatch($formComplete)
+              ->delay(Carbon::now()->addSeconds(5));
+            break;
+          default:
+            return false;
         }
     }
 }
