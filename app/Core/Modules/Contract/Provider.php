@@ -12,6 +12,7 @@ use App\Core\Enums\Modules\ContractModulePart;
 use App\Core\Enums\Modules\ContractProviderType;
 use App\Core\Models\Domain\Contract;
 use App\Jobs\Email\SendRenderEmail;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use mysql_xdevapi\Exception;
@@ -62,7 +63,7 @@ class Provider extends ContractModule {
         $contractPdfFile = $this->contractService
             ->renderContract( $this->contract->id, $formComplete->form_elements);
 
-        $directory = "renders/{$this->contract->id}/{$formComplete->user->id}/";
+        $directory = "renders/contract-{$this->contract->id}/user-{$formComplete->user->id}/";
         $filePath = $directory . Str::random(16) . '.pdf';
 
         try {
@@ -78,12 +79,12 @@ class Provider extends ContractModule {
 
             switch ($renderType) {
                 case ContractProviderType::EMAIL:
-                    SendRenderEmail::dispatchNow($formComplete);
+                    SendRenderEmail::dispatch($formComplete)
+                      ->delay(Carbon::now()->addSeconds(5));
                     break;
                 default:
                     return false;
             }
-
         }catch(Exception $e){
             $formComplete->update([
                 'status' => ContractFormCompleteStatus::ERROR

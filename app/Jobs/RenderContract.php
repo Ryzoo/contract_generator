@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Core\Enums\ContractFormCompleteStatus;
 use App\Core\Enums\Modules\ContractModulePart;
 use App\Core\Models\Domain\ContractFormComplete;
 use App\Core\Services\Domain\ContractModuleService;
@@ -12,7 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-class ProcessContractRender implements ShouldQueue
+class RenderContract implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
   /**
