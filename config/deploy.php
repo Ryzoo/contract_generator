@@ -66,7 +66,7 @@ return [
         ],
 
         // Deployment is done and live
-        'done' => ['copy'],
+        'done' => ['symlink'],
 
         // Deployment succeeded.
         'success' => [
@@ -149,7 +149,7 @@ return [
     */
 
     'include' => [
-        'deployer/copy_recipe.php',
+        'deployer/common_recipe.php',
     ],
 
     /*
