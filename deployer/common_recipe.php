@@ -3,4 +3,4 @@
 namespace Deployer;
 
 
-task('symlink', "rm -f ../../public_html/ && ln -s ../../current ../../public_html");
+task('symlink', "rm -rf ../../public_html/ && ln -s ../../current/public ../../public_html");
