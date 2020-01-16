@@ -49,11 +49,10 @@ pipeline {
 
     stage('Deploy - Production') {
       when {
-          branch 'dev'
+        branch 'dev'
       }
       steps {
-        sh 'php artisan deploy:run deploy:unlock production'
-        sh 'php artisan -v deploy production -vvv'
+        sh 'curl --request POST https://forge.laravel.com/servers/343645/sites/938034/deploy/http?token=pcaw5TgjhowpwFw9ZRaEb38JRZRkhYWnQotrDEfJ'
       }
     }
 
