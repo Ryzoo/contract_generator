@@ -4,7 +4,7 @@
 namespace App\Core\Models\Domain\Blocks;
 
 use App\Core\Enums\BlockType;
-use App\Core\Models\Domain\Contract;
+use App\Core\Models\Database\Contract;
 use App\Core\Models\Domain\FormElements\PageDividerFormElement;
 use Illuminate\Support\Collection;
 

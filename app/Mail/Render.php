@@ -3,7 +3,7 @@
 namespace App\Mail;
 
 use App\Core\Helpers\Url;
-use App\Core\Models\Domain\ContractFormComplete;
+use App\Core\Models\Database\ContractFormComplete;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;

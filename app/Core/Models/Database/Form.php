@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Core\Models\Domain;
+namespace App\Core\Models\Database;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Core\Models\Database\Contract;
 
 class Form extends Model
 {
@@ -17,6 +18,6 @@ class Form extends Model
 
     public function contract()
     {
-        return $this->belongsTo('App\Core\Models\Domain\Contract');
+        return $this->belongsTo(Contract::class);
     }
 }

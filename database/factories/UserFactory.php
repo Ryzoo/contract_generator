@@ -1,9 +1,10 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-use App\Core\Models\User;
+use App\Core\Models\Database\User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
+use jeremykenedy\LaravelRoles\Models\Role;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
@@ -19,13 +20,14 @@ $factory->state(User::class, 'admin',[]);
 $factory->state(User::class, 'client', []);
 
 $factory->afterCreatingState(User::class, 'admin', function ($user, $faker) {
-    $role = \jeremykenedy\LaravelRoles\Models\Role::where('slug', '=', 'admin')->first();
+    $role = Role::where('slug', 'admin')->first();
     $user->attachRole($role);
 });
 
 $factory->afterCreatingState(User::class, 'client', function ($user, $faker) {
-    $role = \jeremykenedy\LaravelRoles\Models\Role::where('slug', '=', 'client')->first();
+    $role = Role::where('slug', 'client')->first();
     $user->attachRole($role);
 });
+
 
 

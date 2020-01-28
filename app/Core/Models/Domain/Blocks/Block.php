@@ -4,12 +4,12 @@
 namespace App\Core\Models\Domain\Blocks;
 
 
-use App\Core\Contracts\Domain\IBlock;
+use App\Core\Contracts\IBlock;
 use App\Core\Enums\BlockType;
 use App\Core\Traits\ConditionalValidator;
 use Illuminate\Support\Facades\Validator;
 use App\Core\Models\Domain\Conditional\Conditional;
-use App\Core\Models\Domain\Contract;
+use App\Core\Models\Database\Contract;
 use App\Core\Models\Domain\FormElements\AttributeFormElement;
 use Illuminate\Support\Collection;
 use Intervention\Image\Exception\NotFoundException;

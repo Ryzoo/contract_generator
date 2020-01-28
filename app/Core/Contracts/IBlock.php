@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Core\Contracts\Domain;
+namespace App\Core\Contracts;
 
 use App\Core\Models\Domain\Blocks\Block;
-use App\Core\Models\Domain\Contract;
+use App\Core\Models\Database\Contract;
 use Illuminate\Support\Collection;
 
 interface IBlock {

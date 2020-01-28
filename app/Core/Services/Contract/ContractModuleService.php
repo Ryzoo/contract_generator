@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Core\Services\Domain;
+namespace App\Core\Services\Contract;
 
 
-use App\Core\Models\Domain\Contract;
+use App\Core\Models\Database\Contract;
 use App\Core\Modules\Configuration;
 use App\Core\Modules\Contract\ContractModule;
 use Illuminate\Support\Collection;

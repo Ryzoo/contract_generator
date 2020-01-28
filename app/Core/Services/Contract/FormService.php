@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Core\Services\Domain;
+namespace App\Core\Services\Contract;
 
 use App\Core\Enums\ElementType;
-use App\Core\Models\Domain\Contract;
-use App\Core\Models\Domain\Form;
+use App\Core\Models\Database\Contract;
+use App\Core\Models\Database\Form;
 use Illuminate\Support\Collection;
 
 class FormService {

@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Core\Services\Domain\ContractModuleService;
+use App\Core\Services\Contract\ContractModuleService;
 use App\Guards\TokenGuard;
 use App\Core\Models\AppAuthorization;
 use App\Jobs\RenderContract;

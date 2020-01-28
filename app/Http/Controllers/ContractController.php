@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Core\Enums\Modules\ContractModulePart;
 use App\Core\Helpers\Response;
-use App\Core\Models\Domain\ContractFormComplete;
+use App\Core\Models\Database\ContractFormComplete;
 use App\Core\Models\Domain\FormElements\FormElement;
-use App\Core\Models\User;
 use App\Http\Requests\Contracts\ContractAddRequest;
 use App\Http\Requests\Contracts\ContractGetRequest;
 use App\Http\Requests\Contracts\ContractRemoveCollectionRequest;
@@ -14,10 +12,9 @@ use App\Http\Requests\Contracts\ContractRemoveRequest;
 use App\Http\Requests\Contracts\ContractRenderRequest;
 use App\Http\Requests\Contracts\ContractSubmissionGetRequest;
 use App\Http\Requests\Contracts\ContractUpdateRequest;
-use App\Core\Models\Domain\Contract;
-use App\Core\Services\Domain\ContractService;
-use App\Core\Services\Domain\ContractModuleService;
-use App\Http\Resources\ContractInfo;
+use App\Core\Models\Database\Contract;
+use App\Core\Services\Contract\ContractService;
+use App\Core\Services\Contract\ContractModuleService;
 use App\Http\Resources\ContractInfoCollection;
 use App\Http\Resources\ContractSubmissionCollection;
 use Illuminate\Http\Request;

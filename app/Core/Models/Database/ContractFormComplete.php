@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Core\Models\Domain;
+namespace App\Core\Models\Database;
 
 use App\Core\Models\Domain\FormElements\FormElement;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
+use App\Core\Models\Database\User;
+use App\Core\Models\Database\Contract;
 
 class ContractFormComplete extends Model
 {
@@ -33,11 +35,11 @@ class ContractFormComplete extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Core\Models\User');
+        return $this->belongsTo(User::class);
     }
 
     public function contract()
     {
-        return $this->belongsTo('App\Core\Models\Domain\Contract');
+        return $this->belongsTo(Contract::class);
     }
 }

@@ -7,7 +7,7 @@ namespace App\Core\Modules;
 use App\Core\Modules\Contract\Auth;
 use App\Core\Modules\Contract\ContractModule;
 use App\Core\Modules\Contract\Provider;
-use App\Core\Services\Domain\ContractService;
+use App\Core\Services\Contract\ContractService;
 
 class Configuration {
 

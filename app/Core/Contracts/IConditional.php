@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Core\Contracts\Domain;
+namespace App\Core\Contracts;
 
 
 

@@ -1,17 +1,17 @@
 <?php
 
 
-namespace App\Core\Services\Domain;
+namespace App\Core\Services\Contract;
 
 
-use App\Core\Models\Domain\Contract;
+use App\Core\Models\Database\Contract;
 use App\Core\Models\Domain\FormElements\FormElement;
-use App\Core\Repository\Domain\ConditionalRepository;
+use App\Core\Repository\ConditionalRepository;
 use Illuminate\Support\Collection;
 
 class ConditionalService {
     /**
-     * @var \App\Core\Repository\Domain\ConditionalRepository
+     * @var ConditionalRepository
      */
     private $conditionalRepository;
 
@@ -28,10 +28,11 @@ class ConditionalService {
             $conditionals = $this->conditionalRepository
                 ->getConditionalsFromBlockWithId($blockCollection, $element->parentBlockId);
 
-            $element->conditionals = collect(array_reverse($conditionals->toArray()));
+            $element->conditionals = collect(array_reverse($conditionals->toArray()))->toArray();
             $formCollection->push($element);
         }
 
         return $formCollection;
     }
+
 }

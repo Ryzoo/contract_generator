@@ -4,7 +4,7 @@
 namespace App\Core\Services;
 
 
-use App\Core\Models\User;
+use App\Core\Models\Database\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Whoops\Exception\ErrorException;

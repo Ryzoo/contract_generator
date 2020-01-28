@@ -4,7 +4,7 @@
 namespace App\Core\Models\Domain\Conditional;
 
 
-use App\Core\Contracts\Domain\IConditional;
+use App\Core\Contracts\IConditional;
 use App\Core\Enums\ConditionalType;
 use App\Core\Helpers\Response;
 use Illuminate\Support\Facades\Validator;
@@ -23,9 +23,6 @@ abstract class Conditional implements IConditional {
      */
     public $conditionalName;
 
-    /**
-     * @var string
-     */
     public $content;
 
     protected function initialize(int $conditionalType) {

@@ -4,7 +4,7 @@
 namespace App\Providers;
 
 
-use App\Core\Models\User;
+use App\Core\Models\Database\User;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Support\Str;

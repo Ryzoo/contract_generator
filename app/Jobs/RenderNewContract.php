@@ -3,8 +3,8 @@
 namespace App\Jobs;
 
 use App\Core\Enums\Modules\ContractModulePart;
-use App\Core\Models\Domain\ContractFormComplete;
-use App\Core\Services\Domain\ContractModuleService;
+use App\Core\Models\Database\ContractFormComplete;
+use App\Core\Services\Contract\ContractModuleService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;

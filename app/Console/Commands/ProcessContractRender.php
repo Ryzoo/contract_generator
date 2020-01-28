@@ -3,8 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Core\Enums\ContractFormCompleteStatus;
-use App\Core\Models\Domain\ContractFormComplete;
-use App\Core\Services\Domain\ContractModuleService;
+use App\Core\Models\Database\ContractFormComplete;
+use App\Core\Services\Contract\ContractModuleService;
 use App\Jobs\RenderNewContract;
 use Carbon\Carbon;
 use Illuminate\Console\Command;

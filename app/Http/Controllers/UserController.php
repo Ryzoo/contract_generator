@@ -6,7 +6,7 @@ use App\Core\Helpers\Response;
 use App\Http\Requests\Users\UserDeleteRequest;
 use App\Http\Requests\Users\UserPasswordChangeRequest;
 use App\Http\Requests\Users\UserUpdateRequest;
-use App\Core\Models\User;
+use App\Core\Models\Database\User;
 use App\Http\Requests\Users\UserAddRequest;
 use App\Core\Services\UserService;
 use App\Jobs\Email\SendWelcomeEmail;

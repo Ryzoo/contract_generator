@@ -5,17 +5,16 @@ namespace App\Core\Modules\Contract;
 
 use App\Core\Enums\ContractFormCompleteStatus;
 use App\Core\Enums\Modules\ContractModulesAvailablePlace;
-use App\Core\Models\Domain\ContractFormComplete;
-use App\Core\Services\Domain\ContractService;
+use App\Core\Models\Database\ContractFormComplete;
+use App\Core\Services\Contract\ContractService;
 use App\Core\Enums\AvailableRenderActionsHook;
 use App\Core\Enums\Modules\ContractModulePart;
 use App\Core\Enums\Modules\ContractProviderType;
-use App\Core\Models\Domain\Contract;
+use App\Core\Models\Database\Contract;
 use App\Jobs\Email\SendRenderEmail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use mysql_xdevapi\Exception;
 
 class Provider extends ContractModule {
 
@@ -85,7 +84,7 @@ class Provider extends ContractModule {
                 default:
                     return false;
             }
-        }catch(Exception $e){
+        }catch(\Exception $e){
             $formComplete->update([
                 'status' => ContractFormCompleteStatus::ERROR
             ]);

@@ -3,9 +3,8 @@
 namespace App\Jobs\Email;
 
 use App\Core\Enums\ContractFormCompleteStatus;
-use App\Core\Models\Domain\ContractFormComplete;
+use App\Core\Models\Database\ContractFormComplete;
 use App\Mail\Render;
-use App\Core\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;

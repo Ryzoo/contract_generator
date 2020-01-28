@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Core\Models;
+namespace App\Core\Models\Database;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
+use App\Core\Models\Database\ContractFormComplete;
 
 class User extends Authenticatable
 {
@@ -26,6 +27,6 @@ class User extends Authenticatable
 
     public function completedForm()
     {
-        return $this->hasMany('App\Core\Models\Domain\ContractFormComplete');
+        return $this->hasMany(ContractFormComplete::class);
     }
 }

@@ -9,7 +9,7 @@ use App\Core\Enums\Modules\AuthType;
 use App\Core\Enums\Modules\ContractModulePart;
 use App\Core\Enums\Modules\ContractModulesAvailablePlace;
 use App\Core\Helpers\Response;
-use App\Core\Models\Domain\Contract;
+use App\Core\Models\Database\Contract;
 
 class Auth extends ContractModule {
 

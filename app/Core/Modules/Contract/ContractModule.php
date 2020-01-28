@@ -3,7 +3,7 @@
 
 namespace App\Core\Modules\Contract;
 
-use App\Core\Models\Domain\Contract;
+use App\Core\Models\Database\Contract;
 
 abstract class ContractModule {
     public $name;

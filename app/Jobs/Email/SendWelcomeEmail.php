@@ -3,7 +3,7 @@
 namespace App\Jobs\Email;
 
 use App\Mail\Welcome;
-use App\Core\Models\User;
+use App\Core\Models\Database\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;

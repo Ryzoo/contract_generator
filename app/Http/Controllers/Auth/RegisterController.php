@@ -3,12 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Core\Models\User;
-use App\Core\Traits\ActivationTrait;
-use App\Core\Traits\CaptchaTrait;
-use App\Core\Traits\CaptureIpTrait;
+use App\Core\Models\Database\User;
 use App\Jobs\Email\SendWelcomeEmail;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;

@@ -4,7 +4,7 @@
 namespace App\Core\Models\Domain\FormElements;
 
 
-use App\Core\Contracts\Domain\IFormElement;
+use App\Core\Contracts\IFormElement;
 use App\Core\Enums\ElementType;
 use Illuminate\Support\Facades\Validator;
 use App\Core\Models\Domain\Attributes\Attribute;
@@ -63,7 +63,7 @@ abstract class FormElement implements IFormElement {
     protected function initialize(int $elementType) {
         $this->elementType = $elementType;
         $this->elementName = ElementType::getName($elementType);
-        $this->conditionals = collect();
+        $this->conditionals = [];
         $this->isValid = TRUE;
         $this->isActive = TRUE;
     }
@@ -111,7 +111,7 @@ abstract class FormElement implements IFormElement {
         $element->parentBlockId = $value["parentBlockId"];
         $element->elementType = $value["elementType"];
         $element->elementName = ElementType::getName($value["elementType"]);
-        $element->conditionals = collect(Conditional::getListFromString(json_encode($value["conditionals"])));
+        $element->conditionals = collect(Conditional::getListFromString(json_encode($value["conditionals"])))->toArray();
         $element->isActive = $value["isActive"] == "true";
         $element->isValid = $value["isValid"] == "true";
 

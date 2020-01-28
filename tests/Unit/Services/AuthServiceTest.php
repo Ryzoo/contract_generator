@@ -2,13 +2,9 @@
 
 namespace Tests\Unit\Services;
 
-use App\Core\Enums\UserRole;
-use App\Mail\ResetPassword;
-use App\Core\Models\User;
+use App\Core\Models\Database\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
 use Tests\TestCase;
 use Whoops\Exception\ErrorException;
 

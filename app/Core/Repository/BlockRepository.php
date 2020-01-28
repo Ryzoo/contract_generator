@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Core\Repository\Domain;
+namespace App\Core\Repository;
 
 
 use App\Core\Enums\BlockType;

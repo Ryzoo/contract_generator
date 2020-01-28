@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Users;
 
-use App\Core\Models\User;
+use App\Core\Models\Database\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;

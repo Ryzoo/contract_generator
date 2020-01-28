@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Models\Domain;
+namespace App\Core\Models\Database;
 
 use App\Core\Models\Domain\Attributes\Attribute;
 use App\Core\Models\Domain\Blocks\Block;
@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Whoops\Exception\ErrorException;
+use App\Core\Models\Database\Form;
+use App\Core\Models\Database\ContractFormComplete;
+use App\Core\Models\Database\Category;
 
 class Contract extends Model
 {
@@ -88,16 +91,16 @@ class Contract extends Model
 
     public function form()
     {
-        return $this->hasOne('App\Core\Models\Domain\Form');
+        return $this->hasOne(Form::class);
     }
 
     public function completedForm()
     {
-        return $this->hasMany('App\Core\Models\Domain\ContractFormComplete');
+        return $this->hasMany(ContractFormComplete::class);
     }
 
     public function categories()
     {
-        return $this->belongsToMany('App\Core\Models\Domain\Category');
+        return $this->belongsToMany(Category::class);
     }
 }

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Contract;
 
 use App\Core\Enums\Modules\ContractModulePart;
 use App\Core\Helpers\Response;
-use App\Core\Models\Domain\Contract;
-use App\Core\Services\Domain\ContractModuleService;
+use App\Core\Models\Database\Contract;
+use App\Core\Services\Contract\ContractModuleService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Contracts\ContractFormGetRequest;
 use App\Http\Resources\ContractInfo;
@@ -13,7 +13,7 @@ use App\Http\Resources\ContractInfo;
 class ContractFormController extends Controller {
 
     /**
-     * @var \App\Core\Services\Domain\ContractModuleService
+     * @var ContractModuleService
      */
     private $contractModuleService;
 

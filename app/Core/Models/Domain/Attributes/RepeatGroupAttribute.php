@@ -4,7 +4,7 @@
 namespace App\Core\Models\Domain\Attributes;
 
 
-use App\Core\Contracts\Domain\IAttribute;
+use App\Core\Contracts\IAttribute;
 use App\Core\Enums\AttributeType;
 
 class RepeatGroupAttribute extends Attribute {
@@ -29,7 +29,7 @@ class RepeatGroupAttribute extends Attribute {
             $attributeValue = collect();
 
             /**
-             * @var IAttribute $attribute
+             * @var Attribute $attribute
              */
             foreach ($attributes as $attribute) {
                 if ($attributesName->count() < count($attributes)) {
@@ -46,19 +46,19 @@ class RepeatGroupAttribute extends Attribute {
     }
 
     private function prepareHTMLTable($itemsList, $headers) {
-        $header = "<tr>";
+        $header = '<tr>';
         foreach ($headers as $item){
             $header .= "<th>$item</th>";
         }
-        $header .= "</tr>";
+        $header .= '</tr>';
 
-        $body = "";
+        $body = '';
         foreach ($itemsList as $items){
-            $body .= "<tr>";
+            $body .= '<tr>';
             foreach ($items as $item){
                 $body .= "<td>$item</td>";
             }
-            $body .= "</tr>";
+            $body .= '</tr>';
         }
 
 

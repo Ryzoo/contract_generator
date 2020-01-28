@@ -2,7 +2,7 @@
 
 namespace App\Core\Services;
 
-use App\Core\Models\User;
+use App\Core\Models\Database\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Hash;
 

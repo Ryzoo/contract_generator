@@ -1,13 +1,11 @@
 <?php
 
 
-namespace App\Core\Services\Domain;
+namespace App\Core\Services\Contract;
 
 
 use App\Core\Helpers\PdfRenderer;
-use App\Core\Models\Domain\Contract;
-use App\Core\Models\Domain\ContractFormComplete;
-use App\Core\Models\User;
+use App\Core\Models\Database\Contract;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 

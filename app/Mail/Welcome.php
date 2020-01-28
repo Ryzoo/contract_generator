@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Core\Models\User;
+use App\Core\Models\Database\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -16,7 +16,7 @@ class Welcome extends Mailable
     /**
      * Create a new message instance.
      *
-     * @param \App\Core\Models\User $user
+     * @param \App\Core\Models\Database\User $user
      */
     public function __construct(User $user)
     {

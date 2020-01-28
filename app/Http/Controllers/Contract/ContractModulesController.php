@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Contract;
 
 use App\Core\Helpers\Response;
-use App\Core\Models\Domain\Contract;
+use App\Core\Models\Database\Contract;
 use App\Core\Modules\Configuration;
-use App\Core\Services\Domain\ContractModuleService;
+use App\Core\Services\Contract\ContractModuleService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ContractModulesController extends Controller {
     /**
-     * @var \App\Core\Services\Domain\ContractModuleService
+     * @var \App\Core\Services\Contract\ContractModuleService
      */
     private $contractModuleService;
 

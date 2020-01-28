@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Services;
 
-use App\Core\Models\User;
+use App\Core\Models\Database\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;

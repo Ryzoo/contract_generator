@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Contract;
 
 use App\Core\Helpers\Response;
-use App\Core\Models\Domain\Category;
-use App\Core\Models\Domain\Contract;
+use App\Core\Models\Database\Category;
+use App\Core\Models\Database\Contract;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\CategoryCreateRequest;
 use App\Http\Requests\Category\CategoryRemoveRequest;

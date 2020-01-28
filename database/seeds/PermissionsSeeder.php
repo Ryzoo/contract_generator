@@ -16,7 +16,7 @@ class PermissionsSeeder extends Seeder {
                 'name' => "Manage users",
                 'slug' => "manage.users",
                 'description' => "Can manage all users",
-                'model' => "App\Models\User",
+                'model' => "App\Models\Database\User",
             ],
             [
                 'name' => "Manage roles",

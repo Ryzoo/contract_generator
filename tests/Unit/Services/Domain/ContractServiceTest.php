@@ -2,7 +2,8 @@
 
 namespace Tests\Unit\Services\Domain;
 
-use App\Core\Models\Domain\Contract;
+use App\Core\Models\Database\Contract;
+use App\Core\Services\Contract\ContractService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -10,13 +11,13 @@ class ContractServiceTest extends TestCase {
     use RefreshDatabase;
 
     /***
-     * @var \App\Core\Services\Domain\ContractService
+     * @var \App\Core\Services\Contract\ContractService
      */
     private $contractService;
 
     public function setUp(): void {
         parent::setUp();
-        $this->contractService = $this->app->make('App\Core\Services\Domain\ContractService');
+        $this->contractService = $this->app->make(ContractService::class);
     }
 
     public function testAddContract() {

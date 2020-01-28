@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Core\Contracts\Domain;
+namespace App\Core\Contracts;
 
 use App\Core\Models\Domain\FormElements\FormElement;
 use Illuminate\Support\Collection;

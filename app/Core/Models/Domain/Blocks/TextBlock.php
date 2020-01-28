@@ -6,7 +6,7 @@ namespace App\Core\Models\Domain\Blocks;
 use App\Core\Enums\BlockType;
 use App\Core\Helpers\AttributeResolver;
 use Illuminate\Support\Facades\Validator;
-use App\Core\Models\Domain\Contract;
+use App\Core\Models\Database\Contract;
 use Illuminate\Support\Collection;
 
 class TextBlock extends Block {

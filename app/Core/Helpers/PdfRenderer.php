@@ -5,13 +5,13 @@ namespace App\Core\Helpers;
 
 
 use App\Core\Enums\ConditionalType;
-use App\Core\Models\Domain\Contract;
+use App\Core\Models\Database\Contract;
 use Illuminate\Support\Collection;
 use PDF;
 
 class PdfRenderer{
     /**
-     * @var \App\Core\Models\Domain\Contract
+     * @var Contract
      */
     private $contract;
 
