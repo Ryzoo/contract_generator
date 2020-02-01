@@ -1,6 +1,10 @@
 <?php
 
 return [
+    "auth" => [
+      "welcome" => "Welcome back,",
+      "sigin" => "Sign in to continue access page!",
+    ],
     "panel" => [
         "accounts" => [
             "buttons" => [

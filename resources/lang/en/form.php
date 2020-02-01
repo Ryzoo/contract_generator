@@ -51,7 +51,7 @@ return [
         ]
     ],
     'sendResetTokenForm' => [
-        'title' => 'Send reset password token form',
+        'title' => 'Send reset token',
         'notify' => [
             'success' => 'Reset token send to your email. Check your email and use url to reset password.'
         ]
