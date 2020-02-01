@@ -336,6 +336,7 @@ export default {
                 "rodoAccept": "I accept the RODO"
             },
             "button": {
+                "configuration_back": "Back to configuration",
                 "login": "Login",
                 "addElement": "Add next element",
                 "goToLogin": "Go to login page",

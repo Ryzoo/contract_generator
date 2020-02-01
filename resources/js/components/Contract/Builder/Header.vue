@@ -5,7 +5,7 @@
             <v-btn color="primary mt-3" small @click="showAttributeModal">{{$t("pages.panel.contracts.builder.attributeList")}}</v-btn>
         </v-col>
         <v-col cols="auto">
-            <v-btn small text color="primary" @click="goBack">{{$t("base.button.back")}}</v-btn>
+            <v-btn small text color="primary" @click="goBack">{{$t("base.button.configuration_back")}}</v-btn>
             <v-btn small class="mx-2" outlined color="primary" @click="saveActual(false)">{{$t("base.button.save")}}</v-btn>
             <v-btn small color="primary" @click="saveActual(true)">{{$t("base.button.save_exit")}}</v-btn>
         </v-col>
