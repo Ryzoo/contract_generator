@@ -5,7 +5,7 @@ const defaultState = {
     id: null,
     lastName: '',
     loginToken: '',
-    role: null,
+    roles: [],
     profileImage: '',
     created_at: '',
     updated_at: ''
@@ -25,7 +25,8 @@ const mutations = {
 }
 
 const getters = {
-  authUser: state => state.authUser
+  authUser: state => state.authUser,
+  roles: state => state.authUser.roles
 }
 
 export default {

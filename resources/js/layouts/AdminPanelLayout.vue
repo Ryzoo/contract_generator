@@ -245,10 +245,10 @@ export default {
       return this.calculateAccessArray(this.items)
     },
     user () {
-      const user = this.$store.getters.authUser
+      const user = Object.assign({}, this.$store.getters.authUser)
       return {
         ...user,
-        roles: user ? user.roles.sort((a, b) => b.level - a.level).shift() || null : null
+        roles: user ? user.roles.sort((a, b) => b.level - a.level)[0] || null : null
       }
     }
   },
@@ -261,11 +261,11 @@ export default {
         x.active = true
 
         if (x.access) {
-          x.active = x.access.every(z => auth.checkPermission(z))
+          x.active = x.access.every(z => this.Auth.checkPermission(z))
         }
 
         if (x.roles) {
-          x.active = !x.roles.some(z => auth.checkRole(z))
+          x.active = x.roles.some(z => this.Auth.checkRole(z))
         }
 
         if (x.elements) {
@@ -281,7 +281,7 @@ export default {
     },
     logout () {
       this.menu = false
-      auth.logout()
+      this.Auth.logout()
     }
   }
 }

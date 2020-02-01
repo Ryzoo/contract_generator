@@ -24,7 +24,7 @@ export default class Auth {
     if (!this.store) { return true }
     if (!this.store.getters.authUser || !this.store.getters.authUser.roles) { return false }
 
-    return this.store.getters.authUser.roles.some(x => x.slug === role)
+    return this.store.getters.roles.some(x => x.slug === role)
   }
 
   authorize (userData) {

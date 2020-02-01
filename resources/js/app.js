@@ -25,9 +25,13 @@ Vue.filter('truncate', function (text, clamp) {
   return text.slice(0, 50) + (text.length > 50 ? clamp || '...' : '')
 })
 
+window.auth.setStore(store)
+window.auth.setRouter(route)
+
 Vue.mixin({
   data: function () {
     return {
+      Auth: window.auth,
       Mapper: Mapper,
       Validator: Validator,
       Notify: window.Notify,
@@ -52,7 +56,6 @@ const app = new Vue({
   router: route
 })
 
-window.auth.setStore(store)
-window.auth.setRouter(route)
+
 
 export default app
