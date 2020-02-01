@@ -26,6 +26,7 @@
           <v-text-field
             hide-details
             outlined
+            autofocus
             dense
             v-model="attribute.attributeName"
             :label="$t('form.variableForm.name')"
