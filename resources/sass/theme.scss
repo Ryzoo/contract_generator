@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+
+.v-list-item--link:before{
+    background-color: transparent !important;
+}
+
+.theme--dark.v-navigation-drawer {
+    background-color: #273670 !important;
+    box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+section > .v-navigation-drawer .v-list:first-child{
+    background: #4059BE;
+    padding: 0 !important;
+    border-radius: 0px;
+    min-height: 64px;
+    box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+}
+
+section > .v-navigation-drawer .theme--dark.v-list-item{
+    background: #4059BE;
+    border-radius: 5px;
+
+    & .v-list-item__action{
+        margin-right: 10px
+    }
+}
+
+.v-list-item__action{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.v-navigation-drawer--mini-variant .v-list-item>:first-child{
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+section > .v-navigation-drawer .v-list-item--active:not(.v-list-group__header){
+    background: #945CFB !important;
+}
+
+section > .v-navigation-drawer .v-list-group__header{
+    background: #4059BE;
+}
+
+section > .v-navigation-drawer .v-list-group__header .v-list-item{
+    background: transparent;
+}
+
+section > .v-navigation-drawer .v-list-group__header.v-list-item--active{
+    border-radius: 5px 5px 0 0;
+}
+
+section > .v-navigation-drawer .v-list-group {
+    color: white !important;
+    .v-list-item--active {
+        color: white !important;
+    }
+}
+
+section > .v-navigation-drawer .v-list-group__items .v-list-item{
+    background: #2D3F86;
+    border-radius: 0px;
+
+    & .v-list-item__action{
+        margin-right: 10px !important;
+    }
+}
+
+section > .v-navigation-drawer .v-list-group__items .v-list-item:last-child{
+    border-radius: 0 0 5px 5px;
+}
+
+section > .v-navigation-drawer .v-list-group__header {
+    color: white !important;
+
+    & > .v-list-item__action {
+        min-width: 30px !important;
+    }
+
+    & > .v-list-item {
+        padding: 0 !important;
+    }
+
+}
+
+section > .v-navigation-drawer .v-list:nth-child(2){
+    padding: 15px 25px !important;
+
+    & > *{
+        margin-top: 10px;
+    }
+}
+
+.theme--dark.v-navigation-drawer:not(.v-navigation-drawer--floating) .v-navigation-drawer__border{
+    box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+}
+
+.theme--light.v-footer,
+.theme--light.v-sheet {
+    color: $fontColor !important;
+}
+
+.theme--light.v-toolbar {
+    background: linear-gradient(90deg, #4059BE 0%, #945CFB 100%, #995CFE 100%) !important;
+    color: white !important;
+}
+
+.theme--light.application {
+    color: $fontColor !important;
+    background: #f0f3f7 !important;
+}
+
+.v-list--dense .v-list__tile {
+    font-size: 14px !important;
+}
+
+section {
+    width: 100%;
+}
+
+.mention,
+.variable {
+    width: min-content;
+    background-color: $primary;
+    padding: 3px 8px;
+    border-radius: 5px;
+    color: white;
+}
+
+.editor-container {
+  counter-reset: paragraph-counter;
+
+    ol {
+        counter-reset: section;
+        list-style-type: none;
+    }
+    li:before {
+        counter-increment: section;
+        content: counters(section, ".") " ";
+    }
+}
+.paragraph-list{
+  display: flex;
+  justify-content: center;
+
+  &:before {
+    counter-increment: paragraph-counter;
+    content: "§ " counter(paragraph-counter) ". ";
+  }
+
+  @import "theme/table";
+}

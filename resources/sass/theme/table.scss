@@ -1,0 +1,16 @@
+.table-icons {
+    display: flex;
+    justify-content: space-around;
+
+    &>i{
+        font-size: 20px !important;
+        transition: all .2s !important;
+        box-sizing: content-box !important;
+
+        &:hover{
+            cursor: pointer !important;
+            color: #324a58 !important;
+            transform: rotate(30deg) !important;
+        }
+    }
+}

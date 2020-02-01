@@ -1,27 +1,33 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-use App\User;
+use App\Core\Models\Database\User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
-
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| This directory should contain each of the model factory definitions for
-| your application. Factories provide a convenient way to generate new
-| model instances for testing / seeding your application's database.
-|
-*/
+use jeremykenedy\LaravelRoles\Models\Role;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'firstName' => $faker->firstName,
+        'lastName' => $faker->lastName,
         'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'remember_token' => Str::random(10),
+        'password' => Hash::make('secret'),
+        'loginToken' => Str::random(80),
     ];
 });
+
+$factory->state(User::class, 'admin',[]);
+$factory->state(User::class, 'client', []);
+
+$factory->afterCreatingState(User::class, 'admin', function ($user, $faker) {
+    $role = Role::where('slug', 'admin')->first();
+    $user->attachRole($role);
+});
+
+$factory->afterCreatingState(User::class, 'client', function ($user, $faker) {
+    $role = Role::where('slug', 'client')->first();
+    $user->attachRole($role);
+});
+
+
+

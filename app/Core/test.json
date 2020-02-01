@@ -1,0 +1,106 @@
+{
+  "id": 2,
+  "name": "Test contract name",
+  "description": "test contract description",
+  "categories": [
+    1,
+    2
+  ],
+  "attributesList": [
+    {
+      "attributeName": "Firstname",
+      "id": 2,
+      "attributeType": 1,
+      "defaultValue": "",
+      "additionalInformation": "",
+      "placeholder": "",
+      "description": "",
+      "toAnonymize": "",
+      "settings": {
+        "required": true
+      }
+    },
+    {
+      "attributeName": "LastName",
+      "id": 3,
+      "attributeType": 1,
+      "defaultValue": "",
+      "additionalInformation": "",
+      "placeholder": "",
+      "description": "",
+      "toAnonymize": "",
+      "settings": {
+        "required": true
+      }
+    },
+    {
+      "attributeName": "Age",
+      "id": 4,
+      "attributeType": 0,
+      "defaultValue": "",
+      "additionalInformation": "",
+      "placeholder": "",
+      "description": "",
+      "toAnonymize": "",
+      "settings": {
+        "required": true
+      }
+    }
+  ],
+  "blocks": [
+    {
+      "id": 2,
+      "parentId": 0,
+      "blockName": "New block: 2",
+      "blockType": 1,
+      "content": {
+        "blocks": [
+          {
+            "id": 3,
+            "parentId": 2,
+            "blockName": "New block: 3",
+            "blockType": 0,
+            "content": {
+              "text": "<p>{2} </p>"
+            },
+            "conditionals": [],
+            "settings": {}
+          },
+          {
+            "id": 4,
+            "parentId": 2,
+            "blockName": "New block: 4",
+            "blockType": 0,
+            "content": {
+              "text": "<p>{3} </p>"
+            },
+            "conditionals": [
+              {
+                "conditionalType": 0,
+                "content": "{\n  \"operator\": \"All\",\n  \"children\": [\n    {\n      \"type\": \"rule\",\n      \"query\": {\n        \"id\": 4,\n        \"operator\": 8,\n        \"value\": \"18\",\n        \"ruleType\": 0\n      }\n    }\n  ]\n}"
+              }
+            ],
+            "settings": {}
+          }
+        ]
+      },
+      "conditionals": [],
+      "settings": {}
+    }
+  ],
+  "settings": {
+    "enabledModules": [
+      "auth",
+      "provider"
+    ],
+    "modules": {
+      "auth": {
+        "type": "1",
+        "password": ""
+      },
+      "provider": {
+        "type": "0"
+      }
+    }
+  }
+}

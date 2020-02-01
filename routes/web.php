@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('default');
-});
+Route::get('/{any}', 'CommonController@defaultView')->where('any', '^(?!api|storage|docs|telescope).*$|');
+
+/**
+ * This route exist there only for get route to password on frontend by name
+ */
+Route::get('/auth/resetPassword', 'CommonController@emptyFunction')->name('password.reset');

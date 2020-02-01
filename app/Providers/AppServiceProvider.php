@@ -2,10 +2,16 @@
 
 namespace App\Providers;
 
+use App\Core\Services\Contract\ContractModuleService;
+use App\Guards\TokenGuard;
+use App\Core\Models\AppAuthorization;
+use App\Jobs\RenderContract;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+
     /**
      * Register any application services.
      *
@@ -13,9 +19,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('path.public', function() {
-          return base_path('public_html');
-        });
+        if ($this->app->isLocal()) {
+            $this->app->register(TelescopeServiceProvider::class);
+        }
     }
 
     /**
@@ -25,6 +31,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Auth::extend('access_token', function ($app, $name) {
+            $userProvider = app(TokenToUserProvider::class);
+            $request = app('request');
+            return new TokenGuard($userProvider, $request);
+        });
     }
 }
