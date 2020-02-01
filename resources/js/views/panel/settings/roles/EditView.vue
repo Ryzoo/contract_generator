@@ -10,7 +10,7 @@
             <v-form>
               <v-container>
                 <v-row row wrap>
-                  <v-col sm="12" md="10" class="pa-1">
+                  <v-col cols="12" md="10" class="pa-1">
                     <v-text-field
                       prepend-icon="fa-user-tag"
                       v-model="role.name"
@@ -29,7 +29,7 @@
                     >
                     </v-text-field>
                   </v-col>
-                  <v-col sm="12" class="pa-1">
+                  <v-col cols="12" class="pa-1">
                     <v-select
                       prepend-icon="fa-lock"
                       v-model="role.permission"
@@ -39,7 +39,7 @@
                       multiple
                     />
                   </v-col>
-                  <v-col sm="12" class="pa-1">
+                  <v-col cols="12" class="pa-1">
                     <v-textarea
                       outlined
                       v-model="role.description"

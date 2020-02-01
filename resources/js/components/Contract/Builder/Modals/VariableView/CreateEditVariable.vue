@@ -22,7 +22,7 @@
     <v-divider/>
     <v-card-text>
       <v-row v-if="attribute.attributeType > -1">
-        <v-col sm="12">
+        <v-col cols="12">
           <v-text-field
             hide-details
             outlined
@@ -31,7 +31,7 @@
             :label="$t('form.variableForm.name')"
           />
         </v-col>
-        <v-col sm="12" class="pb-0" v-if="attribute.attributeType === AttributeTypeEnum.SELECT">
+        <v-col cols="12" class="pb-0" v-if="attribute.attributeType === AttributeTypeEnum.SELECT">
           <v-combobox
             outlined
             persistent-hint
@@ -46,7 +46,7 @@
             :label="$t('form.variableForm.items')"
           />
         </v-col>
-        <v-col sm="12" class="pb-0" v-if="attribute.attributeType === AttributeTypeEnum.REPEAT_GROUP">
+        <v-col cols="12" class="pb-0" v-if="attribute.attributeType === AttributeTypeEnum.REPEAT_GROUP">
           <v-select
             v-model="selectedVariables"
             :items="attributesList"
@@ -73,19 +73,19 @@
               <v-expansion-panel-header>Additional configuration</v-expansion-panel-header>
               <v-expansion-panel-content>
                 <v-row>
-                  <v-col sm="12">
+                  <v-col cols="12">
                     <v-text-field hide-details dense outlined v-model="attribute.placeholder" :label="$t('form.variableForm.placeholder')" outline/>
                   </v-col>
-                  <v-col sm="12">
+                  <v-col cols="12">
                     <v-text-field hide-details dense outlined v-model="attribute.description" :label="$t('form.variableForm.label')" outline/>
                   </v-col>
-                  <v-col sm="12">
+                  <v-col cols="12">
                     <v-text-field hide-details dense outlined v-model="attribute.defaultValue" :label="$t('form.variableForm.defaultValue')" outline/>
                   </v-col>
-                  <v-col sm="12">
+                  <v-col cols="12">
                     <v-text-field hide-details dense outlined v-model="attribute.additionalInformation" :label="$t('form.variableForm.additionalInformation')" outline/>
                   </v-col>
-                  <v-col sm="12">
+                  <v-col cols="12">
                     <v-checkbox class="mt-0" hide-details dense outlined v-model="attribute.toAnonymize" :label="$t('form.variableForm.forAnonymise')"/>
                   </v-col>
                 </v-row>

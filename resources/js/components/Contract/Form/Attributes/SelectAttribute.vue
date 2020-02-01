@@ -1,5 +1,5 @@
 <template>
-    <v-col sm="12">
+    <v-col cols="12">
         <v-autocomplete
             :items="this.attribute.settings.items"
             outlined

@@ -10,7 +10,7 @@
                         <v-form>
                             <v-container>
                                 <v-row row wrap>
-                                    <v-col sm="12" md="6" class="pa-1">
+                                    <v-col cols="12" md="6" class="pa-1">
                                       <v-text-field
                                         prepend-icon="fa-user-edit"
                                         v-model="user.firstName"
@@ -18,7 +18,7 @@
                                         required
                                       />
                                     </v-col>
-                                    <v-col sm="12" md="6" class="pa-1">
+                                    <v-col cols="12" md="6" class="pa-1">
                                       <v-text-field
                                         prepend-icon="fa-user-edit"
                                         v-model="user.lastName"
@@ -26,7 +26,7 @@
                                         required
                                       />
                                     </v-col>
-                                    <v-col sm="12" md="6" class="pa-1">
+                                    <v-col cols="12" md="6" class="pa-1">
                                       <v-text-field
                                         prepend-icon="fa-envelope"
                                         v-model="user.email"
@@ -35,7 +35,7 @@
                                         required
                                       />
                                     </v-col>
-                                  <v-col sm="12" md="6" class="pa-1">
+                                  <v-col cols="12" md="6" class="pa-1">
                                     <v-select
                                       prepend-icon="fa-shield-alt"
                                       v-model="user.roles"
@@ -45,7 +45,7 @@
                                       multiple
                                     />
                                   </v-col>
-                                    <v-col sm="12" md="6" class="pa-1">
+                                    <v-col cols="12" md="6" class="pa-1">
                                         <v-text-field
                                             prepend-icon="fa-lock"
                                             v-model="user.password"
@@ -54,7 +54,7 @@
                                         >
                                         </v-text-field>
                                     </v-col>
-                                    <v-col sm="12" md="6" class="pa-1">
+                                    <v-col cols="12" md="6" class="pa-1">
                                         <v-text-field
                                             prepend-icon="fa-lock"
                                             v-model="user.password_confirmation"
