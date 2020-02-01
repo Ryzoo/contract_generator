@@ -1,6 +1,6 @@
 <template>
     <v-row align="center" justify="center">
-        <v-col xs="12" sm="10" lg="8">
+        <v-col cols="12" sm="10" lg="8">
             <v-card>
                 <v-toolbar dark color="primary">
                     <v-toolbar-title class="white--text">
@@ -11,7 +11,7 @@
                     <v-form>
                         <v-container>
                             <v-row>
-                                <v-col sm="12" md="6" class="pa-1">
+                                <v-col cols="12" md="6" class="pa-1">
                                   <v-text-field
                                     prepend-icon="fa-user-edit"
                                     v-model="user.firstName"
@@ -19,7 +19,7 @@
                                     required
                                   />
                                 </v-col>
-                                <v-col sm="12" md="6" class="pa-1">
+                                <v-col cols="12" md="6" class="pa-1">
                                   <v-text-field
                                     prepend-icon="fa-user-edit"
                                     v-model="user.lastName"
@@ -27,7 +27,7 @@
                                     required
                                   />
                                 </v-col>
-                              <v-col sm="12" md="6" class="pa-1">
+                              <v-col cols="12" md="6" class="pa-1">
                                 <v-select
                                   prepend-icon="fa-shield-alt"
                                   v-model="user.roles"

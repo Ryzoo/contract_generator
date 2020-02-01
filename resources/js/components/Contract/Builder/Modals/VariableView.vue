@@ -61,7 +61,7 @@
       scrollable
       max-width="500px">
       <CreateEditVariable :isNewAttribute="isNewAttribute" :editAttribute="attribute"
-                          :attributesList="$store.getters.builder_allVariables" @close="pushCloseEvent"/>
+                          :attributesList="$store.getters.builder_allVariables" @close="showAddEditModal = false"/>
     </v-dialog>
   </v-card>
 </template>

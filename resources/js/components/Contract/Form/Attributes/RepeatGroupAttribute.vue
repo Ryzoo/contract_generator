@@ -1,5 +1,5 @@
 <template>
-  <v-col sm="12" :class="{'repeat-group-container': true, 'error-is': validationError}">
+  <v-col cols="12" :class="{'repeat-group-container': true, 'error-is': validationError}">
     <h3>{{attribute.attributeName}}
       <v-tooltip right>
         <template v-slot:activator="{ on }">

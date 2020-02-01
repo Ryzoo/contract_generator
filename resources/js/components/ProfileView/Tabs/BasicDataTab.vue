@@ -4,7 +4,7 @@
             <v-form>
                 <v-container>
                     <v-row>
-                        <v-col sm="12" md="6" class="pa-1">
+                        <v-col cols="12" md="6" class="pa-1">
                           <v-text-field
                             v-model="user.firstName"
                             :label="
@@ -13,7 +13,7 @@
                             required
                           />
                         </v-col>
-                        <v-col sm="12" md="6" class="pa-1">
+                        <v-col cols="12" md="6" class="pa-1">
                           <v-text-field
                             v-model="user.lastName"
                             :label="
@@ -22,7 +22,7 @@
                             required
                           />
                         </v-col>
-                        <v-col sm="12">
+                        <v-col cols="12">
                             <v-row class="justify-end">
                                 <v-btn color="success" @click="saveBasicData()">
                                     {{ $t("base.button.save") }}

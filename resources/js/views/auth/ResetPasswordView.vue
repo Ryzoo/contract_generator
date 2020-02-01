@@ -1,56 +1,54 @@
 <template>
-    <v-card class="elevation-12">
-        <v-toolbar>
-            <v-toolbar-title>{{
-                $t("form.resetPasswordForm.title")
-                }}
-            </v-toolbar-title>
-        </v-toolbar>
-        <v-card-text class="pb-0">
-            <v-form v-if="isLoaded">
-                <v-text-field
-                    prepend-icon="fa-envelope"
-                    v-model="resetPasswordForm.email"
-                    :label="$t('base.field.email')"
-                    type="email"
-                >
-                </v-text-field>
-                <v-text-field
-                    prepend-icon="fa-lock"
-                    v-model="resetPasswordForm.password"
-                    :label="$t('base.field.password')"
-                    type="password"
-                >
-                </v-text-field>
-                <v-text-field
-                    prepend-icon="fa-lock"
-                    v-model="resetPasswordForm.password_confirmation"
-                    :label="$t('base.field.rePassword')"
-                    type="password"
-                >
-                </v-text-field>
-            </v-form>
-            <loader v-else></loader>
-        </v-card-text>
-        <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-                text
-                color="primary"
-                to="/auth/login"
-                :disabled="!isLoaded"
-            >{{ $t("fbase.button.cancel") }}
-            </v-btn
-            >
-            <v-btn
-                color="primary"
-                :disabled="!isLoaded"
-                @click="sendResetPassword"
-            >{{ $t("base.button.reset") }}
-            </v-btn
-            >
-        </v-card-actions>
-    </v-card>
+  <v-card class="pa-5">
+    <v-icon x-large right class="float-right auth-icon">fas fa-user-lock</v-icon>
+    <v-card-title>
+      <h1 class="display-1 mb-5">{{$t("form.resetPasswordForm.title") }}</h1>
+    </v-card-title>
+    <v-card-text class="pb-0">
+      <v-form v-if="isLoaded">
+        <v-text-field
+          prepend-icon="fa-envelope"
+          v-model="resetPasswordForm.email"
+          :label="$t('base.field.email')"
+          type="email"
+        >
+        </v-text-field>
+        <v-text-field
+          prepend-icon="fa-lock"
+          v-model="resetPasswordForm.password"
+          :label="$t('base.field.password')"
+          type="password"
+        >
+        </v-text-field>
+        <v-text-field
+          prepend-icon="fa-lock"
+          v-model="resetPasswordForm.password_confirmation"
+          :label="$t('base.field.rePassword')"
+          type="password"
+        >
+        </v-text-field>
+      </v-form>
+      <loader v-else></loader>
+    </v-card-text>
+    <v-card-actions>
+      <v-spacer></v-spacer>
+      <v-btn
+        text
+        color="primary"
+        to="/auth/login"
+        :disabled="!isLoaded"
+      >{{ $t("fbase.button.cancel") }}
+      </v-btn
+      >
+      <v-btn
+        color="primary"
+        :disabled="!isLoaded"
+        @click="sendResetPassword"
+      >{{ $t("base.button.reset") }}
+      </v-btn
+      >
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script>

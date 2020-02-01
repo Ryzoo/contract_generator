@@ -1,48 +1,50 @@
 <template>
-    <v-card class="elevation-12">
-        <v-toolbar flat>
-            <v-toolbar-title>{{ $t("form.login.title") }}</v-toolbar-title>
-        </v-toolbar>
-        <v-card-text class="pb-0">
-            <v-form v-if="isLoaded">
-                <v-text-field
-                    prepend-icon="fa-envelope"
-                    v-model="loginForm.email"
-                    :label="$t('base.field.email')"
-                    type="email"
-                >
-                </v-text-field>
-                <v-text-field
-                    prepend-icon="fa-lock"
-                    v-model="loginForm.password"
-                    :label="$t('base.field.password')"
-                    type="password"
-                >
-                </v-text-field>
-                <small class="ma-0"
-                    >{{ $t("form.login.text.forgotPassword") }}
-                    <router-link to="/auth/sendResetPasswordToken">{{
-                        $t("form.login.link.resetPassword")
-                    }}</router-link>
-                </small>
-                <br />
-            </v-form>
-          <loader v-else/>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer/>
-            <v-btn
-                :disabled="!isLoaded"
-                outlined
-                color="primary"
-                to="/auth/register"
-                >{{ $t("base.button.register") }}
-            </v-btn>
-            <v-btn :disabled="!isLoaded" color="primary" @click="sendLoginForm"
-                >{{ $t("base.button.login") }}
-            </v-btn>
-        </v-card-actions>
-    </v-card>
+  <v-card class="pa-5">
+    <v-icon x-large right class="float-right auth-icon" >fas fa-unlock-alt</v-icon>
+    <v-card-title>
+      <h1 class="display-1 mb-5">{{$t("form.login.title") }}</h1>
+    </v-card-title>
+    <v-card-text class="pb-0">
+      <v-form v-if="isLoaded">
+        <v-text-field
+          prepend-icon="fa-envelope"
+          v-model="loginForm.email"
+          :label="$t('base.field.email')"
+          type="email"
+        >
+        </v-text-field>
+        <v-text-field
+          prepend-icon="fa-lock"
+          v-model="loginForm.password"
+          :label="$t('base.field.password')"
+          type="password"
+        >
+        </v-text-field>
+        <small class="ma-0"
+        >{{ $t("form.login.text.forgotPassword") }}
+          <router-link to="/auth/sendResetPasswordToken">{{
+            $t("form.login.link.resetPassword")
+            }}
+          </router-link>
+        </small>
+        <br/>
+      </v-form>
+      <loader v-else/>
+    </v-card-text>
+    <v-card-actions>
+      <v-spacer/>
+      <v-btn
+        :disabled="!isLoaded"
+        outlined
+        color="primary"
+        to="/auth/register"
+      >{{ $t("base.button.register") }}
+      </v-btn>
+      <v-btn :disabled="!isLoaded" color="primary" @click="sendLoginForm"
+      >{{ $t("base.button.login") }}
+      </v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script>

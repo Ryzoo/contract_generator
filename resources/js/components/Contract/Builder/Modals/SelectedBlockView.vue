@@ -16,7 +16,7 @@
       </v-tab>
 
       <v-tab-item :key="0" value="tab-0" class="pt-3">
-        <v-col sm="12">
+        <v-col cols="12">
           <v-text-field v-model="block.blockName" label="Block name" outline/>
         </v-col>
       </v-tab-item>

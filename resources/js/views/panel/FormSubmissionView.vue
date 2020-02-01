@@ -2,7 +2,7 @@
   <v-row>
     <v-col v-if="isLoaded">
       <v-row>
-        <v-col xs="12">
+        <v-col cols="12">
           <v-data-table
             class="elevation-2"
             :headers="headers"

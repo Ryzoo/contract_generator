@@ -1,20 +1,31 @@
 <template>
-    <v-container class="fill-height" fluid>
-        <v-row align="center" justify="center">
-          <v-col cols="12" sm="8" md="4">
-            <v-fade-transition mode="out-in">
-              <router-view/>
-            </v-fade-transition>
-          </v-col>
-        </v-row>
+    <v-container fluid class="fill-height primary">
+      <v-row class="ma-0">
+        <v-col class="d-none d-md-flex" cols="12" md="6" lg="7">
+          <AuthWelcome />
+        </v-col>
+        <v-col cols="12" md="6" lg="5" class="ma-auto ma-md-0" style="max-width: 500px">
+          <v-fade-transition mode="out-in">
+            <router-view/>
+          </v-fade-transition>
+        </v-col>
+      </v-row>
     </v-container>
 </template>
 
 <script>
+import AuthWelcome from '../components/Auth/AuthWelcome'
 
 export default {
-  name: 'AuthLayout'
+  name: 'AuthLayout',
+  components: {
+    AuthWelcome
+  }
 }
 </script>
 
-<style scoped/>
+<style lang="scss">
+  .auth-icon{
+    color: #dedede !important;
+  }
+</style>

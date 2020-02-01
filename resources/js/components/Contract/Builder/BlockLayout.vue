@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col sm="12" class="builder-content">
+    <v-col cols="12" class="builder-content">
         <ContainerBlock
           v-for="(block, index) in filterParentBlocks"
           :block="block"

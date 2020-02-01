@@ -4,7 +4,7 @@
       <v-form>
         <v-container>
           <v-row>
-            <v-col sm="12" md="6" class="pa-1">
+            <v-col cols="12" md="6" class="pa-1">
               <v-text-field
                 v-model="data.actualPassword"
                 :label="$t('base.field.actualPassword')"
@@ -12,7 +12,7 @@
                 type="password"
               />
             </v-col>
-            <v-col sm="12" md="6" class="pa-1">
+            <v-col cols="12" md="6" class="pa-1">
               <v-text-field
                 v-model="data.newPassword"
                 :label="$t('base.field.newPassword')"
@@ -20,7 +20,7 @@
                 type="password"
               />
             </v-col>
-            <v-col sm="12" md="6" class="pa-1">
+            <v-col cols="12" md="6" class="pa-1">
               <v-text-field
                 v-model="data.rePassword"
                 :label="$t('base.field.rePassword')"
@@ -28,7 +28,7 @@
                 type="password"
               />
             </v-col>
-            <v-col sm="12">
+            <v-col cols="12">
               <v-row class="justify-end">
                 <v-btn color="success" @click="saveBasicData()">
                   {{ $t("base.button.save") }}
