@@ -25,7 +25,8 @@ class ContractFormComplete extends Model
 
     public function getFormElementsAttribute($value): Collection
     {
-        return FormElement::getListFromString($value ?? $this->form_elements);
+      $currentValue = $value ?? $this->settings ?? NULL;
+      return $currentValue ? collect(FormElement::getListFromString($currentValue)) : collect();
     }
 
     public function setFormElementsAttribute($value)

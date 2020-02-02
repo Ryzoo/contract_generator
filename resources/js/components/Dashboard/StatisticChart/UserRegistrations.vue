@@ -26,36 +26,33 @@
       >
         fa-clock
       </v-icon>
-      <span class="caption grey--text font-weight-light">last registration 26 minutes ago</span>
+      <span class="caption grey--text font-weight-light" v-if="lastTime">last registration created {{lastTime}}</span>
+      <span class="caption grey--text font-weight-light" v-else>Wait for some registrations!</span>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
+import { StatisticType } from '../../../additionalModules/Enums'
+
 export default {
   name: 'UserRegistrations',
   data: () => ({
-    labels: [
-      '12am',
-      '3am',
-      '6am',
-      '9am',
-      '12pm',
-      '3pm',
-      '6pm',
-      '9pm'
-    ],
-    value: [
-      200,
-      675,
-      410,
-      390,
-      310,
-      460,
-      250,
-      240
-    ]
-  })
+    lastTime: null,
+    labels: [],
+    value: []
+  }),
+  mounted () {
+    axios.get(`statistic/${StatisticType.REGISTRATIONS}`)
+      .then((response) => {
+        this.lastTime = response.data.lastTime
+
+        response.data.data.forEach(x => {
+          this.labels.push(x.date.substring(0, 2))
+          this.value.push(x.count)
+        })
+      })
+  }
 }
 </script>
 
