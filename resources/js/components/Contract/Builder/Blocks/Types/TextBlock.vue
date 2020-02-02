@@ -309,6 +309,7 @@ export default {
         onUpdate: ({ getHTML }) => {
           const html = getHTML()
           const element = $(`<div>${html}</div>`)
+          const styles = '<style>.paragraph-list:before{counter-increment:paragraph-counter;content:"§ " counter(paragraph-counter) ". "}div{counter-reset:paragraph-counter}div ol{counter-reset:section;list-style-type:none}div li:before{counter-increment:section;content:counters(section, ".") " "}</style>'
 
           element.find('.mention').each(function () {
             $(this).replaceWith(`{${$(this).attr('data-mention-id')}}`)
@@ -317,7 +318,7 @@ export default {
           this.$store.dispatch('builder_blockUpdateContent', {
             id: this.block.id,
             content: {
-              text: element.prop('innerHTML')
+              text: `${styles} ${element.prop('innerHTML')}`
             }
           })
         },
@@ -332,9 +333,11 @@ export default {
           .filter((v) => v.indexOf('}') > -1)
           .map((value) => parseInt(value.split('}')[0]))
 
-        matches.forEach((id) => {
-          text = text.replace(`{${id}}`, `<span class="mention variable" data-mention-id='${id}' contenteditable="false">@${this.variableSuggestions.find((x) => x.id === id).name}</span>`)
-        })
+        matches
+          .filter((id) => !isNaN(id))
+          .forEach((id) => {
+            text = text.replace(`{${id}}`, `<span class="mention variable" data-mention-id='${id}' contenteditable="false">@${this.variableSuggestions.find((x) => x.id === id).name}</span>`)
+          })
       }
       return text
     },
