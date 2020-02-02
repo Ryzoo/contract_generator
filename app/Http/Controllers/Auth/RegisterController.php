@@ -32,7 +32,7 @@ class RegisterController extends Controller {
     }
 
     protected function create(array $data) {
-        $role = Role::where('slug', 'user')->first();
+        $role = Role::where('slug', 'client')->first();
 
         $user = User::create([
             'firstName' => $data['firstName'],
@@ -43,7 +43,6 @@ class RegisterController extends Controller {
         ]);
 
         $user->attachRole($role);
-
         return $user;
     }
 
