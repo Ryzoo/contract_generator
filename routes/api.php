@@ -77,6 +77,7 @@ Route::prefix('contract')->group(function () {
 
     Route::post('/', 'ContractController@add')->middleware(['middleware' => 'auth:token']);
     Route::post('/{contract}/render', 'ContractController@render');
+    Route::post('/{contract}/retry', 'ContractController@retry');
 
     Route::put('/{contract}', 'ContractController@update')->middleware(['middleware' => 'auth:token']);
 
