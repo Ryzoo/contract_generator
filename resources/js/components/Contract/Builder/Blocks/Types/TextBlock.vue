@@ -309,7 +309,7 @@ export default {
         onUpdate: ({ getHTML }) => {
           const html = getHTML()
           const element = $(`<div>${html}</div>`)
-          const styles = '<style>.paragraph-list:before{counter-increment:paragraph-counter;content:"§ " counter(paragraph-counter) ". "}</style>'
+          const styles = '<style>.paragraph-list:before{counter-increment:paragraph-counter;content:"§ " counter(paragraph-counter) ". "}div{counter-reset:paragraph-counter}div ol{counter-reset:section;list-style-type:none}div li:before{counter-increment:section;content:counters(section, ".") " "}</style>'
 
           element.find('.mention').each(function () {
             $(this).replaceWith(`{${$(this).attr('data-mention-id')}}`)
