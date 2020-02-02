@@ -17,7 +17,7 @@
 
         <v-list-item tag="div">
           <v-list-item-avatar>
-            <v-img src="https://image.flaticon.com/icons/png/512/197/197717.png"/>
+            <v-img :src="appIcon"/>
           </v-list-item-avatar>
           <v-list-item-content class="text-center">
             {{$t('pageMeta.appTitle')}}
@@ -169,11 +169,13 @@
 <script>
 import { Permissions } from '../additionalModules/Permissions'
 import { Roles } from '../additionalModules/Roles'
+import appIcon from './../assets/fav.png'
 
 export default {
   name: 'PanelLayout',
   data: function () {
     return {
+      appIcon: appIcon,
       menu: false,
       navigationRight: true,
       navigationModel: true,
