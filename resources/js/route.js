@@ -19,17 +19,19 @@ import AccountPreview
 import CreateView from './views/panel/settings/accounts/CreateView'
 import EditView from './views/panel/settings/accounts/EditView'
 import EditRoleView from './views/panel/settings/roles/EditView'
+import CreateRolesView from './views/panel/settings/roles/CreateView'
 import ContractFormView from './views/client/contract/ContractFormView'
 import CreateBaseView from './views/panel/contracts/CreateBaseView'
 import RolesView from './views/panel/settings/RolesView'
-import CreateRolesView from './views/panel/settings/roles/CreateView'
 import NoAccessView from './views/common/NoAccessView'
 import NotFoundView from './views/common/NotFoundView'
-
-import { Permissions } from './additionalModules/Permissions'
 import ClientPageLayout from './layouts/ClientPageLayout'
 import ContractFormFillView from './views/client/contract/ContractFormFillView'
 import FormSubmissionView from './views/panel/FormSubmissionView'
+import CategoryView from './views/panel/contracts/CategoryView'
+import EditCategoryView from './views/panel/contracts/category/EditView'
+import CreateCategoryView from './views/panel/contracts/category/CreateView'
+import { Permissions } from './additionalModules/Permissions'
 
 Vue.use(VueRouter)
 
@@ -136,6 +138,39 @@ const router = new VueRouter({
             title: i18n.t('pageMeta.panel.contract.builder.title'),
             access: [
               Permissions.MANAGE_CONTRACTS
+            ]
+          }
+        },
+        {
+          path: 'contracts/category',
+          name: 'category',
+          component: CategoryView,
+          meta: {
+            title: i18n.t('pageMeta.panel.category.title'),
+            access: [
+              Permissions.MANAGE_ROLES
+            ]
+          }
+        },
+        {
+          path: 'contracts/category/create',
+          name: 'createCategory',
+          component: CreateCategoryView,
+          meta: {
+            title: i18n.t('pageMeta.panel.category.create.title'),
+            access: [
+              Permissions.MANAGE_ROLES
+            ]
+          }
+        },
+        {
+          path: 'contracts/category/:id/edit',
+          name: 'editCategory',
+          component: EditCategoryView,
+          meta: {
+            title: i18n.t('pageMeta.panel.category.edit.title'),
+            access: [
+              Permissions.MANAGE_ROLES
             ]
           }
         },

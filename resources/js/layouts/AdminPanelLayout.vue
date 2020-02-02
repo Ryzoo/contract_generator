@@ -213,6 +213,13 @@ export default {
               access: [
                 Permissions.MANAGE_CONTRACTS
               ]
+            },
+            {
+              title: this.$t('navigation.contract.category'),
+              link: '/panel/contracts/category',
+              access: [
+                Permissions.MANAGE_CONTRACTS
+              ]
             }
           ]
         },

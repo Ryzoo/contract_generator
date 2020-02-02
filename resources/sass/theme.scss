@@ -151,6 +151,7 @@ section {
     counter-increment: paragraph-counter;
     content: "§ " counter(paragraph-counter) ". ";
   }
-
-  @import "theme/table";
 }
+
+@import "theme/table";
+

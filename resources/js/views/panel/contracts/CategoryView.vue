@@ -3,8 +3,8 @@
     <v-col v-if="isLoaded">
       <v-row>
         <v-col>
-          <v-btn :to="{ name: 'createRoles' }" color="primary">
-            {{ $t("pages.panel.roles.buttons.new") }}
+          <v-btn :to="{ name: 'createCategory' }" color="primary">
+            {{ $t("pages.panel.category.buttons.new") }}
           </v-btn>
         </v-col>
       </v-row>
@@ -16,15 +16,21 @@
             :items="items"
           >
             <template v-slot:item.name="{ item }">
-                {{ item.name }}
+              {{ item.name }}
             </template>
             <template v-slot:item.description="{ item }">
               {{ item.description }}
             </template>
             <template v-slot:item.action="{ item }">
               <div class="table-icons">
-                <v-icon @click="$router.push(`/panel/settings/roles/${item.id}/edit`)">fa-edit</v-icon>
-                <v-icon @click="tryToRemove(item.id)">fa-trash</v-icon>
+                <v-btn color="primary" x-small outlined @click="$router.push(`/panel/contracts/category/${item.id}/edit`)">
+                  <v-icon x-small>fa-edit</v-icon>
+                  {{ $t("base.button.edit") }}
+                </v-btn>
+                <v-btn color="error" x-small outlined @click="tryToRemove(item.id)">
+                  <v-icon x-small>fa-trash</v-icon>
+                  {{ $t("base.button.remove") }}
+                </v-btn>
               </div>
             </template>
           </v-data-table>
@@ -35,7 +41,7 @@
 
     <v-dialog persistent v-model="deleteDialog" max-width="290">
       <v-card>
-        <v-card-title class="headline">{{$t("form.roleRemoveForm.title")}}</v-card-title>
+        <v-card-title class="headline">{{$t("form.categoryRemoveForm.title")}}</v-card-title>
 
         <v-card-text>
           {{ $t("base.description.remove") }}
@@ -56,7 +62,7 @@
 
 <script>
 export default {
-  name: 'RolesView',
+  name: 'CategoryView',
   components: {},
   data () {
     return {
@@ -68,13 +74,10 @@ export default {
           value: 'name'
         },
         {
-          text: this.$t('base.headers.descriptions'),
-          value: 'description'
-        },
-        {
           text: this.$t('base.headers.actions'),
           value: 'action',
-          sortable: false
+          sortable: false,
+          width: '100px'
         }
       ],
       items: [],
@@ -89,7 +92,7 @@ export default {
     removeRole () {
       this.isLoaded = false
       axios
-        .delete(`/role/${this.removeRoleId}`)
+        .delete(`/categories/${this.removeRoleId}`)
         .then(response => {
           this.items = this.items.filter(
             e => e.id !== this.removeRoleId
@@ -97,7 +100,7 @@ export default {
           this.removeRoleId = null
           this.deleteDialog = false
           notify.push(
-            this.$t('form.roleRemoveForm.notify.successRemove'),
+            this.$t('form.categoryRemoveForm.notify.successRemove'),
             notify.SUCCESS
           )
         })
@@ -108,7 +111,7 @@ export default {
     getRoleList () {
       this.isLoaded = false
       axios
-        .get('/role')
+        .get('/categories')
         .then(response => {
           this.items = response.data
         })

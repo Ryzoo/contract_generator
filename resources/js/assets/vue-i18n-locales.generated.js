@@ -18,6 +18,11 @@ export default {
                         "change_password": "Change password"
                     }
                 },
+                "category": {
+                    "buttons": {
+                        "new": "Add new category"
+                    }
+                },
                 "roles": {
                     "buttons": {
                         "new": "Add new role"
@@ -81,6 +86,9 @@ export default {
                 },
                 "profile": {
                     "title": "Panel - My Profile"
+                },
+                "category": {
+                    "title": "Panel - Categories"
                 },
                 "formSubmission": {
                     "title": "Panel - My Submission"
@@ -212,6 +220,18 @@ export default {
                     "success": "Role updated."
                 }
             },
+            "categoryAddForm": {
+                "title": "Add new category",
+                "notify": {
+                    "success": "New category created."
+                }
+            },
+            "categoryEditForm": {
+                "title": "Edit category",
+                "notify": {
+                    "success": "Category updated."
+                }
+            },
             "accountEditForm": {
                 "title": "Edit account",
                 "button": {
@@ -231,13 +251,19 @@ export default {
                 "title": "Remove account"
             },
             "roleRemoveForm": {
-                "title": "Remove role"
+                "title": "Remove role",
+                "notify": {
+                    "successRemove": "Role removed!"
+                }
+            },
+            "categoryRemoveForm": {
+                "title": "Remove category",
+                "notify": {
+                    "successRemove": "Category removed!"
+                }
             },
             "removeContractForm": {
-                "title": "Remove contract",
-                "notify": {
-                    "success": "Role removed!"
-                }
+                "title": "Remove contract"
             },
             "contractAddForm": {
                 "title": "Add contract",
@@ -390,7 +416,8 @@ export default {
             "contract": {
                 "main": "Contracts",
                 "contractList": "Full contract project",
-                "schema": "Part of contract"
+                "schema": "Part of contract",
+                "category": "Categories"
             },
             "accounts": "Accounts",
             "settings": {

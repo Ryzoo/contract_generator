@@ -51,13 +51,13 @@ Route::group(['middleware' => 'auth:token'], function(){
 
 Route::prefix('categories')->group(function () {
     Route::get('/', 'Contract\CategoryController@index');
-    Route::get('/{id}', 'Contract\CategoryController@show')->middleware(['middleware' => 'auth:token']);
+    Route::get('/{category}', 'Contract\CategoryController@show')->middleware(['middleware' => 'auth:token']);
 
     Route::post('/', 'Contract\CategoryController@store')->middleware(['middleware' => 'auth:token']);
 
-    Route::put('/{id}', 'Contract\CategoryController@update')->middleware(['middleware' => 'auth:token']);
+    Route::put('/{category}', 'Contract\CategoryController@update')->middleware(['middleware' => 'auth:token']);
 
-    Route::delete('/{id}', 'Contract\CategoryController@destroy')->middleware(['middleware' => 'auth:token']);
+    Route::delete('/{category}', 'Contract\CategoryController@destroy')->middleware(['middleware' => 'auth:token']);
 });
 
 Route::prefix('contract')->group(function () {

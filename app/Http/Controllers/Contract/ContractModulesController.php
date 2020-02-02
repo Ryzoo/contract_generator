@@ -10,28 +10,29 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ContractModulesController extends Controller {
-    /**
-     * @var \App\Core\Services\Contract\ContractModuleService
-     */
-    private $contractModuleService;
 
-    /**
-     * @var \App\Core\Modules\Configuration
-     */
-    private $configuration;
+  /**
+   * @var \App\Core\Services\Contract\ContractModuleService
+   */
+  private $contractModuleService;
 
-    public function __construct(ContractModuleService $contractModuleService,
-                                Configuration $configuration) {
-        $this->contractModuleService = $contractModuleService;
-        $this->configuration = $configuration;
-    }
+  /**
+   * @var \App\Core\Modules\Configuration
+   */
+  private $configuration;
 
-    public function getAvailable(Request $request) {
-        $availableModules = $this->configuration->getAvailableModules();
-        Response::success($availableModules);
-    }
+  public function __construct(ContractModuleService $contractModuleService,
+                              Configuration $configuration) {
+    $this->contractModuleService = $contractModuleService;
+    $this->configuration = $configuration;
+  }
 
-    public function getInformationFromContract(Request $request, Contract $contract) {
-        Response::success($this->contractModuleService->getModuleInformation($contract));
-    }
+  public function getAvailable(Request $request) {
+    $availableModules = $this->configuration->getAvailableModules();
+    Response::success($availableModules);
+  }
+
+  public function getInformationFromContract(Request $request, Contract $contract) {
+    Response::success($this->contractModuleService->getModuleInformation($contract));
+  }
 }
