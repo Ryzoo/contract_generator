@@ -143,14 +143,5 @@ section {
         content: counters(section, ".") " ";
     }
 }
-.paragraph-list{
-  display: flex;
-  justify-content: center;
 
-  &:before {
-    counter-increment: paragraph-counter;
-    content: "§ " counter(paragraph-counter) ". ";
-  }
-
-  @import "theme/table";
-}
+@import "theme/table";

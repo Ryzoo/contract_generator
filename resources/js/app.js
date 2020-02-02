@@ -56,6 +56,4 @@ const app = new Vue({
   router: route
 })
 
-
-
 export default app
