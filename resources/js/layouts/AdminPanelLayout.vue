@@ -37,6 +37,7 @@
             v-if="!item.elements"
             :prepend-icon="item.icon"
             :to="item.link ? item.link : null"
+            :disabled="item.disabled"
           >
             <v-list-item-action>
               <v-icon>{{item.icon}}</v-icon>
@@ -65,6 +66,7 @@
             <v-list-item
               v-for="(element, i) in item.elements"
               :key="i"
+              :disabled="element.disabled"
               :to="element.link ? element.link : null"
               link
             >
@@ -210,6 +212,7 @@ export default {
             {
               title: this.$t('navigation.contract.schema'),
               link: '/panel/contracts/schema',
+              disabled: true,
               access: [
                 Permissions.MANAGE_CONTRACTS
               ]

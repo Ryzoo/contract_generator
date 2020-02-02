@@ -27,13 +27,13 @@ export default {
         { text: this.$t('module.provider.type.renderAfterFinish'), value: ContractProviderType.RENDER },
         { text: this.$t('module.provider.type.renderToEmail'), value: ContractProviderType.EMAIL }
       ],
-      settings: this.$store.getters.getModuleSettings(this.module.name) || this.module.settings
+      settings: this.$store.getters.getModuleSettings(this.module.slug) || this.module.settings
     }
   },
   methods: {
     saveConfig () {
       this.$store.dispatch('newContract_saveModuleConfig', {
-        name: this.module.name,
+        slug: this.module.slug,
         value: this.settings
       })
     }

@@ -6,12 +6,15 @@ namespace App\Core\Modules\Contract;
 use App\Core\Models\Database\Contract;
 
 abstract class ContractModule {
+    public $slug;
     public $name;
     public $description;
     public $icon;
     public $place;
     public $isActive;
     public $configComponent;
+    public $requirements = [];
+    public $required = false;
 
     /**
      * @var Contract
@@ -73,11 +76,14 @@ abstract class ContractModule {
 
     public function getInformation(): array{
         return [
+            'slug' => $this->slug,
             'name' => $this->name,
             'renderHooks' => $this->hooksArray,
             'settings' => $this->preventSettingsShow($this->getModuleSettings()),
             'description' => $this->description,
             'place' => $this->place,
+            'required' => $this->required,
+            'requirements' => $this->requirements,
             'icon' => $this->icon,
             'configComponent' => $this->configComponent,
         ];

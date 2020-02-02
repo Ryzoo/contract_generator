@@ -6,7 +6,7 @@
                        color="error">
                     Delete selected
                 </v-btn>
-                <v-btn :to="{ name: 'createContract' }" color="primary">
+                <v-btn @click="newContract" color="primary">
                     {{ $t("pages.panel.contracts.buttons.new_contract") }}
                 </v-btn>
             </v-col>
@@ -27,7 +27,7 @@
                             <v-icon x-small>fa-edit</v-icon>
                             {{ $t("base.button.edit") }}
                           </v-btn>
-                          <v-btn color="error" x-small outlined @click="tryToRemoveContract(item.id)">
+                          <v-btn color="error" x-small outlined @click="tryToRemoveContract([item.id])">
                             <v-icon x-small>fa-trash</v-icon>
                             {{ $t("base.button.remove") }}
                           </v-btn>
@@ -90,6 +90,12 @@ export default {
     }
   },
   methods: {
+    newContract () {
+      this.$store.dispatch('newContract_clear')
+        .then(() => {
+          this.$router.push({ name: 'createContract' })
+        })
+    },
     tryToRemoveContract (idArray) {
       this.removeContractId = idArray
       this.deleteDialog = true

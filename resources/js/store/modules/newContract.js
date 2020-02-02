@@ -58,16 +58,20 @@ const mutations = {
     }
   },
   NEW_CONTRACT_UPDATE_MODULE_STATE: (state, data) => {
-    if (!data.value) { state.contract.settings.enabledModules = state.contract.settings.enabledModules.filter(x => x !== data.name) } else {
-      state.contract.settings.enabledModules.push(data.name)
+    if (!data.value) {
+      state.contract.settings.enabledModules = state.contract.settings.enabledModules.filter(x => x !== data.slug)
+    } else {
+      state.contract.settings.enabledModules.push(data.slug)
 
-      if (!state.contract.settings.modules[data.name]) { state.contract.settings.modules[data.name] = data.settings }
+      if (!state.contract.settings.modules[data.slug]) {
+        state.contract.settings.modules[data.slug] = data.settings
+      }
     }
   },
   NEW_CONTRACT_SAVE_MODULE_CONFIG: (state, data) => {
     state.contract.settings.modules = {
       ...state.contract.settings.modules,
-      [data.name]: data.value
+      [data.slug]: data.value
     }
   }
 }

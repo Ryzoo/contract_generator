@@ -40,13 +40,13 @@ export default {
         { text: this.$t('module.auth.type.accessForLogged'), value: AuthType.LOGIN },
         { text: this.$t('module.auth.type.accessWithPwd'), value: AuthType.PASSWORD }
       ],
-      settings: this.$store.getters.getModuleSettings(this.module.name) || this.module.settings
+      settings: this.$store.getters.getModuleSettings(this.module.slug) || this.module.settings
     }
   },
   methods: {
     saveConfig () {
       this.$store.dispatch('newContract_saveModuleConfig', {
-        name: this.module.name,
+        slug: this.module.slug,
         value: this.settings
       })
     }

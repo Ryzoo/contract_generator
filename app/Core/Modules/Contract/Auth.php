@@ -14,12 +14,17 @@ use App\Core\Models\Database\Contract;
 class Auth extends ContractModule {
 
     public function __construct() {
-        $this->name = 'auth';
+        $this->slug = 'Auth';
+        $this->name = __('module.auth.title');
         $this->description = __('module.auth.descriptionConfig');
         $this->icon = 'fas fa-unlock-alt';
         $this->isActive = true;
         $this->place = ContractModulesAvailablePlace::PRE_FORM;
         $this->configComponent = 'AuthConfigView';
+        $this->required = true;
+        $this->requirements = [
+          Provider::class
+        ];
 
         $actions = [];
         $actions['action-' .AvailableRenderActionsHook::BEFORE_FORM_RENDER] = 'AuthBeforeRenderView';

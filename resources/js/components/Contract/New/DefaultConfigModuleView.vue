@@ -15,7 +15,7 @@
             </div>
         </v-fade-transition>
         <div class="module-action">
-            <v-switch v-model="isOn" @change="changeModuleState" color="success" hide-details inset/>
+            <v-switch v-model="isOn" :disabled="module.required" @change="changeModuleState" color="success" hide-details inset/>
         </div>
         <v-dialog v-model="configureDialog"  width="800px">
             <v-card>
@@ -23,7 +23,7 @@
                     <span class="headline">{{$t('module.header.moduleConfiguration')}} {{module.name}}</span>
                 </v-card-title>
                 <v-card-text>
-                    <component :ref="module.name" :module="module" :is="module.configComponent"/>
+                    <component :ref="module.slug" :module="module" :is="module.configComponent"/>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer/>
@@ -56,19 +56,28 @@ export default {
   },
   methods: {
     saveConfig () {
-      this.$refs[this.module.name].saveConfig()
+      this.$refs[this.module.slug].saveConfig()
       this.configureDialog = false
     },
     changeModuleState (value) {
-      this.$store.dispatch('newContract_updateModuleState', {
-        name: this.module.name,
+      return this.$store.dispatch('newContract_updateModuleState', {
+        slug: this.module.slug,
         value: value,
         settings: this.module.settings
       })
     },
     loadDataFromStore () {
       const allModules = this.$store.getters.newContract_availableModules
-      this.isOn = allModules.includes(this.module.name)
+      this.isOn = allModules.includes(this.module.slug)
+      this.checkRequired()
+    },
+    checkRequired () {
+      if (!this.isOn && this.module.required) {
+        this.changeModuleState(true)
+          .then(() => {
+            this.loadDataFromStore()
+          })
+      }
     }
   },
   mounted () {
