@@ -20,10 +20,9 @@ class ContractModuleService {
     }
 
     public function runPart(Contract $contract, int $partType, array $attributes = []){
-
         /** @var ContractModule $module */
         foreach ($this->configuration->availableModules as $module){
-            if($contract->checkContractEnabledModules($module->name)){
+            if($contract->checkContractEnabledModules($module->slug)){
                 $returnData = $module->run($contract, $partType, $attributes);
 
                 if(isset($returnData) && !is_bool($returnData)) {
@@ -40,7 +39,7 @@ class ContractModuleService {
 
         /** @var ContractModule $module */
         foreach ($this->configuration->availableModules as $module){
-            if($contract->checkContractEnabledModules($module->name)){
+            if($contract->checkContractEnabledModules($module->slug)){
                 $module->init($contract);
                 $moduleInformationCollection->push($module->getInformation());
             }

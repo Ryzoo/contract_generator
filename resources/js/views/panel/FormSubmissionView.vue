@@ -18,7 +18,7 @@
               </v-chip>
             </template>
             <template v-slot:item.action="{ item }">
-              <v-btn color="success" v-if="item.status == 3 || item.status == 2" type="application/octet-stream" :href="item.render_url" download>{{$t('base.button.render')}}</v-btn>
+              <v-btn x-small color="primary" outlined v-if="(item.status === 3 || item.status === 2) && item.render_url" type="application/octet-stream" :href="item.render_url" download>{{$t('base.button.render')}}</v-btn>
             </template>
           </v-data-table>
         </v-col>

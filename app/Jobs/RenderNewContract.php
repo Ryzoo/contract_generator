@@ -14,6 +14,9 @@ use Illuminate\Foundation\Bus\Dispatchable;
 class RenderNewContract implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+  public $tries = 3;
+  public $retryAfter = 1;
   /**
    * @var ContractFormComplete
    */
