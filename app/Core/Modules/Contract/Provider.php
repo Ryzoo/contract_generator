@@ -24,12 +24,14 @@ class Provider extends ContractModule {
     private $contractService;
 
     public function __construct(ContractService $contractService) {
-        $this->name = 'provider';
+        $this->slug = 'Provider';
+        $this->name = __('module.provider.title');
         $this->description = __('module.provider.descriptionConfig');
         $this->icon = 'fas fa-file-export';
         $this->isActive = true;
         $this->place = ContractModulesAvailablePlace::FINISHER;
         $this->configComponent = 'ProviderConfigView';
+        $this->required = true;
 
         $actions = [];
         $actions['action-' . AvailableRenderActionsHook::AFTER_FORM_END] = 'ProviderForContractView';

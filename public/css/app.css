@@ -1,4 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Poppins&display=swap);.v-list-item--link:before {
+@import url(https://fonts.googleapis.com/css?family=Poppins&display=swap);@charset "UTF-8";
+
+.v-list-item--link:before {
   background-color: transparent !important;
 }
 
@@ -147,13 +149,31 @@ section {
   content: counters(section, ".") " ";
 }
 
-.table-icons {
+.paragraph-list {
   display: -webkit-box;
   display: flex;
-  justify-content: space-around;
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+
+.paragraph-list:before {
+  counter-increment: paragraph-counter;
+  content: "\A7   " counter(paragraph-counter) ". ";
+}
+
+.table-icons {
+  display: -webkit-box !important;
+  display: flex !important;
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+
+.table-icons > button {
+  margin: 0 5px;
 }
 
 .table-icons > i {
+  padding: 0 5px;
   font-size: 20px !important;
   -webkit-transition: all 0.2s !important;
   transition: all 0.2s !important;
@@ -163,8 +183,8 @@ section {
 .table-icons > i:hover {
   cursor: pointer !important;
   color: #324a58 !important;
-  -webkit-transform: rotate(30deg) !important;
-          transform: rotate(30deg) !important;
+  -webkit-transform: scale(1.05) !important;
+          transform: scale(1.05) !important;
 }
 
 body > .notify-container {

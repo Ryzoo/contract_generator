@@ -9,7 +9,7 @@
             :key="section">
             <h4>{{Mapper.getModulePlaceName(section)}}</h4>
           <DefaultConfigModuleView
-            v-for="module in moduleList.filter(x=> x.place == section && x.configComponent)"
+            v-for="module in moduleList.filter(x=> x.place === section && x.configComponent)"
             :key="section + module.name"
             :module="module"
           />

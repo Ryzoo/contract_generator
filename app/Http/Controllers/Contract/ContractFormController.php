@@ -11,25 +11,24 @@ use App\Http\Requests\Contracts\ContractFormGetRequest;
 use App\Http\Resources\ContractInfo;
 
 class ContractFormController extends Controller {
+  /**
+   * @var ContractModuleService
+   */
+  private $contractModuleService;
 
-    /**
-     * @var ContractModuleService
-     */
-    private $contractModuleService;
+  public function __construct(ContractModuleService $contractModuleService) {
+    $this->contractModuleService = $contractModuleService;
+  }
 
-    public function __construct(ContractModuleService $contractModuleService) {
-        $this->contractModuleService = $contractModuleService;
-    }
+  public function get(ContractFormGetRequest $request, Contract $contract) {
 
-    public function get(ContractFormGetRequest $request, Contract $contract) {
+    $this->contractModuleService->runPart($contract, ContractModulePart::GET_CONTRACT, [
+      'password' => $request->get('password') ?? '',
+    ]);
 
-        $this->contractModuleService->runPart($contract, ContractModulePart::GET_CONTRACT, [
-            'password' => $request->get('password') ?? '',
-        ]);
-
-        Response::success([
-            'contract' => new ContractInfo($contract),
-            'formElements' => $contract->form->formElements
-        ]);
-    }
+    Response::success([
+      'contract' => new ContractInfo($contract),
+      'formElements' => $contract->form->formElements,
+    ]);
+  }
 }

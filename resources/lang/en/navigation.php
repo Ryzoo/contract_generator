@@ -8,6 +8,7 @@ return [
         'main' => 'Contracts',
         'contractList' => 'Full contract project',
         'schema' => 'Part of contract',
+        'category' => 'Categories',
     ],
     'accounts' => 'Accounts',
     'settings' => [

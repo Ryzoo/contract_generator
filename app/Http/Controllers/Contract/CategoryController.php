@@ -10,31 +10,27 @@ use App\Http\Requests\Category\CategoryCreateRequest;
 use App\Http\Requests\Category\CategoryRemoveRequest;
 use App\Http\Requests\Category\CategoryUpdateRequest;
 
-class CategoryController extends Controller
-{
-    public function index()
-    {
-        Response::json(Category::all());
-    }
+class CategoryController extends Controller {
 
-    public function store(CategoryCreateRequest $request)
-    {
-        Response::json(Contract::create($request->validated()));
-    }
+  public function index() {
+    Response::json(Category::all());
+  }
 
-    public function show(Category $contractCategory)
-    {
-        Response::json($contractCategory);
-    }
+  public function store(CategoryCreateRequest $request) {
+    Response::json(Category::create($request->validated()));
+  }
 
-    public function update(CategoryUpdateRequest $request, Category $contractCategory)
-    {
-        $contractCategory->fill($request->validated());
-        Response::json($contractCategory);
-    }
+  public function show(Category $category) {
+    Response::json($category);
+  }
 
-    public function destroy(CategoryRemoveRequest $request,Category $contractCategory)
-    {
-        $contractCategory->delete();
-    }
+  public function update(CategoryUpdateRequest $request, Category $category) {
+    $category->fill($request->validated());
+    $category->save();
+    Response::json($category);
+  }
+
+  public function destroy(CategoryRemoveRequest $request, Category $category) {
+    $category->delete();
+  }
 }
