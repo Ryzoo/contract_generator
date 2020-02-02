@@ -68,7 +68,12 @@ class Provider extends ContractModule {
         $filePath = $directory . Str::random(16) . '.pdf';
 
         try {
-            Storage::put($filePath, $contractPdfFile->output());
+            $output = $contractPdfFile->output();
+
+            if(!$output)
+              throw new \Exception('Empty output');
+
+            Storage::put($filePath, $output);
 
             if(!Storage::exists($filePath))
               throw new \Exception("File not found in $filePath");
@@ -90,6 +95,8 @@ class Provider extends ContractModule {
             $formComplete->update([
                 'status' => ContractFormCompleteStatus::ERROR
             ]);
+
+            throw $e;
         }
     }
 }

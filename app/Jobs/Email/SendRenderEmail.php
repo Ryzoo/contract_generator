@@ -14,34 +14,35 @@ use Illuminate\Support\Facades\Mail;
 
 class SendRenderEmail implements ShouldQueue {
 
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+  use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    /**
-     * The number of times the job may be attempted.
-     *
-     * @var int
-     */
-    public $tries = 5;
+  /**
+   * The number of times the job may be attempted.
+   *
+   * @var int
+   */
+  public $tries = 5;
 
-    /**
-     * @var ContractFormComplete
-     */
-    private $formComplete;
+  /**
+   * @var ContractFormComplete
+   */
+  private $formComplete;
 
-    public function __construct(ContractFormComplete $formComplete) {
-        $this->formComplete = $formComplete;
-    }
+  public function __construct(ContractFormComplete $formComplete) {
+    $this->formComplete = $formComplete;
+  }
 
-    /**
-     * Execute the job.
-     *
-     * @return void
-     */
-    public function handle() {
-        $this->formComplete->status = ContractFormCompleteStatus::DELIVERED;
-        $this->formComplete->save();
+  /**
+   * Execute the job.
+   *
+   * @return void
+   */
+  public function handle() {
+    Mail::to($this->formComplete->user->email)
+      ->send(new Render($this->formComplete));
 
-        Mail::to($this->formComplete->user->email)
-          ->send(new Render($this->formComplete));
-    }
+    $this->formComplete->update([
+      'status' => ContractFormCompleteStatus::DELIVERED,
+    ]);
+  }
 }

@@ -19,7 +19,7 @@ class CreateContractFormCompletesTable extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('contract_id');
             $table->json('form_elements');
-            $table->enum('status',[ContractFormCompleteStatus::NEW, ContractFormCompleteStatus::PENDING, ContractFormCompleteStatus::AVAILABLE, ContractFormCompleteStatus::DELIVERED])
+            $table->enum('status',[ContractFormCompleteStatus::NEW, ContractFormCompleteStatus::PENDING, ContractFormCompleteStatus::AVAILABLE, ContractFormCompleteStatus::DELIVERED, ContractFormCompleteStatus::ERROR])
                 ->default(ContractFormCompleteStatus::NEW);
             $table->string('render_url')->nullable();
             $table->softDeletes();
