@@ -161,24 +161,30 @@ section {
   content: "\A7   " counter(paragraph-counter) ". ";
 }
 
-.paragraph-list .table-icons {
-  display: -webkit-box;
-  display: flex;
-  justify-content: space-around;
+.table-icons {
+  display: -webkit-box !important;
+  display: flex !important;
+  -webkit-box-pack: center;
+          justify-content: center;
 }
 
-.paragraph-list .table-icons > i {
+.table-icons > button {
+  margin: 0 5px;
+}
+
+.table-icons > i {
+  padding: 0 5px;
   font-size: 20px !important;
   -webkit-transition: all 0.2s !important;
   transition: all 0.2s !important;
   box-sizing: content-box !important;
 }
 
-.paragraph-list .table-icons > i:hover {
+.table-icons > i:hover {
   cursor: pointer !important;
   color: #324a58 !important;
-  -webkit-transform: rotate(30deg) !important;
-          transform: rotate(30deg) !important;
+  -webkit-transform: scale(1.05) !important;
+          transform: scale(1.05) !important;
 }
 
 body > .notify-container {

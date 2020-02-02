@@ -33,17 +33,14 @@
                       </template>
                         <template v-slot:item.action="{ item }">
                             <div class="table-icons">
-                                <v-icon
-                                    @click="
-                                        $router.push(
-                                            `/panel/settings/accounts/${item.id}/edit`
-                                        )
-                                    "
-                                    >fa-edit</v-icon
-                                >
-                                <v-icon @click="tryToRemoveAccount(item.id)"
-                                    >fa-trash</v-icon
-                                >
+                              <v-btn color="primary" x-small outlined @click="$router.push(`/panel/settings/accounts/${item.id}/edit`)">
+                                <v-icon x-small>fa-edit</v-icon>
+                                {{ $t("base.button.edit") }}
+                              </v-btn>
+                              <v-btn color="error" x-small outlined @click="tryToRemoveAccount(item.id)">
+                                <v-icon x-small>fa-trash</v-icon>
+                                {{ $t("base.button.remove") }}
+                              </v-btn>
                             </div>
                         </template>
                     </v-data-table>
@@ -101,7 +98,8 @@ export default {
         {
           text: this.$t('base.headers.actions'),
           value: 'action',
-          sortable: false
+          sortable: false,
+          width: '100px'
         }
       ],
       items: [],
