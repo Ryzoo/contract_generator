@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Core\Enums\ContractFormCompleteStatus;
 use App\Core\Helpers\Response;
 use App\Core\Models\Database\ContractFormComplete;
 use App\Core\Models\Domain\FormElements\FormElement;
@@ -22,92 +23,104 @@ use Illuminate\Support\Facades\Auth;
 
 class ContractController extends Controller {
 
-    /**
-     * @var ContractService
-     */
-    private $contractService;
+  /**
+   * @var ContractService
+   */
+  private $contractService;
 
-    /**
-     * @var ContractModuleService
-     */
-    private $contractModuleService;
+  /**
+   * @var ContractModuleService
+   */
+  private $contractModuleService;
 
-    public function __construct(ContractService $contractService, ContractModuleService $contractModuleService) {
-        $this->contractService = $contractService;
-        $this->contractModuleService = $contractModuleService;
+  public function __construct(ContractService $contractService, ContractModuleService $contractModuleService) {
+    $this->contractService = $contractService;
+    $this->contractModuleService = $contractModuleService;
+  }
+
+  public function getCollection(Request $request) {
+    Response::success(new ContractInfoCollection(Contract::with('categories')
+      ->get()));
+  }
+
+  public function get(ContractGetRequest $request, int $contractId) {
+    $contract = Contract::with('categories')->findOrFail($contractId);
+    Response::success($contract);
+  }
+
+  public function add(ContractAddRequest $request) {
+    $contractData = $request->validated();
+    $contractCategories = $request->validated()['categories'];
+
+    $contract = new Contract();
+    $contract->fill(collect($contractData)->except('categories')->toArray());
+
+    $fullContract = $this->contractService->createContract($contract);
+    $fullContract->categories()->attach($contractCategories);
+
+    Response::success($fullContract);
+  }
+
+  public function update(ContractUpdateRequest $request, Contract $contract) {
+    $contractData = $request->validated();
+    $contractCategories = $request->validated()['categories'];
+
+    $contract->fill(collect($contractData)->except('categories')->toArray());
+    $fullContract = $this->contractService->createContract($contract);
+    $fullContract->categories()->sync($contractCategories);
+
+    Response::success($fullContract);
+  }
+
+  public function remove(ContractRemoveRequest $request, int $contractID) {
+    $this->contractService->removeContractById([$contractID]);
+    Response::success();
+  }
+
+  public function removeCollection(ContractRemoveCollectionRequest $request) {
+    $listOfContractId = explode(",", $request->get("idList"));
+
+    if (is_array($listOfContractId)) {
+      $this->contractService->removeContractById($listOfContractId);
     }
 
-    public function getCollection(Request $request) {
-        Response::success(new ContractInfoCollection(Contract::with('categories')->get()));
+    Response::success();
+  }
+
+  public function render(ContractRenderRequest $request, Contract $contract) {
+    $formElements = FormElement::getListFromString(json_encode($request->get('formElements')));
+
+    if (Auth::hasUser()) {
+      ContractFormComplete::create([
+        'user_id' => Auth::user()->id,
+        'contract_id' => $contract->id,
+        'form_elements' => $formElements,
+      ]);
     }
 
-    public function get(ContractGetRequest $request, int $contractId) {
-        $contract = Contract::with('categories')->findOrFail($contractId);
-        Response::success($contract);
+    Response::success();
+  }
+
+  public function retry(Request $request, ContractFormComplete $contract) {
+    if ($contract->status !== ContractFormCompleteStatus::ERROR) {
+      Response::error(__('response.badContractCompleteStatusRetry'));
     }
 
-    public function add(ContractAddRequest $request) {
-        $contractData = $request->validated();
-        $contractCategories = $request->validated()['categories'];
+    $contract->update([
+      'status' => ContractFormCompleteStatus::NEW,
+    ]);
 
-        $contract = new Contract();
-        $contract->fill(collect($contractData)->except('categories')->toArray());
+    Response::success();
+  }
 
-        $fullContract = $this->contractService->createContract($contract);
-        $fullContract->categories()->attach($contractCategories);
-
-        Response::success($fullContract);
-    }
-
-    public function update(ContractUpdateRequest $request, Contract $contract) {
-        $contractData = $request->validated();
-        $contractCategories = $request->validated()['categories'];
-
-        $contract->fill(collect($contractData)->except('categories')->toArray());
-        $fullContract = $this->contractService->createContract($contract);
-        $fullContract->categories()->sync($contractCategories);
-
-        Response::success($fullContract);
-    }
-
-    public function remove(ContractRemoveRequest $request, int $contractID) {
-        $this->contractService->removeContractById([$contractID]);
-        Response::success();
-    }
-
-    public function removeCollection(ContractRemoveCollectionRequest $request) {
-        $listOfContractId = explode(",", $request->get("idList"));
-
-        if (is_array($listOfContractId)) {
-            $this->contractService->removeContractById($listOfContractId);
-        }
-
-        Response::success();
-    }
-
-    public function render(ContractRenderRequest $request, Contract $contract) {
-        $formElements = FormElement::getListFromString(json_encode($request->get('formElements')));
-
-        if(Auth::hasUser()){
-            ContractFormComplete::create([
-                'user_id' => Auth::user()->id,
-                'contract_id' => $contract->id,
-                'form_elements' => $formElements,
-            ]);
-        }
-
-        Response::success();
-    }
-
-    public function submissions(ContractSubmissionGetRequest $render)
-    {
-        Response::json(
-            new ContractSubmissionCollection(
-                ContractFormComplete::with('contract')
-                    ->where('user_id', Auth::user()->id)
-                    ->latest()
-                    ->get()
-            )
-        );
-    }
+  public function submissions(ContractSubmissionGetRequest $render) {
+    Response::json(
+      new ContractSubmissionCollection(
+        ContractFormComplete::with('contract')
+          ->where('user_id', Auth::user()->id)
+          ->latest()
+          ->get()
+      )
+    );
+  }
 }

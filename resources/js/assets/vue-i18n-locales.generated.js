@@ -370,10 +370,12 @@ export default {
                 "register": "Create new account",
                 "reset": "Reset",
                 "cancel": "Cancel",
-                "close": "Zamknij",
+                "close": "Close",
+                "download": "Download",
                 "remind": "Remind",
                 "remove": "Remove",
                 "render": "Render",
+                "try_again": "Try again",
                 "save": "Save",
                 "next": "Next",
                 "update": "Update",
@@ -407,7 +409,8 @@ export default {
             "emailNotFound": "Account with this email not found.",
             "badPassword": "Password for this account didn't match.",
             "notAuthorized": "User are not authorized! Please login.",
-            "badResetToken": "Password reset token is incorrect or used before."
+            "badResetToken": "Password reset token is incorrect or used before.",
+            "badContractCompleteStatusRetry": "Bad status to try render one more time."
         },
         "navigation": {
             "dashboard": "Dashboard",

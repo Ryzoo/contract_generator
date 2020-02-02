@@ -1,20 +1,10 @@
 .table-icons {
   display: flex !important;
   justify-content: center;
-  & > button {
+  & > a {
     margin: 0 5px;
-  }
-
-  & > i {
-    padding: 0 5px;
-    font-size: 20px !important;
-    transition: all .2s !important;
-    box-sizing: content-box !important;
-
-    &:hover {
-      cursor: pointer !important;
-      color: #324a58 !important;
-      transform: scale(1.05) !important;
+    & i{
+      padding-right: 5px;
     }
   }
 }

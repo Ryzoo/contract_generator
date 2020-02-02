@@ -168,23 +168,12 @@ section {
           justify-content: center;
 }
 
-.table-icons > button {
+.table-icons > a {
   margin: 0 5px;
 }
 
-.table-icons > i {
-  padding: 0 5px;
-  font-size: 20px !important;
-  -webkit-transition: all 0.2s !important;
-  transition: all 0.2s !important;
-  box-sizing: content-box !important;
-}
-
-.table-icons > i:hover {
-  cursor: pointer !important;
-  color: #324a58 !important;
-  -webkit-transform: scale(1.05) !important;
-          transform: scale(1.05) !important;
+.table-icons > a i {
+  padding-right: 5px;
 }
 
 body > .notify-container {

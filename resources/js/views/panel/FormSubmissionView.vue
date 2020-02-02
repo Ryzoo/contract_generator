@@ -18,7 +18,16 @@
               </v-chip>
             </template>
             <template v-slot:item.action="{ item }">
-              <v-btn x-small color="primary" outlined v-if="(item.status === 3 || item.status === 2) && item.render_url" type="application/octet-stream" :href="item.render_url" download>{{$t('base.button.render')}}</v-btn>
+              <div class="table-icons">
+                <v-btn x-small color="primary" outlined v-if="(item.status === 3 || item.status === 2) && item.render_url" type="application/octet-stream" :href="item.render_url" download>
+                  <v-icon x-small>fas fa-download</v-icon>
+                  {{$t('base.button.download')}}
+                </v-btn>
+                <v-btn x-small color="error" outlined v-if="(item.status === 4)" @click="tryOneMoreTime(item.id)">
+                  <v-icon x-small>fas fa-retweet</v-icon>
+                  {{$t('base.button.try_again')}}
+                </v-btn>
+              </div>
             </template>
           </v-data-table>
         </v-col>
@@ -51,13 +60,25 @@ export default {
         {
           text: this.$t('base.headers.actions'),
           value: 'action',
-          sortable: false
+          sortable: false,
+          width: '100px'
         }
       ],
       items: []
     }
   },
   methods: {
+    tryOneMoreTime (id) {
+      this.isLoaded = false
+      axios
+        .post(`/contract/${id}/retry`)
+        .then(response => {
+          this.getSubmissionList()
+        })
+        .finally(() => {
+          this.isLoaded = true
+        })
+    },
     getColorFromStatus (status) {
       switch (parseInt(status)) {
         case 0:
@@ -86,6 +107,13 @@ export default {
   },
   mounted () {
     this.getSubmissionList()
+
+    this.getInterval = setInterval(() => {
+      this.getSubmissionList()
+    }, 30000)
+  },
+  destroyed () {
+    if (this.getInterval) { clearInterval(this.getInterval) }
   }
 }
 </script>
