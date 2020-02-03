@@ -5,6 +5,7 @@ import formElementsModule from './modules/formElements'
 import builderModule from './modules/builder'
 import contractModulesModule from './modules/contractModules'
 import newContractModule from './modules/newContract'
+import NotificationModule from './modules/notifications'
 
 Vue.use(Vuex)
 
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     formElements: formElementsModule,
     builder: builderModule,
     contractModules: contractModulesModule,
-    newContract: newContractModule
+    newContract: newContractModule,
+    notification: NotificationModule
   }
 })

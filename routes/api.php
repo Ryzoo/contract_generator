@@ -51,6 +51,12 @@ Route::group(['middleware' => 'auth:token'], function () {
   Route::prefix('statistic')->group(function () {
     Route::get('/{type}', 'StatisticController@getStatistic');
   });
+
+  Route::prefix('notifications')->group(function () {
+    Route::get('/', 'NotificationController@getUserNotifications');
+    Route::get('/unread', 'NotificationController@getUserUnreadNotifications');
+    Route::post('/asRead', 'NotificationController@setAsRead');
+  });
 });
 
 Route::prefix('categories')->group(function () {

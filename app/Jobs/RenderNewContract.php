@@ -6,6 +6,7 @@ use App\Core\Enums\ContractFormCompleteStatus;
 use App\Core\Enums\Modules\ContractModulePart;
 use App\Core\Models\Database\ContractFormComplete;
 use App\Core\Services\Contract\ContractModuleService;
+use App\Notifications\ContractRenderFinished;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -50,5 +51,7 @@ class RenderNewContract implements ShouldQueue
       $this->contractFormComplete->contract->update([
         'status' => ContractFormCompleteStatus::ERROR,
       ]);
+      $this->contractFormComplete->contract->user->notify(new ContractRenderFinished(ContractFormCompleteStatus::AVAILABLE));
+
     }
 }

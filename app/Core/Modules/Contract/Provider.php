@@ -12,6 +12,7 @@ use App\Core\Enums\Modules\ContractModulePart;
 use App\Core\Enums\Modules\ContractProviderType;
 use App\Core\Models\Database\Contract;
 use App\Jobs\Email\SendRenderEmail;
+use App\Notifications\ContractRenderFinished;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -83,6 +84,8 @@ class Provider extends ContractModule {
                 'render_url' => '/storage/'.$filePath
             ]);
 
+            $formComplete->user->notify(new ContractRenderFinished(ContractFormCompleteStatus::AVAILABLE));
+
             switch ($renderType) {
                 case ContractProviderType::EMAIL:
                     SendRenderEmail::dispatch($formComplete)
@@ -95,6 +98,7 @@ class Provider extends ContractModule {
             $formComplete->update([
                 'status' => ContractFormCompleteStatus::ERROR
             ]);
+            $formComplete->user->notify(new ContractRenderFinished(ContractFormCompleteStatus::ERROR));
 
             throw $e;
         }
