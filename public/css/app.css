@@ -144,9 +144,13 @@ section {
   list-style-type: none;
 }
 
-.editor-container li:before {
+.editor-container ol li:before {
   counter-increment: section;
-  content: counters(section, ".") " ";
+  content: counters(section, ".") ". ";
+}
+
+.editor-container ol li > p {
+  display: inline;
 }
 
 .paragraph-list {

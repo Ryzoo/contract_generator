@@ -137,11 +137,18 @@ section {
     ol {
         counter-reset: section;
         list-style-type: none;
+
+        li:before {
+            counter-increment: section;
+            content: counters(section, ".") ". ";
+        }
+        li {
+            & > p {
+                display: inline;
+            }
+        }
     }
-    li:before {
-        counter-increment: section;
-        content: counters(section, ".") " ";
-    }
+
 }
 .paragraph-list {
     display: flex;
