@@ -51,7 +51,7 @@ class RenderNewContract implements ShouldQueue
       $this->contractFormComplete->contract->update([
         'status' => ContractFormCompleteStatus::ERROR,
       ]);
-      $this->contractFormComplete->contract->user->notify(new ContractRenderFinished(ContractFormCompleteStatus::AVAILABLE));
+      $this->contractFormComplete->contract->user->notify(new ContractRenderFinished(ContractFormCompleteStatus::ERROR));
 
     }
 }
