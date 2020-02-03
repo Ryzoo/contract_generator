@@ -11,7 +11,7 @@
             :class="{ 'is-active': isActive.bold() }"
             @click="commands.bold"
           >
-            <v-icon>fa-bold</v-icon>
+            <v-icon small>fa-bold</v-icon>
           </button>
 
           <button
@@ -19,7 +19,7 @@
             :class="{ 'is-active': isActive.italic() }"
             @click="commands.italic"
           >
-            <v-icon>fa-italic</v-icon>
+            <v-icon small>fa-italic</v-icon>
           </button>
 
           <button
@@ -27,7 +27,7 @@
             :class="{ 'is-active': isActive.code() }"
             @click="commands.code"
           >
-            <v-icon>fa-code</v-icon>
+            <v-icon small>fa-code</v-icon>
           </button>
 
           <button
@@ -35,7 +35,7 @@
             :class="{ 'is-active': isActive.underline() }"
             @click="commands.underline"
           >
-            <v-icon>fa-underline</v-icon>
+            <v-icon small>fa-underline</v-icon>
           </button>
 
           <button
@@ -43,7 +43,7 @@
             :class="{ 'is-active': isActive.blockquote() }"
             @click="commands.blockquote"
           >
-            <v-icon>fa-quote-right</v-icon>
+            <v-icon small>fa-quote-right</v-icon>
           </button>
 
           <button
@@ -51,7 +51,7 @@
                   :class="{ 'is-active': isActive.bullet_list() }"
                   @click="commands.bullet_list"
           >
-            <v-icon>fa-list-ul</v-icon>
+            <v-icon small>fa-list-ul</v-icon>
           </button>
 
           <button
@@ -59,7 +59,7 @@
                   :class="{ 'is-active': isActive.ordered_list() }"
                   @click="commands.ordered_list"
           >
-            <v-icon>fa-list-ol</v-icon>
+            <v-icon small>fa-list-ol</v-icon>
           </button>
 
           <button
@@ -67,7 +67,7 @@
                   :class="{ 'is-active': getMarkAttrs('align').textAlign === 'left' }"
                   @click="commands.align({ textAlign: 'left', oldValue: getMarkAttrs('align').textAlign })"
           >
-            <v-icon>fa-align-left</v-icon>
+            <v-icon small>fa-align-left</v-icon>
           </button>
 
           <button
@@ -75,7 +75,7 @@
                   :class="{ 'is-active': getMarkAttrs('align').textAlign === 'center' }"
                   @click="commands.align({ textAlign: 'center', oldValue: getMarkAttrs('align').textAlign })"
           >
-            <v-icon>fa-align-center</v-icon>
+            <v-icon small>fa-align-center</v-icon>
           </button>
 
           <button
@@ -83,7 +83,7 @@
                   :class="{ 'is-active': getMarkAttrs('align').textAlign === 'right' }"
                   @click="commands.align({ textAlign: 'right', oldValue: getMarkAttrs('align').textAlign })"
           >
-            <v-icon>fa-align-right</v-icon>
+            <v-icon small>fa-align-right</v-icon>
           </button>
 
           <button
@@ -123,10 +123,11 @@
                   v-model="selectedSize"
                   :items="fontSizes"
                   color="white"
-                  light
+                  dark
                   hide-details
                   placeholder="Select font size"
                   dense
+                  filled
                   outlined
                   @change="commands.fontSize({fontSize:selectedSize + 'px'})"
                   @blur="commands.fontSize({fontSize:selectedSize + 'px'})"
@@ -309,7 +310,7 @@ export default {
         onUpdate: ({ getHTML }) => {
           const html = getHTML()
           const element = $(`<div>${html}</div>`)
-          const styles = '<style>.paragraph-list:before{counter-increment:paragraph-counter;content:"§ " counter(paragraph-counter) ". "}div{counter-reset:paragraph-counter}div ol{counter-reset:section;list-style-type:none}div li:before{counter-increment:section;content:counters(section, ".") " "}</style>'
+          const styles = '<style>.paragraph-list{display:flex;justify-content:center}.paragraph-list:before{counter-increment:paragraph-counter;content:"§ " counter(paragraph-counter) ". "}div{counter-reset:paragraph-counter}div ol{counter-reset:section;list-style-type:none}div li:before{counter-increment:section;content:counters(section, ".") " "}</style>'
 
           element.find('.mention').each(function () {
             $(this).replaceWith(`{${$(this).attr('data-mention-id')}}`)
@@ -419,18 +420,19 @@ export default {
     padding: 0;
 
     span {
-      padding: 10px;
+      padding: 7px;
     }
   }
 
   .fontsize-selector {
     max-width: 100px;
     align-items: center;
+    padding: 7px;
   }
 
   .text-icon {
     font-weight: bold;
-    font-size: 24px;
+    font-size: 16px;
   }
 
   .menubar-container {
@@ -445,9 +447,10 @@ export default {
       background: $primary;
       color: white;
       border-radius: 5px;
+      flex-wrap: wrap;
 
       .menubar-button {
-        padding: 10px;
+        padding: 7px;
 
         &.is-active {
           background: #2D3F86;
