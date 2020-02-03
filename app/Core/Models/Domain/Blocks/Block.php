@@ -53,13 +53,13 @@ abstract class Block implements IBlock {
      */
     public $content;
 
-    protected abstract function buildSettings();
+    abstract protected function buildSettings();
 
-    protected abstract function buildContent();
+    abstract protected function buildContent();
 
-    protected abstract function validateContent(): bool;
+    abstract protected function validateContent(): bool;
 
-    protected abstract function resolveAttributesInContent(Collection $formElements);
+    abstract protected function resolveAttributesInContent(Collection $formElements);
 
     protected function initialize(int $blockType) {
         $this->blockType = $blockType;
@@ -96,12 +96,12 @@ abstract class Block implements IBlock {
 
     public static function validate($value): bool {
         Validator::validate($value, [
-            "id" => "required|integer",
-            "parentId" => "required|integer",
-            "blockType" => "required|integer",
-            "content" => "nullable",
-            "conditionals" => "nullable|array",
-            "settings" => "nullable",
+            'id' => 'required|integer',
+            'parentId' => 'required|integer',
+            'blockType' => 'required|integer',
+            'content' => 'nullable',
+            'conditionals' => 'nullable|array',
+            'settings' => 'nullable',
         ]);
 
         return TRUE;
@@ -116,7 +116,7 @@ abstract class Block implements IBlock {
         }
 
         foreach ($arrayOfBlocks as $block) {
-            array_push($returnedArray, self::getFromString((array) $block));
+            $returnedArray[] = self::getFromString((array) $block);
         }
 
         return $returnedArray;
@@ -124,15 +124,15 @@ abstract class Block implements IBlock {
 
     public static function getFromString(array $value): Block {
         Block::validate($value);
-        $block = self::getBlockByType($value["blockType"]);
+        $block = self::getBlockByType($value['blockType']);
 
-        $block->id = intval($value["id"]);
-        $block->parentId = intval($value["parentId"]);
-        $block->blockType = intval($value["blockType"]);
-        $block->blockName = $value["blockName"];
-        $block->settings = $value["settings"];
-        $block->conditionals = Conditional::getListFromString(json_encode($value["conditionals"]));
-        $block->content = (array) $value["content"];
+        $block->id = (int) $value['id'];
+        $block->parentId = (int) $value['parentId'];
+        $block->blockType = (int) $value['blockType'];
+        $block->blockName = $value['blockName'];
+        $block->settings = $value['settings'];
+        $block->conditionals = Conditional::getListFromString(json_encode($value['conditionals']));
+        $block->content = (array) $value['content'];
 
         $block->prepare();
 
@@ -149,16 +149,16 @@ abstract class Block implements IBlock {
             }
         }
 
-        return $variableArray->uniqueStrict("1");
+        return $variableArray->uniqueStrict('1');
     }
 
     public function getFormElements(Contract $contract): Collection {
         $variableArray = $this->findVariable($contract);
         $elementCollection = collect();
 
-        $variableArray->map(function ($element) use ($contract, $elementCollection) {
-            $parentBlockId = intval($element[0]);
-            $attributeId = intval($element[1]);
+        $variableArray->map(static function ($element) use ($contract, $elementCollection) {
+            $parentBlockId = (int) $element[0];
+            $attributeId = (int) $element[1];
             $elementCollection->push(new AttributeFormElement($parentBlockId, $contract->getAttributeByID($attributeId)));
         });
 
@@ -172,10 +172,14 @@ abstract class Block implements IBlock {
 
     public function renderToHtml(Collection $attributes): string {
         $this->resolveAttributesInContent($attributes);
-        return "";
+        return '';
     }
 
     public function renderAdditionalCss(): string {
-        return "";
+        return '';
+    }
+
+    public function counterResolve(string $matchString, int $countStart, Contract $contract):int{
+      return $countStart;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Core\Enums\ContractFormCompleteStatus;
 use App\Core\Enums\Modules\ContractModulePart;
 use App\Core\Models\Database\ContractFormComplete;
 use App\Core\Services\Contract\ContractModuleService;
@@ -43,5 +44,11 @@ class RenderNewContract implements ShouldQueue
           ContractModulePart::RENDER_CONTRACT, [
           'formComplete' => $this->contractFormComplete
         ]);
+    }
+
+    public function fail($exception = NULL) {
+      $this->contractFormComplete->contract->update([
+        'status' => ContractFormCompleteStatus::ERROR,
+      ]);
     }
 }

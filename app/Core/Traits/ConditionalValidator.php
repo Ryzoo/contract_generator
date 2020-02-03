@@ -6,6 +6,7 @@ namespace App\Core\Traits;
 
 use App\Core\Enums\ElementType;
 use App\Core\Helpers\Parsers\ModelObjectToTextParser;
+use App\Core\Models\Database\Contract;
 use App\Core\Models\Domain\FormElements\AttributeFormElement;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -19,24 +20,31 @@ trait ConditionalValidator
     /** @var \Illuminate\Support\Collection */
     private $formElements;
 
-    public function validateConditions(int $conditionalType, Collection $formElements): bool
+  /**
+   * @var bool
+   */
+    public $isActive;
+
+    public function validateConditions(int $conditionalType, Collection $formElements, Contract $contract): bool
     {
         if (!isset($this->conditionals)) {
-            throw new \ErrorException("Conditional validator implemented in class without conditionals field");
+            throw new \ErrorException('Conditional validator implemented in class without conditionals field');
         }
 
         $this->formElements = $formElements;
 
         $this->conditionalList = collect(collect($this->conditionals)
-            ->where("conditionalType", $conditionalType)
+            ->where('conditionalType', $conditionalType)
             ->all());
 
         $self = $this;
 
-        return $this->conditionalList
-            ->every(function ($element) use ($self) {
-                return $self->isConditionalValidAndEqual(ModelObjectToTextParser::parse(json_decode($element->content)), true);
-            });
+        $this->isActive = $this->conditionalList
+          ->every(static function ($element) use ($self) {
+            return $self->isConditionalValidAndEqual(ModelObjectToTextParser::parse(json_decode($element->content)), true);
+          });
+
+        return $this->isActive;
     }
 
     private function isConditionalValidAndEqual($content, bool $equalValue): bool
@@ -52,11 +60,11 @@ trait ConditionalValidator
     {
         $self = $this;
 
-        $contentWithVariables = collect(explode(" ", $content))
-            ->map(function ($textElements) use ($self) {
+        $contentWithVariables = collect(explode(' ', $content))
+            ->map(static function ($textElements) use ($self) {
                 preg_match('/{(\d+)}/', $textElements, $matches);
                 if (isset($matches[1])) {
-                    $var = $self->getVariableValue(intval($matches[1][0]));
+                    $var = $self->getVariableValue((int) $matches[1][0]);
                     $search = $matches[1][0];
                     return str_replace("{{$search}}", $var, $textElements);
                 }
@@ -64,24 +72,24 @@ trait ConditionalValidator
             })
             ->all();
 
-        return eval("return " . implode(" ", $contentWithVariables) . ";");
+        return eval('return ' . implode(' ', $contentWithVariables) . ';');
     }
 
     private function getVariableValue(int $varId)
     {
         $allAttributes = $this->formElements
-            ->where("elementType", ElementType::ATTRIBUTE)
-            ->map(function (AttributeFormElement $e) {
+            ->where('elementType', ElementType::ATTRIBUTE)
+            ->map(static function (AttributeFormElement $e) {
                 return $e->attribute;
             })
             ->all();
 
         $foundedAttribute = collect($allAttributes)
-            ->where("id", $varId)
+            ->where('id', $varId)
             ->first();
 
         if (!isset($foundedAttribute)) {
-            throw new \ErrorException(`Var: {$varId} not found`);
+            throw new \ErrorException("Var: {$varId} not found");
         }
 
         return $foundedAttribute->getValue();

@@ -4,6 +4,7 @@ namespace App\Core\Models\Database;
 
 use App\Core\Models\Domain\Attributes\Attribute;
 use App\Core\Models\Domain\Blocks\Block;
+use App\Core\Models\Domain\ContractSettings;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
@@ -36,9 +37,9 @@ class Contract extends Model {
     return $currentValue ? collect(Block::getListFromString($currentValue)) : collect();
   }
 
-  public function getSettingsAttribute($value): Collection {
-    $currentValue = $value ?? $this->settings ?? NULL;
-    return $currentValue ? collect(json_decode($currentValue)) : collect();
+  public function getSettingsAttribute($value): ContractSettings {
+    $currentValue = $value ?? NULL;
+    return $currentValue ? ContractSettings::fromJson($currentValue) : $this->settings ?? new ContractSettings();
   }
 
   public function getBlockCollection(): Collection {
@@ -61,7 +62,7 @@ class Contract extends Model {
       }
     }
 
-    throw new ErrorException(__('validation.attributes.not_exist', ["id" => $attributeID]), 404);
+    throw new ErrorException(__('validation.attributes.not_exist', ['id' => $attributeID]), 404);
   }
 
   public function setAttributesListAttribute($value) {
@@ -72,14 +73,12 @@ class Contract extends Model {
     $this->attributes['blocks'] = json_encode($value);
   }
 
-  public function setSettingsAttribute($value) {
+  public function setSettingsAttribute(ContractSettings $value) {
     $this->attributes['settings'] = json_encode($value);
   }
 
   public function checkContractEnabledModules(string $moduleName): bool {
-    $enabledModules = $this->settings['enabledModules'] ?? [];
-
-    foreach ($enabledModules as $enabledModule) {
+    foreach ($this->settings->enabledModules as $enabledModule) {
       if ($enabledModule === $moduleName) {
         return TRUE;
       }

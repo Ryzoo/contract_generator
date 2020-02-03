@@ -5,6 +5,8 @@ namespace App\Core\Models\Domain\Blocks;
 
 use App\Core\Enums\BlockType;
 use App\Core\Enums\ConditionalType;
+use App\Core\Helpers\BlockCounterResolver;
+use App\Core\Helpers\PdfRenderer;
 use Illuminate\Support\Facades\Validator;
 use App\Core\Models\Database\Contract;
 use Illuminate\Support\Collection;
@@ -55,23 +57,35 @@ class EmptyBlock extends Block {
         $blockCollection = parent::getBlockCollection($blockCollection);
 
         /** @var \App\Core\Models\Domain\Blocks\Block $block */
-        foreach ($this->content["blocks"] as $block){
+        foreach ($this->content['blocks'] as $block){
             $blockCollection = $block->getBlockCollection($blockCollection);
         }
 
         return $blockCollection;
     }
 
+    public function validateConditions(int $conditionalType, Collection $formElements, Contract $contract): bool{
+      $parentActive = parent::validateConditions($conditionalType, $formElements, $contract);
+
+      if($parentActive){
+        /** @var \App\Core\Models\Domain\Blocks\Block $block */
+        foreach ($this->content['blocks'] as $block){
+          $block->validateConditions($conditionalType, $formElements, $contract);
+        }
+
+        $this->content['blocks'] = BlockCounterResolver::resolveCounter($this->content['blocks']->where('isActive'), $contract);
+      }
+
+      return $parentActive;
+    }
+
     public function renderToHtml(Collection $attributes): string {
         $htmlString = parent::renderToHtml($attributes);
-        $blockList = $this->content["blocks"];
+        $blockList = $this->content['blocks'];
 
         /** @var \App\Core\Models\Domain\Blocks\Block $block */
         foreach ($blockList as $block){
-            if($block->validateConditions(ConditionalType::SHOW_ON, $attributes)){
-                $htmlString .= $block->renderToHtml($attributes);
-                $htmlString .= "<br/>";
-            }
+            $htmlString .= PdfRenderer::blockHtmlTemplate($block->renderToHtml($attributes));
         }
 
         return $htmlString;
