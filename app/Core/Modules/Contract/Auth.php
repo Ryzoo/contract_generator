@@ -36,7 +36,7 @@ class Auth extends ContractModule {
         $this->setHooksComponents($actions);
     }
 
-    public function run(Contract $contract, int $partType, array $attributes = []) {
+    public function run(Contract $contract, int $partType, array $attributes = []): bool {
         parent::run($contract, $partType, $attributes);
 
         switch ($partType){

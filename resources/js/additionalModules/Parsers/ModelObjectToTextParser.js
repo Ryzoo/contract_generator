@@ -1,5 +1,5 @@
 import { RuleTypes } from './utilities'
-import { TextOperatorParser, NumberOperatorParser, SelectOperatorParser, MultiSelectOperatorParser } from './Operators'
+import { TextOperatorParser, NumberOperatorParser, SelectOperatorParser, MultiSelectOperatorParser, BoolOperatorParser, DateOperatorParser, TimeOperatorParser } from './Operators'
 
 export default class ModelObjectToTextParser {
   static parse (modelObject) {
@@ -14,6 +14,9 @@ export default class ModelObjectToTextParser {
       case RuleTypes.NUMBER: return NumberOperatorParser.parse(variable, operatorType, value ? Number(value) : -1)
       case RuleTypes.SELECT: return SelectOperatorParser.parse(`'${variable}'`, operatorType, value ? `'${value}'` : '\'\'')
       case RuleTypes.MULTI_SELECT: return MultiSelectOperatorParser.parse(`'${variable}'`, operatorType, value ? `'${value}'` : '\'\'')
+      case RuleTypes.DATE: return DateOperatorParser.parse(`'${variable}'`, operatorType, value || null)
+      case RuleTypes.TIME: return TimeOperatorParser.parse(`${variable}`, operatorType, value || null)
+      case RuleTypes.BOOL: return BoolOperatorParser.parse(`${variable}`, operatorType, !!value)
     }
 
     return ''

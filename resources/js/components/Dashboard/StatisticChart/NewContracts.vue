@@ -51,8 +51,6 @@ export default {
           this.labels.push(x.date.substring(0, 2))
           this.value.push(x.count)
         })
-
-        console.log(this.labels, this.value)
       })
   }
 }

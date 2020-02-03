@@ -20,7 +20,10 @@ export const AttributeTypeEnum = {
   NUMBER: 0,
   TEXT: 1,
   SELECT: 2,
-  REPEAT_GROUP: 3
+  REPEAT_GROUP: 3,
+  DATE: 4,
+  TIME: 5,
+  BOOL: 6
 }
 
 export const ConditionalEnum = {

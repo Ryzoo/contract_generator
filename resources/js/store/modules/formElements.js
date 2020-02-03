@@ -1,33 +1,71 @@
 import { ConditionalEnum, FormElementsEnum } from '../../additionalModules/Enums'
+import AttributeValidator from '../../components/Contract/Form/Validators/AttributeValidator'
 
 const defaultState = {
   formElements: []
 }
 
 const actions = {
+  formElements_validate_current: (context, data) => {
+    context.commit('VALIDATE_ACTUAL', data)
+    context.commit('RECALCULATE_CONDITIONS')
+  },
   formElements_set: (context, data) => {
     context.commit('SET_ELEMENTS', data)
     context.commit('RECALCULATE_CONDITIONS')
   },
   formElements_change: (context, data) => {
-    context.commit('CHANGE_ELEMENT', data.element)
+    context.commit('CHANGE_ELEMENT', data)
     context.commit('RECALCULATE_CONDITIONS')
   }
 }
 
 const mutations = {
+  VALIDATE_ACTUAL: (state, data) => {
+    const newElements = getters.formElementsStepList(state)[data].content.filter(x => x.isActive)
+      .map(e => {
+        const validatorResult = AttributeValidator.validate(e.attribute, e.attribute.value)
+        return {
+          ...e,
+          validationError: validatorResult.errorMessage,
+          isValid: validatorResult.status
+        }
+      })
+
+    state.formElements = state.formElements.map(e => {
+      const existFormElement = newElements.find(x => x.id === e.id)
+      return existFormElement || e
+    })
+  },
   SET_ELEMENTS: (state, data) => {
     state.formElements = data.map((e, index) => {
       e.id = index
       if (e.elementType === FormElementsEnum.ATTRIBUTE) {
         e.attribute.value = e.attribute.defaultValue
+
+        if (e.attribute.attributeType === 6) {
+          e.attribute.value = !!e.attribute.defaultValue
+        }
       }
       return e
     })
   },
   CHANGE_ELEMENT: (state, data) => {
     state.formElements = state.formElements.map(e => {
-      return e.id === data.id ? data : e
+      if (e.id === data.id) {
+        const validatorResult = AttributeValidator.validate(e.attribute, data.value)
+        return {
+          ...e,
+          attribute: {
+            ...e.attribute,
+            value: data.value
+          },
+          validationError: validatorResult.errorMessage,
+          isValid: validatorResult.status
+        }
+      } else {
+        return e
+      }
     })
   },
   RECALCULATE_CONDITIONS: (state) => {

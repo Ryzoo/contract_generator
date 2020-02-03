@@ -37,10 +37,10 @@ class ConditionalParser {
 
     if (!foundedAttribute) {
       console.error(`Var: ${varId} not found`)
-      return ''
+      return null
     }
 
-    return foundedAttribute.value || ''
+    return foundedAttribute.value || null
   }
 }
 

@@ -4,9 +4,9 @@
     :key="actualModuleIndex"
     :is="actualHookName"
     v-bind="{
-                    actualModule: actualModule,
-                    contract: contract
-                }"
+        actualModule: actualModule,
+        contract: contract
+    }"
     @finish="finishAction"
   >
   </component>

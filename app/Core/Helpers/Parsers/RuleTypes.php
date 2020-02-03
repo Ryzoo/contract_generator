@@ -4,10 +4,19 @@
 namespace App\Core\Helpers\Parsers;
 
 
-class RuleTypes
-{
-    const NUMBER = 0;
-    const TEXT = 1;
-    const SELECT = 2;
-    const MULTI_SELECT = 3;
+class RuleTypes {
+
+  public const NUMBER = 0;
+
+  public const TEXT = 1;
+
+  public const SELECT = 2;
+
+  public const MULTI_SELECT = 3;
+
+  public const DATE = 4;
+
+  public const TIME = 5;
+
+  public const BOOL = 6;
 }

@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     changeValue (newValue) {
-      this.$emit('change-value', newValue)
+      this.$emit('change-value', Array.isArray(newValue) ? newValue.join(',') : newValue)
     }
   }
 }

@@ -28,6 +28,7 @@ return [
     'reset' => 'Reset',
     'cancel' => 'Cancel',
     'close' => 'Close',
+    'ok' => 'Ok',
     'makeAsRead' => 'Make as read',
     'download' => 'Download',
     'remind' => 'Remind',

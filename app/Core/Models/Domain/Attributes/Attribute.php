@@ -13,150 +13,156 @@ use Intervention\Image\Exception\NotFoundException;
 
 abstract class Attribute implements IAttribute {
 
-    /**
-     * @var int
-     */
-    public $id;
+  /**
+   * @var int
+   */
+  public $id;
 
-    /**
-     * @var int
-     */
-    public $attributeType;
+  /**
+   * @var int
+   */
+  public $attributeType;
 
-    /**
-     * @var string
-     */
-    public $attributeName;
+  /**
+   * @var string
+   */
+  public $attributeName;
 
-    /**
-     * @var array
-     */
-    public $settings;
+  /**
+   * @var array
+   */
+  public $settings;
 
-    /**
-     * @var array
-     */
-    public $conditionals;
+  /**
+   * @var array
+   */
+  public $conditionals;
 
-    /**
-     * @var array
-     */
-    public $content;
+  /**
+   * @var array
+   */
+  public $content;
 
-    /**
-     * @var string
-     */
-    public $placeholder;
+  /**
+   * @var string
+   */
+  public $placeholder;
 
-    public $value;
+  public $value;
 
-    public $defaultValue;
+  public $defaultValue;
 
-    /**
-     * @var string
-     */
-    public $description;
+  /**
+   * @var string
+   */
+  public $description;
 
-    /**
-     * @var string
-     */
-    public $additionalInformation;
+  /**
+   * @var string
+   */
+  public $additionalInformation;
 
-    /**
-     * @var bool
-     */
-    public $toAnonymize;
+  /**
+   * @var bool
+   */
+  public $toAnonymize;
 
-    protected abstract function buildSettings();
+  protected abstract function buildSettings();
 
-    protected function initialize(int $attributeType) {
-        $this->attributeType = $attributeType;
-        $this->attributeName = AttributeType::getName($attributeType);
-        $this->settings = [];
-        $this->conditionals = [];
-        $this->value = NULL;
-        $this->id = 0;
-        $this->toAnonymize = FALSE;
-        $this->placeholder = "";
-        $this->defaultValue = NULL;
-        $this->description = "";
-        $this->additionalInformation = "";
-        $this->buildObject();
+  protected function initialize(int $attributeType) {
+    $this->attributeType = $attributeType;
+    $this->attributeName = AttributeType::getName($attributeType);
+    $this->settings = [];
+    $this->conditionals = [];
+    $this->value = NULL;
+    $this->id = 0;
+    $this->toAnonymize = FALSE;
+    $this->placeholder = '';
+    $this->defaultValue = NULL;
+    $this->description = '';
+    $this->additionalInformation = '';
+    $this->buildObject();
+  }
+
+  protected function buildObject() {
+    $this->buildSettings();
+  }
+
+  protected function parseContent() {
+    $this->content = (isset($this->content) && is_array($this->content)) ? self::getListFromString(json_encode($this->content, JSON_THROW_ON_ERROR, 512)) : [];
+  }
+
+  public static function getAttributeByType(int $attributeType): Attribute {
+    switch ($attributeType) {
+      case AttributeType::NUMBER:
+        return new NumberAttribute();
+      case AttributeType::TEXT:
+        return new TextAttribute();
+      case AttributeType::SELECT:
+        return new SelectAttribute();
+      case AttributeType::REPEAT_GROUP:
+        return new RepeatGroupAttribute();
+      case AttributeType::DATE:
+        return new DateAttribute();
+      case AttributeType::TIME:
+        return new TimeAttribute();
+      case AttributeType::BOOL:
+        return new BoolAttribute();
     }
 
-    protected function buildObject() {
-        $this->buildSettings();
+    throw new NotFoundException("Attribute type number:{$attributeType} was not found");
+  }
+
+  public static function validate($value): bool {
+    Validator::validate($value, [
+      'id' => 'sometimes|required|integer',
+      'attributeType' => 'required|integer',
+      'attributeName' => 'required|string',
+      'conditionals' => 'sometimes|array',
+      'settings' => 'sometimes|required',
+    ]);
+
+    return TRUE;
+  }
+
+  public static function getListFromString(string $value): array {
+    $arrayOfAttributes = json_decode($value, TRUE, 512, JSON_THROW_ON_ERROR);
+    $returnedArray = [];
+
+    if (!is_array($arrayOfAttributes)) {
+      throw new Exception(_('custom.array.attributes'));
     }
 
-    protected function parseContent(){
-        $this->content = (isset($this->content) && is_array($this->content) )? self::getListFromString(json_encode($this->content)) : [];
+    foreach ($arrayOfAttributes as $attribute) {
+      $returnedArray[] = self::getFromString((array) $attribute);
     }
 
-    public static function getAttributeByType(int $attributeType): Attribute {
-        switch ($attributeType) {
-            case AttributeType::NUMBER:
-                return new NumberAttribute();
-            case AttributeType::TEXT:
-                return new TextAttribute();
-            case AttributeType::SELECT:
-                return new SelectAttribute();
-            case AttributeType::REPEAT_GROUP:
-                return new RepeatGroupAttribute();
-        }
+    return $returnedArray;
+  }
 
-        throw new NotFoundException("Attribute type number:{$attributeType} was not found");
-    }
+  public static function getFromString(array $value): Attribute {
+    self::validate($value);
+    $attribute = self::getAttributeByType($value['attributeType']);
 
-    public static function validate($value): bool {
-        Validator::validate($value, [
-            "id" => "sometimes|required|integer",
-            "attributeType" => "required|integer",
-            "attributeName" => "required|string",
-            "conditionals" => "sometimes|array",
-            "settings" => "sometimes|required",
-        ]);
+    $attribute->attributeType = (int) $value['attributeType'];
+    $attribute->attributeName = $value['attributeName'];
+    $attribute->settings = $value['settings'];
+    $attribute->conditionals = isset($value['conditionals']) ? Conditional::getListFromString(json_encode($value['conditionals'], JSON_THROW_ON_ERROR, 512)) : [];
+    $attribute->id = isset($value['id']) ? (int) $value['id'] : -1;
+    $attribute->toAnonymize = $value['toAnonymize'] ?? FALSE;
+    $attribute->description = $value['description'] ?? '';
+    $attribute->additionalInformation = $value['additionalInformation'] ?? "";
+    $attribute->defaultValue = $value['defaultValue'] ?? NULL;
+    $attribute->value = $value['value'] ?? NULL;
+    $attribute->placeholder = $value['placeholder'] ?? NULL;
+    $attribute->content = (array) ($value['content'] ?? []);
 
-        return TRUE;
-    }
+    $attribute->parseContent();
 
-    public static function getListFromString(string $value): array {
-        $arrayOfAttributes = json_decode($value);
-        $returnedArray = [];
+    return $attribute;
+  }
 
-        if (!is_array($arrayOfAttributes)) {
-            throw new Exception(_('custom.array.attributes'));
-        }
-
-        foreach ($arrayOfAttributes as $attribute) {
-            $returnedArray[] = self::getFromString((array) $attribute);
-        }
-
-        return $returnedArray;
-    }
-
-    public static function getFromString(array $value): Attribute {
-        Attribute::validate($value);
-        $attribute = self::getAttributeByType($value["attributeType"]);
-
-        $attribute->attributeType = intval($value["attributeType"]);
-        $attribute->attributeName = $value["attributeName"];
-        $attribute->settings = $value["settings"];
-        $attribute->conditionals = isset($value["conditionals"]) ? Conditional::getListFromString(json_encode($value["conditionals"])) : [];
-        $attribute->id = isset($value["id"]) ? intval($value["id"]) : -1;
-        $attribute->toAnonymize = isset($value["toAnonymize"]) ? $value["toAnonymize"] : false;
-        $attribute->description = isset($value["description"]) ? $value["description"] : "";
-        $attribute->additionalInformation = isset($value["additionalInformation"]) ? $value["additionalInformation"] : "";
-        $attribute->defaultValue = isset($value["defaultValue"]) ? $value["defaultValue"] : NULL;
-        $attribute->value = isset($value["value"]) ? $value["value"] : NULL;
-        $attribute->placeholder = isset($value["placeholder"]) ? $value["placeholder"] : NULL;
-        $attribute->content = isset($value["content"]) ? (array)$value["content"] : [];
-
-        $attribute->parseContent();
-
-        return $attribute;
-    }
-
-    public function getValue() {
-        return $this->value;
-    }
+  public function getValue() {
+    return $this->value;
+  }
 }

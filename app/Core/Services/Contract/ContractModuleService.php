@@ -25,7 +25,7 @@ class ContractModuleService {
             if($contract->checkContractEnabledModules($module->slug)){
                 $returnData = $module->run($contract, $partType, $attributes);
 
-                if(isset($returnData) && !is_bool($returnData)) {
+                if(!is_bool($returnData)) {
                     return $returnData;
                 }
             }
