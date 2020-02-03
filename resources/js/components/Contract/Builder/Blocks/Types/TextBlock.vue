@@ -541,8 +541,11 @@ export default {
   .editor-container {
     border: 2px solid #cfcfcf;
     border-radius: 10px;
-    padding: 10px 15px;
     margin: 10px;
+
+    & > .ProseMirror {
+      border-radius: 10px;
+    }
 
     ol {
       counter-reset: section;

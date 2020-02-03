@@ -2,7 +2,7 @@
   <v-card class="pa-5">
     <v-icon x-large right class="float-right auth-icon">fas fa-user-lock</v-icon>
     <v-card-title>
-      <h1 class="display-1 mb-5">{{$t("base.title") }}</h1>
+      <h1 class="display-1 mb-5">{{$t("form.register.title") }}</h1>
     </v-card-title>
     <v-card-text class="pb-0">
       <v-form v-if="isLoaded">
