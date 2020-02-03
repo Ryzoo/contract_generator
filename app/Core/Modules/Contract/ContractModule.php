@@ -4,93 +4,112 @@
 namespace App\Core\Modules\Contract;
 
 use App\Core\Models\Database\Contract;
+use App\Core\Models\Domain\ContractSettings;
 
 abstract class ContractModule {
-    public $slug;
-    public $name;
-    public $description;
-    public $icon;
-    public $place;
-    public $isActive;
-    public $configComponent;
-    public $requirements = [];
-    public $required = false;
 
+  public $slug;
+
+  public $name;
+
+  public $description;
+
+  public $icon;
+
+  public $place;
+
+  public $isActive;
+
+  public $configComponent;
+
+  public $requirements = [];
+
+  public $required = FALSE;
+
+  /**
+   * @var Contract
+   */
+  protected $contract;
+
+  /**
+   * @var array
+   */
+  private $attributes;
+
+  /**
+   * @var array
+   */
+  private $hooksArray;
+
+  /**
+   * @var array
+   */
+  private $defaultSettings = [];
+
+
+  public function run(Contract $contract, int $partType, array $attributes = []) {
+    $this->init($contract);
+    $this->attributes = $attributes;
+
+    return TRUE;
+  }
+
+  public function init(Contract $contract) {
+    $this->contract = $contract;
+
+    return TRUE;
+  }
+
+  protected function setDefaultSettings(array $settings) {
+    $this->defaultSettings = $settings;
+  }
+
+  protected function setHooksComponents(array $hooksArray) {
+    $this->hooksArray = $hooksArray;
+  }
+
+  protected function getModuleSettings(?string $secondKey = NULL) {
     /**
-     * @var Contract
+     * @var ContractSettings $contractSettings
      */
-    protected $contract;
+    $contractSettings = isset($this->contract) ? $this->contract->settings : NULL;
+    $moduleSettings = isset($contractSettings, ((array)$contractSettings->modules)[$this->slug]) ? ((array)$contractSettings->modules)[$this->slug] : NULL;
 
-    /**
-     * @var array
-     */
-    private $attributes;
-
-    /**
-     * @var array
-     */
-    private $hooksArray;
-
-    /**
-     * @var array
-     */
-    private $defaultSettings;
-
-
-    public function run(Contract $contract, int $partType, array $attributes = []){
-        $this->init($contract);
-        $this->attributes = $attributes;
-
-        return true;
+    if (!isset($moduleSettings)) {
+      $moduleSettings = $this->defaultSettings ?? NULL;
     }
 
-    public function init(Contract $contract){
-        $this->contract = $contract;
-
-        return true;
+    if (!isset($moduleSettings, $secondKey)) {
+      return (array) $moduleSettings;
     }
-
-    protected function setDefaultSettings(array $settings){
-        $this->defaultSettings = $settings;
+    else {
+      return ((array) $moduleSettings)[$secondKey] ?? NULL;
     }
+  }
 
-    protected function setHooksComponents(array $hooksArray){
-        $this->hooksArray = $hooksArray;
+  protected function getAttribute(string $attributeName) {
+    return ((array) $this->attributes)[$attributeName] ?? NULL;
+  }
+
+  public function getInformation(): array {
+    return [
+      'slug' => $this->slug,
+      'name' => $this->name,
+      'renderHooks' => $this->hooksArray,
+      'settings' => $this->preventSettingsShow($this->getModuleSettings()),
+      'description' => $this->description,
+      'place' => $this->place,
+      'required' => $this->required,
+      'requirements' => $this->requirements,
+      'icon' => $this->icon,
+      'configComponent' => $this->configComponent,
+    ];
+  }
+
+  protected function preventSettingsShow(?array $settings): array {
+    if (!isset($settings)) {
+      return [];
     }
-
-    protected function getModuleSettings(?string $secondKey = null){
-        $moduleSettings = (isset($this->contract) && isset(((array)$this->contract->settings["modules"])[$this->slug])) ? ((array)$this->contract->settings["modules"])[$this->slug] : null;
-
-        if(!isset($moduleSettings))
-            $moduleSettings = (array)$this->defaultSettings ?? null;
-
-        if(!isset($moduleSettings) || !isset($secondKey))
-            return (array)$moduleSettings;
-        else
-            return ((array)$moduleSettings)[$secondKey] ?? null;
-    }
-
-    protected function getAttribute(string $attributeName){
-        return ((array)$this->attributes)[$attributeName] ?? null;
-    }
-
-    public function getInformation(): array{
-        return [
-            'slug' => $this->slug,
-            'name' => $this->name,
-            'renderHooks' => $this->hooksArray,
-            'settings' => $this->preventSettingsShow($this->getModuleSettings()),
-            'description' => $this->description,
-            'place' => $this->place,
-            'required' => $this->required,
-            'requirements' => $this->requirements,
-            'icon' => $this->icon,
-            'configComponent' => $this->configComponent,
-        ];
-    }
-
-    protected function preventSettingsShow(?array $settings): array{
-        if(!isset($settings)) return [];
-        return $settings;
-    }
+    return $settings;
+  }
 }

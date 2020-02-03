@@ -110,7 +110,7 @@ export default {
 
     this.getInterval = setInterval(() => {
       this.getSubmissionList()
-    }, 30000)
+    }, 10000)
   },
   destroyed () {
     if (this.getInterval) { clearInterval(this.getInterval) }

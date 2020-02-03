@@ -35,9 +35,12 @@ class PdfRenderer{
      */
     private $fullHtmlText;
 
+    public static function blockHtmlTemplate(string $blockHtml) : string{
+      return $blockHtml . '<br/>';
+    }
 
     public function __construct() {
-        $this->fullHtmlText = "";
+        $this->fullHtmlText = '';
     }
 
     public function setParameters(Contract $contract, Collection $blocks, Collection $formElements) {
@@ -47,15 +50,15 @@ class PdfRenderer{
     }
 
     public function preparePdf() {
-        $this->addTag("html");
-        $this->addTag("head");
+        $this->addTag('html');
+        $this->addTag('head');
         $this->configurePdf();
         $this->renderAdditionalCss();
-        $this->addTag("/head");
-        $this->addTag("body");
+        $this->addTag('/head');
+        $this->addTag('body');
         $this->renderBlocks();
-        $this->addTag("/body");
-        $this->addTag("/html");
+        $this->addTag('/body');
+        $this->addTag('/html');
 
         $this->pdfInstance->loadHTML($this->fullHtmlText);
         return $this->pdfInstance;
@@ -69,25 +72,21 @@ class PdfRenderer{
     }
 
     public function renderAdditionalCss() {
-        $this->fullHtmlText .= "<style>";
+        $this->fullHtmlText .= '<style>';
 
         foreach ($this->blocks as $block)
             $this->fullHtmlText .= $block->renderAdditionalCss();
 
-        $this->fullHtmlText .= "body { font-family: DejaVu Sans; }";
+        $this->fullHtmlText .= 'body { font-family: DejaVu Sans; }';
 
-        $this->fullHtmlText .= "</style>";
+        $this->fullHtmlText .= '</style>';
 
     }
 
     private function renderBlocks() {
-
         /** @var \App\Core\Models\Domain\Blocks\Block $block */
         foreach ($this->blocks as $block){
-            if($block->validateConditions(ConditionalType::SHOW_ON, $this->formElements)){
-                $this->fullHtmlText .= $block->renderToHtml($this->formElements);
-                $this->fullHtmlText .= "<br/>";
-            }
+            $this->fullHtmlText .= self::blockHtmlTemplate($block->renderToHtml($this->formElements));
         }
     }
 

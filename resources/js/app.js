@@ -25,13 +25,16 @@ Vue.filter('truncate', function (text, clamp) {
   return text.slice(0, 50) + (text.length > 50 ? clamp || '...' : '')
 })
 
+window.Notification.setStore(store)
 window.auth.setStore(store)
+window.Notification.setRouter(route)
 window.auth.setRouter(route)
 
 Vue.mixin({
   data: function () {
     return {
       Auth: window.auth,
+      Notification: window.Notification,
       Mapper: Mapper,
       Validator: Validator,
       Notify: window.Notify,

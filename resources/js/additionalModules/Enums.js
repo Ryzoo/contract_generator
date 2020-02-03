@@ -3,6 +3,12 @@ export const UserRoleEnum = {
   ADMINISTRATOR: '1'
 }
 
+export const StatisticType = {
+  SUBMISSIONS: 0,
+  REGISTRATIONS: 1,
+  NEW_CONTRACTS: 2
+}
+
 export const BlockTypeEnum = {
   NEW_BLOCK: -1,
   TEXT_BLOCK: 0,

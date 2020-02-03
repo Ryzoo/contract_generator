@@ -37,7 +37,7 @@
         color="primary"
         to="/auth/login"
         :disabled="!isLoaded"
-      >{{ $t("fbase.button.cancel") }}
+      >{{ $t("base.button.cancel") }}
       </v-btn
       >
       <v-btn

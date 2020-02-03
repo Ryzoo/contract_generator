@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Core\Enums\ContractFormCompleteStatus;
 use App\Core\Helpers\Response;
 use App\Core\Models\Database\ContractFormComplete;
+use App\Core\Models\Domain\ContractSettings;
 use App\Core\Models\Domain\FormElements\FormElement;
 use App\Http\Requests\Contracts\ContractAddRequest;
 use App\Http\Requests\Contracts\ContractGetRequest;
@@ -51,9 +52,11 @@ class ContractController extends Controller {
   public function add(ContractAddRequest $request) {
     $contractData = $request->validated();
     $contractCategories = $request->validated()['categories'];
+    $contractSettings = $request->validated()['settings'];
 
     $contract = new Contract();
-    $contract->fill(collect($contractData)->except('categories')->toArray());
+    $contract->fill(collect($contractData)->except(['categories', 'settings'])->toArray());
+    $contract->settings = ContractSettings::fromArray($contractSettings);
 
     $fullContract = $this->contractService->createContract($contract);
     $fullContract->categories()->attach($contractCategories);
@@ -64,8 +67,11 @@ class ContractController extends Controller {
   public function update(ContractUpdateRequest $request, Contract $contract) {
     $contractData = $request->validated();
     $contractCategories = $request->validated()['categories'];
+    $contractSettings = $request->validated()['settings'];
 
-    $contract->fill(collect($contractData)->except('categories')->toArray());
+    $contract->fill(collect($contractData)->except(['categories', 'settings'])->toArray());
+    $contract->settings = ContractSettings::fromArray($contractSettings);
+
     $fullContract = $this->contractService->createContract($contract);
     $fullContract->categories()->sync($contractCategories);
 

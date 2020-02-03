@@ -17,7 +17,7 @@
 
         <v-list-item tag="div">
           <v-list-item-avatar>
-            <v-img src="https://image.flaticon.com/icons/png/512/197/197717.png"/>
+            <v-img :src="appIcon"/>
           </v-list-item-avatar>
           <v-list-item-content class="text-center">
             {{$t('pageMeta.appTitle')}}
@@ -87,21 +87,29 @@
         @click.stop="navigationModel = !navigationModel"
       />
       <v-spacer/>
-
       <v-menu
         v-model="menu"
         bottom
         offset-y
       >
+
         <template v-slot:activator="{ on }">
           <v-btn
             text
             dark
             v-on="on"
           >
-            <v-avatar size="30" class="mr-2">
-              <v-img :src="user.profileImage"/>
-            </v-avatar>
+            <v-badge
+              color="error"
+              left
+              overlap
+              :content="unreadNotifications.length"
+              :value="unreadNotifications.length"
+            >
+              <v-avatar size="30" class="mr-2">
+                <v-img :src="user.profileImage"/>
+              </v-avatar>
+            </v-badge>
             {{user.firstName}} {{user.lastName}}
           </v-btn>
         </template>
@@ -118,17 +126,26 @@
               {{$t('navigation.profile.main')}}
               <v-icon small right>fa-users-cog fa-fw</v-icon>
             </v-btn>
-            <v-btn
-              class="mt-1"
-              small
-              block
-              text
-              color="primary"
-              @click="showNotifications()"
+            <v-badge
+              color="error"
+              left
+              overlap
+              :content="unreadNotifications.length"
+              :value="unreadNotifications.length"
             >
-              {{$t('navigation.profile.notifications')}}
-              <v-icon small right>fa-bell fa-fw</v-icon>
-            </v-btn>
+              <v-btn
+                class="mt-1"
+                small
+                block
+                text
+                color="primary"
+                @click="showNotifications()"
+              >
+                {{$t('navigation.profile.notifications')}}
+                <v-icon small right>fa-bell fa-fw</v-icon>
+              </v-btn>
+            </v-badge>
+
             <v-btn
               class="mt-1"
               small
@@ -163,17 +180,53 @@
                 {{ $t("pageMeta.copyright") }}</span
             >
     </v-footer>
+
+    <v-dialog v-model="showNotificationsDialog" scrollable max-width="500px">
+      <v-card>
+        <v-card-title>{{ $t("notifications.title") }}</v-card-title>
+        <v-divider></v-divider>
+        <v-card-text>
+          <v-list v-if="unreadNotifications.length">
+            <v-list-item v-for="notify in unreadNotifications" :key="notify.id" class="notification-item">
+              <v-list-item-content>
+                {{notify.data.message}}
+                <span class="notify-date">{{notify.created_at}}</span>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+          <v-alert
+            v-else
+            dense
+            text
+            class="my-5"
+            type="info"
+          >
+            {{$t("notifications.empty")}}
+          </v-alert>
+        </v-card-text>
+        <v-divider></v-divider>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn outlined color="primary" @click="showNotificationsDialog = false">{{ $t("base.button.close") }}</v-btn>
+          <v-btn color="primary" @click="hideNotifications">{{ $t("base.button.makeAsRead") }}</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </section>
 </template>
 
 <script>
 import { Permissions } from '../additionalModules/Permissions'
 import { Roles } from '../additionalModules/Roles'
+import appIcon from './../assets/fav.png'
 
 export default {
   name: 'PanelLayout',
   data: function () {
     return {
+      showNotificationsDialog: false,
+      notificationInterval: null,
+      appIcon: appIcon,
       menu: false,
       navigationRight: true,
       navigationModel: true,
@@ -194,7 +247,7 @@ export default {
         {
           title: this.$t('navigation.formSubmission'),
           icon: 'fa-file-contract fa-fw',
-          roles: [Roles.CLIENT],
+          roles: [Roles.ADMIN, Roles.CLIENT],
           link: '/panel/formSubmission'
         },
         {
@@ -251,6 +304,9 @@ export default {
     }
   },
   computed: {
+    unreadNotifications () {
+      return this.$store.getters.notificationUnread
+    },
     calculatedAccessItems () {
       return this.calculateAccessArray(this.items)
     },
@@ -263,8 +319,14 @@ export default {
     }
   },
   methods: {
+    hideNotifications () {
+      this.Notification.setAsRead()
+        .then(() => {
+          this.showNotificationsDialog = false
+        })
+    },
     showNotifications () {
-      alert('not implemented')
+      this.showNotificationsDialog = true
     },
     calculateAccessArray (elements) {
       return elements.map(x => {
@@ -293,12 +355,48 @@ export default {
       this.menu = false
       this.Auth.logout()
     }
+  },
+  mounted () {
+    this.Notification.getUnread()
+
+    this.notificationInterval = setInterval(() => {
+      this.Notification.getUnread()
+    }, 30000)
+  },
+  destroyed () {
+    if (this.notificationInterval) {
+      clearInterval(this.notificationInterval)
+    }
   }
 }
 </script>
 
-<style>
-  .padding-x-full-menu{
+<style lang="scss">
+  .notification-item {
+    border-radius: 10px;
+    background: #ffffff;
+    border: 2px solid #f2f2f2;
+    transition: all .2s;
+    margin-bottom: 5px;
+
+    &:hover {
+      background: #f7f7f7;
+      border: 2px solid #cfcfcf;
+    }
+
+    .notify-date{
+      border-radius: 11px;
+      font-size: 12px;
+      text-align: center;
+      background: #f0f0f0;
+      padding: 4px 0;
+      font-weight: 600;
+      margin: 5px 0 -6px;
+      color: #838383;
+    }
+  }
+
+  .padding-x-full-menu {
     padding: 0 50px;
   }
 </style>

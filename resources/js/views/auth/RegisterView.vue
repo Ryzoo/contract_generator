@@ -45,7 +45,7 @@
           <template v-slot:label>
             {{ $t("base.field.rodoAccept") }}:
             <a target="_blank" href="http://google.pl" @click.stop>
-              {{ $t("form.register.link.rodo") }}
+              {{ $t("base.link.rodo") }}
             </a>
           </template>
         </v-checkbox>
@@ -53,7 +53,7 @@
           <template v-slot:label>
             {{ $t("base.field.regulationsAccept") }}:
             <a target="_blank" href="http://google.pl" @click.stop>
-              {{ $t("form.register.link.regulations") }}
+              {{ $t("base.link.regulations") }}
             </a>
           </template>
         </v-checkbox>
@@ -104,59 +104,55 @@ export default {
         const validationArray = []
 
         validationArray[
-          this.$t('form.register.field.firstName')
+          this.$t('base.field.firstName')
         ] = this.registerForm.firstName
         validationArray[
-          this.$t('form.register.field.lastName')
+          this.$t('base.field.lastName')
         ] = this.registerForm.lastName
         validationArray[
-          this.$t('form.register.field.email')
+          this.$t('base.field.email')
         ] = this.registerForm.email
         validationArray[
-          this.$t('form.register.field.password')
+          this.$t('base.field.password')
         ] = this.registerForm.password
         validationArray[
-          this.$t('form.register.field.rePassword')
+          this.$t('base.field.rePassword')
         ] = this.registerForm.rePassword
         validationArray[
-          this.$t('form.register.field.rodoAccept')
+          this.$t('base.field.rodoAccept')
         ] = this.registerForm.rodoAccept
         validationArray[
-          this.$t('form.register.field.regulationsAccept')
+          this.$t('base.field.regulationsAccept')
         ] = this.registerForm.regulationsAccept
 
         const valid = new window.Validator(validationArray)
 
         valid
-          .get(this.$t('form.register.field.firstName'))
+          .get(this.$t('base.field.firstName'))
           .length(3, 50)
         valid
-          .get(this.$t('form.register.field.lastName'))
+          .get(this.$t('base.field.lastName'))
           .length(3, 50)
-        valid.get(this.$t('form.register.field.email')).isEmail()
+        valid.get(this.$t('base.field.email')).isEmail()
         valid
-          .get(this.$t('form.register.field.password'))
+          .get(this.$t('base.field.password'))
           .length(6, 50)
         valid
-          .get(this.$t('form.register.field.rePassword'))
+          .get(this.$t('base.field.rePassword'))
           .length(6, 50)
-          .sameAs(this.$t('form.register.field.password'))
-        valid.get(this.$t('form.register.field.rodoAccept')).isTrue()
+          .sameAs(this.$t('base.field.password'))
+        valid.get(this.$t('base.field.rodoAccept')).isTrue()
         valid
-          .get(this.$t('form.register.field.regulationsAccept'))
+          .get(this.$t('base.field.regulationsAccept'))
           .isTrue()
       } catch (e) {
         return
       }
 
       this.isLoaded = false
-      axios
-        .post('/auth/register', this.registerForm)
+      axios.post('/auth/register', this.registerForm)
         .then(response => {
-          notify.push(
-            this.$t('form.register.notify.success'),
-            notify.SUCCESS
-          )
+          notify.push(this.$t('form.register.notify.success'), notify.SUCCESS)
           this.$router.push('/auth/login')
         })
         .finally(() => {

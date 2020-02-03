@@ -6,6 +6,7 @@ use App\Core\Enums\ContractFormCompleteStatus;
 use App\Core\Models\Database\ContractFormComplete;
 use App\Core\Services\Contract\ContractModuleService;
 use App\Jobs\RenderNewContract;
+use App\Notifications\ContractRenderFinished;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
@@ -63,6 +64,7 @@ class ProcessContractRender extends Command
         $contract->update([
           'status' => ContractFormCompleteStatus::ERROR
         ]);
+        $contract->user->notify(new ContractRenderFinished(ContractFormCompleteStatus::ERROR));
       }
   }
 }

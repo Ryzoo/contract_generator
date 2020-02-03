@@ -52,7 +52,7 @@ pipeline {
         branch 'master'
       }
       steps {
-        sh 'curl --request POST https://forge.laravel.com/servers/343645/sites/938034/deploy/http?token=pcaw5TgjhowpwFw9ZRaEb38JRZRkhYWnQotrDEfJ'
+        sh 'curl --request POST https://forge.laravel.com/servers/347555/sites/950650/deploy/http?token=ktDQ7lliLVAfw9AFG0HzUWSctNWuilHyK9QWXntN'
       }
     }
 

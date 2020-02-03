@@ -128,7 +128,7 @@ abstract class Attribute implements IAttribute {
         }
 
         foreach ($arrayOfAttributes as $attribute) {
-            array_push($returnedArray, self::getFromString((array) $attribute));
+            $returnedArray[] = self::getFromString((array) $attribute);
         }
 
         return $returnedArray;

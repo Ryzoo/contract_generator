@@ -11,7 +11,7 @@ class ModelObjectToTextParser
 {
     static function parse($modelObject)
     {
-        return ModelObjectToTextParser::parseGroup($modelObject->operator, $modelObject->children);
+        return self::parseGroup($modelObject->operator, $modelObject->children);
     }
 
     static function parseRule($id, $operatorType, $value, $ruleType)
@@ -48,7 +48,7 @@ class ModelObjectToTextParser
 
     static function parseGroup($operator, $children)
     {
-        $parsedChildren = ModelObjectToTextParser::parseChildren($children ?? []);
-        return implode( $parsedChildren->toArray(), $operator === 'All' ? ' && ' : ' || ');
+        $parsedChildren = self::parseChildren($children ?? []);
+        return implode(  $operator === 'All' ? ' && ' : ' || ', $parsedChildren->toArray());
     }
 }

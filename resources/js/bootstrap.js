@@ -1,5 +1,6 @@
 import Notify from './additionalModules/Notify'
 import Auth from './additionalModules/Auth'
+import Notification from './additionalModules/Notification'
 
 try {
   window.$ = window.jQuery = require('jquery')
@@ -7,6 +8,7 @@ try {
 
 window.Notify = window.notify = new Notify()
 window.auth = new Auth()
+window.Notification = new Notification()
 
 window.axios = require('axios')
 window.axios.defaults.baseURL = '/api'

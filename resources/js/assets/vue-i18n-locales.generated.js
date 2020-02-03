@@ -328,6 +328,17 @@ export default {
                 "completeAllElement": "Fill properly all inputs on this page to go next!"
             }
         },
+        "notifications": {
+            "title": "Notifications",
+            "empty": "You don't have any unread notifications",
+            "renderFinish": {
+                "status": {
+                    "4": "Error occurred when render! You can try again in submission panel.",
+                    "2": "Finished successfully. You can download your contract."
+                },
+                "title": "Your contract form submission render are finished."
+            }
+        },
         "email": {
             "base": {
                 "welcome_contract": "Welcome to Contract Generator",
@@ -371,6 +382,7 @@ export default {
                 "reset": "Reset",
                 "cancel": "Cancel",
                 "close": "Close",
+                "makeAsRead": "Make as read",
                 "download": "Download",
                 "remind": "Remind",
                 "remove": "Remove",
@@ -407,6 +419,7 @@ export default {
         "response": {
             "notFoundId": "Object with this id was not found.",
             "emailNotFound": "Account with this email not found.",
+            "notFoundStatistic": "This statistic type is not available.",
             "badPassword": "Password for this account didn't match.",
             "notAuthorized": "User are not authorized! Please login.",
             "badResetToken": "Password reset token is incorrect or used before.",

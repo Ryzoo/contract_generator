@@ -6,13 +6,6 @@
       extended
       flat
     >
-      <v-btn outlined small @click="goToContractList">
-        <v-icon small left>fa-newspaper</v-icon>
-        {{$t('navigation.formContract')}}
-      </v-btn>
-
-      <v-spacer/>
-
       <v-btn v-if="isAuthorized" outlined small @click="backToPanel">
         <v-icon small left>fa-columns</v-icon>
         Go to panel
@@ -20,6 +13,13 @@
       <v-btn v-else outlined small @click="goToLogin">
         <v-icon small left>fa-lock-open</v-icon>
         Login or register
+      </v-btn>
+
+      <v-spacer/>
+
+      <v-btn outlined small @click="goToContractList">
+        <v-icon small left>fa-newspaper</v-icon>
+        {{$t('navigation.formContract')}}
       </v-btn>
     </v-toolbar>
 
