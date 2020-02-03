@@ -21,4 +21,15 @@ class ContractSettings {
 
     return $instance;
   }
+
+  public static function fromArray(array $arraySettings):ContractSettings {
+    $instance = new self();
+
+    $instance->enabledModules = $arraySettings['enabledModules'] ??  $instance->enabledModules;
+    $instance->modules = $arraySettings['modules'] ??  $instance->modules;
+    $instance->counterStart = $arraySettings['counterStart'] ??  $instance->counterStart;
+    $instance->counterType = $arraySettings['counterType'] ??  $instance->counterType;
+
+    return $instance;
+  }
 }
