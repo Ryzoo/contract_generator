@@ -47,7 +47,8 @@ class ProcessContractRender extends Command
         'status' => ContractFormCompleteStatus::PENDING
       ]);
 
-      RenderNewContract::dispatchNow($contract, $this->contractModuleService);
+      RenderNewContract::dispatch($contract, $this->contractModuleService)
+        ->delay(Carbon::now()->addSeconds(5));
     }
   }
 
