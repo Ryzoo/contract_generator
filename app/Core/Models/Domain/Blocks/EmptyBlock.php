@@ -4,7 +4,6 @@
 namespace App\Core\Models\Domain\Blocks;
 
 use App\Core\Enums\BlockType;
-use App\Core\Enums\ConditionalType;
 use App\Core\Helpers\BlockCounterResolver;
 use App\Core\Helpers\PdfRenderer;
 use Illuminate\Support\Facades\Validator;
@@ -23,18 +22,18 @@ class EmptyBlock extends Block {
 
     protected function validateContent():bool {
         Validator::validate($this->content,[
-            "blocks" => "nullable|array",
+            'blocks' => 'nullable|array',
         ]);
 
         return true;
     }
 
     protected function buildContent() {
-        $this->content["blocks"] = Block::getListFromString( json_encode($this->content["blocks"]) );
+        $this->content['blocks'] = Block::getListFromString( json_encode($this->content["blocks"]) );
     }
 
     protected function resolveAttributesInContent(Collection $formElements) {
-        $blockList = $this->content["blocks"];
+        $blockList = $this->content['blocks'];
 
         /** @var \App\Core\Models\Domain\Blocks\Block $block */
         foreach ($blockList as $block){
@@ -46,11 +45,17 @@ class EmptyBlock extends Block {
         $variableArray = parent::findVariable($contract);
 
         /** @var \App\Core\Models\Domain\Blocks\Block $block */
-        foreach ($this->content["blocks"] as $block){
+        foreach ($this->content['blocks'] as $block){
             $variableArray = $variableArray->merge($block->findVariable($contract));
         }
 
-        return $variableArray->uniqueStrict("1");
+        return $variableArray->uniqueStrict('1');
+    }
+
+    public function counterResolve(string $matchString, int $countStart, Contract $contract): int {
+      $countStart = parent::counterResolve($matchString, $countStart, $contract);
+      $countStart = BlockCounterResolver::resolve($matchString, collect($this->content['blocks']), $contract, $countStart)['count'];
+      return $countStart;
     }
 
     public function getBlockCollection(Collection $blockCollection): Collection{
@@ -73,7 +78,7 @@ class EmptyBlock extends Block {
           $block->validateConditions($conditionalType, $formElements, $contract);
         }
 
-        $this->content['blocks'] = BlockCounterResolver::resolveCounter($this->content['blocks']->where('isActive'), $contract);
+        $this->content['blocks'] = collect($this->content['blocks'])->where('isActive');
       }
 
       return $parentActive;

@@ -13,21 +13,25 @@ class BlockCounterResolver {
      * @var ContractSettings $settings
      */
     $settings = $contract->settings;
+    $defaultStart = $settings->counterStart;
 
-    $blockCollection = self::resolve('param', $blockCollection, $contract, $settings->counterStart);
+    $blockCollection = self::resolve('param', $blockCollection, $contract, $defaultStart)['data'];
 
     return $blockCollection;
   }
 
-  private static function resolve(string $matchString, Collection $blockCollection, Contract $contract, int $countStart = 1){
-      /**
+  public static function resolve(string $matchString, Collection $blockCollection, Contract $contract, int $countStart = 1){
+    /**
        * @var Block block
        */
     foreach ($blockCollection as &$block) {
       $countStart = $block->counterResolve($matchString, $countStart, $contract);
     }
 
-    return $blockCollection;
+    return [
+      'data' => $blockCollection,
+      'count' => $countStart
+    ];
   }
 
 }
