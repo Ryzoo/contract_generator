@@ -9,7 +9,8 @@ class ContractSettings {
   public $modules = null;
   public $counterStart = 1;
   public $counterType= 'number';
-  public $font = 'Times-Roman';
+  public $font = 'DejaVu Serif';
+  public $fontSize = '14px';
 
   public static function fromJson(string $jsonString): ContractSettings {
     $jsonData = json_decode($jsonString);
@@ -20,6 +21,7 @@ class ContractSettings {
     $instance->counterStart = $jsonData->counterStart ??  $instance->counterStart;
     $instance->counterType = $jsonData->counterType ??  $instance->counterType;
     $instance->font = $jsonData->font ??  $instance->font;
+    $instance->fontSize = $jsonData->fontSize ??  $instance->fontSize;
 
     return $instance;
   }
@@ -32,6 +34,7 @@ class ContractSettings {
     $instance->counterStart = $arraySettings['counterStart'] ??  $instance->counterStart;
     $instance->counterType = $arraySettings['counterType'] ??  $instance->counterType;
     $instance->font = $arraySettings['font'] ??  $instance->font;
+    $instance->fontSize = $arraySettings['fontSize'] ??  $instance->fontSize;
 
     return $instance;
   }
