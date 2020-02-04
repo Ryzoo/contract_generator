@@ -52,20 +52,25 @@ export default {
     rulesFromAttributes () {
       return this.$store.getters.builder_allVariables
         .filter(x => x.attributeType !== 3)
-        .map(x => ({
-          type: this.mapBackendTypeToBuilderType(x),
-          id: x.id,
-          label: x.attributeName,
-          options: x.settings.items || []
-        }))
+        .map(x => {
+          const type = this.mapBackendTypeToBuilderType(x)
+          const options = type === 2 ? x.settings.items.map(e => ({ label: e, value: e })) : x.settings.items
+
+          return {
+            type: type,
+            id: x.id,
+            label: x.attributeName,
+            options: options || []
+          }
+        })
     }
   },
   methods: {
     onConditionalChange (newValue) {
-      this.$emit('conditional-change', [{
+      this.$emit('conditional-change', (newValue.children && newValue.children.length > 0) ? [{
         conditionalType: parseInt(ConditionalEnum[this.conditionalType]),
         content: JSON.stringify(newValue, null, 2)
-      }])
+      }] : [])
     },
     mapBackendTypeToBuilderType (variable) {
       switch (variable.attributeType) {
