@@ -4,9 +4,9 @@
       <v-icon class="mx-3 rotate" @click="toggleBlock($event)">fa-chevron-right</v-icon>
     </div>
     <div class="block-header--content" @click="toggleBlock($event)">
-      <div class="block-header--type">{{ block.blockName | truncate}}</div>
+      <div class="block-header--type">{{ toUpper(Mapper.getBlockName(block.blockType)) }}</div>
       <h5 class="pr-2">
-        {{ toUpper(Mapper.getBlockName(block.blockType)) }}
+        {{ block.blockName | truncate}}
       </h5>
     </div>
     <div class="block-header--action mr-4">
