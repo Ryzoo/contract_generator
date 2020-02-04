@@ -44,7 +44,7 @@ class Provider extends ContractModule {
     $this->contractService = $contractService;
   }
 
-  public function run(Contract $contract, int $partType, array $attributes = []) {
+  public function run(Contract $contract, int $partType, array $attributes = []): bool {
     parent::run($contract, $partType, $attributes);
 
     switch ($partType) {
@@ -55,7 +55,7 @@ class Provider extends ContractModule {
     }
   }
 
-  private function renderContract() {
+  private function renderContract(): ?bool {
     /**
      * @var ContractFormComplete $formComplete
      */
@@ -93,8 +93,6 @@ class Provider extends ContractModule {
           SendRenderEmail::dispatch($formComplete)
             ->delay(Carbon::now()->addSeconds(5));
           break;
-        default:
-          return FALSE;
       }
     } catch (\Exception $e) {
       $formComplete->update([
@@ -104,5 +102,7 @@ class Provider extends ContractModule {
 
       throw $e;
     }
+
+    return true;
   }
 }

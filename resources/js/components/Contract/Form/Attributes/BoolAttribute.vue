@@ -1,17 +1,15 @@
 <template>
     <v-col cols="12">
-        <v-autocomplete
-            :items="this.attribute.settings.items"
-            outlined
+        <v-switch
+            :label="attribute.attributeName"
+            :value="!!attribute.value"
+            :placeholder="attribute.placeholder ? String(attribute.placeholder) : ''"
             :error="validationError.length > 0"
             :error-messages="validationError"
-            :label="attribute.attributeName"
-            :value="currentValue"
             :hint="attribute.description"
             :persistent-hint="!!attribute.description"
-            :multiple="!!attribute.settings.isMultiSelect"
+            outlined
             :dense="dense"
-            :placeholder="attribute.placeholder ? String(attribute.placeholder) : ''"
             @change="changeValue"
         >
             <template v-slot:append-outer v-if="attribute.additionalInformation && attribute.additionalInformation.length > 0">
@@ -22,23 +20,21 @@
                     <span>{{attribute.additionalInformation}}</span>
                 </v-tooltip>
             </template>
-        </v-autocomplete>
+        </v-switch>
     </v-col>
 </template>
 
 <script>
 export default {
-  name: 'SelectAttribute',
+  name: 'BoolAttribute',
   props: ['attribute', 'validationError', 'dense'],
-  data () {
-    return {
-      currentValue: this.attribute.value ? this.attribute.value.split(',') : []
-    }
-  },
   methods: {
     changeValue (newValue) {
-      this.$emit('change-value', Array.isArray(newValue) ? newValue.join(',') : newValue)
+      this.$emit('change-value', !!newValue)
     }
+  },
+  mounted () {
+    this.changeValue(this.attribute.value)
   }
 }
 </script>

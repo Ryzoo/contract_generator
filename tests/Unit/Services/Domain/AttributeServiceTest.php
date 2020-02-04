@@ -20,10 +20,10 @@ class AttributeServiceTest extends TestCase {
         $this->attributeRepository = $this->app->make(AttributeRepository::class);
     }
 
-    public function testGetListOfAttributes() {
+    public function testGetListOfAttributes(): void {
         $listOfAttributes = $this->attributeRepository->getListOfAttributes();
         $countOfExistAttributeType = count(AttributeType::getList());
 
-        $this->assertEquals($countOfExistAttributeType, count($listOfAttributes));
+        $this->assertCount($countOfExistAttributeType, $listOfAttributes);
     }
 }

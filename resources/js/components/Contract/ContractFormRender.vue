@@ -132,9 +132,12 @@ export default {
       this.actualStep = this.actualStep === 1 ? 1 : this.actualStep - 1
     },
     goToNextStep () {
-      if (this.isCurrentStepValid()) {
-        this.actualStep = this.actualStep === this.stepList.length ? this.actualStep : this.actualStep + 1
-      }
+      this.validateActual()
+        .then(() => {
+          if (this.isCurrentStepValid()) {
+            this.actualStep = this.actualStep === this.stepList.length ? this.actualStep : this.actualStep + 1
+          }
+        })
     },
     isCurrentStepValid () {
       if (!this.stepList[this.actualStep - 1].content.filter(x => x.isActive).every(e => e.isValid)) {
@@ -143,6 +146,9 @@ export default {
       }
 
       return true
+    },
+    validateActual () {
+      return this.$store.dispatch('formElements_validate_current', this.actualStep - 1)
     },
     loadContractForm (additionalAttributes) {
       this.isLoading = true
@@ -170,9 +176,12 @@ export default {
       return defaultAttributeObject ? new URLSearchParams(defaultAttributeObject).toString() : ''
     },
     finishContractForm () {
-      if (this.isCurrentStepValid()) {
-        this.currentAction = this.availableActionsHook.BEFORE_FORM_END
-      }
+      this.validateActual()
+        .then(() => {
+          if (this.isCurrentStepValid()) {
+            this.currentAction = this.availableActionsHook.BEFORE_FORM_END
+          }
+        })
     },
     init () {
       this.currentAction = this.availableActionsHook.BEFORE_FORM_RENDER

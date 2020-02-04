@@ -71,6 +71,9 @@ export default {
       switch (variable.attributeType) {
         case 0:
         case 1:
+        case 4:
+        case 5:
+        case 6:
           return variable.attributeType
         case 2:
           return variable.settings.isMultiSelect ? 3 : 2

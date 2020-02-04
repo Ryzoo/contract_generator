@@ -14,7 +14,7 @@ class AttributeRepository {
         $attributeTypeList = AttributeType::getList();
 
         foreach($attributeTypeList as $value){
-            array_push($attributeList, Attribute::getAttributeByType($value));
+            $attributeList[] = Attribute::getAttributeByType($value);
         }
 
         return $attributeList;

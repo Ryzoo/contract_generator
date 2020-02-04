@@ -34,6 +34,12 @@ return [
     ],
     'category' => [
       'title' => 'Panel - Categories',
+      'create' => [
+        'title' => 'Panel - Create category',
+      ],
+      'edit' => [
+        'title' => 'Panel - Edit category',
+      ]
     ],
     'formSubmission' => [
       'title' => 'Panel - My Submission',

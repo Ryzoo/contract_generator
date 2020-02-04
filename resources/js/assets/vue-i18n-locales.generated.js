@@ -88,7 +88,13 @@ export default {
                     "title": "Panel - My Profile"
                 },
                 "category": {
-                    "title": "Panel - Categories"
+                    "title": "Panel - Categories",
+                    "create": {
+                        "title": "Panel - Create category"
+                    },
+                    "edit": {
+                        "title": "Panel - Edit category"
+                    }
                 },
                 "formSubmission": {
                     "title": "Panel - My Submission"
@@ -382,6 +388,7 @@ export default {
                 "reset": "Reset",
                 "cancel": "Cancel",
                 "close": "Close",
+                "ok": "Ok",
                 "makeAsRead": "Make as read",
                 "download": "Download",
                 "remind": "Remind",

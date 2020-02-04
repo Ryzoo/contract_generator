@@ -4,7 +4,7 @@
             :is="Mapper.getAttributeComponentName(formElement.attribute.attributeType)"
             v-bind="{
                 attribute: formElement.attribute,
-                validationError: validationError
+                validationError: formElement.validationError || []
             }"
             @change-value="changeValue"
         >
@@ -16,8 +16,10 @@
 import NumberAttribute from './../Attributes/NumberAttribute'
 import TextAttribute from './../Attributes/TextAttribute'
 import SelectAttribute from '../Attributes/SelectAttribute'
-import AttributeValidator from '../Validators/AttributeValidator'
 import RepeatGroupAttribute from '../Attributes/RepeatGroupAttribute'
+import BoolAttribute from '../Attributes/BoolAttribute'
+import DateAttribute from '../Attributes/DateAttribute'
+import TimeAttribute from '../Attributes/TimeAttribute'
 
 export default {
   name: 'AttributeFormElements',
@@ -26,41 +28,18 @@ export default {
     NumberAttribute,
     TextAttribute,
     SelectAttribute,
-    RepeatGroupAttribute
-  },
-  data () {
-    return {
-      validationError: ''
-    }
+    RepeatGroupAttribute,
+    BoolAttribute,
+    DateAttribute,
+    TimeAttribute
   },
   methods: {
     changeValue (newValue) {
-      const isValidValue = this.isValid(newValue)
-
-      const thisElement = Object.assign({}, this.formElement)
-
-      thisElement.isValid = isValidValue
-
-      if (newValue) {
-        thisElement.attribute.value = Array.isArray(newValue) ? newValue.join(',') : newValue
-      }
-
       this.$store.dispatch('formElements_change', {
-        element: thisElement
+        id: this.formElement.id,
+        value: newValue
       })
-    },
-    isValid (newValue, showError) {
-      const validatorResult = AttributeValidator.validate(this.formElement.attribute, newValue)
-      this.validationError = validatorResult.errorMessage
-      return validatorResult.status
     }
-  },
-  mounted () {
-    this.changeValue(this.formElement.attribute.defaultValue)
   }
 }
 </script>
-
-<style scoped>
-
-</style>

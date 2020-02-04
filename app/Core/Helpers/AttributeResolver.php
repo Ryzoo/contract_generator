@@ -22,28 +22,28 @@ class AttributeResolver {
         preg_match_all('/{(\d+)}/', $text, $attributeIdList);
 
         foreach ($attributeIdList[1] as $id){
-            $value = $this->getAttributeValueById(intval($id));
-            $text = str_replace("{".$id."}",$value, $text);
+            $value = $this->getAttributeValueById((int) $id);
+            $text = str_replace('{' .$id. '}',$value, $text);
         }
 
         return $text;
     }
 
-    private function getAttributeValueById(int $id){
+    private function getAttributeValueById(int $id): string {
         $attribute = $this->formElements
-            ->where("elementType", ElementType::ATTRIBUTE)
-            ->map(function($e){
+            ->where('elementType', ElementType::ATTRIBUTE)
+            ->map(static function($e){
                 return $e->attribute;
             })
-            ->where("id", $id)
+            ->where('id', $id)
             ->first();
 
-        $value = isset($attribute) ? $attribute->getValue() : "";
+        $value = isset($attribute) ? $attribute->getValue() : '';
 
         return $this->escapeValue($value);
     }
 
-    private function escapeValue( string $value) {
+    private function escapeValue( string $value): string {
         if(Str::endsWith($value, "'") && Str::startsWith($value, "'"))
             $value = Str::substr($value,1, Str::length($value) - 2 );
 

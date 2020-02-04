@@ -47,24 +47,24 @@ abstract class ContractModule {
   private $defaultSettings = [];
 
 
-  public function run(Contract $contract, int $partType, array $attributes = []) {
+  public function run(Contract $contract, int $partType, array $attributes = []): bool {
     $this->init($contract);
     $this->attributes = $attributes;
 
     return TRUE;
   }
 
-  public function init(Contract $contract) {
+  public function init(Contract $contract): bool {
     $this->contract = $contract;
 
     return TRUE;
   }
 
-  protected function setDefaultSettings(array $settings) {
+  protected function setDefaultSettings(array $settings): void {
     $this->defaultSettings = $settings;
   }
 
-  protected function setHooksComponents(array $hooksArray) {
+  protected function setHooksComponents(array $hooksArray): void {
     $this->hooksArray = $hooksArray;
   }
 
@@ -73,7 +73,7 @@ abstract class ContractModule {
      * @var ContractSettings $contractSettings
      */
     $contractSettings = isset($this->contract) ? $this->contract->settings : NULL;
-    $moduleSettings = isset($contractSettings, ((array)$contractSettings->modules)[$this->slug]) ? ((array)$contractSettings->modules)[$this->slug] : NULL;
+    $moduleSettings = isset($contractSettings) ? ((array) $contractSettings->modules)[$this->slug] ?? NULL : null;
 
     if (!isset($moduleSettings)) {
       $moduleSettings = $this->defaultSettings ?? NULL;
@@ -82,9 +82,8 @@ abstract class ContractModule {
     if (!isset($moduleSettings, $secondKey)) {
       return (array) $moduleSettings;
     }
-    else {
-      return ((array) $moduleSettings)[$secondKey] ?? NULL;
-    }
+
+    return ((array) $moduleSettings)[$secondKey] ?? NULL;
   }
 
   protected function getAttribute(string $attributeName) {

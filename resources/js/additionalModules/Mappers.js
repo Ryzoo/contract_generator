@@ -38,6 +38,12 @@ class Mapper {
         return 'SelectAttribute'
       case AttributeTypeEnum.REPEAT_GROUP:
         return 'RepeatGroupAttribute'
+      case AttributeTypeEnum.DATE:
+        return 'DateAttribute'
+      case AttributeTypeEnum.TIME:
+        return 'TimeAttribute'
+      case AttributeTypeEnum.BOOL:
+        return 'BoolAttribute'
       default:
         return 'NotFoundAttribute'
     }

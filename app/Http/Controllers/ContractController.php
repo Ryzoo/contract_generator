@@ -41,6 +41,7 @@ class ContractController extends Controller {
 
   public function getCollection(Request $request) {
     Response::success(new ContractInfoCollection(Contract::with('categories')
+      ->latest()
       ->get()));
   }
 
