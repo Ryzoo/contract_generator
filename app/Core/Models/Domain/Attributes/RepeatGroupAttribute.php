@@ -6,6 +6,8 @@ namespace App\Core\Models\Domain\Attributes;
 
 use App\Core\Contracts\IAttribute;
 use App\Core\Enums\AttributeType;
+use App\Core\Models\Domain\FormElements\FormElement;
+use Psy\Util\Json;
 
 class RepeatGroupAttribute extends Attribute {
 
@@ -15,9 +17,9 @@ class RepeatGroupAttribute extends Attribute {
 
     protected function buildSettings() {
         $this->settings = [
-            "lengthMin" => null,
-            "lengthMax" => null,
-            "required" => NULL,
+            'lengthMin' => null,
+            'lengthMax' => null,
+            'required' => NULL,
         ];
     }
 
@@ -32,11 +34,13 @@ class RepeatGroupAttribute extends Attribute {
              * @var Attribute $attribute
              */
             foreach ($attributes as $attribute) {
+                $attributeParse = Attribute::getFromString((array) $attribute);
+
                 if ($attributesName->count() < count($attributes)) {
-                    $attributesName->push($attribute->attributeName);
+                    $attributesName->push($attributeParse->attributeName);
                 }
 
-                $attributeValue->push($attribute->getValue());
+                $attributeValue->push($attributeParse->getValue());
             }
 
             $attributesValue->push($attributeValue);
@@ -61,14 +65,6 @@ class RepeatGroupAttribute extends Attribute {
             $body .= '</tr>';
         }
 
-
-        return "<br/><table>
-                    <thead>
-                        $header
-                    </thead>
-                    <tbody>
-                        $body
-                    </tbody>
-                 </table>";
+        return "<br/><table><thead>$header</thead><tbody>$body</tbody></table>";
     }
 }

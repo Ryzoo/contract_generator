@@ -25,19 +25,20 @@
         <v-col cols="12">
           <v-text-field
             hide-details
+            dense
             outlined
             autofocus
-            dense
             v-model="attribute.attributeName"
             :label="$t('form.variableForm.name')"
           />
         </v-col>
         <v-col cols="12" class="pb-0" v-if="attribute.attributeType === AttributeTypeEnum.SELECT">
           <v-combobox
-            outlined
             persistent-hint
             :hint="$t('form.variableForm.itemsHint')"
+            hide-details
             dense
+            outlined
             :items="[]"
             small-chips
             multiple
@@ -58,7 +59,9 @@
             persistent-hint
             return-object
             single-line
+            hide-details
             dense
+            outlined
           ></v-select>
         </v-col>
         <v-col cols="12" class="py-0">

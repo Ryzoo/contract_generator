@@ -50,11 +50,11 @@ abstract class FormElement implements IFormElement {
 
     public static function validate($value): bool {
         Validator::validate($value, [
-            "parentBlockId" => "required|integer",
-            "elementType" => "required|integer",
-            "conditionals" => "nullable|array",
-            "isValid" => "nullable",
-            "isActive" => "nullable",
+            'parentBlockId' => 'required|integer',
+            'elementType' => 'required|integer',
+            'conditionals' => 'nullable|array',
+            'isValid' => 'nullable',
+            'isActive' => 'nullable',
         ]);
 
         return TRUE;
@@ -69,17 +69,17 @@ abstract class FormElement implements IFormElement {
     }
 
     public static function getFormElementByType(int $formElementType, array $value): FormElement {
-        if (!isset($value["parentBlockId"])) {
-            throw new ErrorException("Form element can be decoded without parentBlockId field");
+        if (!isset($value['parentBlockId'])) {
+            throw new ErrorException('Form element can be decoded without parentBlockId field');
         }
-        $parentBlockId = $value["parentBlockId"];
+        $parentBlockId = $value['parentBlockId'];
 
         switch ($formElementType) {
             case ElementType::ATTRIBUTE:
-                if (!isset($value["attribute"])) {
-                    throw new ErrorException("Attribute form element can be decoded without attribute field");
+                if (!isset($value['attribute'])) {
+                    throw new ErrorException('Attribute form element can be decoded without attribute field');
                 }
-                $attribute = Attribute::getFromString((array) $value["attribute"]);
+                $attribute = Attribute::getFromString((array) $value['attribute']);
                 return new AttributeFormElement($parentBlockId, $attribute);
             case ElementType::PAGE_BRAKE:
                 return new PageDividerFormElement($parentBlockId);
@@ -89,7 +89,7 @@ abstract class FormElement implements IFormElement {
     }
 
     public static function getListFromString(string $value): Collection {
-        $arrayOfElements = json_decode($value);
+        $arrayOfElements = json_decode($value, TRUE, 512, JSON_THROW_ON_ERROR);
         $returnedArray = collect();
 
         if (!is_array($arrayOfElements)) {
@@ -106,14 +106,14 @@ abstract class FormElement implements IFormElement {
 
     public static function getFromString(array $value): FormElement {
         self::validate($value);
-        $element = self::getFormElementByType((int) $value["elementType"], $value);
+        $element = self::getFormElementByType((int) $value['elementType'], $value);
 
-        $element->parentBlockId = $value["parentBlockId"];
-        $element->elementType = $value["elementType"];
-        $element->elementName = ElementType::getName($value["elementType"]);
-        $element->conditionals = collect(Conditional::getListFromString(json_encode($value["conditionals"])))->toArray();
-        $element->isActive = $value["isActive"] == "true";
-        $element->isValid = $value["isValid"] == "true";
+        $element->parentBlockId = $value['parentBlockId'];
+        $element->elementType = $value['elementType'];
+        $element->elementName = ElementType::getName($value['elementType']);
+        $element->conditionals = collect(Conditional::getListFromString(json_encode($value['conditionals'], JSON_THROW_ON_ERROR, 512)))->toArray();
+        $element->isActive = $value['isActive'] == 'true';
+        $element->isValid = $value['isValid'] == 'true';
 
         return $element;
     }

@@ -33,7 +33,7 @@
         v-if="setting === 'lengthMin' || setting === 'lengthMax'"
         :label="setting === 'lengthMin' ? $t('form.variableForm.lengthMin') : $t('form.variableForm.lengthMax')"
         @change="saveInput(parseInt($event), setting)"
-        />
+      />
       <v-text-field
         :key="setting"
         hide-details
@@ -44,7 +44,7 @@
         v-if="setting === 'valueMin' || setting === 'valueMax'"
         :label="setting === 'valueMin' ? $t('form.variableForm.valueMin') : $t('form.variableForm.valueMax')"
         @change="saveInput(parseInt($event), setting)"
-        />
+      />
     </v-col>
   </v-row>
 </template>

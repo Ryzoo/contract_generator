@@ -50,7 +50,7 @@ class PdfRenderer {
     $this->fullHtmlText = '';
   }
 
-  public function setParameters(Contract $contract, Collection $blocks, Collection $formElements) {
+  public function setParameters(Contract $contract, Collection $blocks, Collection $formElements): void {
     $this->contract = $contract;
     $this->contractSettings = $contract->settings;
     $this->blocks = $blocks;
@@ -72,7 +72,7 @@ class PdfRenderer {
     return $this->pdfInstance;
   }
 
-  private function configurePdf() {
+  private function configurePdf(): void {
     $this->pdfInstance = PDF::setPaper('a4', 'portrait')
       ->setWarnings(TRUE)
       ->setOptions([
@@ -82,7 +82,7 @@ class PdfRenderer {
     $this->fullHtmlText .= '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>';
   }
 
-  public function renderAdditionalCss() {
+  public function renderAdditionalCss(): void {
     $this->fullHtmlText .= '<style>';
 
     foreach ($this->blocks as $block) {
@@ -90,17 +90,16 @@ class PdfRenderer {
     }
     $this->fullHtmlText .= "body { font-family: {$this->contractSettings->font}, serif ; text-align: justify; font-size: {$this->contractSettings->fontSize} }";
     $this->fullHtmlText .= '</style>';
-
   }
 
-  private function renderBlocks() {
+  private function renderBlocks(): void {
     /** @var \App\Core\Models\Domain\Blocks\Block $block */
     foreach ($this->blocks as $block) {
       $this->fullHtmlText .= self::blockHtmlTemplate($block->renderToHtml($this->formElements));
     }
   }
 
-  private function addTag(string $tag) {
+  private function addTag(string $tag): void {
     $this->fullHtmlText .= "<{$tag}>";
   }
 }
