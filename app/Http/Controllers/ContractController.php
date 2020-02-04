@@ -85,7 +85,7 @@ class ContractController extends Controller {
   }
 
   public function removeCollection(ContractRemoveCollectionRequest $request) {
-    $listOfContractId = explode(",", $request->get("idList"));
+    $listOfContractId = explode(',', $request->get('idList'));
 
     if (is_array($listOfContractId)) {
       $this->contractService->removeContractById($listOfContractId);
@@ -95,7 +95,7 @@ class ContractController extends Controller {
   }
 
   public function render(ContractRenderRequest $request, Contract $contract) {
-    $formElements = FormElement::getListFromString(json_encode($request->get('formElements')));
+    $formElements = FormElement::getListFromString(json_encode($request->get('formElements'), JSON_THROW_ON_ERROR, 512));
 
     if (Auth::hasUser()) {
       ContractFormComplete::create([

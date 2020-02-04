@@ -34,10 +34,12 @@ class ContractService {
 
   public function removeContractById(array $contractList) {
     foreach ($contractList as $contractId) {
-      $contract = Contract::findOrFail($contractId);
+      $contract = Contract::with('form','completedForm', 'categories')->findOrFail($contractId);
 
-      DB::transaction(function () use (&$contract) {
-        $contract->form->delete();
+      DB::transaction(static function () use (&$contract) {
+        $contract->form()->delete();
+        $contract->categories()->detach();
+        $contract->completedForm()->delete();
         $contract->delete();
       });
     }
