@@ -88,7 +88,7 @@ class PdfRenderer {
     foreach ($this->blocks as $block) {
       $this->fullHtmlText .= $block->renderAdditionalCss();
     }
-    $this->fullHtmlText .= "body, html { font-family: {$this->contractSettings->font}, serif ; text-align: justify; }";
+    $this->fullHtmlText .= "body { font-family: {$this->contractSettings->font}, serif ; text-align: justify; }";
     $this->fullHtmlText .= '</style>';
 
   }
