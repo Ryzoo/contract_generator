@@ -9,7 +9,7 @@ class ContractSettings {
   public $modules = null;
   public $counterStart = 1;
   public $counterType= 'number';
-  public $font = 'Times New Roman';
+  public $font = 'DejaVu Serif';
 
   public static function fromJson(string $jsonString): ContractSettings {
     $jsonData = json_decode($jsonString);

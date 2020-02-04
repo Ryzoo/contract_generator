@@ -87,6 +87,14 @@
           </button>
 
           <button
+            class="menubar-button"
+            :class="{ 'is-active': getMarkAttrs('align').textAlign === 'justify' }"
+            @click="commands.align({ textAlign: 'justify', oldValue: getMarkAttrs('align').textAlign })"
+          >
+            <v-icon small>fa-align-justify</v-icon>
+          </button>
+
+          <button
                   class="menubar-button"
                   :class="{ 'is-active': isActive.heading({ level: 1 }) }"
                   @click="commands.heading({ level: 1 })"
@@ -310,7 +318,7 @@ export default {
         onUpdate: ({ getHTML }) => {
           const html = getHTML()
           const element = $(`<div>${html}</div>`)
-          const styles = '<style>.paragraph-list{margin: auto}.paragraph-list:before{counter-increment:paragraph-counter;content:"§ " counter(paragraph-counter) ". "}div{counter-reset:paragraph-counter}div ol{counter-reset:section;list-style-type:none}div ol li:before{counter-increment:section;content:counters(section, ".") ". "}div ol li>p{display:inline}</style>'
+          const styles = '<style>.paragraph-list{display: block; text-align: center;}.paragraph-list:before{content:"§"} div ol{counter-reset:section;list-style-type:none}div ol li:before{counter-increment:section;content:counters(section, ".") ". "}div ol li>p{display:inline}</style>'
 
           element.find('.mention').each(function () {
             $(this).replaceWith(`{${$(this).attr('data-mention-id')}}`)

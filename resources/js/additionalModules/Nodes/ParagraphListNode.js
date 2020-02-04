@@ -11,7 +11,7 @@ export default class ParagraphListNode extends Mark {
       parseDOM: [
         { tag: 'span.paragraph-list' }
       ],
-      toDOM: mark => ['span', { class: 'paragraph-list' }, 0]
+      toDOM: mark => ['span', { class: 'paragraph-list' }, ['span', { class: 'paragraph-counter' }, 0]]
     }
   }
 

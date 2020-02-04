@@ -76,7 +76,7 @@ class PdfRenderer {
     $this->pdfInstance = PDF::setPaper('a4', 'portrait')
       ->setWarnings(TRUE)
       ->setOptions([
-        'defaultFont' => $this->contractSettings->font,
+        'defaultFont' => $this->contractSettings->font
       ]);
 
     $this->fullHtmlText .= '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>';
@@ -88,8 +88,7 @@ class PdfRenderer {
     foreach ($this->blocks as $block) {
       $this->fullHtmlText .= $block->renderAdditionalCss();
     }
-
-    $this->fullHtmlText .= 'body { text-align: justify; }';
+    $this->fullHtmlText .= "body, html { font-family: {$this->contractSettings->font}, serif ; text-align: justify; }";
     $this->fullHtmlText .= '</style>';
 
   }

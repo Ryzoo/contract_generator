@@ -154,15 +154,21 @@ section {
 }
 
 .paragraph-list {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-pack: center;
-          justify-content: center;
+  display: block;
+  text-align: center;
+}
+
+.paragraph-list .paragraph-counter:before {
+  content: "n";
+  padding: 0 5px;
+  border-radius: 5px;
+  color: white;
+  margin: 0 3px;
+  background: #935cfa;
 }
 
 .paragraph-list:before {
-  counter-increment: paragraph-counter;
-  content: "\A7   " counter(paragraph-counter) ". ";
+  content: "\A7";
 }
 
 .table-icons {

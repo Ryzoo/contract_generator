@@ -15,7 +15,7 @@ class BlockCounterResolver {
     $settings = $contract->settings;
     $defaultStart = $settings->counterStart;
 
-    $blockCollection = self::resolve('param', $blockCollection, $contract, $defaultStart)['data'];
+    $blockCollection = self::resolve('paragraph-counter', $blockCollection, $contract, $defaultStart)['data'];
 
     return $blockCollection;
   }
