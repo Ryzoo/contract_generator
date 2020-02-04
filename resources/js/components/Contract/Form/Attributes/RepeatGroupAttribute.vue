@@ -1,7 +1,7 @@
 <template>
-  <v-col cols="12" :class="{'repeat-group-container': true, 'error-is': validationError}">
-    <h3>{{attribute.attributeName}}
-      <v-tooltip right>
+  <v-col cols="12" :class="{'repeat-group-container': true, 'error-is': validationError.length}">
+    <h3 class="attribute-header">{{attribute.attributeName}}
+      <v-tooltip right v-if="attribute.additionalInformation">
         <template v-slot:activator="{ on }">
           <v-icon color="primary" dark v-on="on">fa-question-circle</v-icon>
         </template>
@@ -10,8 +10,8 @@
     </h3>
     <small>{{attribute.description}}</small>
     <v-divider class="my-3"/>
-    <small class="error--text" v-if="validationError">{{validationError}}</small>
-    <v-divider class="my-3"/>
+    <small class="error--text" v-if="validationError.length">{{validationError}}</small>
+    <v-divider class="my-3" v-if="validationError.length"/>
     <AddForm @add="addValue" :attributes="attribute.content"/>
     <v-divider class="my-3"/>
     <ValueList @remove="removeElement" :values="valueList"/>
@@ -56,6 +56,11 @@ export default {
 </script>
 
 <style scoped>
+  .attribute-header{
+    font-size: 16px;
+    font-weight: 300;
+  }
+
   .repeat-group-container {
     border: 2px solid #dadada;
     padding: 25px;

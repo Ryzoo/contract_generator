@@ -54,7 +54,7 @@ export default {
         .filter(x => x.attributeType !== 3)
         .map(x => {
           const type = this.mapBackendTypeToBuilderType(x)
-          const options = type === 2 ? x.settings.items.map(e => ({ label: e, value: e })) : x.settings.items
+          const options = x.settings.items ? x.settings.items.map(e => ({ label: e, value: e })) : null
 
           return {
             type: type,

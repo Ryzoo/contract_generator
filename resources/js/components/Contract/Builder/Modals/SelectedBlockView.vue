@@ -1,9 +1,9 @@
 <template>
   <v-card>
-    <v-card-title>Block configuration:
-    <small class="pl-3" style="color: #7a7a7a">{{block.blockName}}</small></v-card-title>
-    <v-divider/>
-    <v-tabs background-color="primary" grow show-arrows dark v-model="currentTab">
+    <v-card-title>Block configuration:<small class="pl-3" style="color: #7a7a7a">{{block.blockName}}</small></v-card-title>
+    <v-card-text>
+      <v-divider/>
+      <v-tabs background-color="primary" grow show-arrows dark v-model="currentTab">
       <v-tabs-slider color="primary" />
 
       <v-tab :key="0" href="#tab-0">
@@ -28,6 +28,7 @@
         />
       </v-tab-item>
     </v-tabs>
+    </v-card-text>
     <v-card-actions>
       <v-spacer/>
       <v-btn color="primary" outlined @click="pushCloseEvent">Cancel</v-btn>

@@ -15,9 +15,15 @@
             </v-list-item-action>
         </v-list-item>
 
-        <p v-show="values.length === 0" class="text-sm-center">
+        <v-alert
+          dense
+          text
+          v-show="values.length === 0"
+          class="mt-5 mb-0"
+          type="info"
+        >
           {{$t("base.description.noElements")}}
-        </p>
+        </v-alert>
     </section>
 </template>
 
