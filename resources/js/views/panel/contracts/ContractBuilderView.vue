@@ -22,7 +22,7 @@
     <v-dialog
       v-model="showAttributeModal"
       scrollable
-      max-width="500px">
+      max-width="400px">
         <VariableView @close="showAttributeModal=false"/>
     </v-dialog>
   </v-row>

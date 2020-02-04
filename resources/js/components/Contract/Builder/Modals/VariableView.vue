@@ -3,13 +3,23 @@
     <v-card-title>Attribute list:</v-card-title>
     <v-divider/>
     <v-card-text>
-      <div v-if="$store.getters.builder_allVariables.length > 0"
+      <v-text-field
+        v-if="this.$store.getters.builder_allVariables.length > 0"
+        label="Filter by name"
+        class="mt-2"
+        v-model="searchText"
+        dense
+        hide-details
+        outlined
+      ></v-text-field>
+      <div v-if="currentVariable.length > 0"
            class="text-center">
           <v-chip
-            class="ma-1"
+            class="d-block ma-1"
             label
             close
-            v-for="attribute in $store.getters.builder_allVariables"
+            small
+            v-for="attribute in currentVariable"
             :key="attribute.id"
             color="primary"
             @click="editVariable(attribute)"
@@ -76,6 +86,7 @@ export default {
   },
   data () {
     return {
+      searchText: '',
       showAddEditModal: false,
       deleteDialog: false,
       variableOptions: [],
@@ -83,6 +94,11 @@ export default {
       allAttributes: [],
       isNewAttribute: true,
       removedAttribute: null
+    }
+  },
+  computed: {
+    currentVariable () {
+      return this.$store.getters.builder_allVariables.filter((x) => this.searchText.length < 3 || x.attributeName.toLowerCase().includes(this.searchText.toLowerCase()))
     }
   },
   methods: {
