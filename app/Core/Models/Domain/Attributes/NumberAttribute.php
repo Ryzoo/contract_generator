@@ -17,7 +17,7 @@ class NumberAttribute extends Attribute implements IAggregableByAttributeAggrega
     $this->settings = [
       'valueMin' => NULL,
       'valueMax' => NULL,
-      'required' => NULL,
+      'required' => false,
     ];
   }
 

@@ -16,7 +16,7 @@ class TimeAttribute extends Attribute {
         $this->settings = [
             'valueMin' => null,
             'valueMax' => null,
-            'required' => null,
+            'required' => false,
         ];
     }
 }

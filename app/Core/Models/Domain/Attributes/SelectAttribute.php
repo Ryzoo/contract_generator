@@ -16,7 +16,7 @@ class SelectAttribute extends Attribute {
         $this->settings = [
             'isMultiSelect' => false,
             'items' => [],
-            'required' => null,
+            'required' => false,
             'lengthMin' => null,
             'lengthMax' => null,
         ];

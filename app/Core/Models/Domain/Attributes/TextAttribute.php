@@ -16,7 +16,7 @@ class TextAttribute extends Attribute {
         $this->settings = [
             'lengthMin' => null,
             'lengthMax' => null,
-            'required' => null
+            'required' => false
         ];
     }
 }

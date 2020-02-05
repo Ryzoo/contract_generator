@@ -18,7 +18,7 @@ class RepeatGroupAttribute extends Attribute implements IAggregableByAttributeAg
     $this->settings = [
       'lengthMin' => NULL,
       'lengthMax' => NULL,
-      'required' => NULL,
+      'required' => false,
     ];
   }
 

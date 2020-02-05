@@ -14,7 +14,7 @@ class BoolAttribute extends Attribute {
 
     protected function buildSettings() {
         $this->settings = [
-            'required' => null,
+            'required' => false,
         ];
     }
 
