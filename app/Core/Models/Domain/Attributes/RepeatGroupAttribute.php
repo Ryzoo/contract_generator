@@ -4,67 +4,117 @@
 namespace App\Core\Models\Domain\Attributes;
 
 
-use App\Core\Contracts\IAttribute;
+use App\Core\Contracts\IAggregableByAttributeAggregator;
+use App\Core\Enums\AggregateOperationType;
 use App\Core\Enums\AttributeType;
-use App\Core\Models\Domain\FormElements\FormElement;
-use Psy\Util\Json;
 
-class RepeatGroupAttribute extends Attribute {
+class RepeatGroupAttribute extends Attribute implements IAggregableByAttributeAggregator {
 
-    public function __construct() {
-        $this->initialize(AttributeType::REPEAT_GROUP);
-    }
+  public function __construct() {
+    $this->initialize(AttributeType::REPEAT_GROUP);
+  }
 
-    protected function buildSettings() {
-        $this->settings = [
-            'lengthMin' => null,
-            'lengthMax' => null,
-            'required' => NULL,
-        ];
-    }
+  protected function buildSettings() {
+    $this->settings = [
+      'lengthMin' => NULL,
+      'lengthMax' => NULL,
+      'required' => NULL,
+    ];
+  }
 
-    public function getValue() {
-        $attributesValue = collect();
-        $attributesName = collect();
+  public function getValue() {
+    $attributesValue = collect();
+    $attributesName = collect();
 
-        foreach ($this->value as $attributes) {
-            $attributeValue = collect();
+    foreach ($this->value as $attributes) {
+      $attributeValue = collect();
 
-            /**
-             * @var Attribute $attribute
-             */
-            foreach ($attributes as $attribute) {
-                $attributeParse = Attribute::getFromString((array) $attribute);
+      /**
+       * @var Attribute $attribute
+       */
+      foreach ($attributes as $attribute) {
+        $attributeParse = Attribute::getFromString((array) $attribute);
 
-                if ($attributesName->count() < count($attributes)) {
-                    $attributesName->push($attributeParse->attributeName);
-                }
-
-                $attributeValue->push($attributeParse->getValue());
-            }
-
-            $attributesValue->push($attributeValue);
+        if ($attributesName->count() < count($attributes)) {
+          $attributesName->push($attributeParse->attributeName);
         }
 
-        return $this->prepareHTMLTable($attributesValue, $attributesName);
+        $attributeValue->push($attributeParse->getValue());
+      }
+
+      $attributesValue->push($attributeValue);
     }
 
-    private function prepareHTMLTable($itemsList, $headers) {
-        $header = '<tr>';
-        foreach ($headers as $item){
-            $header .= "<th>$item</th>";
-        }
-        $header .= '</tr>';
+    return $this->prepareHTMLTable($attributesValue, $attributesName);
+  }
 
-        $body = '';
-        foreach ($itemsList as $items){
-            $body .= '<tr>';
-            foreach ($items as $item){
-                $body .= "<td>$item</td>";
-            }
-            $body .= '</tr>';
-        }
-
-        return "<br/><table><thead>$header</thead><tbody>$body</tbody></table>";
+  private function prepareHTMLTable($itemsList, $headers) {
+    $header = '<tr>';
+    foreach ($headers as $item) {
+      $header .= "<th>$item</th>";
     }
+    $header .= '</tr>';
+
+    $body = '';
+    foreach ($itemsList as $items) {
+      $body .= '<tr>';
+      foreach ($items as $item) {
+        $body .= "<td>$item</td>";
+      }
+      $body .= '</tr>';
+    }
+
+    return "<br/><table width='100%'><thead>$header</thead><tbody>$body</tbody></table>";
+  }
+
+  public function getOperationalValue(string $operation) {
+    $returnValue = 0;
+
+    foreach ($this->value as $attributes) {
+      foreach ($attributes as $attribute) {
+        $attributeParse = Attribute::getFromString((array) $attribute);
+        if($attributeParse instanceof IAggregableByAttributeAggregator && !($attributeParse instanceof self) ){
+          $returnValue = $this->aggregateValue($returnValue, $operation, $attributeParse);
+        }
+      }
+    }
+
+    return $returnValue;
+  }
+
+  private function aggregateValue(float $value, string $operator, Attribute $attribute) {
+    switch ($operator) {
+      case AggregateOperationType::ADD:
+        $value = $this->add($value, $attribute, $operator);
+        break;
+      case AggregateOperationType::SUBTRACT:
+        $value = $this->subtract($value, $attribute, $operator);
+        break;
+      case AggregateOperationType::MULTIPLY:
+        $value = $this->multiply($value, $attribute, $operator);
+        break;
+      case AggregateOperationType::DIVIDE:
+        $value = $this->divide($value, $attribute, $operator);
+        break;
+    }
+
+    return $value;
+  }
+
+  public function add(float $value, Attribute $attribute, string $operator): float {
+    return $value + $attribute->getOperationalValue($operator);
+  }
+
+  public function subtract(float $value, Attribute $attribute, string $operator):float {
+    return $value - $attribute->getOperationalValue($operator);
+  }
+
+  public function multiply(float $value, Attribute $attribute, string $operator): float {
+    return $value * $attribute->getOperationalValue($operator);
+  }
+
+  public function divide(float $value, Attribute $attribute, string $operator): float {
+    $valueOp = $attribute->getOperationalValue($operator);
+    return $value / $valueOp === 0 ? 1 : $valueOp;
+  }
 }

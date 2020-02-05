@@ -4,23 +4,94 @@
 namespace App\Core\Models\Domain\Attributes;
 
 
+use App\Core\Contracts\IAggregableByAttributeAggregator;
+use App\Core\Enums\AggregateOperationType;
 use App\Core\Enums\AttributeType;
+use App\Core\Enums\ElementType;
+use App\Core\Helpers\AttributeResolver;
+use App\Core\Helpers\OperationalAttributeResolver;
+use Illuminate\Support\Collection;
 
 class AggregateAttribute extends Attribute {
 
-    public function __construct() {
-        $this->initialize(AttributeType::AGGREGATE);
+  public function __construct() {
+    $this->initialize(AttributeType::AGGREGATE);
+  }
+
+  protected function buildSettings() {
+    $this->settings = [
+      'operationReturnFormatType' => 'float',
+      'precision' => 2,
+      'operationItems' => [],
+      'operationType' => AggregateOperationType::ADD,
+    ];
+  }
+
+  public function getValue() {
+    $aggregatedValue = 0;
+    switch ($this->settings['operationType']) {
+      case AggregateOperationType::ADD:
+        $aggregatedValue = $this->add();
+        break;
+      case AggregateOperationType::SUBTRACT:
+        $aggregatedValue = $this->subtract();
+        break;
+      case AggregateOperationType::MULTIPLY:
+        $aggregatedValue = $this->multiply();
+        break;
+      case AggregateOperationType::DIVIDE:
+        $aggregatedValue = $this->divide();
+        break;
     }
 
-    protected function buildSettings() {
-        // type double or int
-        $this->settings = [
-          'type' => 'double',
-          'precision' => 2,
-        ];
+    return $this->settings['operationReturnFormatType'] === 'float' ? round((float) $aggregatedValue, (int) $this->settings['precision']) : (int) $aggregatedValue;
+  }
+
+  public function resolveAttributesInSettings(Collection $formElements): void {
+    $items = $this->settings['operationItems'];
+    $returnItems = [];
+
+    foreach ($items as $attributeId) {
+      $resolver = new OperationalAttributeResolver($formElements, $this->settings['operationType']);
+      $returnItems[] = $resolver->resolveText('{' .$attributeId. '}');
     }
 
-    public function getValue() {
-      return $this->settings['type'] === 'float' ? round((double) $this->value, (int) $this->settings['precision']) : (int) $this->value;
+    $this->settings['operationItems'] = $returnItems;
+  }
+
+  public function add(): float {
+    $returnValue = 0;
+    foreach ($this->settings['operationItems'] as $item) {
+      $returnValue += (float) $item;
     }
+    return $returnValue;
+  }
+
+  public function subtract():float {
+    $returnValue = 0;
+    foreach ($this->settings['operationItems'] as $item) {
+      $returnValue -= (float) $item;
+    }
+    return $returnValue;
+  }
+
+  public function multiply(): float {
+    $returnValue = 0;
+    foreach ($this->settings['operationItems'] as $item) {
+      $returnValue *= (float) $item;
+    }
+    return $returnValue;
+  }
+
+  public function divide(): float {
+    $returnValue = 0;
+    foreach ($this->settings['operationItems'] as $item) {
+      if ($item == 0) {
+        continue;
+      }
+      $returnValue /= (float) $item;
+    }
+    return $returnValue;
+  }
+
 }

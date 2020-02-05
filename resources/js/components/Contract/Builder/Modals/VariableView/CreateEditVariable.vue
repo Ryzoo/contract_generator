@@ -66,6 +66,7 @@
         </v-col>
         <v-col cols="12" class="py-0">
           <VariableSettings
+            :attributesList="attributesList"
             :settings="attribute.settings"
             :currentSettings="settingsForType"
             @save="saveSettingsInput"
@@ -137,6 +138,7 @@ export default {
     editAttribute (newValue) {
       this.attribute = this.editAttribute || this.getDefaultAttribute()
       this.selectedVariables = this.editAttribute ? this.getSelectedVariables(this.attribute) : []
+      this.settingsForType = this.getSettingsForType(this.attribute.attributeType)
     }
   },
   mounted () {

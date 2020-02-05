@@ -14,11 +14,11 @@ class SelectAttribute extends Attribute {
 
     protected function buildSettings() {
         $this->settings = [
-            "isMultiSelect" => false,
-            "items" => [],
-            "required" => null,
-            "lengthMin" => null,
-            "lengthMax" => null,
+            'isMultiSelect' => false,
+            'items' => [],
+            'required' => null,
+            'lengthMin' => null,
+            'lengthMax' => null,
         ];
     }
 }

@@ -13,7 +13,7 @@ class AttributeResolver {
   /**
    * @var \Illuminate\Support\Collection
    */
-  private $formElements;
+  protected $formElements;
 
   public function __construct(Collection $formElements) {
     $this->formElements = $formElements;
@@ -24,25 +24,38 @@ class AttributeResolver {
 
     foreach ($attributeIdList[1] as $id) {
       $value = $this->getAttributeValueById((int) $id);
-      $text = str_replace([
-        '<p>{' . $id . '}</p>',
-        '<p> {' . $id . '} </p>',
-        '<p>{' . $id . '} </p>',
-        '<p> {' . $id . '}</p>',
-        '{' . $id . '}'
-      ], [
-        '{' . $id . '}',
-        '{' . $id . '}',
-        '{' . $id . '}',
-        '{' . $id . '}',
-        $value
-      ], $text);
+
+      if(strpos($value, '<table') !== false){
+        $text = str_replace([
+          '<p>{' . $id . '}</p>',
+          '<p> {' . $id . '} </p>',
+          '<p>{' . $id . '} </p>',
+          '<p> {' . $id . '}</p>',
+          '{' . $id . '}</p>',
+          '{' . $id . '} </p>',
+          '{' . $id . '}'
+        ], [
+          '{' . $id . '}',
+          '{' . $id . '}',
+          '{' . $id . '}',
+          '{' . $id . '}',
+          '</p> {' . $id . '}',
+          '</p> {' . $id . '}',
+          $value
+        ], $text);
+      }else{
+        $text = str_replace([
+          '{' . $id . '}'
+        ], [
+          $value
+        ], $text);
+      }
     }
 
     return $text;
   }
 
-  private function getAttributeValueById(int $id): string {
+  protected function getAttributeValueById(int $id): string {
     $attribute = $this->formElements
       ->where('elementType', ElementType::ATTRIBUTE)
       ->map(static function ($e) {
@@ -56,7 +69,7 @@ class AttributeResolver {
     return $this->escapeValue($value);
   }
 
-  private function escapeValue(string $value): string {
+  protected function escapeValue(string $value): string {
     if (Str::endsWith($value, "'") && Str::startsWith($value, "'")) {
       $value = Str::substr($value, 1, Str::length($value) - 2);
     }

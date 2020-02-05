@@ -8,6 +8,7 @@ use App\Core\Enums\ConditionalType;
 use App\Core\Helpers\BlockCounterResolver;
 use App\Core\Helpers\PdfRenderer;
 use App\Core\Models\Database\Contract;
+use App\Core\Models\Domain\FormElements\FormElement;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -34,7 +35,8 @@ class ContractService {
 
   public function removeContractById(array $contractList) {
     foreach ($contractList as $contractId) {
-      $contract = Contract::with('form','completedForm', 'categories')->findOrFail($contractId);
+      $contract = Contract::with('form', 'completedForm', 'categories')
+        ->findOrFail($contractId);
 
       DB::transaction(static function () use (&$contract) {
         $contract->form()->delete();
@@ -56,6 +58,14 @@ class ContractService {
   }
 
   private function prepareRenderBlock(Collection $blockCollection, Collection $formElements, Contract $contract): Collection {
+
+    /**
+     * @var FormElement $element
+     */
+    foreach ($formElements as &$element) {
+      $element->resolveAttributesInSettings($formElements);
+    }
+
     /** @var \App\Core\Models\Domain\Blocks\Block $block */
     foreach ($blockCollection as &$block) {
       $block->validateConditions(ConditionalType::SHOW_ON, $formElements, $contract);

@@ -60,6 +60,8 @@ abstract class FormElement implements IFormElement {
         return TRUE;
     }
 
+    abstract public function resolveAttributesInSettings(Collection $formElements);
+
     protected function initialize(int $elementType) {
         $this->elementType = $elementType;
         $this->elementName = ElementType::getName($elementType);

@@ -89,6 +89,7 @@ class PdfRenderer {
       $this->fullHtmlText .= $block->renderAdditionalCss();
     }
     $this->fullHtmlText .= "body { font-family: {$this->contractSettings->font}, serif ; text-align: justify; font-size: {$this->contractSettings->fontSize} }";
+    $this->fullHtmlText .= 'table, table th, table td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd;} table {font-size: 15px; margin-top: 20px; margin-bottom: 40px; border-collapse: collapse; width: 100%; }';
     $this->fullHtmlText .= '</style>';
   }
 

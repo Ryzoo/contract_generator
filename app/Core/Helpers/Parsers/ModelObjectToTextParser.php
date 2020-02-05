@@ -2,6 +2,7 @@
 
 namespace App\Core\Helpers\Parsers;
 
+use App\Core\Helpers\Parsers\Operators\AggregateOperatorParser;
 use App\Core\Helpers\Parsers\Operators\BoolOperatorParser;
 use App\Core\Helpers\Parsers\Operators\DateOperatorParser;
 use App\Core\Helpers\Parsers\Operators\MultiSelectOperatorParser;
@@ -36,6 +37,8 @@ class ModelObjectToTextParser {
         return SelectOperatorParser::parse("'$variable'", $operatorType, $value ? "'$value'" : "''");
       case RuleTypes::MULTI_SELECT:
         return MultiSelectOperatorParser::parse("'$variable'", $operatorType, $value ? "'$value'" : "''");
+      case RuleTypes::AGGREGATE:
+        return AggregateOperatorParser::parse($variable, $operatorType, $value ? (double) $value : null);
     }
 
     return '';

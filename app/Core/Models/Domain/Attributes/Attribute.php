@@ -8,6 +8,7 @@ use App\Core\Contracts\IAttribute;
 use App\Core\Enums\AttributeType;
 use App\Core\Models\Domain\Conditional\Conditional;
 use Exception;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Exception\NotFoundException;
 
@@ -67,7 +68,8 @@ abstract class Attribute implements IAttribute {
    */
   public $toAnonymize;
 
-  protected abstract function buildSettings();
+  abstract protected function buildSettings();
+  public function resolveAttributesInSettings(Collection $formElements): void {}
 
   protected function initialize(int $attributeType) {
     $this->attributeType = $attributeType;

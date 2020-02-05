@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     activeFormElements () {
-      return this.formElements.filter(x => x.isActive)
+      return this.formElements.filter(x => x.isActive && (!x.attribute || x.attribute.attributeType !== 7))
     }
   }
 }

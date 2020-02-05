@@ -31,7 +31,7 @@ export default {
   props: ['attribute', 'validationError', 'dense'],
   methods: {
     changeValue (newValue) {
-      this.$emit('change-value', parseInt(newValue))
+      this.$emit('change-value', parseFloat(newValue))
     }
   }
 }

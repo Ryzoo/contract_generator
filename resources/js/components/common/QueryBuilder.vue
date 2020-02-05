@@ -79,6 +79,7 @@ export default {
         case 4:
         case 5:
         case 6:
+        case 7:
           return variable.attributeType
         case 2:
           return variable.settings.isMultiSelect ? 3 : 2

@@ -19,4 +19,7 @@ class RuleTypes {
   public const TIME = 5;
 
   public const BOOL = 6;
+
+  public const AGGREGATE = 7;
+
 }
