@@ -27,6 +27,10 @@ section > .v-navigation-drawer .theme--dark.v-list-item {
   }
 }
 
+.theme--dark.v-icon{
+  opacity: 1 !important;
+}
+
 .v-list-item__action {
   display: flex;
   justify-content: center;
