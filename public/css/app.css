@@ -26,15 +26,9 @@ section > .v-navigation-drawer .theme--dark.v-list-item .v-list-item__action {
   margin-right: 10px;
 }
 
-.theme--dark.v-icon {
-  opacity: 1 !important;
-}
-
 .v-list-item__action {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-pack: center;
-          justify-content: center;
+  justify-content: center;
   align-content: center;
 }
 
@@ -110,7 +104,6 @@ section > .v-navigation-drawer .v-list:nth-child(2) > * {
 }
 
 .theme--light.v-toolbar {
-  background: -webkit-gradient(linear, left top, right top, from(#4059BE), color-stop(100%, #945CFB), to(#995CFE)) !important;
   background: linear-gradient(90deg, #4059BE 0%, #945CFB 100%, #995CFE 100%) !important;
   color: white !important;
 }
@@ -176,17 +169,16 @@ section {
 }
 
 .table-icons {
-  display: -webkit-box !important;
   display: flex !important;
-  -webkit-box-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
 
-.table-icons > a {
+.table-icons > a,
+.table-icons > button {
   margin: 0 5px;
 }
 
-.table-icons > a i {
+.table-icons i {
   padding-right: 5px;
 }
 
@@ -198,11 +190,8 @@ body > .notify-container {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  display: -webkit-box;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-direction: column;
+  flex-direction: column;
   max-width: 500px;
   width: calc(100% - 50px);
   right: 25px;
@@ -224,11 +213,8 @@ body > .notify-container .notify-element {
   max-width: 100%;
   padding: 15px;
   position: relative;
-  -webkit-box-align: center;
-          align-items: center;
-  display: -webkit-box;
+  align-items: center;
   display: flex;
-  -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 
@@ -251,8 +237,7 @@ body > .notify-container .notify-element.notify-type-3 {
 body > .notify-container .notify-element p {
   font-family: Roboto, sans-serif !important;
   margin: 0;
-  -webkit-box-flex: 1;
-          flex: 1;
+  flex: 1;
   font-size: 15px;
 }
 
@@ -262,7 +247,6 @@ body > .notify-container .notify-element .close {
   height: 32px;
   opacity: 0.5;
   margin-left: 5px;
-  -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 
@@ -282,12 +266,10 @@ body > .notify-container .notify-element .close:after {
 }
 
 body > .notify-container .notify-element .close:before {
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 body > .notify-container .notify-element .close:after {
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 

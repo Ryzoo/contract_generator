@@ -14,6 +14,8 @@ export default class Auth {
   }
 
   checkPermission (permission) {
+    console.log(permission, !this.store.getters.authUser)
+
     if (!this.store) { return true }
     if (!this.store.getters.authUser || !this.store.getters.authUser.permissions) { return false }
 

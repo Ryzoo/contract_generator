@@ -316,12 +316,6 @@ router.beforeEach((to, from, next) => {
     })
   }
 
-  if (to.meta && to.meta.access && !to.meta.access.every(z => auth.checkPermission(z))) {
-    next({
-      path: '/no-access'
-    })
-  }
-
   if (to.matched.some(record => record.meta.noRequireAuthorization)) {
     window.auth.checkAuth()
       .finally(() => {
@@ -332,6 +326,11 @@ router.beforeEach((to, from, next) => {
       window.auth.checkAuth()
         .then((returned) => {
           if (returned) {
+            if (to.meta && to.meta.access && !to.meta.access.every(z => auth.checkPermission(z))) {
+              next({
+                path: '/no-access'
+              })
+            }
             next()
           } else {
             next({

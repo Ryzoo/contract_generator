@@ -23,12 +23,12 @@
             </template>
             <template v-slot:item.action="{ item }">
               <div class="table-icons">
-                <v-btn color="primary" x-small outlined @click="$router.push(`/panel/settings/roles/${item.id}/edit`)">
-                  <v-icon x-small>fa-edit</v-icon>
+                <v-btn color="primary" small @click="$router.push(`/panel/settings/roles/${item.id}/edit`)">
+                  <v-icon small>fa-edit</v-icon>
                   {{ $t("base.button.edit") }}
                 </v-btn>
-                <v-btn color="error" x-small outlined @click="tryToRemove(item.id)">
-                  <v-icon x-small>fa-trash</v-icon>
+                <v-btn color="error" small @click="tryToRemove(item.id)">
+                  <v-icon small>fa-trash</v-icon>
                   {{ $t("base.button.remove") }}
                 </v-btn>
               </div>

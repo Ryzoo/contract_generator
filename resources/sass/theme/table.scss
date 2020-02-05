@@ -1,10 +1,12 @@
 .table-icons {
   display: flex !important;
   justify-content: center;
-  & > a {
+
+  & > a, & > button {
     margin: 0 5px;
-    & i{
-      padding-right: 5px;
-    }
+  }
+
+  i {
+    padding-right: 5px;
   }
 }

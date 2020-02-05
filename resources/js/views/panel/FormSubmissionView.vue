@@ -19,12 +19,12 @@
             </template>
             <template v-slot:item.action="{ item }">
               <div class="table-icons">
-                <v-btn x-small color="primary" outlined v-if="(item.status === 3 || item.status === 2) && item.render_url" type="application/octet-stream" :href="item.render_url" download>
-                  <v-icon x-small>fas fa-download</v-icon>
+                <v-btn color="primary" small v-if="(item.status === 3 || item.status === 2) && item.render_url" type="application/octet-stream" :href="item.render_url" download>
+                  <v-icon small>fas fa-download</v-icon>
                   {{$t('base.button.download')}}
                 </v-btn>
-                <v-btn x-small color="error" outlined v-if="(item.status === 4)" @click="tryOneMoreTime(item.id)">
-                  <v-icon x-small>fas fa-retweet</v-icon>
+                <v-btn color="error" small v-if="(item.status === 4)" @click="tryOneMoreTime(item.id)">
+                  <v-icon small>fas fa-retweet</v-icon>
                   {{$t('base.button.try_again')}}
                 </v-btn>
               </div>
