@@ -314,7 +314,7 @@ export default {
       const user = Object.assign({}, this.$store.getters.authUser)
       return {
         ...user,
-        roles: user ? user.roles.sort((a, b) => b.level - a.level)[0] || null : null
+        roles: (user && user.roles) ? user.roles.sort((a, b) => b.level - a.level)[0] || null : null
       }
     }
   },

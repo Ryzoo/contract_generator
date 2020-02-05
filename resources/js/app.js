@@ -1,7 +1,6 @@
 import { UserRoleEnum } from './additionalModules/Enums'
 import Mapper from './additionalModules/Mappers'
 import ConditionalParser from './additionalModules/ConditionalParser'
-import '@fortawesome/fontawesome-free/css/all.css'
 import vuetify from './plugins/vuetify'
 import Vue from 'vue'
 import 'vuetify/dist/vuetify.min.css'

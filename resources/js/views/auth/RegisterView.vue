@@ -45,7 +45,7 @@
           <template v-slot:label>
             {{ $t("base.field.rodoAccept") }}:
             <a target="_blank" href="http://google.pl" @click.stop>
-              {{ $t("base.link.rodo") }}
+              Rodo
             </a>
           </template>
         </v-checkbox>
@@ -53,7 +53,7 @@
           <template v-slot:label>
             {{ $t("base.field.regulationsAccept") }}:
             <a target="_blank" href="http://google.pl" @click.stop>
-              {{ $t("base.link.regulations") }}
+              Regulations
             </a>
           </template>
         </v-checkbox>
