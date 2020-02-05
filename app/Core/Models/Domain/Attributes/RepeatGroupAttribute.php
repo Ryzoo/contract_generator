@@ -68,7 +68,7 @@ class RepeatGroupAttribute extends Attribute implements IAggregableByAttributeAg
   }
 
   public function getOperationalValue(string $operation) {
-    $returnValue = 0;
+    $returnValue = null;
 
     foreach ($this->value as $attributes) {
       foreach ($attributes as $attribute) {
@@ -82,7 +82,7 @@ class RepeatGroupAttribute extends Attribute implements IAggregableByAttributeAg
     return $returnValue;
   }
 
-  private function aggregateValue(float $value, string $operator, Attribute $attribute) {
+  private function aggregateValue(?float $value, string $operator, Attribute $attribute) {
     switch ($operator) {
       case AggregateOperationType::ADD:
         $value = $this->add($value, $attribute, $operator);
@@ -101,20 +101,20 @@ class RepeatGroupAttribute extends Attribute implements IAggregableByAttributeAg
     return $value;
   }
 
-  public function add(float $value, Attribute $attribute, string $operator): float {
-    return $value + $attribute->getOperationalValue($operator);
+  public function add(?float $value, Attribute $attribute, string $operator): float {
+    return isset($value) ? $value + $attribute->getOperationalValue($operator) : $attribute->getOperationalValue($operator);
   }
 
-  public function subtract(float $value, Attribute $attribute, string $operator):float {
-    return $value - $attribute->getOperationalValue($operator);
+  public function subtract(?float $value, Attribute $attribute, string $operator):float {
+    return isset($value) ? $value - $attribute->getOperationalValue($operator) : $attribute->getOperationalValue($operator);
   }
 
-  public function multiply(float $value, Attribute $attribute, string $operator): float {
-    return $value * $attribute->getOperationalValue($operator);
+  public function multiply(?float $value, Attribute $attribute, string $operator): float {
+    return isset($value) ? $value * $attribute->getOperationalValue($operator) : $attribute->getOperationalValue($operator);
   }
 
-  public function divide(float $value, Attribute $attribute, string $operator): float {
-    $valueOp = $attribute->getOperationalValue($operator);
-    return $value / $valueOp === 0 ? 1 : $valueOp;
+  public function divide(?float $value, Attribute $attribute, string $operator): float {
+    $valueOp = $attribute->getOperationalValue($operator) === 0 ? 1 : $attribute->getOperationalValue($operator) ;
+    return isset($value) ? $value / $valueOp : $valueOp;
   }
 }

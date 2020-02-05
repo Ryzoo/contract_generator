@@ -69,27 +69,42 @@ class AggregateAttribute extends Attribute {
 
   public function subtract():float {
     $returnValue = 0;
-    foreach ($this->settings['operationItems'] as $item) {
-      $returnValue -= (float) $item;
+    foreach ($this->settings['operationItems'] as $key => $item) {
+      if($key === 0) {
+        $returnValue = (float) $item;
+      }
+      else {
+        $returnValue -= (float) $item;
+      }
     }
     return $returnValue;
   }
 
   public function multiply(): float {
     $returnValue = 0;
-    foreach ($this->settings['operationItems'] as $item) {
-      $returnValue *= (float) $item;
+    foreach ($this->settings['operationItems'] as $key => $item) {
+      if($key === 0) {
+        $returnValue = (float) $item;
+      }
+      else {
+        $returnValue *= (float) $item;
+      }
     }
     return $returnValue;
   }
 
   public function divide(): float {
     $returnValue = 0;
-    foreach ($this->settings['operationItems'] as $item) {
-      if ($item == 0) {
+    foreach ($this->settings['operationItems'] as $key => $item) {
+      if ($item === 0) {
         continue;
       }
-      $returnValue /= (float) $item;
+      if($key === 0) {
+        $returnValue = (float) $item;
+      }
+      else {
+        $returnValue /= (float) $item;
+      }
     }
     return $returnValue;
   }
