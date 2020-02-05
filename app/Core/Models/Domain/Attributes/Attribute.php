@@ -108,6 +108,8 @@ abstract class Attribute implements IAttribute {
         return new TimeAttribute();
       case AttributeType::BOOL:
         return new BoolAttribute();
+      case AttributeType::AGGREGATE:
+        return new AggregateAttribute();
     }
 
     throw new NotFoundException("Attribute type number:{$attributeType} was not found");
