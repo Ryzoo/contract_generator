@@ -57,7 +57,7 @@ export default {
       return this.contractItems.filter(x => {
         const textAccept = x.name.toLowerCase().includes(this.searchData.text.toLowerCase()) || x.description.toLowerCase().includes(this.searchData.text.toLowerCase())
         const categoriesAccept = this.searchData.category.every(y => x.categories.some(z => z.id === y))
-        return textAccept && categoriesAccept
+        return x.isAvailable && textAccept && categoriesAccept
       })
     }
   },

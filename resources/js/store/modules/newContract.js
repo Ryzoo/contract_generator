@@ -6,6 +6,7 @@ const defaultState = {
   contract: {
     name: '',
     description: '',
+    isAvailable: 0,
     categories: [],
     attributesList: [],
     blocks: [],
@@ -44,6 +45,7 @@ const mutations = {
     state.contract = {
       name: '',
       description: '',
+      isAvailable: 0,
       categories: [],
       attributesList: [],
       blocks: [],

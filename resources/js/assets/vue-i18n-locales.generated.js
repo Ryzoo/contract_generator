@@ -407,6 +407,7 @@ export default {
             "headers": {
                 "name": "Name",
                 "email": "Email",
+                "isAvailable": "",
                 "created": "Created",
                 "roles": "Roles",
                 "status": "Current status",

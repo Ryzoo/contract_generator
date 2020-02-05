@@ -1,64 +1,83 @@
 <template>
-    <v-flex xs12>
-        <v-layout row wrap>
-            <v-flex xs12 sm10 lg8 offset-sm1 offset-lg2>
-                <v-card class="pb-3" v-if="isLoaded">
-                    <v-toolbar dark color="primary">
-                        <v-toolbar-title class="white--text">{{ $t("form.contractAddForm.title") }}</v-toolbar-title>
-                    </v-toolbar>
-                    <v-card-text>
-                      <v-text-field
-                        prepend-icon="fa-file-signature"
-                        v-model="contract.name"
-                        :label="$t('form.contractAddForm.field.contract_name')"
-                        @change="saveContractDataToStore"
-                        required
-                      />
-                      <v-textarea
-                        prepend-icon="fa-align-center"
-                        v-model="contract.description"
-                        :label="$t('form.contractAddForm.field.contract_description')"
-                        @change="saveContractDataToStore"
-                        required
-                      />
-                      <v-select
-                        prepend-icon="fa-layer-group"
-                        v-model="contract.categories"
-                        @change="saveContractDataToStore"
-                        chips
-                        multiple
-                        dense
-                        deletable-chips
-                        :items="categories"
-                        :label="$t('form.contractAddForm.field.contract_categories')"
-                      />
-                      <ContractModuleConfiguration/>
-                    </v-card-text>
-                    <v-card-actions>
-                      <v-spacer/>
-                        <v-btn
-                            text
-                            @click="cancelAddContract"
-                            color="primary">
-                            {{ $t("base.button.back") }}
-                        </v-btn>
-                        <v-btn
-                            outlined
-                            @click="saveAndExit"
-                            color="primary">
-                            {{ $t("base.button.save_exit") }}
-                        </v-btn>
-                        <v-btn
-                            @click="saveAndBuild"
-                            color="primary">
-                            {{ $t("base.button.save_build") }}
-                        </v-btn>
-                    </v-card-actions>
-                </v-card>
-              <loader v-else/>
-            </v-flex>
-        </v-layout>
-    </v-flex>
+  <v-flex xs12>
+    <v-layout row wrap>
+      <v-flex xs12 sm10 lg8 offset-sm1 offset-lg2>
+        <v-card class="pb-3" v-if="isLoaded">
+          <v-toolbar dark color="primary" class="contract-header-builder">
+            <v-toolbar-title class="white--text">
+              {{ $t("form.contractAddForm.title") }}
+              <v-spacer></v-spacer>
+              <span>
+                <v-switch
+                  :false-value="0"
+                  :true-value="1"
+                  v-model="contract.isAvailable"
+                  @change="saveContractDataToStore"
+                  color="success"
+                  hide-details
+                  label="Should be available online?"
+                ></v-switch>
+              </span>
+            </v-toolbar-title>
+          </v-toolbar>
+          <v-card-text>
+            <v-text-field
+              prepend-icon="fa-file-signature"
+              v-model="contract.name"
+              outlined
+              dense
+              :label="$t('form.contractAddForm.field.contract_name')"
+              @change="saveContractDataToStore"
+              required
+            />
+            <v-textarea
+              prepend-icon="fa-align-center"
+              v-model="contract.description"
+              outlined
+              dense
+              :label="$t('form.contractAddForm.field.contract_description')"
+              @change="saveContractDataToStore"
+              required
+            />
+            <v-select
+              prepend-icon="fa-layer-group"
+              v-model="contract.categories"
+              outlined
+              dense
+              @change="saveContractDataToStore"
+              chips
+              multiple
+              deletable-chips
+              :items="categories"
+              :label="$t('form.contractAddForm.field.contract_categories')"
+            />
+            <ContractModuleConfiguration/>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer/>
+            <v-btn
+              text
+              @click="cancelAddContract"
+              color="primary">
+              {{ $t("base.button.back") }}
+            </v-btn>
+            <v-btn
+              outlined
+              @click="saveAndExit"
+              color="primary">
+              {{ $t("base.button.save_exit") }}
+            </v-btn>
+            <v-btn
+              @click="saveAndBuild"
+              color="primary">
+              {{ $t("base.button.save_build") }}
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+        <loader v-else/>
+      </v-flex>
+    </v-layout>
+  </v-flex>
 </template>
 
 <script>
@@ -166,6 +185,13 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss">
+  .contract-header-builder {
+    & > div > div {
+      width: 100%;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+    }
+  }
 </style>

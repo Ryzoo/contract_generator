@@ -21,6 +21,12 @@
                     item-key="id"
                     :items="contractItems"
                 >
+                    <template v-slot:item.isAvailable="{ item }">
+                      <div class="table-icons">
+                        <v-icon v-if="item.isAvailable" color="success">fas fa-power-off</v-icon>
+                        <v-icon v-else color="error">fas fa-power-off</v-icon>
+                      </div>
+                    </template>
                     <template v-slot:item.action="{ item }">
                         <div class="table-icons">
                           <v-btn color="primary" x-small outlined @click="goToEdit(item.id)">
@@ -68,6 +74,11 @@ export default {
     return {
       multiSelectedItems: [],
       headers: [
+        {
+          text: this.$t('base.headers.isAvailable'),
+          value: 'isAvailable',
+          width: '50px'
+        },
         {
           text: this.$t('base.headers.name'),
           value: 'name'
