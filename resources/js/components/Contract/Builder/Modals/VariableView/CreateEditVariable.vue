@@ -177,7 +177,7 @@ export default {
     },
     setSettingsForType () {
       this.settingsForType = this.getSettingsForType(this.attribute.attributeType)
-      this.attribute.settings = this.settingsForType
+      this.attribute.settings = this.getSettingsForType(this.attribute.attributeType)
     },
     getSettingsForType (type) {
       const attributeType = this.allAttributes.find(x => x.attributeType === type)
