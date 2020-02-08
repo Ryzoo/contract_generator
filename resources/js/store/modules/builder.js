@@ -37,6 +37,10 @@ const actions = {
   builder_editVariable: (context, data) => {
     context.commit('BUILDER_EDIT_VARIABLE', data)
   },
+  builder_addVariable: (context, data) => {
+    context.commit('BUILDER_ADD_VARIABLE', data)
+    context.commit('BUILDER_VARIABLE_INCREMENT_ID')
+  },
   builder_removeVariable: (context, data) => {
     context.commit('BUILDER_REMOVE_VARIABLE', data)
   },
@@ -50,11 +54,8 @@ const actions = {
 
 const mutations = {
   BUILDER_EDIT_VARIABLE: (state, data) => {
-    let isNew = true
-
     state.builder.variables = state.builder.variables.map((attribute) => {
       if (attribute.id === data.id) {
-        isNew = false
         return {
           ...data
         }
@@ -62,10 +63,9 @@ const mutations = {
 
       return attribute
     })
-
-    if (isNew) {
-      state.builder.variables.push(data)
-    }
+  },
+  BUILDER_ADD_VARIABLE: (state, data) => {
+    state.builder.variables.push(data)
   },
   BUILDER_SET_BLOCK: (state, data) => {
     state.builder.blocks = []

@@ -19,6 +19,7 @@ class RepeatGroupAttribute extends Attribute implements IAggregableByAttributeAg
       'lengthMin' => NULL,
       'lengthMax' => NULL,
       'required' => false,
+      'attributes' => [],
     ];
   }
 

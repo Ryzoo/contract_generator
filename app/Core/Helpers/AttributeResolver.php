@@ -25,31 +25,11 @@ class AttributeResolver {
     foreach ($attributeIdList[1] as $id) {
       $value = $this->getAttributeValueById((int) $id);
 
-      if(strpos($value, '<table') !== false){
-        $text = str_replace([
-          '<p>{' . $id . '}</p>',
-          '<p> {' . $id . '} </p>',
-          '<p>{' . $id . '} </p>',
-          '<p> {' . $id . '}</p>',
-          '{' . $id . '}</p>',
-          '{' . $id . '} </p>',
-          '{' . $id . '}'
-        ], [
-          '{' . $id . '}',
-          '{' . $id . '}',
-          '{' . $id . '}',
-          '{' . $id . '}',
-          '</p> {' . $id . '}',
-          '</p> {' . $id . '}',
-          $value
-        ], $text);
-      }else{
-        $text = str_replace([
-          '{' . $id . '}'
-        ], [
-          $value
-        ], $text);
-      }
+      $text = str_replace([
+        '{' . $id . '}'
+      ], [
+        $value
+      ], $text);
     }
 
     return $text;

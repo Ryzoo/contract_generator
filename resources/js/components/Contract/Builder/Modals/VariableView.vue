@@ -26,7 +26,7 @@
             @click:close="tryToRemoveAttribute(attribute)"
           >
             <b>[{{attribute.id}}]&nbsp;</b>
-            {{ attribute.attributeName}}
+            {{attribute.attributeName}}
           </v-chip>
       </div>
       <v-alert
@@ -65,13 +65,15 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-
     <v-dialog
       v-model="showAddEditModal"
       scrollable
       max-width="500px">
-      <CreateEditVariable :isNewAttribute="isNewAttribute" :editAttribute="attribute"
-                          :attributesList="$store.getters.builder_allVariables" @close="showAddEditModal = false"/>
+      <CreateEditVariable
+        v-if="showAddEditModal"
+        :attribute="attribute"
+        @close="showAddEditModal = false"
+      />
     </v-dialog>
   </v-card>
 </template>
@@ -89,10 +91,7 @@ export default {
       searchText: '',
       showAddEditModal: false,
       deleteDialog: false,
-      variableOptions: [],
       attribute: null,
-      allAttributes: [],
-      isNewAttribute: true,
       removedAttribute: null
     }
   },
@@ -112,7 +111,6 @@ export default {
     },
     addNewAttribute () {
       this.attribute = null
-      this.isNewAttribute = true
       this.showAddEditModal = true
     },
     pushCloseEvent () {
@@ -123,7 +121,6 @@ export default {
       this.attribute = {
         ...attribute
       }
-      this.isNewAttribute = false
       this.showAddEditModal = true
     }
   }

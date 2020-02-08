@@ -43,7 +43,7 @@ class PdfRenderer {
   private $contractSettings;
 
   public static function blockHtmlTemplate(string $blockHtml): string {
-    return $blockHtml . '<br/>';
+    return $blockHtml . '';
   }
 
   public function __construct() {
@@ -68,7 +68,12 @@ class PdfRenderer {
     $this->addTag('/body');
     $this->addTag('/html');
 
-    $this->pdfInstance->loadHTML($this->fullHtmlText);
+    $html = str_replace(['<p>', '</p>'], [
+      '<div>',
+      '</div>'
+    ], $this->fullHtmlText);
+
+    $this->pdfInstance->loadHTML($html);
     return $this->pdfInstance;
   }
 

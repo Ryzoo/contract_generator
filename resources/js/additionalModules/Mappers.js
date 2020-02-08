@@ -4,6 +4,8 @@ import {
   BlockTypeEnum,
   ContractModulesAvailablePlace
 } from './Enums'
+import AggregateAttribute
+  from "../components/Contract/Builder/Modals/VariableView/VariableSettings/AggregateAttribute";
 
 class Mapper {
   static getBlockName (type) {
@@ -44,6 +46,8 @@ class Mapper {
         return 'TimeAttribute'
       case AttributeTypeEnum.BOOL:
         return 'BoolAttribute'
+      case AttributeTypeEnum.AGGREGATE:
+        return 'AggregateAttribute'
       default:
         return 'NotFoundAttribute'
     }

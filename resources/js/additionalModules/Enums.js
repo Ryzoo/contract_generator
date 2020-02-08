@@ -23,7 +23,8 @@ export const AttributeTypeEnum = {
   REPEAT_GROUP: 3,
   DATE: 4,
   TIME: 5,
-  BOOL: 6
+  BOOL: 6,
+  AGGREGATE: 7
 }
 
 export const ConditionalEnum = {

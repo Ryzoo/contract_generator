@@ -1,4 +1,8 @@
-import { ConditionalEnum, FormElementsEnum } from '../../additionalModules/Enums'
+import {
+  AttributeTypeEnum,
+  ConditionalEnum,
+  FormElementsEnum
+} from '../../additionalModules/Enums'
 import AttributeValidator from '../../components/Contract/Form/Validators/AttributeValidator'
 
 const defaultState = {
@@ -34,6 +38,14 @@ const mutations = {
 
     state.formElements = state.formElements.map(e => {
       const existFormElement = newElements.find(x => x.id === e.id)
+      if (e.attribute.attributeType === AttributeTypeEnum.AGGREGATE) {
+        if (existFormElement) {
+          existFormElement.isValid = true
+        } else {
+          e.isValid = true
+        }
+      }
+
       return existFormElement || e
     })
   },

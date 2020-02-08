@@ -12,9 +12,9 @@
     <v-divider class="my-3"/>
     <small class="error--text" v-if="validationError.length">{{validationError}}</small>
     <v-divider class="my-3" v-if="validationError.length"/>
-    <AddForm @add="addValue" :attributes="attribute.content"/>
+    <AddForm @add="addValue" :attributes="attribute.settings.attributes"/>
     <v-divider class="my-3"/>
-    <ValueList @remove="removeElement" :values="valueList"/>
+    <ValueList class="mb-3" @remove="removeElement" :values="valueList"/>
   </v-col>
 </template>
 

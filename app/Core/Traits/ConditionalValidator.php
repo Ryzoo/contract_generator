@@ -57,7 +57,7 @@ trait ConditionalValidator {
     $self = $this;
 
     $contentWithVariables = collect(explode(' ', $content))
-      ->map(static function ($textElements) use ($self, $content) {
+      ->map(static function ($textElements) use ($self) {
         preg_match('/{(\d+)}/', $textElements, $matches);
         if (isset($matches[1])) {
           $var = $self->getVariableValue((int) $matches[1]);
