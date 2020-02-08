@@ -1,3 +1,4 @@
+import '@fortawesome/fontawesome-free/css/all.css'
 import { UserRoleEnum } from './additionalModules/Enums'
 import Mapper from './additionalModules/Mappers'
 import ConditionalParser from './additionalModules/ConditionalParser'
