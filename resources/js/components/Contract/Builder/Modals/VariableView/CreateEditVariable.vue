@@ -177,7 +177,7 @@ export default {
     },
     setSettingsForType () {
       this.settingsForType = this.getSettingsForType(this.attribute.attributeType)
-      this.attribute.settings = this.getSettingsForType(this.attribute.attributeType)
+      this.attribute.settings = this.settingsForType
     },
     getSettingsForType (type) {
       const attributeType = this.allAttributes.find(x => x.attributeType === type)
@@ -225,8 +225,6 @@ export default {
         Object.keys(this.settingsForType).forEach(key => {
           newSettings[key] = this.attribute.settings[key]
         })
-
-        this.attribute.settings = newSettings
 
         if (this.attribute.attributeType === AttributeTypeEnum.REPEAT_GROUP) {
           this.attribute.content = this.selectedVariables
