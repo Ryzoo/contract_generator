@@ -68,13 +68,16 @@ class PdfRenderer {
     $this->addTag('/body');
     $this->addTag('/html');
 
-    $html = str_replace(['<p>', '</p>'], [
-      '<div>',
-      '</div>'
-    ], $this->fullHtmlText);
-
+    $html = $this->fixTag($this->fullHtmlText);
     $this->pdfInstance->loadHTML($html);
     return $this->pdfInstance;
+  }
+
+  private function fixTag(string $html):string{
+    return str_replace(['<p>', '</p>'], [
+      "<div style='margin-bottom: 5px'>",
+      '</div>'
+    ], $html);
   }
 
   private function configurePdf(): void {
