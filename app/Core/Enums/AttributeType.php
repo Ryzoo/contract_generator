@@ -15,7 +15,7 @@ class AttributeType {
 
   public const SELECT = 2;
 
-  public const REPEAT_GROUP = 3;
+  public const ATTRIBUTE_GROUP = 3;
 
   public const DATE = 4;
 

@@ -14,20 +14,40 @@
       ></v-text-field>
       <div v-if="currentVariable.length > 0"
            class="text-center">
-          <v-chip
-            class="d-block ma-1"
-            label
-            close
-            small
-            v-for="attribute in currentVariable"
-            :key="attribute.id"
-            color="primary"
-            @click="editVariable(attribute)"
-            @click:close="tryToRemoveAttribute(attribute)"
-          >
-            <b>[{{attribute.id}}]&nbsp;</b>
-            {{attribute.attributeName}}
-          </v-chip>
+        <v-row>
+          <v-col cols="12" md="6">
+            <h4>Attributes</h4>
+            <v-chip
+              class="d-block ma-1"
+              label
+              close
+              small
+              v-for="attribute in currentVariable.filter(x => x.attributeType !== AttributeTypeEnum.ATTRIBUTE_GROUP)"
+              :key="attribute.id"
+              color="primary"
+              @click="editVariable(attribute)"
+              @click:close="tryToRemoveAttribute(attribute)"
+            >
+              {{attribute.attributeName}}
+            </v-chip>
+          </v-col>
+          <v-col cols="12" md="6">
+            <h4>Attributes group</h4>
+            <v-chip
+              class="d-block ma-1"
+              label
+              close
+              small
+              v-for="attribute in currentVariable.filter(x => x.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP)"
+              :key="attribute.id"
+              color="primary"
+              @click="editVariable(attribute)"
+              @click:close="tryToRemoveAttribute(attribute)"
+            >
+              {{attribute.attributeName}}
+            </v-chip>
+          </v-col>
+        </v-row>
       </div>
       <v-alert
         v-else
@@ -80,6 +100,7 @@
 
 <script>
 import CreateEditVariable from './VariableView/CreateEditVariable'
+import { AttributeTypeEnum } from '../../../../additionalModules/Enums'
 
 export default {
   name: 'VariableView',
@@ -88,6 +109,7 @@ export default {
   },
   data () {
     return {
+      AttributeTypeEnum: AttributeTypeEnum,
       searchText: '',
       showAddEditModal: false,
       deleteDialog: false,

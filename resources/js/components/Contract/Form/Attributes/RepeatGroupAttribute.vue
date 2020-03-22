@@ -9,12 +9,17 @@
       </v-tooltip>
     </h3>
     <small>{{attribute.description}}</small>
+
     <v-divider class="my-3"/>
     <small class="error--text" v-if="validationError.length">{{validationError}}</small>
+
     <v-divider class="my-3" v-if="validationError.length"/>
-    <AddForm @add="addValue" :attributes="attribute.settings.attributes"/>
-    <v-divider class="my-3"/>
-    <ValueList class="mb-3" @remove="removeElement" :values="valueList"/>
+    <AddForm @add="addValue" @change="changeMulti" :attributes="attribute.settings.attributes" :is-multi-use="attribute.isMultiUse"/>
+
+    <div v-if="attribute.isMultiUse">
+      <v-divider class="my-3"/>
+      <ValueList class="mb-3" @remove="removeElement" :values="valueList"/>
+    </div>
   </v-col>
 </template>
 
@@ -40,6 +45,10 @@ export default {
     }
   },
   methods: {
+    changeMulti (newValue) {
+      this.valueList = [newValue]
+      this.changeValue()
+    },
     addValue (newValue) {
       this.valueList.push(newValue)
       this.changeValue()

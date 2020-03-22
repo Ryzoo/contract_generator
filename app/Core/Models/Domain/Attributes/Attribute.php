@@ -6,6 +6,7 @@ namespace App\Core\Models\Domain\Attributes;
 
 use App\Core\Contracts\IAttribute;
 use App\Core\Enums\AttributeType;
+use App\Core\Enums\MultiUseRenderType;
 use App\Core\Models\Domain\Conditional\Conditional;
 use Exception;
 use Illuminate\Support\Collection;
@@ -68,6 +69,14 @@ abstract class Attribute implements IAttribute {
    */
   public $toAnonymize;
 
+  /**
+   * @var bool
+   */
+  public $isMultiUse;
+
+
+  public $multiUseRenderType;
+
   abstract protected function buildSettings();
   public function resolveAttributesInSettings(Collection $formElements): void {}
 
@@ -79,6 +88,8 @@ abstract class Attribute implements IAttribute {
     $this->value = NULL;
     $this->id = 0;
     $this->toAnonymize = FALSE;
+    $this->isMultiUse = FALSE;
+    $this->multiUseRenderType = MultiUseRenderType::COMMA_SEPARATED;
     $this->placeholder = '';
     $this->defaultValue = NULL;
     $this->description = '';
@@ -102,7 +113,7 @@ abstract class Attribute implements IAttribute {
         return new TextAttribute();
       case AttributeType::SELECT:
         return new SelectAttribute();
-      case AttributeType::REPEAT_GROUP:
+      case AttributeType::ATTRIBUTE_GROUP:
         return new RepeatGroupAttribute();
       case AttributeType::DATE:
         return new DateAttribute();
@@ -154,6 +165,8 @@ abstract class Attribute implements IAttribute {
     $attribute->conditionals = isset($value['conditionals']) ? Conditional::getListFromString(json_encode($value['conditionals'], JSON_THROW_ON_ERROR, 512)) : [];
     $attribute->id = isset($value['id']) ? (int) $value['id'] : -1;
     $attribute->toAnonymize = $value['toAnonymize'] ?? FALSE;
+    $attribute->isMultiUse = $value['isMultiUse'] ?? FALSE;
+    $attribute->multiUseRenderType = $value['multiUseRenderType'] ?? MultiUseRenderType::COMMA_SEPARATED;
     $attribute->description = $value['description'] ?? '';
     $attribute->additionalInformation = $value['additionalInformation'] ?? "";
     $attribute->defaultValue = $value['defaultValue'] ?? NULL;

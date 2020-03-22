@@ -20,7 +20,7 @@ export const AttributeTypeEnum = {
   NUMBER: 0,
   TEXT: 1,
   SELECT: 2,
-  REPEAT_GROUP: 3,
+  ATTRIBUTE_GROUP: 3,
   DATE: 4,
   TIME: 5,
   BOOL: 6,
@@ -47,4 +47,10 @@ export const ContractModulesAvailablePlace = {
   PRE_FORM: 0,
   POST_FORM: 1,
   FINISHER: 2
+}
+
+export const MultiUseRenderType = {
+  LIST: 0,
+  TABLE: 1,
+  COMMA_SEPARATED: 2
 }

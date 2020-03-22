@@ -71,6 +71,34 @@
             </v-expansion-panel>
           </v-expansion-panels>
         </v-col>
+        <v-col cols="12">
+          <v-expansion-panels>
+            <v-expansion-panel>
+              <v-expansion-panel-header>
+                Multi use
+              </v-expansion-panel-header>
+              <v-expansion-panel-content>
+                <v-row>
+                  <v-col cols="12">
+                    <v-switch class="mt-0" hide-details dense outlined v-model="attributeData.isMultiUse" :label="$t('form.variableForm.isMultiUse')"></v-switch>
+                  </v-col>
+                  <v-col cols="12" v-if="attributeData.isMultiUse">
+                    <v-select
+                      persistent-hint
+                      :items="multiRenderTypeItems"
+                      :hint="$t('form.variableForm.multiRenderTypeHint')"
+                      hide-details
+                      dense
+                      outlined
+                      v-model="attributeData.multiUseRenderType"
+                      :label="$t('form.variableForm.multiRenderType')"
+                    />
+                  </v-col>
+                </v-row>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
+        </v-col>
       </v-row>
     </v-card-text>
 
@@ -84,6 +112,7 @@
 
 <script>
 import VariableSettings from './VariableSettings'
+import { MultiUseRenderType } from '../../../../../additionalModules/Enums'
 
 export default {
   name: 'CreateEditVariable',
@@ -95,6 +124,20 @@ export default {
   },
   data () {
     return {
+      multiRenderTypeItems: [
+        {
+          text: 'List',
+          value: MultiUseRenderType.LIST.toString()
+        },
+        {
+          text: 'Comma separated',
+          value: MultiUseRenderType.COMMA_SEPARATED.toString()
+        },
+        {
+          text: 'Table',
+          value: MultiUseRenderType.TABLE.toString()
+        }
+      ],
       isLoading: false,
       variableTypeList: [],
       isNew: !this.attribute,
@@ -157,6 +200,8 @@ export default {
         placeholder: '',
         description: '',
         toAnonymize: '',
+        isMultiUse: false,
+        multiUseRenderType: null,
         settings: {}
       }
     },

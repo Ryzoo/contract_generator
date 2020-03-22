@@ -38,7 +38,7 @@ class Mapper {
         return 'TextAttribute'
       case AttributeTypeEnum.SELECT:
         return 'SelectAttribute'
-      case AttributeTypeEnum.REPEAT_GROUP:
+      case AttributeTypeEnum.ATTRIBUTE_GROUP:
         return 'RepeatGroupAttribute'
       case AttributeTypeEnum.DATE:
         return 'DateAttribute'

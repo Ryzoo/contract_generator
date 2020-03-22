@@ -23,27 +23,6 @@ export default {
   components: {
     BoolAttribute, DateAttribute, NumberAttribute, RepeatGroupAttribute, SelectAttribute, TextAttribute, TimeAttribute, AggregateAttribute
   },
-  data () {
-    return {
-      numberTypeFormatList: [
-        { text: 'Integer number', value: 'int' },
-        { text: 'Float number', value: 'float' }
-      ],
-      operationTypeList: [
-        { text: 'Add', value: 'add' },
-        { text: 'Subtract', value: 'subtract' },
-        { text: 'Multiply', value: 'multiply' },
-        { text: 'Divide', value: 'divide' }
-      ],
-      availableSettings: [
-        'valueMin', 'valueMax',
-        'lengthMin', 'lengthMax',
-        'isMultiSelect', 'required',
-        'operationItems', 'operationReturnFormatType',
-        'operationType', 'precision'
-      ]
-    }
-  },
   methods: {
     saveData (settings) {
       this.$emit('save', settings)

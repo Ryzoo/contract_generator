@@ -7,11 +7,12 @@ namespace App\Core\Models\Domain\Attributes;
 use App\Core\Contracts\IAggregableByAttributeAggregator;
 use App\Core\Enums\AggregateOperationType;
 use App\Core\Enums\AttributeType;
+use App\Core\Helpers\MultiRender;
 
 class RepeatGroupAttribute extends Attribute implements IAggregableByAttributeAggregator {
 
   public function __construct() {
-    $this->initialize(AttributeType::REPEAT_GROUP);
+    $this->initialize(AttributeType::ATTRIBUTE_GROUP);
   }
 
   protected function buildSettings() {
@@ -24,48 +25,7 @@ class RepeatGroupAttribute extends Attribute implements IAggregableByAttributeAg
   }
 
   public function getValue() {
-    $attributesValue = collect();
-    $attributesName = collect();
-
-    foreach ($this->value as $attributes) {
-      $attributeValue = collect();
-
-      /**
-       * @var Attribute $attribute
-       */
-      foreach ($attributes as $attribute) {
-        $attributeParse = Attribute::getFromString((array) $attribute);
-
-        if ($attributesName->count() < count($attributes)) {
-          $attributesName->push($attributeParse->attributeName);
-        }
-
-        $attributeValue->push($attributeParse->getValue());
-      }
-
-      $attributesValue->push($attributeValue);
-    }
-
-    return $this->prepareHTMLTable($attributesValue, $attributesName);
-  }
-
-  private function prepareHTMLTable($itemsList, $headers) {
-    $header = '<tr>';
-    foreach ($headers as $item) {
-      $header .= "<th>$item</th>";
-    }
-    $header .= '</tr>';
-
-    $body = '';
-    foreach ($itemsList as $items) {
-      $body .= '<tr>';
-      foreach ($items as $item) {
-        $body .= "<td>$item</td>";
-      }
-      $body .= '</tr>';
-    }
-
-    return "<br/><table width='100%'><thead>$header</thead><tbody>$body</tbody></table>";
+    return MultiRender::renderToHTML($this->value, $this->multiUseRenderType);
   }
 
   public function getOperationalValue(string $operation) {

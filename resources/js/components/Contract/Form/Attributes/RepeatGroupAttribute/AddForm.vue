@@ -13,7 +13,7 @@
                     }"
         >
         </component>
-        <v-row class="justify-center">
+        <v-row class="justify-center" v-if="isMultiUse">
             <v-btn dense color="primary" @click="add">{{$t("base.button.addElement")}}</v-btn>
         </v-row>
     </v-row>
@@ -28,7 +28,7 @@ import RepeatGroupAttribute from '../../Attributes/RepeatGroupAttribute'
 
 export default {
   name: 'AddForm',
-  props: ['attributes'],
+  props: ['attributes', 'isMultiUse'],
   components: {
     NumberAttribute,
     TextAttribute,
@@ -51,6 +51,14 @@ export default {
           }
           return x
         })
+
+        if (!this.isMultiUse) {
+          const isAllValid = this.attributesList.every(x => this.isValid(x.value, x))
+
+          if (isAllValid) {
+            this.$emit('change', Object.assign([], this.attributesList))
+          }
+        }
       }
     },
     isValid (newValue, attribute) {
