@@ -38,7 +38,7 @@ export default {
     selectedAttributes () {
       return this.settingsData.attributes ? this.settingsData.attributes.map((x) => ({
         text: x.attributeName,
-        value: x.id
+        value: parseInt(x.id)
       })) : []
     },
     attributesToAggregate () {

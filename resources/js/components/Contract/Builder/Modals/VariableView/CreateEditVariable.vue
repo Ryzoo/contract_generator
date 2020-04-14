@@ -82,7 +82,10 @@
                   <v-col cols="12">
                     <v-switch class="mt-0" hide-details dense outlined v-model="attributeData.isMultiUse" :label="$t('form.variableForm.isMultiUse')"></v-switch>
                   </v-col>
-                  <v-col cols="12" v-if="attributeData.isMultiUse">
+                  <v-col cols="12">
+                    <v-switch class="mt-0" hide-details dense outlined v-model="attributeData.isInline" :label="$t('form.variableForm.isInline')"></v-switch>
+                  </v-col>
+                  <v-col cols="12" v-if="attributeData.isInline">
                     <v-select
                       persistent-hint
                       :items="multiRenderTypeItems"
@@ -201,6 +204,7 @@ export default {
         description: '',
         toAnonymize: '',
         isMultiUse: false,
+        isInline: false,
         multiUseRenderType: null,
         settings: {}
       }

@@ -17,6 +17,7 @@ return [
     'type' => 'Type',
     'isRequired' => 'Is required?',
     'isMultiSelect' => 'Is multi select?',
+    'isInline' => 'Inline?',
     'lengthMin' => 'Min length',
     'lengthMax' => 'Max length',
     'valueMin' => 'Min value',
