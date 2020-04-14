@@ -6,6 +6,8 @@ namespace App\Core\Models\Domain\Attributes;
 
 use App\Core\Contracts\IAggregableByAttributeAggregator;
 use App\Core\Enums\AttributeType;
+use App\Core\Enums\MultiUseRenderType;
+use App\Core\Helpers\MultiRender;
 
 class NumberAttribute extends Attribute implements IAggregableByAttributeAggregator {
 
@@ -15,17 +17,20 @@ class NumberAttribute extends Attribute implements IAggregableByAttributeAggrega
 
   protected function buildSettings() {
     $this->settings = [
+      'isInline' => FALSE,
+      'isMultiUse' => FALSE,
       'valueMin' => NULL,
       'valueMax' => NULL,
-      'required' => false,
+      'required' => FALSE,
+      'multiUseRenderType' => MultiUseRenderType::COMMA_SEPARATED,
     ];
   }
 
   public function getOperationalValue(string $operation) {
-    return $this->getValue();
+    return collect($this->value)->map(static function($value){ return (float) $value; })->sum();
   }
 
-  public function getValue() {
-    return (float) $this->value;
+  public function valueParser($value) {
+    return (bool) $this->settings['isMultiUse'] ? MultiRender::renderToHTML($value, $this->settings['multiUseRenderType'], false) : (float) $value;
   }
 }

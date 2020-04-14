@@ -69,16 +69,10 @@ abstract class Attribute implements IAttribute {
    */
   public $toAnonymize;
 
-  /**
-   * @var bool
-   */
-  public $isMultiUse;
-
-
-  public $multiUseRenderType;
-
   abstract protected function buildSettings();
-  public function resolveAttributesInSettings(Collection $formElements): void {}
+
+  public function resolveAttributesInSettings(Collection $formElements): void {
+  }
 
   protected function initialize(int $attributeType) {
     $this->attributeType = $attributeType;
@@ -88,8 +82,6 @@ abstract class Attribute implements IAttribute {
     $this->value = NULL;
     $this->id = 0;
     $this->toAnonymize = FALSE;
-    $this->isMultiUse = FALSE;
-    $this->multiUseRenderType = MultiUseRenderType::COMMA_SEPARATED;
     $this->placeholder = '';
     $this->defaultValue = NULL;
     $this->description = '';
@@ -165,8 +157,6 @@ abstract class Attribute implements IAttribute {
     $attribute->conditionals = isset($value['conditionals']) ? Conditional::getListFromString(json_encode($value['conditionals'], JSON_THROW_ON_ERROR, 512)) : [];
     $attribute->id = isset($value['id']) ? (int) $value['id'] : -1;
     $attribute->toAnonymize = $value['toAnonymize'] ?? FALSE;
-    $attribute->isMultiUse = $value['isMultiUse'] ?? FALSE;
-    $attribute->multiUseRenderType = $value['multiUseRenderType'] ?? MultiUseRenderType::COMMA_SEPARATED;
     $attribute->description = $value['description'] ?? '';
     $attribute->additionalInformation = $value['additionalInformation'] ?? "";
     $attribute->defaultValue = $value['defaultValue'] ?? NULL;
@@ -180,6 +170,10 @@ abstract class Attribute implements IAttribute {
   }
 
   public function getValue() {
-    return $this->value;
+    return $this->valueParser($this->value);
+  }
+
+  public function valueParser($value) {
+    return $value;
   }
 }

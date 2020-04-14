@@ -9,8 +9,8 @@ use App\Core\Models\Domain\Attributes\Attribute;
 
 class MultiRender {
 
-  public static function renderToHTML(array $value, $type):string {
-    $value = self::prepareValue($value);
+  public static function renderToHTML(array $value, $type, $valueAsAttributesArray = true):string {
+    $value = $valueAsAttributesArray ? self::prepareAttributeValue($value) : self::prepareArrayValue($value);
 
     switch ($type){
       case MultiUseRenderType::TABLE:
@@ -24,7 +24,11 @@ class MultiRender {
     return 'error when parse multi use';
   }
 
-  public static function prepareValue(array $value) {
+  public static function prepareArrayValue(array $value):array {
+
+  }
+
+  public static function prepareAttributeValue(array $value):array {
     $attributesValue = collect();
     $attributesName = collect();
 
