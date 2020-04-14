@@ -1,82 +1,98 @@
 <template>
-  <v-col cols="12" :class="{'repeat-group-container': true, 'error-is': validationError.length}">
-    <h3 class="attribute-header">{{attribute.attributeName}}
-      <v-tooltip right v-if="attribute.additionalInformation">
-        <template v-slot:activator="{ on }">
-          <v-icon color="primary" dark v-on="on">fa-question-circle</v-icon>
-        </template>
-        <span>{{attribute.additionalInformation}}</span>
-      </v-tooltip>
-    </h3>
-    <small>{{attribute.description}}</small>
-
-    <v-divider class="my-3"/>
-    <small class="error--text" v-if="validationError.length">{{validationError}}</small>
-
-    <v-divider class="my-3" v-if="validationError.length"/>
-    <AddForm @add="addValue" @change="changeMulti" :attributes="attribute.settings.attributes" :is-multi-use="attribute.isMultiUse"/>
-
-    <div v-if="attribute.isMultiUse">
-      <v-divider class="my-3"/>
-      <ValueList class="mb-3" @remove="removeElement" :values="valueList"/>
-    </div>
-  </v-col>
+  <v-row class="group-attribute">
+    <h3>{{attribute.attributeName}}</h3>
+    <v-col cols="12" v-for="(attribute, index) in currentValue" :key="index">
+      <component
+         :is="Mapper.getAttributeComponentName(attribute.attributeType)"
+         v-bind="{
+            attribute: attribute,
+            validationError: validationErrors[index]
+         }"
+         @change-value="(newValue)=>{
+            changeValue(newValue.newValue, attribute)
+        }"
+      />
+    </v-col>
+  </v-row>
 </template>
 
 <script>
-import AddForm from './RepeatGroupAttribute/AddForm'
-import ValueList from './RepeatGroupAttribute/ValueList'
+import NumberAttribute from './NumberAttribute'
+import TextAttribute from './TextAttribute'
+import SelectAttribute from './SelectAttribute'
+import AttributeValidator from '../Validators/AttributeValidator'
+import RepeatGroupAttribute from './RepeatGroupAttribute'
 
 export default {
   name: 'RepeatGroupAttribute',
-  props: ['attribute', 'validationError'],
+  props: ['attribute'],
   components: {
-    AddForm,
-    ValueList
+    NumberAttribute,
+    TextAttribute,
+    SelectAttribute,
+    RepeatGroupAttribute
   },
   data () {
     return {
-      valueList: []
-    }
-  },
-  watch: {
-    attribute (attribute) {
-      this.valueList = attribute.value ? attribute.value : []
+      defaultValue: JSON.stringify(this.attribute.settings.attributes),
+      currentValue: this.attribute.settings.attributes,
+      validationErrors: [],
+      resetNow: false
     }
   },
   methods: {
-    changeMulti (newValue) {
-      this.valueList = [newValue]
-      this.changeValue()
+    changeValue (newValue, attribute) {
+      this.currentValue = JSON.stringify(this.currentValue.map(x => {
+        if (x.attributeName === attribute.attributeName) {
+          x.value = newValue
+        }
+        return x
+      }))
+
+      this.currentValue = JSON.parse(this.currentValue)
+
+      const isValid = this.currentValue.every((attr, index) => this.isValid(attr.value, attr, index))
+
+      if (this.resetNow) {
+        this.resetNow = false
+      }
+
+      this.$emit('change-value', {
+        newValue: this.currentValue,
+        isValid
+      })
     },
-    addValue (newValue) {
-      this.valueList.push(newValue)
-      this.changeValue()
+    isValid (newValue, attribute, index) {
+      const validatorResult = AttributeValidator.validate(attribute, newValue)
+      if (!this.resetNow) {
+        this.validationErrors[index] = validatorResult.errorMessage
+      }
+      return validatorResult.status
     },
-    removeElement (element) {
-      this.valueList = this.valueList.filter(x => x !== element)
-      this.changeValue()
-    },
-    changeValue () {
-      this.$emit('change-value', this.valueList)
+    resetForm () {
+      this.resetNow = true
+      this.currentValue = JSON.parse(this.defaultValue)
+      this.validationError = ''
     }
   }
 }
 </script>
 
-<style scoped>
-  .attribute-header{
-    font-size: 16px;
-    font-weight: 300;
-  }
+<style lang="scss">
+  .row.group-attribute {
+    border: 1px solid #c7c7c7;
+    border-radius: 5px;
+    padding-top: 15px;
+    position: relative;
+    margin: 10px 0;
 
-  .repeat-group-container {
-    border: 2px solid #dadada;
-    padding: 25px;
-    border-radius: 10px;
-  }
-
-  .repeat-group-container.error-is {
-    border: 2px solid #ff675f;
+    & > h3 {
+      position: absolute;
+      color: #7d7d7d;
+      left: 5px;
+      top: -15px;
+      background: white;
+      padding: 0 10px;
+    }
   }
 </style>

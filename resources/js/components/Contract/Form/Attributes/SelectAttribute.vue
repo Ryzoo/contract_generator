@@ -1,18 +1,16 @@
 <template>
-    <v-col cols="12">
-        <v-autocomplete
+    <v-autocomplete
             :items="this.attribute.settings.items"
             outlined
             :error="validationError.length > 0"
             :error-messages="validationError"
-            :label="attribute.attributeName"
-            :value="currentValue"
+            :label="attribute.settings.required ? attribute.attributeName+'*' : attribute.attributeName"
+            v-model="currentValue"
             :hint="attribute.description"
             :persistent-hint="!!attribute.description"
             :multiple="!!attribute.settings.isMultiSelect"
-            :dense="dense"
+            dense
             :placeholder="attribute.placeholder ? String(attribute.placeholder) : ''"
-            @change="changeValue"
         >
             <template v-slot:append-outer v-if="attribute.additionalInformation && attribute.additionalInformation.length > 0">
                 <v-tooltip right>
@@ -23,21 +21,44 @@
                 </v-tooltip>
             </template>
         </v-autocomplete>
-    </v-col>
 </template>
 
 <script>
+import AttributeValidator from '../Validators/AttributeValidator'
+
 export default {
   name: 'SelectAttribute',
-  props: ['attribute', 'validationError', 'dense'],
+  props: ['attribute'],
   data () {
     return {
-      currentValue: this.attribute.value ? this.attribute.value.split(',') : []
+      currentValue: this.attribute.settings.isMultiUse ? null : (this.attribute.value ? this.attribute.value.split(',') : []),
+      validationError: '',
+      resetNow: false
+    }
+  },
+  watch: {
+    currentValue (newValue) {
+      const isValid = this.isValid(Array.isArray(newValue) ? newValue.join(',') : newValue)
+      this.$emit('change-value', {
+        newValue: Array.isArray(newValue) ? newValue.join(',') : newValue,
+        isValid
+      })
     }
   },
   methods: {
-    changeValue (newValue) {
-      this.$emit('change-value', Array.isArray(newValue) ? newValue.join(',') : newValue)
+    isValid (newValue) {
+      const validatorResult = AttributeValidator.validate(this.attribute, newValue)
+      if (this.resetNow) {
+        this.resetNow = false
+      } else {
+        this.validationError = validatorResult.errorMessage
+      }
+      return validatorResult.status
+    },
+    resetForm () {
+      this.resetNow = true
+      this.currentValue = null
+      this.validationError = ''
     }
   }
 }

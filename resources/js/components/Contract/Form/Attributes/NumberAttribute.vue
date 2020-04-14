@@ -1,17 +1,15 @@
 <template>
-    <v-col cols="12" >
-        <v-text-field
-            :label="attribute.attributeName"
-            :value="attribute.value"
+    <v-text-field
+            :label="attribute.settings.required ? attribute.attributeName+'*' : attribute.attributeName"
+            v-model="currentValue"
             :placeholder="attribute.placeholder ? String(attribute.placeholder) : ''"
             :error="validationError.length > 0"
             :error-messages="validationError"
             outlined
-            :dense="dense"
+            dense
             :hint="attribute.description"
             :persistent-hint="!!attribute.description"
             type="number"
-            @change="changeValue"
         >
             <template v-slot:append-outer v-if="attribute.additionalInformation && attribute.additionalInformation.length > 0">
                 <v-tooltip right>
@@ -22,16 +20,44 @@
                 </v-tooltip>
             </template>
         </v-text-field>
-    </v-col>
 </template>
 
 <script>
+import AttributeValidator from '../Validators/AttributeValidator'
+
 export default {
   name: 'NumberAttribute',
-  props: ['attribute', 'validationError', 'dense'],
+  props: ['attribute'],
+  data () {
+    return {
+      currentValue: this.attribute.settings.isMultiUse ? null : (this.attribute.value ? parseFloat(this.attribute.value) : null),
+      validationError: '',
+      resetNow: false
+    }
+  },
+  watch: {
+    currentValue (newValue) {
+      const isValid = this.isValid(parseFloat(newValue))
+      this.$emit('change-value', {
+        newValue: parseFloat(newValue),
+        isValid
+      })
+    }
+  },
   methods: {
-    changeValue (newValue) {
-      this.$emit('change-value', parseFloat(newValue))
+    isValid (newValue) {
+      const validatorResult = AttributeValidator.validate(this.attribute, newValue)
+      if (this.resetNow) {
+        this.resetNow = false
+      } else {
+        this.validationError = validatorResult.errorMessage
+      }
+      return validatorResult.status
+    },
+    resetForm () {
+      this.resetNow = true
+      this.currentValue = null
+      this.validationError = ''
     }
   }
 }
