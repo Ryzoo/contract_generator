@@ -80,12 +80,12 @@
               <v-expansion-panel-content>
                 <v-row>
                   <v-col cols="12">
-                    <v-switch class="mt-0" hide-details dense outlined v-model="attributeData.isMultiUse" :label="$t('form.variableForm.isMultiUse')"></v-switch>
+                    <v-switch class="mt-0" hide-details dense outlined v-model="attributeData.settings.isMultiUse" :label="$t('form.variableForm.isMultiUse')"></v-switch>
                   </v-col>
                   <v-col cols="12">
-                    <v-switch class="mt-0" hide-details dense outlined v-model="attributeData.isInline" :label="$t('form.variableForm.isInline')"></v-switch>
+                    <v-switch class="mt-0" hide-details dense outlined v-model="attributeData.settings.isInline" :label="$t('form.variableForm.isInline')"></v-switch>
                   </v-col>
-                  <v-col cols="12" v-if="attributeData.isInline">
+                  <v-col cols="12" v-if="attributeData.settings.isInline">
                     <v-select
                       persistent-hint
                       :items="multiRenderTypeItems"
@@ -93,7 +93,7 @@
                       hide-details
                       dense
                       outlined
-                      v-model="attributeData.multiUseRenderType"
+                      v-model="attributeData.settings.multiUseRenderType"
                       :label="$t('form.variableForm.multiRenderType')"
                     />
                   </v-col>
