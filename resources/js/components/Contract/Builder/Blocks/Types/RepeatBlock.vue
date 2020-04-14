@@ -346,12 +346,11 @@ export default {
       if (block.content.text !== null) {
         const matches = block.content.text.split('{')
           .filter((v) => v.indexOf('}') > -1)
-          .map((value) => parseInt(value.split('}')[0]))
+          .map((value) => value.split('}')[0])
 
         matches
-          .filter((id) => !isNaN(id))
           .forEach((id) => {
-            const variable = this.variableSuggestions.find((x) => x.id == id)
+            const variable = this.variableSuggestions.find((x) => x.id == id.toString())
             const replaceText = `<span class="mention variable" data-mention-id='${id}' contenteditable="false">@${variable ? variable.name : 'undefined'}</span>`
             text = text
               .replace(`{${id}}`, replaceText)
