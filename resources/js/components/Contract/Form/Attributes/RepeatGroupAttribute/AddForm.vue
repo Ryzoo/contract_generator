@@ -1,100 +1,68 @@
 <template>
-    <v-row class="repeat-group-add">
-        <component v-for="(attribute, index) in attributesList"
-                   :key="index"
-                   :is="Mapper.getAttributeComponentName(attribute.attributeType)"
-                   :dense="true"
-                   v-bind="{
-                        attribute: attribute,
-                        validationError: validationIndex === index ? validationError : ''
-                    }"
-                   @change-value="(newValue)=>{
-                        changeValue(newValue, attribute)
-                    }"
-        >
-        </component>
-        <v-row class="justify-center" v-if="isMultiUse">
-            <v-btn dense color="primary" @click="add">{{$t("base.button.addElement")}}</v-btn>
-        </v-row>
-    </v-row>
+  <section>
+    <v-col cols="12" class="mb-0 pb-0" >
+      <component
+        ref="addForm"
+        :is="Mapper.getAttributeComponentName(this.attribute.attributeType)"
+        :attribute="this.attribute"
+        :errorFromValidation="this.validationError || ''"
+        @change-value="changeValue"
+      >
+      </component>
+    </v-col>
+    <v-col cols="12" class="mt-0 pt-0" v-if="this.attribute.isMultiUse">
+      <v-btn dense color="primary" :disabled="!lastValue.isValid" class="ma-auto" small @click="addValue">{{$t("base.button.addElement")}}</v-btn>
+    </v-col>
+  </section>
 </template>
 
 <script>
 import NumberAttribute from '../../Attributes/NumberAttribute'
 import TextAttribute from '../../Attributes/TextAttribute'
 import SelectAttribute from '../../Attributes/SelectAttribute'
-import AttributeValidator from '../../Validators/AttributeValidator'
 import RepeatGroupAttribute from '../../Attributes/RepeatGroupAttribute'
+import BoolAttribute from '../../Attributes/BoolAttribute'
+import DateAttribute from '../../Attributes/DateAttribute'
+import TimeAttribute from '../../Attributes/TimeAttribute'
 
 export default {
   name: 'AddForm',
-  props: ['attributes', 'isMultiUse'],
+  props: ['attribute', 'validationError'],
   components: {
     NumberAttribute,
     TextAttribute,
     SelectAttribute,
-    RepeatGroupAttribute
+    RepeatGroupAttribute,
+    BoolAttribute,
+    DateAttribute,
+    TimeAttribute
   },
   data () {
     return {
-      attributesList: [],
-      validationError: '',
-      validationIndex: -1
+      lastValue: {
+        newValue: null,
+        isValid: false
+      }
     }
   },
   methods: {
-    changeValue (newValue, attribute) {
-      if (newValue) {
-        this.attributesList = this.attributesList.map(x => {
-          if (x.attributeName === attribute.attributeName) {
-            x.value = newValue
-          }
-          return x
-        })
+    addValue () {
+      if (this.lastValue.isValid) {
+        this.$refs.addForm.resetForm()
+        let attributeValue = this.attribute.value
 
-        if (!this.isMultiUse) {
-          const isAllValid = this.attributesList.every(x => this.isValid(x.value, x))
+        if (!Array.isArray(attributeValue)) attributeValue = []
 
-          if (isAllValid) {
-            this.$emit('change', Object.assign([], this.attributesList))
-          }
-        }
+        this.$emit('change', [
+          ...attributeValue,
+          this.lastValue.newValue
+        ])
       }
     },
-    isValid (newValue, attribute) {
-      const validatorResult = AttributeValidator.validate(attribute, newValue)
-      this.validationError = validatorResult.errorMessage
-      let index = -1
-
-      this.attributesList.map((element, i) => {
-        if (element.attributeName === attribute.attributeName) {
-          index = i
-        }
-      })
-
-      this.validationIndex = index
-      return validatorResult.status
-    },
-    add () {
-      const isAllValid = this.attributesList.every(x => this.isValid(x.value, x))
-
-      if (isAllValid) {
-        this.$emit('add', Object.assign([], this.attributesList))
-        this.resetForm()
-      }
-    },
-    resetForm () {
-      const newAttributes = JSON.parse(JSON.stringify(this.attributes))
-      this.attributesList = newAttributes.map(x => {
-        x.value = x.defaultValue
-        return x
-      })
-      this.validationError = ''
-      this.validationIndex = -1
+    changeValue (newValue) {
+      this.lastValue = newValue
+      if (!this.attribute.isMultiUse) { this.$emit('change', newValue.newValue) }
     }
-  },
-  mounted () {
-    this.resetForm()
   }
 }
 </script>

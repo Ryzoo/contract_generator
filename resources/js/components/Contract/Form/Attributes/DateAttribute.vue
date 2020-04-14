@@ -1,23 +1,22 @@
 <template>
-  <v-col cols="12">
     <v-dialog
       ref="dialog"
       v-model="dateDialog"
-      :return-value.sync="date"
+      :return-value.sync="currentValue"
       persistent
       width="290px"
     >
       <template v-slot:activator="{ on }">
         <v-text-field
-          v-model="date"
-          :label="attribute.attributeName"
+          v-model="currentValue"
+          :label="attribute.settings.required ? attribute.attributeName+'*' : attribute.attributeName"
           :placeholder="attribute.placeholder ? String(attribute.placeholder) : ''"
           :error="validationError.length > 0"
           :error-messages="validationError"
           :hint="attribute.description"
           :persistent-hint="!!attribute.description"
           outlined
-          :dense="dense"
+          dense
           prepend-icon="far fa-calendar-alt"
           readonly
           v-on="on"
@@ -34,31 +33,56 @@
         </v-text-field>
       </template>
       <v-date-picker
-        v-model="date"
+        v-model="currentValue"
         scrollable
       >
         <v-spacer></v-spacer>
         <v-btn text color="primary" @click="dateDialog = false">{{ $t('base.button.cancel') }}</v-btn>
-        <v-btn text color="primary" @click="()=>{changeValue(date)}">{{ $t('base.button.ok') }}</v-btn>
+        <v-btn text color="primary" @click="()=>{$refs.dialog.save(currentValue)}">{{ $t('base.button.ok') }}</v-btn>
       </v-date-picker>
     </v-dialog>
-  </v-col>
 </template>
 
 <script>
+import AttributeValidator from '../Validators/AttributeValidator'
+
 export default {
   name: 'DateAttribute',
-  props: ['attribute', 'validationError', 'dense'],
+  props: ['attribute', 'errorFromValidation'],
   data () {
     return {
       dateDialog: false,
-      date: this.attribute.value
+      currentValue: this.attribute.settings.isMultiUse ? null : this.attribute.value,
+      validationError: '',
+      resetNow: false
     }
   },
   methods: {
-    changeValue (newValue) {
-      this.$refs.dialog.save(newValue)
-      this.$emit('change-value', newValue)
+    isValid (newValue) {
+      const validatorResult = AttributeValidator.validate(this.attribute, newValue)
+      if (this.resetNow) {
+        this.resetNow = false
+      } else {
+        this.validationError = validatorResult.errorMessage
+      }
+      return validatorResult.status
+    },
+    resetForm () {
+      this.resetNow = true
+      this.currentValue = null
+      this.validationError = ''
+    }
+  },
+  watch: {
+    errorFromValidation (newValue) {
+      if (newValue.length) this.validationError = newValue
+    },
+    currentValue (newValue) {
+      const isValid = this.isValid(newValue)
+      this.$emit('change-value', {
+        newValue,
+        isValid
+      })
     }
   }
 }
