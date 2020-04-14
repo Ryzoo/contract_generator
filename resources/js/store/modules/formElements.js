@@ -36,6 +36,7 @@ const mutations = {
         }
       })
 
+
     state.formElements = state.formElements.map(e => {
       const existFormElement = newElements.find(x => x.id === e.id)
       if (e.attribute.attributeType === AttributeTypeEnum.AGGREGATE) {

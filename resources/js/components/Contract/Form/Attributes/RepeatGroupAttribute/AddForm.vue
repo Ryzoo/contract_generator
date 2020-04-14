@@ -5,6 +5,7 @@
         ref="addForm"
         :is="Mapper.getAttributeComponentName(this.attribute.attributeType)"
         :attribute="this.attribute"
+        :errorFromValidation="this.validationError || ''"
         @change-value="changeValue"
       >
       </component>
@@ -26,7 +27,7 @@ import TimeAttribute from '../../Attributes/TimeAttribute'
 
 export default {
   name: 'AddForm',
-  props: ['attribute'],
+  props: ['attribute', 'validationError'],
   components: {
     NumberAttribute,
     TextAttribute,
@@ -60,7 +61,7 @@ export default {
     },
     changeValue (newValue) {
       this.lastValue = newValue
-      if (!this.attribute.isMultiUse) { this.$emit('change', newValue) }
+      if (!this.attribute.isMultiUse) { this.$emit('change', newValue.newValue) }
     }
   }
 }

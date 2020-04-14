@@ -28,7 +28,7 @@ import AttributeValidator from '../Validators/AttributeValidator'
 
 export default {
   name: 'SelectAttribute',
-  props: ['attribute'],
+  props: ['attribute', 'errorFromValidation'],
   data () {
     return {
       currentValue: this.attribute.settings.isMultiUse ? null : (this.attribute.value ? this.attribute.value.split(',') : []),
@@ -37,6 +37,9 @@ export default {
     }
   },
   watch: {
+    errorFromValidation (newValue) {
+      if (newValue.length) this.validationError = newValue
+    },
     currentValue (newValue) {
       const isValid = this.isValid(Array.isArray(newValue) ? newValue.join(',') : newValue)
       this.$emit('change-value', {

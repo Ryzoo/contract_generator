@@ -3,6 +3,7 @@
       <h3 v-if="this.formElement.attribute.isMultiUse">Multiple element</h3>
       <AddForm
         :attribute="this.formElement.attribute"
+        :validationError="this.formElement.validationError || ''"
         @change="changeValue"
       />
       <v-col cols="12" class="pa-0" v-if="this.formElement.attribute.isMultiUse">

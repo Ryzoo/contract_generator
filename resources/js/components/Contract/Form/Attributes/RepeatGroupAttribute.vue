@@ -25,7 +25,7 @@ import RepeatGroupAttribute from './RepeatGroupAttribute'
 
 export default {
   name: 'RepeatGroupAttribute',
-  props: ['attribute'],
+  props: ['attribute', 'errorFromValidation'],
   components: {
     NumberAttribute,
     TextAttribute,
@@ -38,6 +38,11 @@ export default {
       currentValue: this.attribute.settings.attributes,
       validationErrors: [],
       resetNow: false
+    }
+  },
+  watch:{
+    errorFromValidation (newValue) {
+      if (newValue.length) this.validationError = newValue
     }
   },
   methods: {

@@ -48,7 +48,7 @@ import AttributeValidator from '../Validators/AttributeValidator'
 
 export default {
   name: 'DateAttribute',
-  props: ['attribute'],
+  props: ['attribute', 'errorFromValidation'],
   data () {
     return {
       dateDialog: false,
@@ -74,6 +74,9 @@ export default {
     }
   },
   watch: {
+    errorFromValidation (newValue) {
+      if (newValue.length) this.validationError = newValue
+    },
     currentValue (newValue) {
       const isValid = this.isValid(newValue)
       this.$emit('change-value', {

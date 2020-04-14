@@ -26,7 +26,7 @@ import AttributeValidator from '../Validators/AttributeValidator'
 
 export default {
   name: 'NumberAttribute',
-  props: ['attribute'],
+  props: ['attribute', 'errorFromValidation'],
   data () {
     return {
       currentValue: this.attribute.settings.isMultiUse ? null : this.attribute.value,
@@ -35,6 +35,9 @@ export default {
     }
   },
   watch: {
+    errorFromValidation (newValue) {
+      if (newValue.length) this.validationError = newValue
+    },
     currentValue (newValue) {
       const isValid = this.isValid(newValue)
       this.$emit('change-value', {
