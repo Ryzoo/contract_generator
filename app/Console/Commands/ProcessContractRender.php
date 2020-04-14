@@ -55,7 +55,7 @@ class ProcessContractRender extends Command
   {
     $contractToCancel = ContractFormComplete::with('contract')
       ->where('status', 'LIKE', ContractFormCompleteStatus::PENDING)
-      ->where('updated_at', '<', Carbon::now()->subMinutes(2))
+      ->where('updated_at', '<', Carbon::now()->subMinutes(1))
       ->get();
 
     if ($contractToCancel->count() > 0)

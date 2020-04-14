@@ -10,22 +10,20 @@ use App\Core\Models\Domain\Attributes\Attribute;
 class MultiRender {
 
   public static function renderToHTML(array $value, $type, $valueAsAttributesArray = true):string {
-    $value = $valueAsAttributesArray ? self::prepareAttributeValue($value) : self::prepareArrayValue($value);
+    $value = $valueAsAttributesArray ? self::prepareAttributeValue($value) : $value;
 
     switch ($type){
       case MultiUseRenderType::TABLE:
-        return self::prepareHTMLTable($value);
+        return self::prepareHTMLTable($valueAsAttributesArray ? $value : [
+          $value, collect($value)->map(static function(){return '';})
+        ]);
       case MultiUseRenderType::COMMA_SEPARATED:
-        return self::prepareHTMLSeparated($value, ', ');
+        return self::prepareHTMLSeparated($valueAsAttributesArray ? $value[0] : $value, ', ', $valueAsAttributesArray);
       case MultiUseRenderType::LIST:
-        return self::prepareHTMLList($value, ', ');
+        return self::prepareHTMLList($valueAsAttributesArray ? $value[0] : $value, ', ', $valueAsAttributesArray);
     }
 
     return 'error when parse multi use';
-  }
-
-  public static function prepareArrayValue(array $value):array {
-
   }
 
   public static function prepareAttributeValue(array $value):array {
@@ -79,23 +77,29 @@ class MultiRender {
     return "<br/><table width='100%'><thead>$header</thead><tbody>$body</tbody></table>";
   }
 
-  private static function prepareHTMLList($value, string $glue) {
-    $itemsList = $value[0];
+  private static function prepareHTMLList($value, string $glue, bool $valueAsAttributesArray) {
     $body = '';
 
-    foreach ($itemsList as $items) {
-      $elements = implode($glue, $items->toArray());
+    foreach ($value as $items) {
+      $elements = $valueAsAttributesArray ? implode($glue, $items->toArray()) : $items;
       $body .= "<li>{$elements}</li>";
     }
 
     return "<br/><ul width='100%'>$body</ul>";
   }
 
-  private static function prepareHTMLSeparated($value, string $glue) {
-    $itemsList = $value[0];
+  private static function prepareHTMLSeparated($value, string $glue, bool $valueAsAttributesArray) {
+    if(!$valueAsAttributesArray){
+      return implode($glue, $value);
+    }
+
     $elements = [];
 
-    foreach ($itemsList as $items) {
+    if(!$valueAsAttributesArray){
+      return implode($glue, $value);
+    }
+
+    foreach ($value as $items) {
       $elements[] = implode($glue, $items->toArray());
     }
 
