@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import { AttributeTypeEnum } from '../../../../../../additionalModules/Enums'
 export default {
   name: 'RepeatGroupAttribute',
   props: ['settings'],
@@ -42,7 +43,7 @@ export default {
       })) : []
     },
     attributesToAggregate () {
-      return this.$store.getters.builder_allVariables
+      return this.$store.getters.builder_allVariables.filter((x) => x.attributeType !== AttributeTypeEnum.ATTRIBUTE_GROUP && !x.isMultiUse)
     }
   },
   data () {
