@@ -1,12 +1,12 @@
 <template>
-    <v-row :class="{'multi-use-container':this.formElement.attribute.isMultiUse, 'single-use-container':!this.formElement.attribute.isMultiUse}">
-      <h3 v-if="this.formElement.attribute.isMultiUse">Multiple element</h3>
+    <v-row :class="{'multi-use-container':!!this.formElement.attribute.settings.isMultiUse, 'single-use-container':!(!!this.formElement.attribute.settings.isMultiUse)}">
+      <h3 v-if="!!this.formElement.attribute.settings.isMultiUse">Multiple element</h3>
       <AddForm
         :attribute="this.formElement.attribute"
         :validationError="this.formElement.validationError || ''"
         @change="changeValue"
       />
-      <v-col cols="12" class="pa-0" v-if="this.formElement.attribute.isMultiUse">
+      <v-col cols="12" class="pa-0" v-if="!!this.formElement.attribute.settings.isMultiUse">
           <v-divider class="my-3"/>
           <ValueList class="mb-3" @remove="changeValue" :value="this.formElement.attribute.value || []"/>
       </v-col>

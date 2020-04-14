@@ -31,7 +31,7 @@ export default {
   props: ['attribute', 'errorFromValidation'],
   data () {
     return {
-      currentValue: this.attribute.settings.isMultiUse ? null : (this.attribute.value ? this.attribute.value.split(',') : []),
+      currentValue: !!this.attribute.settings.isMultiUse ? null : (this.attribute.value ? this.attribute.value.split(',') : []),
       validationError: '',
       resetNow: false
     }

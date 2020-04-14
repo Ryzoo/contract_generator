@@ -165,7 +165,7 @@ const getters = {
   builder_getBlockId: state => state.builder.idBlockIncrement,
   builder_getVariableId: state => state.builder.idVariableIncrement,
   builder_allVariables: state => state.builder.variables,
-  builder_multiGroupAttributes: state => state.builder.variables.filter(x => x.isMultiUse),
+  builder_multiGroupAttributes: state => state.builder.variables.filter(x => !!x.settings.isMultiUse),
   builder_variablesForRepeatBlock: (state) => (id) => {
     const block = getBlockById(state.builder.blocks, id)
     const attribute = getAttributeById(state.builder.variables, block ? block.settings.repeatAttributeId : null)

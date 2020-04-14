@@ -9,7 +9,9 @@ use App\Core\Models\Domain\Attributes\Attribute;
 
 class MultiRender {
 
-  public static function renderToHTML(array $value, $type, $valueAsAttributesArray = true):string {
+  public static function renderToHTML(?array $value, $type, $valueAsAttributesArray = true):string {
+    if(!isset($value)) return '';
+
     $value = $valueAsAttributesArray ? self::prepareAttributeValue($value) : $value;
 
     switch ($type){
