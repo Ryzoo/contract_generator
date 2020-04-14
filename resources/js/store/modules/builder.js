@@ -56,24 +56,27 @@ const actions = {
 
 const mutations = {
   BUILDER_UPDATE_CURRENT_MULTI_ATTRIBUTE: (state, data) => {
-    const updateBlock = (blocks, data) => {
+    const updateBlock = (blocks, dataValue) => {
       return blocks.map(x => {
-        if (x.id === data.id) {
-          x.settings.repeatAttributeId = data.value
+        if (x.id == dataValue.id) {
+          x.settings = {
+            ...x.settings,
+            repeatAttributeId: dataValue.value
+          }
         }
 
         if (x.content.blocks) {
-          x.content.blocks = updateBlock(x.content.blocks, data)
+          x.content.blocks = updateBlock(x.content.blocks, dataValue)
         }
         return x
       })
     }
 
-    state.builder.blocks = updateBlock(state.builder.blocks, data)
+    state.builder.blocks = Object.assign([], updateBlock(state.builder.blocks, data))
   },
   BUILDER_EDIT_VARIABLE: (state, data) => {
     state.builder.variables = state.builder.variables.map((attribute) => {
-      if (attribute.id === data.id) {
+      if (attribute.id == data.id) {
         return {
           ...data
         }
@@ -95,7 +98,7 @@ const mutations = {
   BUILDER_ACTIVE_BLOCK_UPDATE: (state, data) => {
     const updateBlock = (block, data) => {
       return block.map(x => {
-        if (x.id === data.id) {
+        if (x.id == data.id) {
           return data
         }
 
@@ -111,7 +114,7 @@ const mutations = {
   BUILDER_BLOCK_UPDATE_CONTENT: (state, data) => {
     const updateBlock = (block, data) => {
       return block.map(x => {
-        if (x.id === data.id) {
+        if (x.id == data.id) {
           x.content = data.content
         }
 
@@ -162,11 +165,26 @@ const getters = {
   builder_getBlockId: state => state.builder.idBlockIncrement,
   builder_getVariableId: state => state.builder.idVariableIncrement,
   builder_allVariables: state => state.builder.variables,
-  builder_multiGroupAttributes: state => state.builder.variables.filter(x => x.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP && x.isMultiUse),
+  builder_multiGroupAttributes: state => state.builder.variables.filter(x => x.isMultiUse),
   builder_variablesForRepeatBlock: (state) => (id) => {
     const block = getBlockById(state.builder.blocks, id)
-    const attribute = getAttributeById(state.builder.variables, block ? block.settings.repeatAttributeId: null)
-    return attribute ? attribute.settings.attributes : []
+    const attribute = getAttributeById(state.builder.variables, block ? block.settings.repeatAttributeId : null)
+    if (attribute) {
+      if (attribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {
+        return attribute.settings.attributes.map(x => ({
+          ...x,
+          attributeName: attribute.attributeName + ' - ' + x.attributeName
+        }))
+      }
+
+      return [
+        {
+          attributeName: attribute.attributeName + ' - ' + 'Value',
+          id: attribute.id + ':value'
+        }
+      ]
+    }
+    return []
   },
   builder_currentMultiGroupAttribute: (state) => (id) => {
     const block = getBlockById(state.builder.blocks, id)

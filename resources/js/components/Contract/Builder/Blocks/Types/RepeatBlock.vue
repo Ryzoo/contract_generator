@@ -351,7 +351,7 @@ export default {
         matches
           .filter((id) => !isNaN(id))
           .forEach((id) => {
-            const variable = this.variableSuggestions.find((x) => x.id === id)
+            const variable = this.variableSuggestions.find((x) => x.id == id)
             const replaceText = `<span class="mention variable" data-mention-id='${id}' contenteditable="false">@${variable ? variable.name : 'undefined'}</span>`
             text = text
               .replace(`{${id}}`, replaceText)

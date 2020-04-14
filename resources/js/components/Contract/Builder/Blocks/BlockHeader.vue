@@ -15,15 +15,16 @@
           persistent-hint
           :items="multiGroupAttributes"
           hint="Select attribute group with multi flag to repeat this block on it."
-          hide-details
           dense
           outlined
           @change="updateMultiGroupAttribute"
-          :value="currentMultiGroupAttribute"
+          :value="{
+            value: parseInt(currentMultiGroupAttribute)
+          }"
           label="Repeat attribute"
         />
       </div>
-      <v-btn small text color="accent" @click="saveAsPart()"> Save as part <v-icon small right>fa-save</v-icon> </v-btn>
+<!--      <v-btn small text color="accent" @click="saveAsPart()"> Save as part <v-icon small right>fa-save</v-icon> </v-btn>-->
       <v-btn small text color="primary" @click="editBlock()"> Edit <v-icon small right>fa-edit</v-icon> </v-btn>
       <v-btn small text color="error" @click="deleteDialog=true"> Delete <v-icon small right>fa-trash</v-icon> </v-btn>
     </div>
@@ -59,12 +60,19 @@ export default {
   data () {
     return {
       BlockTypeEnum: BlockTypeEnum,
-      deleteDialog: false,
-      multiGroupAttributes: this.$store.getters.builder_multiGroupAttributes.map(x => ({
+      deleteDialog: false
+
+    }
+  },
+  computed: {
+    multiGroupAttributes () {
+      return this.$store.getters.builder_multiGroupAttributes.map(x => ({
         text: x.attributeName,
         value: x.id
-      })),
-      currentMultiGroupAttribute: this.$store.getters.builder_currentMultiGroupAttribute(this.block.id)
+      }))
+    },
+    currentMultiGroupAttribute () {
+      return this.$store.getters.builder_currentMultiGroupAttribute(this.block.id)
     }
   },
   methods: {
