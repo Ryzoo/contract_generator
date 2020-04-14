@@ -10,6 +10,19 @@
       </h5>
     </div>
     <div class="block-header--action mr-4">
+      <div v-if="block.blockType === BlockTypeEnum.REPEAT_BLOCK">
+        <v-select
+          persistent-hint
+          :items="multiGroupAttributes"
+          hint="Select attribute group with multi flag to repeat this block on it."
+          hide-details
+          dense
+          outlined
+          @change="updateMultiGroupAttribute"
+          :value="currentMultiGroupAttribute"
+          label="Repeat attribute"
+        />
+      </div>
       <v-btn small text color="accent" @click="saveAsPart()"> Save as part <v-icon small right>fa-save</v-icon> </v-btn>
       <v-btn small text color="primary" @click="editBlock()"> Edit <v-icon small right>fa-edit</v-icon> </v-btn>
       <v-btn small text color="error" @click="deleteDialog=true"> Delete <v-icon small right>fa-trash</v-icon> </v-btn>
@@ -38,15 +51,29 @@
 </template>
 
 <script>
+import { BlockTypeEnum } from '../../../../additionalModules/Enums'
+
 export default {
   name: 'BlockHeader',
   props: ['block'],
   data () {
     return {
-      deleteDialog: false
+      BlockTypeEnum: BlockTypeEnum,
+      deleteDialog: false,
+      multiGroupAttributes: this.$store.getters.builder_multiGroupAttributes.map(x => ({
+        text: x.attributeName,
+        value: x.id
+      })),
+      currentMultiGroupAttribute: this.$store.getters.builder_currentMultiGroupAttribute(this.block.id)
     }
   },
   methods: {
+    updateMultiGroupAttribute (value) {
+      this.$store.dispatch('builder_updateCurrentMultiGroupAttribute', {
+        id: this.block.id,
+        value: value
+      })
+    },
     toUpper (text) {
       return text.replace(/([A-Z])/g, ' $1').trim().toUpperCase()
     },

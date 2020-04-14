@@ -35,6 +35,16 @@ class AttributeResolver {
     return $text;
   }
 
+  public function getAttributeById(int $id) {
+    return $this->formElements
+      ->where('elementType', ElementType::ATTRIBUTE)
+      ->map(static function ($e) {
+        return $e->attribute;
+      })
+      ->where('id', $id)
+      ->first();
+  }
+
   protected function getAttributeValueById(int $id): string {
     $attribute = $this->formElements
       ->where('elementType', ElementType::ATTRIBUTE)

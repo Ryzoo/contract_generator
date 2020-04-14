@@ -33,6 +33,10 @@ const Selector = {
     {
       value: BlockTypeEnum.PAGE_DIVIDE_BLOCK,
       text: 'Page breaker'
+    },
+    {
+      value: BlockTypeEnum.REPEAT_BLOCK,
+      text: 'Repeat'
     }
   ],
 

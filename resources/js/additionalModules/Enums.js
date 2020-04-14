@@ -13,7 +13,8 @@ export const BlockTypeEnum = {
   NEW_BLOCK: -1,
   TEXT_BLOCK: 0,
   EMPTY_BLOCK: 1,
-  PAGE_DIVIDE_BLOCK: 2
+  PAGE_DIVIDE_BLOCK: 2,
+  REPEAT_BLOCK: 3
 }
 
 export const AttributeTypeEnum = {

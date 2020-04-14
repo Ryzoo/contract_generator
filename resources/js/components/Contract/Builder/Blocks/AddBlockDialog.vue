@@ -74,6 +74,7 @@ export default {
       this.newBlock.blockType = blockType
 
       if (this.newBlock.blockType === BlockTypeEnum.TEXT_BLOCK) { this.newBlock.content = { text: '' } }
+      if (this.newBlock.blockType === BlockTypeEnum.REPEAT_BLOCK) { this.newBlock.content = { text: '' } }
 
       this.$store.dispatch('builder_idBlockIncrement')
       this.newBlock.id = this.$store.getters.builder_getBlockId

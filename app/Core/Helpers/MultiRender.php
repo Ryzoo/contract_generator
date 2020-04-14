@@ -24,7 +24,7 @@ class MultiRender {
     return 'error when parse multi use';
   }
 
-  private static function prepareValue(array $value) {
+  public static function prepareValue(array $value) {
     $attributesValue = collect();
     $attributesName = collect();
 

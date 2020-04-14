@@ -38,6 +38,7 @@
 import TextBlock from './Types/TextBlock'
 import EmptyBlock from './Types/EmptyBlock'
 import PageDivideBlock from './Types/PageDivideBlock'
+import RepeatBlock from './Types/RepeatBlock'
 import AddBlockDialog from './AddBlockDialog'
 import BlockHeader from './BlockHeader'
 import { BlockTypeEnum } from '../../../../additionalModules/Enums'
@@ -49,6 +50,7 @@ export default {
     TextBlock,
     EmptyBlock,
     PageDivideBlock,
+    RepeatBlock,
     AddBlockDialog
   },
   props: {

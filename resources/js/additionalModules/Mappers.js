@@ -16,6 +16,8 @@ class Mapper {
         return 'PageDivideBlock'
       case BlockTypeEnum.TEXT_BLOCK:
         return 'TextBlock'
+      case BlockTypeEnum.REPEAT_BLOCK:
+        return 'RepeatBlock'
       default:
         return 'NotFoundBlock'
     }
