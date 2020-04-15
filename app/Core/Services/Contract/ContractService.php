@@ -58,7 +58,6 @@ class ContractService {
   }
 
   private function prepareRenderBlock(Collection $blockCollection, Collection $formElements, Contract $contract): Collection {
-
     /**
      * @var FormElement $element
      */
