@@ -34,7 +34,7 @@ class UserService
             ->saveAndOptimizeImage($newProfileImage, 'profileImages');
 
         $user->update([
-            "profileImage" => \Storage::url($newFilePath)
+            'profileImage' => \Storage::url($newFilePath)
         ]);
 
         return $newFilePath;

@@ -52,7 +52,7 @@ export default {
   data () {
     return {
       timeDialog: false,
-      currentValue: this.attribute.settings.isMultiUse ? null : this.attribute.value,
+      currentValue: !!this.attribute.settings.isMultiUse ? null : this.attribute.value,
       validationError: '',
       resetNow: false
     }

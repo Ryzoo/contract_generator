@@ -10,7 +10,7 @@
       >
       </component>
     </v-col>
-    <v-col cols="12" class="mt-0 pt-0" v-if="this.attribute.isMultiUse">
+    <v-col cols="12" class="mt-0 pt-0" v-if="!!this.attribute.settings.isMultiUse">
       <v-btn dense color="primary" :disabled="!lastValue.isValid" class="ma-auto" small @click="addValue">{{$t("base.button.addElement")}}</v-btn>
     </v-col>
   </section>
@@ -61,7 +61,7 @@ export default {
     },
     changeValue (newValue) {
       this.lastValue = newValue
-      if (!this.attribute.isMultiUse) { this.$emit('change', newValue.newValue) }
+      if (!(!!this.attribute.settings.isMultiUse)) { this.$emit('change', newValue.newValue) }
     }
   }
 }

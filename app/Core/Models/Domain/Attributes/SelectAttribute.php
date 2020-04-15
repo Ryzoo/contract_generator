@@ -5,20 +5,29 @@ namespace App\Core\Models\Domain\Attributes;
 
 
 use App\Core\Enums\AttributeType;
+use App\Core\Enums\MultiUseRenderType;
+use App\Core\Helpers\MultiRender;
 
 class SelectAttribute extends Attribute {
 
-    public function __construct() {
-        $this->initialize(AttributeType::SELECT);
-    }
+  public function __construct() {
+    $this->initialize(AttributeType::SELECT);
+  }
 
-    protected function buildSettings() {
-        $this->settings = [
-            'isMultiSelect' => false,
-            'items' => [],
-            'required' => false,
-            'lengthMin' => null,
-            'lengthMax' => null,
-        ];
-    }
+  protected function buildSettings() {
+    $this->settings = [
+      'isInline' => FALSE,
+      'isMultiUse' => FALSE,
+      'isMultiSelect' => FALSE,
+      'items' => [],
+      'required' => FALSE,
+      'lengthMin' => NULL,
+      'lengthMax' => NULL,
+      'multiUseRenderType' => MultiUseRenderType::COMMA_SEPARATED,
+    ];
+  }
+
+  public function valueParser($value) {
+    return (bool) $this->settings['isMultiUse'] ? MultiRender::renderToHTML($value, $this->settings['multiUseRenderType'], false) : $value;
+  }
 }

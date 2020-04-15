@@ -30,7 +30,7 @@ export default {
   props: ['attribute', 'errorFromValidation'],
   data () {
     return {
-      currentValue: this.attribute.settings.isMultiUse ? null : (this.attribute.value ? parseFloat(this.attribute.value) : null),
+      currentValue: !!this.attribute.settings.isMultiUse ? null : (this.attribute.value ? parseFloat(this.attribute.value) : null),
       validationError: '',
       resetNow: false
     }

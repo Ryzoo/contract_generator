@@ -8,6 +8,7 @@ use App\Core\Contracts\IAggregableByAttributeAggregator;
 use App\Core\Enums\AggregateOperationType;
 use App\Core\Enums\AttributeType;
 use App\Core\Enums\ElementType;
+use App\Core\Enums\MultiUseRenderType;
 use App\Core\Helpers\AttributeResolver;
 use App\Core\Helpers\OperationalAttributeResolver;
 use Illuminate\Support\Collection;
@@ -20,10 +21,13 @@ class AggregateAttribute extends Attribute {
 
   protected function buildSettings() {
     $this->settings = [
+      'isInline' => FALSE,
+      'isMultiUse' => FALSE,
       'operationReturnFormatType' => 'float',
       'precision' => 2,
       'operationItems' => [],
       'operationType' => AggregateOperationType::ADD,
+      'multiUseRenderType' => MultiUseRenderType::COMMA_SEPARATED,
     ];
   }
 
@@ -53,7 +57,7 @@ class AggregateAttribute extends Attribute {
 
     foreach ($items as $attributeId) {
       $resolver = new OperationalAttributeResolver($formElements, $this->settings['operationType']);
-      $returnItems[] = $resolver->resolveText('{' .$attributeId. '}');
+      $returnItems[] = $resolver->resolveText('{' . $attributeId . '}');
     }
 
     $this->settings['operationItems'] = $returnItems;
@@ -67,10 +71,10 @@ class AggregateAttribute extends Attribute {
     return $returnValue;
   }
 
-  public function subtract():float {
+  public function subtract(): float {
     $returnValue = 0;
     foreach ($this->settings['operationItems'] as $key => $item) {
-      if($key === 0) {
+      if ($key === 0) {
         $returnValue = (float) $item;
       }
       else {
@@ -83,7 +87,7 @@ class AggregateAttribute extends Attribute {
   public function multiply(): float {
     $returnValue = 0;
     foreach ($this->settings['operationItems'] as $key => $item) {
-      if($key === 0) {
+      if ($key === 0) {
         $returnValue = (float) $item;
       }
       else {
@@ -99,7 +103,7 @@ class AggregateAttribute extends Attribute {
       if ($item === 0) {
         continue;
       }
-      if($key === 0) {
+      if ($key === 0) {
         $returnValue = (float) $item;
       }
       else {

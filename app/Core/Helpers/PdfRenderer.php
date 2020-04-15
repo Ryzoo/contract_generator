@@ -44,7 +44,6 @@ class PdfRenderer {
 
   public static function blockHtmlTemplate(string $blockHtml): string {
     return $blockHtml . '';
-    
   }
 
   public function __construct() {

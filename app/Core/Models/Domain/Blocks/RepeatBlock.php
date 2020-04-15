@@ -5,17 +5,15 @@ namespace App\Core\Models\Domain\Blocks;
 
 use App\Core\Enums\BlockType;
 use App\Core\Helpers\AttributeResolver;
-use App\Core\Helpers\CounterResolver;
-use App\Core\Helpers\MultiRender;
+use App\Core\Helpers\MultiAttributeResolver;
+use App\Core\Helpers\PdfRenderer;
 use App\Core\Models\Database\Contract;
-use App\Core\Models\Domain\FormElements\PageDividerFormElement;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Validator;
 
 class RepeatBlock extends TextBlock {
 
   /**
-   * @var ?\App\Core\Models\Domain\Attributes\RepeatGroupAttribute $repeatAttribute
+   * @var \App\Core\Models\Domain\Attributes\Attribute $repeatAttribute
    */
   private $repeatAttribute;
 
@@ -30,29 +28,33 @@ class RepeatBlock extends TextBlock {
     ];
   }
 
+  public function findVariable(Contract $contract): Collection {
+    $variableArray = parent::findVariable($contract);
+
+    if(isset($this->settings->repeatAttributeId))
+      $variableArray->push([$this->id, $this->settings->repeatAttributeId]);
+
+    return $variableArray->uniqueStrict('1');
+  }
+
   protected function resolveAttributesInContent(Collection $formElements) {
+    parent::resolveAttributesInContent($formElements);
     $attributeResolver = new AttributeResolver($formElements);
-    $this->content['text'] = $attributeResolver->resolveText($this->content['text']);
-    $this->repeatAttribute = $attributeResolver->getAttributeById($this->settings['repeatAttributeId'] ?? -1);
+    $this->repeatAttribute = $attributeResolver->getAttributeById($this->settings->repeatAttributeId ?? -1);
   }
 
   public function renderToHtml(Collection $attributes): string {
     $htmlString = parent::renderToHtml($attributes);
-    return $this->repeatContent($htmlString . $this->content['text']);
+    return isset($this->repeatAttribute) ? $this->repeatContent($htmlString) : $htmlString;
   }
 
-  private function repeatContent(string $content) {
-    // TODO
-    if(isset($this->repeatAttribute)){
-//      $value = MultiRender::prepareValue($this->repeatAttribute->value)[0];
-//      foreach ($value as $attribute) {
-//        foreach ($attribute as $field) {
-//          $body .= "<td>$item</td>";
-//        }
-//      }
-      return $content;
+  private function repeatContent(string $content): string {
+    $htmlString = '';
+    foreach (collect($this->repeatAttribute->value) as $value){
+      $htmlString .= PdfRenderer::blockHtmlTemplate(
+        MultiAttributeResolver::resolve($this->repeatAttribute, $content, $value)
+      );
     }
-
-    return $content;
+    return $htmlString;
   }
 }
