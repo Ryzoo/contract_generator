@@ -19,7 +19,7 @@
             <h4>Attributes</h4>
             <v-chip
               class="d-block ma-1"
-              :class="{'multi-use-variable': currentVariable.filter(x => parseInt(x.isMultiUse))}"
+              :class="{'multi-use-variable': attribute.isMultiUse}"
               label
               close
               small
@@ -120,7 +120,6 @@ export default {
   },
   computed: {
     currentVariable () {
-      console.log(this.$store.getters.builder_allVariables.filter((x) => this.searchText.length < 3 || x.attributeName.toLowerCase().includes(this.searchText.toLowerCase())))
       return this.$store.getters.builder_allVariables.filter((x) => this.searchText.length < 3 || x.attributeName.toLowerCase().includes(this.searchText.toLowerCase()))
     }
   },
