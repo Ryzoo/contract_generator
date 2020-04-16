@@ -178,7 +178,7 @@ const getters = {
       })
 
     const allVar = state.builder.variables
-      .filter(x => !(x.settings.isMultiUse) || (!!x.settings.isMultiUse && !!x.settings.isInline))
+      .filter(x => !(!!x.settings.isMultiUse) || (!!x.settings.isMultiUse && !!x.settings.isInline))
       .filter(x => !variablesUsedInGroups.includes(x.id + ''))
 
     allVar.forEach(attribute => {

@@ -22,7 +22,7 @@
 <script>
 import VueQueryBuilder from 'vue-query-builder-vuetifyjs'
 import 'vue-query-builder-vuetifyjs/dist/VueQueryBuilder.css'
-import { ConditionalEnum } from '../../additionalModules/Enums'
+import { AttributeTypeEnum, ConditionalEnum } from '../../additionalModules/Enums'
 
 export default {
   name: 'QueryBuilder',
@@ -50,8 +50,9 @@ export default {
   },
   computed: {
     rulesFromAttributes () {
-      return this.$store.getters.builder_allVariables
-        .filter(x => x.attributeType !== 3)
+      return this.$store.getters.builder_allVariables_defaultText
+        .filter(x => !(x.id + '').includes(':'))
+        .filter(x => !(x.settings.isMultiUse))
         .map(x => {
           const type = this.mapBackendTypeToBuilderType(x)
           const options = x.settings.items ? x.settings.items.map(e => ({ label: e, value: e })) : null
