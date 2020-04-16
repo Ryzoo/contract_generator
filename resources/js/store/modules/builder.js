@@ -178,7 +178,7 @@ const getters = {
       })
 
     const allVar = state.builder.variables
-      .filter(x => !(!!x.settings.isMultiUse) || (!!x.settings.isMultiUse && !!x.settings.isInline))
+      .filter(x => !(x.settings.isMultiUse) || (!!x.settings.isMultiUse && !!x.settings.isInline))
       .filter(x => !variablesUsedInGroups.includes(x.id + ''))
 
     allVar.forEach(attribute => {
@@ -199,13 +199,20 @@ const getters = {
   builder_variablesForRepeatBlock: (state) => (id) => {
     const block = getBlockById(state.builder.blocks, id)
     const attribute = getAttributeById(state.builder.variables, block ? block.settings.repeatAttributeId : null)
+    let allAttributes = state.builder.variables
+
     if (attribute) {
       if (attribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {
-        return attribute.settings.attributes.map(x => ({
-          ...x,
-          attributeName: attribute.attributeName + ' - ' + x.attributeName,
-          id: attribute.id + ':' + x.id
-        }))
+        const repeatAttribute = attribute.settings.attributes.map(x => {
+          allAttributes = allAttributes.filter(y => y.id !== parseInt(x.id))
+          return {
+            ...x,
+            attributeName: attribute.attributeName + ' - ' + x.attributeName,
+            id: attribute.id + ':' + x.id
+          }
+        })
+
+        return repeatAttribute.concat(allAttributes.filter(x => x.attributeType !== AttributeTypeEnum.ATTRIBUTE_GROUP && !x.settings.isMultiUse))
       }
 
       return [

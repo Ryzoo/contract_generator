@@ -43,7 +43,7 @@ export default {
       })) : []
     },
     attributesToAggregate () {
-      return this.$store.getters.builder_allVariables.filter((x) => x.attributeType !== AttributeTypeEnum.ATTRIBUTE_GROUP && !(x.settings.isMultiUse))
+      return this.$store.getters.builder_allVariables.filter((x) => x.attributeType !== AttributeTypeEnum.ATTRIBUTE_GROUP && !(!!x.settings.isMultiUse))
     }
   },
   data () {
