@@ -66,7 +66,7 @@ export default {
   },
   computed: {
     multiGroupAttributes () {
-      return this.$store.getters.builder_multiGroupAttributes.map(x => ({
+      return this.$store.getters.builder_multiGroupAttributes.filter(x => !x.settings.isInline).map(x => ({
         text: x.attributeName,
         value: x.id
       }))
