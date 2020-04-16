@@ -34,7 +34,7 @@ class TextBlock extends Block {
 
   protected function resolveAttributesInContent(Collection $formElements) {
     $attributeResolver = new AttributeResolver($formElements);
-    $this->content['text'] = $attributeResolver->resolveText($this->content['text']);
+    $this->content['text'] = $attributeResolver->resolveText($this->content['text'], true);
   }
 
   public function counterResolve(string $matchString, int $countStart, Contract $contract): int {
@@ -47,6 +47,12 @@ class TextBlock extends Block {
     $variableArray = parent::findVariable($contract);
 
     preg_match_all('/{(\d+)}/', $this->content['text'], $output_array);
+
+    foreach ($output_array[1] as $output) {
+      $variableArray->push([$this->id, $output]);
+    }
+
+    preg_match_all('/{(\d+):\d+}/', $this->content['text'], $output_array);
 
     foreach ($output_array[1] as $output) {
       $variableArray->push([$this->id, $output]);

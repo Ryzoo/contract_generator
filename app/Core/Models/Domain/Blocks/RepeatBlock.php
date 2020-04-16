@@ -38,8 +38,8 @@ class RepeatBlock extends TextBlock {
   }
 
   protected function resolveAttributesInContent(Collection $formElements) {
-    parent::resolveAttributesInContent($formElements);
     $attributeResolver = new AttributeResolver($formElements);
+    $this->content['text'] = $attributeResolver->resolveText($this->content['text']);
     $this->repeatAttribute = $attributeResolver->getAttributeById($this->settings->repeatAttributeId ?? -1);
   }
 
