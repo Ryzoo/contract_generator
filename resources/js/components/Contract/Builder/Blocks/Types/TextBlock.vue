@@ -345,7 +345,7 @@ export default {
           if (variable) text = text.replace(`{${id}}`, `<span class="mention variable" data-mention-id='${id}' contenteditable="false">@${variable.name}</span>`)
         })
       }
-      return text
+      return text === null ? '' : text
     },
     mapAttributesList () {
       return this.$store.getters.builder_allVariables_defaultText.map(x => ({
