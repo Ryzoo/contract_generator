@@ -165,6 +165,36 @@ const getters = {
   builder_getBlockId: state => state.builder.idBlockIncrement,
   builder_getVariableId: state => state.builder.idVariableIncrement,
   builder_allVariables: state => state.builder.variables,
+  builder_allVariables_defaultText: state => {
+    const returnedVar = []
+    const variablesUsedInGroups = []
+
+    state.builder.variables
+      .filter(x => x.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP)
+      .forEach(attribute => {
+        attribute.settings.attributes.forEach(x => {
+          variablesUsedInGroups.push(x.id)
+        })
+      })
+
+    const allVar = state.builder.variables
+      .filter(x => !(x.settings.isMultiUse) || (!!x.settings.isMultiUse && !!x.settings.isInline))
+      .filter(x => !variablesUsedInGroups.includes(x.id + ''))
+
+    allVar.forEach(attribute => {
+      if (attribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {
+        attribute.settings.attributes.forEach(x => {
+          returnedVar.push({
+            ...x,
+            attributeName: attribute.attributeName + ' - ' + x.attributeName,
+            id: attribute.id + ':' + x.id
+          })
+        })
+      } else returnedVar.push(attribute)
+    })
+
+    return returnedVar
+  },
   builder_multiGroupAttributes: state => state.builder.variables.filter(x => !!x.settings.isMultiUse),
   builder_variablesForRepeatBlock: (state) => (id) => {
     const block = getBlockById(state.builder.blocks, id)

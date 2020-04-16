@@ -166,259 +166,256 @@
 </template>
 
 <script>
-  import {Editor, EditorContent, EditorMenuBar} from 'tiptap'
-  import Fuse from 'fuse.js'
-  import tippy from 'tippy.js'
-  import {
-    Blockquote,
-    BulletList,
-    CodeBlock,
-    HardBreak,
-    Heading,
-    ListItem,
-    OrderedList,
-    TodoItem,
-    TodoList,
-    Bold,
-    Code,
-    Italic,
-    Link,
-    Strike,
-    Underline,
-    Mention,
-    History
-  } from 'tiptap-extensions'
-  import ParagraphList from '../../../../../additionalModules/Nodes/ParagraphListNode'
-  import Aligment from '../../../../../additionalModules/Nodes/AligmentNode'
-  import FontSize from '../../../../../additionalModules/Nodes/FontSizeNode'
+import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
+import Fuse from 'fuse.js'
+import tippy from 'tippy.js'
+import {
+  Blockquote,
+  BulletList,
+  CodeBlock,
+  HardBreak,
+  Heading,
+  ListItem,
+  OrderedList,
+  TodoItem,
+  TodoList,
+  Bold,
+  Code,
+  Italic,
+  Link,
+  Strike,
+  Underline,
+  Mention,
+  History
+} from 'tiptap-extensions'
+import ParagraphList from '../../../../../additionalModules/Nodes/ParagraphListNode'
+import Aligment from '../../../../../additionalModules/Nodes/AligmentNode'
+import FontSize from '../../../../../additionalModules/Nodes/FontSizeNode'
 
-  export default {
-    name: 'TextBlock',
-    props: ['block'],
-    components: {
-      EditorContent,
-      EditorMenuBar
-    },
-    data() {
-      return {
-        keepInBounds: true,
-        editor: null,
-        query: null,
-        suggestionRange: null,
-        filteredVariables: [],
-        fontSizes: [8, 10, 12, 14, 16, 18, 20, 24, 36],
-        selectedSize: 0,
-        navigatedVariableIndex: 0,
-        insertMention: () => {
-        },
-        observer: null,
-        variableSuggestions: this.mapAttributesList()
-      }
-    },
-    mounted() {
-      this.initEditor()
-    },
-    watch: {
-      variableUpdated: {
-        deep: true,
-        handler() {
-          this.variableSuggestions = this.mapAttributesList()
-        }
-      }
-    },
-    computed: {
-      hasResults() {
-        return this.filteredVariables.length
+export default {
+  name: 'TextBlock',
+  props: ['block'],
+  components: {
+    EditorContent,
+    EditorMenuBar
+  },
+  data () {
+    return {
+      keepInBounds: true,
+      editor: null,
+      query: null,
+      suggestionRange: null,
+      filteredVariables: [],
+      fontSizes: [8, 10, 12, 14, 16, 18, 20, 24, 36],
+      selectedSize: 0,
+      navigatedVariableIndex: 0,
+      insertMention: () => {
       },
-      showSuggestions() {
-        return this.query || this.hasResults
-      },
-      variableUpdated() {
-        return this.$store.getters.builder_allVariables
-      }
-    },
-    methods: {
-      initEditor() {
-        this.variableSuggestions = this.mapAttributesList()
-        this.editor = new Editor({
-          extensions: [
-            new Blockquote(),
-            new BulletList(),
-            new CodeBlock(),
-            new HardBreak(),
-            new Heading({levels: [1, 2, 3]}),
-            new ListItem(),
-            new OrderedList(),
-            new TodoItem(),
-            new TodoList(),
-            new Link(),
-            new Bold(),
-            new Code(),
-            new Italic(),
-            new Strike(),
-            new Underline(),
-            new History(),
-            new Mention({
-              items: () => this.variableSuggestions,
-              onEnter: ({items, query, range, command, virtualNode}) => {
-                this.query = query
-                this.filteredVariables = items
-                this.suggestionRange = range
-                this.renderPopup(virtualNode)
-                this.insertMention = command
-              },
-              onChange: ({items, query, range, virtualNode}) => {
-                this.query = query
-                this.filteredVariables = items
-                this.suggestionRange = range
-                this.navigatedVariableIndex = 0
-                this.renderPopup(virtualNode)
-              },
-              onExit: () => {
-                this.query = null
-                this.filteredVariables = []
-                this.suggestionRange = null
-                this.navigatedVariableIndex = 0
-                this.destroyPopup()
-              },
-              onKeyDown: ({event}) => {
-                if (event.keyCode === 38) {
-                  this.upHandler()
-                  return true
-                }
-                if (event.keyCode === 40) {
-                  this.downHandler()
-                  return true
-                }
-                if (event.keyCode === 13) {
-                  this.enterHandler()
-                  return true
-                }
-                return false
-              },
-              onFilter: (items, query) => {
-                if (!query) {
-                  return items
-                }
-                const fuse = new Fuse(items, {
-                  threshold: 0.2,
-                  keys: ['name']
-                })
-                return fuse.search(query)
-              }
-            }),
-            new ParagraphList(),
-            new Aligment(),
-            new FontSize()
-          ],
-          parseOptions: {
-            preserveWhitespace: true
-          },
-          content: this.parseBlockContent(this.block),
-          onUpdate: ({getHTML}) => {
-            const html = getHTML()
-            const element = $(`<div>${html}</div>`)
-            const styles = '<style>.paragraph-list{display: block; text-align: center;}.paragraph-list:before{content:"§"} div ol{counter-reset:section;list-style-type:none}div ol li:before{counter-increment:section;content:counters(section, ".") ". "}div ol li>p{display:inline}</style>'
-
-            element.find('.mention').each(function () {
-              $(this).replaceWith(`{${$(this).attr('data-mention-id')}}`)
-            })
-
-            this.$store.dispatch('builder_blockUpdateContent', {
-              id: this.block.id,
-              content: {
-                text: `${styles} ${element.prop('innerHTML')}`
-              }
-            })
-          },
-          useBuiltInExtensions: true
-        })
-      },
-      parseBlockContent(block) {
-        let text = block.content.text
-
-        if (block.content.text !== null) {
-          const matches = block.content.text.split('{')
-            .filter((v) => v.indexOf('}') > -1)
-            .map((value) => parseInt(value.split('}')[0]))
-
-          matches
-            .filter((id) => !isNaN(id))
-            .forEach((id) => {
-              text = text.replace(`{${id}}`, `<span class="mention variable" data-mention-id='${id}' contenteditable="false">@${this.variableSuggestions.find((x) => x.id === id).name}</span>`)
-            })
-        }
-        return text
-      },
-      mapAttributesList() {
-        return this.$store.getters.builder_allVariables.map(x => ({
-          id: x.id,
-          name: x.attributeName
-        }))
-      },
-      upHandler() {
-        this.navigatedVariableIndex = ((this.navigatedVariableIndex + this.filteredVariables.length) - 1) % this.filteredVariables.length
-      },
-      downHandler() {
-        this.navigatedVariableIndex = (this.navigatedVariableIndex + 1) % this.filteredVariables.length
-      },
-      enterHandler() {
-        const variable = this.filteredVariables[this.navigatedVariableIndex]
-        if (variable) {
-          this.selectVariable(variable)
-        }
-      },
-      selectVariable(variable) {
-        this.insertMention({
-          range: this.suggestionRange,
-          attrs: {
-            id: variable.id,
-            label: variable.name
-          }
-        })
-        this.editor.focus()
-      },
-      renderPopup(node) {
-        if (this.popup) {
-          return
-        }
-        this.popup = tippy(node, {
-          content: this.$refs.suggestions,
-          trigger: 'mouseenter',
-          interactive: true,
-          theme: 'dark',
-          placement: 'top-start',
-          inertia: true,
-          duration: [400, 200],
-          showOnInit: true,
-          arrow: true,
-          arrowType: 'round'
-        })
-        if (MutationObserver) {
-          this.observer = new MutationObserver(() => {
-            this.popup.popperInstance.scheduleUpdate()
-          })
-          this.observer.observe(this.$refs.suggestions, {
-            childList: true,
-            subtree: true,
-            characterData: true
-          })
-        }
-      },
-      destroyPopup() {
-        if (this.popup) {
-          this.popup.destroy()
-          this.popup = null
-        }
-        if (this.observer) {
-          this.observer.disconnect()
-        }
-      }
-    },
-    beforeDestroy() {
-      this.editor.destroy()
+      observer: null,
+      variableSuggestions: this.mapAttributesList()
     }
+  },
+  mounted () {
+    this.initEditor()
+  },
+  watch: {
+    variableUpdated: {
+      deep: true,
+      handler () {
+        this.variableSuggestions = this.mapAttributesList()
+      }
+    }
+  },
+  computed: {
+    hasResults () {
+      return this.filteredVariables.length
+    },
+    showSuggestions () {
+      return this.query || this.hasResults
+    },
+    variableUpdated () {
+      return this.$store.getters.builder_allVariables
+    }
+  },
+  methods: {
+    initEditor () {
+      this.variableSuggestions = this.mapAttributesList()
+      this.editor = new Editor({
+        extensions: [
+          new Blockquote(),
+          new BulletList(),
+          new CodeBlock(),
+          new HardBreak(),
+          new Heading({ levels: [1, 2, 3] }),
+          new ListItem(),
+          new OrderedList(),
+          new TodoItem(),
+          new TodoList(),
+          new Link(),
+          new Bold(),
+          new Code(),
+          new Italic(),
+          new Strike(),
+          new Underline(),
+          new History(),
+          new Mention({
+            items: () => this.variableSuggestions,
+            onEnter: ({ items, query, range, command, virtualNode }) => {
+              this.query = query
+              this.filteredVariables = items
+              this.suggestionRange = range
+              this.renderPopup(virtualNode)
+              this.insertMention = command
+            },
+            onChange: ({ items, query, range, virtualNode }) => {
+              this.query = query
+              this.filteredVariables = items
+              this.suggestionRange = range
+              this.navigatedVariableIndex = 0
+              this.renderPopup(virtualNode)
+            },
+            onExit: () => {
+              this.query = null
+              this.filteredVariables = []
+              this.suggestionRange = null
+              this.navigatedVariableIndex = 0
+              this.destroyPopup()
+            },
+            onKeyDown: ({ event }) => {
+              if (event.keyCode === 38) {
+                this.upHandler()
+                return true
+              }
+              if (event.keyCode === 40) {
+                this.downHandler()
+                return true
+              }
+              if (event.keyCode === 13) {
+                this.enterHandler()
+                return true
+              }
+              return false
+            },
+            onFilter: (items, query) => {
+              if (!query) {
+                return items
+              }
+              const fuse = new Fuse(items, {
+                threshold: 0.2,
+                keys: ['name']
+              })
+              return fuse.search(query)
+            }
+          }),
+          new ParagraphList(),
+          new Aligment(),
+          new FontSize()
+        ],
+        parseOptions: {
+          preserveWhitespace: true
+        },
+        content: this.parseBlockContent(this.block),
+        onUpdate: ({ getHTML }) => {
+          const html = getHTML()
+          const element = $(`<div>${html}</div>`)
+          const styles = '<style>.paragraph-list{display: block; text-align: center;}.paragraph-list:before{content:"§"} div ol{counter-reset:section;list-style-type:none}div ol li:before{counter-increment:section;content:counters(section, ".") ". "}div ol li>p{display:inline}</style>'
+
+          element.find('.mention').each(function () {
+            $(this).replaceWith(`{${$(this).attr('data-mention-id')}}`)
+          })
+
+          this.$store.dispatch('builder_blockUpdateContent', {
+            id: this.block.id,
+            content: {
+              text: `${styles} ${element.prop('innerHTML')}`
+            }
+          })
+        },
+        useBuiltInExtensions: true
+      })
+    },
+    parseBlockContent (block) {
+      let text = block.content.text
+
+      if (block.content.text !== null) {
+        const matches = [...block.content.text.matchAll(/{(\d+)}|{(\d+:\d+)}/gm)]
+        matches.forEach((match) => {
+          const id = match[1] || match[2]
+          const variable = this.variableSuggestions.find((x) => x.id == id)
+          if (variable) text = text.replace(`{${id}}`, `<span class="mention variable" data-mention-id='${id}' contenteditable="false">@${variable.name}</span>`)
+        })
+      }
+      return text
+    },
+    mapAttributesList () {
+      return this.$store.getters.builder_allVariables_defaultText.map(x => ({
+        id: x.id,
+        name: x.attributeName
+      }))
+    },
+    upHandler () {
+      this.navigatedVariableIndex = ((this.navigatedVariableIndex + this.filteredVariables.length) - 1) % this.filteredVariables.length
+    },
+    downHandler () {
+      this.navigatedVariableIndex = (this.navigatedVariableIndex + 1) % this.filteredVariables.length
+    },
+    enterHandler () {
+      const variable = this.filteredVariables[this.navigatedVariableIndex]
+      if (variable) {
+        this.selectVariable(variable)
+      }
+    },
+    selectVariable (variable) {
+      this.insertMention({
+        range: this.suggestionRange,
+        attrs: {
+          id: variable.id,
+          label: variable.name
+        }
+      })
+      this.editor.focus()
+    },
+    renderPopup (node) {
+      if (this.popup) {
+        return
+      }
+      this.popup = tippy(node, {
+        content: this.$refs.suggestions,
+        trigger: 'mouseenter',
+        interactive: true,
+        theme: 'dark',
+        placement: 'top-start',
+        inertia: true,
+        duration: [400, 200],
+        showOnInit: true,
+        arrow: true,
+        arrowType: 'round'
+      })
+      if (MutationObserver) {
+        this.observer = new MutationObserver(() => {
+          this.popup.popperInstance.scheduleUpdate()
+        })
+        this.observer.observe(this.$refs.suggestions, {
+          childList: true,
+          subtree: true,
+          characterData: true
+        })
+      }
+    },
+    destroyPopup () {
+      if (this.popup) {
+        this.popup.destroy()
+        this.popup = null
+      }
+      if (this.observer) {
+        this.observer.disconnect()
+      }
+    }
+  },
+  beforeDestroy () {
+    this.editor.destroy()
   }
+}
 </script>
 
 <style lang="scss">
