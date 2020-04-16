@@ -173,9 +173,11 @@ const getters = {
       .filter(x => x.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP)
       .forEach(attribute => {
         attribute.settings.attributes.forEach(x => {
-          variablesUsedInGroups.push(x.id)
+          variablesUsedInGroups.push(x.id + '')
         })
       })
+
+    console.log(variablesUsedInGroups)
 
     const allVar = state.builder.variables
       .filter(x => !(!!x.settings.isMultiUse) || (!!x.settings.isMultiUse && !!x.settings.isInline))
