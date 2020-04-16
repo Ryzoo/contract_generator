@@ -22,4 +22,5 @@ class RuleTypes {
 
   public const AGGREGATE = 7;
 
+  public const BOOL_INPUT = 8;
 }

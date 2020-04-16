@@ -115,6 +115,8 @@ abstract class Attribute implements IAttribute {
         return new BoolAttribute();
       case AttributeType::AGGREGATE:
         return new AggregateAttribute();
+      case AttributeType::BOOL_INPUT:
+        return new BoolInputAttribute();
     }
 
     throw new NotFoundException("Attribute type number:{$attributeType} was not found");

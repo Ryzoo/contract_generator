@@ -22,7 +22,7 @@ class AttributeResolver {
     $this->formElements = $formElements;
   }
 
-  public function resolveText(string $text, bool $resolveGroup) {
+  public function resolveText(string $text, bool $resolveGroup = false) {
     preg_match_all('/{(\d+)}/', $text, $attributeIdList);
 
     foreach ($attributeIdList[1] as $id) {

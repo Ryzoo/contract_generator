@@ -24,4 +24,6 @@ class AttributeType {
   public const BOOL = 6;
 
   public const AGGREGATE = 7;
+
+  public const BOOL_INPUT = 8;
 }

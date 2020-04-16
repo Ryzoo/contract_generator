@@ -50,6 +50,8 @@ class Mapper {
         return 'BoolAttribute'
       case AttributeTypeEnum.AGGREGATE:
         return 'AggregateAttribute'
+      case AttributeTypeEnum.BOOL_INPUT:
+        return 'BoolInputAttribute'
       default:
         return 'NotFoundAttribute'
     }

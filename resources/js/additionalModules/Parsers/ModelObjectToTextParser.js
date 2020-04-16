@@ -1,6 +1,7 @@
 import { RuleTypes } from './utilities'
 import { TextOperatorParser, NumberOperatorParser, SelectOperatorParser, MultiSelectOperatorParser, BoolOperatorParser, DateOperatorParser, TimeOperatorParser } from './Operators'
 import {AggregateOperatorParser} from "./Operators/AggregateOperatorParser";
+import {BoolInputOperatorParser} from "./Operators/BoolInputOperatorParser";
 
 export default class ModelObjectToTextParser {
   static parse (modelObject) {
@@ -18,7 +19,8 @@ export default class ModelObjectToTextParser {
       case RuleTypes.DATE: return DateOperatorParser.parse(`'${variable}'`, operatorType, value || null)
       case RuleTypes.TIME: return TimeOperatorParser.parse(`${variable}`, operatorType, value || null)
       case RuleTypes.BOOL: return BoolOperatorParser.parse(`${variable}`, operatorType, !!value)
-      case RuleTypes.AGGREGATE: return AggregateOperatorParser.parse(variable, operatorType, value ? Number(value) : null);
+      case RuleTypes.BOOL_INPUT: return BoolInputOperatorParser.parse(`${variable}`, operatorType, value)
+      case RuleTypes.AGGREGATE: return AggregateOperatorParser.parse(variable, operatorType, value ? Number(value) : null)
     }
 
     return ''

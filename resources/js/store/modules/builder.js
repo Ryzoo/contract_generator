@@ -173,7 +173,7 @@ const getters = {
       .filter(x => x.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP)
       .forEach(attribute => {
         attribute.settings.attributes.forEach(x => {
-          variablesUsedInGroups.push(x.id)
+          variablesUsedInGroups.push(x.id + '')
         })
       })
 

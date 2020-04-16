@@ -35,12 +35,22 @@ class RepeatGroupAttribute extends Attribute implements IAggregableByAttributeAg
   public function getOperationalValue(string $operation) {
     $returnValue = NULL;
 
-    foreach ($this->value as $attributes) {
-      foreach ($attributes as $attribute) {
-        $attributeParse = Attribute::getFromString((array) $attribute);
-        if ($attributeParse instanceof IAggregableByAttributeAggregator && !($attributeParse instanceof self)) {
-          $returnValue = $this->aggregateValue($returnValue, $operation, $attributeParse);
+    if ((bool) $this->settings['isMultiUse']) {
+      foreach ($this->value as $attributes) {
+        foreach ($attributes as $attribute) {
+          $attributeParse = Attribute::getFromString((array) $attribute);
+          if ($attributeParse instanceof IAggregableByAttributeAggregator && !($attributeParse instanceof self)) {
+            $returnValue = $this->aggregateValue($returnValue, $operation, $attributeParse);
+          }
         }
+      }
+    }
+    else {
+      foreach ($this->value as $attribute) {
+          $attributeParse = Attribute::getFromString((array) $attribute);
+          if ($attributeParse instanceof IAggregableByAttributeAggregator && !($attributeParse instanceof self)) {
+            $returnValue = $this->aggregateValue($returnValue, $operation, $attributeParse);
+          }
       }
     }
 

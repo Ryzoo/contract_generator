@@ -1,4 +1,5 @@
 import i18n from '../../../../lang'
+import { AttributeTypeEnum } from '../../../../additionalModules/Enums'
 
 class AttributeValidator {
   validate (attribute, newValue) {
@@ -37,9 +38,15 @@ class AttributeValidator {
   isEmpty () {
     if (this.isArray()) {
       return this.value.length === 0
-    } else {
-      return this.value === null || this.value === undefined || this.value === '' || (this.value.length === undefined && isNaN(this.value))
+    } else if (this.attribute.attributeType === AttributeTypeEnum.BOOL_INPUT) {
+      return this.isValueEmpty(this.value.bool) || this.isValueEmpty(this.value.input) || !(!!this.value)
     }
+
+    return this.isValueEmpty(this.value)
+  }
+
+  isValueEmpty (value) {
+    return value === null || value === undefined || value === '' || (value.length === undefined && isNaN(value))
   }
 
   isArray () {

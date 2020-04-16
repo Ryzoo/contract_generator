@@ -24,6 +24,7 @@ import RepeatGroupAttribute from '../../Attributes/RepeatGroupAttribute'
 import BoolAttribute from '../../Attributes/BoolAttribute'
 import DateAttribute from '../../Attributes/DateAttribute'
 import TimeAttribute from '../../Attributes/TimeAttribute'
+import BoolInputAttribute from '../../Attributes/BoolInputAttribute'
 
 export default {
   name: 'AddForm',
@@ -35,7 +36,8 @@ export default {
     RepeatGroupAttribute,
     BoolAttribute,
     DateAttribute,
-    TimeAttribute
+    TimeAttribute,
+    BoolInputAttribute
   },
   data () {
     return {

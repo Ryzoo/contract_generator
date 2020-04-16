@@ -234,7 +234,7 @@ export default {
       return this.query || this.hasResults
     },
     variableUpdated () {
-      return this.$store.getters.builder_allVariables
+      return this.$store.getters.builder_allVariables_defaultText
     }
   },
   methods: {

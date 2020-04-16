@@ -13,7 +13,7 @@ class MultiAttributeResolver {
       return self::resolveGroupAttributeInContent($attribute, $content, $value);
     }
 
-    return self::resolveDefaultAttributeInContent($attribute, $content, self::escapeValue($value));
+    return self::resolveDefaultAttributeInContent($attribute, $content, $value);
   }
 
   private static function resolveGroupAttributeInContent(Attribute $attribute, string $content, $values): string{
