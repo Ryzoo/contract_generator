@@ -34,7 +34,7 @@ class TextBlock extends Block {
 
   protected function resolveAttributesInContent(Collection $formElements) {
     $attributeResolver = new AttributeResolver($formElements);
-    $this->content['text'] = $attributeResolver->resolveText($this->content['text']);
+    $this->content['text'] = $attributeResolver->resolveText($this->content['text'], true);
   }
 
   public function counterResolve(string $matchString, int $countStart, Contract $contract): int {
