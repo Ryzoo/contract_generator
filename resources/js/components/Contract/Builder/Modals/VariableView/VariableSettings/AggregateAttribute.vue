@@ -75,7 +75,7 @@ export default {
   computed: {
     attributesToAggregate () {
       return this.$store.getters.builder_allVariables
-        .filter(x => x.attributeType === AttributeTypeEnum.NUMBER || x.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP)
+        .filter(x => x.attributeType == AttributeTypeEnum.NUMBER || x.attributeType == AttributeTypeEnum.ATTRIBUTE_GROUP || x.attributeType == AttributeTypeEnum.BOOL_INPUT)
         .map((x) => ({
           text: x.attributeName,
           value: x.id
