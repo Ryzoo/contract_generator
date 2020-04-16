@@ -6,7 +6,8 @@ export const RuleTypes = {
   DATE: 4,
   TIME: 5,
   BOOL: 6,
-  AGGREGATE: 7
+  AGGREGATE: 7,
+  BOOL_INPUT: 8
 }
 
 export const OperatorType = {

@@ -16,12 +16,13 @@ import SelectAttribute from './VariableSettings/SelectAttribute'
 import TextAttribute from './VariableSettings/TextAttribute'
 import TimeAttribute from './VariableSettings/TimeAttribute'
 import AggregateAttribute from './VariableSettings/AggregateAttribute'
+import BoolInputAttribute from './VariableSettings/BoolInputAttribute'
 
 export default {
   props: ['attribute'],
   name: 'VariableSettings',
   components: {
-    BoolAttribute, DateAttribute, NumberAttribute, RepeatGroupAttribute, SelectAttribute, TextAttribute, TimeAttribute, AggregateAttribute
+    BoolAttribute, DateAttribute, NumberAttribute, RepeatGroupAttribute, SelectAttribute, TextAttribute, TimeAttribute, AggregateAttribute, BoolInputAttribute
   },
   methods: {
     saveData (settings) {
