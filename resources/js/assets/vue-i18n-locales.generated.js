@@ -145,6 +145,7 @@ export default {
         "multiRenderType": "Multi display type",
         "multiRenderTypeHint": "Hint of it",
         "isMultiUse": "Is multi use?",
+        "isInline": "Is inline",
         "forAnonymise": "For anonymise?",
         "additionalInformation": "Additional Information",
         "defaultValue": "Default value",

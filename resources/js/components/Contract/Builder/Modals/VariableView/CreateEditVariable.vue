@@ -82,7 +82,7 @@
                   <v-col cols="12">
                     <v-switch class="mt-0" hide-details dense outlined v-model="attributeData.settings.isMultiUse" :label="$t('form.variableForm.isMultiUse')"></v-switch>
                   </v-col>
-                  <v-col cols="12">
+                  <v-col cols="12" v-if="attributeData.settings.isMultiUse && attributeData.attributeType !== groupAttribute">
                     <v-switch class="mt-0" hide-details dense outlined v-model="attributeData.settings.isInline" :label="$t('form.variableForm.isInline')"></v-switch>
                   </v-col>
                   <v-col cols="12" v-if="attributeData.settings.isInline">
@@ -115,7 +115,7 @@
 
 <script>
 import VariableSettings from './VariableSettings'
-import { MultiUseRenderType } from '../../../../../additionalModules/Enums'
+import { MultiUseRenderType, AttributeTypeEnum } from '../../../../../additionalModules/Enums'
 
 export default {
   name: 'CreateEditVariable',
@@ -127,6 +127,7 @@ export default {
   },
   data () {
     return {
+      groupAttribute: AttributeTypeEnum.ATTRIBUTE_GROUP,
       multiRenderTypeItems: [
         {
           text: 'List',
