@@ -177,8 +177,6 @@ const getters = {
         })
       })
 
-    console.log(variablesUsedInGroups)
-
     const allVar = state.builder.variables
       .filter(x => !(!!x.settings.isMultiUse) || (!!x.settings.isMultiUse && !!x.settings.isInline))
       .filter(x => !variablesUsedInGroups.includes(x.id + ''))
