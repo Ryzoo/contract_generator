@@ -52,6 +52,12 @@ class TextBlock extends Block {
       $variableArray->push([$this->id, $output]);
     }
 
+    preg_match_all('/{(\d+):\d+}/', $this->content['text'], $output_array);
+
+    foreach ($output_array[1] as $output) {
+      $variableArray->push([$this->id, $output]);
+    }
+
     return $variableArray->uniqueStrict('1');
   }
 
