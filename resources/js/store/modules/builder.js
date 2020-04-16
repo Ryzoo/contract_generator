@@ -195,7 +195,7 @@ const getters = {
 
     return returnedVar
   },
-  builder_multiGroupAttributes: state => state.builder.variables.filter(x => !!x.settings.isMultiUse),
+  builder_multiGroupAttributes: state => state.builder.variables.filter(x => !!x.settings.isMultiUse && !(!!x.settings.isInline)),
   builder_variablesForRepeatBlock: (state) => (id) => {
     const block = getBlockById(state.builder.blocks, id)
     const attribute = getAttributeById(state.builder.variables, block ? block.settings.repeatAttributeId : null)
@@ -203,7 +203,8 @@ const getters = {
       if (attribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {
         return attribute.settings.attributes.map(x => ({
           ...x,
-          attributeName: attribute.attributeName + ' - ' + x.attributeName
+          attributeName: attribute.attributeName + ' - ' + x.attributeName,
+          id: attribute.id + ':' + x.id
         }))
       }
 
