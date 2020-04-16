@@ -22,6 +22,10 @@ import TextAttribute from './TextAttribute'
 import SelectAttribute from './SelectAttribute'
 import AttributeValidator from '../Validators/AttributeValidator'
 import RepeatGroupAttribute from './RepeatGroupAttribute'
+import BoolInputAttribute from './BoolInputAttribute'
+import BoolAttribute from './BoolAttribute'
+import DateAttribute from './DateAttribute'
+import TimeAttribute from './TimeAttribute'
 
 export default {
   name: 'RepeatGroupAttribute',
@@ -30,7 +34,11 @@ export default {
     NumberAttribute,
     TextAttribute,
     SelectAttribute,
-    RepeatGroupAttribute
+    RepeatGroupAttribute,
+    BoolAttribute,
+    DateAttribute,
+    TimeAttribute,
+    BoolInputAttribute
   },
   data () {
     return {
@@ -40,7 +48,7 @@ export default {
       resetNow: false
     }
   },
-  watch:{
+  watch: {
     errorFromValidation (newValue) {
       if (newValue.length) this.validationError = newValue
     }
