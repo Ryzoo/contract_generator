@@ -38,6 +38,7 @@ const actions = {
   },
   builder_editVariable: (context, data) => {
     context.commit('BUILDER_EDIT_VARIABLE', data)
+    context.commit('BUILDER_UPDATE_GROUP_VARIABLE', data)
   },
   builder_addVariable: (context, data) => {
     context.commit('BUILDER_ADD_VARIABLE', data)
@@ -55,6 +56,16 @@ const actions = {
 }
 
 const mutations = {
+  BUILDER_UPDATE_GROUP_VARIABLE: (state, data) => {
+    state.builder.variables = state.builder.variables.map((attribute) => {
+      if (attribute.attributeType == AttributeTypeEnum.ATTRIBUTE_GROUP) {
+        attribute.settings.attributes = attribute.settings.attributes
+          .map(x => getAttributeById(state.builder.variables, x.id))
+      }
+
+      return attribute
+    })
+  },
   BUILDER_UPDATE_CURRENT_MULTI_ATTRIBUTE: (state, data) => {
     const updateBlock = (blocks, dataValue) => {
       return blocks.map(x => {
@@ -183,6 +194,8 @@ const getters = {
 
     allVar.forEach(attribute => {
       if (attribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {
+        console.log(attribute.settings)
+
         attribute.settings.attributes.forEach(x => {
           returnedVar.push({
             ...x,
