@@ -4,6 +4,7 @@ namespace App\Core\Helpers;
 
 use App\Core\Contracts\IAggregableByAttributeAggregator;
 use App\Core\Enums\ElementType;
+use App\Core\Models\Domain\Attributes\Attribute;
 use Illuminate\Support\Collection;
 
 class OperationalAttributeResolver extends AttributeResolver {
@@ -28,6 +29,21 @@ class OperationalAttributeResolver extends AttributeResolver {
         return $e->attribute;
       });
     $this->type = $type;
+  }
+
+  public function resolveText(string $text, bool $resolveGroup = false) {
+    preg_match_all('/{(\d+)}/', $text, $attributeIdList);
+
+    foreach ($attributeIdList[1] as $id) {
+      $value = $this->getAttributeValueById((int) $id);
+        $text = str_replace([
+          '{' . $id . '}',
+        ], [
+          $this->escapeValue($value),
+        ], $text);
+    }
+
+    return $text;
   }
 
   protected function getAttributeValueById(int $id): string {
