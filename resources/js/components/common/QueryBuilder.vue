@@ -22,7 +22,7 @@
 <script>
 import VueQueryBuilder from 'vue-query-builder-vuetifyjs'
 import 'vue-query-builder-vuetifyjs/dist/VueQueryBuilder.css'
-import { AttributeTypeEnum, ConditionalEnum } from '../../additionalModules/Enums'
+import { ConditionalEnum } from '../../additionalModules/Enums'
 
 export default {
   name: 'QueryBuilder',
@@ -74,7 +74,7 @@ export default {
       }] : [])
     },
     mapBackendTypeToBuilderType (variable) {
-      switch (variable.attributeType) {
+      switch (parseInt(variable.attributeType)) {
         case 0:
         case 1:
         case 4:

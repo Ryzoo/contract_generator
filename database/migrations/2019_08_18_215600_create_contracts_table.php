@@ -12,10 +12,10 @@ class CreateContractsTable extends Migration {
    * @return void
    */
   public function up() {
-    Schema::create('contracts', function (Blueprint $table) {
+    Schema::create('contracts', static function (Blueprint $table) {
       $table->bigIncrements('id');
       $table->string('name');
-      $table->string('description');
+      $table->text('description');
       $table->boolean('isAvailable')->default(false);
       $table->json('attributesList');
       $table->json('blocks');

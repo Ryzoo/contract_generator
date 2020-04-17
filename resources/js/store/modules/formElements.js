@@ -3,7 +3,8 @@ import {
   ConditionalEnum,
   FormElementsEnum
 } from '../../additionalModules/Enums'
-import AttributeValidator from '../../components/Contract/Form/Validators/AttributeValidator'
+import AttributeValidator
+  from '../../components/Contract/Form/Validators/AttributeValidator'
 
 const defaultState = {
   formElements: []
@@ -26,8 +27,24 @@ const actions = {
 
 const mutations = {
   VALIDATE_ACTUAL: (state, data) => {
-    const newElements = getters.formElementsStepList(state)[data].content.filter(x => x.isActive)
+    state.formElements = getters.formElementsStepList(state)[data].content.filter(x => x.isActive)
       .map(e => {
+        if (e.attribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {
+          return {
+            ...e,
+            validationError: '',
+            isValid: e.attribute.value.every(x => AttributeValidator.validate(x, x.value).status)
+          }
+        }
+
+        if (e.attribute.settings.isMultiUse && Array.isArray(e.attribute.value)) {
+          return {
+            ...e,
+            validationError: '',
+            isValid: e.attribute.value.every(x => AttributeValidator.validate(e.attribute, x).status)
+          }
+        }
+
         const validatorResult = AttributeValidator.validate(e.attribute, e.attribute.value)
         return {
           ...e,
@@ -35,20 +52,6 @@ const mutations = {
           isValid: validatorResult.status
         }
       })
-
-
-    state.formElements = state.formElements.map(e => {
-      const existFormElement = newElements.find(x => x.id === e.id)
-      if (e.attribute.attributeType === AttributeTypeEnum.AGGREGATE) {
-        if (existFormElement) {
-          existFormElement.isValid = true
-        } else {
-          e.isValid = true
-        }
-      }
-
-      return existFormElement || e
-    })
   },
   SET_ELEMENTS: (state, data) => {
     state.formElements = data.map((e, index) => {

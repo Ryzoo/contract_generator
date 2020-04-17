@@ -53,7 +53,7 @@ export default {
     return {
       dateDialog: false,
       currentValue: !!this.attribute.settings.isMultiUse ? null : this.attribute.value,
-      validationError: '',
+      validationError: this.attribute.validationError || '',
       resetNow: false
     }
   },
@@ -74,6 +74,9 @@ export default {
     }
   },
   watch: {
+    attribute () {
+      this.isValid(this.currentValue)
+    },
     errorFromValidation (newValue) {
       if (newValue.length) this.validationError = newValue
     },

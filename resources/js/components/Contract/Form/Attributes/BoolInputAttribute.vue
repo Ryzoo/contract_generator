@@ -55,7 +55,7 @@ export default {
       boolLabel: this.attribute.settings.boolLabel || (this.attribute.settings.required ? this.attribute.attributeName + '*' : this.attribute.attributeName),
       inputLabel: this.attribute.settings.inputLabel || '',
       currentValue: this.attribute.settings.isMultiUse ? null : !!this.attribute.value,
-      validationError: '',
+      validationError: this.attribute.validationError || '',
       resetNow: false
     }
   },
@@ -76,6 +76,9 @@ export default {
     }
   },
   watch: {
+    attribute () {
+      this.isValid(this.currentValue)
+    },
     currentInputValue (newValue) {
       this.currentValue = {
         input: newValue,

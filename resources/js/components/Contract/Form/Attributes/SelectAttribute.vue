@@ -32,11 +32,14 @@ export default {
   data () {
     return {
       currentValue: !!this.attribute.settings.isMultiUse ? null : (this.attribute.value ? this.attribute.value.split(',') : []),
-      validationError: '',
+      validationError: this.attribute.validationError || '',
       resetNow: false
     }
   },
   watch: {
+    attribute () {
+      this.isValid(this.currentValue)
+    },
     errorFromValidation (newValue) {
       if (newValue.length) this.validationError = newValue
     },

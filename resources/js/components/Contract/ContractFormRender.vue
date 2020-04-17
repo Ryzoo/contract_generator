@@ -64,6 +64,14 @@
                 </v-col>
               </v-row>
 
+              <v-row v-if="actualStep === 1">
+                <v-col>
+                  <v-alert type="info">
+                    <div v-html="contract.description"/>
+                  </v-alert>
+                </v-col>
+              </v-row>
+
               <form-renderer
                 :formElements="step.content"
               />
@@ -114,7 +122,7 @@ export default {
   },
   computed: {
     stepList () {
-      return Object.assign([], this.$store.getters.formElementsStepList)
+      return JSON.parse(JSON.stringify(this.$store.getters.formElementsStepList))
     }
   },
   watch: {
@@ -203,3 +211,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" >
+  .v-input--selection-controls{
+    margin-top: 0;
+  }
+</style>

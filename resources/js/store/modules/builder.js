@@ -194,8 +194,6 @@ const getters = {
 
     allVar.forEach(attribute => {
       if (attribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {
-        console.log(attribute.settings)
-
         attribute.settings.attributes.forEach(x => {
           returnedVar.push({
             ...x,
@@ -208,7 +206,7 @@ const getters = {
 
     return returnedVar
   },
-  builder_multiGroupAttributes: state => state.builder.variables.filter(x => !!x.settings.isMultiUse && !(!!x.settings.isInline)),
+  builder_multiGroupAttributes: state => state.builder.variables.filter(x => !!x.settings.isMultiUse && !(x.settings.isInline)),
   builder_variablesForRepeatBlock: (state) => (id) => {
     const block = getBlockById(state.builder.blocks, id)
     const attribute = getAttributeById(state.builder.variables, block ? block.settings.repeatAttributeId : null)

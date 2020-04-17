@@ -6,7 +6,7 @@
          :is="Mapper.getAttributeComponentName(attribute.attributeType)"
          v-bind="{
             attribute: attribute,
-            validationError: validationErrors[index]
+            errorFromValidation: validationErrors[index]
          }"
          @change-value="(newValue)=>{
             changeValue(newValue.newValue, attribute)
@@ -29,7 +29,7 @@ import TimeAttribute from './TimeAttribute'
 
 export default {
   name: 'RepeatGroupAttribute',
-  props: ['attribute', 'errorFromValidation'],
+  props: ['attribute'],
   components: {
     NumberAttribute,
     TextAttribute,
@@ -49,8 +49,8 @@ export default {
     }
   },
   watch: {
-    errorFromValidation (newValue) {
-      if (newValue.length) this.validationError = newValue
+    attribute () {
+      this.currentValue.forEach((attr, index) => this.isValid(attr.value, attr, index))
     }
   },
   methods: {
@@ -64,6 +64,7 @@ export default {
 
       this.currentValue = JSON.parse(this.currentValue)
 
+      this.currentValue.forEach((attr, index) => this.isValid(attr.value, attr, index))
       const isValid = this.currentValue.every((attr, index) => this.isValid(attr.value, attr, index))
 
       if (this.resetNow) {
@@ -77,6 +78,7 @@ export default {
     },
     isValid (newValue, attribute, index) {
       const validatorResult = AttributeValidator.validate(attribute, newValue)
+
       if (!this.resetNow) {
         this.validationErrors[index] = validatorResult.errorMessage
       }

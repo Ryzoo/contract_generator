@@ -26,7 +26,7 @@ class ContractAddRequest extends FormRequest {
   public function rules() {
     return [
       'name' => 'required|string|between:5,190',
-      'description' => 'required|string|between:5,190',
+      'description' => 'required|string',
       'attributesList' => 'array',
       'blocks' => 'array',
       'isAvailable' => 'boolean',

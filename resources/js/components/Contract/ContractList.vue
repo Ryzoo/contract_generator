@@ -9,7 +9,7 @@
                   <v-list-item-content>
                     <v-list-item-title > {{item.name}}</v-list-item-title>
                     <v-list-item-subtitle >
-                      <div class="mb-2">{{item.description}}</div>
+                      <div class="mb-2 text-truncate">{{item.description}}</div>
                       <v-chip
                         v-for="category in item.categories"
                         :key="category.id"
