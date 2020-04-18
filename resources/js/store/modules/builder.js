@@ -57,19 +57,28 @@ const actions = {
 
 const mutations = {
   BUILDER_UPDATE_GROUP_VARIABLE: (state, data) => {
+    const inGroupVarId = []
     state.builder.variables = state.builder.variables.map((attribute) => {
-      if (attribute.attributeType == AttributeTypeEnum.ATTRIBUTE_GROUP) {
+      if (parseInt(attribute.attributeType) === AttributeTypeEnum.ATTRIBUTE_GROUP) {
         attribute.settings.attributes = attribute.settings.attributes
-          .map(x => getAttributeById(state.builder.variables, x.id))
+          .map(x => {
+            inGroupVarId.push(parseInt(x.id))
+            return getAttributeById(state.builder.variables, x.id)
+          })
       }
 
       return attribute
     })
+
+    state.builder.variables = state.builder.variables.map(attr => ({
+      ...attr,
+      isInGroup: inGroupVarId.includes(parseInt(attr.id))
+    }))
   },
   BUILDER_UPDATE_CURRENT_MULTI_ATTRIBUTE: (state, data) => {
     const updateBlock = (blocks, dataValue) => {
       return blocks.map(x => {
-        if (x.id == dataValue.id) {
+        if (parseInt(x.id) === parseInt(dataValue.id)) {
           x.settings = {
             ...x.settings,
             repeatAttributeId: dataValue.value
@@ -87,7 +96,7 @@ const mutations = {
   },
   BUILDER_EDIT_VARIABLE: (state, data) => {
     state.builder.variables = state.builder.variables.map((attribute) => {
-      if (attribute.id == data.id) {
+      if (parseInt(attribute.id) === parseInt(data.id)) {
         return {
           ...data
         }
@@ -109,7 +118,7 @@ const mutations = {
   BUILDER_ACTIVE_BLOCK_UPDATE: (state, data) => {
     const updateBlock = (block, data) => {
       return block.map(x => {
-        if (x.id == data.id) {
+        if (parseInt(x.id) === parseInt(data.id)) {
           return data
         }
 
@@ -125,7 +134,7 @@ const mutations = {
   BUILDER_BLOCK_UPDATE_CONTENT: (state, data) => {
     const updateBlock = (block, data) => {
       return block.map(x => {
-        if (x.id == data.id) {
+        if (parseInt(x.id) === parseInt(data.id)) {
           x.content = data.content
         }
 
@@ -152,6 +161,22 @@ const mutations = {
   },
   BUILDER_SET_VARIABLE: (state, data) => {
     state.builder.variables = data
+
+    const inGroupVarId = []
+    state.builder.variables.forEach((attribute) => {
+      if (parseInt(attribute.attributeType) === AttributeTypeEnum.ATTRIBUTE_GROUP) {
+        attribute.settings.attributes.forEach(x => {
+          inGroupVarId.push(parseInt(x.id))
+        })
+      }
+
+      return attribute
+    })
+
+    state.builder.variables = state.builder.variables.map(attr => ({
+      ...attr,
+      isInGroup: inGroupVarId.includes(parseInt(attr.id))
+    }))
   },
   BUILDER_REMOVE_VARIABLE: (state, Id) => {
     state.builder.variables = state.builder.variables.filter((item) => item.id !== Id)
@@ -241,13 +266,13 @@ const getters = {
   }
 }
 
-const getAttributeById = (attributes, id) => attributes.find(x => x.id == id)
+const getAttributeById = (attributes, id) => attributes.find(x => parseInt(x.id) === parseInt(id))
 
 const getBlockById = (blocks, id) => {
   let returnBlock = null
 
   blocks.forEach(x => {
-    if (x.id == id) {
+    if (parseInt(x.id) === parseInt(id)) {
       returnBlock = x
     }
     if (x.content.blocks) {

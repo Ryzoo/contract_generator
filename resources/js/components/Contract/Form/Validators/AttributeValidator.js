@@ -2,8 +2,8 @@ import i18n from '../../../../lang'
 import { AttributeTypeEnum } from '../../../../additionalModules/Enums'
 
 class AttributeValidator {
-  validate (attribute, newValue) {
-    this.initialize(attribute, newValue)
+  validate (attribute) {
+    this.initialize(attribute)
 
     if (!this.validateRequired()) { return this.response }
 
@@ -18,55 +18,22 @@ class AttributeValidator {
     return this.response
   }
 
-  initialize (attribute, newValue) {
+  initialize (attribute) {
     // eslint-disable-next-line no-throw-literal
     if (!attribute) { throw 'Attribute validator initialized with null attribute' }
 
     this.attribute = Object.assign({}, attribute)
     this.settings = this.attribute.settings
-    this.value = newValue
+    this.value = AttributeValidatorHelper.getValue(attribute)
     this.response = {
+      ...attribute,
       errorMessage: '',
-      status: true
+      isValid: true
     }
-  }
-
-  isEmptyOrDefault () {
-    return this.isEmpty() || this.isDefault()
-  }
-
-  isEmpty () {
-    if (this.isArray()) {
-      return this.value.length === 0
-    } else if (this.attribute.attributeType === AttributeTypeEnum.BOOL_INPUT) {
-      return this.isValueEmpty(this.value.bool) || this.isValueEmpty(this.value.input) || !(!!this.value)
-    }
-
-    return this.isValueEmpty(this.value)
-  }
-
-  isValueEmpty (value) {
-    return value === null || value === undefined || value === '' || (value.length === undefined && isNaN(value))
-  }
-
-  isArray () {
-    return Array.isArray(this.value)
-  }
-
-  isDefault () {
-    return this.attribute.defaultValue !== null && this.attribute.defaultValue !== undefined && this.attribute.defaultValue === this.value
-  }
-
-  isInteger () {
-    return !isNaN(parseInt(this.value))
-  }
-
-  isString () {
-    return String(this.value).length > 0
   }
 
   validateRequired () {
-    if (!!this.settings.required && this.isEmpty()) {
+    if (!!this.settings.required && AttributeValidatorHelper.isEmpty(this.attribute)) {
       const validationError = i18n.t('validation.required', {
         attribute: this.attribute.attributeName
       })
@@ -78,7 +45,7 @@ class AttributeValidator {
 
   validateValueMax () {
     if (this.settings.valueMax) {
-      if (!this.isInteger()) {
+      if (!AttributeValidatorHelper.isInteger(this.attribute)) {
         const validationError = i18n.t('validation.numeric', {
           attribute: this.attribute.attributeName
         })
@@ -99,7 +66,7 @@ class AttributeValidator {
 
   validateValueMin () {
     if (this.settings.valueMin) {
-      if (!this.isInteger()) {
+      if (!AttributeValidatorHelper.isInteger(this.attribute)) {
         const validationError = i18n.t('validation.numeric', {
           attribute: this.attribute.attributeName
         })
@@ -120,14 +87,14 @@ class AttributeValidator {
 
   validateLengthMin () {
     if (this.settings.lengthMin) {
-      if (!this.isString() && !this.isArray()) {
+      if (!AttributeValidatorHelper.isString(this.attribute) && !AttributeValidatorHelper.isArray(this.attribute)) {
         const validationError = i18n.t('validation.string', {
           attribute: this.attribute.attributeName
         })
         return this.setResponse(validationError, false)
       }
-      if ((this.isArray() ? this.value.length : String(this.value).length) < parseInt(this.settings.lengthMin)) {
-        const validationError = this.isArray() ? i18n.t('validation.min.array', {
+      if ((AttributeValidatorHelper.isArray(this.attribute) ? this.value.length : String(this.value).length) < parseInt(this.settings.lengthMin)) {
+        const validationError = AttributeValidatorHelper.isArray(this.attribute) ? i18n.t('validation.min.array', {
           attribute: this.attribute.attributeName,
           min: this.settings.lengthMin
         }) : i18n.t('validation.min.string', {
@@ -144,15 +111,15 @@ class AttributeValidator {
 
   validateLengthMax () {
     if (this.settings.lengthMax) {
-      if (!this.isString() && !this.isArray()) {
+      if (!AttributeValidatorHelper.isString(this.attribute) && !AttributeValidatorHelper.isArray(this.attribute)) {
         const validationError = i18n.t('validation.string', {
           attribute: this.attribute.attributeName
         })
         return this.setResponse(validationError, false)
       }
 
-      if ((this.isArray() ? this.value.length : String(this.value).length) > parseInt(this.settings.lengthMax)) {
-        const validationError = this.isArray() ? i18n.t('validation.max.array', {
+      if ((AttributeValidatorHelper.isArray(this.attribute) ? this.value.length : String(this.value).length) > parseInt(this.settings.lengthMax)) {
+        const validationError = AttributeValidatorHelper.isArray(this.attribute) ? i18n.t('validation.max.array', {
           attribute: this.attribute.attributeName,
           max: this.settings.lengthMax
         }) : i18n.t('validation.max.string', {
@@ -169,10 +136,77 @@ class AttributeValidator {
 
   setResponse (message, status) {
     this.response = {
+      ...this.attribute,
       errorMessage: message,
-      status: status
+      isValid: status
     }
     return status
+  }
+}
+
+class AttributeValidatorHelper {
+  static isEmpty (attribute) {
+    const value = AttributeValidatorHelper.getValue(attribute)
+
+    switch (parseInt(attribute.attributeType)) {
+      case AttributeTypeEnum.BOOL:
+        return !value
+      case AttributeTypeEnum.BOOL_INPUT:
+        return (!value.bool) && (value.input === null || value.input === undefined || value.input === '' || (value.input.length === undefined && isNaN(value.input)))
+      case AttributeTypeEnum.SELECT:
+        return value === null || value === undefined || value === ''
+      case AttributeTypeEnum.ATTRIBUTE_GROUP:
+        return value.some(x => AttributeValidatorHelper.isEmpty(x))
+    }
+
+    return value === null || value === undefined || value === '' || (value.length === undefined && isNaN(value))
+  }
+
+  static isArray (attribute) {
+    const value = AttributeValidatorHelper.getValue(attribute)
+
+    switch (parseInt(attribute.attributeType)) {
+      case AttributeTypeEnum.BOOL_INPUT:
+        return Array.isArray(value.input)
+    }
+
+    return Array.isArray(value)
+  }
+
+  static isMulti (attribute) {
+    return attribute.settings.isMultiUse
+  }
+
+  static isInteger (attribute) {
+    const value = AttributeValidatorHelper.getValue(attribute)
+
+    switch (parseInt(attribute.attributeType)) {
+      case AttributeTypeEnum.BOOL_INPUT:
+        return !isNaN(parseInt(value.input))
+    }
+
+    return !isNaN(parseInt(value))
+  }
+
+  static isString (attribute) {
+    const value = AttributeValidatorHelper.getValue(attribute)
+
+    switch (parseInt(attribute.attributeType)) {
+      case AttributeTypeEnum.BOOL_INPUT:
+        return String(value.input).length > 0
+    }
+
+    return String(value).length > 0
+  }
+
+  static getValue (attribute) {
+    let value = attribute.value
+
+    if (AttributeValidatorHelper.isMulti(attribute)) {
+      value = attribute.value[0]
+    }
+
+    return value
   }
 }
 

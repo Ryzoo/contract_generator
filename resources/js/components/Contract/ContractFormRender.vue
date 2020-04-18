@@ -89,7 +89,6 @@
                   </v-btn>
                 </v-col>
               </v-row>
-
             </v-stepper-content>
           </v-stepper-items>
         </v-stepper>
@@ -122,7 +121,7 @@ export default {
   },
   computed: {
     stepList () {
-      return JSON.parse(JSON.stringify(this.$store.getters.formElementsStepList))
+      return this.$store.getters.formElementsStepList
     }
   },
   watch: {

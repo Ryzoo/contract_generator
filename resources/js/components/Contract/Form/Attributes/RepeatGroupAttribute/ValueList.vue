@@ -32,12 +32,18 @@
 <script>
 export default {
   name: 'ValueList',
-  props: ['value'],
+  props: ['attribute'],
+  data () {
+    return {
+      value: this.attribute.value || []
+    }
+  },
   methods: {
     removeElement (index) {
-      const allValue = [...this.value]
-      allValue.splice(index, 1)
-      this.$emit('remove', allValue)
+      this.$store.dispatch('formElements_remove_attribute_row', {
+        id: this.attribute.id,
+        index
+      })
     }
   }
 }

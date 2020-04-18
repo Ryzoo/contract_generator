@@ -1,14 +1,13 @@
 <template>
     <v-row :class="{'multi-use-container':!!this.formElement.attribute.settings.isMultiUse, 'single-use-container':!(!!this.formElement.attribute.settings.isMultiUse)}">
       <h3 v-if="!!this.formElement.attribute.settings.isMultiUse">Multiple element</h3>
+      <small v-if="!!this.formElement.attribute.settings.isMultiUse">If you want add more than one use button 'add new row'</small>
       <AddForm
         :attribute="this.formElement.attribute"
-        :validationError="this.formElement.validationError || ''"
-        @change="changeValue"
       />
       <v-col cols="12" class="pa-0" v-if="!!this.formElement.attribute.settings.isMultiUse">
           <v-divider class="my-3"/>
-          <ValueList class="mb-3" @remove="changeValue" :value="this.formElement.attribute.value || []"/>
+          <ValueList class="mb-3" :attribute="this.formElement.attribute"/>
       </v-col>
     </v-row>
 </template>
@@ -23,18 +22,6 @@ export default {
   components: {
     AddForm,
     ValueList
-  },
-  data () {
-    return {
-    }
-  },
-  methods: {
-    changeValue (newValue) {
-      this.$store.dispatch('formElements_change', {
-        id: this.formElement.id,
-        value: newValue
-      })
-    }
   }
 }
 </script>

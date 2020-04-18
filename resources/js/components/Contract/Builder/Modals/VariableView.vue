@@ -3,27 +3,29 @@
     <v-card-title>Attribute list:</v-card-title>
     <v-divider/>
     <v-card-text>
-      <v-text-field
-        v-if="this.$store.getters.builder_allVariables.length > 0"
-        label="Filter by name"
-        class="mt-2"
-        v-model="searchText"
-        dense
-        hide-details
-        outlined
-      ></v-text-field>
-      <div v-if="currentVariable.length > 0"
+      <v-row class="mt-2">
+        <v-btn color="primary mx-2" @click="addNewAttribute">+ Add new</v-btn>
+        <v-text-field
+          v-if="this.$store.getters.builder_allVariables.length > 0"
+          label="Filter by name"
+          v-model="searchText"
+          dense
+          hide-details
+          outlined
+        ></v-text-field>
+      </v-row>
+
+      <div v-if="this.$store.getters.builder_allVariables.length > 0"
            class="text-center">
         <v-row>
-          <v-col cols="12" md="6">
-            <h4>Attributes</h4>
+          <v-col cols="12" md="4">
+            <h4>Simple attributes</h4>
             <v-chip
-              class="d-block ma-1"
-              :class="{'multi-use-variable': attribute.isMultiUse}"
+              class="d-block ma-1 py-1"
               label
               close
               small
-              v-for="attribute in currentVariable.filter(x => x.attributeType !== AttributeTypeEnum.ATTRIBUTE_GROUP)"
+              v-for="attribute in defaultAttributes"
               :key="attribute.id"
               color="primary"
               @click="editVariable(attribute)"
@@ -32,14 +34,30 @@
               {{attribute.attributeName}}
             </v-chip>
           </v-col>
-          <v-col cols="12" md="6">
-            <h4>Attributes group</h4>
+          <v-col cols="12" md="4">
+            <h4>Attributes used in group</h4>
             <v-chip
-              class="d-block ma-1"
+              class="d-block ma-1 py-1"
               label
               close
               small
-              v-for="attribute in currentVariable.filter(x => x.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP)"
+              v-for="attribute in usedInGroupsAttributes"
+              :key="attribute.id"
+              color="primary"
+              @click="editVariable(attribute)"
+              @click:close="tryToRemoveAttribute(attribute)"
+            >
+              {{attribute.attributeName}}
+            </v-chip>
+          </v-col>
+          <v-col cols="12" md="4">
+            <h4>Group attributes</h4>
+            <v-chip
+              class="d-block ma-1 py-1"
+              label
+              close
+              small
+              v-for="attribute in groupsAttributes"
               :key="attribute.id"
               color="primary"
               @click="editVariable(attribute)"
@@ -63,7 +81,6 @@
     <v-card-actions>
       <v-spacer/>
       <v-btn color="primary" outlined @click="pushCloseEvent">Exit</v-btn>
-      <v-btn color="primary" @click="addNewAttribute">Add new variable</v-btn>
     </v-card-actions>
 
     <v-dialog persistent v-model="deleteDialog" max-width="290">
@@ -119,8 +136,22 @@ export default {
     }
   },
   computed: {
-    currentVariable () {
-      return this.$store.getters.builder_allVariables.filter((x) => this.searchText.length < 3 || x.attributeName.toLowerCase().includes(this.searchText.toLowerCase()))
+    defaultAttributes () {
+      return this.$store.getters.builder_allVariables
+        .filter((x) => this.searchText.length < 3 || x.attributeName.toLowerCase().includes(this.searchText.toLowerCase()))
+        .filter((x) => parseInt(x.attributeType) !== AttributeTypeEnum.ATTRIBUTE_GROUP)
+        .filter((x) => !x.isInGroup)
+    },
+    usedInGroupsAttributes () {
+      return this.$store.getters.builder_allVariables
+        .filter((x) => this.searchText.length < 3 || x.attributeName.toLowerCase().includes(this.searchText.toLowerCase()))
+        .filter((x) => parseInt(x.attributeType) !== AttributeTypeEnum.ATTRIBUTE_GROUP)
+        .filter((x) => x.isInGroup)
+    },
+    groupsAttributes () {
+      return this.$store.getters.builder_allVariables
+        .filter((x) => this.searchText.length < 3 || x.attributeName.toLowerCase().includes(this.searchText.toLowerCase()))
+        .filter((x) => parseInt(x.attributeType) === AttributeTypeEnum.ATTRIBUTE_GROUP)
     }
   },
   methods: {
@@ -152,6 +183,13 @@ export default {
 
 <style scoped lang="scss">
   @import "./../../../../../sass/colors";
+  .v-chip.v-size--small {
+    height: auto !important;
+  }
+
+  .v-chip {
+    white-space: normal !important;
+  }
 
   .variables-list {
     display: flex;
@@ -182,10 +220,6 @@ export default {
     justify-content: center;
     padding: 15px;
     opacity: 0.3;
-  }
-
-  .multi-use-variable {
-    background: linear-gradient(90deg, rgba(64,89,190,1) 0%, rgba(64,89,190,1) 96%, rgba(183,0,255,1) 100%) !important;
   }
 
 </style>

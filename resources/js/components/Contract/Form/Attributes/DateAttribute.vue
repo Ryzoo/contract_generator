@@ -9,12 +9,10 @@
       <template v-slot:activator="{ on }">
         <v-text-field
           v-model="currentValue"
-          :label="attribute.settings.required ? attribute.attributeName+'*' : attribute.attributeName"
-          :placeholder="attribute.placeholder ? String(attribute.placeholder) : ''"
-          :error="validationError.length > 0"
-          :error-messages="validationError"
-          :hint="attribute.description"
-          :persistent-hint="!!attribute.description"
+          :label="attribute.attributeName"
+          :placeholder="attribute.placeholder"
+          :error="!attribute.isValid"
+          :error-messages="attribute.errorMessage"
           outlined
           dense
           prepend-icon="far fa-calendar-alt"
@@ -44,47 +42,33 @@
 </template>
 
 <script>
-import AttributeValidator from '../Validators/AttributeValidator'
 
 export default {
   name: 'DateAttribute',
-  props: ['attribute', 'errorFromValidation'],
+  props: ['attribute', 'outside'],
   data () {
     return {
       dateDialog: false,
-      currentValue: !!this.attribute.settings.isMultiUse ? null : this.attribute.value,
-      validationError: this.attribute.validationError || '',
-      resetNow: false
+      currentValue: this.attribute.settings.defaultValue
     }
   },
   methods: {
-    isValid (newValue) {
-      const validatorResult = AttributeValidator.validate(this.attribute, newValue)
-      if (this.resetNow) {
-        this.resetNow = false
-      } else {
-        this.validationError = validatorResult.errorMessage
-      }
-      return validatorResult.status
-    },
     resetForm () {
-      this.resetNow = true
-      this.currentValue = null
-      this.validationError = ''
+      this.currentValue = this.attribute.settings.defaultValue
     }
   },
   watch: {
-    attribute () {
-      this.isValid(this.currentValue)
-    },
-    errorFromValidation (newValue) {
-      if (newValue.length) this.validationError = newValue
-    },
     currentValue (newValue) {
-      const isValid = this.isValid(newValue)
-      this.$emit('change-value', {
-        newValue,
-        isValid
+      if (this.outside) {
+        this.$emit('change-value', {
+          ...this.attribute,
+          value: newValue
+        })
+        return
+      }
+      this.$store.dispatch('formElements_change_attribute', {
+        id: this.attribute.id,
+        value: newValue
       })
     }
   }

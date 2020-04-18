@@ -3,12 +3,12 @@
         <v-switch
           class="mr-2"
           :label="boolLabel"
-          v-model="currentBoolValue"
-          :placeholder="attribute.placeholder ? String(attribute.placeholder) : ''"
-          :error="validationError.length > 0"
-          :error-messages="validationError"
+          :placeholder="attribute.placeholder"
+          :error="!attribute.isValid"
+          :error-messages="attribute.errorMessage"
           :hint="attribute.description"
           :persistent-hint="!!attribute.description"
+          v-model="currentBoolValue"
           outlined
           dense
         >
@@ -43,42 +43,30 @@
 </template>
 
 <script>
-import AttributeValidator from '../Validators/AttributeValidator'
-
 export default {
   name: 'BoolInputAttribute',
-  props: ['attribute', 'errorFromValidation'],
+  props: ['attribute', 'outside'],
   data () {
     return {
       currentBoolValue: false,
-      currentInputValue: null,
-      boolLabel: this.attribute.settings.boolLabel || (this.attribute.settings.required ? this.attribute.attributeName + '*' : this.attribute.attributeName),
+      currentInputValue: this.attribute.defaultValue,
+      boolLabel: this.attribute.settings.boolLabel || this.attribute.attributeName,
       inputLabel: this.attribute.settings.inputLabel || '',
-      currentValue: this.attribute.settings.isMultiUse ? null : !!this.attribute.value,
-      validationError: this.attribute.validationError || '',
-      resetNow: false
+      currentValue: {
+        input: this.attribute.defaultValue,
+        bool: false
+      }
     }
   },
   methods: {
-    isValid (newValue) {
-      const validatorResult = AttributeValidator.validate(this.attribute, newValue)
-      if (this.resetNow) {
-        this.resetNow = false
-      } else {
-        this.validationError = validatorResult.errorMessage
-      }
-      return validatorResult.status
-    },
     resetForm () {
-      this.resetNow = true
-      this.currentValue = null
-      this.validationError = ''
+      this.currentValue = {
+        input: this.attribute.defaultValue,
+        bool: false
+      }
     }
   },
   watch: {
-    attribute () {
-      this.isValid(this.currentValue)
-    },
     currentInputValue (newValue) {
       this.currentValue = {
         input: newValue,
@@ -91,22 +79,19 @@ export default {
         bool: newValue
       }
     },
-    errorFromValidation (newValue) {
-      if (newValue.length) this.validationError = newValue
-    },
     currentValue (newValue) {
-      const isValid = this.isValid(newValue)
-      this.$emit('change-value', {
-        newValue,
-        isValid
+      if (this.outside) {
+        this.$emit('change-value', {
+          ...this.attribute,
+          value: newValue
+        })
+        return
+      }
+      this.$store.dispatch('formElements_change_attribute', {
+        id: this.attribute.id,
+        value: newValue
       })
     }
-  },
-  mounted () {
-    this.$emit('change-value', {
-      newValue: !!this.currentValue,
-      isValid: true
-    })
   }
 }
 </script>

@@ -9,6 +9,49 @@ import AttributeValidator
 const defaultState = {
   formElements: []
 }
+const prepareAttributeDefault = (attribute) => {
+  switch (parseInt(attribute.attributeType)) {
+    case AttributeTypeEnum.BOOL:
+      return !!attribute.defaultValue
+    case AttributeTypeEnum.DATE:
+    case AttributeTypeEnum.TIME:
+      return attribute.defaultValue ? new Date(attribute.defaultValue) : null
+    case AttributeTypeEnum.ATTRIBUTE_GROUP:
+      return attribute.settings.attributes.map((x) => ({
+        ...x,
+        attributeName: x.settings.required ? (x.settings.description || x.attributeName) + '*' : (x.settings.description || x.attributeName),
+        placeholder: x.placeholder ? String(x.placeholder) : '',
+        errorMessage: '',
+        isValid: true,
+        defaultValue: prepareAttributeDefault(x),
+        value: prepareAttributeDefault(x)
+      }))
+  }
+
+  return attribute.defaultValue
+}
+const validateAttribute = (attribute) => {
+  const currentAttribute = AttributeValidator.validate(attribute)
+
+  if (currentAttribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {
+    if (currentAttribute.settings.isMultiUse) {
+      currentAttribute.value = currentAttribute.value.map((x, index) => {
+        if (index === 0) {
+          return x.map(attributeIn => ({
+            ...AttributeValidator.validate(attributeIn)
+          }))
+        }
+        return x
+      })
+    } else {
+      currentAttribute.value = currentAttribute.value.map((attributeIn) => ({
+        ...AttributeValidator.validate(attributeIn)
+      }))
+    }
+  }
+
+  return currentAttribute
+}
 
 const actions = {
   formElements_validate_current: (context, data) => {
@@ -19,69 +62,109 @@ const actions = {
     context.commit('SET_ELEMENTS', data)
     context.commit('RECALCULATE_CONDITIONS')
   },
-  formElements_change: (context, data) => {
-    context.commit('CHANGE_ELEMENT', data)
+  formElements_change_attribute: (context, data) => {
+    context.commit('CHANGE_ELEMENT_ATTRIBUTE', data)
+    context.commit('RECALCULATE_CONDITIONS')
+  },
+  formElements_remove_attribute_row: (context, data) => {
+    context.commit('REMOVE_ATTRIBUTE_ROW', data)
+    context.commit('RECALCULATE_CONDITIONS')
+  },
+  formElements_add_attribute_row: (context, attributeId) => {
+    context.commit('ADD_ATTRIBUTE_ROW', attributeId)
     context.commit('RECALCULATE_CONDITIONS')
   }
 }
 
 const mutations = {
-  VALIDATE_ACTUAL: (state, data) => {
-    state.formElements = getters.formElementsStepList(state)[data].content.filter(x => x.isActive)
-      .map(e => {
-        if (e.attribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {
-          return {
-            ...e,
-            validationError: '',
-            isValid: e.attribute.value.every(x => AttributeValidator.validate(x, x.value).status)
-          }
-        }
-
-        if (e.attribute.settings.isMultiUse && Array.isArray(e.attribute.value)) {
-          return {
-            ...e,
-            validationError: '',
-            isValid: e.attribute.value.every(x => AttributeValidator.validate(e.attribute, x).status)
-          }
-        }
-
-        const validatorResult = AttributeValidator.validate(e.attribute, e.attribute.value)
+  REMOVE_ATTRIBUTE_ROW: (state, data) => {
+    state.formElements = state.formElements.map(e => {
+      if (e.attribute && e.attribute.id === data.id) {
+        const allValue = [...e.attribute.value]
+        allValue.splice(data.index, 1)
         return {
           ...e,
-          validationError: validatorResult.errorMessage,
-          isValid: validatorResult.status
-        }
-      })
-  },
-  SET_ELEMENTS: (state, data) => {
-    state.formElements = data.map((e, index) => {
-      e.id = index
-      if (e.elementType === FormElementsEnum.ATTRIBUTE) {
-        e.attribute.value = e.attribute.defaultValue
-
-        if (e.attribute.attributeType === 6) {
-          e.attribute.value = !!e.attribute.defaultValue
+          attribute: {
+            ...e.attribute,
+            value: allValue
+          }
         }
       }
       return e
     })
   },
-  CHANGE_ELEMENT: (state, data) => {
+  ADD_ATTRIBUTE_ROW: (state, attributeId) => {
     state.formElements = state.formElements.map(e => {
-      if (e.id === data.id) {
-        const validatorResult = AttributeValidator.validate(e.attribute, data.value)
+      if (e.attribute && e.attribute.id === attributeId) {
+        const attribute = {
+          ...e.attribute,
+          value: [
+            e.attribute.defaultValue,
+            ...e.attribute.value
+          ]
+        }
+
         return {
           ...e,
-          attribute: {
-            ...e.attribute,
-            value: data.value
-          },
-          validationError: validatorResult.errorMessage,
-          isValid: validatorResult.status
+          attribute
         }
-      } else {
-        return e
       }
+      return e
+    })
+  },
+  VALIDATE_ACTUAL: (state) => {
+    state.formElements = state.formElements.map((formElement) => {
+      if (formElement.elementType === FormElementsEnum.ATTRIBUTE) {
+        const attribute = validateAttribute(formElement.attribute)
+        return {
+          ...formElement,
+          attribute,
+          isValid: attribute.isValid
+        }
+      }
+      return formElement
+    })
+  },
+  SET_ELEMENTS: (state, data) => {
+    state.formElements = data.map((e, index) => {
+      e.id = index
+      if (e.elementType === FormElementsEnum.ATTRIBUTE) {
+        const attrName = e.attribute.settings.description || e.attribute.attributeName
+        e.attribute.attributeName = e.attribute.settings.required ? attrName + '*' : attrName
+        e.attribute.placeholder = e.attribute.placeholder ? String(e.attribute.placeholder) : ''
+        e.attribute.errorMessage = ''
+        e.attribute.isValid = true
+        e.attribute.defaultValue = prepareAttributeDefault(e.attribute)
+        e.attribute.value = e.attribute.defaultValue
+
+        if (e.attribute.settings.isMultiUse) {
+          e.attribute.value = [
+            e.attribute.value
+          ]
+        }
+      }
+      return e
+    })
+  },
+  CHANGE_ELEMENT_ATTRIBUTE: (state, data) => {
+    state.formElements = state.formElements.map(e => {
+      if (e.elementType === FormElementsEnum.ATTRIBUTE && e.attribute && e.attribute.id === data.id) {
+        const currentValue = e.attribute.isMultiUse ? e.attribute.value.shift() : e.attribute.value
+        let attribute = {
+          ...e.attribute,
+          value: e.attribute.isMultiUse ? [
+            data.value,
+            ...currentValue
+          ] : data.value
+        }
+        attribute = validateAttribute(attribute)
+        return {
+          ...e,
+          attribute,
+          isValid: attribute.isValid
+        }
+      }
+      return e
     })
   },
   RECALCULATE_CONDITIONS: (state) => {
@@ -125,6 +208,7 @@ const getters = {
       return item
     })
 
+    console.log(listToReturn)
     return listToReturn
   }
 }

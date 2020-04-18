@@ -75,10 +75,15 @@
           <v-expansion-panels>
             <v-expansion-panel>
               <v-expansion-panel-header>
-                Multi use
+                Multiple Value
               </v-expansion-panel-header>
               <v-expansion-panel-content>
-                <v-row>
+                <v-row v-if="attribute.isInGroup">
+                  <v-alert type="info" dense>
+                    This attribute is used in group. Can't be used as multiple value.
+                  </v-alert>
+                </v-row>
+                <v-row v-else>
                   <v-col cols="12">
                     <v-switch class="mt-0" hide-details dense outlined v-model="attributeData.settings.isMultiUse" :label="$t('form.variableForm.isMultiUse')"></v-switch>
                   </v-col>

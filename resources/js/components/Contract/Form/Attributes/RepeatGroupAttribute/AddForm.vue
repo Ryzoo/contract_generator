@@ -5,8 +5,6 @@
         ref="addForm"
         :is="Mapper.getAttributeComponentName(this.attribute.attributeType)"
         :attribute="this.attribute"
-        :errorFromValidation="this.validationError || ''"
-        @change-value="changeValue"
       >
       </component>
     </v-col>
@@ -28,7 +26,7 @@ import BoolInputAttribute from '../../Attributes/BoolInputAttribute'
 
 export default {
   name: 'AddForm',
-  props: ['attribute', 'validationError'],
+  props: ['attribute'],
   components: {
     NumberAttribute,
     TextAttribute,
@@ -50,21 +48,10 @@ export default {
   methods: {
     addValue () {
       if (this.lastValue.isValid) {
+        this.$store.dispatch('formElements_add_attribute_row', this.attribute.id)
         this.$refs.addForm.resetForm()
-        let attributeValue = this.attribute.value
-
-        if (!Array.isArray(attributeValue)) attributeValue = []
-
-        this.$emit('change', [
-          ...attributeValue,
-          this.lastValue.newValue
-        ])
       }
     },
-    changeValue (newValue) {
-      this.lastValue = newValue
-      if (!(!!this.attribute.settings.isMultiUse)) { this.$emit('change', newValue.newValue) }
-    }
   }
 }
 </script>
