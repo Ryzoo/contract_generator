@@ -93,7 +93,7 @@
                               :label="$t('form.variableForm.isMultiUse')"></v-switch>
                   </v-col>
                   <v-col cols="12"
-                         v-if="attributeData.settings.isMultiUse && attributeData.attributeType !== groupAttribute">
+                         v-if="attributeData.settings.isMultiUse && attributeData.attributeType !== attributeType.ATTRIBUTE_GROUP">
                     <v-switch class="mt-0" hide-details dense outlined v-model="attributeData.settings.isInline"
                               :label="$t('form.variableForm.isInline')"></v-switch>
                   </v-col>
@@ -114,6 +114,29 @@
             </v-expansion-panel>
           </v-expansion-panels>
         </v-col>
+        <v-col cols="12" v-if="attributeData.attributeType === attributeType.ATTRIBUTE_GROUP && attributeData.id !== undefined && attributeData.id !== null">
+          <v-expansion-panels>
+            <v-expansion-panel>
+              <v-expansion-panel-header>
+                Conditionals for group fields
+              </v-expansion-panel-header>
+              <v-expansion-panel-content>
+                <v-expansion-panels v-for="attribute in attributeData.settings.attributes" :key="attribute.id">
+                  <v-expansion-panel>
+                    <v-expansion-panel-header>{{attribute.attributeName}}</v-expansion-panel-header>
+                    <v-expansion-panel-content>
+                      <QueryBuilderForGroupsVar
+                        :parent-id="attributeData.id"
+                        :attributesList="attributeData.settings.attributes"
+                        :attribute="attribute"
+                      />
+                    </v-expansion-panel-content>
+                  </v-expansion-panel>
+                </v-expansion-panels>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
+        </v-col>
       </v-row>
     </v-card-text>
 
@@ -128,6 +151,7 @@
 <script>
 import VariableSettings from './VariableSettings'
 import DefaultValue from './DefaultValue'
+import QueryBuilderForGroupsVar from '../../../../common/QueryBuilderForGroupsVar'
 import { MultiUseRenderType, AttributeTypeEnum } from '../../../../../additionalModules/Enums'
 
 export default {
@@ -136,11 +160,11 @@ export default {
     'attribute'
   ],
   components: {
-    VariableSettings, DefaultValue
+    VariableSettings, DefaultValue, QueryBuilderForGroupsVar
   },
   data () {
     return {
-      groupAttribute: AttributeTypeEnum.ATTRIBUTE_GROUP,
+      attributeType: AttributeTypeEnum,
       multiRenderTypeItems: [
         {
           text: 'List',

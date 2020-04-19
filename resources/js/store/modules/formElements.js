@@ -24,6 +24,7 @@ const prepareAttributeDefault = (attribute) => {
         placeholder: x.placeholder ? String(x.placeholder) : '',
         errorMessage: '',
         isValid: true,
+        isActive: true,
         defaultValue: prepareAttributeDefault(x),
         value: prepareAttributeDefault(x)
       }))
@@ -38,16 +39,27 @@ const validateAttribute = (attribute) => {
     if (currentAttribute.settings.isMultiUse) {
       currentAttribute.value = currentAttribute.value.map((x, index) => {
         if (index === 0) {
-          return x.map(attributeIn => ({
-            ...AttributeValidator.validate(attributeIn)
-          }))
+          return x.map(attributeIn => {
+            if (attributeIn.isActive) {
+              return {
+                ...AttributeValidator.validate(attributeIn)
+              }
+            }
+
+            return attributeIn
+          })
         }
         return x
       })
     } else {
-      currentAttribute.value = currentAttribute.value.map((attributeIn) => ({
-        ...AttributeValidator.validate(attributeIn)
-      }))
+      currentAttribute.value = currentAttribute.value.map(attributeIn => {
+        if (attributeIn.isActive) {
+          return {
+            ...AttributeValidator.validate(attributeIn)
+          }
+        }
+        return attributeIn
+      })
     }
   }
 
@@ -55,8 +67,8 @@ const validateAttribute = (attribute) => {
 }
 
 const actions = {
-  formElements_validate_current: (context, data) => {
-    context.commit('VALIDATE_ACTUAL', data)
+  formElements_validate_current: (context) => {
+    context.commit('VALIDATE_ACTUAL')
     context.commit('RECALCULATE_CONDITIONS')
   },
   formElements_set: (context, data) => {
@@ -66,6 +78,7 @@ const actions = {
   formElements_change_attribute: (context, data) => {
     context.commit('CHANGE_ELEMENT_ATTRIBUTE', data)
     context.commit('RECALCULATE_CONDITIONS')
+    context.commit('VALIDATE_ACTUAL')
   },
   formElements_remove_attribute_row: (context, data) => {
     context.commit('REMOVE_ATTRIBUTE_ROW', data)
@@ -135,6 +148,7 @@ const mutations = {
         e.attribute.placeholder = e.attribute.placeholder ? String(e.attribute.placeholder) : ''
         e.attribute.errorMessage = ''
         e.attribute.isValid = true
+        e.attribute.isActive = true
         e.attribute.defaultValue = prepareAttributeDefault(e.attribute)
         e.attribute.value = e.attribute.defaultValue
 
@@ -177,6 +191,26 @@ const mutations = {
       if (e.elementType === FormElementsEnum.ATTRIBUTE) {
         e.isActive = ConditionalParser.validate(ConditionalEnum.SHOW_ON, e) ||
           (e.attribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP && !!e.attribute.settings.isMultiUse)
+
+        if (e.attribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {
+          if (e.attribute.settings.isMultiUse) {
+            e.attribute.value = e.attribute.value.map((x, index) => {
+              if (index === 0) {
+                return x.map(y => ({
+                  ...y,
+                  isActive: ConditionalParser.validate(ConditionalEnum.SHOW_ON, y)
+                }))
+              }
+
+              return x
+            })
+          } else {
+            e.attribute.value = e.attribute.value.map(x => ({
+              ...x,
+              isActive: ConditionalParser.validate(ConditionalEnum.SHOW_ON, x)
+            }))
+          }
+        }
       }
       return e
     })

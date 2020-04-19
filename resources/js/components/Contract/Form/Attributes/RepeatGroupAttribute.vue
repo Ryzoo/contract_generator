@@ -4,7 +4,7 @@
     <v-alert type="error" v-if="!attribute.isValid" dense class="ma-1 mx-auto">
       {{attribute.errorMessage}}
     </v-alert>
-    <v-col cols="12" v-for="(attribute, index) in attributeValue" :key="index + '' + lastLength">
+    <v-col cols="12" v-for="(attribute, index) in attributesList" :key="index + '' + lastLength + '' + activeCount">
       <component
         :outside="true"
         :is="Mapper.getAttributeComponentName(attribute.attributeType)"
@@ -39,9 +39,15 @@ export default {
   data () {
     return {
       lastLength: 1,
+      activeCount: 0,
       attributeValue: [
         ...this.attribute.defaultValue
       ]
+    }
+  },
+  computed: {
+    attributesList () {
+      return this.attributeValue.filter(x => x.isActive)
     }
   },
   watch: {
@@ -50,6 +56,7 @@ export default {
         ...newValue.value[0]
       ]
       this.lastLength = newValue.value.length
+      this.activeCount = newValue.value[0].filter((a) => a.isActive).length
     }
   },
   methods: {

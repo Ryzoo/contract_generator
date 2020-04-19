@@ -106,7 +106,7 @@
     <v-dialog
       v-model="showAddEditModal"
       scrollable
-      max-width="500px">
+      max-width="800px">
       <CreateEditVariable
         v-if="showAddEditModal"
         :attribute="attribute"

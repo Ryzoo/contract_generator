@@ -30,6 +30,10 @@ class AttributeValidator {
       errorMessage: '',
       isValid: true
     }
+
+    if (!this.attribute.isActive) {
+      this.setResponse('', true)
+    }
   }
 
   validateRequired () {
@@ -157,7 +161,7 @@ class AttributeValidatorHelper {
       case AttributeTypeEnum.SELECT:
         return value === null || value === undefined || value === ''
       case AttributeTypeEnum.ATTRIBUTE_GROUP:
-        return value.some(x => {
+        return value.filter(x => x.isActive).some(x => {
           return !validator.validate(x).isValid
         })
     }

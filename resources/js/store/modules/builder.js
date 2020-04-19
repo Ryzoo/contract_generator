@@ -52,11 +52,25 @@ const actions = {
   },
   builder_changeActiveBlock: (context, data) => {
     context.commit('BUILDER_ACTIVE_BLOCK_UPDATE', data)
+  },
+  variables_updateConditionals: (context, data) => {
+    context.commit('VARIABLES_UPDATE_CONDTIONALS', data)
   }
 }
 
 const mutations = {
-  BUILDER_UPDATE_GROUP_VARIABLE: (state, data) => {
+  VARIABLES_UPDATE_CONDTIONALS: (state, data) => {
+    state.builder.variables = state.builder.variables.map((attribute) => {
+      if (parseInt(attribute.id) === parseInt(data.id)) {
+        attribute.conditionals = [
+          ...data.value
+        ]
+      }
+
+      return attribute
+    })
+  },
+  BUILDER_UPDATE_GROUP_VARIABLE: (state) => {
     const inGroupVarId = []
     state.builder.variables = state.builder.variables.map((attribute) => {
       if (parseInt(attribute.attributeType) === AttributeTypeEnum.ATTRIBUTE_GROUP) {
