@@ -34,7 +34,7 @@ class RepeatBlock extends TextBlock {
     $this->conditionalType = $conditionalType;
     $this->formElements = $formElements;
     $this->contract = $contract;
-
+    $this->isActive  = true;
     return true;
   }
 
@@ -67,7 +67,7 @@ class RepeatBlock extends TextBlock {
 
     foreach (collect($this->repeatAttribute->value) as $key => $value){
       $isActive = $conditionalList
-        ->every(static function ($element) use ($self) {
+        ->every(static function ($element) use ($self, $key) {
           return $self->isConditionalValidAndEqual(
             ModelObjectToTextParser::parse(json_decode($element->content, TRUE, 512, JSON_THROW_ON_ERROR)),
             TRUE, $key);
@@ -79,9 +79,6 @@ class RepeatBlock extends TextBlock {
         );
       }
     }
-
-
-
 
     return $htmlString;
   }

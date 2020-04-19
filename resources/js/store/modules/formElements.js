@@ -174,7 +174,8 @@ const mutations = {
   RECALCULATE_CONDITIONS: (state) => {
     state.formElements = state.formElements.map(e => {
       if (e.elementType === FormElementsEnum.ATTRIBUTE) {
-        e.isActive = ConditionalParser.validate(ConditionalEnum.SHOW_ON, e)
+        e.isActive = ConditionalParser.validate(ConditionalEnum.SHOW_ON, e) ||
+          (e.attribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP && !!e.attribute.settings.isMultiUse)
       }
       return e
     })

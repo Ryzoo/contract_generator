@@ -8,6 +8,7 @@ use App\Core\Enums\AttributeType;
 use App\Core\Enums\ElementType;
 use App\Core\Helpers\Parsers\ModelObjectToTextParser;
 use App\Core\Models\Database\Contract;
+use App\Core\Models\Domain\Attributes\Attribute;
 use App\Core\Models\Domain\FormElements\AttributeFormElement;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -94,12 +95,15 @@ trait ConditionalValidator {
         if (!(bool)$attr->settings['isMultiUse'] && $attr->attributeType === AttributeType::ATTRIBUTE_GROUP) {
           $foundedAttribute = collect($attrValue)->where('id', (int) $value)->first();
         } else if ((bool)$attr->settings['isMultiUse'] && $attr->attributeType === AttributeType::ATTRIBUTE_GROUP) {
-          $foundedAttribute = $attrValue[$index]->where('id', (int) $value)->first();
+          $foundedAttribute = collect($attrValue[$index])->where('id', (int) $value)->first();
         } else if (!(bool)$attr->settings['isMultiUse']) {
           $foundedAttribute = $attrValue;
         } else {
           $foundedAttribute = $attrValue[$index];
         }
+
+        if(isset($foundedAttribute) && is_array($foundedAttribute))
+          $foundedAttribute = Attribute::getFromString($foundedAttribute);
       }
     } else {
       $foundedAttribute = collect($allAttributes)
@@ -112,6 +116,7 @@ trait ConditionalValidator {
     if (!isset($foundedAttribute)) {
       throw new \ErrorException("Var: {$varId} not found");
     }
+
 
     return $foundedAttribute->getValue();
   }

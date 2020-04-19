@@ -37,9 +37,9 @@ class ConditionalParser {
 
     let foundedAttribute = null
 
-    if (varId.include(':')) {
+    if (varId.includes(':')) {
       const id = varId.split(':')[0]
-      const value = varId.split(':')[0]
+      const value = varId.split(':')[1]
       const attr = allAttributes.find(e => parseInt(e.id) === parseInt(id))
 
       if (attr) {

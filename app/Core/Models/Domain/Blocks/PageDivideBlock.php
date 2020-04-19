@@ -16,7 +16,7 @@ class PageDivideBlock extends Block {
 
     protected function buildSettings() {
         $this->settings = [
-            "availableLevel" => 0,
+            'availableLevel' => 0,
         ];
     }
 
@@ -39,9 +39,9 @@ class PageDivideBlock extends Block {
 
     public function renderAdditionalCss(): string{
         $cssString = parent::renderAdditionalCss();
-        return $cssString . ".page-break {
+        return $cssString . '.page-break {
             page-break-after: always;
-        }";
+        }';
     }
 
     public function getFormElements(Contract $contract): Collection{

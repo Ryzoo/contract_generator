@@ -158,6 +158,7 @@ export default {
       return this.$store.dispatch('formElements_validate_current', this.actualStep - 1)
     },
     loadContractForm (additionalAttributes) {
+      console.log(additionalAttributes)
       this.isLoading = true
       const additionalParam = this.getAttributesFromArrayWithObject(additionalAttributes)
 
@@ -171,11 +172,14 @@ export default {
             })
         })
         .catch(() => {
+          console.log('test')
           this.currentAction = this.availableActionsHook.BEFORE_FORM_RENDER
           this.isLoading = false
         })
     },
     getAttributesFromArrayWithObject (additionalAttributes) {
+      if (!additionalAttributes.length) return ''
+
       const defaultAttributeObject = {}
       additionalAttributes.map(x => {
         Object.assign(defaultAttributeObject, x)

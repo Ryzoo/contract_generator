@@ -4,7 +4,7 @@
     <v-alert type="error" v-if="!attribute.isValid" dense class="ma-1 mx-auto">
       {{attribute.errorMessage}}
     </v-alert>
-    <v-col cols="12" v-for="(attribute, index) in attributeValue" :key="index + '' + attribute.value">
+    <v-col cols="12" v-for="(attribute, index) in attributeValue" :key="index + '' + lastLength">
       <component
         :outside="true"
         :is="Mapper.getAttributeComponentName(attribute.attributeType)"
@@ -38,6 +38,7 @@ export default {
   },
   data () {
     return {
+      lastLength: 1,
       attributeValue: [
         ...this.attribute.defaultValue
       ]
@@ -46,8 +47,9 @@ export default {
   watch: {
     attribute (newValue) {
       this.attributeValue = [
-        ...(newValue.settings.isMultiUse ? newValue.value[0] : newValue.value)
+        ...newValue.value[0]
       ]
+      this.lastLength = newValue.value.length
     }
   },
   methods: {

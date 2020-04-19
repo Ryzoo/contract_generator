@@ -17,7 +17,7 @@ use Illuminate\Support\Collection;
 class ModelObjectToTextParser {
 
   public static function parse($modelObject): string {
-    return self::parseGroup($modelObject->operator, $modelObject->children);
+    return self::parseGroup($modelObject['operator'], $modelObject['children']);
   }
 
   public static function parseRule($id, $operatorType, $value, $ruleType): string {
@@ -49,11 +49,11 @@ class ModelObjectToTextParser {
 
   public static function parseChildren(array $childrenArray): Collection {
     return collect($childrenArray)->map(static function ($child) {
-      switch ($child->type) {
+      switch ($child['type']) {
         case 'rule':
-          return ModelObjectToTextParser::parseRule($child->query->id, $child->query->operator, $child->query->value, $child->query->ruleType);
+          return ModelObjectToTextParser::parseRule($child['query']['id'], $child['query']['operator'], $child['query']['value'], $child['query']['ruleType']);
         case 'group':
-          $var = ${ModelObjectToTextParser::parseGroup($child->query->operator, $child->query->children)};
+          $var = ${ModelObjectToTextParser::parseGroup($child['query']['operator'], $child['query']['children'])};
           return "( $var )";
       }
       return '';
