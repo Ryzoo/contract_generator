@@ -18,7 +18,9 @@ trait EnumIterator {
         $allConst = self::getList();
 
         foreach ($allConst as $key => $value) {
-            if($type === $value) return $key;
+            if($type === $value) {
+              return $key;
+            }
         }
 
         return null;

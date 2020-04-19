@@ -23,6 +23,7 @@
 
       <v-tab-item :key="1" value="tab-1" class="pt-3">
         <QueryBuilder
+          :id="block.id"
           :conditionals="block.conditionals"
           @conditional-change="onConditionalChange"
         />

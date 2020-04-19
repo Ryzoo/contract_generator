@@ -201,6 +201,15 @@ const getters = {
   builder_getBlockId: state => state.builder.idBlockIncrement,
   builder_getVariableId: state => state.builder.idVariableIncrement,
   builder_allVariables: state => state.builder.variables,
+  builder_allVariables_queryBuilder_block: state => (blockId) => {
+    const block = getBlockById(state.builder.blocks, blockId)
+
+    if (block.settings.repeatAttributeId !== null && block.settings.repeatAttributeId !== undefined) {
+      return getters.builder_variablesForRepeatBlock(state)(blockId)
+    }
+
+    return getters.builder_allVariables_defaultText(state)
+  },
   builder_allVariables_defaultText: state => {
     const returnedVar = []
     const variablesUsedInGroups = []
@@ -235,7 +244,7 @@ const getters = {
   builder_variablesForRepeatBlock: (state) => (id) => {
     const block = getBlockById(state.builder.blocks, id)
     const attribute = getAttributeById(state.builder.variables, block ? block.settings.repeatAttributeId : null)
-    let allAttributes = state.builder.variables
+    let allAttributes = getters.builder_allVariables_defaultText(state)
 
     if (attribute) {
       if (attribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {
@@ -248,17 +257,20 @@ const getters = {
           }
         })
 
-        return repeatAttribute.concat(allAttributes.filter(x => x.attributeType !== AttributeTypeEnum.ATTRIBUTE_GROUP && !x.settings.isMultiUse))
+        return [
+          ...repeatAttribute,
+          ...allAttributes
+        ]
       }
-
       return [
+        ...allAttributes,
         {
           attributeName: attribute.attributeName + ' - ' + 'Value',
           id: attribute.id + ':value'
         }
       ]
     }
-    return []
+    return allAttributes
   },
   builder_currentMultiGroupAttribute: (state) => (id) => {
     const block = getBlockById(state.builder.blocks, id)

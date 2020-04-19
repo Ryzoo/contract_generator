@@ -13,75 +13,88 @@ use Whoops\Exception\ErrorException;
 
 abstract class Conditional implements IConditional {
 
-    /**
-     * @var int
-     */
-    public $conditionalType;
+  public int $conditionalType;
 
-    /**
-     * @var string
-     */
-    public $conditionalName;
+  public ?string $conditionalName;
 
-    public $content;
+  public $content;
 
-    protected function initialize(int $conditionalType) {
-        $this->conditionalType = $conditionalType;
-        $this->conditionalName = ConditionalType::getName($conditionalType);
-        $this->content = [];
+  protected function initialize(int $conditionalType) {
+    $this->conditionalType = $conditionalType;
+    $this->conditionalName = ConditionalType::getName($conditionalType);
+    $this->content = [];
+  }
+
+  public static function getConditionalByType(int $conditionalType): Conditional {
+    switch ($conditionalType) {
+      case ConditionalType::SHOW_ON:
+        return new ShowOn();
     }
 
-    public static function getConditionalByType(int $conditionalType): Conditional {
-        switch ($conditionalType) {
-            case ConditionalType::SHOW_ON:
-                return new ShowOn();
-        }
+    throw new ErrorException("Conditional {$conditionalType} was not found");
+  }
 
-        throw new ErrorException("Conditional {$conditionalType} was not found");
+  public static function validate($value): bool {
+    Validator::validate($value, [
+      'conditionalType' => 'required|integer',
+      'content' => 'required',
+    ]);
+
+    return TRUE;
+  }
+
+  public static function getListFromString(string $value): array {
+    $arrayOfConditional = json_decode($value, TRUE, 512, JSON_THROW_ON_ERROR);
+    $returnedArray = [];
+
+    if (!is_array($arrayOfConditional)) {
+      Response::error(_('custom.array.attributes'));
     }
 
-    public static function validate($value): bool {
-        Validator::validate($value, [
-            "conditionalType" => "required|integer",
-            "content" => "required",
-        ]);
-
-        return TRUE;
+    foreach ($arrayOfConditional as $conditional) {
+      $returnedArray[] = self::getFromString((array) $conditional);
     }
 
-    public static function getListFromString(string $value): array {
-        $arrayOfConditional = json_decode($value);
-        $returnedArray = [];
+    return $returnedArray;
+  }
 
-        if (!is_array($arrayOfConditional)) {
-            Response::error(_('custom.array.attributes'));
-        }
+  public static function getFromString(array $value): Conditional {
+    Conditional::validate($value);
+    $conditional = self::getConditionalByType($value['conditionalType']);
 
-        foreach ($arrayOfConditional as $conditional) {
-            array_push($returnedArray, self::getFromString((array) $conditional));
-        }
+    $conditional->conditionalType = $value['conditionalType'];
+    $conditional->conditionalName = ConditionalType::getName($value['conditionalType']);
+    $conditional->content = $value['content'];
 
-        return $returnedArray;
+    return $conditional;
+  }
+
+  public function getUsedVariable(): Collection {
+    preg_match_all('/"id": (\d+),/', $this->content, $output_array);
+    $allElements = collect();
+
+    if (isset($output_array[1]) && is_array($output_array[1])) {
+      foreach ($output_array[1] as $item) {
+        $allElements->push($item);
+      }
     }
 
-    public static function getFromString(array $value): Conditional {
-        Conditional::validate($value);
-        $conditional = self::getConditionalByType($value["conditionalType"]);
+    preg_match_all('/"id": (\d+):value,/', $this->content, $output_array);
 
-        $conditional->conditionalType = $value["conditionalType"];
-        $conditional->conditionalName = ConditionalType::getName($value["conditionalType"]);
-        $conditional->content = $value["content"];
-
-        return $conditional;
+    if (isset($output_array[1]) && is_array($output_array[1])) {
+      foreach ($output_array[1] as $item) {
+        $allElements->push($item);
+      }
     }
 
-    public function getUsedVariable(): Collection {
-        preg_match_all('/"id": (\d+),/', $this->content, $output_array);
+    preg_match_all('/"id": (\d+):(\d+),/', $this->content, $output_array);
 
-        if (isset($output_array[1]) && is_array($output_array[1])) {
-            return collect($output_array[1]);
-        }
-
-        return collect();
+    if (isset($output_array[1]) && is_array($output_array[1])) {
+      foreach ($output_array[1] as $item) {
+        $allElements->push($item);
+      }
     }
+
+    return $allElements;
+  }
 }

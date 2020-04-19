@@ -1,7 +1,7 @@
 import { RuleTypes } from './utilities'
 import { TextOperatorParser, NumberOperatorParser, SelectOperatorParser, MultiSelectOperatorParser, BoolOperatorParser, DateOperatorParser, TimeOperatorParser } from './Operators'
-import {AggregateOperatorParser} from "./Operators/AggregateOperatorParser";
-import {BoolInputOperatorParser} from "./Operators/BoolInputOperatorParser";
+import { AggregateOperatorParser } from './Operators/AggregateOperatorParser'
+import { BoolInputOperatorParser } from './Operators/BoolInputOperatorParser'
 
 export default class ModelObjectToTextParser {
   static parse (modelObject) {

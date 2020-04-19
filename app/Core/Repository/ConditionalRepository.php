@@ -14,7 +14,7 @@ class ConditionalRepository {
         $conditionalTypeList = ConditionalType::getList();
 
         foreach($conditionalTypeList as $value){
-            array_push($conditionalList,Conditional::getConditionalByType($value));
+            $conditionalList[] = Conditional::getConditionalByType($value);
         }
 
         return $conditionalList;
@@ -25,15 +25,15 @@ class ConditionalRepository {
         $parentBlockId = null;
 
         $block = $blockCollection
-            ->where("id", $startBlockId)
+            ->where('id', $startBlockId)
             ->first();
 
         if(isset($block)){
             $conditionalCollection = collect($block->conditionals)->reverse();
-            $parentBlockId = intval($block->parentId);
+            $parentBlockId = (int) $block->parentId;
         }
 
-        if($parentBlockId != null && $parentBlockId != 0){
+        if($parentBlockId !== null && $parentBlockId !== 0){
             $conditionalFromParent = self::getConditionalsFromBlockWithId($blockCollection, $parentBlockId);
             $conditionalCollection = $conditionalCollection->toBase()->merge( $conditionalFromParent );
         }

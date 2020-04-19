@@ -1,5 +1,5 @@
 
-import { FormElementsEnum } from './Enums'
+import { AttributeTypeEnum, FormElementsEnum } from './Enums'
 import ModelObjectToTextParser from './Parsers/ModelObjectToTextParser'
 
 class ConditionalParser {
@@ -22,7 +22,9 @@ class ConditionalParser {
   parseConditionalStringToBool (content) {
     const contentWithVariables = content
       .split(' ')
-      .map(e => e.replace(/{(\d+)}/g, (m, id) => this.getVariableValue(parseInt(id))))
+      .map(e => e.replace(/{(\d+)}/g, (m, id) => this.getVariableValue(id)))
+      .map(e => e.replace(/{(\d+:\d+)}/g, (m, id) => this.getVariableValue(id)))
+      .map(e => e.replace(/{(\d+:value)}/g, (m, id) => this.getVariableValue(id)))
 
     // eslint-disable-next-line no-eval
     return eval(contentWithVariables.join(' '))
@@ -33,7 +35,29 @@ class ConditionalParser {
       .filter(e => e.elementType === FormElementsEnum.ATTRIBUTE)
       .map(e => e.attribute)
 
-    const foundedAttribute = allAttributes.find(e => e.id === parseInt(varId))
+    let foundedAttribute = null
+
+    if (varId.include(':')) {
+      const id = varId.split(':')[0]
+      const value = varId.split(':')[0]
+      const attr = allAttributes.find(e => parseInt(e.id) === parseInt(id))
+
+      if (attr) {
+        const attrVal = attr.value
+        if (!attr.settings.isMultiUse && attr.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {
+          foundedAttribute = attrVal.find(y => parseInt(y.id) === parseInt(value))
+        } else if (attr.settings.isMultiUse && attr.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {
+          foundedAttribute = attrVal[0].find(y => parseInt(y.id) === parseInt(value))
+        } else if (!attr.settings.isMultiUse) {
+          foundedAttribute = attrVal
+        } else {
+          foundedAttribute = attrVal[0]
+        }
+      }
+    } else {
+      foundedAttribute = allAttributes
+        .find(e => parseInt(e.id) === parseInt(varId))
+    }
 
     if (!foundedAttribute) {
       console.error(`Var: ${varId} not found`)

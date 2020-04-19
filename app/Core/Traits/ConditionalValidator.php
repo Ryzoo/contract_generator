@@ -4,6 +4,7 @@
 namespace App\Core\Traits;
 
 
+use App\Core\Enums\AttributeType;
 use App\Core\Enums\ElementType;
 use App\Core\Helpers\Parsers\ModelObjectToTextParser;
 use App\Core\Models\Database\Contract;
@@ -12,17 +13,9 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 trait ConditionalValidator {
-
-  /** @var \Illuminate\Support\Collection */
-  private $conditionalList;
-
-  /** @var \Illuminate\Support\Collection */
-  private $formElements;
-
-  /**
-   * @var bool
-   */
-  public $isActive;
+  private Collection $conditionalList;
+  protected Collection $formElements;
+  public bool $isActive;
 
   public function validateConditions(int $conditionalType, Collection $formElements, Contract $contract): bool {
     if (!isset($this->conditionals)) {
@@ -39,28 +32,40 @@ trait ConditionalValidator {
 
     $this->isActive = $this->conditionalList
       ->every(static function ($element) use ($self) {
-        return $self->isConditionalValidAndEqual(ModelObjectToTextParser::parse(json_decode($element->content)), TRUE);
+        return $self->isConditionalValidAndEqual(ModelObjectToTextParser::parse(json_decode($element->content, TRUE, 512, JSON_THROW_ON_ERROR)), TRUE);
       });
 
     return $this->isActive;
   }
 
-  private function isConditionalValidAndEqual($content, bool $equalValue): bool {
+  protected function isConditionalValidAndEqual($content, bool $equalValue, int $index = 0): bool {
     if (strlen($content) <= 0) {
       return $equalValue;
     }
 
-    return $this->parseConditionalStringToBool($content) === $equalValue;
+    return $this->parseConditionalStringToBool($content, $index) === $equalValue;
   }
 
-  private function parseConditionalStringToBool($content) {
+  private function parseConditionalStringToBool($content, int $index = 0) {
     $self = $this;
 
     $contentWithVariables = collect(explode(' ', $content))
-      ->map(static function ($textElements) use ($self) {
+      ->map(static function ($textElements) use ($self, $index) {
         preg_match('/{(\d+)}/', $textElements, $matches);
         if (isset($matches[1])) {
-          $var = $self->getVariableValue((int) $matches[1]);
+          $var = $self->getVariableValue($matches[1], $index);
+          $search = $matches[1];
+          return str_replace("{{$search}}", $var ?? 'null', $textElements);
+        }
+        preg_match('/{(\d+:\d+)}/', $textElements, $matches);
+        if (isset($matches[1])) {
+          $var = $self->getVariableValue($matches[1], $index);
+          $search = $matches[1];
+          return str_replace("{{$search}}", $var ?? 'null', $textElements);
+        }
+        preg_match('/{(\d+:value)}/', $textElements, $matches);
+        if (isset($matches[1])) {
+          $var = $self->getVariableValue($matches[1], $index);
           $search = $matches[1];
           return str_replace("{{$search}}", $var ?? 'null', $textElements);
         }
@@ -71,7 +76,7 @@ trait ConditionalValidator {
     return eval('return ' . implode(' ', $contentWithVariables) . ';');
   }
 
-  private function getVariableValue(int $varId) {
+  private function getVariableValue($varId, int $index = 0) {
     $allAttributes = $this->formElements
       ->where('elementType', ElementType::ATTRIBUTE)
       ->map(static function (AttributeFormElement $e) {
@@ -79,9 +84,30 @@ trait ConditionalValidator {
       })
       ->all();
 
-    $foundedAttribute = collect($allAttributes)
-      ->where('id', $varId)
-      ->first();
+    if (str_contains($varId, ':')) {
+      [$id, $value] = explode(':', $varId);
+      $attr = collect($allAttributes)->where('id', (int) $id)->first();
+
+      if (isset($attr)) {
+        $attrValue = $attr->value;
+
+        if (!(bool)$attr->settings['isMultiUse'] && $attr->attributeType === AttributeType::ATTRIBUTE_GROUP) {
+          $foundedAttribute = collect($attrValue)->where('id', (int) $value)->first();
+        } else if ((bool)$attr->settings['isMultiUse'] && $attr->attributeType === AttributeType::ATTRIBUTE_GROUP) {
+          $foundedAttribute = $attrValue[$index]->where('id', (int) $value)->first();
+        } else if (!(bool)$attr->settings['isMultiUse']) {
+          $foundedAttribute = $attrValue;
+        } else {
+          $foundedAttribute = $attrValue[$index];
+        }
+      }
+    } else {
+      $foundedAttribute = collect($allAttributes)
+        ->where('id', $varId)
+        ->first();
+    }
+
+
 
     if (!isset($foundedAttribute)) {
       throw new \ErrorException("Var: {$varId} not found");

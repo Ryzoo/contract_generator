@@ -15,7 +15,7 @@ const prepareAttributeDefault = (attribute) => {
       return !!attribute.defaultValue
     case AttributeTypeEnum.DATE:
     case AttributeTypeEnum.TIME:
-      return attribute.defaultValue ? new Date(attribute.defaultValue) : null
+      return attribute.defaultValue ? new Date(attribute.defaultValue) : new Date()
     case AttributeTypeEnum.ATTRIBUTE_GROUP:
       return attribute.settings.attributes.map((x) => ({
         ...x,

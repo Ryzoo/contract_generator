@@ -55,9 +55,14 @@ class Contract extends Model {
 
   public function getAttributeByID(int $attributeID): ?Attribute {
     $attributes = $this->attributesList;
+    $id = $attributeID;
+
+    if(str_contains($attributeID, ':')){
+      [$id] = explode(':', $attributeID);
+    }
 
     foreach ($attributes as $attribute) {
-      if ($attribute->id === $attributeID) {
+      if ($attribute->id === $id) {
         return $attribute;
       }
     }
@@ -65,16 +70,16 @@ class Contract extends Model {
     throw new ErrorException(__('validation.attributes.not_exist', ['id' => $attributeID]), 404);
   }
 
-  public function setAttributesListAttribute($value) {
-    $this->attributes['attributesList'] = json_encode($value);
+  public function setAttributesListAttribute($value): void {
+    $this->attributes['attributesList'] = json_encode($value, JSON_THROW_ON_ERROR, 512);
   }
 
-  public function setBlocksAttribute($value) {
-    $this->attributes['blocks'] = json_encode($value);
+  public function setBlocksAttribute($value): void {
+    $this->attributes['blocks'] = json_encode($value, JSON_THROW_ON_ERROR, 512);
   }
 
-  public function setSettingsAttribute(ContractSettings $value) {
-    $this->attributes['settings'] = json_encode($value);
+  public function setSettingsAttribute(ContractSettings $value): void {
+    $this->attributes['settings'] = json_encode($value, JSON_THROW_ON_ERROR, 512);
   }
 
   public function checkContractEnabledModules(string $moduleName): bool {
@@ -87,15 +92,15 @@ class Contract extends Model {
     return FALSE;
   }
 
-  public function form() {
+  public function form(): \Illuminate\Database\Eloquent\Relations\HasOne {
     return $this->hasOne(Form::class);
   }
 
-  public function completedForm() {
+  public function completedForm(): \Illuminate\Database\Eloquent\Relations\HasMany {
     return $this->hasMany(ContractFormComplete::class);
   }
 
-  public function categories() {
+  public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany {
     return $this->belongsToMany(Category::class);
   }
 }

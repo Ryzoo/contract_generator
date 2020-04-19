@@ -27,7 +27,7 @@ import { ConditionalEnum } from '../../additionalModules/Enums'
 export default {
   name: 'QueryBuilder',
   components: { VueQueryBuilder },
-  props: ['conditionals'],
+  props: ['conditionals', 'id'],
   data () {
     return {
       componentKey: 0,
@@ -50,9 +50,7 @@ export default {
   },
   computed: {
     rulesFromAttributes () {
-      return this.$store.getters.builder_allVariables_defaultText
-        .filter(x => !(x.id + '').includes(':'))
-        .filter(x => !(x.settings.isMultiUse))
+      return this.$store.getters.builder_allVariables_queryBuilder_block(this.id)
         .map(x => {
           const type = this.mapBackendTypeToBuilderType(x)
           const options = x.settings.items ? x.settings.items.map(e => ({ label: e, value: e })) : null

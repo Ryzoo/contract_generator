@@ -24,19 +24,10 @@ use Illuminate\Support\Facades\Auth;
 
 class ContractController extends Controller {
 
-  /**
-   * @var ContractService
-   */
   private $contractService;
 
-  /**
-   * @var ContractModuleService
-   */
-  private $contractModuleService;
-
-  public function __construct(ContractService $contractService, ContractModuleService $contractModuleService) {
+  public function __construct(ContractService $contractService) {
     $this->contractService = $contractService;
-    $this->contractModuleService = $contractModuleService;
   }
 
   public function getCollection(Request $request) {
