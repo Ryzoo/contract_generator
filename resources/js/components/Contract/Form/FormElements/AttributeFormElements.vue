@@ -1,14 +1,15 @@
 <template>
     <v-row :class="{'multi-use-container':!!this.formElement.attribute.settings.isMultiUse, 'single-use-container':!(!!this.formElement.attribute.settings.isMultiUse)}">
-      <h3 v-if="!!this.formElement.attribute.settings.isMultiUse">Multiple element</h3>
-      <small v-if="!!this.formElement.attribute.settings.isMultiUse">If you want add more than one use button 'add new row'</small>
+      <h3 v-if="!!this.formElement.attribute.settings.isMultiUse">List of: {{this.formElement.attribute.attributeName}}</h3>
+      <small v-if="!!this.formElement.attribute.settings.isMultiUse">If you want add more than one use button 'add next'</small>
+      <v-col cols="12" class="pa-0" v-if="!!this.formElement.attribute.settings.isMultiUse">
+        <v-divider class="my-3"/>
+        <ValueList class="mb-3" :attribute="this.formElement.attribute"/>
+        <v-divider class="my-3"/>
+      </v-col>
       <AddForm
         :attribute="this.formElement.attribute"
       />
-      <v-col cols="12" class="pa-0" v-if="!!this.formElement.attribute.settings.isMultiUse">
-          <v-divider class="my-3"/>
-          <ValueList class="mb-3" :attribute="this.formElement.attribute"/>
-      </v-col>
     </v-row>
 </template>
 

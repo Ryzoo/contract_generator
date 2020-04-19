@@ -27,12 +27,12 @@ export default {
   props: ['attribute', 'outside'],
   data () {
     return {
-      currentValue: this.attribute.settings.defaultValue
+      currentValue: this.attribute.value || this.attribute.defaultValue
     }
   },
   methods: {
     resetForm () {
-      this.currentValue = this.attribute.settings.defaultValue
+      this.currentValue = this.attribute.defaultValue
     }
   },
   watch: {

@@ -273,3 +273,14 @@ body > .notify-container .notify-element .close:after {
   transform: rotate(-45deg);
 }
 
+.ProseMirror {
+  font-family: "Times New Roman", serif;
+}
+
+.ProseMirror .mention,
+.ProseMirror .variable {
+  font-family: monospace;
+  font-size: 12px;
+  letter-spacing: -1px;
+}
+

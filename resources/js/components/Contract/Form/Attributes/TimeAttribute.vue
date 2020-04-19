@@ -1,10 +1,12 @@
 <template>
-  <v-dialog
+  <v-menu
     ref="dialog"
     v-model="timeDialog"
-    :return-value.sync="currentValue"
-    persistent
-    width="290px"
+    :close-on-content-click="false"
+    transition="scale-transition"
+    offset-y
+    max-width="290px"
+    min-width="290px"
   >
     <template v-slot:activator="{ on }">
       <v-text-field
@@ -13,33 +15,15 @@
         :placeholder="attribute.placeholder"
         :error="!attribute.isValid"
         :error-messages="attribute.errorMessage"
-        :required="attribute.settings.required"
         outlined
         dense
         prepend-icon="far fa-clock"
         readonly
         v-on="on"
-      >
-        <template v-slot:append-outer
-                  v-if="attribute.additionalInformation && attribute.additionalInformation.length > 0">
-          <v-tooltip right>
-            <template v-slot:activator="{ on }">
-              <v-icon color="primary" dark v-on="on">fa-question-circle</v-icon>
-            </template>
-            <span>{{attribute.additionalInformation}}</span>
-          </v-tooltip>
-        </template>
-      </v-text-field>
+      ></v-text-field>
     </template>
-    <v-time-picker
-      v-model="currentValue"
-      scrollable
-    >
-      <v-spacer></v-spacer>
-      <v-btn outlined color="primary" @click="timeDialog = false">{{ $t('base.button.cancel') }}</v-btn>
-      <v-btn color="primary" @click="()=>{$refs.dialog.save(currentValue)}">{{ $t('base.button.save') }}</v-btn>
-    </v-time-picker>
-  </v-dialog>
+    <v-time-picker format="24hr" v-model="currentValue" @input="timeDialog = false"></v-time-picker>
+  </v-menu>
 </template>
 
 <script>
@@ -50,12 +34,12 @@ export default {
   data () {
     return {
       timeDialog: false,
-      currentValue: this.attribute.settings.defaultValue
+      currentValue: this.attribute.value || this.attribute.defaultValue
     }
   },
   methods: {
     resetForm () {
-      this.currentValue = this.attribute.settings.defaultValue
+      this.currentValue = this.attribute.defaultValue
     }
   },
   watch: {

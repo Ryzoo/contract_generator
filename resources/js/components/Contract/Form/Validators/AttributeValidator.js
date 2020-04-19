@@ -147,6 +147,7 @@ class AttributeValidator {
 class AttributeValidatorHelper {
   static isEmpty (attribute) {
     const value = AttributeValidatorHelper.getValue(attribute)
+    const validator = new AttributeValidator()
 
     switch (parseInt(attribute.attributeType)) {
       case AttributeTypeEnum.BOOL:
@@ -156,7 +157,9 @@ class AttributeValidatorHelper {
       case AttributeTypeEnum.SELECT:
         return value === null || value === undefined || value === ''
       case AttributeTypeEnum.ATTRIBUTE_GROUP:
-        return value.some(x => AttributeValidatorHelper.isEmpty(x))
+        return value.some(x => {
+          return !validator.validate(x).isValid
+        })
     }
 
     return value === null || value === undefined || value === '' || (value.length === undefined && isNaN(value))

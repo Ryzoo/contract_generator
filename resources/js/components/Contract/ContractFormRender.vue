@@ -66,7 +66,7 @@
 
               <v-row v-if="actualStep === 1">
                 <v-col>
-                  <v-alert type="info">
+                  <v-alert type="info" v-if="contract && contract.description" >
                     <div v-html="contract.description"/>
                   </v-alert>
                 </v-col>

@@ -1,7 +1,10 @@
 <template>
-  <v-row class="group-attribute">
+  <v-row :class="'group-attribute' + (!attribute.isValid ? ' group-attribute-invalid' : '')">
     <h3>{{attribute.attributeName}}</h3>
-    <v-col cols="12" v-for="(attribute, index) in getAttributeValue" :key="index">
+    <v-alert type="error" v-if="!attribute.isValid" dense class="ma-1 mx-auto">
+      {{attribute.errorMessage}}
+    </v-alert>
+    <v-col cols="12" v-for="(attribute, index) in attributeValue" :key="index + '' + attribute.value">
       <component
         :outside="true"
         :is="Mapper.getAttributeComponentName(attribute.attributeType)"
@@ -33,16 +36,23 @@ export default {
     TimeAttribute,
     BoolInputAttribute
   },
-  computed: {
-    getAttributeValue () {
-      if (this.attribute.settings.isMultiUse) return this.attribute.value[0]
-      return this.attribute.value
+  data () {
+    return {
+      attributeValue: [
+        ...this.attribute.defaultValue
+      ]
+    }
+  },
+  watch: {
+    attribute (newValue) {
+      this.attributeValue = [
+        ...(newValue.settings.isMultiUse ? newValue.value[0] : newValue.value)
+      ]
     }
   },
   methods: {
     changeValue (attribute) {
-      console.log(attribute)
-      const newValue = this.getAttributeValue.map((x) => {
+      const newValue = this.attributeValue.map((x) => {
         if (x.id === attribute.id) {
           return {
             ...attribute
@@ -65,12 +75,22 @@ export default {
         value: newValue
       })
     },
-    resetForm () {}
+    resetForm () {
+      this.attributeValue = [
+        ...this.attribute.defaultValue
+      ]
+    }
   }
 }
 </script>
 
 <style lang="scss">
+  .group-attribute-invalid{
+    border: 2px solid #d73c45 !important;
+    & > h3 {
+      color: #d73c45 !important;
+    }
+  }
   .row.group-attribute {
     border: 1px solid #c7c7c7;
     border-radius: 5px;

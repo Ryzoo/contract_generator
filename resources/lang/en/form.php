@@ -8,6 +8,7 @@ return [
     'update' => [
       'title' => 'Update variable'
     ],
+    'isMultiUse' => 'Use as multiple value',
     'forAnonymise' => 'For anonymise?',
     'additionalInformation' => 'Additional Information',
     'defaultValue' => 'Default value',
@@ -16,6 +17,7 @@ return [
     'name' => 'Name',
     'type' => 'Type',
     'isRequired' => 'Is required?',
+    'multiRenderType' => 'Render type',
     'isMultiSelect' => 'Is multi select?',
     'isInline' => 'Inline?',
     'lengthMin' => 'Min length',

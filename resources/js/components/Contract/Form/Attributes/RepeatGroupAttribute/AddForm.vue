@@ -9,7 +9,7 @@
       </component>
     </v-col>
     <v-col cols="12" class="mt-0 pt-0" v-if="!!this.attribute.settings.isMultiUse">
-      <v-btn dense color="primary" :disabled="!lastValue.isValid" class="ma-auto" small @click="addValue">{{$t("base.button.addElement")}}</v-btn>
+      <v-btn dense color="primary" :disabled="!this.attribute.isValid" class="ma-auto" small @click="addValue">{{$t("base.button.addElement")}}</v-btn>
     </v-col>
   </section>
 </template>
@@ -47,11 +47,9 @@ export default {
   },
   methods: {
     addValue () {
-      if (this.lastValue.isValid) {
-        this.$store.dispatch('formElements_add_attribute_row', this.attribute.id)
-        this.$refs.addForm.resetForm()
-      }
-    },
+      this.$store.dispatch('formElements_add_attribute_row', this.attribute.id)
+      this.$refs.addForm.resetForm()
+    }
   }
 }
 </script>

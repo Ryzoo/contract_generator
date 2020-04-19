@@ -52,19 +52,23 @@
               <v-expansion-panel-content>
                 <v-row>
                   <v-col cols="12">
-                    <v-text-field hide-details dense outlined v-model="attributeData.placeholder" :label="$t('form.variableForm.placeholder')" outline/>
+                    <v-text-field hide-details dense outlined v-model="attributeData.placeholder"
+                                  :label="$t('form.variableForm.placeholder')" outline/>
                   </v-col>
                   <v-col cols="12">
-                    <v-text-field hide-details dense outlined v-model="attributeData.description" :label="$t('form.variableForm.label')" outline/>
+                    <v-text-field hide-details dense outlined v-model="attributeData.description"
+                                  :label="$t('form.variableForm.label')" outline/>
                   </v-col>
                   <v-col cols="12">
-                    <v-text-field hide-details dense outlined v-model="attributeData.defaultValue" :label="$t('form.variableForm.defaultValue')" outline/>
+                    <default-value :attributeData="attributeData" v-model="attributeData.defaultValue"></default-value>
                   </v-col>
                   <v-col cols="12">
-                    <v-text-field hide-details dense outlined v-model="attributeData.additionalInformation" :label="$t('form.variableForm.additionalInformation')" outline/>
+                    <v-text-field hide-details dense outlined v-model="attributeData.additionalInformation"
+                                  :label="$t('form.variableForm.additionalInformation')" outline/>
                   </v-col>
                   <v-col cols="12">
-                    <v-checkbox class="mt-0" hide-details dense outlined v-model="attributeData.toAnonymize" :label="$t('form.variableForm.forAnonymise')"/>
+                    <v-checkbox class="mt-0" hide-details dense outlined v-model="attributeData.toAnonymize"
+                                :label="$t('form.variableForm.forAnonymise')"/>
                   </v-col>
                 </v-row>
               </v-expansion-panel-content>
@@ -78,17 +82,20 @@
                 Multiple Value
               </v-expansion-panel-header>
               <v-expansion-panel-content>
-                <v-row v-if="attribute.isInGroup">
+                <v-row v-if="attribute && attribute.isInGroup">
                   <v-alert type="info" dense>
                     This attribute is used in group. Can't be used as multiple value.
                   </v-alert>
                 </v-row>
                 <v-row v-else>
                   <v-col cols="12">
-                    <v-switch class="mt-0" hide-details dense outlined v-model="attributeData.settings.isMultiUse" :label="$t('form.variableForm.isMultiUse')"></v-switch>
+                    <v-switch class="mt-0" hide-details dense outlined v-model="attributeData.settings.isMultiUse"
+                              :label="$t('form.variableForm.isMultiUse')"></v-switch>
                   </v-col>
-                  <v-col cols="12" v-if="attributeData.settings.isMultiUse && attributeData.attributeType !== groupAttribute">
-                    <v-switch class="mt-0" hide-details dense outlined v-model="attributeData.settings.isInline" :label="$t('form.variableForm.isInline')"></v-switch>
+                  <v-col cols="12"
+                         v-if="attributeData.settings.isMultiUse && attributeData.attributeType !== groupAttribute">
+                    <v-switch class="mt-0" hide-details dense outlined v-model="attributeData.settings.isInline"
+                              :label="$t('form.variableForm.isInline')"></v-switch>
                   </v-col>
                   <v-col cols="12" v-if="attributeData.settings.isInline">
                     <v-select
@@ -120,6 +127,7 @@
 
 <script>
 import VariableSettings from './VariableSettings'
+import DefaultValue from './DefaultValue'
 import { MultiUseRenderType, AttributeTypeEnum } from '../../../../../additionalModules/Enums'
 
 export default {
@@ -128,7 +136,7 @@ export default {
     'attribute'
   ],
   components: {
-    VariableSettings
+    VariableSettings, DefaultValue
   },
   data () {
     return {
@@ -160,9 +168,13 @@ export default {
   },
   methods: {
     updateSettings (newSettings) {
-      this.attributeData.settings = {
-        ...newSettings
+      this.attributeData = {
+        ...this.attributeData,
+        settings: {
+          ...newSettings
+        }
       }
+      this.$forceUpdate()
     },
     setVariableType (type) {
       this.attributeData.attributeType = type
@@ -194,7 +206,9 @@ export default {
       }
 
       Object.keys(defaultSettings).map((key, index) => {
-        if (!settings[key]) { settings[key] = defaultSettings[key] }
+        if (!settings[key]) {
+          settings[key] = defaultSettings[key]
+        }
       })
 
       this.attributeData.settings = settings

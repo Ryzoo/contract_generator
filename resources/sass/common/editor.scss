@@ -1,0 +1,9 @@
+.ProseMirror{
+  font-family: 'Times New Roman', serif;
+
+  .mention, .variable{
+    font-family: monospace;
+    font-size: 12px;
+    letter-spacing: -1px;
+  }
+}

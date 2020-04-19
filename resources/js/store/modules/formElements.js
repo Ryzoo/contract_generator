@@ -19,7 +19,7 @@ const prepareAttributeDefault = (attribute) => {
     case AttributeTypeEnum.ATTRIBUTE_GROUP:
       return attribute.settings.attributes.map((x) => ({
         ...x,
-        attributeName: x.settings.required ? (x.settings.description || x.attributeName) + '*' : (x.settings.description || x.attributeName),
+        attributeName: x.settings.required ? (x.description || x.attributeName) + '*' : (x.description || x.attributeName),
         placeholder: x.placeholder ? String(x.placeholder) : '',
         errorMessage: '',
         isValid: true,
@@ -81,7 +81,7 @@ const mutations = {
     state.formElements = state.formElements.map(e => {
       if (e.attribute && e.attribute.id === data.id) {
         const allValue = [...e.attribute.value]
-        allValue.splice(data.index, 1)
+        allValue.splice(data.index + 1, 1)
         return {
           ...e,
           attribute: {
@@ -129,7 +129,7 @@ const mutations = {
     state.formElements = data.map((e, index) => {
       e.id = index
       if (e.elementType === FormElementsEnum.ATTRIBUTE) {
-        const attrName = e.attribute.settings.description || e.attribute.attributeName
+        const attrName = e.attribute.description || e.attribute.attributeName
         e.attribute.attributeName = e.attribute.settings.required ? attrName + '*' : attrName
         e.attribute.placeholder = e.attribute.placeholder ? String(e.attribute.placeholder) : ''
         e.attribute.errorMessage = ''
@@ -149,15 +149,19 @@ const mutations = {
   CHANGE_ELEMENT_ATTRIBUTE: (state, data) => {
     state.formElements = state.formElements.map(e => {
       if (e.elementType === FormElementsEnum.ATTRIBUTE && e.attribute && e.attribute.id === data.id) {
-        const currentValue = e.attribute.isMultiUse ? e.attribute.value.shift() : e.attribute.value
+        const currentValue = e.attribute.value
+        if (e.attribute.settings.isMultiUse) currentValue.shift()
+
         let attribute = {
           ...e.attribute,
-          value: e.attribute.isMultiUse ? [
+          value: e.attribute.settings.isMultiUse ? [
             data.value,
             ...currentValue
           ] : data.value
         }
+
         attribute = validateAttribute(attribute)
+
         return {
           ...e,
           attribute,
@@ -208,7 +212,6 @@ const getters = {
       return item
     })
 
-    console.log(listToReturn)
     return listToReturn
   }
 }
