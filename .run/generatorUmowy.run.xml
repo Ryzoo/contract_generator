@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="generatorUmowy" type="LaravelStorm_run_conf_serve" factoryName="Laravel" activateToolWindowBeforeRun="false">
+    <option name="host" value="localhost" />
+    <option name="port" value="8000" />
+    <option name="route" value="/" />
+    <option name="browser" value="" />
+    <option name="interpreterName" value="PHP 7.4" />
+    <method v="2" />
+  </configuration>
+</component>

@@ -86,10 +86,19 @@ section > .v-navigation-drawer .v-list-group__header {
 }
 
 section > .v-navigation-drawer .v-list:nth-child(2) {
-  padding: 15px 25px !important;
+  padding: 15px 25px;
 
   & > * {
     margin-top: 10px;
+  }
+}
+
+.v-navigation-drawer--mini-variant{
+  .v-list:nth-child(1)  .v-list-item{
+    padding: 0 7px !important;
+  }
+  .v-list:nth-child(2) {
+    padding: 0 !important;
   }
 }
 
