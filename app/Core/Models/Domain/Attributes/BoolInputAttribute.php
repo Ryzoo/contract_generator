@@ -28,7 +28,23 @@ class BoolInputAttribute extends Attribute implements IAggregableByAttributeAggr
   }
 
   public function valueParser($value) {
-    return (bool) $this->settings['isMultiUse'] ? MultiRender::renderToHTML($value, $this->settings['multiUseRenderType'], false) : $this->valueSchema($value);
+    if($this->settings['isMultiUse']){
+      $values = collect($value)
+        ->filter(static function($v){
+          return isset($v['bool'], $v['input']) && (bool) $v['bool'];
+        })
+        ->map(static function ($v){
+          return $v['input'];
+        });
+
+      return MultiRender::renderToHTML($values, $this->settings['multiUseRenderType'], FALSE);
+    }
+
+    if(isset($value['bool']) && (bool) $value['bool']) {
+      return $value['input'];
+    }
+
+    return '';
   }
 
   private function valueSchema($value): string{

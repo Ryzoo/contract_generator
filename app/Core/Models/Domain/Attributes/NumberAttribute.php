@@ -28,10 +28,7 @@ class NumberAttribute extends Attribute implements IAggregableByAttributeAggrega
   }
 
   public function valueParser($value) {
-    if((bool) $value['bool']){
-      return (bool) $this->settings['isMultiUse'] ? MultiRender::renderToHTML($value['input'], $this->settings['multiUseRenderType'], false) : $value['input'];
-    }
-    return '';
+    return (bool) $this->settings['isMultiUse'] ? MultiRender::renderToHTML($value, $this->settings['multiUseRenderType'], false) : (float) $value;
   }
 
   public function getOperationalValue(string $operation) {
