@@ -16,13 +16,13 @@
       v-model="showBlockModal"
       scrollable
       max-width="800px">
-          <SelectedBlockView @close="showBlockModal=false"/>
+      <SelectedBlockView @close="showBlockModal=false"/>
     </v-dialog>
 
     <v-dialog
       v-model="showAttributeModal"
       scrollable>
-        <VariableView @close="showAttributeModal=false"/>
+      <VariableView @close="showAttributeModal=false"/>
     </v-dialog>
   </v-row>
   <loader v-else></loader>

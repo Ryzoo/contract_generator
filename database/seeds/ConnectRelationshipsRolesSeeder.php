@@ -14,6 +14,5 @@ class ConnectRelationshipsRolesSeeder extends Seeder
 
         foreach ($permissions as $permission)
             $roleAdmin->attachPermission($permission);
-
     }
 }

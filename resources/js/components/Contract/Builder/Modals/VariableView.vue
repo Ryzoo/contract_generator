@@ -1,6 +1,13 @@
 <template>
   <v-card>
-    <v-card-title>Attribute list:</v-card-title>
+    <v-card-title>
+      Attribute list:
+      <v-spacer></v-spacer>
+      <v-btn color="primary" small @click="showLibraryModal = true">
+        <v-icon left small>fa-archive</v-icon>
+        Get from library
+      </v-btn>
+    </v-card-title>
     <v-divider/>
     <v-card-text>
       <v-row class="mt-2">
@@ -127,7 +134,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-dialog
+    <v-dialog persistent
       v-model="showAddEditModal"
       scrollable
       max-width="800px">
@@ -137,20 +144,32 @@
         @close="showAddEditModal = false"
       />
     </v-dialog>
+    <v-dialog persistent
+      v-model="showLibraryModal"
+      scrollable
+      max-width="500px">
+      <VariableLibraryResolver
+        v-if="showLibraryModal"
+        @close="showLibraryModal = false"
+      />
+    </v-dialog>
   </v-card>
 </template>
 
 <script>
+import VariableLibraryResolver from './VariableLibraryResolver'
 import CreateEditVariable from './VariableView/CreateEditVariable'
 import { AttributeTypeEnum } from '../../../../additionalModules/Enums'
 
 export default {
   name: 'VariableView',
   components: {
+    VariableLibraryResolver,
     CreateEditVariable
   },
   data () {
     return {
+      showLibraryModal: false,
       AttributeTypeEnum: AttributeTypeEnum,
       searchText: '',
       showAddEditModal: false,

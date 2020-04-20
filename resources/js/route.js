@@ -31,6 +31,7 @@ import FormSubmissionView from './views/panel/FormSubmissionView'
 import CategoryView from './views/panel/contracts/CategoryView'
 import EditCategoryView from './views/panel/contracts/category/EditView'
 import CreateCategoryView from './views/panel/contracts/category/CreateView'
+import AttributesLibraryView from './views/panel/library/attributes/AttributesLibraryView'
 import { Permissions } from './additionalModules/Permissions'
 
 Vue.use(VueRouter)
@@ -171,6 +172,17 @@ const router = new VueRouter({
             title: i18n.t('pageMeta.panel.category.edit.title'),
             access: [
               Permissions.MANAGE_ROLES
+            ]
+          }
+        },
+        {
+          path: 'library/attributes',
+          name: 'attributes-lib',
+          component: AttributesLibraryView,
+          meta: {
+            title: i18n.t('pageMeta.panel.library.title'),
+            access: [
+              Permissions.MANAGE_ATTRIBUTES
             ]
           }
         },

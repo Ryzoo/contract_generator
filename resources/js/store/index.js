@@ -6,6 +6,7 @@ import builderModule from './modules/builder'
 import contractModulesModule from './modules/contractModules'
 import newContractModule from './modules/newContract'
 import NotificationModule from './modules/notifications'
+import LibraryAttributeModule from './modules/libraryAttribute'
 
 Vue.use(Vuex)
 
@@ -16,6 +17,7 @@ export default new Vuex.Store({
     builder: builderModule,
     contractModules: contractModulesModule,
     newContract: newContractModule,
-    notification: NotificationModule
+    notification: NotificationModule,
+    libraryAttribute: LibraryAttributeModule
   }
 })
