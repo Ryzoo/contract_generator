@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Validator;
 
 class RepeatBlock extends TextBlock {
 
-  private Attribute $repeatAttribute;
+  private ?Attribute $repeatAttribute;
   private Contract $contract;
   private int $conditionalType;
 
