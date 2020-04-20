@@ -43,7 +43,7 @@ export default {
       })) : []
     },
     attributesToAggregate () {
-      return this.$store.getters.builder_allVariables.filter((x) => x.attributeType !== AttributeTypeEnum.ATTRIBUTE_GROUP && !(!!x.settings.isMultiUse))
+      return this.$store.getters.builder_allVariables.filter((x) => x.attributeType !== AttributeTypeEnum.ATTRIBUTE_GROUP && !(x.settings.isMultiUse))
     }
   },
   data () {
@@ -65,6 +65,12 @@ export default {
   methods: {
     changeAttributes (newValue) {
       const listOfAttributes = []
+      console.log(newValue.length, this.settingsData.attributes.length)
+
+      if (newValue.length < this.settingsData.attributes.length) {
+        const removedAttributes = this.settingsData.attributes.map(x => x.id).filter(x => !newValue.includes(x))
+        this.$store.dispatch('builder_attributes_clearConditionals', removedAttributes)
+      }
 
       newValue.forEach(x => {
         const attributes = this.attributesToAggregate.find(a => a.id === x)
