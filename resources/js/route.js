@@ -131,7 +131,7 @@ const router = new VueRouter({
           }
         },
         {
-          path: 'contracts/builder',
+          path: 'contracts/builder/:id',
           name: 'buildContract',
           component: ContractBuilderView,
           meta: {
