@@ -175,7 +175,7 @@ abstract class Block implements IBlock {
   }
 
   public function renderToHtml(Collection $attributes, Attribute $repeatAttribute = null, $repeatValue = null): string {
-    $this->resolveAttributesInContent($attributes, $repeatAttribute, $repeatValue);
+    $this->resolveAttributesInContent($attributes, $repeatValue, $repeatValue);
     return '';
   }
 

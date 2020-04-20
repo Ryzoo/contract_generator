@@ -33,8 +33,8 @@ class PageDivideBlock extends Block {
         // TODO: Implement resolveAttributesInContent() method.
     }
 
-    public function renderToHtml(Collection $attributes): string {
-        $htmlString = parent::renderToHtml($attributes);
+    public function renderToHtml(Collection $attributes, Attribute $repeatAttribute = null, $repeatValue = null): string {
+        $htmlString = parent::renderToHtml($attributes, $repeatAttribute, $repeatValue);
         return $htmlString . '<div class="page-break"></div>';
     }
 

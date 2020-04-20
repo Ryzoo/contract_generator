@@ -97,10 +97,6 @@ class MultiRender {
 
     $elements = [];
 
-    if(!$valueAsAttributesArray){
-      return implode($glue, $value);
-    }
-
     foreach ($value as $items) {
       $elements[] = implode($glue, $items->toArray());
     }

@@ -58,7 +58,7 @@ class AttributeResolver {
     return $text;
   }
 
-  public function getAttributeById(int $id): Attribute {
+  public function getAttributeById(int $id): ?Attribute {
     return $this->formElements
       ->where('elementType', ElementType::ATTRIBUTE)
       ->map(static function ($e) {

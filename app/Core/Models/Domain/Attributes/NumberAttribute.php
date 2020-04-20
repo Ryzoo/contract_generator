@@ -33,10 +33,11 @@ class NumberAttribute extends Attribute implements IAggregableByAttributeAggrega
 
   public function getOperationalValue(string $operation) {
     $returnValue = 0;
+    $self = $this;
 
     if ((bool) $this->settings['isMultiUse']) {
-      collect($this->value)->map(static function($value)use(&$returnValue, $operation){
-          $returnValue = $this->aggregateValue($returnValue, $operation, (float) $value);
+      collect($this->value)->map(static function($value)use(&$returnValue, $operation, $self){
+          $returnValue = $self->aggregateValue($returnValue, $operation, (float) $value);
       });
     }
     else {
@@ -78,7 +79,7 @@ class NumberAttribute extends Attribute implements IAggregableByAttributeAggrega
   }
 
   public function divide(?float $value, float $number): float {
-    $valueOp = $number === 0 ? 1 : $number;
+    $valueOp = (int) $number === 0 ? 1 : $number;
     return isset($value) ? $value / $valueOp : $valueOp;
   }
 }

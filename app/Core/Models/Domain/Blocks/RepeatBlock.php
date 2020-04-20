@@ -44,7 +44,7 @@ class RepeatBlock extends TextBlock {
     $this->content['blocks'] = Block::getListFromString(json_encode($this->content['blocks'], JSON_THROW_ON_ERROR, 512));
   }
 
-  public function validateConditions(int $conditionalType, Collection $formElements, Contract $contract): bool{
+  public function validateConditions(int $conditionalType, Collection $formElements, Contract $contract, int $index = 0): bool{
     $this->conditionalType = $conditionalType;
     $this->formElements = $formElements;
     $this->contract = $contract;
@@ -87,7 +87,7 @@ class RepeatBlock extends TextBlock {
 
   protected function resolveAttributesInContent(Collection $formElements, Attribute $repeatAttribute = null, $repeatValue = null) {
     $attributeResolver = new AttributeResolver($formElements);
-    $this->repeatAttribute = $attributeResolver->getAttributeById($this->settings->repeatAttributeId ?? -1);
+    $this->repeatAttribute = $attributeResolver->getAttributeById($this->settings['repeatAttributeId'] ?? -1);
 
     $blockList = $this->content['blocks'];
 
@@ -97,8 +97,8 @@ class RepeatBlock extends TextBlock {
     }
   }
 
-  public function renderToHtml(Collection $attributes): string {
-    $htmlString = parent::renderToHtml($attributes);
+  public function renderToHtml(Collection $attributes, Attribute $repeatAttribute = null, $repeatValue = null): string {
+    $htmlString = parent::renderToHtml($attributes, $repeatAttribute, $repeatValue);
     return isset($this->repeatAttribute) ? $this->repeatContent($htmlString, $attributes) : $htmlString;
   }
 

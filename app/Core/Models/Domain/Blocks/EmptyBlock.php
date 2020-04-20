@@ -70,13 +70,13 @@ class EmptyBlock extends Block {
         return $blockCollection;
     }
 
-    public function validateConditions(int $conditionalType, Collection $formElements, Contract $contract): bool{
-      $parentActive = parent::validateConditions($conditionalType, $formElements, $contract);
+    public function validateConditions(int $conditionalType, Collection $formElements, Contract $contract, int $index = 0): bool{
+      $parentActive = parent::validateConditions($conditionalType, $formElements, $contract, $index);
 
       if($parentActive){
         /** @var \App\Core\Models\Domain\Blocks\Block $block */
         foreach ($this->content['blocks'] as $block){
-          $block->validateConditions($conditionalType, $formElements, $contract);
+          $block->validateConditions($conditionalType, $formElements, $contract, $index);
         }
 
         $this->content['blocks'] = collect($this->content['blocks'])->where('isActive');
@@ -85,13 +85,13 @@ class EmptyBlock extends Block {
       return $parentActive;
     }
 
-    public function renderToHtml(Collection $attributes): string {
-        $htmlString = parent::renderToHtml($attributes);
+    public function renderToHtml(Collection $attributes, Attribute $repeatAttribute = null, $repeatValue = null): string {
+        $htmlString = parent::renderToHtml($attributes, $repeatAttribute, $repeatValue);
         $blockList = $this->content['blocks'];
 
         /** @var \App\Core\Models\Domain\Blocks\Block $block */
         foreach ($blockList as $block){
-            $htmlString .= PdfRenderer::blockHtmlTemplate($block->renderToHtml($attributes));
+            $htmlString .= PdfRenderer::blockHtmlTemplate($block->renderToHtml($attributes, $repeatAttribute, $repeatValue));
         }
 
         return $htmlString;
