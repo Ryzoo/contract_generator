@@ -6,6 +6,7 @@ namespace App\Core\Models\Domain\Blocks;
 use App\Core\Enums\BlockType;
 use App\Core\Helpers\BlockCounterResolver;
 use App\Core\Helpers\PdfRenderer;
+use App\Core\Models\Domain\Attributes\Attribute;
 use Illuminate\Support\Facades\Validator;
 use App\Core\Models\Database\Contract;
 use Illuminate\Support\Collection;
@@ -29,15 +30,15 @@ class EmptyBlock extends Block {
     }
 
     protected function buildContent() {
-        $this->content['blocks'] = Block::getListFromString( json_encode($this->content["blocks"]) );
+        $this->content['blocks'] = Block::getListFromString(json_encode($this->content['blocks'], JSON_THROW_ON_ERROR, 512));
     }
 
-    protected function resolveAttributesInContent(Collection $formElements) {
+    protected function resolveAttributesInContent(Collection $formElements, Attribute $repeatAttribute = null, $repeatValue = null) {
         $blockList = $this->content['blocks'];
 
         /** @var \App\Core\Models\Domain\Blocks\Block $block */
         foreach ($blockList as $block){
-            $block->resolveAttributesInContent($formElements);
+            $block->resolveAttributesInContent($formElements, $repeatAttribute, $repeatValue);
         }
     }
 
@@ -95,5 +96,4 @@ class EmptyBlock extends Block {
 
         return $htmlString;
     }
-
 }

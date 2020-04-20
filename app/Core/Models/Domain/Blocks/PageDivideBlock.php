@@ -5,6 +5,7 @@ namespace App\Core\Models\Domain\Blocks;
 
 use App\Core\Enums\BlockType;
 use App\Core\Models\Database\Contract;
+use App\Core\Models\Domain\Attributes\Attribute;
 use App\Core\Models\Domain\FormElements\PageDividerFormElement;
 use Illuminate\Support\Collection;
 
@@ -28,7 +29,7 @@ class PageDivideBlock extends Block {
         return true;
     }
 
-    protected function resolveAttributesInContent(Collection $formElements) {
+    protected function resolveAttributesInContent(Collection $formElements, Attribute $repeatAttribute = null, $repeatValue = null) {
         // TODO: Implement resolveAttributesInContent() method.
     }
 

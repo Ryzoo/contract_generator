@@ -42,7 +42,7 @@ class AttributeResolver {
 
       foreach ($attributeIdList[1] as $id) {
         $attribute = $this->getAttributeById((int) $id);
-        if (isset($attribute)) {
+        if (isset($attribute) && !((bool)$attribute->settings['isMultiUse'])) {
           foreach ($attribute->value as $attribute) {
             $attributeParse = Attribute::getFromString((array) $attribute);
             $text = str_replace([

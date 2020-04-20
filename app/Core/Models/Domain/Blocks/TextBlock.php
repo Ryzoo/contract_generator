@@ -6,6 +6,8 @@ namespace App\Core\Models\Domain\Blocks;
 use App\Core\Enums\BlockType;
 use App\Core\Helpers\AttributeResolver;
 use App\Core\Helpers\CounterResolver;
+use App\Core\Helpers\MultiAttributeResolver;
+use App\Core\Models\Domain\Attributes\Attribute;
 use Illuminate\Support\Facades\Validator;
 use App\Core\Models\Database\Contract;
 use Illuminate\Support\Collection;
@@ -32,9 +34,12 @@ class TextBlock extends Block {
     return TRUE;
   }
 
-  protected function resolveAttributesInContent(Collection $formElements) {
+  protected function resolveAttributesInContent(Collection $formElements, Attribute $repeatAttribute = null, $repeatValue = null) {
     $attributeResolver = new AttributeResolver($formElements);
     $this->content['text'] = $attributeResolver->resolveText($this->content['text'], true);
+    if(isset($repeatAttribute)){
+      $this->content['text'] = MultiAttributeResolver::resolve($repeatAttribute, $this->content['text'], $repeatValue);
+    }
   }
 
   public function counterResolve(string $matchString, int $countStart, Contract $contract): int {

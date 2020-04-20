@@ -18,7 +18,7 @@ trait ConditionalValidator {
   protected Collection $formElements;
   public bool $isActive;
 
-  public function validateConditions(int $conditionalType, Collection $formElements, Contract $contract): bool {
+  public function validateConditions(int $conditionalType, Collection $formElements, Contract $contract, int $index = 0): bool {
     if (!isset($this->conditionals)) {
       throw new \ErrorException('Conditional validator implemented in class without conditionals field');
     }
@@ -32,8 +32,8 @@ trait ConditionalValidator {
     $self = $this;
 
     $this->isActive = $this->conditionalList
-      ->every(static function ($element) use ($self) {
-        return $self->isConditionalValidAndEqual(ModelObjectToTextParser::parse(json_decode($element->content, TRUE, 512, JSON_THROW_ON_ERROR)), TRUE);
+      ->every(static function ($element) use ($self, $index) {
+        return $self->isConditionalValidAndEqual(ModelObjectToTextParser::parse(json_decode($element->content, TRUE, 512, JSON_THROW_ON_ERROR)), TRUE, $index);
       });
 
     return $this->isActive;
