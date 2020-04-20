@@ -59,6 +59,12 @@
               @click="editVariable(attribute)"
               @click:close="tryToRemoveAttribute(attribute)"
             >
+              <v-btn x-small text color="white" class="mx-1 attribute-copy" @click="(ev) => {
+                ev.stopPropagation();
+                copyAttribute(attribute)
+              }">
+                <v-icon left small class="ma-0">fa-copy</v-icon>
+              </v-btn>
               {{attribute.attributeName}}
             </v-chip>
           </v-col>
@@ -75,6 +81,12 @@
               @click="editVariable(attribute)"
               @click:close="tryToRemoveAttribute(attribute)"
             >
+              <v-btn x-small text color="white" class="mx-1 attribute-copy" @click="(ev) => {
+                ev.stopPropagation();
+                copyAttribute(attribute)
+              }">
+                <v-icon left small class="ma-0">fa-copy</v-icon>
+              </v-btn>
               {{attribute.attributeName}}
             </v-chip>
           </v-col>
