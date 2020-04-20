@@ -50,6 +50,10 @@ const actions = {
   builder_removeVariable: (context, data) => {
     context.commit('BUILDER_REMOVE_VARIABLE', data)
   },
+  builder_attribute_copy: (context, attribute) => {
+    context.commit('BUILDER_ATTRIBUTE_COPY', attribute)
+    context.commit('BUILDER_VARIABLE_INCREMENT_ID')
+  },
   builder_blockUpdateContent: (context, data) => {
     context.commit('BUILDER_BLOCK_UPDATE_CONTENT', data)
   },
@@ -62,6 +66,13 @@ const actions = {
 }
 
 const mutations = {
+  BUILDER_ATTRIBUTE_COPY: (state, attribute) => {
+    state.builder.variables.push({
+      ...attribute,
+      attributeName: attribute.attributeName + ' copy',
+      id: state.builder.idVariableIncrement
+    })
+  },
   BUILDER_ATTRIBUTES_CLEAR_CONDITIONALS: (state, data) => {
     state.builder.variables = state.builder.variables.map((attribute) => {
       if (data.includes(parseInt(attribute.id))) {

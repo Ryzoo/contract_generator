@@ -21,7 +21,7 @@
           <v-col cols="12" md="4">
             <h4>Simple attributes</h4>
             <v-chip
-              class="d-block ma-1 py-1"
+              class="d-block ma-1 py-1 variable-chip"
               label
               close
               small
@@ -31,6 +31,18 @@
               @click="editVariable(attribute)"
               @click:close="tryToRemoveAttribute(attribute)"
             >
+              <v-avatar
+                v-if="attribute.settings.isMultiUse"
+                left
+                class="yellow"
+              >
+              </v-avatar>
+              <v-btn x-small text color="white" class="mx-1 attribute-copy" @click="(ev) => {
+                ev.stopPropagation();
+                copyAttribute(attribute)
+              }">
+                <v-icon left small class="ma-0">fa-copy</v-icon>
+              </v-btn>
               {{attribute.attributeName}}
             </v-chip>
           </v-col>
@@ -155,6 +167,9 @@ export default {
     }
   },
   methods: {
+    copyAttribute (attribute) {
+      this.$store.dispatch('builder_attribute_copy', attribute)
+    },
     tryToRemoveAttribute (attribute) {
       this.removedAttribute = attribute
       this.deleteDialog = true
@@ -220,6 +235,18 @@ export default {
     justify-content: center;
     padding: 15px;
     opacity: 0.3;
+  }
+
+  .variable-chip{
+    .v-avatar{
+      background: #E91E63 !important;
+      position: absolute;
+      left: -31px;
+      padding: 0;
+      margin: 0;
+      width: 50px !important;
+      height: 50px !important;
+    }
   }
 
 </style>
