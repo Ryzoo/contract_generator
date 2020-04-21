@@ -20,4 +20,7 @@ composer.lock
 
 package-lock.json
 
-public_html/js/app\.js
+/public/css/app.css
+/public/js/app.js
+/public/font/vendor
+/public/font/vendor/**
