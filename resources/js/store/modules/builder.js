@@ -41,7 +41,7 @@ const actions = {
   },
   builder_editVariable: (context, data) => {
     context.commit('BUILDER_EDIT_VARIABLE', data)
-    context.commit('BUILDER_UPDATE_GROUP_VARIABLE', data)
+    context.commit('BUILDER_UPDATE_GROUP_VARIABLE')
   },
   builder_addVariable: (context, data) => {
     context.commit('BUILDER_ADD_VARIABLE', data)
@@ -49,6 +49,10 @@ const actions = {
   },
   builder_removeVariable: (context, data) => {
     context.commit('BUILDER_REMOVE_VARIABLE', data)
+  },
+  builder_attribute_import: (context, attributes) => {
+    context.commit('BUILDER_ATTRIBUTE_IMPORT', attributes)
+    context.commit('BUILDER_UPDATE_GROUP_VARIABLE')
   },
   builder_attribute_copy: (context, attribute) => {
     context.commit('BUILDER_ATTRIBUTE_COPY', attribute)
@@ -66,6 +70,30 @@ const actions = {
 }
 
 const mutations = {
+  BUILDER_ATTRIBUTE_IMPORT: (state, attributes) => {
+    attributes.forEach(attribute => {
+      if (attribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {
+        attribute.settings.attributes = attribute.settings.attributes.map(attributeIn => {
+          state.builder.idVariableIncrement++
+          attributeIn.id = state.builder.idVariableIncrement
+          state.builder.variables.push({
+            ...attributeIn
+          })
+
+          return {
+            ...attributeIn
+          }
+        })
+      }
+      state.builder.idVariableIncrement++
+      state.builder.variables.push({
+        ...attribute,
+        id: state.builder.idVariableIncrement
+      })
+    })
+
+    state.builder.idVariableIncrement++
+  },
   BUILDER_ATTRIBUTE_COPY: (state, attribute) => {
     state.builder.variables.push({
       ...attribute,

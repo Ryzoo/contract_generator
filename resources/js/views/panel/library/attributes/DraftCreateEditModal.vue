@@ -99,13 +99,11 @@
             <v-chip
               class="d-block ma-1 py-1"
               label
-              close
               small
               v-for="attribute in usedInGroupsAttributes"
               :key="attribute.id"
               color="primary"
               @click="tryEditVariable(attribute)"
-              @click:close="tryToRemoveAttribute(attribute)"
             >
               <v-btn x-small text color="white" class="mx-1 attribute-copy" @click="(ev) => {
                       ev.stopPropagation();
@@ -203,6 +201,7 @@
               scrollable
               max-width="500px">
       <VariableLibraryResolver
+        @import="importAttributes"
         v-if="showLibraryModal"
         @close="showLibraryModal = false"
       />
@@ -282,6 +281,30 @@ export default {
     }
   },
   methods: {
+    importAttributes(attributes){
+      attributes.forEach(attribute => {
+        if (attribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {
+          attribute.settings.attributes = attribute.settings.attributes.map(attributeIn => {
+            this.idCounter++
+            attributeIn.id = this.idCounter
+            this.draft.content.push({
+              ...attributeIn
+            })
+
+            return {
+              ...attributeIn
+            }
+          })
+        }
+        this.idCounter++
+        this.draft.content.push({
+          ...attribute,
+          id: this.idCounter
+        })
+      })
+
+      this.idCounter++
+    },
     closeDialog () {
       this.$emit('close')
     },
@@ -318,7 +341,7 @@ export default {
       this.draft = {
         ...this.$store.getters.library_attributes_getExistedDraft(this.editAttributeId)
       }
-      this.idCounter = Math.max(this.draft.content.map(x => parseInt(x.id)))
+      this.idCounter = Math.max(...this.draft.content.map(x => parseInt(x.id)))
     },
     loadNewDraftData () {
       this.draft = {
