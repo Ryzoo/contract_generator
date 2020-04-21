@@ -24,6 +24,7 @@
               :is="Mapper.getBlockName(currentBlock.blockType)"
               :block="currentBlock"
               :level="level ? level : 0"
+              @show-block-modal="showBlockModal"
       />
     </div>
     <AddBlockDialog

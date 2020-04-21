@@ -1,6 +1,9 @@
 <template>
     <section>
-        <div class="block-divider-line">Page divider</div>
+        <div class="block-divider-line">{{block.blockName}}</div>
+      <v-btn @click="editBlock" class="mx-3" text icon>
+        <v-icon>fa-edit</v-icon>
+      </v-btn>
         <v-btn @click="removeBlock" class="mx-3" text icon>
             <v-icon>fa-trash</v-icon>
         </v-btn>
@@ -11,10 +14,21 @@
 export default {
   name: 'PageDivideBlock',
   props: ['block'],
+  data () {
+    return {
+      divideBlockModal: false,
+    }
+  },
   methods: {
     removeBlock () {
       const newBlocks = this.removeFromData(this.$store.getters.builder_allBlocks, this.block.id)
       this.$store.dispatch('builder_set', newBlocks)
+    },
+    editBlock () {
+      this.$store.dispatch('builder_setActiveBlock', this.block)
+        .then(() => {
+          this.$emit('show-block-modal')
+        })
     },
     removeFromData (dataArray, idToRemove) {
       if (dataArray.find(x => x.id === idToRemove)) {

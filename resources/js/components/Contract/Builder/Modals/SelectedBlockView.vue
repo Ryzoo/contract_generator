@@ -23,10 +23,19 @@
 
       <v-tab-item :key="1" value="tab-1" class="pt-3">
         <QueryBuilder
+          v-if="block.blockType !== pageDivider"
           :id="block.id"
           :conditionals="block.conditionals"
           @conditional-change="onConditionalChange"
         />
+        <v-switch
+          v-if="block.blockType === pageDivider"
+          outlined
+          hide-details
+          dense
+          v-model="block.settings.isBreaker"
+          label="Should be a page breaker?"
+        ></v-switch>
       </v-tab-item>
     </v-tabs>
     </v-card-text>
@@ -40,13 +49,15 @@
 
 <script>
 import QueryBuilder from '../../../common/QueryBuilder'
+import { BlockTypeEnum } from '../../../../additionalModules/Enums'
 
 export default {
   name: 'SelectedBlockView',
   components: { QueryBuilder },
   data () {
     return {
-      currentTab: null
+      currentTab: null,
+      pageDivider: BlockTypeEnum.PAGE_DIVIDE_BLOCK
     }
   },
   computed: {
