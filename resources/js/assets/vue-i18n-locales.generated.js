@@ -120,6 +120,15 @@ export default {
                         "title": "Panel - Preview account"
                     }
                 },
+                "library": {
+                    "title": "Panel - Library",
+                    "attributes": {
+                        "title": "Panel - Attributes Library"
+                    },
+                    "blocks": {
+                        "title": "Panel - Blocks Library"
+                    }
+                },
                 "contract": {
                     "title": "Panel - Contract list",
                     "builder": {
@@ -443,8 +452,12 @@ export default {
             "contract": {
                 "main": "Contracts",
                 "contractList": "Full contract project",
-                "schema": "Part of contract",
                 "category": "Categories"
+            },
+            "library": {
+                "main": "Library",
+                "attributes": "Attributes",
+                "blocks": "Blocks"
             },
             "accounts": "Accounts",
             "settings": {

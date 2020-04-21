@@ -37,7 +37,7 @@ class BoolInputAttribute extends Attribute implements IAggregableByAttributeAggr
           return $v['input'];
         });
 
-      return MultiRender::renderToHTML($values, $this->settings['multiUseRenderType'], FALSE);
+      return MultiRender::renderToHTML($values->toArray(), $this->settings['multiUseRenderType'], FALSE);
     }
 
     if(isset($value['bool']) && (bool) $value['bool']) {
@@ -53,11 +53,12 @@ class BoolInputAttribute extends Attribute implements IAggregableByAttributeAggr
 
   public function getOperationalValue(string $operation) {
     $returnValue = 0;
+    $self = $this;
 
     if ((bool) $this->settings['isMultiUse']) {
-      collect($this->value)->map(static function($value)use(&$returnValue, $operation){
+      collect($this->value)->map(static function($value)use(&$returnValue, $operation, $self){
         if((bool) $value['bool'] && is_numeric($value['input']))
-          $returnValue = $this->aggregateValue($returnValue, $operation, (float) $value['input']);
+          $returnValue = $self->aggregateValue($returnValue, $operation, (float) $value['input']);
       });
     }
     else {
@@ -100,7 +101,7 @@ class BoolInputAttribute extends Attribute implements IAggregableByAttributeAggr
   }
 
   public function divide(?float $value, float $number): float {
-    $valueOp = $number === 0 ? 1 : $number;
+    $valueOp = (int) $number === 0 ? 1 : $number;
     return isset($value) ? $value / $valueOp : $valueOp;
   }
 }

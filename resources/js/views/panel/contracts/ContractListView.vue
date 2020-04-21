@@ -147,7 +147,7 @@ export default {
         })
     },
     goToEdit (id) {
-      this.$router.push(`/panel/contracts/edit/${id}`)
+      this.$router.push(`/panel/contracts/builder/${id}`)
     }
   },
   mounted () {

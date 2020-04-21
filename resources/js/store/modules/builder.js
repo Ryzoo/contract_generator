@@ -24,6 +24,9 @@ const actions = {
   builder_idBlockIncrement: (context, data) => {
     context.commit('BUILDER_BLOCK_INCREMENT_ID', data)
   },
+  builder_attributes_clearConditionals: (context, data) => {
+    context.commit('BUILDER_ATTRIBUTES_CLEAR_CONDITIONALS', data)
+  },
   builder_setIdBlockIncrement: (context, data) => {
     context.commit('BUILDER_BLOCK_SET_INCREMENT_ID', data)
   },
@@ -47,6 +50,10 @@ const actions = {
   builder_removeVariable: (context, data) => {
     context.commit('BUILDER_REMOVE_VARIABLE', data)
   },
+  builder_attribute_copy: (context, attribute) => {
+    context.commit('BUILDER_ATTRIBUTE_COPY', attribute)
+    context.commit('BUILDER_VARIABLE_INCREMENT_ID')
+  },
   builder_blockUpdateContent: (context, data) => {
     context.commit('BUILDER_BLOCK_UPDATE_CONTENT', data)
   },
@@ -54,12 +61,27 @@ const actions = {
     context.commit('BUILDER_ACTIVE_BLOCK_UPDATE', data)
   },
   variables_updateConditionals: (context, data) => {
-    context.commit('VARIABLES_UPDATE_CONDTIONALS', data)
+    context.commit('VARIABLES_UPDATE_CONDITIONALS', data)
   }
 }
 
 const mutations = {
-  VARIABLES_UPDATE_CONDTIONALS: (state, data) => {
+  BUILDER_ATTRIBUTE_COPY: (state, attribute) => {
+    state.builder.variables.push({
+      ...attribute,
+      attributeName: attribute.attributeName + ' copy',
+      id: state.builder.idVariableIncrement
+    })
+  },
+  BUILDER_ATTRIBUTES_CLEAR_CONDITIONALS: (state, data) => {
+    state.builder.variables = state.builder.variables.map((attribute) => {
+      if (data.includes(parseInt(attribute.id))) {
+        attribute.conditionals = []
+      }
+      return attribute
+    })
+  },
+  VARIABLES_UPDATE_CONDITIONALS: (state, data) => {
     state.builder.variables = state.builder.variables.map((attribute) => {
       if (parseInt(attribute.id) === parseInt(data.id)) {
         attribute.conditionals = [

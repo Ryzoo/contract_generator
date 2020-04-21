@@ -65,6 +65,15 @@ return [
         'title' => 'Panel - Preview account',
       ],
     ],
+    'library' => [
+      'title' => 'Panel - Library',
+      'attributes' => [
+        'title' => 'Panel - Attributes Library',
+      ],
+      'blocks' => [
+        'title' => 'Panel - Blocks Library',
+      ],
+    ],
     'contract' => [
       'title' => 'Panel - Contract list',
       'builder' => [

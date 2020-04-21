@@ -1,6 +1,13 @@
 <template>
   <v-card>
-    <v-card-title>Attribute list:</v-card-title>
+    <v-card-title>
+      Attribute list:
+      <v-spacer></v-spacer>
+      <v-btn color="primary" small @click="showLibraryModal = true">
+        <v-icon left small>fa-archive</v-icon>
+        Get from library
+      </v-btn>
+    </v-card-title>
     <v-divider/>
     <v-card-text>
       <v-row class="mt-2">
@@ -21,7 +28,7 @@
           <v-col cols="12" md="4">
             <h4>Simple attributes</h4>
             <v-chip
-              class="d-block ma-1 py-1"
+              class="d-block ma-1 py-1 variable-chip"
               label
               close
               small
@@ -31,6 +38,18 @@
               @click="editVariable(attribute)"
               @click:close="tryToRemoveAttribute(attribute)"
             >
+              <v-avatar
+                v-if="attribute.settings.isMultiUse"
+                left
+                class="yellow"
+              >
+              </v-avatar>
+              <v-btn x-small text color="white" class="mx-1 attribute-copy" @click="(ev) => {
+                ev.stopPropagation();
+                copyAttribute(attribute)
+              }">
+                <v-icon left small class="ma-0">fa-copy</v-icon>
+              </v-btn>
               {{attribute.attributeName}}
             </v-chip>
           </v-col>
@@ -47,6 +66,12 @@
               @click="editVariable(attribute)"
               @click:close="tryToRemoveAttribute(attribute)"
             >
+              <v-btn x-small text color="white" class="mx-1 attribute-copy" @click="(ev) => {
+                ev.stopPropagation();
+                copyAttribute(attribute)
+              }">
+                <v-icon left small class="ma-0">fa-copy</v-icon>
+              </v-btn>
               {{attribute.attributeName}}
             </v-chip>
           </v-col>
@@ -63,6 +88,12 @@
               @click="editVariable(attribute)"
               @click:close="tryToRemoveAttribute(attribute)"
             >
+              <v-btn x-small text color="white" class="mx-1 attribute-copy" @click="(ev) => {
+                ev.stopPropagation();
+                copyAttribute(attribute)
+              }">
+                <v-icon left small class="ma-0">fa-copy</v-icon>
+              </v-btn>
               {{attribute.attributeName}}
             </v-chip>
           </v-col>
@@ -103,7 +134,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-dialog
+    <v-dialog persistent
       v-model="showAddEditModal"
       scrollable
       max-width="800px">
@@ -113,20 +144,32 @@
         @close="showAddEditModal = false"
       />
     </v-dialog>
+    <v-dialog persistent
+      v-model="showLibraryModal"
+      scrollable
+      max-width="500px">
+      <VariableLibraryResolver
+        v-if="showLibraryModal"
+        @close="showLibraryModal = false"
+      />
+    </v-dialog>
   </v-card>
 </template>
 
 <script>
+import VariableLibraryResolver from './VariableLibraryResolver'
 import CreateEditVariable from './VariableView/CreateEditVariable'
 import { AttributeTypeEnum } from '../../../../additionalModules/Enums'
 
 export default {
   name: 'VariableView',
   components: {
+    VariableLibraryResolver,
     CreateEditVariable
   },
   data () {
     return {
+      showLibraryModal: false,
       AttributeTypeEnum: AttributeTypeEnum,
       searchText: '',
       showAddEditModal: false,
@@ -155,6 +198,9 @@ export default {
     }
   },
   methods: {
+    copyAttribute (attribute) {
+      this.$store.dispatch('builder_attribute_copy', attribute)
+    },
     tryToRemoveAttribute (attribute) {
       this.removedAttribute = attribute
       this.deleteDialog = true
@@ -220,6 +266,18 @@ export default {
     justify-content: center;
     padding: 15px;
     opacity: 0.3;
+  }
+
+  .variable-chip{
+    .v-avatar{
+      background: #E91E63 !important;
+      position: absolute;
+      left: -31px;
+      padding: 0;
+      margin: 0;
+      width: 50px !important;
+      height: 50px !important;
+    }
   }
 
 </style>

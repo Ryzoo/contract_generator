@@ -57,8 +57,8 @@ class Contract extends Model {
     $attributes = $this->attributesList;
     $id = $attributeID;
 
-    if(str_contains($attributeID, ':')){
-      [$id] = explode(':', $attributeID);
+    if(str_contains((string)$attributeID, ':')){
+      [$id] = explode(':', (string)$attributeID);
     }
 
     foreach ($attributes as $attribute) {

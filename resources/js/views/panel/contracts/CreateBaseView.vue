@@ -129,7 +129,7 @@ export default {
           id: res.data.id,
           ...this.$store.getters.getNewContractData
         })
-        this.$router.push('/panel/contracts/builder')
+        this.$router.push('/panel/contracts/builder/' + this.contractId)
       })
     },
     saveContract (callback) {
@@ -156,7 +156,7 @@ export default {
           this.isLoaded = true
         })
     },
-    loadContract (callback) {
+    loadContract () {
       this.isLoaded = false
       axios.get(`/contract/${this.contractId}`)
         .then(response => {

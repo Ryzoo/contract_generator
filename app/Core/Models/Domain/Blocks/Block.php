@@ -6,6 +6,7 @@ namespace App\Core\Models\Domain\Blocks;
 
 use App\Core\Contracts\IBlock;
 use App\Core\Enums\BlockType;
+use App\Core\Models\Domain\Attributes\Attribute;
 use App\Core\Traits\ConditionalValidator;
 use Illuminate\Support\Facades\Validator;
 use App\Core\Models\Domain\Conditional\Conditional;
@@ -60,7 +61,7 @@ abstract class Block implements IBlock {
 
   abstract protected function validateContent(): bool;
 
-  abstract protected function resolveAttributesInContent(Collection $formElements);
+  abstract protected function resolveAttributesInContent(Collection $formElements, Attribute $repeatAttribute = null, $repeatValue = null);
 
   protected function initialize(int $blockType) {
     $this->blockType = $blockType;
@@ -173,8 +174,8 @@ abstract class Block implements IBlock {
     return $blockCollection;
   }
 
-  public function renderToHtml(Collection $attributes): string {
-    $this->resolveAttributesInContent($attributes);
+  public function renderToHtml(Collection $attributes, Attribute $repeatAttribute = null, $repeatValue = null): string {
+    $this->resolveAttributesInContent($attributes, $repeatValue, $repeatValue);
     return '';
   }
 

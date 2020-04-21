@@ -263,19 +263,31 @@ export default {
               ]
             },
             {
-              title: this.$t('navigation.contract.schema'),
-              link: '/panel/contracts/schema',
-              disabled: true,
-              access: [
-                Permissions.MANAGE_CONTRACTS
-              ]
-            },
-            {
               title: this.$t('navigation.contract.category'),
               link: '/panel/contracts/category',
               access: [
                 Permissions.MANAGE_CONTRACTS
               ]
+            }
+          ]
+        },
+        {
+          title: this.$t('navigation.library.main'),
+          icon: 'fa-archive fa-fw',
+          roles: [Roles.ADMIN],
+          elements: [
+            {
+              title: this.$t('navigation.library.attributes'),
+              link: '/panel/library/attributes',
+              access: [
+                Permissions.MANAGE_ATTRIBUTES
+              ]
+            },
+            {
+              title: this.$t('navigation.library.blocks'),
+              link: '/panel/library/blocks',
+              disabled: true,
+              access: []
             }
           ]
         },

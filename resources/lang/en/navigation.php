@@ -7,8 +7,12 @@ return [
     'contract' => [
         'main' => 'Contracts',
         'contractList' => 'Full contract project',
-        'schema' => 'Part of contract',
         'category' => 'Categories',
+    ],
+    'library' => [
+      'main' => 'Library',
+      'attributes' => 'Attributes',
+      'blocks' => 'Blocks',
     ],
     'accounts' => 'Accounts',
     'settings' => [
@@ -16,7 +20,7 @@ return [
         'roles' => 'Roles',
         'account' => 'Accounts',
     ],
-    "profile" => [
+    'profile' => [
         'main' => 'My profile',
         'notifications' => 'Notifications',
     ],

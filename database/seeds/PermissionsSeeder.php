@@ -13,26 +13,31 @@ class PermissionsSeeder extends Seeder {
     public function run() {
         $permissionItems = [
             [
-                'name' => "Manage users",
-                'slug' => "manage.users",
-                'description' => "Can manage all users",
+                'name' => 'Manage users',
+                'slug' => 'manage.users',
+                'description' => 'Can manage all users',
                 'model' => "App\Models\Database\User",
             ],
             [
-                'name' => "Manage roles",
-                'slug' => "manage.roles",
-                'description' => "Can manage all roles",
+                'name' => 'Manage roles',
+                'slug' => 'manage.roles',
+                'description' => 'Can manage all roles',
             ],
             [
-                'name' => "Manage contracts",
-                'slug' => "manage.contracts",
-                'description' => "Can manage all contracts",
+                'name' => 'Manage contracts',
+                'slug' => 'manage.contracts',
+                'description' => 'Can manage all contracts',
             ],
             [
-                'name' => "Manage categories",
-                'slug' => "manage.categories",
-                'description' => "Can manage all categories",
-            ]
+                'name' => 'Manage categories',
+                'slug' => 'manage.categories',
+                'description' => 'Can manage all categories',
+            ],
+          [
+            'name' => 'Manage variable library',
+            'slug' => 'manage.library.attributes',
+            'description' => 'Can manage all variables in library',
+          ]
         ];
 
         foreach ($permissionItems as $permissionItem) {
@@ -45,7 +50,7 @@ class PermissionsSeeder extends Seeder {
                     'name' => $permissionItem['name'],
                     'slug' => $permissionItem['slug'],
                     'description' => $permissionItem['description'],
-                    'model' => isset($permissionItem['model']) ? $permissionItem['model'] : null,
+                    'model' => $permissionItem['model'] ?? NULL,
                 ]);
             }
         }

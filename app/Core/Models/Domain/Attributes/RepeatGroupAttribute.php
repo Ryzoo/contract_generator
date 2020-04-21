@@ -57,7 +57,7 @@ class RepeatGroupAttribute extends Attribute implements IAggregableByAttributeAg
     return $returnValue;
   }
 
-  private function aggregateValue(?float $value, string $operator, Attribute $attribute) {
+  private function aggregateValue(?float $value, string $operator, IAggregableByAttributeAggregator $attribute) {
     switch ($operator) {
       case AggregateOperationType::ADD:
         $value = $this->add($value, $attribute, $operator);
@@ -76,19 +76,19 @@ class RepeatGroupAttribute extends Attribute implements IAggregableByAttributeAg
     return $value;
   }
 
-  public function add(?float $value, Attribute $attribute, string $operator): float {
+  public function add(?float $value, IAggregableByAttributeAggregator $attribute, string $operator): float {
     return isset($value) ? $value + $attribute->getOperationalValue($operator) : $attribute->getOperationalValue($operator);
   }
 
-  public function subtract(?float $value, Attribute $attribute, string $operator): float {
+  public function subtract(?float $value, IAggregableByAttributeAggregator $attribute, string $operator): float {
     return isset($value) ? $value - $attribute->getOperationalValue($operator) : $attribute->getOperationalValue($operator);
   }
 
-  public function multiply(?float $value, Attribute $attribute, string $operator): float {
+  public function multiply(?float $value, IAggregableByAttributeAggregator $attribute, string $operator): float {
     return isset($value) ? $value * $attribute->getOperationalValue($operator) : $attribute->getOperationalValue($operator);
   }
 
-  public function divide(?float $value, Attribute $attribute, string $operator): float {
+  public function divide(?float $value, IAggregableByAttributeAggregator $attribute, string $operator): float {
     $valueOp = $attribute->getOperationalValue($operator) === 0 ? 1 : $attribute->getOperationalValue($operator);
     return isset($value) ? $value / $valueOp : $valueOp;
   }

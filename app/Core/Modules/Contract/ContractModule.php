@@ -69,9 +69,6 @@ abstract class ContractModule {
   }
 
   protected function getModuleSettings(?string $secondKey = NULL) {
-    /**
-     * @var ContractSettings $contractSettings
-     */
     $contractSettings = isset($this->contract) ? $this->contract->settings : NULL;
     $moduleSettings = isset($contractSettings) ? ((array) $contractSettings->modules)[$this->slug] ?? NULL : null;
 
