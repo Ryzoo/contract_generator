@@ -55,7 +55,7 @@ export default {
   data () {
     return {
       addBlockDialog: false,
-      blockTypes: Selector.BlockType,
+      blockTypes: this.level ? Selector.BlockType.filter(x => x.value !== BlockTypeEnum.PAGE_DIVIDE_BLOCK) : Selector.BlockType,
       newBlock: {
         id: 1,
         parentId: this.level,
@@ -75,11 +75,18 @@ export default {
 
       if (this.newBlock.blockType === BlockTypeEnum.TEXT_BLOCK) { this.newBlock.content = { text: '' } }
       if (this.newBlock.blockType === BlockTypeEnum.REPEAT_BLOCK) { this.newBlock.content = { text: '' } }
+      if (this.newBlock.blockType === BlockTypeEnum.PAGE_DIVIDE_BLOCK) {
+        this.newBlock.settings.isBreaker = false
+      }
 
       this.$store.dispatch('builder_idBlockIncrement')
       this.newBlock.id = this.$store.getters.builder_getBlockId
 
-      this.newBlock.blockName = `New block: ${this.newBlock.id}`
+      if (this.newBlock.blockType === BlockTypeEnum.PAGE_DIVIDE_BLOCK) {
+        this.newBlock.blockName = 'Tab'
+      } else {
+        this.newBlock.blockName = `New block: ${this.newBlock.id}`
+      }
 
       let blocks = this.$store.getters.builder_allBlocks
 
