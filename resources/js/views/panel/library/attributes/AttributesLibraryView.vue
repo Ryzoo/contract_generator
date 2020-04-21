@@ -48,7 +48,7 @@
       v-model="showCreateEditModal"
       scrollable
       max-width="800px">
-      <AttributeCreateEditModal
+      <DraftCreateEditModal
         :categories="categoriesForDrafts"
         :edit-attribute-id="attributeToEdit"
         @close="showCreateEditModal=false"
@@ -77,10 +77,10 @@
 </template>
 
 <script>
-import AttributeCreateEditModal from './AttributeCreateEditModal'
+import DraftCreateEditModal from './DraftCreateEditModal'
 export default {
   name: 'AttributesLibraryView',
-  components: { AttributeCreateEditModal },
+  components: { DraftCreateEditModal },
   data () {
     return {
       showCreateEditModal: false,

@@ -27,7 +27,7 @@ import { ConditionalEnum } from '../../additionalModules/Enums'
 export default {
   name: 'QueryBuilderForGroupsVar',
   components: { VueQueryBuilder },
-  props: ['attribute', 'attributesList', 'parentId'],
+  props: ['attribute', 'attributesList', 'parentId', 'noStore'],
   data () {
     return {
       availableAttributes: this.attributesList.filter(x => x.id !== this.attribute.id),
@@ -74,10 +74,19 @@ export default {
         conditionalType: parseInt(ConditionalEnum[this.conditionalType]),
         content: JSON.stringify(newValue, null, 2)
       }] : []
-      this.$store.dispatch('variables_updateConditionals', {
-        id: this.attribute.id,
-        value: data
-      })
+
+      this.attribute.conditionals = data
+
+      if (this.noStore) {
+        this.$emit('edit', {
+          ...this.attribute
+        })
+      } else {
+        this.$store.dispatch('variables_updateConditionals', {
+          id: this.attribute.id,
+          value: data
+        })
+      }
     },
     mapBackendTypeToBuilderType (variable) {
       switch (parseInt(variable.attributeType)) {

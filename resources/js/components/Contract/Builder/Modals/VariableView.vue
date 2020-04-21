@@ -198,6 +198,10 @@ export default {
     }
   },
   methods: {
+    pushCloseEvent () {
+      this.$emit('close')
+      this.showAddEditModal = false
+    },
     copyAttribute (attribute) {
       this.$store.dispatch('builder_attribute_copy', attribute)
     },
@@ -212,10 +216,6 @@ export default {
     addNewAttribute () {
       this.attribute = null
       this.showAddEditModal = true
-    },
-    pushCloseEvent () {
-      this.$emit('close')
-      this.showAddEditModal = false
     },
     editVariable (attribute) {
       this.attribute = {

@@ -112,7 +112,7 @@ abstract class Block implements IBlock {
   }
 
   public static function getListFromString(string $value): array {
-    $arrayOfBlocks = json_decode($value);
+    $arrayOfBlocks = json_decode($value, TRUE, 512, JSON_THROW_ON_ERROR);
     $returnedArray = [];
 
     if (!is_array($arrayOfBlocks)) {
@@ -135,7 +135,7 @@ abstract class Block implements IBlock {
     $block->blockType = (int) $value['blockType'];
     $block->blockName = $value['blockName'];
     $block->settings = $value['settings'];
-    $block->conditionals = Conditional::getListFromString(json_encode($value['conditionals']));
+    $block->conditionals = Conditional::getListFromString(json_encode($value['conditionals'], JSON_THROW_ON_ERROR, 512));
     $block->content = (array) $value['content'];
 
     $block->prepare();

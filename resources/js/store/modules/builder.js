@@ -69,6 +69,7 @@ const mutations = {
   BUILDER_ATTRIBUTE_COPY: (state, attribute) => {
     state.builder.variables.push({
       ...attribute,
+      isInGroup: false,
       attributeName: attribute.attributeName + ' copy',
       id: state.builder.idVariableIncrement
     })

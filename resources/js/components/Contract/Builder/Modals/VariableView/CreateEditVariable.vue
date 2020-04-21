@@ -38,6 +38,9 @@
               <v-expansion-panel-header>Settings</v-expansion-panel-header>
               <v-expansion-panel-content>
                 <VariableSettings
+                  @edit="editVariable"
+                  :no-store="noStore"
+                  :attributes="attributes"
                   :attribute="attributeData"
                   @save="updateSettings"
                 />
@@ -83,7 +86,7 @@
               </v-expansion-panel-header>
               <v-expansion-panel-content>
                 <v-row v-if="attribute && attribute.isInGroup">
-                  <v-alert type="info" dense>
+                  <v-alert type="info" dense prominent width="100%">
                     This attribute is used in group. Can't be used as multiple value.
                   </v-alert>
                 </v-row>
@@ -129,6 +132,8 @@
                         :parent-id="attributeData.id"
                         :attributesList="attributeData.settings.attributes"
                         :attribute="attribute"
+                        @edit="editVariable"
+                        :no-store="noStore"
                       />
                     </v-expansion-panel-content>
                   </v-expansion-panel>
@@ -157,7 +162,7 @@ import { MultiUseRenderType, AttributeTypeEnum } from '../../../../../additional
 export default {
   name: 'CreateEditVariable',
   props: [
-    'attribute'
+    'attribute', 'noStore', 'allAttributes'
   ],
   components: {
     VariableSettings, DefaultValue, QueryBuilderForGroupsVar
@@ -187,10 +192,23 @@ export default {
       }
     }
   },
+  watch: {
+    allAttributes () {
+      this.$forceUpdate()
+    }
+  },
+  computed: {
+    attributes () {
+      return this.noStore ? this.allAttributes || [] : this.$store.getters.builder_allVariables
+    }
+  },
   mounted () {
     this.getAttributeDefaultSettings()
   },
   methods: {
+    editVariable (attribute) {
+      this.$emit('edit', attribute)
+    },
     updateSettings (newSettings) {
       this.attributeData = {
         ...this.attributeData,
@@ -270,9 +288,11 @@ export default {
     saveVariable () {
       if (this.isValid()) {
         if (this.isNew) {
-          this.$store.dispatch('builder_addVariable', this.attributeData)
+          if (this.noStore) this.$emit('add', this.attributeData)
+          else this.$store.dispatch('builder_addVariable', this.attributeData)
         } else {
-          this.$store.dispatch('builder_editVariable', this.attributeData)
+          if (this.noStore) this.$emit('edit', this.attributeData)
+          else this.$store.dispatch('builder_editVariable', this.attributeData)
         }
 
         this.$emit('close')

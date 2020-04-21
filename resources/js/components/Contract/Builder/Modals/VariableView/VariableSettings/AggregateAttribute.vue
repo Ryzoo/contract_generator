@@ -71,10 +71,10 @@ import { AttributeTypeEnum } from '../../../../../../additionalModules/Enums'
 
 export default {
   name: 'AggregateAttribute',
-  props: ['settings'],
+  props: ['settings', 'noStore', 'attributes'],
   computed: {
     attributesToAggregate () {
-      return this.$store.getters.builder_allVariables
+      return this.attributes
         .filter(x => x.attributeType == AttributeTypeEnum.NUMBER || x.attributeType == AttributeTypeEnum.ATTRIBUTE_GROUP || x.attributeType == AttributeTypeEnum.BOOL_INPUT)
         .map((x) => ({
           text: x.attributeName,

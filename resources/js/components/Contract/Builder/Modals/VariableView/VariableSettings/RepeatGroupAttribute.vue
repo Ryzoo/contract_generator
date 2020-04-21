@@ -34,7 +34,7 @@
 import { AttributeTypeEnum } from '../../../../../../additionalModules/Enums'
 export default {
   name: 'RepeatGroupAttribute',
-  props: ['settings'],
+  props: ['settings', 'noStore', 'attributes'],
   computed: {
     selectedAttributes () {
       return this.settingsData.attributes ? this.settingsData.attributes.map((x) => ({
@@ -43,7 +43,7 @@ export default {
       })) : []
     },
     attributesToAggregate () {
-      return this.$store.getters.builder_allVariables.filter((x) => x.attributeType !== AttributeTypeEnum.ATTRIBUTE_GROUP && !(x.settings.isMultiUse))
+      return this.attributes.filter((x) => x.attributeType !== AttributeTypeEnum.ATTRIBUTE_GROUP && !(x.settings.isMultiUse))
     }
   },
   data () {
@@ -63,18 +63,36 @@ export default {
     }
   },
   methods: {
+    editVariable (attribute) {
+      this.$emit('edit', attribute)
+    },
     changeAttributes (newValue) {
       const listOfAttributes = []
-      console.log(newValue.length, this.settingsData.attributes.length)
 
       if (newValue.length < this.settingsData.attributes.length) {
         const removedAttributes = this.settingsData.attributes.map(x => x.id).filter(x => !newValue.includes(x))
-        this.$store.dispatch('builder_attributes_clearConditionals', removedAttributes)
+        if (!this.noStore) this.$store.dispatch('builder_attributes_clearConditionals', removedAttributes)
+        else {
+          this.editVariable({
+            ...removedAttributes,
+            conditionals: [],
+            isInGroup: false
+          })
+        }
       }
 
       newValue.forEach(x => {
         const attributes = this.attributesToAggregate.find(a => a.id === x)
-        if (attributes) { listOfAttributes.push(attributes) }
+
+        if (attributes) {
+          attributes.isInGroup = true
+          listOfAttributes.push(attributes)
+          if (this.noStore) {
+            this.editVariable({
+              ...attributes
+            })
+          }
+        }
       })
 
       this.settingsData.attributes = [

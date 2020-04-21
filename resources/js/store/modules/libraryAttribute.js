@@ -62,6 +62,10 @@ const getters = {
   },
   library_attributes_getExistedDraft: (state) => (id) => {
     return state.draftList.find(x => parseInt(x.id) === parseInt(id))
+  },
+  library_attributes_getAttributeContent: (state) => (id) => {
+    const draft = state.draftList.find(x => parseInt(x.id) === parseInt(id))
+    return draft ? draft.content : []
   }
 }
 

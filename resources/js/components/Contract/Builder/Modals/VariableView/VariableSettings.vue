@@ -3,6 +3,9 @@
       v-if="attribute.settings"
       :is="Mapper.getAttributeComponentName(attribute.attributeType)"
       :settings="attribute.settings"
+      :no-store="noStore"
+      :attributes="attributes"
+      @edit="editVariable"
       @save="saveData"
     />
 </template>
@@ -19,12 +22,15 @@ import AggregateAttribute from './VariableSettings/AggregateAttribute'
 import BoolInputAttribute from './VariableSettings/BoolInputAttribute'
 
 export default {
-  props: ['attribute'],
+  props: ['attribute', 'noStore', 'attributes'],
   name: 'VariableSettings',
   components: {
     BoolAttribute, DateAttribute, NumberAttribute, RepeatGroupAttribute, SelectAttribute, TextAttribute, TimeAttribute, AggregateAttribute, BoolInputAttribute
   },
   methods: {
+    editVariable (attribute) {
+      this.$emit('edit', attribute)
+    },
     saveData (settings) {
       this.$emit('save', settings)
     }
