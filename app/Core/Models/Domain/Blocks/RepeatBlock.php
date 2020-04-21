@@ -15,7 +15,7 @@ use App\Core\Models\Domain\Attributes\Attribute;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 
-class RepeatBlock extends TextBlock {
+class RepeatBlock extends EmptyBlock {
 
   private ?Attribute $repeatAttribute;
   private Contract $contract;

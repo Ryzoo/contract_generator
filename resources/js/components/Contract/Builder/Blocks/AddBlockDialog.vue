@@ -94,7 +94,6 @@ export default {
     },
 
     addNewBlockToCurrentBlocks (blocks, newBlock) {
-      console.log(blocks, newBlock)
       blocks = blocks.map(x => {
         if (x.id === newBlock.parentId) {
           x.content.blocks.push(this.newBlock)

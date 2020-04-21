@@ -10,7 +10,7 @@
           :level="block.id"
           :blockIndex="index"
           @show-block-modal="showBlockModal"
-          :nestedVariables="getVariablesForRepeatBlocks"
+          :nested-variables="getVariablesForRepeatBlocks"
         />
       </section>
       <AddBlockDialog :level="block.id"/>

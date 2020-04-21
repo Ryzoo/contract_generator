@@ -209,10 +209,9 @@ export default {
       fontSizes: [8, 10, 12, 14, 16, 18, 20, 24, 36],
       selectedSize: 0,
       navigatedVariableIndex: 0,
-      insertMention: () => {
-      },
+      insertMention: () => {},
       observer: null,
-      variableSuggestions: this.mapAttributesList()
+      variableSuggestions: this.variableUpdated
     }
   },
   mounted () {
@@ -222,7 +221,7 @@ export default {
     variableUpdated: {
       deep: true,
       handler () {
-        this.variableSuggestions = this.mapAttributesList()
+        this.variableSuggestions = this.variableUpdated
       }
     }
   },
@@ -230,13 +229,18 @@ export default {
     hasResults () {
       return this.filteredVariables.length
     },
+    variableUpdated () {
+      return ((this.nestedVariables ? this.nestedVariables : this.$store.getters.builder_allVariables_defaultText) || []).map(x => ({
+        id: x.id,
+        name: x.attributeName
+      }))
+    },
     showSuggestions () {
       return this.query || this.hasResults
     }
   },
   methods: {
     initEditor () {
-      this.variableSuggestions = this.mapAttributesList()
       this.editor = new Editor({
         extensions: [
           new Blockquote(),
@@ -256,7 +260,7 @@ export default {
           new Underline(),
           new History(),
           new Mention({
-            items: () => this.variableSuggestions,
+            items: () => this.variableUpdated,
             onEnter: ({ items, query, range, command, virtualNode }) => {
               this.query = query
               this.filteredVariables = items
@@ -343,12 +347,6 @@ export default {
         })
       }
       return text === null ? '' : text
-    },
-    mapAttributesList () {
-      return (this.nestedVariables ? this.nestedVariables : this.$store.getters.builder_allVariables_defaultText).map(x => ({
-        id: x.id,
-        name: x.attributeName
-      }))
     },
     upHandler () {
       this.navigatedVariableIndex = ((this.navigatedVariableIndex + this.filteredVariables.length) - 1) % this.filteredVariables.length

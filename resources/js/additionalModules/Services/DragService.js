@@ -2,7 +2,6 @@ export default class DragService {
   static initDrag (contenerId, store) {
     const el = document.getElementById(contenerId)
     if (el) {
-      console.log('build: ' + contenerId)
       window.Sortable.create(el, {
         group: 'blocks',
         draggable: '.block',

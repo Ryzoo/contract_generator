@@ -7,8 +7,10 @@
         v-if="currentBlock.blockType !== BlockTypeEnum.PAGE_DIVIDE_BLOCK"
         @show-block-modal="showBlockModal"
         :block="currentBlock"
+        :nested-variables="nestedVariables"
       />
       <component
+        :nested-variables="nestedVariables"
         :is="Mapper.getBlockName(currentBlock.blockType)"
         :block="currentBlock"
         @show-block-modal="showBlockModal"
@@ -36,12 +38,9 @@ export default {
     PageDivideBlock,
     RepeatBlock
   },
-  props: {
-    block: { required: true },
-    divider: {},
-    level: {},
-    blockIndex: {}
-  },
+  props: [
+    'block', 'divider', 'level', 'blockIndex', 'nestedVariables'
+  ],
   data () {
     return {
       BlockTypeEnum: BlockTypeEnum,

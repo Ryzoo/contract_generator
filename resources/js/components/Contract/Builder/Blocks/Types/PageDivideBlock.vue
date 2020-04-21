@@ -16,7 +16,7 @@
 <script>
 export default {
   name: 'PageDivideBlock',
-  props: ['block'],
+  props: ['block', 'nestedVariables'],
   data () {
     return {
       divideBlockModal: false
@@ -27,7 +27,10 @@ export default {
       this.$store.dispatch('builder_removeBlock', this.block.id)
     },
     editBlock () {
-      this.$store.dispatch('builder_setActiveBlock', this.block)
+      this.$store.dispatch('builder_setActiveBlock', {
+        block: this.block,
+        nestedVariables: this.nestedVariables
+      })
         .then(() => {
           this.$emit('show-block-modal')
         })

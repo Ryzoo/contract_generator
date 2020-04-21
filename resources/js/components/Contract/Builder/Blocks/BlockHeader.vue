@@ -63,7 +63,7 @@ import { BlockTypeEnum } from '../../../../additionalModules/Enums'
 
 export default {
   name: 'BlockHeader',
-  props: ['block'],
+  props: ['block', 'nestedVariables'],
   data () {
     return {
       BlockTypeEnum: BlockTypeEnum,
@@ -73,10 +73,12 @@ export default {
   },
   computed: {
     multiGroupAttributes () {
-      return this.$store.getters.builder_multiGroupAttributes.filter(x => !x.settings.isInline).map(x => ({
-        text: x.attributeName,
-        value: x.id
-      }))
+      return this.$store.getters.builder_multiGroupAttributes
+        .filter(x => !x.settings.isInline)
+        .map(x => ({
+          text: x.attributeName,
+          value: x.id
+        }))
     },
     currentMultiGroupAttribute () {
       return this.$store.getters.builder_currentMultiGroupAttribute(this.block.id)
@@ -93,7 +95,10 @@ export default {
       return text.replace(/([A-Z])/g, ' $1').trim().toUpperCase()
     },
     editBlock () {
-      this.$store.dispatch('builder_setActiveBlock', this.block)
+      this.$store.dispatch('builder_setActiveBlock', {
+        block: this.block,
+        nestedVariables: this.nestedVariables
+      })
         .then(() => {
           this.$emit('show-block-modal')
         })

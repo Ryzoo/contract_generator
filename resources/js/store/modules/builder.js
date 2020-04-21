@@ -7,6 +7,7 @@ const defaultState = {
     blocks: [],
     variables: [],
     activeBlock: null,
+    activeBlockNestedAttributes: null,
     currentNewBlockButtonIndex: 0
   }
 }
@@ -197,7 +198,8 @@ const mutations = {
     state.builder.blocks = data
   },
   BUILDER_SET_ACTIVE_BLOCK: (state, data) => {
-    state.builder.activeBlock = data
+    state.builder.activeBlock = data.block
+    state.builder.activeBlockNestedAttributes = data.nestedVariables
   },
   BUILDER_ACTIVE_BLOCK_UPDATE: (state, data) => {
     const updateBlock = (block, data) => {
@@ -287,12 +289,23 @@ const getters = {
   builder_allVariables: state => state.builder.variables,
   builder_allVariables_queryBuilder_block: state => (blockId) => {
     const block = getBlockById(state.builder.blocks, blockId)
+    let attributes = []
 
     if (block.settings.repeatAttributeId !== null && block.settings.repeatAttributeId !== undefined) {
-      return getters.builder_variablesForRepeatBlock(state)(blockId)
+      attributes = getters.builder_variablesForRepeatBlock(state)(blockId)
+    } else {
+      attributes = getters.builder_allVariables_defaultText(state)
     }
 
-    return getters.builder_allVariables_defaultText(state)
+    if (state.builder.activeBlockNestedAttributes) {
+      state.builder.activeBlockNestedAttributes.forEach(x => {
+        if (!attributes.some(y => y.id == x.id)) {
+          attributes.push(x)
+        }
+      })
+    }
+
+    return attributes
   },
   builder_allVariables_defaultText: state => {
     const returnedVar = []
@@ -329,6 +342,7 @@ const getters = {
     const block = getBlockById(state.builder.blocks, id)
     const attribute = getAttributeById(state.builder.variables, block ? block.settings.repeatAttributeId : null)
     let allAttributes = getters.builder_allVariables_defaultText(state)
+    let attrToReturn = allAttributes
 
     if (attribute) {
       if (attribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {
@@ -340,31 +354,31 @@ const getters = {
             id: attribute.id + ':' + x.id
           }
         })
-
-        return [
+        attrToReturn = [
           ...repeatAttribute,
           ...allAttributes
         ]
+      } else {
+        attrToReturn = [
+          ...allAttributes,
+          {
+            attributeName: attribute.attributeName + ' - ' + 'Value',
+            id: attribute.id + ':value'
+          }
+        ]
       }
-      return [
-        ...allAttributes,
-        {
-          attributeName: attribute.attributeName + ' - ' + 'Value',
-          id: attribute.id + ':value'
-        }
-      ]
     }
-    const attrIds = allAttributes.map(x => x.id)
+    const attrIds = attrToReturn.map(x => x.id)
 
     if (nestedAttributes) {
       nestedAttributes.forEach(x => {
         if (!attrIds.some(y => y.id == x.id)) {
-          allAttributes.push(nestedAttributes)
+          attrToReturn.push(x)
         }
       })
     }
 
-    return allAttributes
+    return attrToReturn
   },
   builder_currentMultiGroupAttribute: (state) => (id) => {
     const block = getBlockById(state.builder.blocks, id)
