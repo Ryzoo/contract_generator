@@ -41,6 +41,7 @@ export default {
       this.contract.blocks = this.$store.getters.builder_allBlocks
       this.contract.attributesList = this.$store.getters.builder_allVariables
 
+      console.log(this.contract)
       this.$store.dispatch('newContract_setUpdate', this.contract)
         .then(() => {
           axios.put(`/contract/${updateState.id}`, this.$store.getters.getNewContractData)
