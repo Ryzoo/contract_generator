@@ -194,7 +194,7 @@ import FontSize from '../../../../../additionalModules/Nodes/FontSizeNode'
 
 export default {
   name: 'TextBlock',
-  props: ['block'],
+  props: ['block', 'nestedVariables'],
   components: {
     EditorContent,
     EditorMenuBar
@@ -232,9 +232,6 @@ export default {
     },
     showSuggestions () {
       return this.query || this.hasResults
-    },
-    variableUpdated () {
-      return this.$store.getters.builder_allVariables_defaultText
     }
   },
   methods: {
@@ -348,7 +345,7 @@ export default {
       return text === null ? '' : text
     },
     mapAttributesList () {
-      return this.$store.getters.builder_allVariables_defaultText.map(x => ({
+      return (this.nestedVariables ? this.nestedVariables : this.$store.getters.builder_allVariables_defaultText).map(x => ({
         id: x.id,
         name: x.attributeName
       }))

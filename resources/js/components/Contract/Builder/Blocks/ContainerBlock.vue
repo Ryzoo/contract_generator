@@ -1,38 +1,20 @@
 <template>
-  <section>
-    <div
-      class="block"
-      :blockid="currentBlock.id"
-      v-if="!divider && !isPageBreaker()">
-
-      <div class="accordion-header">
-        <BlockHeader
-          @show-block-modal="showBlockModal"
-          :block="currentBlock"
-        />
-        <component
-          :is="Mapper.getBlockName(currentBlock.blockType)"
-          :block="currentBlock"
-          :level="level ? level : 0"
-          @show-block-modal="showBlockModal"
-        />
-      </div>
-
-    </div>
-    <div v-else-if="isPageBreaker()" class="block" :blockid="block.id">
+  <div
+    class="block"
+    :blockid="currentBlock.id">
+    <div class="accordion-header" :data-id="0">
+      <BlockHeader
+        v-if="currentBlock.blockType !== BlockTypeEnum.PAGE_DIVIDE_BLOCK"
+        @show-block-modal="showBlockModal"
+        :block="currentBlock"
+      />
       <component
-              :is="Mapper.getBlockName(currentBlock.blockType)"
-              :block="currentBlock"
-              :level="level ? level : 0"
-              @show-block-modal="showBlockModal"
+        :is="Mapper.getBlockName(currentBlock.blockType)"
+        :block="currentBlock"
+        @show-block-modal="showBlockModal"
       />
     </div>
-    <AddBlockDialog
-      v-else
-      :buttonIndex="blockIndex"
-      :block="currentBlock"
-      :level="level ? level : 0"/>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -40,19 +22,19 @@ import TextBlock from './Types/TextBlock'
 import EmptyBlock from './Types/EmptyBlock'
 import PageDivideBlock from './Types/PageDivideBlock'
 import RepeatBlock from './Types/RepeatBlock'
-import AddBlockDialog from './AddBlockDialog'
 import BlockHeader from './BlockHeader'
 import { BlockTypeEnum } from '../../../../additionalModules/Enums'
+import AddBlockDialog from './AddBlockDialog'
 
 export default {
   name: 'ContainerBlock',
   components: {
+    AddBlockDialog,
     BlockHeader,
     TextBlock,
     EmptyBlock,
     PageDivideBlock,
-    RepeatBlock,
-    AddBlockDialog
+    RepeatBlock
   },
   props: {
     block: { required: true },
@@ -62,16 +44,17 @@ export default {
   },
   data () {
     return {
+      BlockTypeEnum: BlockTypeEnum,
       currentBlock: this.block
     }
   },
   methods: {
     showBlockModal () {
       this.$emit('show-block-modal')
-    },
-    isPageBreaker () {
-      return this.block.blockType === BlockTypeEnum.PAGE_DIVIDE_BLOCK
     }
+    // isPageBreaker () {
+    //   return this.block.blockType === BlockTypeEnum.PAGE_DIVIDE_BLOCK
+    // }
   },
   watch: {
     block (newValue) {

@@ -1,48 +1,42 @@
 <template>
-    <div>
-        <div class="hr-line" v-if="$store.getters.builder_allBlocks.length > 0">
-            <hr class="line">
-            <v-btn @click="addBlockDialog = true" class="mx-3" text icon>
-                <v-icon>fa-plus-circle</v-icon>
-            </v-btn>
-        </div>
-        <div v-else class="empty-elements">
-            <v-btn @click="addBlockDialog = true" outlined color="primary">
-                {{$t("pages.panel.contracts.builder.addBLock")}}
-                <v-icon right small>fa-plus-circle</v-icon>
-            </v-btn>
-        </div>
-
-        <v-dialog ref="newBlockDialog" v-model="addBlockDialog" max-width="600">
-            <v-card>
-                <v-card-title class="headline justify-center" primary-title>
-                  {{$t("pages.panel.contracts.builder.newBlock")}}
-                </v-card-title>
-                <v-card-text>
-                    <v-flex class="new-block-container">
-                        <div class="builder-elements">
-                            <div @click="addBlock(block.value)" class="options" v-for="block in blockTypes" :key="block.id">
-                                <span>{{block.text}}</span>
-                            </div>
-                        </div>
-                    </v-flex>
-                  <v-divider/>
-                  <v-row>
-                    <v-col>
-                      <v-alert
-                        dense
-                        text
-                        class="my-5"
-                        type="info"
-                      >
-                        {{$t("pages.panel.contracts.builder.noPartToReuse")}}
-                      </v-alert>
-                    </v-col>
-                  </v-row>
-                </v-card-text>
-            </v-card>
-        </v-dialog>
+  <div class="element-add-container">
+    <div class="empty-elements">
+      <v-btn @click="addBlockDialog = true" outlined color="primary">
+        {{$t("pages.panel.contracts.builder.addBLock")}}
+        <v-icon right small>fa-plus-circle</v-icon>
+      </v-btn>
     </div>
+
+    <v-dialog ref="newBlockDialog" v-model="addBlockDialog" max-width="600">
+      <v-card>
+        <v-card-title class="headline justify-center" primary-title>
+          {{$t("pages.panel.contracts.builder.newBlock")}}
+        </v-card-title>
+        <v-card-text>
+          <v-flex class="new-block-container">
+            <div class="builder-elements">
+              <div @click="addBlock(block.value)" class="options" v-for="block in blockTypes" :key="block.id">
+                <span>{{block.text}}</span>
+              </div>
+            </div>
+          </v-flex>
+          <v-divider/>
+          <v-row>
+            <v-col>
+              <v-alert
+                dense
+                text
+                class="my-5"
+                type="info"
+              >
+                {{$t("pages.panel.contracts.builder.noPartToReuse")}}
+              </v-alert>
+            </v-col>
+          </v-row>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
+  </div>
 </template>
 
 <script>
@@ -51,7 +45,7 @@ import { BlockTypeEnum } from '../../../../additionalModules/Enums'
 
 export default {
   name: 'AddBlockDialog',
-  props: ['level', 'buttonIndex', 'block'],
+  props: ['level'],
   data () {
     return {
       addBlockDialog: false,
@@ -71,37 +65,39 @@ export default {
   },
   methods: {
     addBlock (blockType) {
-      this.newBlock.blockType = blockType
-
-      if (this.newBlock.blockType === BlockTypeEnum.TEXT_BLOCK) { this.newBlock.content = { text: '' } }
-      if (this.newBlock.blockType === BlockTypeEnum.REPEAT_BLOCK) { this.newBlock.content = { text: '' } }
-      if (this.newBlock.blockType === BlockTypeEnum.PAGE_DIVIDE_BLOCK) {
-        this.newBlock.settings.isBreaker = false
-      }
+      let blocks = this.$store.getters.builder_allBlocks
 
       this.$store.dispatch('builder_idBlockIncrement')
       this.newBlock.id = this.$store.getters.builder_getBlockId
+      this.newBlock.blockType = blockType
+      this.newBlock.blockName = `New block: ${this.newBlock.id}`
 
-      if (this.newBlock.blockType === BlockTypeEnum.PAGE_DIVIDE_BLOCK) {
-        this.newBlock.blockName = 'Tab'
-      } else {
-        this.newBlock.blockName = `New block: ${this.newBlock.id}`
+      switch (parseInt(this.newBlock.blockType)) {
+        case BlockTypeEnum.TEXT_BLOCK:
+          this.newBlock.content = { text: '' }
+          break
+        case BlockTypeEnum.PAGE_DIVIDE_BLOCK:
+          this.newBlock.settings.isBreaker = false
+          this.newBlock.blockName = 'Tab'
+          break
       }
 
-      let blocks = this.$store.getters.builder_allBlocks
-
-      if (blocks.length > 0 && this.newBlock.parentId !== 0) { blocks = this.addNewBlockToCurrentBlocks(blocks, this.newBlock) } else { blocks.splice(Math.round(this.buttonIndex / 2), 0, this.newBlock) }
+      if (blocks.length > 0 && this.newBlock.parentId !== 0) {
+        blocks = this.addNewBlockToCurrentBlocks(blocks, this.newBlock)
+      } else {
+        blocks.push(this.newBlock)
+      }
 
       this.$store.dispatch('builder_set', blocks)
-
       this.addBlockDialog = false
       this.newBlock = this.resetBlock()
     },
 
     addNewBlockToCurrentBlocks (blocks, newBlock) {
+      console.log(blocks, newBlock)
       blocks = blocks.map(x => {
         if (x.id === newBlock.parentId) {
-          x.content.blocks.splice(Math.round(this.buttonIndex / 2), 0, newBlock)
+          x.content.blocks.push(this.newBlock)
         } else if (typeof x.content.blocks !== 'undefined' && x.content.blocks.length > 0) {
           x.content.blocks = this.addNewBlockToCurrentBlocks(x.content.blocks, newBlock)
         }
@@ -131,63 +127,66 @@ export default {
 <style lang="scss" scoped>
   @import "./../../../../../sass/colors";
 
-    .builder-content {
-        .empty-elements {
-            border: 1px dashed #707070;
-            width: 100%;
-            height: 100px;
-            border-radius: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    }
+  .element-add-container {
+    width: 100%;
+  }
 
-    .new-block-container {
-        .options {
-          margin: 15px;
-            width: 150px;
-            height: 80px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: $primary;
-            border-radius: 10px;
-            color: white;
-          transition: all .2s;
+  .empty-elements {
+    background: white;
+    border-top: 1px dashed #4059be;
+    padding-top: 10px;
+    width: 100%;
+    height: 47px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-            &:hover {
-                cursor: pointer;
-              background: $accent;
-            }
-        }
-
-        .builder-elements {
-            padding: 15px 0;
-            display: flex;
-            justify-content: space-around;
-          flex-wrap: wrap;
-
-            .select-options {
-                width: 100%;
-            }
-        }
-    }
-
-    .hr-line {
+  .new-block-container {
+    .options {
+      margin: 15px;
+      width: 150px;
+      height: 80px;
       display: flex;
+      justify-content: center;
       align-items: center;
+      background: $primary;
+      border-radius: 10px;
+      color: white;
+      transition: all .2s;
 
-      i {
-        color: $primary !important;
+      &:hover {
+        cursor: pointer;
+        background: $accent;
       }
+    }
 
-      .line {
-        border: none;
-        border-top: 2px dashed #d5d5d5;
-        margin-top: 20px;
-        margin-bottom: 20px;
+    .builder-elements {
+      padding: 15px 0;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+
+      .select-options {
         width: 100%;
       }
     }
+  }
+
+  .hr-line {
+    display: flex;
+    align-items: center;
+
+    i {
+      color: $primary !important;
+    }
+
+    .line {
+      border: none;
+      border-top: 2px dashed #d5d5d5;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+  }
 </style>
