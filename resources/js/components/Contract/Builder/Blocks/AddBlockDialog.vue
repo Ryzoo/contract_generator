@@ -85,6 +85,9 @@ export default {
       if (blocks.length > 0 && this.newBlock.parentId !== 0) {
         blocks = this.addNewBlockToCurrentBlocks(blocks, this.newBlock)
       } else {
+        if (blocks.length === 0) {
+          blocks.push(this.$store.getters.builder_getFirstStep)
+        }
         blocks.push(this.newBlock)
       }
 

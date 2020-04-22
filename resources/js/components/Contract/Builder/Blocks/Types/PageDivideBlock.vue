@@ -7,7 +7,7 @@
     <v-btn small text color="primary" @click="editBlock"> Edit
       <v-icon small right>fa-edit</v-icon>
     </v-btn>
-    <v-btn small text color="error" @click="removeBlock"> Delete
+    <v-btn v-if="block.id > 1" small text color="error" @click="removeBlock"> Delete
       <v-icon small right>fa-trash</v-icon>
     </v-btn>
   </section>
