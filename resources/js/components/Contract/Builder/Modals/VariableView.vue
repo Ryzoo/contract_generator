@@ -58,13 +58,11 @@
             <v-chip
               class="d-block ma-1 py-1"
               label
-              close
               small
               v-for="attribute in usedInGroupsAttributes"
               :key="attribute.id"
               color="primary"
               @click="editVariable(attribute)"
-              @click:close="tryToRemoveAttribute(attribute)"
             >
               <v-btn x-small text color="white" class="mx-1 attribute-copy" @click="(ev) => {
                 ev.stopPropagation();
@@ -149,6 +147,7 @@
       scrollable
       max-width="500px">
       <VariableLibraryResolver
+        @import="importAttributes"
         v-if="showLibraryModal"
         @close="showLibraryModal = false"
       />
@@ -198,6 +197,10 @@ export default {
     }
   },
   methods: {
+    importAttributes (attributes) {
+      this.$store.dispatch('builder_attribute_import', attributes)
+      this.showLibraryModal = false
+    },
     pushCloseEvent () {
       this.$emit('close')
       this.showAddEditModal = false

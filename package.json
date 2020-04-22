@@ -41,6 +41,7 @@
   "dependencies": {
     "eslint-loader": "^2.2.1",
     "fuse.js": "^3.4.6",
+    "sortablejs": "^1.10.2",
     "tippy.js": "^4.3.5",
     "tiptap": "^1.24.2",
     "tiptap-extensions": "^1.27.0",

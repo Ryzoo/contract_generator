@@ -73,11 +73,15 @@ export default {
         const removedAttributes = this.settingsData.attributes.map(x => x.id).filter(x => !newValue.includes(x))
         if (!this.noStore) this.$store.dispatch('builder_attributes_clearConditionals', removedAttributes)
         else {
-          this.editVariable({
-            ...removedAttributes,
-            conditionals: [],
-            isInGroup: false
-          })
+          this.settingsData.attributes
+            .filter(x => !newValue.includes(x.id))
+            .forEach(attribute => {
+              this.editVariable({
+                ...attribute,
+                conditionals: [],
+                isInGroup: false
+              })
+            })
         }
       }
 

@@ -1,38 +1,33 @@
 <template>
-  <v-row>
-    <v-col cols="12" class="builder-content">
+  <v-container fluid>
+    <v-row>
+      <v-col cols="12" id="builder-content" data-id="0">
         <ContainerBlock
           v-for="(block, index) in filterParentBlocks"
           :block="block"
           @show-block-modal="showBlockModal"
           :key="block.id"
+          :level="0"
           :divider="block.isDivider"
           :blockIndex="index"
         />
-    </v-col>
-  </v-row>
+      </v-col>
+      <AddBlockDialog :level="0"/>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
+import AddBlockDialog from './Blocks/AddBlockDialog'
+
 export default {
   name: 'BlockLayout',
-  data: function () {
-    return {}
+  components: {
+    AddBlockDialog
   },
   computed: {
     filterParentBlocks () {
-      const filteredBlocks = this.blocks.filter(x => !x.parentId)
-      const obj = { isDivider: true }
-      const arr = [
-        obj
-      ]
-
-      filteredBlocks.map(x => {
-        arr.push(x)
-        arr.push(obj)
-      })
-
-      return arr
+      return this.blocks.filter(x => !x.parentId)
     },
     blocks () {
       return this.$store.getters.builder_allBlocks
@@ -75,6 +70,7 @@ export default {
   mounted () {
     this.setHighestBlockId()
     this.setHighestVariableId()
+    window.DragService.initDrag('builder-content', this.$store)
   }
 }
 </script>

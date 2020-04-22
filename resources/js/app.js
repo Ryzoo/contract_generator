@@ -6,6 +6,8 @@ import vuetify from './plugins/vuetify'
 import Vue from 'vue'
 import 'vuetify/dist/vuetify.min.css'
 import Validator from './additionalModules/Validator'
+import Sortable from 'sortablejs'
+import DragService from './additionalModules/Services/DragService'
 
 import store from './store'
 import route from './route'
@@ -13,6 +15,8 @@ import i18n from './lang'
 require('./bootstrap')
 
 window.Validator = Validator
+window.Sortable = Sortable
+window.DragService = DragService
 
 Vue.component('loader', require('./components/Loader').default)
 Vue.component('ContainerBlock', require('./components/Contract/Builder/Blocks/ContainerBlock').default)

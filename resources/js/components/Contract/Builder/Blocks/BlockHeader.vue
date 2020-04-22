@@ -1,5 +1,8 @@
 <template>
-  <div class="block-header accordion-body">
+  <div class="block-header accordion-body" :data-id="block.id">
+    <div class="block-handle">
+      <i class="fas fa-arrows-alt"></i>
+    </div>
     <div class="block-header--icon">
       <v-icon class="mx-3 rotate" @click="toggleBlock($event)">fa-chevron-right</v-icon>
     </div>
@@ -24,9 +27,13 @@
           label="Repeat attribute"
         />
       </div>
-<!--      <v-btn small text color="accent" @click="saveAsPart()"> Save as part <v-icon small right>fa-save</v-icon> </v-btn>-->
-      <v-btn small text color="primary" @click="editBlock()"> Edit <v-icon small right>fa-edit</v-icon> </v-btn>
-      <v-btn small text color="error" @click="deleteDialog=true"> Delete <v-icon small right>fa-trash</v-icon> </v-btn>
+      <!--      <v-btn small text color="accent" @click="saveAsPart()"> Save as part <v-icon small right>fa-save</v-icon> </v-btn>-->
+      <v-btn small text color="primary" @click="editBlock()"> Edit
+        <v-icon small right>fa-edit</v-icon>
+      </v-btn>
+      <v-btn small text color="error" @click="deleteDialog=true"> Delete
+        <v-icon small right>fa-trash</v-icon>
+      </v-btn>
     </div>
 
     <v-dialog persistent v-model="deleteDialog" max-width="350">
@@ -56,7 +63,7 @@ import { BlockTypeEnum } from '../../../../additionalModules/Enums'
 
 export default {
   name: 'BlockHeader',
-  props: ['block'],
+  props: ['block', 'nestedVariables'],
   data () {
     return {
       BlockTypeEnum: BlockTypeEnum,
@@ -66,10 +73,12 @@ export default {
   },
   computed: {
     multiGroupAttributes () {
-      return this.$store.getters.builder_multiGroupAttributes.filter(x => !x.settings.isInline).map(x => ({
-        text: x.attributeName,
-        value: x.id
-      }))
+      return this.$store.getters.builder_multiGroupAttributes
+        .filter(x => !x.settings.isInline)
+        .map(x => ({
+          text: x.attributeName,
+          value: x.id
+        }))
     },
     currentMultiGroupAttribute () {
       return this.$store.getters.builder_currentMultiGroupAttribute(this.block.id)
@@ -85,11 +94,11 @@ export default {
     toUpper (text) {
       return text.replace(/([A-Z])/g, ' $1').trim().toUpperCase()
     },
-    saveAsPart () {
-      alert('Not implemented')
-    },
     editBlock () {
-      this.$store.dispatch('builder_setActiveBlock', this.block)
+      this.$store.dispatch('builder_setActiveBlock', {
+        block: this.block,
+        nestedVariables: this.nestedVariables
+      })
         .then(() => {
           this.$emit('show-block-modal')
         })
@@ -98,21 +107,8 @@ export default {
       e.target.closest('.accordion-header').classList.toggle('active')
     },
     removeBlock () {
-      const newBlocks = this.removeFromData(this.$store.getters.builder_allBlocks, this.block.id)
-      this.$store.dispatch('builder_set', newBlocks)
+      this.$store.dispatch('builder_removeBlock', this.block.id)
     },
-    removeFromData (dataArray, idToRemove) {
-      if (dataArray.find(x => x.id === idToRemove)) {
-        return dataArray.filter(x => x.id !== idToRemove)
-      } else {
-        return dataArray.map(x => {
-          if (x.content.blocks) {
-            x.content.blocks = this.removeFromData(x.content.blocks, idToRemove)
-          }
-          return x
-        })
-      }
-    }
   }
 }
 </script>
@@ -120,11 +116,24 @@ export default {
 <style lang="scss">
   @import "../../../../../sass/colors.scss";
 
+  .block-handle {
+    padding: 0 5px 0 15px;
+    font-size: 25px;
+    color: #4159be;
+    cursor: move;
+  }
+
+  .accordion-header {
+    background: white;
+  }
+
   .block-header {
     display: flex;
+    background: white;
 
     &--content {
       flex: 1;
+
       &:hover {
         cursor: pointer;
       }
@@ -148,6 +157,10 @@ export default {
     transition: all 0.2s;
     position: relative;
 
+    & > .row > .block-details {
+      display: none;
+    }
+
     & > section.block-details {
       display: none;
     }
@@ -155,6 +168,10 @@ export default {
     &.active {
       border: 3px solid $primary;
       box-shadow: 0px 2px 3px 0px $primary;
+
+      & > .row > .block-details {
+        display: block;
+      }
 
       & > section.block-details {
         display: block;

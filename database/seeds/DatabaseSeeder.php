@@ -3,23 +3,18 @@
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
-{
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        Model::unguard();
+class DatabaseSeeder extends Seeder {
 
-        $this->call(PermissionsSeeder::class);
-        $this->call(RolesSeeder::class);
-        $this->call(ConnectRelationshipsRolesSeeder::class);
-        $this->call(UserSeeder::class);
-        $this->call(CategorySeeder::class);
+  public function run() {
+    Model::unguard();
 
-        Model::reguard();
-    }
+    $this->call(PermissionsSeeder::class);
+    $this->call(RolesSeeder::class);
+    $this->call(ConnectRelationshipsRolesSeeder::class);
+    $this->call(UserSeeder::class);
+    $this->call(CategorySeeder::class);
+    $this->call(DraftsSeeder::class);
+
+    Model::reguard();
+  }
 }

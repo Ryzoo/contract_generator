@@ -129,7 +129,7 @@ export default {
           id: res.data.id,
           ...this.$store.getters.getNewContractData
         })
-        this.$router.push('/panel/contracts/builder/' + this.contractId)
+        this.$router.push('/panel/contracts/builder/' + res.data.id)
       })
     },
     saveContract (callback) {

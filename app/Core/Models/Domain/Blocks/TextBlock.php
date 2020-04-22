@@ -23,7 +23,11 @@ class TextBlock extends Block {
   }
 
   protected function buildContent() {
-    // TODO: Implement buildContent() method.
+    if(!isset($this->content, $this->content['text'])) {
+      $this->content = [
+        'text' => ''
+      ];
+    }
   }
 
   protected function validateContent(): bool {

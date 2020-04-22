@@ -7,6 +7,7 @@ const defaultState = {
     blocks: [],
     variables: [],
     activeBlock: null,
+    activeBlockNestedAttributes: null,
     currentNewBlockButtonIndex: 0
   }
 }
@@ -36,12 +37,15 @@ const actions = {
   builder_setIdVariableIncrement: (context, data) => {
     context.commit('BUILDER_VARIABLE_SET_INCREMENT_ID', data)
   },
+  builder_dragBlock: (context, data) => {
+    context.commit('BUILDER_DRAG_BLOCKS', data)
+  },
   builder_setVariable: (context, data) => {
     context.commit('BUILDER_SET_VARIABLE', data)
   },
   builder_editVariable: (context, data) => {
     context.commit('BUILDER_EDIT_VARIABLE', data)
-    context.commit('BUILDER_UPDATE_GROUP_VARIABLE', data)
+    context.commit('BUILDER_UPDATE_GROUP_VARIABLE')
   },
   builder_addVariable: (context, data) => {
     context.commit('BUILDER_ADD_VARIABLE', data)
@@ -49,6 +53,10 @@ const actions = {
   },
   builder_removeVariable: (context, data) => {
     context.commit('BUILDER_REMOVE_VARIABLE', data)
+  },
+  builder_attribute_import: (context, attributes) => {
+    context.commit('BUILDER_ATTRIBUTE_IMPORT', attributes)
+    context.commit('BUILDER_UPDATE_GROUP_VARIABLE')
   },
   builder_attribute_copy: (context, attribute) => {
     context.commit('BUILDER_ATTRIBUTE_COPY', attribute)
@@ -62,10 +70,50 @@ const actions = {
   },
   variables_updateConditionals: (context, data) => {
     context.commit('VARIABLES_UPDATE_CONDITIONALS', data)
+  },
+  builder_removeBlock: (context, data) => {
+    context.commit('BUILDER_REMOVE_BLOCK', data)
   }
 }
 
 const mutations = {
+  BUILDER_REMOVE_BLOCK: (state, blockId) => {
+    state.builder.blocks = removeFromData(state.builder.blocks, blockId)
+  },
+  BUILDER_DRAG_BLOCKS: (state, data) => {
+    const { blockId, destinationBlock, placeIndex } = data
+    const copiedBlock = {
+      ...getBlockById(state.builder.blocks, blockId),
+      parentId: destinationBlock
+    }
+
+    state.builder.blocks = removeFromData(state.builder.blocks, blockId)
+    state.builder.blocks = addNewBlockToCurrentBlocks(state.builder.blocks, copiedBlock, placeIndex)
+  },
+  BUILDER_ATTRIBUTE_IMPORT: (state, attributes) => {
+    attributes.forEach(attribute => {
+      if (attribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {
+        attribute.settings.attributes = attribute.settings.attributes.map(attributeIn => {
+          state.builder.idVariableIncrement++
+          attributeIn.id = state.builder.idVariableIncrement
+          state.builder.variables.push({
+            ...attributeIn
+          })
+
+          return {
+            ...attributeIn
+          }
+        })
+      }
+      state.builder.idVariableIncrement++
+      state.builder.variables.push({
+        ...attribute,
+        id: state.builder.idVariableIncrement
+      })
+    })
+
+    state.builder.idVariableIncrement++
+  },
   BUILDER_ATTRIBUTE_COPY: (state, attribute) => {
     state.builder.variables.push({
       ...attribute,
@@ -150,7 +198,8 @@ const mutations = {
     state.builder.blocks = data
   },
   BUILDER_SET_ACTIVE_BLOCK: (state, data) => {
-    state.builder.activeBlock = data
+    state.builder.activeBlock = data.block
+    state.builder.activeBlockNestedAttributes = data.nestedVariables
   },
   BUILDER_ACTIVE_BLOCK_UPDATE: (state, data) => {
     const updateBlock = (block, data) => {
@@ -255,12 +304,23 @@ const getters = {
   },
   builder_allVariables_queryBuilder_block: state => (blockId) => {
     const block = getBlockById(state.builder.blocks, blockId)
+    let attributes = []
 
     if (block.settings.repeatAttributeId !== null && block.settings.repeatAttributeId !== undefined) {
-      return getters.builder_variablesForRepeatBlock(state)(blockId)
+      attributes = getters.builder_variablesForRepeatBlock(state)(blockId)
+    } else {
+      attributes = getters.builder_allVariables_defaultText(state)
     }
 
-    return getters.builder_allVariables_defaultText(state)
+    if (state.builder.activeBlockNestedAttributes) {
+      state.builder.activeBlockNestedAttributes.forEach(x => {
+        if (!attributes.some(y => y.id == x.id)) {
+          attributes.push(x)
+        }
+      })
+    }
+
+    return attributes
   },
   builder_allVariables_defaultText: state => {
     const returnedVar = []
@@ -293,10 +353,11 @@ const getters = {
     return returnedVar
   },
   builder_multiGroupAttributes: state => state.builder.variables.filter(x => !!x.settings.isMultiUse && !(x.settings.isInline)),
-  builder_variablesForRepeatBlock: (state) => (id) => {
+  builder_variablesForRepeatBlock: (state) => (id, nestedAttributes) => {
     const block = getBlockById(state.builder.blocks, id)
     const attribute = getAttributeById(state.builder.variables, block ? block.settings.repeatAttributeId : null)
     let allAttributes = getters.builder_allVariables_defaultText(state)
+    let attrToReturn = allAttributes
 
     if (attribute) {
       if (attribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {
@@ -308,21 +369,31 @@ const getters = {
             id: attribute.id + ':' + x.id
           }
         })
-
-        return [
+        attrToReturn = [
           ...repeatAttribute,
           ...allAttributes
         ]
+      } else {
+        attrToReturn = [
+          ...allAttributes,
+          {
+            attributeName: attribute.attributeName + ' - ' + 'Value',
+            id: attribute.id + ':value'
+          }
+        ]
       }
-      return [
-        ...allAttributes,
-        {
-          attributeName: attribute.attributeName + ' - ' + 'Value',
-          id: attribute.id + ':value'
-        }
-      ]
     }
-    return allAttributes
+    const attrIds = attrToReturn.map(x => x.id)
+
+    if (nestedAttributes) {
+      nestedAttributes.forEach(x => {
+        if (!attrIds.some(y => y.id == x.id)) {
+          attrToReturn.push(x)
+        }
+      })
+    }
+
+    return attrToReturn
   },
   builder_currentMultiGroupAttribute: (state) => (id) => {
     const block = getBlockById(state.builder.blocks, id)
@@ -331,7 +402,6 @@ const getters = {
 }
 
 const getAttributeById = (attributes, id) => attributes.find(x => parseInt(x.id) === parseInt(id))
-
 const getBlockById = (blocks, id) => {
   let returnBlock = null
 
@@ -346,6 +416,34 @@ const getBlockById = (blocks, id) => {
   })
 
   return returnBlock
+}
+const removeFromData = (dataArray, idToRemove) => {
+  if (dataArray.find(x => x.id === idToRemove)) {
+    return dataArray.filter(x => x.id !== idToRemove)
+  } else {
+    return dataArray.map(x => {
+      if (x.content.blocks) {
+        x.content.blocks = removeFromData(x.content.blocks, idToRemove)
+      }
+      return x
+    })
+  }
+}
+const addNewBlockToCurrentBlocks = (blocks, newBlock, index) => {
+  if (parseInt(newBlock.parentId) === 0) {
+    blocks.splice(index, 0, newBlock)
+  } else {
+    blocks = blocks.map(x => {
+      if (parseInt(x.id) === parseInt(newBlock.parentId)) {
+        x.content.blocks.splice(index, 0, newBlock)
+      } else if (typeof x.content.blocks !== 'undefined' && x.content.blocks.length > 0) {
+        x.content.blocks = this.addNewBlockToCurrentBlocks(x.content.blocks, newBlock)
+      }
+      return x
+    })
+  }
+
+  return blocks
 }
 
 export default {
