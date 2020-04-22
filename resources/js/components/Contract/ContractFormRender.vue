@@ -29,16 +29,24 @@
         <v-stepper v-model="actualStep">
           <v-stepper-header>
             <template v-for="step in stepList">
+              <hr
+                :class="{'colored-hr': actualStep >= step.id}"
+                class="stepper-divider"
+                v-if="step.id > 1"
+                :key="step.id"
+              />
+
               <v-stepper-step
                 :key="`${step.id}-header`"
                 :complete="actualStep > step.id"
                 :step="step.id"
               >
-                {{$t("module.base.step")}} {{step.id}}
               </v-stepper-step>
 
-              <v-divider
-                v-if="step.id < stepList.length - 1"
+              <hr
+                :class="{'colored-hr': actualStep >= step.id}"
+                class="stepper-divider"
+                v-if="step.id < stepList.length"
                 :key="step.id"
               />
             </template>
@@ -214,7 +222,50 @@ export default {
 </script>
 
 <style lang="scss" >
+  @import "./../../../sass/colors";
+
   .v-input--selection-controls{
     margin-top: 0;
+  }
+
+  .stepper-divider {
+    height: 3px;
+    width: 100%;
+    align-self: center;
+    flex: 1 1 0px;
+    background-color: #cdcdcd;
+    color: #cdcdcd;
+    border: none;
+
+    &.colored-hr {
+      background-color: $primary;
+      color: $primary;
+    }
+  }
+  .v-stepper__step__step .v-icon.v-icon {
+    font-size: 1rem;
+  }
+
+  .v-stepper__step--active {
+    border-radius: 50%;
+    border: 3px solid $primary;
+  }
+  .v-application--is-ltr .v-stepper__step__step {
+    margin-right: 0px;
+  }
+
+  .v-stepper__step {
+    padding: 3px;
+    height: max-content;
+    align-self: center;
+  }
+
+  .v-stepper__step__step {
+    background: #cdcdcd !important;
+    font-weight: 500;
+  }
+
+  .v-stepper__step--inactive {
+    padding: 0;
   }
 </style>

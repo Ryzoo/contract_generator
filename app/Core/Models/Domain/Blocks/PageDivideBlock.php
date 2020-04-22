@@ -18,6 +18,7 @@ class PageDivideBlock extends Block {
     protected function buildSettings() {
         $this->settings = [
             'availableLevel' => 0,
+            'isBreaker' => 0,
         ];
     }
 
@@ -35,7 +36,7 @@ class PageDivideBlock extends Block {
 
     public function renderToHtml(Collection $attributes, Attribute $repeatAttribute = null, $repeatValue = null): string {
         $htmlString = parent::renderToHtml($attributes, $repeatAttribute, $repeatValue);
-        return $htmlString . '<div class="page-break"></div>';
+        return $this->settings['isBreaker'] ? $htmlString . '<div class="page-break"></div>' : $htmlString;
     }
 
     public function renderAdditionalCss(): string{
