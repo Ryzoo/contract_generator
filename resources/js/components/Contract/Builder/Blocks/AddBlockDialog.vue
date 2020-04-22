@@ -83,14 +83,19 @@ export default {
       this.newBlock.id = this.$store.getters.builder_getBlockId
 
       if (this.newBlock.blockType === BlockTypeEnum.PAGE_DIVIDE_BLOCK) {
-        this.newBlock.blockName = 'Tab'
+        this.newBlock.blockName = 'Step'
       } else {
         this.newBlock.blockName = `New block: ${this.newBlock.id}`
       }
 
       let blocks = this.$store.getters.builder_allBlocks
 
-      if (blocks.length > 0 && this.newBlock.parentId !== 0) { blocks = this.addNewBlockToCurrentBlocks(blocks, this.newBlock) } else { blocks.splice(Math.round(this.buttonIndex / 2), 0, this.newBlock) }
+      if (blocks.length > 0 && this.newBlock.parentId !== 0) {
+        blocks = this.addNewBlockToCurrentBlocks(blocks, this.newBlock)
+      } else {
+        blocks.splice(Math.round(this.buttonIndex / 2), 0, this.newBlock)
+        blocks.splice(Math.round(this.buttonIndex / 2), 0, this.$store.getters.builder_getFirstStep)
+      }
 
       this.$store.dispatch('builder_set', blocks)
 

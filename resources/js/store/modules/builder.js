@@ -1,4 +1,4 @@
-import { AttributeTypeEnum } from '../../additionalModules/Enums'
+import { AttributeTypeEnum, BlockTypeEnum } from '../../additionalModules/Enums'
 
 const defaultState = {
   builder: {
@@ -238,6 +238,21 @@ const getters = {
   builder_getBlockId: state => state.builder.idBlockIncrement,
   builder_getVariableId: state => state.builder.idVariableIncrement,
   builder_allVariables: state => state.builder.variables,
+  builder_getFirstStep: state => {
+    return {
+      id: 1,
+      parentId: 0,
+      blockName: 'Step',
+      blockType: BlockTypeEnum.PAGE_DIVIDE_BLOCK,
+      content: {
+        blocks: []
+      },
+      conditionals: [],
+      settings: {
+        isBreaker: false
+      }
+    }
+  },
   builder_allVariables_queryBuilder_block: state => (blockId) => {
     const block = getBlockById(state.builder.blocks, blockId)
 
