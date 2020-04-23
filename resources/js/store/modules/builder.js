@@ -437,7 +437,7 @@ const addNewBlockToCurrentBlocks = (blocks, newBlock, index) => {
       if (parseInt(x.id) === parseInt(newBlock.parentId)) {
         x.content.blocks.splice(index, 0, newBlock)
       } else if (typeof x.content.blocks !== 'undefined' && x.content.blocks.length > 0) {
-        x.content.blocks = this.addNewBlockToCurrentBlocks(x.content.blocks, newBlock)
+        x.content.blocks = addNewBlockToCurrentBlocks(x.content.blocks, newBlock)
       }
       return x
     })

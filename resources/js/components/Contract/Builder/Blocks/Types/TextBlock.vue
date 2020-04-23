@@ -342,7 +342,6 @@ export default {
         const matches = [...block.content.text.matchAll(/{(\d+)}|{(\d+:\d+)}/gm)]
         matches.forEach((match) => {
           const id = match[1] || match[2]
-          console.log(this.variableUpdated)
           const variable = this.variableUpdated.find((x) => x.id == id)
           if (variable) text = text.replace(`{${id}}`, `<span class="mention variable" data-mention-id='${id}' contenteditable="false">@${variable.name}</span>`)
         })
