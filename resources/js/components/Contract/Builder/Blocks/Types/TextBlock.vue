@@ -236,7 +236,7 @@ export default {
       return this.query || this.hasResults
     }
   },
-  mounted() {
+  mounted () {
     this.initEditor()
   },
   methods: {

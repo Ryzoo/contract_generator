@@ -33,7 +33,6 @@
                 :class="{'colored-hr': actualStep >= step.id}"
                 class="stepper-divider"
                 v-if="step.id > 1"
-                :key="step.id"
               />
 
               <v-stepper-step
@@ -47,7 +46,6 @@
                 :class="{'colored-hr': actualStep >= step.id}"
                 class="stepper-divider"
                 v-if="step.id < stepList.length"
-                :key="step.id"
               />
             </template>
           </v-stepper-header>
@@ -226,6 +224,10 @@ export default {
 
   .v-input--selection-controls{
     margin-top: 0;
+  }
+
+  .v-stepper__header {
+    padding: 10px;
   }
 
   .stepper-divider {
