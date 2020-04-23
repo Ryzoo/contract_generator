@@ -236,7 +236,7 @@ export default {
       return this.query || this.hasResults
     }
   },
-  mounted() {
+  mounted () {
     this.initEditor()
   },
   methods: {
@@ -408,7 +408,7 @@ export default {
     }
   },
   beforeDestroy () {
-    this.editor.destroy()
+    if (this.editor) { this.editor.destroy() }
   }
 }
 </script>
