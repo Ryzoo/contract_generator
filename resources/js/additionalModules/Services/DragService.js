@@ -12,7 +12,7 @@ export default class DragService {
         onEnd: (evt) => {
           if (store && evt.clone && evt.to) {
             store.dispatch('builder_dragBlock', {
-              blockId: parseInt(evt.clone.firstChild.firstChild.dataset.id),
+              blockId: parseInt(evt.clone.firstElementChild.firstElementChild.dataset.id),
               destinationBlock: parseInt(evt.to.dataset.id),
               placeIndex: evt.newIndex
             })

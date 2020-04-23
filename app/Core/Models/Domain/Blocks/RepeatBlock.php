@@ -15,14 +15,13 @@ use App\Core\Models\Domain\Attributes\Attribute;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 
-class RepeatBlock extends EmptyBlock {
+class RepeatBlock extends Block {
 
   private ?Attribute $repeatAttribute;
   private Contract $contract;
   private int $conditionalType;
 
   public function __construct() {
-    parent::__construct();
     $this->initialize(BlockType::REPEAT_BLOCK);
   }
 
@@ -99,7 +98,7 @@ class RepeatBlock extends EmptyBlock {
 
   public function renderToHtml(Collection $attributes, Attribute $repeatAttribute = null, $repeatValue = null): string {
     $htmlString = parent::renderToHtml($attributes, $repeatAttribute, $repeatValue);
-    return isset($this->repeatAttribute) ? $this->repeatContent($htmlString, $attributes) : $htmlString;
+    return $this->repeatContent($htmlString, $attributes);
   }
 
   private function repeatContent(string $htmlString, $attributes): string {

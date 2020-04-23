@@ -2,6 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
+if((bool)env('APP_DEBUG')){
+  Route::prefix('debug')->group(static function () {
+    Route::get('/render/{contractFormComplete}', 'ContractController@forceRender');
+  });
+}
+
 Route::prefix('auth')->group(static function () {
   Route::post('/login', 'Auth\LoginController@login');
   Route::post('/register', 'Auth\RegisterController@register');

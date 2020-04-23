@@ -1,60 +1,62 @@
 <template>
-  <div class="block-header accordion-body" :data-id="block.id">
-    <div class="block-handle">
-      <i class="fas fa-arrows-alt"></i>
-    </div>
-    <div class="block-header--icon">
-      <v-icon class="mx-3 rotate" @click="toggleBlock($event)">fa-chevron-right</v-icon>
-    </div>
-    <div class="block-header--content" @click="toggleBlock($event)">
-      <div class="block-header--type">{{ toUpper(Mapper.getBlockName(block.blockType)) }}</div>
-      <h5 class="pr-2">
-        {{ block.blockName | truncate}}
-      </h5>
-    </div>
-    <div class="block-header--action mr-4">
-      <div v-if="block.blockType === BlockTypeEnum.REPEAT_BLOCK">
-        <v-select
-          persistent-hint
-          :items="multiGroupAttributes"
-          hint="Select attribute group with multi flag to repeat this block on it."
-          dense
-          outlined
-          @change="updateMultiGroupAttribute"
-          :value="{
+  <div :data-id="block.id">
+    <div class="block-header accordion-body"
+      v-if="block.blockType !== BlockTypeEnum.PAGE_DIVIDE_BLOCK">
+      <div class="block-handle">
+        <i class="fas fa-arrows-alt"></i>
+      </div>
+      <div class="block-header--icon">
+        <v-icon class="mx-3 rotate" @click="toggleBlock($event)">fa-chevron-right</v-icon>
+      </div>
+      <div class="block-header--content" @click="toggleBlock($event)">
+        <div class="block-header--type">{{ toUpper(Mapper.getBlockName(block.blockType)) }}</div>
+        <h5 class="pr-2">
+          {{ block.blockName | truncate}}
+        </h5>
+      </div>
+      <div class="block-header--action mr-4">
+        <div v-if="block.blockType === BlockTypeEnum.REPEAT_BLOCK">
+          <v-select
+            persistent-hint
+            :items="multiGroupAttributes"
+            hint="Select attribute group with multi flag to repeat this block on it."
+            dense
+            outlined
+            @change="updateMultiGroupAttribute"
+            :value="{
             value: parseInt(currentMultiGroupAttribute)
           }"
-          label="Repeat attribute"
-        />
+            label="Repeat attribute"
+          />
+        </div>
+        <!--      <v-btn small text color="accent" @click="saveAsPart()"> Save as part <v-icon small right>fa-save</v-icon> </v-btn>-->
+        <v-btn small text color="primary" @click="editBlock()"> Edit
+          <v-icon small right>fa-edit</v-icon>
+        </v-btn>
+        <v-btn small text color="error" @click="deleteDialog=true"> Delete
+          <v-icon small right>fa-trash</v-icon>
+        </v-btn>
       </div>
-      <!--      <v-btn small text color="accent" @click="saveAsPart()"> Save as part <v-icon small right>fa-save</v-icon> </v-btn>-->
-      <v-btn small text color="primary" @click="editBlock()"> Edit
-        <v-icon small right>fa-edit</v-icon>
-      </v-btn>
-      <v-btn small text color="error" @click="deleteDialog=true"> Delete
-        <v-icon small right>fa-trash</v-icon>
-      </v-btn>
+      <v-dialog persistent v-model="deleteDialog" max-width="350">
+        <v-card>
+          <v-card-title class="headline">
+            {{ $t("pages.panel.contracts.builder.removeBlockTitle") }}
+          </v-card-title>
+          <v-card-text>
+            {{ $t("base.description.remove") }}
+          </v-card-text>
+          <v-card-actions>
+            <div class="flex-grow-1"></div>
+            <v-btn color="primary" text @click="deleteDialog = false">
+              {{ $t("base.button.cancel") }}
+            </v-btn>
+            <v-btn color="error" @click="removeBlock">
+              {{ $t("base.button.remove") }}
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </div>
-
-    <v-dialog persistent v-model="deleteDialog" max-width="350">
-      <v-card>
-        <v-card-title class="headline">
-          {{ $t("pages.panel.contracts.builder.removeBlockTitle") }}
-        </v-card-title>
-        <v-card-text>
-          {{ $t("base.description.remove") }}
-        </v-card-text>
-        <v-card-actions>
-          <div class="flex-grow-1"></div>
-          <v-btn color="primary" text @click="deleteDialog = false">
-            {{ $t("base.button.cancel") }}
-          </v-btn>
-          <v-btn color="error" @click="removeBlock">
-            {{ $t("base.button.remove") }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
   </div>
 </template>
 
@@ -68,7 +70,6 @@ export default {
     return {
       BlockTypeEnum: BlockTypeEnum,
       deleteDialog: false
-
     }
   },
   computed: {
@@ -108,7 +109,7 @@ export default {
     },
     removeBlock () {
       this.$store.dispatch('builder_removeBlock', this.block.id)
-    },
+    }
   }
 }
 </script>
@@ -167,7 +168,7 @@ export default {
 
     &.active {
       border: 3px solid $primary;
-      box-shadow: 0px 2px 3px 0px $primary;
+      box-shadow: 0 2px 3px 0 $primary;
 
       & > .row > .block-details {
         display: block;

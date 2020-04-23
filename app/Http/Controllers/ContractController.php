@@ -19,15 +19,19 @@ use App\Core\Services\Contract\ContractService;
 use App\Core\Services\Contract\ContractModuleService;
 use App\Http\Resources\ContractInfoCollection;
 use App\Http\Resources\ContractSubmissionCollection;
+use App\Jobs\RenderNewContract;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ContractController extends Controller {
 
-  private $contractService;
+  private ContractService $contractService;
+  private ContractModuleService $contractModuleService;
 
-  public function __construct(ContractService $contractService) {
+
+  public function __construct(ContractService $contractService, ContractModuleService $contractModuleService) {
     $this->contractService = $contractService;
+    $this->contractModuleService = $contractModuleService;
   }
 
   public function getCollection(Request $request) {
@@ -97,6 +101,10 @@ class ContractController extends Controller {
     }
 
     Response::success();
+  }
+
+  public function forceRender(ContractFormComplete $contractFormComplete) {
+    RenderNewContract::dispatchNow($contractFormComplete, $this->contractModuleService);
   }
 
   public function retry(Request $request, ContractFormComplete $contract) {

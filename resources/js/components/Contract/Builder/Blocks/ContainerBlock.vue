@@ -4,12 +4,12 @@
     :blockid="currentBlock.id">
     <div class="accordion-header" :data-id="0">
       <BlockHeader
-        v-if="currentBlock.blockType !== BlockTypeEnum.PAGE_DIVIDE_BLOCK"
         @show-block-modal="showBlockModal"
         :block="currentBlock"
         :nested-variables="nestedVariables"
       />
       <component
+        class="block-content-in"
         :nested-variables="nestedVariables"
         :is="Mapper.getBlockName(currentBlock.blockType)"
         :block="currentBlock"

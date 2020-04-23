@@ -33,6 +33,7 @@
                 :class="{'colored-hr': actualStep >= step.id}"
                 class="stepper-divider"
                 v-if="step.id > 1"
+                :key="step.id + '-up-hr'"
               />
 
               <v-stepper-step
@@ -46,6 +47,7 @@
                 :class="{'colored-hr': actualStep >= step.id}"
                 class="stepper-divider"
                 v-if="step.id < stepList.length"
+                :key="step.id + '-bottom-hr'"
               />
             </template>
           </v-stepper-header>

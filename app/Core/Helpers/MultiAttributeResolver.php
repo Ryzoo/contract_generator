@@ -41,7 +41,9 @@ class MultiAttributeResolver {
     ], $content);
   }
 
-  private static function escapeValue(string $value): string {
+  private static function escapeValue(?string $value): string {
+    $value = $value ?? '';
+
     if (Str::endsWith($value, "'") && Str::startsWith($value, "'")) {
       $value = Str::substr($value, 1, Str::length($value) - 2);
     }
