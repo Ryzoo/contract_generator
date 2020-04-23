@@ -211,11 +211,8 @@ export default {
       navigatedVariableIndex: 0,
       insertMention: () => {},
       observer: null,
-      variableSuggestions: this.variableUpdated
+      variableSuggestions: this.variableUpdated || []
     }
-  },
-  mounted () {
-    this.initEditor()
   },
   watch: {
     variableUpdated: {
@@ -238,6 +235,9 @@ export default {
     showSuggestions () {
       return this.query || this.hasResults
     }
+  },
+  mounted() {
+    this.initEditor()
   },
   methods: {
     initEditor () {
@@ -342,7 +342,8 @@ export default {
         const matches = [...block.content.text.matchAll(/{(\d+)}|{(\d+:\d+)}/gm)]
         matches.forEach((match) => {
           const id = match[1] || match[2]
-          const variable = this.variableSuggestions.find((x) => x.id == id)
+          console.log(this.variableUpdated)
+          const variable = this.variableUpdated.find((x) => x.id == id)
           if (variable) text = text.replace(`{${id}}`, `<span class="mention variable" data-mention-id='${id}' contenteditable="false">@${variable.name}</span>`)
         })
       }
