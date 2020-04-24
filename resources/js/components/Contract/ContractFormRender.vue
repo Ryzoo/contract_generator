@@ -41,8 +41,8 @@
                 :complete="actualStep > step.id"
                 :step="step.id"
               >
+                <span class="step-name">{{step.name | truncateStep}}</span>
               </v-stepper-step>
-
               <hr
                 :class="{'colored-hr': actualStep >= step.id}"
                 class="stepper-divider"
@@ -79,7 +79,6 @@
                   </v-alert>
                 </v-col>
               </v-row>
-
               <form-renderer
                 :formElements="step.content"
               />
@@ -224,12 +223,27 @@ export default {
 <style lang="scss" >
   @import "./../../../sass/colors";
 
+  .v-stepper__label {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   .v-input--selection-controls{
     margin-top: 0;
   }
 
   .v-stepper__header {
-    padding: 10px;
+    height: 100%;
+    padding: 10px 40px 70px 40px;
+  }
+
+  .step-name {
+    text-align: center;
+    word-break: break-word;
+    hyphens: auto;
+    width: 80px;
   }
 
   .stepper-divider {

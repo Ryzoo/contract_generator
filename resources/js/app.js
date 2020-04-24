@@ -28,6 +28,9 @@ window.ConditionalParser = ConditionalParser
 Vue.filter('truncate', function (text, clamp) {
   return text.slice(0, 50) + (text.length > 50 ? clamp || '...' : '')
 })
+Vue.filter('truncateStep', function (text, clamp) {
+  return text.slice(0, 20) + (text.length > 20 ? clamp || '...' : '')
+})
 
 window.Notification.setStore(store)
 window.auth.setStore(store)

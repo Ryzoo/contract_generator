@@ -84,7 +84,7 @@ abstract class FormElement implements IFormElement {
                 $attribute = Attribute::getFromString((array) $value['attribute']);
                 return new AttributeFormElement($parentBlockId, $attribute);
             case ElementType::PAGE_BRAKE:
-                return new PageDividerFormElement($parentBlockId);
+                return new PageDividerFormElement($parentBlockId, $value['blockName']);
         }
 
         throw new ErrorException("Form element {$formElementType} was not found");
@@ -112,7 +112,7 @@ abstract class FormElement implements IFormElement {
 
         $element->parentBlockId = $value['parentBlockId'];
         $element->elementType = $value['elementType'];
-        $element->elementName = ElementType::getName($value['elementType']);
+        $element->elementName = $value['elementName'];
         $element->conditionals = collect(Conditional::getListFromString(json_encode($value['conditionals'], JSON_THROW_ON_ERROR, 512)))->toArray();
         $element->isActive = $value['isActive'] == 'true';
         $element->isValid = $value['isValid'] == 'true';

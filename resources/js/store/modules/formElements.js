@@ -223,6 +223,7 @@ const getters = {
     let currentIndex = 0
     let listToReturn = [{
       id: 1,
+      name: '',
       completed: false,
       content: []
     }]
@@ -233,6 +234,7 @@ const getters = {
           currentIndex++
           listToReturn.push({
             id: 1 + currentIndex,
+            name: e.elementName,
             completed: false,
             content: []
           })
