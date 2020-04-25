@@ -12,17 +12,14 @@ class ContractServiceTest extends TestCase {
 
   use RefreshDatabase;
 
-  /***
-   * @var \App\Core\Services\Contract\ContractService
-   */
-  private $contractService;
+  private ContractService $contractService;
 
   public function setUp(): void {
     parent::setUp();
     $this->contractService = $this->app->make(ContractService::class);
   }
 
-  public function testAddContract() {
+  public function testAddContract(): void {
     $defaultData = $this->getDefaultDataForContract();
     $contractSettings = $defaultData['settings'];
 
@@ -39,7 +36,7 @@ class ContractServiceTest extends TestCase {
     $this->assertIsObject($savedContract->settings);
   }
 
-  public function testRemoveContract() {
+  public function testRemoveContract(): void {
     $defaultData = $this->getDefaultDataForContract();
     $contractSettings = $defaultData['settings'];
 
@@ -56,15 +53,14 @@ class ContractServiceTest extends TestCase {
     $this->assertEquals(0, Contract::all()->count());
   }
 
-  public function testRemoveContractThrowExceptionWhenNotFound() {
+  public function testRemoveContractThrowExceptionWhenNotFound(): void {
     $this->expectException(\Exception::class);
-
     $this->contractService->removeContractById([100]);
   }
 
   private function getDefaultDataForContract() {
-    $jsonDataFromTestFile = file_get_contents(app_path("Core/test.json"));
-    return json_decode($jsonDataFromTestFile, TRUE);
+    $jsonDataFromTestFile = file_get_contents(app_path('Core/test.json'));
+    return json_decode($jsonDataFromTestFile, TRUE, 512, JSON_THROW_ON_ERROR);
   }
 
 }

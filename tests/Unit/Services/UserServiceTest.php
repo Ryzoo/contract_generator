@@ -10,21 +10,19 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 use Whoops\Exception\ErrorException;
+use App\Core\Services\UserService;
 
 class UserServiceTest extends TestCase {
     use RefreshDatabase;
 
-    /***
-     * @var \App\Core\Services\UserService
-     */
-    private $userService;
+    private UserService $userService;
 
     public function setUp(): void {
         parent::setUp();
-        $this->userService = $this->app->make('App\Core\Services\UserService');
+        $this->userService = $this->app->make(UserService::class);
     }
 
-    public function testChangeUserImage() {
+    public function testChangeUserImage(): void {
         $savedUser = factory(User::class)
             ->states('client')
             ->create();
@@ -37,7 +35,7 @@ class UserServiceTest extends TestCase {
             ->assertExists($newFilePath);
     }
 
-    public function testChangeUserImageThrowExceptionWhenUserNotFound() {
+    public function testChangeUserImageThrowExceptionWhenUserNotFound(): void {
         $this->expectException(ModelNotFoundException::class);
         $uploadedFile = UploadedFile::fake()->image('photo1.jpg');
         $this->userService->changeUserImage(-1, $uploadedFile);

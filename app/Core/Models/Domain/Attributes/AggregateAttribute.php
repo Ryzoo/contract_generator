@@ -19,7 +19,7 @@ class AggregateAttribute extends Attribute {
     $this->initialize(AttributeType::AGGREGATE);
   }
 
-  protected function buildSettings() {
+  protected function buildSettings():void {
     $this->settings = [
       'isInline' => FALSE,
       'isMultiUse' => FALSE,
@@ -112,5 +112,4 @@ class AggregateAttribute extends Attribute {
     }
     return $returnValue;
   }
-
 }

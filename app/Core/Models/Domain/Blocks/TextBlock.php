@@ -18,12 +18,10 @@ class TextBlock extends Block {
     $this->initialize(BlockType::TEXT_BLOCK);
   }
 
-  protected function buildSettings() {
-    // TODO: Implement buildSettings() method.
-  }
+  protected function buildSettings():void {}
 
-  protected function buildContent() {
-    if(!isset($this->content, $this->content['text'])) {
+  protected function buildContent():void {
+    if(!isset($this->content['text'])) {
       $this->content = [
         'text' => ''
       ];
@@ -40,7 +38,7 @@ class TextBlock extends Block {
     return TRUE;
   }
 
-  protected function resolveAttributesInContent(Collection $formElements, Attribute $repeatAttribute = null, $repeatValue = null) {
+  protected function resolveAttributesInContent(Collection $formElements, Attribute $repeatAttribute = null, $repeatValue = null):void {
     $attributeResolver = new AttributeResolver($formElements);
     $this->content['text'] = $attributeResolver->resolveText($this->content['text'], true);
     if(isset($repeatAttribute)){

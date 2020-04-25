@@ -14,7 +14,7 @@ class TimeAttribute extends Attribute {
     $this->initialize(AttributeType::TIME);
   }
 
-  protected function buildSettings() {
+  protected function buildSettings():void {
     $this->settings = [
       'isInline' => FALSE,
       'isMultiUse' => FALSE,

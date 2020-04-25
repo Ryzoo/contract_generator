@@ -20,50 +20,29 @@ abstract class Block implements IBlock {
 
   use ConditionalValidator;
 
-  /**
-   * @var int
-   */
-  public $id;
+  public int $id;
 
-  /**
-   * @var int
-   */
-  public $blockType;
+  public int $blockType;
 
-  /**
-   * @var string
-   */
-  public $blockName;
+  public ?string $blockName;
 
-  /**
-   * @var int
-   */
-  public $parentId;
+  public int $parentId;
 
-  /**
-   * @var array
-   */
-  public $settings;
+  public array $settings;
 
-  /**
-   * @var array
-   */
-  public $conditionals;
+  public array $conditionals;
 
-  /**
-   * @var array
-   */
-  public $content;
+  public array $content;
 
-  abstract protected function buildSettings();
+  abstract protected function buildSettings(): void;
 
-  abstract protected function buildContent();
+  abstract protected function buildContent(): void;
 
   abstract protected function validateContent(): bool;
 
-  abstract protected function resolveAttributesInContent(Collection $formElements, Attribute $repeatAttribute = null, $repeatValue = null);
+  abstract protected function resolveAttributesInContent(Collection $formElements, Attribute $repeatAttribute = NULL, $repeatValue = NULL):void;
 
-  protected function initialize(int $blockType) {
+  protected function initialize(int $blockType): void {
     $this->blockType = $blockType;
     $this->blockName = BlockType::getName($blockType);
     $this->settings = [];
@@ -74,11 +53,11 @@ abstract class Block implements IBlock {
     $this->buildObject();
   }
 
-  protected function buildObject() {
+  protected function buildObject(): void {
     $this->buildSettings();
   }
 
-  protected function prepare() {
+  protected function prepare(): void {
     $this->validateContent();
     $this->buildContent();
   }
@@ -174,7 +153,7 @@ abstract class Block implements IBlock {
     return $blockCollection;
   }
 
-  public function renderToHtml(Collection $attributes, Attribute $repeatAttribute = null, $repeatValue = null): string {
+  public function renderToHtml(Collection $attributes, Attribute $repeatAttribute = NULL, $repeatValue = NULL): string {
     $this->resolveAttributesInContent($attributes, $repeatValue, $repeatValue);
     return '';
   }

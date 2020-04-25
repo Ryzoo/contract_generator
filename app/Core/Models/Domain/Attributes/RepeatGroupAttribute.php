@@ -16,7 +16,7 @@ class RepeatGroupAttribute extends Attribute implements IAggregableByAttributeAg
     $this->initialize(AttributeType::ATTRIBUTE_GROUP);
   }
 
-  protected function buildSettings() {
+  protected function buildSettings():void {
     $this->settings = [
       'isInline' => FALSE,
       'isMultiUse' => FALSE,

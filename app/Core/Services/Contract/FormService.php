@@ -5,6 +5,8 @@ namespace App\Core\Services\Contract;
 use App\Core\Enums\ElementType;
 use App\Core\Models\Database\Contract;
 use App\Core\Models\Database\Form;
+use App\Core\Models\Domain\FormElements\AttributeFormElement;
+use App\Core\Models\Domain\FormElements\FormElement;
 use Illuminate\Support\Collection;
 
 class FormService {
@@ -47,15 +49,15 @@ class FormService {
   }
 
   private function reduceElementsWithSameAttribute(Collection $newElements, Collection $existElements): Collection {
-    return $newElements->reject(static function ($value, $key) use ($existElements) {
+    return $newElements->reject(static function (FormElement $value) use ($existElements) {
 
       if ($value->elementType === ElementType::ATTRIBUTE) {
-        return $existElements->some(static function ($item) use ($value) {
+        return $existElements->some(static function (FormElement $item) use ($value) {
           if ($item->elementType !== ElementType::ATTRIBUTE) {
             return FALSE;
           }
 
-          return $value->attribute == $item->attribute;
+          return $value->attribute === $item->attribute;
         });
       }
 

@@ -7,7 +7,6 @@ use App\Core\Enums\BlockType;
 use App\Core\Enums\ConditionalType;
 use App\Core\Helpers\AttributeResolver;
 use App\Core\Helpers\BlockCounterResolver;
-use App\Core\Helpers\MultiAttributeResolver;
 use App\Core\Helpers\Parsers\ModelObjectToTextParser;
 use App\Core\Helpers\PdfRenderer;
 use App\Core\Models\Database\Contract;
@@ -25,7 +24,7 @@ class RepeatBlock extends Block {
     $this->initialize(BlockType::REPEAT_BLOCK);
   }
 
-  protected function buildSettings() {
+  protected function buildSettings():void {
     $this->settings = [
       'repeatAttributeId' => NULL,
       'separator' => '',
@@ -40,7 +39,7 @@ class RepeatBlock extends Block {
     return true;
   }
 
-  protected function buildContent() {
+  protected function buildContent():void {
     $this->content['blocks'] = Block::getListFromString(json_encode($this->content['blocks'], JSON_THROW_ON_ERROR, 512));
   }
 
@@ -85,7 +84,7 @@ class RepeatBlock extends Block {
     return $blockCollection;
   }
 
-  protected function resolveAttributesInContent(Collection $formElements, Attribute $repeatAttribute = null, $repeatValue = null) {
+  protected function resolveAttributesInContent(Collection $formElements, Attribute $repeatAttribute = null, $repeatValue = null):void {
     $attributeResolver = new AttributeResolver($formElements);
     $this->repeatAttribute = $attributeResolver->getAttributeById($this->settings['repeatAttributeId'] ?? -1);
 
@@ -139,12 +138,13 @@ class RepeatBlock extends Block {
   }
 
   private function isSeparator():bool{
-    $separator = $this->settings['separator'];
-    return isset($separator) && $separator !== '';
+    return isset($this->settings['separator']) && $this->settings['separator'] !== '';
   }
 
   private function getSeparator():string{
-    if(!$this->isSeparator()) return '';
+    if(!$this->isSeparator()) {
+      return '';
+    }
     $separator = $this->settings['separator'];
     return "<p>$separator</p>";
   }

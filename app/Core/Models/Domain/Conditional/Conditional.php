@@ -17,12 +17,12 @@ abstract class Conditional implements IConditional {
 
   public ?string $conditionalName;
 
-  public $content;
+  public string $content;
 
-  protected function initialize(int $conditionalType) {
+  protected function initialize(int $conditionalType): void {
     $this->conditionalType = $conditionalType;
     $this->conditionalName = ConditionalType::getName($conditionalType);
-    $this->content = [];
+    $this->content = '';
   }
 
   public static function getConditionalByType(int $conditionalType): Conditional {

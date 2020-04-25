@@ -14,7 +14,7 @@ class SelectAttribute extends Attribute {
     $this->initialize(AttributeType::SELECT);
   }
 
-  protected function buildSettings() {
+  protected function buildSettings():void {
     $this->settings = [
       'isInline' => FALSE,
       'isMultiUse' => FALSE,

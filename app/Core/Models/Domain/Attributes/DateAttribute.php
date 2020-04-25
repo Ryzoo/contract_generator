@@ -14,7 +14,7 @@ class DateAttribute extends Attribute {
     $this->initialize(AttributeType::DATE);
   }
 
-  protected function buildSettings() {
+  protected function buildSettings():void {
     $this->settings = [
       'isInline' => FALSE,
       'isMultiUse' => FALSE,

@@ -16,7 +16,7 @@ class BoolInputAttribute extends Attribute implements IAggregableByAttributeAggr
     $this->initialize(AttributeType::BOOL_INPUT);
   }
 
-  protected function buildSettings() {
+  protected function buildSettings():void {
     $this->settings = [
       'required' => FALSE,
       'isInline' => FALSE,
@@ -45,10 +45,6 @@ class BoolInputAttribute extends Attribute implements IAggregableByAttributeAggr
     }
 
     return '';
-  }
-
-  private function valueSchema($value): string{
-    return (((bool) $value['bool']) ? (string) $value['input'] : '');
   }
 
   public function getOperationalValue(string $operation) {

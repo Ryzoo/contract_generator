@@ -17,9 +17,7 @@ class EmptyBlock extends Block {
         $this->initialize(BlockType::EMPTY_BLOCK);
     }
 
-    protected function buildSettings() {
-        // TODO: Implement buildSettings() method.
-    }
+    protected function buildSettings():void {}
 
     protected function validateContent():bool {
         Validator::validate($this->content,[
@@ -29,11 +27,11 @@ class EmptyBlock extends Block {
         return true;
     }
 
-    protected function buildContent() {
+    protected function buildContent():void {
         $this->content['blocks'] = Block::getListFromString(json_encode($this->content['blocks'], JSON_THROW_ON_ERROR, 512));
     }
 
-    protected function resolveAttributesInContent(Collection $formElements, Attribute $repeatAttribute = null, $repeatValue = null) {
+    protected function resolveAttributesInContent(Collection $formElements, Attribute $repeatAttribute = null, $repeatValue = null):void {
         $blockList = $this->content['blocks'];
 
         /** @var \App\Core\Models\Domain\Blocks\Block $block */

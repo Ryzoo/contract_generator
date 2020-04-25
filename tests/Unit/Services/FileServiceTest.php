@@ -6,23 +6,20 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
+use App\Core\Services\FileService;
 
 class FileServiceTest extends TestCase
 {
     use RefreshDatabase;
 
-    /***
-     * @var \App\Core\Services\FileService
-     */
-    private $fileService;
+    private FileService $fileService;
 
     public function setUp(): void {
         parent::setUp();
-        $this->fileService = $this->app->make('App\Core\Services\FileService');
+        $this->fileService = $this->app->make(FileService::class);
     }
 
-    public function testSaveAndOptimizeFile()
-    {
+    public function testSaveAndOptimizeFile(): void {
         $storageFolder = 'photo';
         $fileName = 'photo1.jpg';
         $uploadedFile = UploadedFile::fake()->image($fileName);
@@ -35,8 +32,7 @@ class FileServiceTest extends TestCase
             ->assertExists($returnedPath);
     }
 
-    public function testRemoveFileUsingFileUrl()
-    {
+    public function testRemoveFileUsingFileUrl(): void {
         $storageFolder = 'photo';
         $fileName = 'photo1.jpg';
         $uploadedFile = UploadedFile::fake()->image($fileName);
@@ -54,22 +50,19 @@ class FileServiceTest extends TestCase
             ->assertMissing($returnedPath);
     }
 
-    public function testRemoveFileUsingFileUrlWithDefaultString()
-    {
+    public function testRemoveFileUsingFileUrlWithDefaultString(): void {
         $defaultFileUrl = $this->fileService::DEFAULT_FILES_URL[0];
 
         $this->assertNotNull($defaultFileUrl);
 
         $this->fileService
             ->removeFileUsingFileUrl($defaultFileUrl);
-
     }
 
-    public function testThrowExceptionWhenTryToRemoveFIleUsingBadUrl()
-    {
+    public function testThrowExceptionWhenTryToRemoveFIleUsingBadUrl(): void {
         $this->expectException(\Exception::class);
 
         $this->fileService
-            ->removeFileUsingFileUrl("bad/file/url");
+            ->removeFileUsingFileUrl('bad/file/url');
     }
 }

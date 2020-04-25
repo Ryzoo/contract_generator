@@ -14,7 +14,7 @@ class TextAttribute extends Attribute {
     $this->initialize(AttributeType::TEXT);
   }
 
-  protected function buildSettings() {
+  protected function buildSettings():void {
     $this->settings = [
       'isInline' => FALSE,
       'isMultiUse' => FALSE,

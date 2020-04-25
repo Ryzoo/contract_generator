@@ -18,14 +18,12 @@ class Contract extends Model {
   use SoftDeletes;
 
   protected $guarded = [];
-
+  protected $appends = ['attributesList', 'blocks', 'settings'];
   protected $casts = [
     'attributesList' => 'array',
     'blocks' => 'array',
     'settings' => 'array',
   ];
-
-  protected $appends = ['attributesList', 'blocks', 'settings'];
 
   public function getAttributesListAttribute($value): Collection {
     $currentValue = $value ?? $this->attributesList ?? NULL;

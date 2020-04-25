@@ -15,28 +15,24 @@ class PageDivideBlock extends Block {
         $this->initialize(BlockType::PAGE_DIVIDE_BLOCK);
     }
 
-    protected function buildSettings() {
+    protected function buildSettings():void {
         $this->settings = [
             'availableLevel' => 0,
-            'isBreaker' => 0,
+            'isBreaker' => false,
         ];
     }
 
-    protected function buildContent() {
-        // TODO: Implement buildContent() method.
-    }
+    protected function buildContent():void {}
 
     protected function validateContent(): bool {
         return true;
     }
 
-    protected function resolveAttributesInContent(Collection $formElements, Attribute $repeatAttribute = null, $repeatValue = null) {
-        // TODO: Implement resolveAttributesInContent() method.
-    }
+    protected function resolveAttributesInContent(Collection $formElements, Attribute $repeatAttribute = null, $repeatValue = null):void {}
 
     public function renderToHtml(Collection $attributes, Attribute $repeatAttribute = null, $repeatValue = null): string {
         $htmlString = parent::renderToHtml($attributes, $repeatAttribute, $repeatValue);
-        return $this->settings['isBreaker'] ? $htmlString . '<div class="page-break"></div>' : $htmlString;
+        return (bool)$this->settings['isBreaker'] ? $htmlString . '<div class="page-break"></div>' : $htmlString;
     }
 
     public function renderAdditionalCss(): string{
@@ -51,5 +47,4 @@ class PageDivideBlock extends Block {
         $formElements->push( new PageDividerFormElement($this->id, $this->blockName) );
         return $formElements;
     }
-
 }

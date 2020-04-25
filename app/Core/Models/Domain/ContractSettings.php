@@ -5,25 +5,16 @@ namespace App\Core\Models\Domain;
 
 
 class ContractSettings {
-  public $enabledModules = [];
-  public $modules = null;
-  public $counterStart = 1;
-  public $counterType= 'number';
-  public $font = 'DejaVu Serif';
-  public $fontSize = '14px';
+  public $modules = '';
+  public array $enabledModules = [];
+  public int $counterStart = 1;
+  public string $counterType = 'number';
+  public string $font = 'DejaVu Serif';
+  public string $fontSize = '14px';
 
   public static function fromJson(string $jsonString): ContractSettings {
-    $jsonData = json_decode($jsonString);
-    $instance = new self();
-
-    $instance->enabledModules = $jsonData->enabledModules ??  $instance->enabledModules;
-    $instance->modules = $jsonData->modules ??  $instance->modules;
-    $instance->counterStart = $jsonData->counterStart ??  $instance->counterStart;
-    $instance->counterType = $jsonData->counterType ??  $instance->counterType;
-    $instance->font = $jsonData->font ??  $instance->font;
-    $instance->fontSize = $jsonData->fontSize ??  $instance->fontSize;
-
-    return $instance;
+    $jsonData = json_decode($jsonString, TRUE, 512, JSON_THROW_ON_ERROR);
+    return self::fromArray((array)$jsonData);
   }
 
   public static function fromArray(array $arraySettings):ContractSettings {

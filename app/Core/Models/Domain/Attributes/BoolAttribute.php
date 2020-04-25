@@ -14,7 +14,7 @@ class BoolAttribute extends Attribute {
     $this->initialize(AttributeType::BOOL);
   }
 
-  protected function buildSettings() {
+  protected function buildSettings():void {
     $this->settings = [
       'required' => FALSE,
       'isInline' => FALSE,

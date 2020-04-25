@@ -168,7 +168,7 @@ export default {
       this.isLoading = true
       const additionalParam = this.getAttributesFromArrayWithObject(additionalAttributes)
 
-      axios.get(`/contract/form/${this.contractId}?${additionalParam}`)
+      axios.get(`/contract/form/${this.contractId}${additionalParam ? '?' + additionalParam : ''}`)
         .then((response) => {
           this.contract = response.data.contract
           this.$store.dispatch('formElements_set', response.data.formElements)
@@ -177,7 +177,7 @@ export default {
               this.isLoading = false
             })
         })
-        .catch(() => {
+        .catch((err) => {
           this.currentAction = this.availableActionsHook.BEFORE_FORM_RENDER
           this.isLoading = false
         })

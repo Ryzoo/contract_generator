@@ -15,7 +15,7 @@ class PageDividerFormElement extends FormElement {
     $this->elementName = $elementName;
   }
 
-  public function resolveAttributesInSettings(Collection $formElements) {
+  public function resolveAttributesInSettings(Collection $formElements):void {
     // TODO: Implement resolveAttributesInSettings() method.
   }
 }

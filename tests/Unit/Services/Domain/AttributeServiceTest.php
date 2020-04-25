@@ -10,10 +10,7 @@ use App\Core\Enums\AttributeType;
 class AttributeServiceTest extends TestCase {
     use RefreshDatabase;
 
-    /***
-     * @var AttributeRepository
-     */
-    private $attributeRepository;
+    private AttributeRepository $attributeRepository;
 
     public function setUp(): void {
         parent::setUp();

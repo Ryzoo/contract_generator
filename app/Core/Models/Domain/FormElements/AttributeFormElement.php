@@ -9,12 +9,6 @@ use App\Core\Models\Domain\Attributes\Attribute;
 use Illuminate\Support\Collection;
 
 class AttributeFormElement extends FormElement {
-
-  /**
-   * @var Attribute
-   */
-  public $attribute;
-
   public function __construct(int $parentBlockId, Attribute $attribute) {
     parent::__construct($parentBlockId);
     $this->initialize(ElementType::ATTRIBUTE);
@@ -22,7 +16,7 @@ class AttributeFormElement extends FormElement {
     $this->attribute->value = $this->attribute->value ?? $this->attribute->defaultValue;
   }
 
-  public function resolveAttributesInSettings(Collection $formElements) {
+  public function resolveAttributesInSettings(Collection $formElements):void {
     $this->attribute->resolveAttributesInSettings($formElements);
   }
 }

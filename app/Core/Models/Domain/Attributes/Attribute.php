@@ -14,67 +14,24 @@ use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Exception\NotFoundException;
 
 abstract class Attribute implements IAttribute {
-
-  /**
-   * @var int
-   */
-  public $id;
-
-  /**
-   * @var int
-   */
-  public $attributeType;
-
-  /**
-   * @var string
-   */
-  public $attributeName;
-
-  /**
-   * @var array
-   */
-  public $settings;
-
-  /**
-   * @var array
-   */
-  public $conditionals;
-
-  /**
-   * @var array
-   */
-  public $content;
-
-  /**
-   * @var string
-   */
-  public $placeholder;
-
+  public int $id;
+  public int $attributeType;
+  public ?string $attributeName;
+  public array $settings;
+  public array $conditionals;
+  public array $content;
+  public string $placeholder;
   public $value;
-
   public $defaultValue;
+  public string $description;
+  public string $additionalInformation;
+  public bool $toAnonymize;
 
-  /**
-   * @var string
-   */
-  public $description;
+  abstract protected function buildSettings():void;
 
-  /**
-   * @var string
-   */
-  public $additionalInformation;
+  public function resolveAttributesInSettings(Collection $formElements): void {}
 
-  /**
-   * @var bool
-   */
-  public $toAnonymize;
-
-  abstract protected function buildSettings();
-
-  public function resolveAttributesInSettings(Collection $formElements): void {
-  }
-
-  protected function initialize(int $attributeType) {
+  protected function initialize(int $attributeType): void {
     $this->attributeType = $attributeType;
     $this->attributeName = AttributeType::getName($attributeType);
     $this->settings = [];
@@ -89,11 +46,11 @@ abstract class Attribute implements IAttribute {
     $this->buildObject();
   }
 
-  protected function buildObject() {
+  protected function buildObject(): void {
     $this->buildSettings();
   }
 
-  protected function parseContent() {
+  protected function parseContent(): void {
     $this->content = (isset($this->content) && is_array($this->content)) ? self::getListFromString(json_encode($this->content, JSON_THROW_ON_ERROR, 512)) : [];
   }
 
@@ -139,7 +96,7 @@ abstract class Attribute implements IAttribute {
     $returnedArray = [];
 
     if (!is_array($arrayOfAttributes)) {
-      throw new Exception(_('custom.array.attributes'));
+      throw new \RuntimeException(_('custom.array.attributes'));
     }
 
     foreach ($arrayOfAttributes as $attribute) {
@@ -157,13 +114,13 @@ abstract class Attribute implements IAttribute {
     $attribute->attributeName = $value['attributeName'];
     $attribute->settings = $value['settings'];
     $attribute->conditionals = isset($value['conditionals']) ? Conditional::getListFromString(json_encode($value['conditionals'], JSON_THROW_ON_ERROR, 512)) : [];
-    $attribute->id = isset($value['id']) ? (int) $value['id'] : -1;
+    $attribute->id = (int) ($value['id'] ?? -1);
     $attribute->toAnonymize = $value['toAnonymize'] ?? FALSE;
     $attribute->description = $value['description'] ?? '';
-    $attribute->additionalInformation = $value['additionalInformation'] ?? "";
+    $attribute->additionalInformation = $value['additionalInformation'] ?? '';
     $attribute->defaultValue = $value['defaultValue'] ?? NULL;
     $attribute->value = $value['value'] ?? NULL;
-    $attribute->placeholder = $value['placeholder'] ?? NULL;
+    $attribute->placeholder = $value['placeholder'] ?? '';
     $attribute->content = (array) ($value['content'] ?? []);
 
     $attribute->parseContent();

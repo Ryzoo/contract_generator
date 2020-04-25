@@ -16,7 +16,7 @@ class NumberAttribute extends Attribute implements IAggregableByAttributeAggrega
     $this->initialize(AttributeType::NUMBER);
   }
 
-  protected function buildSettings() {
+  protected function buildSettings():void {
     $this->settings = [
       'isInline' => FALSE,
       'isMultiUse' => FALSE,
