@@ -10,16 +10,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ContractModulesController extends Controller {
-
-  /**
-   * @var \App\Core\Services\Contract\ContractModuleService
-   */
-  private $contractModuleService;
-
-  /**
-   * @var \App\Core\Modules\Configuration
-   */
-  private $configuration;
+  private ContractModuleService $contractModuleService;
+  private Configuration $configuration;
 
   public function __construct(ContractModuleService $contractModuleService,
                               Configuration $configuration) {

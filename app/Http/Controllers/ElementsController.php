@@ -10,29 +10,11 @@ use App\Core\Services\Contract\ConditionalService;
 
 class ElementsController extends Controller
 {
-    /**
-     * @var ConditionalService
-     */
-    private $conditionalService;
+    private BlockRepository $blockRepository;
+    private ConditionalRepository $conditionalRepository;
+    private AttributeRepository $attributeRepository;
 
-    /**
-     * @var BlockRepository
-     */
-    private $blockRepository;
-
-    /**
-     * @var ConditionalRepository
-     */
-    private $conditionalRepository;
-
-    /**
-     * @var AttributeRepository
-     */
-    private $attributeRepository;
-
-    public function __construct(ConditionalService $conditionalService,
-                                BlockRepository $blockRepository, ConditionalRepository $conditionalRepository, AttributeRepository $attributeRepository) {
-        $this->conditionalService = $conditionalService;
+    public function __construct(BlockRepository $blockRepository, ConditionalRepository $conditionalRepository, AttributeRepository $attributeRepository) {
         $this->blockRepository = $blockRepository;
         $this->conditionalRepository = $conditionalRepository;
         $this->attributeRepository = $attributeRepository;

@@ -15,10 +15,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    /**
-     * @var \App\Core\Services\UserService
-     */
-    protected $userService;
+    protected UserService $userService;
 
     public function __construct(UserService $userService) {
         $this->userService = $userService;
@@ -52,13 +49,13 @@ class UserController extends Controller
     }
 
     public function updateImage(UserUpdateRequest $request, int $id) {
-        $newUrl = $this->userService->changeUserImage($id, $request->validated()["image"]);
+        $newUrl = $this->userService->changeUserImage($id, $request->validated()['image']);
         Response::success($newUrl);
     }
 
     public function changePassword(UserPasswordChangeRequest $request, int $id)
     {
-        $this->userService->changeUserPassword($id, $request->validated()["password"]);
+        $this->userService->changeUserPassword($id, $request->validated()['password']);
         Response::success();
     }
 

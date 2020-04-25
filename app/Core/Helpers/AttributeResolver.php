@@ -12,11 +12,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class AttributeResolver {
-
-  /**
-   * @var \Illuminate\Support\Collection
-   */
-  protected $formElements;
+  protected Collection $formElements;
 
   public function __construct(Collection $formElements) {
     $this->formElements = $formElements;

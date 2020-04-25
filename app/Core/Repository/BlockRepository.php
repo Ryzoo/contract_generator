@@ -14,7 +14,7 @@ class BlockRepository {
         $blockTypeList = BlockType::getList();
 
         foreach($blockTypeList as $value){
-            array_push($blockList, Block::getBlockByType($value));
+            $blockList[] = Block::getBlockByType($value);
         }
 
         return $blockList;

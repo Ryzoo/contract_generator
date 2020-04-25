@@ -18,11 +18,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Provider extends ContractModule {
-
-  /**
-   * @var ContractService
-   */
-  private $contractService;
+  private ContractService $contractService;
 
   public function __construct(ContractService $contractService) {
     $this->slug = 'Provider';
@@ -72,13 +68,13 @@ class Provider extends ContractModule {
       $output = $contractPdfFile->output();
 
       if (!$output) {
-        throw new \Exception('Empty output');
+        throw new \RuntimeException('Empty output');
       }
 
       Storage::put($filePath, $output);
 
       if (!Storage::exists($filePath)) {
-        throw new \Exception("File not found in $filePath");
+        throw new \RuntimeException("File not found in $filePath");
       }
 
       $formComplete->update([

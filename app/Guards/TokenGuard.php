@@ -5,69 +5,67 @@ namespace App\Guards;
 
 
 use Illuminate\Auth\GuardHelpers;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\UserProvider;
+use Illuminate\Http\Request;
 
 class TokenGuard implements Guard {
-    use GuardHelpers;
 
-    private $inputKey = '';
-    private $storageKey = '';
-    private $request;
+  use GuardHelpers;
 
-    public function __construct (UserProvider $provider, $request) {
-        $this->provider = $provider;
-        $this->request = $request;
-        $this->inputKey = 'loginToken';
-        $this->storageKey = 'loginToken';
+  private string $inputKey;
+  private string $storageKey;
+  private Request $request;
+
+  public function __construct(UserProvider $provider, $request) {
+    $this->provider = $provider;
+    $this->request = $request;
+    $this->inputKey = 'loginToken';
+    $this->storageKey = 'loginToken';
+  }
+
+  public function user(): ?Authenticatable {
+    if (isset($this->user)) {
+      return $this->user;
     }
 
-    public function user () {
-        if (isset($this->user))
-            return $this->user;
-
-        $user = null;
-        $token = $this->getTokenForRequest();
+    $user = NULL;
+    $token = $this->getTokenForRequest();
 
 
-        if (!empty($token))
-            $user = $this->provider->retrieveByToken($this->storageKey, $token);
-
-        return $this->user = $user;
+    if (!empty($token)) {
+      $user = $this->provider->retrieveByToken($this->storageKey, $token);
     }
 
-    /**
-     * Get the token for the current request.
-     * @return string
-     */
-    public function getTokenForRequest () {
-        $token = $this->request->query($this->inputKey);
+    return $this->user = $user;
+  }
 
-        if (empty($token))
-            $token = $this->request->input($this->inputKey);
+  public function getTokenForRequest(): string {
+    $token = $this->request->query($this->inputKey);
 
-        if (empty($token))
-            $token = $this->request->bearerToken();
-
-        return $token;
+    if (empty($token)) {
+      $token = $this->request->input($this->inputKey);
     }
 
-    /**
-     * Validate a user's credentials.
-     *
-     * @param  array $credentials
-     *
-     * @return bool
-     */
-    public function validate (array $credentials = []) {
-        if (empty($credentials[$this->inputKey]))
-            return false;
-
-        $credentials = [ $this->storageKey => $credentials[$this->inputKey] ];
-
-        if ($this->provider->retrieveByCredentials($credentials))
-            return true;
-
-        return false;
+    if (empty($token)) {
+      $token = $this->request->bearerToken();
     }
+
+    return $token;
+  }
+
+  public function validate(array $credentials = []): bool {
+    if (empty($credentials[$this->inputKey])) {
+      return FALSE;
+    }
+
+    $credentials = [$this->storageKey => $credentials[$this->inputKey]];
+
+    if ($this->provider->retrieveByCredentials($credentials)) {
+      return TRUE;
+    }
+
+    return FALSE;
+  }
 }

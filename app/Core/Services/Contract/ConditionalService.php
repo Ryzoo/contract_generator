@@ -10,10 +10,7 @@ use App\Core\Repository\ConditionalRepository;
 use Illuminate\Support\Collection;
 
 class ConditionalService {
-    /**
-     * @var ConditionalRepository
-     */
-    private $conditionalRepository;
+    private ConditionalRepository $conditionalRepository;
 
     public function __construct(ConditionalRepository $conditionalRepository) {
         $this->conditionalRepository = $conditionalRepository;

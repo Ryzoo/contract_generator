@@ -7,30 +7,18 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class Welcome extends Mailable
-{
-    use Queueable, SerializesModels;
+class Welcome extends Mailable {
 
-    public $user;
+  use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @param \App\Core\Models\Database\User $user
-     */
-    public function __construct(User $user)
-    {
-        $this->user = $user;
-    }
+  public User $user;
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
-    public function build()
-    {
-        return $this->subject(__('email.welcome.subject'))
-                ->markdown('emails.welcome');
-    }
+  public function __construct(User $user) {
+    $this->user = $user;
+  }
+
+  public function build(): Mailable {
+    return $this->subject(__('email.welcome.subject'))
+      ->markdown('emails.welcome');
+  }
 }

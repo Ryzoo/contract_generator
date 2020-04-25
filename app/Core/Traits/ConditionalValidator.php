@@ -11,10 +11,8 @@ use App\Core\Models\Database\Contract;
 use App\Core\Models\Domain\Attributes\Attribute;
 use App\Core\Models\Domain\FormElements\AttributeFormElement;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 
 trait ConditionalValidator {
-  private Collection $conditionalList;
   protected Collection $formElements;
   public bool $isActive;
 
@@ -25,13 +23,13 @@ trait ConditionalValidator {
 
     $this->formElements = $formElements;
 
-    $this->conditionalList = collect(collect($this->conditionals)
+    $conditionalList = collect(collect($this->conditionals)
       ->where('conditionalType', $conditionalType)
       ->all());
 
     $self = $this;
 
-    $this->isActive = $this->conditionalList
+    $this->isActive = $conditionalList
       ->every(static function ($element) use ($self, $index) {
         return $self->isConditionalValidAndEqual(ModelObjectToTextParser::parse(json_decode($element->content, TRUE, 512, JSON_THROW_ON_ERROR)), TRUE, $index);
       });
@@ -102,8 +100,9 @@ trait ConditionalValidator {
           $foundedAttribute = $attrValue[$index];
         }
 
-        if(isset($foundedAttribute) && is_array($foundedAttribute))
+        if(isset($foundedAttribute) && is_array($foundedAttribute)) {
           $foundedAttribute = Attribute::getFromString($foundedAttribute);
+        }
       }
     } else {
       $foundedAttribute = collect($allAttributes)

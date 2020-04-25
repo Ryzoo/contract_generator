@@ -7,7 +7,7 @@ use Carbon\Carbon;
 
 class DateOperatorParser extends DefaultParser {
 
-  static function parse($variable, $operatorType, $value)
+  public static function parse($variable, $operatorType, $value):string
   {
     if(!isset($value) || !($value instanceof Carbon)) {
       return 'false';

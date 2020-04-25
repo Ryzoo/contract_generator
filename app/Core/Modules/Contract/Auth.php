@@ -13,67 +13,67 @@ use App\Core\Models\Database\Contract;
 
 class Auth extends ContractModule {
 
-    public function __construct() {
-        $this->slug = 'Auth';
-        $this->name = __('module.auth.title');
-        $this->description = __('module.auth.descriptionConfig');
-        $this->icon = 'fas fa-unlock-alt';
-        $this->isActive = true;
-        $this->place = ContractModulesAvailablePlace::PRE_FORM;
-        $this->configComponent = 'AuthConfigView';
-        $this->required = true;
-        $this->requirements = [
-          Provider::class
-        ];
+  public function __construct() {
+    $this->slug = 'Auth';
+    $this->name = __('module.auth.title');
+    $this->description = __('module.auth.descriptionConfig');
+    $this->icon = 'fas fa-unlock-alt';
+    $this->isActive = TRUE;
+    $this->place = ContractModulesAvailablePlace::PRE_FORM;
+    $this->configComponent = 'AuthConfigView';
+    $this->required = TRUE;
+    $this->requirements = [
+      Provider::class,
+    ];
 
-        $actions = [];
-        $actions['action-' .AvailableRenderActionsHook::BEFORE_FORM_RENDER] = 'AuthBeforeRenderView';
+    $actions = [];
+    $actions['action-' . AvailableRenderActionsHook::BEFORE_FORM_RENDER] = 'AuthBeforeRenderView';
 
-        $this->setDefaultSettings([
-            'type' => AuthType::LOGIN,
-            'password' => ''
-        ]);
-        $this->setHooksComponents($actions);
+    $this->setDefaultSettings([
+      'type' => AuthType::LOGIN,
+      'password' => '',
+    ]);
+    $this->setHooksComponents($actions);
+  }
+
+  public function run(Contract $contract, int $partType, array $attributes = []): bool {
+    parent::run($contract, $partType, $attributes);
+
+    switch ($partType) {
+      case ContractModulePart::GET_CONTRACT:
+        return $this->checkAuthorization();
+      default:
+        return TRUE;
     }
+  }
 
-    public function run(Contract $contract, int $partType, array $attributes = []): bool {
-        parent::run($contract, $partType, $attributes);
+  private function checkAuthorization(): bool {
+    $authType = $this->getModuleSettings('type') ?? AuthType::LOGIN;
 
-        switch ($partType){
-            case ContractModulePart::GET_CONTRACT:
-                return $this->checkAuthorization();
-            default:
-                return true;
+    switch ($authType) {
+      case AuthType::LOGIN:
+        if (\Illuminate\Support\Facades\Auth::user() != NULL) {
+          return TRUE;
         }
-    }
 
-    private function checkAuthorization(): bool{
-        $authType = $this->getModuleSettings('type') ?? AuthType::LOGIN;
+        Response::error(__('response.notAuthorized'), 401);
+        return FALSE;
+      case AuthType::PASSWORD:
+        $password = $this->getModuleSettings('password') ?? '';
 
-        switch ($authType){
-            case AuthType::LOGIN:
-                if( \Illuminate\Support\Facades\Auth::user() != null)
-                    return true;
-                else{
-                    Response::error(__('response.notAuthorized'), 401);
-                    return false;
-                }
-            case AuthType::PASSWORD:
-                $password = $this->getModuleSettings('password') ?? '';
-
-                if($this->getAttribute('password') === $password)
-                    return true;
-                else{
-                    Response::error(__('response.badPassword'), 400);
-                    return false;
-                }
-            default:
-                return false;
+        if ($this->getAttribute('password') === $password) {
+          return TRUE;
         }
-    }
 
-    protected function preventSettingsShow(?array $settings): array{
-        $settings = parent::preventSettingsShow($settings);
-        return $settings;
+        Response::error(__('response.badPassword'), 400);
+        return FALSE;
+      default:
+        return FALSE;
     }
+  }
+
+  protected function preventSettingsShow(?array $settings): array {
+    $settings = parent::preventSettingsShow($settings);
+    return $settings;
+  }
 }

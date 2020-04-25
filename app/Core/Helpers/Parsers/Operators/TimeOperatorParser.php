@@ -7,7 +7,7 @@ use Carbon\Carbon;
 
 class TimeOperatorParser extends DefaultParser {
 
-  static function parse($variable, $operatorType, $value)
+  public static function parse($variable, $operatorType, $value): string
   {
     if(!isset($value)) {
       return 'false';

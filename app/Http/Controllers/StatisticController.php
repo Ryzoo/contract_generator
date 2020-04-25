@@ -7,11 +7,7 @@ use App\Core\Services\StatisticService;
 use Illuminate\Http\Request;
 
 class StatisticController extends Controller {
-
-  /**
-   * @var StatisticService
-   */
-  protected $statisticService;
+  protected StatisticService $statisticService;
 
   public function __construct(StatisticService $statisticService) {
     $this->statisticService = $statisticService;

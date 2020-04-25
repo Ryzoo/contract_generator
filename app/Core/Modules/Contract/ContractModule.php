@@ -8,43 +8,31 @@ use App\Core\Models\Domain\ContractSettings;
 
 abstract class ContractModule {
 
-  public $slug;
+  public string $slug;
 
-  public $name;
+  public ?string $name;
 
-  public $description;
+  public ?string $description;
 
-  public $icon;
+  public string $icon;
 
-  public $place;
+  public int $place;
 
-  public $isActive;
+  public bool $isActive;
 
-  public $configComponent;
+  public string $configComponent;
 
-  public $requirements = [];
+  public array $requirements = [];
 
-  public $required = FALSE;
+  public bool $required = FALSE;
 
-  /**
-   * @var Contract
-   */
-  protected $contract;
+  protected Contract $contract;
 
-  /**
-   * @var array
-   */
-  private $attributes;
+  private array $attributes;
 
-  /**
-   * @var array
-   */
-  private $hooksArray;
+  private array $hooksArray;
 
-  /**
-   * @var array
-   */
-  private $defaultSettings = [];
+  private array $defaultSettings = [];
 
 
   public function run(Contract $contract, int $partType, array $attributes = []): bool {
@@ -70,7 +58,7 @@ abstract class ContractModule {
 
   protected function getModuleSettings(?string $secondKey = NULL) {
     $contractSettings = isset($this->contract) ? $this->contract->settings : NULL;
-    $moduleSettings = isset($contractSettings) ? ((array) $contractSettings->modules)[$this->slug] ?? NULL : null;
+    $moduleSettings = isset($contractSettings) ? ((array) $contractSettings->modules)[$this->slug] ?? NULL : NULL;
 
     if (!isset($moduleSettings)) {
       $moduleSettings = $this->defaultSettings ?? NULL;

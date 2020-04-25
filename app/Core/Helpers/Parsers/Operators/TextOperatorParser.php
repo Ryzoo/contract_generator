@@ -2,5 +2,4 @@
 
 namespace App\Core\Helpers\Parsers\Operators;
 
-class TextOperatorParser extends DefaultParser {
-}
+class TextOperatorParser extends DefaultParser {}

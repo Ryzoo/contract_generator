@@ -23,10 +23,10 @@ class RegisterController extends Controller {
                 'email' => 'required|email|unique:users,email|min:6|max:100',
                 'firstName' => 'required|min:3|max:50',
                 'lastName' => 'required|min:3|max:50',
-                "password" => "required",
-                "rePassword" => "required|same:password",
-                "regulationsAccept" => "required|accepted",
-                "rodoAccept" => "required|accepted",
+                'password' => 'required',
+                'rePassword' => 'required|same:password',
+                'regulationsAccept' => 'required|accepted',
+                'rodoAccept' => 'required|accepted',
             ]
         );
     }

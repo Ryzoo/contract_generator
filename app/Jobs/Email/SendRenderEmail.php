@@ -16,28 +16,14 @@ class SendRenderEmail implements ShouldQueue {
 
   use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-  /**
-   * The number of times the job may be attempted.
-   *
-   * @var int
-   */
-  public $tries = 5;
-
-  /**
-   * @var ContractFormComplete
-   */
-  private $formComplete;
+  public int $tries = 5;
+  private ContractFormComplete $formComplete;
 
   public function __construct(ContractFormComplete $formComplete) {
     $this->formComplete = $formComplete;
   }
 
-  /**
-   * Execute the job.
-   *
-   * @return void
-   */
-  public function handle() {
+  public function handle(): void {
     Mail::to($this->formComplete->user->email)
       ->send(new Render($this->formComplete));
 

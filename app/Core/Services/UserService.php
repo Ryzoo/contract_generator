@@ -8,17 +8,13 @@ use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
-    /**
-     * @var \App\Core\Services\FileService
-     */
-    private $fileService;
+    private FileService $fileService;
 
     public function __construct(FileService $fileService) {
         $this->fileService = $fileService;
     }
 
-    public function changeUserPassword(int $userID, string $newPassword)
-    {
+    public function changeUserPassword(int $userID, string $newPassword): void {
         $user = User::findOrFail($userID);
         $user->update([
             'password' => Hash::make($newPassword)

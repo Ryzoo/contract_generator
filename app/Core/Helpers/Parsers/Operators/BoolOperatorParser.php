@@ -7,7 +7,7 @@ use phpDocumentor\Reflection\Types\Boolean;
 
 class BoolOperatorParser extends DefaultParser {
 
-  static function parse($variable, $operatorType, $value)
+  public static function parse($variable, $operatorType, $value):string
   {
     $value = (bool) $value;
 

@@ -12,15 +12,6 @@ class ForgotPasswordController extends Controller
 {
     use SendsPasswordResetEmails;
 
-    /**
-     * @var \App\Core\Services\AuthService
-     */
-    private $authService;
-
-    public function __construct(AuthService $authService) {
-        $this->authService = $authService;
-    }
-
     protected function sendResetLinkResponse(Request $request, $response)
     {
         return Response::json([

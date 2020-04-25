@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 
 class StatisticService {
 
-  public function getStatistic(int $statisticType) {
+  public function getStatistic(int $statisticType): ?Statistic {
     switch ($statisticType){
       case StatisticType::REGISTRATIONS:
         return $this->getRegistrationStatistic();
@@ -28,7 +28,7 @@ class StatisticService {
     Response::error(__('response.notFoundStatistic'));
   }
 
-  private function getRegistrationStatistic(){
+  private function getRegistrationStatistic(): Statistic {
     $newUsers = User::select(DB::raw('count(*) as count, DATE_FORMAT(created_at, \'%d-%m-%Y\') as date'))
       ->where('created_at', '>', Carbon::now()->subDays(7))
       ->groupBy('date')
@@ -42,7 +42,7 @@ class StatisticService {
     return new Statistic($newUsers, $last ? (new Carbon($last->created_at))->diffForHumans() : null);
   }
 
-  private function getContractStatistic(){
+  private function getContractStatistic(): Statistic {
     $newUsers = Contract::select(DB::raw('count(*) as count, DATE_FORMAT(created_at, \'%d-%m-%Y\') as date'))
       ->where('created_at', '>', Carbon::now()->subDays(7))
       ->groupBy('date')
@@ -56,7 +56,7 @@ class StatisticService {
     return new Statistic($newUsers, $last ? (new Carbon($last->created_at))->diffForHumans() : null);
   }
 
-  private function getSubmissionStatistic(){
+  private function getSubmissionStatistic(): Statistic {
     $newUsers = ContractFormComplete::select(DB::raw('count(*) as count, DATE_FORMAT(created_at, \'%d-%m-%Y\') as date'))
       ->where('created_at', '>', Carbon::now()->subDays(7))
       ->groupBy('date')

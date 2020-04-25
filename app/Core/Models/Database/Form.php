@@ -16,8 +16,7 @@ class Form extends Model
         'formElements' => 'array'
     ];
 
-    public function contract()
-    {
+    public function contract(): \Illuminate\Database\Eloquent\Relations\BelongsTo {
         return $this->belongsTo(Contract::class);
     }
 }

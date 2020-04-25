@@ -10,16 +10,13 @@ use App\Core\Modules\Contract\ContractModule;
 use Illuminate\Support\Collection;
 
 class ContractModuleService {
-    /**
-     * @var Configuration
-     */
-    private $configuration;
+    private Configuration $configuration;
 
     public function __construct(Configuration $configuration) {
         $this->configuration = $configuration;
     }
 
-    public function runPart(Contract $contract, int $partType, array $attributes = []){
+    public function runPart(Contract $contract, int $partType, array $attributes = []): ?bool {
         /** @var ContractModule $module */
         foreach ($this->configuration->availableModules as $module){
             if($contract->checkContractEnabledModules($module->slug)){

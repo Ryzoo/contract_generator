@@ -10,7 +10,9 @@ use App\Core\Models\Domain\Attributes\Attribute;
 class MultiRender {
 
   public static function renderToHTML(?array $value, $type, $valueAsAttributesArray = true):string {
-    if(!isset($value)) return '';
+    if(!isset($value)) {
+      return '';
+    }
 
     $value = $valueAsAttributesArray ? self::prepareAttributeValue($value) : $value;
 
@@ -58,8 +60,7 @@ class MultiRender {
   }
 
   private static function prepareHTMLTable($value) {
-    $itemsList = $value[0];
-    $headers = $value[1];
+    [$itemsList, $headers] = $value;
 
     $header = '<tr>';
     foreach ($headers as $item) {
@@ -79,7 +80,7 @@ class MultiRender {
     return "<br/><table width='100%'><thead>$header</thead><tbody>$body</tbody></table>";
   }
 
-  private static function prepareHTMLList($value, string $glue, bool $valueAsAttributesArray) {
+  private static function prepareHTMLList($value, string $glue, bool $valueAsAttributesArray): string {
     $body = '';
 
     foreach ($value as $items) {
@@ -90,7 +91,7 @@ class MultiRender {
     return "<br/><ul width='100%'>$body</ul>";
   }
 
-  private static function prepareHTMLSeparated($value, string $glue, bool $valueAsAttributesArray) {
+  private static function prepareHTMLSeparated($value, string $glue, bool $valueAsAttributesArray): string {
     if(!$valueAsAttributesArray){
       return implode($glue, $value);
     }

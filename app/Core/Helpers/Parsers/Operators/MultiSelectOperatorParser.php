@@ -6,7 +6,7 @@ use App\Core\Helpers\Parsers\OperatorType;
 
 class MultiSelectOperatorParser extends DefaultParser
 {
-    static function parse($variable, $operatorType, $value)
+    public static function parse($variable, $operatorType, $value):string
     {
         switch ($operatorType) {
             case OperatorType::EQUAL:

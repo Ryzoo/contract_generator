@@ -5,23 +5,10 @@ use App\Core\Models\Database\Contract;
 use App\Core\Models\Domain\ContractSettings;
 
 class CounterResolver {
-  /**
-   * @var string
-   */
-  private $matchString;
-
-  /**
-   * @var int
-   */
-  private $countStart;
-
-  /**
-   * @var ContractSettings
-   */
-  private $contractSettings;
+  private string $matchString;
+  private int $countStart;
 
   public function __construct(string $matchString, int $countStart, Contract $contract) {
-    $this->contractSettings = $contract->settings;
     $this->matchString = $matchString;
     $this->countStart = $countStart;
   }
@@ -41,7 +28,7 @@ class CounterResolver {
     return $text;
   }
 
-  public function getCounter() {
+  public function getCounter(): int {
     return $this->countStart;
   }
 }

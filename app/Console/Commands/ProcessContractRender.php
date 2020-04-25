@@ -12,19 +12,9 @@ use Illuminate\Console\Command;
 
 class ProcessContractRender extends Command
 {
-  /**
-   * @var string
-   */
   protected $signature = 'contract:render';
-
-  /**
-   * @var string
-   */
   protected $description = 'Process one of the contract from list';
-  /**
-   * @var ContractModuleService
-   */
-  private $contractModuleService;
+  private ContractModuleService $contractModuleService;
 
   public function __construct(ContractModuleService $contractModuleService)
   {
@@ -32,8 +22,7 @@ class ProcessContractRender extends Command
     $this->contractModuleService = $contractModuleService;
   }
 
-  public function handle()
-  {
+  public function handle(): void {
     $this->checkNotRenderedAndPending();
 
     $lastNewContracts = ContractFormComplete::with('contract')
@@ -51,19 +40,19 @@ class ProcessContractRender extends Command
     }
   }
 
-  private function checkNotRenderedAndPending()
-  {
+  private function checkNotRenderedAndPending(): void {
     $contractToCancel = ContractFormComplete::with('contract')
       ->where('status', 'LIKE', ContractFormCompleteStatus::PENDING)
       ->where('updated_at', '<', Carbon::now()->subMinutes(1))
       ->get();
 
-    if ($contractToCancel->count() > 0)
+    if ($contractToCancel->count() > 0) {
       foreach ($contractToCancel as $contract) {
         $contract->update([
           'status' => ContractFormCompleteStatus::ERROR
         ]);
         $contract->user->notify(new ContractRenderFinished(ContractFormCompleteStatus::ERROR));
       }
+    }
   }
 }

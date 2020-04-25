@@ -11,5 +11,4 @@ class ElementType {
 
     public const PAGE_BRAKE = 0;
     public const ATTRIBUTE = 1;
-    public const GROUP_ATTRIBUTE = 2;
 }

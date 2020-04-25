@@ -20,7 +20,7 @@ class BlockCounterResolver {
     return $blockCollection;
   }
 
-  public static function resolve(string $matchString, Collection $blockCollection, Contract $contract, int $countStart = 1){
+  public static function resolve(string $matchString, Collection $blockCollection, Contract $contract, int $countStart = 1): array {
     /**
        * @var Block block
        */

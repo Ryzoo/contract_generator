@@ -9,15 +9,12 @@ use App\Core\Helpers\BlockCounterResolver;
 use App\Core\Helpers\PdfRenderer;
 use App\Core\Models\Database\Contract;
 use App\Core\Models\Domain\FormElements\FormElement;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class ContractService {
-
-  /**
-   * @var FormService
-   */
-  private $formService;
+  private FormService $formService;
 
   public function __construct(FormService $formService) {
     $this->formService = $formService;
@@ -33,7 +30,7 @@ class ContractService {
     return $contract;
   }
 
-  public function removeContractById(array $contractList) {
+  public function removeContractById(array $contractList): void {
     foreach ($contractList as $contractId) {
       $contract = Contract::with('form', 'completedForm', 'categories')
         ->findOrFail($contractId);
@@ -47,7 +44,7 @@ class ContractService {
     }
   }
 
-  public function renderContract(int $contractId, Collection $formElements) {
+  public function renderContract(int $contractId, Collection $formElements): PDF {
     $contract = Contract::findOrFail($contractId);
     $blocks = $this->prepareRenderBlock($contract->blocks, $formElements, $contract);
 

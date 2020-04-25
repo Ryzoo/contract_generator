@@ -10,8 +10,8 @@ trait EnumIterator {
 
     public static function getList(): array
     {
-        $refl = new ReflectionClass(__CLASS__);
-        return $refl->getConstants();
+        $ref = new ReflectionClass(__CLASS__);
+        return $ref->getConstants();
     }
 
     public static function getName(int $type):?string {

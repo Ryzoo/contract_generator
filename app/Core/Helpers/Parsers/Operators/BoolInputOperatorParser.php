@@ -6,7 +6,7 @@ use App\Core\Helpers\Parsers\OperatorType;
 
 class BoolInputOperatorParser extends DefaultParser
 {
-    static function parse($variable, $operatorType, $value)
+    public static function parse($variable, $operatorType, $value):string
     {
       $value = isset($value) ? (bool)$value->bool : false;
 

@@ -10,22 +10,22 @@ use App\Http\Requests\Attributes\VariableDraftUpdate;
 
 class VariableDraftController extends Controller {
   public function get() {
-    return Response::success(VariableDraft::all());
+    Response::success(VariableDraft::all());
   }
 
   public function add(VariableDraftAdd $request) {
     $draft = VariableDraft::create($request->validated());
-    return Response::success($draft->id);
+    Response::success($draft->id);
   }
 
   public function delete(VariableDraftDelete $request, VariableDraft $draft) {
     $draft->forceDelete();
-    return Response::success();
+    Response::success();
   }
 
   public function update(VariableDraftUpdate $request, VariableDraft $draft) {
     $draft->update($request->validated());
     $draft->save();
-    return Response::success();
+    Response::success();
   }
 }

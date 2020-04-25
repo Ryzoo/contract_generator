@@ -8,15 +8,8 @@ use App\Core\Models\Domain\Attributes\Attribute;
 use Illuminate\Support\Collection;
 
 class OperationalAttributeResolver extends AttributeResolver {
-  /**
-   * @var Collection
-   */
-  private $attributes;
-
-  /**
-   * @var string
-   */
-  private $type;
+  private Collection $attributes;
+  private string $type;
 
   public function __construct(Collection $formElements, string $type) {
     parent::__construct($formElements);
@@ -51,9 +44,7 @@ class OperationalAttributeResolver extends AttributeResolver {
       ->where('id', $id)
       ->first();
 
-    $value = isset($attribute) ? $attribute->getOperationalValue($this->type) : 0;
-
-    return $value;
+    return isset($attribute) ? $attribute->getOperationalValue($this->type) : 0;
   }
 
 }

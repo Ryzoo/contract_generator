@@ -4,43 +4,17 @@
 namespace App\Core\Helpers;
 
 
-use App\Core\Enums\ConditionalType;
 use App\Core\Models\Database\Contract;
 use App\Core\Models\Domain\ContractSettings;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Collection;
-use PDF;
 
 class PdfRenderer {
-
-  /**
-   * @var Contract
-   */
-  private $contract;
-
-  /**
-   * @var Collection
-   */
-  private $blocks;
-
-  /**
-   * @var Collection
-   */
-  private $formElements;
-
-  /**
-   * @var \PDF
-   */
-  private $pdfInstance;
-
-  /**
-   * @var string
-   */
-  private $fullHtmlText;
-
-  /**
-   * @var ContractSettings $contractSettings
-   */
-  private $contractSettings;
+  private Collection $blocks;
+  private Collection $formElements;
+  private PDF $pdfInstance;
+  private string $fullHtmlText;
+  private ContractSettings $contractSettings;
 
   public static function blockHtmlTemplate(string $blockHtml): string {
     return $blockHtml . '';
@@ -51,13 +25,12 @@ class PdfRenderer {
   }
 
   public function setParameters(Contract $contract, Collection $blocks, Collection $formElements): void {
-    $this->contract = $contract;
     $this->contractSettings = $contract->settings;
     $this->blocks = $blocks;
     $this->formElements = $formElements;
   }
 
-  public function preparePdf() {
+  public function preparePdf(): PDF {
     $this->addTag('html');
     $this->addTag('head');
     $this->configurePdf();
@@ -81,7 +54,7 @@ class PdfRenderer {
   }
 
   private function configurePdf(): void {
-    $this->pdfInstance = PDF::setPaper('a4', 'portrait')
+    $this->pdfInstance = \PDF::setPaper('a4', 'portrait')
       ->setWarnings(TRUE)
       ->setOptions([
         'defaultFont' => $this->contractSettings->font

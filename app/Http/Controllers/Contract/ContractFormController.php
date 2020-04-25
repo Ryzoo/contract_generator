@@ -11,10 +11,7 @@ use App\Http\Requests\Contracts\ContractFormGetRequest;
 use App\Http\Resources\ContractInfo;
 
 class ContractFormController extends Controller {
-  /**
-   * @var ContractModuleService
-   */
-  private $contractModuleService;
+  private ContractModuleService $contractModuleService;
 
   public function __construct(ContractModuleService $contractModuleService) {
     $this->contractModuleService = $contractModuleService;

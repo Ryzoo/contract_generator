@@ -11,13 +11,7 @@ use Illuminate\Support\Facades\Response;
 
 class AuthController extends Controller
 {
-    /**
-     * @var \App\Core\Services\AuthService
-     */
-    private $authService;
-
     public function __construct(AuthService $authService) {
-        $this->authService = $authService;
         $this->middleware('auth:token');
     }
 

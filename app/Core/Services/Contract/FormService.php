@@ -10,11 +10,7 @@ use App\Core\Models\Domain\FormElements\FormElement;
 use Illuminate\Support\Collection;
 
 class FormService {
-
-  /**
-   * @var ConditionalService
-   */
-  private $conditionalService;
+  private ConditionalService $conditionalService;
 
   public function __construct(ConditionalService $conditionalService) {
     $this->conditionalService = $conditionalService;

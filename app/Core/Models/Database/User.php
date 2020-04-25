@@ -25,8 +25,7 @@ class User extends Authenticatable
         'deleted_at',
     ];
 
-    public function completedForm()
-    {
+    public function completedForm(): \Illuminate\Database\Eloquent\Relations\HasMany {
         return $this->hasMany(ContractFormComplete::class);
     }
 }

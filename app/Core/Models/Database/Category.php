@@ -7,11 +7,9 @@ use App\Core\Models\Database\Contract;
 
 class Category extends Model
 {
-
     protected $guarded = [];
 
-    public function contracts()
-    {
+    public function contracts(): \Illuminate\Database\Eloquent\Relations\BelongsToMany {
         return $this->belongsToMany(Contract::class);
     }
 }

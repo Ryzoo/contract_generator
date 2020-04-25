@@ -15,10 +15,7 @@ class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
-    /**
-     * @var \App\Core\Services\AuthService
-     */
-    private $authService;
+    private AuthService $authService;
 
     public function __construct(AuthService $authService) {
         $this->authService = $authService;

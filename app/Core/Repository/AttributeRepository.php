@@ -8,7 +8,6 @@ use App\Core\Enums\AttributeType;
 use App\Core\Models\Domain\Attributes\Attribute;
 
 class AttributeRepository {
-
     public function getListOfAttributes():array {
         $attributeList = array();
         $attributeTypeList = AttributeType::getList();
