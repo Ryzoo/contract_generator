@@ -43,10 +43,10 @@ export default {
       })
         .then((response) => {
           Notify.push(this.$t('module.provider.successNotify'), Notify.SUCCESS)
+          this.$router.push('/panel/formSubmission')
         })
         .finally(() => {
           this.isLoading = false
-          this.$router.push('/panel/formSubmission')
         })
     }
   }

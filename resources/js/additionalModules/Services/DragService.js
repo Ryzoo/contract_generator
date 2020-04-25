@@ -6,6 +6,7 @@ export default class DragService {
         group: 'blocks',
         draggable: '.block',
         handle: '.block-handle',
+        filter: '.ignore-elements',
         animation: 150,
         fallbackOnBody: true,
         swapThreshold: 0.65,
@@ -17,6 +18,9 @@ export default class DragService {
               placeIndex: evt.newIndex
             })
           }
+        },
+        onMove: (evt) => {
+          return evt.related.firstElementChild.firstElementChild.dataset.id > 1
         }
       })
     }

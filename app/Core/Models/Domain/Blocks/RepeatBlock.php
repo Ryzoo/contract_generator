@@ -28,6 +28,7 @@ class RepeatBlock extends Block {
   protected function buildSettings() {
     $this->settings = [
       'repeatAttributeId' => NULL,
+      'separator' => '',
     ];
   }
 
@@ -107,6 +108,7 @@ class RepeatBlock extends Block {
       ->where('conditionalType', ConditionalType::SHOW_ON)
       ->all());
 
+    $valueCount = count($this->repeatAttribute->value);
     foreach (collect($this->repeatAttribute->value) as $key => $value){
       $isActive = $conditionalList
         ->every(static function ($element) use ($self, $key) {
@@ -126,9 +128,24 @@ class RepeatBlock extends Block {
             $htmlString .= PdfRenderer::blockHtmlTemplate($tempChild->renderToHtml($attributes));
           }
         }
+
+        if(($valueCount - 1) !== $key){
+          $htmlString .= $this->getSeparator();
+        }
       }
     }
 
     return $htmlString;
+  }
+
+  private function isSeparator():bool{
+    $separator = $this->settings['separator'];
+    return isset($separator) && $separator !== '';
+  }
+
+  private function getSeparator():string{
+    if(!$this->isSeparator()) return '';
+    $separator = $this->settings['separator'];
+    return "<p>$separator</p>";
   }
 }

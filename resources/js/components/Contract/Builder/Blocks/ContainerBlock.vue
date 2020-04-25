@@ -1,6 +1,6 @@
 <template>
   <div
-    class="block"
+    :class="currentBlock.id > 1 ? 'block' : 'block ignore-elements'"
     :blockid="currentBlock.id">
     <div class="accordion-header" :data-id="0">
       <BlockHeader
@@ -51,9 +51,6 @@ export default {
     showBlockModal () {
       this.$emit('show-block-modal')
     }
-    // isPageBreaker () {
-    //   return this.block.blockType === BlockTypeEnum.PAGE_DIVIDE_BLOCK
-    // }
   },
   watch: {
     block (newValue) {

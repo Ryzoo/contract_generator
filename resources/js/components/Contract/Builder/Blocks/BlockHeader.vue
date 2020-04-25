@@ -1,5 +1,5 @@
 <template>
-  <div :data-id="block.id">
+  <div :class="block.id > 1 ? '' : 'ignore-elements'" :data-id="block.id">
     <div class="block-header accordion-body"
       v-if="block.blockType !== BlockTypeEnum.PAGE_DIVIDE_BLOCK">
       <div class="block-handle">
@@ -14,7 +14,7 @@
           {{ block.blockName | truncate}}
         </h5>
       </div>
-      <div class="block-header--action mr-4">
+      <div class="block-header--action mr-4 text-right">
         <div v-if="block.blockType === BlockTypeEnum.REPEAT_BLOCK">
           <v-select
             persistent-hint
@@ -30,6 +30,9 @@
           />
         </div>
         <!--      <v-btn small text color="accent" @click="saveAsPart()"> Save as part <v-icon small right>fa-save</v-icon> </v-btn>-->
+        <v-btn small text color="info" @click="copyBlock()"> Copy
+          <v-icon small right>fa-copy</v-icon>
+        </v-btn>
         <v-btn small text color="primary" @click="editBlock()"> Edit
           <v-icon small right>fa-edit</v-icon>
         </v-btn>
@@ -94,6 +97,9 @@ export default {
     },
     toUpper (text) {
       return text.replace(/([A-Z])/g, ' $1').trim().toUpperCase()
+    },
+    copyBlock () {
+      this.$store.dispatch('builder_copyBlock', this.block)
     },
     editBlock () {
       this.$store.dispatch('builder_setActiveBlock', {

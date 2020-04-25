@@ -67,7 +67,7 @@
       </template>
       <v-time-picker format="24hr" v-model="currentValue" @input="timeDialog = false"></v-time-picker>
     </v-menu>
-    <v-select
+    <v-autocomplete
       v-if="acceptedType([type.SELECT])"
       :label="$t('form.variableForm.defaultValue')"
       hide-details

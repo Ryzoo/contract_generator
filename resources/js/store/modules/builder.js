@@ -73,10 +73,23 @@ const actions = {
   },
   builder_removeBlock: (context, data) => {
     context.commit('BUILDER_REMOVE_BLOCK', data)
+  },
+  builder_copyBlock: (context, data) => {
+    context.commit('BUILDER_COPY_BLOCK', data)
   }
 }
 
 const mutations = {
+  BUILDER_COPY_BLOCK: (state, block) => {
+    state.builder.idBlockIncrement += 1
+    const newBlockData = {
+      ...block,
+      blockName: block.blockName + ' copy',
+      id: state.builder.idBlockIncrement,
+      parentId: block.parentId
+    }
+    state.builder.blocks = copyBlockTo(state.builder.blocks, block.id, newBlockData)
+  },
   BUILDER_REMOVE_BLOCK: (state, blockId) => {
     state.builder.blocks = removeFromData(state.builder.blocks, blockId)
   },
@@ -88,7 +101,7 @@ const mutations = {
     }
 
     state.builder.blocks = removeFromData(state.builder.blocks, blockId)
-    state.builder.blocks = addNewBlockToCurrentBlocks(state.builder.blocks, copiedBlock, placeIndex)
+    state.builder.blocks = addNewBlockToCurrentBlocks(state.builder.blocks, copiedBlock, parseInt(placeIndex) === 0 && parseInt(destinationBlock) === 0 ? 1 : placeIndex)
   },
   BUILDER_ATTRIBUTE_IMPORT: (state, attributes) => {
     attributes.forEach(attribute => {
@@ -177,7 +190,9 @@ const mutations = {
       })
     }
 
-    state.builder.blocks = Object.assign([], updateBlock(state.builder.blocks, data))
+    state.builder.blocks = [
+      ...updateBlock(state.builder.blocks, data)
+    ]
   },
   BUILDER_EDIT_VARIABLE: (state, data) => {
     state.builder.variables = state.builder.variables.map((attribute) => {
@@ -401,6 +416,10 @@ const getters = {
   }
 }
 
+const copyBlockTo = (blocks, copyBlockId, block) => {
+  const returnBlockIndex = getBlockIndexById(blocks, copyBlockId)
+  return addNewBlockToCurrentBlocks(blocks, block, returnBlockIndex)
+}
 const getAttributeById = (attributes, id) => attributes.find(x => parseInt(x.id) === parseInt(id))
 const getBlockById = (blocks, id) => {
   let returnBlock = null
@@ -416,6 +435,21 @@ const getBlockById = (blocks, id) => {
   })
 
   return returnBlock
+}
+const getBlockIndexById = (blocks, id) => {
+  let returnIndexBlock = null
+
+  blocks.forEach((x, index) => {
+    if (parseInt(x.id) === parseInt(id)) {
+      returnIndexBlock = index
+    }
+    if (x.content.blocks) {
+      const block = getBlockIndexById(x.content.blocks, id)
+      if (block) returnIndexBlock = block
+    }
+  })
+
+  return returnIndexBlock
 }
 const removeFromData = (dataArray, idToRemove) => {
   if (dataArray.find(x => x.id === idToRemove)) {

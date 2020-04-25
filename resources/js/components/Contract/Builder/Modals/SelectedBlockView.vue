@@ -17,25 +17,28 @@
 
       <v-tab-item :key="0" value="tab-0" class="pt-3">
         <v-col cols="12">
-          <v-text-field v-model="block.blockName" label="Block name" outline/>
+          <v-text-field v-model="block.blockName" label="Block name" outlined hide-details dense />
+        </v-col>
+        <v-col cols="12" v-if="block.blockType === BlockTypeEnum.REPEAT_BLOCK">
+          <v-textarea v-model="block.settings.separator" label="Separator text" rows="1" dense persistent-hint hint="This text will separate all of the repeat blocks" outlined auto-grow clearable />
+        </v-col>
+        <v-col cols="12" v-if="block.blockType === BlockTypeEnum.PAGE_DIVIDE_BLOCK">
+          <v-switch
+            outlined
+            hide-details
+            dense
+            v-model="block.settings.isBreaker"
+            label="Should be a page breaker?"
+          />
         </v-col>
       </v-tab-item>
 
       <v-tab-item :key="1" value="tab-1" class="pt-3">
         <QueryBuilder
-          v-if="block.blockType !== pageDivider"
           :id="block.id"
           :conditionals="block.conditionals"
           @conditional-change="onConditionalChange"
         />
-        <v-switch
-          v-if="block.blockType === pageDivider"
-          outlined
-          hide-details
-          dense
-          v-model="block.settings.isBreaker"
-          label="Should be a page breaker?"
-        ></v-switch>
       </v-tab-item>
     </v-tabs>
     </v-card-text>
@@ -57,7 +60,7 @@ export default {
   data () {
     return {
       currentTab: null,
-      pageDivider: BlockTypeEnum.PAGE_DIVIDE_BLOCK
+      BlockTypeEnum: BlockTypeEnum
     }
   },
   computed: {

@@ -32,8 +32,10 @@ class TextBlock extends Block {
 
   protected function validateContent(): bool {
     Validator::validate($this->content, [
-      'text' => 'string',
+      'text' => 'nullable|string',
     ]);
+
+    $this->content['text'] = $this->content['text'] ?? '';
 
     return TRUE;
   }

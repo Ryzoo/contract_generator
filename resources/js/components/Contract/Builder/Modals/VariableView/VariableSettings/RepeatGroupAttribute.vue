@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col cols="12">
-      <v-select
+      <v-autocomplete
         :items="attributesToAggregate.map((x) => ({
           text: x.attributeName,
           value: x.id
@@ -15,7 +15,7 @@
         dense
         outlined
         @change="changeAttributes"
-      ></v-select>
+      />
     </v-col>
     <v-col cols="12">
       <v-checkbox

@@ -84,7 +84,7 @@ abstract class FormElement implements IFormElement {
                 $attribute = Attribute::getFromString((array) $value['attribute']);
                 return new AttributeFormElement($parentBlockId, $attribute);
             case ElementType::PAGE_BRAKE:
-                return new PageDividerFormElement($parentBlockId, $value['blockName']);
+                return new PageDividerFormElement($parentBlockId, $value['elementName']);
         }
 
         throw new ErrorException("Form element {$formElementType} was not found");

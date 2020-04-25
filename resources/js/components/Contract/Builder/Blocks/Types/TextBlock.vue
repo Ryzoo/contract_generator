@@ -237,6 +237,12 @@ export default {
     }
   },
   mounted () {
+    this.$store.dispatch('builder_blockUpdateContent', {
+      id: this.block.id,
+      content: {
+        text: this.block.content.text || ''
+      }
+    })
     this.initEditor()
   },
   methods: {
