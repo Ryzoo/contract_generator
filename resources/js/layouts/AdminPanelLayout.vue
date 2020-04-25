@@ -246,7 +246,7 @@ export default {
         },
         {
           title: this.$t('navigation.formSubmission'),
-          icon: 'fa-file-contract fa-fw',
+          icon: 'fa-clipboard-check fa-fw',
           roles: [Roles.ADMIN, Roles.CLIENT],
           link: '/panel/formSubmission'
         },
