@@ -13,13 +13,12 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Mail;
 
 class SendRenderEmail implements ShouldQueue {
-
   use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
   public int $tries = 5;
-  private ContractFormComplete $formComplete;
+  private $formComplete;
 
-  public function __construct(ContractFormComplete $formComplete) {
+  public function __construct($formComplete) {
     $this->formComplete = $formComplete;
   }
 

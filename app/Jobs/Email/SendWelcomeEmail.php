@@ -15,9 +15,9 @@ class SendWelcomeEmail implements ShouldQueue {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public int $tries = 5;
-    protected User $userModel;
+    protected $userModel;
 
-    public function __construct(User $userModel) {
+    public function __construct($userModel) {
         $this->userModel = $userModel;
     }
 
