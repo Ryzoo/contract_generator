@@ -34,6 +34,22 @@ class ContractController extends Controller {
     $this->contractModuleService = $contractModuleService;
   }
 
+  public function makeOnline(Contract $contract) {
+    $contract->update([
+      'isAvailable' => true,
+    ]);
+
+    return Response::success();
+  }
+
+  public function makeOffline(Contract $contract) {
+    $contract->update([
+      'isAvailable' => false,
+    ]);
+
+    return Response::success();
+  }
+
   public function getCollection(Request $request) {
     Response::success(new ContractInfoCollection(Contract::with('categories')
       ->latest()

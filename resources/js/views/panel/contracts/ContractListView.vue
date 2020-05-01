@@ -22,10 +22,12 @@
                     :items="contractItems"
                 >
                     <template v-slot:item.isAvailable="{ item }">
-                      <div class="table-icons">
-                        <v-icon v-if="item.isAvailable" color="success">fas fa-power-off</v-icon>
-                        <v-icon v-else color="error">fas fa-power-off</v-icon>
-                      </div>
+                      <v-btn small v-if="item.isAvailable" color="success" @click="makeContractOffline(item.id)">
+                        <v-icon small>fas fa-power-off</v-icon>
+                      </v-btn>
+                      <v-btn small v-else color="error" @click="makeContractOnline(item.id)">
+                        <v-icon small>fas fa-power-off</v-icon>
+                      </v-btn>
                     </template>
                     <template v-slot:item.action="{ item }">
                         <div class="table-icons">
@@ -148,6 +150,42 @@ export default {
     },
     goToEdit (id) {
       this.$router.push(`/panel/contracts/builder/${id}`)
+    },
+    makeContractOffline (id) {
+      this.isLoaded = false
+      axios.put(`/contract/${id}/status/offline`)
+        .then(response => {
+          this.contractItems = this.contractItems.map((x) => {
+            if (x.id === id) {
+              return {
+                ...x,
+                isAvailable: false
+              }
+            }
+            return x
+          })
+        })
+        .finally(() => {
+          this.isLoaded = true
+        })
+    },
+    makeContractOnline (id) {
+      this.isLoaded = false
+      axios.put(`/contract/${id}/status/online`)
+        .then(response => {
+          this.contractItems = this.contractItems.map((x) => {
+            if (x.id === id) {
+              return {
+                ...x,
+                isAvailable: true
+              }
+            }
+            return x
+          })
+        })
+        .finally(() => {
+          this.isLoaded = true
+        })
     }
   },
   mounted () {

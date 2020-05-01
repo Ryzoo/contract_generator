@@ -110,6 +110,9 @@ Route::prefix('contract')->group(static function () {
   Route::post('/{contract}/render', 'ContractController@render');
   Route::post('/{contract}/retry', 'ContractController@retry');
 
+  Route::put('/{contract}/status/online', 'ContractController@makeOnline');
+  Route::put('/{contract}/status/offline', 'ContractController@makeOffline');
+
   Route::put('/{contract}', 'ContractController@update')
     ->middleware(['middleware' => 'auth:token']);
 
