@@ -1,15 +1,34 @@
 <template>
-    <v-row>
+    <section>
+      <v-row>
         <v-col>
-            <h3>{{$t("pages.panel.contracts.builder.header")}} <span class="light-text" v-if="contract">{{contract.name}}</span></h3>
-            <v-btn color="primary mt-3" small @click="showAttributeModal">{{$t("pages.panel.contracts.builder.attributeList")}}</v-btn>
+          <h3>{{$t("pages.panel.contracts.builder.header")}} <span class="light-text" v-if="contract">{{contract.name}}</span></h3>
+          <v-btn color="primary mt-3" small @click="showAttributeModal">{{$t("pages.panel.contracts.builder.attributeList")}}</v-btn>
         </v-col>
         <v-col cols="auto">
-            <v-btn small text color="primary" @click="goBack">{{$t("base.button.configuration_back")}}</v-btn>
-            <v-btn small class="mx-2" outlined color="primary" @click="saveActual(false)">{{$t("base.button.save")}}</v-btn>
-            <v-btn small color="primary" @click="saveActual(true)">{{$t("base.button.save_exit")}}</v-btn>
+          <v-row>
+            <v-col>
+              <v-btn small block color="primary" outlined @click="goBack">{{$t("base.button.configuration_back")}}</v-btn>
+            </v-col>
+            <v-col>
+              <v-btn small block color="primary" @click="saveActual(true)">{{$t("base.button.save_exit")}}</v-btn>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col class="pt-4">
+              <v-switch v-model="autoSave" hide-details>
+                <template v-slot:label>
+                  Autozapis
+                </template>
+              </v-switch>
+            </v-col>
+            <v-col>
+              <v-text-field append-icon="far fa-clock" dense v-model="autoSaveTime" :disabled="!autoSave" type="number" min="1" max="10" label="Minuty" outlined hide-details></v-text-field>
+            </v-col>
+          </v-row>
         </v-col>
-    </v-row>
+      </v-row>
+    </section>
 </template>
 
 <script>
@@ -18,7 +37,9 @@ export default {
   data () {
     return {
       contract: null,
-      isLoaded: true
+      isLoaded: true,
+      autoSave: true,
+      autoSaveTime: 5
     }
   },
   methods: {
@@ -58,10 +79,15 @@ export default {
               this.isLoaded = true
             })
         })
+    },
+    runAutoSave () {
+      if (this.autoSave) { this.saveActual() }
+      setTimeout(this.runAutoSave, this.autoSaveTime * 10000)
     }
   },
   mounted () {
     this.init()
+    setTimeout(this.runAutoSave, this.autoSaveTime * 10000)
   }
 }
 </script>
