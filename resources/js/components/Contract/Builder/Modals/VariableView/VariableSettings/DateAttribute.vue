@@ -10,6 +10,17 @@
         @change="update"
       />
     </v-col>
+    <v-col cols="12">
+      <v-text-field
+        hide-details
+        dense
+        outlined
+        type="text"
+        v-model="settingsData.defaultFormat"
+        label="Default date format"
+        @change="update"
+      />
+    </v-col>
   </v-row>
 </template>
 
