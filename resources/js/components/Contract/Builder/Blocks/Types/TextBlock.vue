@@ -201,6 +201,7 @@ export default {
   },
   data () {
     return {
+      actualText: '',
       keepInBounds: true,
       editor: null,
       query: null,
@@ -219,6 +220,14 @@ export default {
       deep: true,
       handler () {
         this.variableSuggestions = this.variableUpdated
+      }
+    },
+    block: {
+      deep: true,
+      handler (newValue) {
+        if (this.editor && this.actualText !== newValue.content.text) {
+          this.editor.setContent(this.parseBlockContent(newValue))
+        }
       }
     }
   },
@@ -331,6 +340,7 @@ export default {
             $(this).replaceWith(`{${$(this).attr('data-mention-id')}}`)
           })
 
+          this.actualText = `${styles} ${element.prop('innerHTML')}`
           this.$store.dispatch('builder_blockUpdateContent', {
             id: this.block.id,
             content: {

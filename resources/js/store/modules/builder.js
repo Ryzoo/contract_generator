@@ -281,19 +281,7 @@ const mutations = {
   },
   BUILDER_REMOVE_VARIABLE: (state, Id) => {
     state.builder.variables = state.builder.variables.filter((item) => item.id !== Id)
-    state.builder.blocks = state.builder.blocks.map(x => {
-      const replaceText = `{${Id}}`
-
-      if (x.conditionals) {
-        x.conditionals = x.conditionals.filter(c => !c.content.includes(replaceText))
-      }
-
-      if (x.content.text) {
-        x.content.text = x.content.text.replace(replaceText, '')
-      }
-
-      return x
-    })
+    state.builder.blocks = removeVarIdFromBlocks(state.builder.blocks, Id)
   }
 }
 
@@ -490,6 +478,25 @@ const addNewBlockToCurrentBlocks = (blocks, newBlock, index) => {
   }
 
   return blocks
+}
+const removeVarIdFromBlocks = (blocks, varId) => {
+
+  const regex = new RegExp(`\\{${varId}\\}|\\{${varId}:counter\\}|\\{${varId}:\\d+\\}|\\{${varId}:value\\}|${varId}|${varId}:counter|${varId}:\\d+|${varId}:value`, 'gm')
+  return blocks.map((x) => {
+    if (x.conditionals) {
+      x.conditionals = x.conditionals.filter(c => !regex.test(c.content))
+    }
+
+    if (x.content.text) {
+      x.content.text = x.content.text.replace(regex, '')
+    }
+
+    if (x.content.blocks) {
+      x.content.blocks = removeVarIdFromBlocks(x.content.blocks, varId)
+    }
+
+    return x
+  })
 }
 
 export default {
