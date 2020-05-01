@@ -52,11 +52,17 @@ export default {
   },
   watch: {
     attribute (newValue) {
-      this.attributeValue = [
-        ...newValue.value[0]
-      ]
-      this.lastLength = newValue.value.length
-      this.activeCount = newValue.value[0].filter((a) => a.isActive).length
+      if (newValue.settings.isMultiUse) {
+        this.attributeValue = [
+          ...newValue.value[0]
+        ]
+      } else {
+        this.attributeValue = [
+          ...newValue.value
+        ]
+      }
+      this.lastLength = this.attributeValue.length
+      this.activeCount = this.attributeValue.filter(x => x.isActive).length
     }
   },
   methods: {

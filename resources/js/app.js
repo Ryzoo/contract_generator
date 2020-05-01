@@ -58,6 +58,13 @@ Vue.mixin({
   }
 })
 
+Vue.filter('striphtml', function (value) {
+  const div = document.createElement('div')
+  div.innerHTML = value
+  const text = div.textContent || div.innerText || ''
+  return text
+})
+
 const app = new Vue({
   vuetify,
   el: '#app',

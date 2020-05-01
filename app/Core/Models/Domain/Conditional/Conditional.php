@@ -79,7 +79,7 @@ abstract class Conditional implements IConditional {
       }
     }
 
-    preg_match_all('/"id": (\d+):value,/', $this->content, $output_array);
+    preg_match_all('/"id": "(\d+):value",/', $this->content, $output_array);
 
     if (isset($output_array[1]) && is_array($output_array[1])) {
       foreach ($output_array[1] as $item) {
@@ -87,7 +87,15 @@ abstract class Conditional implements IConditional {
       }
     }
 
-    preg_match_all('/"id": (\d+):(\d+),/', $this->content, $output_array);
+    preg_match_all('/"id": "(\d+):(\d+)",/', $this->content, $output_array);
+
+    if (isset($output_array[1]) && is_array($output_array[1])) {
+      foreach ($output_array[1] as $item) {
+        $allElements->push($item);
+      }
+    }
+
+    preg_match_all('/"id": "(\d+):counter",/', $this->content, $output_array);
 
     if (isset($output_array[1]) && is_array($output_array[1])) {
       foreach ($output_array[1] as $item) {
