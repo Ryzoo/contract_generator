@@ -5,6 +5,7 @@ namespace App\Core\Services\Contract;
 use App\Core\Enums\ElementType;
 use App\Core\Models\Database\Contract;
 use App\Core\Models\Database\Form;
+use App\Core\Models\Domain\Attributes\Attribute;
 use App\Core\Models\Domain\FormElements\AttributeFormElement;
 use App\Core\Models\Domain\FormElements\FormElement;
 use Illuminate\Support\Collection;
@@ -23,13 +24,13 @@ class FormService {
 
     /* @var $block \App\Core\Models\Domain\Blocks\Block */
     foreach ($blocks as $block) {
-      $elements = $this->reduceElementsWithSameAttribute($block->getFormElements($contract), $formElementsCollection);
-      $formElementsCollection = $formElementsCollection->merge($elements);
+      $formElementsCollection = $formElementsCollection->merge($block->getFormElements($contract));
     }
-    $formElementsCollection = $formElementsCollection->unique();
 
     $formElementsCollection = $this->conditionalService
       ->initializeConditionalInFormElementsCollection($contract, $formElementsCollection);
+    $formElementsCollection = $formElementsCollection->unique();
+    $formElementsCollection = $this->reduceElementsWithSameAttribute($formElementsCollection);
 
     if (isset($contract->form)) {
       $contract->form->update([
@@ -44,20 +45,40 @@ class FormService {
     ]);
   }
 
-  private function reduceElementsWithSameAttribute(Collection $newElements, Collection $existElements): Collection {
-    return $newElements->reject(static function (FormElement $value) use ($existElements) {
+  private function reduceElementsWithSameAttribute(Collection $existElements): Collection {
+    $newCollection = collect();
 
-      if ($value->elementType === ElementType::ATTRIBUTE) {
-        return $existElements->some(static function (FormElement $item) use ($value) {
-          if ($item->elementType !== ElementType::ATTRIBUTE) {
-            return FALSE;
-          }
-
-          return $value->attribute === $item->attribute;
-        });
+    /**
+     * @var FormElement $element
+     */
+    foreach ($existElements as $element){
+      if($element->elementType !== ElementType::ATTRIBUTE){
+        $newCollection->push($element);
+        continue;
       }
+      $atrId = $element->attribute->id;
+      $sameElement = $newCollection->first(static function(FormElement $value)use($atrId){
+        return $value->elementType === ElementType::ATTRIBUTE && $value->attribute->id === $atrId;
+      });
+      if(!isset($sameElement)){
+        $newElement = clone $element;
+        $newElement->conditionals = $this->getAllConditionalsFromAttribute($existElements, $atrId);
+        $newCollection->push($newElement);
+      }
+    }
 
-      return FALSE;
-    });
+    return $newCollection;
+  }
+
+  private function getAllConditionalsFromAttribute(Collection $existElements, int $atrId): array {
+    $collectionOfConditionals = collect();
+
+    foreach ($existElements as $element){
+      if($element->elementType === ElementType::ATTRIBUTE && $element->attribute->id === $atrId){
+        $collectionOfConditionals->push(collect($element->conditionals));
+      }
+    }
+
+    return $collectionOfConditionals->toArray();
   }
 }

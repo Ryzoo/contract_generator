@@ -52,7 +52,15 @@ abstract class Conditional implements IConditional {
     }
 
     foreach ($arrayOfConditional as $conditional) {
-      $returnedArray[] = self::getFromString((array) $conditional);
+      if (is_array($conditional) && !isset($conditional['conditionalType'])) {
+        $arIn = [];
+        foreach ((array) $conditional as $condOne) {
+          $arIn []= self::getFromString((array) $condOne);
+        }
+        $returnedArray[] = $arIn;
+      }else{
+        $returnedArray[] = self::getFromString((array) $conditional);
+      }
     }
 
     return $returnedArray;

@@ -132,7 +132,7 @@ abstract class Block implements IBlock {
       }
     }
 
-    return $variableArray->uniqueStrict('1');
+    return $variableArray;
   }
 
   public function getFormElements(Contract $contract): Collection {

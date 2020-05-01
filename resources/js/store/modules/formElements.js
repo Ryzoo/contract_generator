@@ -191,7 +191,6 @@ const mutations = {
       if (e.elementType === FormElementsEnum.ATTRIBUTE) {
         e.isActive = ConditionalParser.validate(ConditionalEnum.SHOW_ON, e) ||
           (e.attribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP && !!e.attribute.settings.isMultiUse)
-
         if (e.attribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {
           if (e.attribute.settings.isMultiUse) {
             e.attribute.value = e.attribute.value.map((x, index) => {

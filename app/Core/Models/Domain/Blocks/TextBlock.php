@@ -67,7 +67,7 @@ class TextBlock extends Block {
       $variableArray->push([$this->id, $output]);
     }
 
-    return $variableArray->uniqueStrict('1');
+    return $variableArray;
   }
 
   public function renderToHtml(Collection $attributes, Attribute $repeatAttribute = null, $repeatValue = null): string {

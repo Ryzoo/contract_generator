@@ -61,8 +61,8 @@ export default {
           ...newValue.value
         ]
       }
-      this.lastLength = this.attributeValue.length
-      this.activeCount = this.attributeValue.filter(x => x.isActive).length
+      this.lastLength = newValue.settings.isMultiUse ? newValue.value.length : 1
+      this.activeCount = newValue.settings.isMultiUse ? newValue.value[0].filter(x => x.isActive).length : newValue.value.filter(x => x.isActive).length
     }
   },
   methods: {

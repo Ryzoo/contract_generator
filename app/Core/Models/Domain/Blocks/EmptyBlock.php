@@ -48,7 +48,7 @@ class EmptyBlock extends Block {
             $variableArray = $variableArray->merge($block->findVariable($contract));
         }
 
-        return $variableArray->uniqueStrict('1');
+        return $variableArray;
     }
 
     public function counterResolve(string $matchString, int $countStart, Contract $contract): int {

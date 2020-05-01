@@ -9,6 +9,12 @@ class ConditionalParser {
 
   validate (conditionalType, attribute) {
     if (!attribute.conditionals || (attribute.conditionals && Array.isArray(attribute.conditionals) && attribute.conditionals.length === 0)) return true
+
+    if (Array.isArray(attribute.conditionals[0])) {
+      return attribute.conditionals
+        .some((x) => !x.length || x.every(c => parseInt(c.conditionalType) !== parseInt(conditionalType) || this.isConditionalValidAndEqual(ModelObjectToTextParser.parse(JSON.parse(c.content)), true)))
+    }
+
     return attribute.conditionals
       .every(c => parseInt(c.conditionalType) !== parseInt(conditionalType) || this.isConditionalValidAndEqual(ModelObjectToTextParser.parse(JSON.parse(c.content)), true))
   }

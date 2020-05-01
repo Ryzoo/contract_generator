@@ -18,15 +18,13 @@ class ConditionalService {
 
     public function initializeConditionalInFormElementsCollection(Contract $contract, Collection $formElementsCollection):Collection {
         $blockCollection = $contract->getBlockCollection();
-        $formCollection = collect();
+        $formCollection = clone $formElementsCollection;
 
         /** @var FormElement $element */
-        foreach ($formElementsCollection as $element){
+        foreach ($formCollection as &$element){
             $conditionals = $this->conditionalRepository
                 ->getConditionalsFromBlockWithId($blockCollection, $element->parentBlockId);
-
-            $element->conditionals = collect(array_reverse($conditionals->toArray()))->toArray();
-            $formCollection->push($element);
+            $element->conditionals = collect(array_reverse($conditionals->unique()->toArray()))->toArray();
         }
 
         return $formCollection;
