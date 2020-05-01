@@ -317,7 +317,6 @@ export default {
                 return items
               }
               const fuse = new Fuse(items, {
-                threshold: 0.2,
                 keys: ['name']
               })
               return fuse.search(query)
