@@ -1,5 +1,5 @@
 <template>
-    <section class="my-5" v-if="!isLoading">
+    <section v-if="!isLoading">
         <h3>{{ $t("form.contractAddForm.title_modules") }}</h3>
       <v-divider class="my-1"/>
         <small>{{ $t("form.contractAddForm.description.modules") }}</small>

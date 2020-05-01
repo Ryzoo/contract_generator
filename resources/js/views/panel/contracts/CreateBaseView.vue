@@ -1,8 +1,8 @@
 <template>
   <v-flex xs12>
     <v-layout row wrap>
-      <v-flex xs12 sm10 lg8 offset-sm1 offset-lg2>
-        <v-card class="pb-3" v-if="isLoaded">
+      <v-flex xs12>
+        <v-card class="pa-5" v-if="isLoaded">
           <v-toolbar dark color="primary" class="contract-header-builder">
             <v-toolbar-title class="white--text">
               {{ $t("form.contractAddForm.title") }}
@@ -21,37 +21,37 @@
             </v-toolbar-title>
           </v-toolbar>
           <v-card-text>
-            <v-text-field
-              prepend-icon="fa-file-signature"
-              v-model="contract.name"
-              outlined
-              dense
-              :label="$t('form.contractAddForm.field.contract_name')"
-              @change="saveContractDataToStore"
-              required
-            />
-            <v-textarea
-              prepend-icon="fa-align-center"
-              v-model="contract.description"
-              outlined
-              dense
-              :label="$t('form.contractAddForm.field.contract_description')"
-              @change="saveContractDataToStore"
-              required
-            />
-            <v-select
-              prepend-icon="fa-layer-group"
-              v-model="contract.categories"
-              outlined
-              dense
-              @change="saveContractDataToStore"
-              chips
-              multiple
-              deletable-chips
-              :items="categories"
-              :label="$t('form.contractAddForm.field.contract_categories')"
-            />
-            <ContractModuleConfiguration/>
+            <v-row>
+              <v-col cols="12"  md="6">
+                <h3>Base contract data</h3>
+                <v-divider class="my-1 mb-5"/>
+                <v-text-field
+                  prepend-icon="fa-file-signature"
+                  v-model="contract.name"
+                  outlined
+                  dense
+                  :label="$t('form.contractAddForm.field.contract_name')"
+                  @change="saveContractDataToStore"
+                  required
+                />
+                <v-select
+                  prepend-icon="fa-layer-group"
+                  v-model="contract.categories"
+                  outlined
+                  dense
+                  @change="saveContractDataToStore"
+                  chips
+                  multiple
+                  deletable-chips
+                  :items="categories"
+                  :label="$t('form.contractAddForm.field.contract_categories')"
+                />
+                <vue-editor v-model="contract.description"></vue-editor>
+              </v-col>
+              <v-col cols="12" md="6">
+                <ContractModuleConfiguration/>
+              </v-col>
+            </v-row>
           </v-card-text>
           <v-card-actions>
             <v-spacer/>
@@ -82,11 +82,12 @@
 
 <script>
 import ContractModuleConfiguration from '../../../components/Contract/New/ContractModuleConfiguration'
+import { VueEditor } from 'vue2-editor'
 
 export default {
   name: 'CreateBaseView',
   components: {
-    ContractModuleConfiguration
+    ContractModuleConfiguration, VueEditor
   },
   data () {
     return {
@@ -138,9 +139,9 @@ export default {
       let request = null
 
       if (isEditMode) {
-        request = axios.put(`/contract/${this.contractId}`, this.$store.getters.getNewContractData)
+        request = axios.put(`/contract/${this.contractId}`, this.contract)
       } else {
-        request = axios.post('/contract', this.$store.getters.getNewContractData)
+        request = axios.post('/contract', this.contract)
       }
 
       request.then(response => {
