@@ -55,8 +55,8 @@ class RepeatBlock extends Block {
   public function findVariable(Contract $contract): Collection{
     $variableArray = parent::findVariable($contract);
 
-    if(isset($this->settings->repeatAttributeId)) {
-      $variableArray->push([$this->id, $this->settings->repeatAttributeId]);
+    if(isset($this->settings['repeatAttributeId'])) {
+      $variableArray->push([$this->id, $this->settings['repeatAttributeId']]);
     }
 
     /** @var \App\Core\Models\Domain\Blocks\Block $block */

@@ -212,7 +212,10 @@ const mutations = {
           }
         }
       }
-      return e
+      return {
+        ...e,
+        isActive: ConditionalParser.validate(ConditionalEnum.SHOW_ON, e)
+      }
     })
   }
 }
