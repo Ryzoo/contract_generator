@@ -68,6 +68,12 @@ trait ConditionalValidator {
           $search = $matches[1];
           return str_replace("{{$search}}", $var ?? 'null', $textElements);
         }
+        preg_match('/{(\d+:counter)}/', $textElements, $matches);
+        if (isset($matches[1])) {
+          $var = $self->getVariableValue($matches[1], $index);
+          $search = $matches[1];
+          return str_replace("{{$search}}", $var ?? 'null', $textElements);
+        }
         return $textElements;
       })
       ->all();
@@ -90,6 +96,10 @@ trait ConditionalValidator {
       if (isset($attr)) {
         $attrValue = $attr->value;
 
+        if($value === 'counter'){
+          return $attr->isActive ? count($attrValue) : 0;
+        }
+
         if (!(bool)$attr->settings['isMultiUse'] && $attr->attributeType === AttributeType::ATTRIBUTE_GROUP) {
           $foundedAttribute = collect($attrValue)->where('id', (int) $value)->first();
         } else if ((bool)$attr->settings['isMultiUse'] && $attr->attributeType === AttributeType::ATTRIBUTE_GROUP) {
@@ -109,8 +119,6 @@ trait ConditionalValidator {
         ->where('id', $varId)
         ->first();
     }
-
-
 
     if (!isset($foundedAttribute)) {
       throw new \ErrorException("Var: {$varId} not found");

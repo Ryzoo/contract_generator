@@ -29,6 +29,10 @@ class NumberOperatorParser extends DefaultParser
                 return "intval(${variable}) < ${value}";
             case OperatorType::SMALLER_OR_EQUAL:
                 return "intval(${variable}) <= ${value}";
+            case OperatorType::EQUAL:
+              return "intval(${variable}) === ${value}";
+            case OperatorType::N_EQUAL:
+              return "intval(${variable}) !== ${value}";
         }
         return DefaultParser::parse($variable, $operatorType, $value);
     }

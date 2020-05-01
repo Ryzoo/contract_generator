@@ -15,6 +15,16 @@
         hide-details
         dense
         outlined
+        v-model="settingsData.allowSelfOptions"
+        label="Allow self options?"
+        @change="update"
+      />
+    </v-col>
+    <v-col cols="12">
+      <v-checkbox
+        hide-details
+        dense
+        outlined
         v-model="settingsData.isMultiSelect"
         :label="$t('form.variableForm.isMultiSelect')"
         @change="update"

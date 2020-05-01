@@ -13,14 +13,14 @@ export default class ModelObjectToTextParser {
 
     switch (ruleType) {
       case RuleTypes.TEXT: return TextOperatorParser.parse(`'${variable}'`, operatorType, value ? `'${value}'` : '\'\'')
-      case RuleTypes.NUMBER: return NumberOperatorParser.parse(variable, operatorType, value ? Number(value) : -1)
+      case RuleTypes.NUMBER: return NumberOperatorParser.parse(variable, operatorType, (value || value == '0') ? Number(value) : -1)
       case RuleTypes.SELECT: return SelectOperatorParser.parse(`'${variable}'`, operatorType, value ? `'${value}'` : '\'\'')
       case RuleTypes.MULTI_SELECT: return MultiSelectOperatorParser.parse(`'${variable}'`, operatorType, value ? `'${value}'` : '\'\'')
       case RuleTypes.DATE: return DateOperatorParser.parse(`'${variable}'`, operatorType, value || null)
       case RuleTypes.TIME: return TimeOperatorParser.parse(`${variable}`, operatorType, value || null)
       case RuleTypes.BOOL: return BoolOperatorParser.parse(`${variable}`, operatorType, !!value)
       case RuleTypes.BOOL_INPUT: return BoolInputOperatorParser.parse(`${variable}`, operatorType, value)
-      case RuleTypes.AGGREGATE: return AggregateOperatorParser.parse(variable, operatorType, value ? Number(value) : null)
+      case RuleTypes.AGGREGATE: return AggregateOperatorParser.parse(variable, operatorType, (value || value == '0') ? Number(value) : null)
     }
 
     return ''

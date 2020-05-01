@@ -26,6 +26,7 @@ class ConditionalParser {
       .map(e => e.replace(/{(\d+)}/g, (m, id) => this.getVariableValue(id)))
       .map(e => e.replace(/{(\d+:\d+)}/g, (m, id) => this.getVariableValue(id)))
       .map(e => e.replace(/{(\d+:value)}/g, (m, id) => this.getVariableValue(id)))
+      .map(e => e.replace(/{(\d+:counter)}/g, (m, id) => this.getVariableValue(id)))
 
     // eslint-disable-next-line no-eval
     return eval(contentWithVariables.join(' '))
@@ -45,6 +46,11 @@ class ConditionalParser {
 
       if (attr) {
         const attrVal = attr.value
+
+        if (value === 'counter') {
+          return attr.isActive ? attrVal.length : 0
+        }
+
         if (!attr.settings.isMultiUse && attr.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {
           foundedAttribute = attrVal.find(y => parseInt(y.id) === parseInt(value))
         } else if (attr.settings.isMultiUse && attr.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {

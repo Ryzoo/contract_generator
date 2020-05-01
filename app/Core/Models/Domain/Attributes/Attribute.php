@@ -27,6 +27,7 @@ abstract class Attribute implements IAttribute {
   public string $description;
   public string $additionalInformation;
   public bool $toAnonymize;
+  public bool $isActive;
 
   abstract protected function buildSettings():void;
 
@@ -45,6 +46,7 @@ abstract class Attribute implements IAttribute {
     $this->description = '';
     $this->additionalInformation = '';
     $this->labelAfter = '';
+    $this->isActive = false;
     $this->buildObject();
   }
 
@@ -125,6 +127,7 @@ abstract class Attribute implements IAttribute {
     $attribute->value = $value['value'] ?? NULL;
     $attribute->placeholder = $value['placeholder'] ?? '';
     $attribute->content = (array) ($value['content'] ?? []);
+    $attribute->isActive = (bool)($value['isActive'] ?? false);
 
     $attribute->parseContent();
 

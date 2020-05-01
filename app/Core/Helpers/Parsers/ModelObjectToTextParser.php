@@ -33,13 +33,13 @@ class ModelObjectToTextParser {
       case RuleTypes::BOOL:
         return BoolOperatorParser::parse($variable, $operatorType, $value ?? false);
       case RuleTypes::NUMBER:
-        return NumberOperatorParser::parse($variable, $operatorType, $value ? (float) $value : -1);
+        return NumberOperatorParser::parse($variable, $operatorType, isset($value) ? (float) $value : -1);
       case RuleTypes::SELECT:
         return SelectOperatorParser::parse("'$variable'", $operatorType, $value ? "'$value'" : "''");
       case RuleTypes::MULTI_SELECT:
         return MultiSelectOperatorParser::parse("'$variable'", $operatorType, $value ? "'$value'" : "''");
       case RuleTypes::AGGREGATE:
-        return AggregateOperatorParser::parse($variable, $operatorType, $value ? (float) $value : null);
+        return AggregateOperatorParser::parse($variable, $operatorType, isset($value) ? (float) $value : null);
       case RuleTypes::BOOL_INPUT:
         return BoolInputOperatorParser::parse($variable, $operatorType, $value ?: null);
     }

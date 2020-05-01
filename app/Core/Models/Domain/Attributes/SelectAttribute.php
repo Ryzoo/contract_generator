@@ -19,6 +19,7 @@ class SelectAttribute extends Attribute {
       'isInline' => FALSE,
       'isMultiUse' => FALSE,
       'isMultiSelect' => FALSE,
+      'allowSelfOptions' => FALSE,
       'items' => [],
       'required' => FALSE,
       'lengthMin' => NULL,

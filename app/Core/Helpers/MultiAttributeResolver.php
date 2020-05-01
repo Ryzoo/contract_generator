@@ -34,11 +34,13 @@ class MultiAttributeResolver {
 
   private static function resolveDefaultAttributeInContent(Attribute $attribute, string $content, $value): string{
     $attribute->settings['isMultiUse'] = false;
-    return str_replace([
+    $content = str_replace([
       '{' . $attribute->id . ':value}'
     ], [
-       self::escapeValue($attribute->valueParser($value))
+      self::escapeValue($attribute->valueParser($value))
     ], $content);
+
+    return $content;
   }
 
   private static function escapeValue(?string $value): string {

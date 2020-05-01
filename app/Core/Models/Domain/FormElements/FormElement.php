@@ -94,6 +94,10 @@ abstract class FormElement implements IFormElement {
     $element->isActive = (bool) $value['isActive'];
     $element->isValid = (bool) $value['isValid'];
 
+    if(isset($element->attribute)){
+      $element->attribute->isActive = $element->isActive;
+    }
+
     return $element;
   }
 

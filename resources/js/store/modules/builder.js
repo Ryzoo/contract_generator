@@ -349,6 +349,18 @@ const getters = {
         })
       })
 
+    const varForCount = state.builder.variables
+      .filter(x => x.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP && !!x.settings.isMultiUse && !x.settings.isInline)
+
+    varForCount.forEach(attribute => {
+      returnedVar.push({
+        ...attribute,
+        attributeType: AttributeTypeEnum.NUMBER,
+        attributeName: attribute.attributeName + ' - counter',
+        id: attribute.id + ':counter'
+      })
+    })
+
     const allVar = state.builder.variables
       .filter(x => !(x.settings.isMultiUse) || (!!x.settings.isMultiUse && !!x.settings.isInline))
       .filter(x => !variablesUsedInGroups.includes(x.id + ''))
