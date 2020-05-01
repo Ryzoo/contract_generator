@@ -304,7 +304,7 @@ export default {
               return false
             },
             onFilter: (items, query) => {
-              if (!query) {
+              if (!query.length) {
                 return items
               }
               const fuse = new Fuse(items, {
