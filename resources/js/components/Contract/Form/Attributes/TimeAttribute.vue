@@ -14,6 +14,8 @@
         :label="attribute.attributeName"
         :placeholder="attribute.placeholder"
         :error="!attribute.isValid"
+        :hint="attribute.labelAfter"
+        :persistent-hint="!!attribute.labelAfter"
         :error-messages="attribute.errorMessage"
         outlined
         dense

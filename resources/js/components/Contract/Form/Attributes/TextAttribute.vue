@@ -6,6 +6,8 @@
     :error-messages="attribute.errorMessage"
     :required="attribute.settings.required"
     v-model="currentValue"
+    :hint="attribute.labelAfter"
+    :persistent-hint="!!attribute.labelAfter"
     outlined
     dense
   >

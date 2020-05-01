@@ -21,6 +21,7 @@ abstract class Attribute implements IAttribute {
   public array $conditionals;
   public array $content;
   public string $placeholder;
+  public string $labelAfter;
   public $value;
   public $defaultValue;
   public string $description;
@@ -43,6 +44,7 @@ abstract class Attribute implements IAttribute {
     $this->defaultValue = NULL;
     $this->description = '';
     $this->additionalInformation = '';
+    $this->labelAfter = '';
     $this->buildObject();
   }
 
@@ -118,6 +120,7 @@ abstract class Attribute implements IAttribute {
     $attribute->toAnonymize = $value['toAnonymize'] ?? FALSE;
     $attribute->description = $value['description'] ?? '';
     $attribute->additionalInformation = $value['additionalInformation'] ?? '';
+    $attribute->labelAfter = $value['labelAfter'] ?? '';
     $attribute->defaultValue = $value['defaultValue'] ?? NULL;
     $attribute->value = $value['value'] ?? NULL;
     $attribute->placeholder = $value['placeholder'] ?? '';

@@ -5,6 +5,8 @@
             :error="!attribute.isValid"
             :error-messages="attribute.errorMessage"
             v-model="currentValue"
+            :hint="attribute.labelAfter"
+            :persistent-hint="!!attribute.labelAfter"
             type="number"
             outlined
             dense

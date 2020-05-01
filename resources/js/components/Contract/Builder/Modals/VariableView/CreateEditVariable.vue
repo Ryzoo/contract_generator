@@ -70,6 +70,10 @@
                                   :label="$t('form.variableForm.additionalInformation')" outline/>
                   </v-col>
                   <v-col cols="12">
+                    <v-text-field hide-details dense outlined v-model="attributeData.labelAfter"
+                                  label="Label after input" outline/>
+                  </v-col>
+                  <v-col cols="12">
                     <v-checkbox class="mt-0" hide-details dense outlined v-model="attributeData.toAnonymize"
                                 :label="$t('form.variableForm.forAnonymise')"/>
                   </v-col>
@@ -262,6 +266,7 @@ export default {
         attributeType: -1,
         defaultValue: '',
         additionalInformation: '',
+        labelAfter: '',
         placeholder: '',
         description: '',
         toAnonymize: '',

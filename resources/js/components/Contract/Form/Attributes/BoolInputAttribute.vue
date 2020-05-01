@@ -6,8 +6,8 @@
           :placeholder="attribute.placeholder"
           :error="!attribute.isValid"
           :error-messages="attribute.errorMessage"
-          :hint="attribute.description"
-          :persistent-hint="!!attribute.description"
+          :hint="attribute.labelAfter"
+          :persistent-hint="!!attribute.labelAfter"
           v-model="currentBoolValue"
           outlined
           dense

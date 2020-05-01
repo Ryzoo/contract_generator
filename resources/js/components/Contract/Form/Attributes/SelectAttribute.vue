@@ -7,6 +7,8 @@
     :multiple="!!attribute.settings.isMultiSelect"
     :placeholder="attribute.placeholder"
     v-model="currentValue"
+    :hint="attribute.labelAfter"
+    :persistent-hint="!!attribute.labelAfter"
     dense
     outlined
   >
