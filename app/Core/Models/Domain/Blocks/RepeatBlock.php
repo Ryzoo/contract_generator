@@ -102,33 +102,12 @@ class RepeatBlock extends Block {
   }
 
   private function repeatContent(string $htmlString, $attributes): string {
-    $self = $this;
-    $conditionalList = collect($this->conditionals);
-
     $valueCount = count($this->repeatAttribute->value);
-    foreach (collect($this->repeatAttribute->value) as $key => $value){
-      $isActive = false;
-      if($conditionalList->count() === 0 ){
-        $isActive = true;
-      }else if(is_array($conditionalList[0])){
-        $isActive = $conditionalList->first(static function($condition)use ($self, $key){
-          $condition = collect($condition);
-          return $condition->count() === 0 || $condition->every(static function ($element) use ($self, $key) {
-            return $self->isConditionalValidAndEqual(
-              ModelObjectToTextParser::parse(json_decode($element->content, TRUE, 512, JSON_THROW_ON_ERROR)),
-              TRUE, $key);
-          });
-        });
-      }else{
-        $isActive = $conditionalList
-          ->every(static function ($element) use ($self, $key) {
-            return $self->isConditionalValidAndEqual(
-              ModelObjectToTextParser::parse(json_decode($element->content, TRUE, 512, JSON_THROW_ON_ERROR)),
-              TRUE, $key);
-          });
-      }
 
-      if($isActive) {
+    foreach (collect($this->repeatAttribute->value) as $key => $value){
+      $this->validateConditions($this->conditionalType, $this->formElements, $this->contract, $key);
+
+      if($this->isActive) {
         /** @var \App\Core\Models\Domain\Blocks\Block $block */
         foreach ($this->content['blocks'] as $block){
           $tempChild = clone $block;

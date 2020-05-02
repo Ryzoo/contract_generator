@@ -11,6 +11,7 @@ use App\Core\Models\Database\Contract;
 use App\Core\Models\Domain\Attributes\Attribute;
 use App\Core\Models\Domain\FormElements\AttributeFormElement;
 use Illuminate\Support\Collection;
+use phpDocumentor\Reflection\Types\Static_;
 
 trait ConditionalValidator {
   protected Collection $formElements;
@@ -23,16 +24,29 @@ trait ConditionalValidator {
 
     $this->formElements = $formElements;
 
-    $conditionalList = collect(collect($this->conditionals)
-      ->where('conditionalType', $conditionalType)
-      ->all());
-
+    $conditionalList = $this->conditionals ? collect($this->conditionals) : collect();
     $self = $this;
 
-    $this->isActive = $conditionalList
-      ->every(static function ($element) use ($self, $index) {
-        return $self->isConditionalValidAndEqual(ModelObjectToTextParser::parse(json_decode($element->content, TRUE, 512, JSON_THROW_ON_ERROR)), TRUE, $index);
-      });
+    if(isset($conditionalList[0]) && is_array($conditionalList[0])){
+      $this->isActive = $conditionalList->every(static function($condition){
+        $condition = collect($condition);
+        return $condition->count() === 0;
+      }) || $conditionalList
+          ->filter(static function($condition){ return (bool)collect($condition)->count(); })
+          ->first(static function($condition)use ($self, $index){
+            $condition = collect($condition);
+            return $condition->every(static function ($element) use ($self, $index) {
+                return $self->isConditionalValidAndEqual(
+                  ModelObjectToTextParser::parse(json_decode($element->content, TRUE, 512, JSON_THROW_ON_ERROR)),
+                  TRUE, $index);
+              });
+          });
+    }else{
+      $this->isActive = $conditionalList
+        ->every(static function ($element) use ($self, $index) {
+          return $self->isConditionalValidAndEqual(ModelObjectToTextParser::parse(json_decode($element->content, TRUE, 512, JSON_THROW_ON_ERROR)),TRUE, $index);
+        });
+    }
 
     return $this->isActive;
   }

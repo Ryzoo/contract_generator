@@ -39,7 +39,8 @@ export default {
       contract: null,
       isLoaded: true,
       autoSave: true,
-      autoSaveTime: 5
+      autoSaveTime: 5,
+      isActual: true
     }
   },
   methods: {
@@ -82,12 +83,15 @@ export default {
     },
     runAutoSave () {
       if (this.autoSave) { this.saveActual() }
-      setTimeout(this.runAutoSave, this.autoSaveTime * 10000)
+      if (this.isActual) setTimeout(this.runAutoSave, this.autoSaveTime * 10000)
     }
   },
   mounted () {
     this.init()
     setTimeout(this.runAutoSave, this.autoSaveTime * 10000)
+  },
+  destroyed () {
+    this.isActual = false
   }
 }
 </script>

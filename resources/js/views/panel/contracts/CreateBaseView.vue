@@ -99,6 +99,14 @@ export default {
       contractId: this.$route.params.id || null
     }
   },
+  watch: {
+    contract: {
+      deep: true,
+      handler () {
+        this.saveContractDataToStore()
+      }
+    }
+  },
   methods: {
     getCategories () {
       this.isLoaded = false
@@ -139,9 +147,9 @@ export default {
       let request = null
 
       if (isEditMode) {
-        request = axios.put(`/contract/${this.contractId}`, this.contract)
+        request = axios.put(`/contract/${this.contractId}`, this.$store.getters.getNewContractData)
       } else {
-        request = axios.post('/contract', this.contract)
+        request = axios.post('/contract', this.$store.getters.getNewContractData)
       }
 
       request.then(response => {

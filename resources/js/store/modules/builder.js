@@ -181,9 +181,8 @@ const mutations = {
             ...x.settings,
             repeatAttributeId: dataValue.value
           }
-        }
-
-        if (x.content.blocks) {
+          x.content.blocks = removeVarIdFromBlocks(x.content.blocks, x.settings.repeatAttributeId)
+        } else if (x.content.blocks) {
           x.content.blocks = updateBlock(x.content.blocks, dataValue)
         }
         return x
@@ -480,7 +479,6 @@ const addNewBlockToCurrentBlocks = (blocks, newBlock, index) => {
   return blocks
 }
 const removeVarIdFromBlocks = (blocks, varId) => {
-
   const regex = new RegExp(`\\{${varId}\\}|\\{${varId}:counter\\}|\\{${varId}:\\d+\\}|\\{${varId}:value\\}|${varId}|${varId}:counter|${varId}:\\d+|${varId}:value`, 'gm')
   return blocks.map((x) => {
     if (x.conditionals) {
