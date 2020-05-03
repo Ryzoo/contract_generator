@@ -177,11 +177,13 @@ const mutations = {
     const updateBlock = (blocks, dataValue) => {
       return blocks.map(x => {
         if (parseInt(x.id) === parseInt(dataValue.id)) {
+          x.content.blocks = [
+            ...removeVarIdFromBlocks(x.content.blocks, x.settings.repeatAttributeId)
+          ]
           x.settings = {
             ...x.settings,
             repeatAttributeId: dataValue.value
           }
-          x.content.blocks = removeVarIdFromBlocks(x.content.blocks, x.settings.repeatAttributeId)
         } else if (x.content.blocks) {
           x.content.blocks = updateBlock(x.content.blocks, dataValue)
         }

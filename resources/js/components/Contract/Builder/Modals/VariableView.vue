@@ -76,7 +76,7 @@
           <v-col cols="12" md="4">
             <h4>Group attributes</h4>
             <v-chip
-              class="d-block ma-1 py-1"
+              class="d-block ma-1 py-1 variable-chip"
               label
               close
               small
@@ -86,6 +86,12 @@
               @click="editVariable(attribute)"
               @click:close="tryToRemoveAttribute(attribute)"
             >
+              <v-avatar
+                v-if="attribute.settings.isMultiUse"
+                left
+                class="yellow"
+              >
+              </v-avatar>
               <v-btn x-small text color="white" class="mx-1 attribute-copy" @click="(ev) => {
                 ev.stopPropagation();
                 copyAttribute(attribute)

@@ -117,7 +117,7 @@
           <v-col cols="12" md="4">
             <h4>Group attributes</h4>
             <v-chip
-              class="d-block ma-1 py-1"
+              class="d-block ma-1 py-1 variable-chip"
               label
               close
               small
@@ -127,6 +127,12 @@
               @click="tryEditVariable(attribute)"
               @click:close="tryToRemoveAttribute(attribute)"
             >
+              <v-avatar
+                v-if="attribute.settings.isMultiUse"
+                left
+                class="yellow"
+              >
+              </v-avatar>
               <v-btn x-small text color="white" class="mx-1 attribute-copy" @click="(ev) => {
                 ev.stopPropagation();
                 copyAttribute(attribute)
@@ -281,7 +287,7 @@ export default {
     }
   },
   methods: {
-    importAttributes(attributes){
+    importAttributes (attributes) {
       attributes.forEach(attribute => {
         if (attribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {
           attribute.settings.attributes = attribute.settings.attributes.map(attributeIn => {
@@ -404,6 +410,16 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss">
+  .variable-chip{
+    .v-avatar{
+      background: #E91E63 !important;
+      position: absolute;
+      left: -31px;
+      padding: 0;
+      margin: 0;
+      width: 50px !important;
+      height: 50px !important;
+    }
+  }
 </style>
