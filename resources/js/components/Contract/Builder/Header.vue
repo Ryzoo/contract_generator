@@ -40,7 +40,18 @@ export default {
       isLoaded: true,
       autoSave: true,
       autoSaveTime: 5,
-      isActual: true
+      saveInterval: null
+    }
+  },
+  watch: {
+    autoSave (newValue) {
+      if (this.saveInterval) { clearInterval(this.saveInterval) }
+      if (newValue) this.saveInterval = setInterval(this.saveActual, this.autoSaveTime * 10000)
+    },
+    autoSaveTime (newValue) {
+      if (newValue < 1) newValue = 1
+      if (this.saveInterval) { clearInterval(this.saveInterval) }
+      this.saveInterval = setInterval(this.saveActual, newValue * 10000)
     }
   },
   methods: {
@@ -80,18 +91,14 @@ export default {
               this.isLoaded = true
             })
         })
-    },
-    runAutoSave () {
-      if (this.autoSave) { this.saveActual() }
-      if (this.isActual) setTimeout(this.runAutoSave, this.autoSaveTime * 10000)
     }
   },
   mounted () {
     this.init()
-    setTimeout(this.runAutoSave, this.autoSaveTime * 10000)
+    this.saveInterval = setInterval(this.saveActual, this.autoSaveTime * 10000)
   },
   destroyed () {
-    this.isActual = false
+    if (this.saveInterval) { clearInterval(this.saveInterval) }
   }
 }
 </script>
