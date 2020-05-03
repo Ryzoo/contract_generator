@@ -44,12 +44,13 @@ class RepeatBlock extends Block {
   }
 
   public function validateConditions(int $conditionalType, Collection $formElements, Contract $contract, int $index = 0): bool{
+    $parentActive = parent::validateConditions($conditionalType, $formElements, $contract, $index);
+
     $this->conditionalType = $conditionalType;
     $this->formElements = $formElements;
     $this->contract = $contract;
-    $this->isActive  = true;
 
-    return true;
+    return $parentActive;
   }
 
   public function findVariable(Contract $contract): Collection{
