@@ -8,6 +8,10 @@ export class MultiSelectOperatorParser extends DefaultParser {
         return `${variable}.split(',').every( x => ${value}.split(',').includes(x))`
       case OperatorType.N_EQUAL:
         return `!${variable}.split(',').every( x => ${value}.split(',').includes(x))`
+      case OperatorType.EMPTY:
+        return `${variable}.split(',').length() <= 0`
+      case OperatorType.N_EMPTY:
+        return `${variable}.split(',').length() > 0`
     }
     return DefaultParser.parse(variable, operatorType, value)
   }
