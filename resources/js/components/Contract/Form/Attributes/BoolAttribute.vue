@@ -1,7 +1,7 @@
 <template>
     <v-switch
         :label="attribute.attributeName"
-        :placeholder="attribute.placeholder"
+        :placeholder="attribute.placeholder || ' '"
         :error="!attribute.isValid"
         :error-messages="attribute.errorMessage"
         :hint="attribute.labelAfter"

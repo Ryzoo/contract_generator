@@ -21,7 +21,7 @@ const prepareAttributeDefault = (attribute) => {
       return attribute.settings.attributes.map((x) => ({
         ...x,
         attributeName: x.settings.required ? (x.description || x.attributeName) + '*' : (x.description || x.attributeName),
-        placeholder: x.placeholder ? String(x.placeholder) : '',
+        placeholder: x.placeholder ? String(x.placeholder) : ' ',
         errorMessage: '',
         isValid: true,
         isActive: true,
@@ -145,7 +145,7 @@ const mutations = {
       if (e.elementType === FormElementsEnum.ATTRIBUTE) {
         const attrName = e.attribute.description || e.attribute.attributeName
         e.attribute.attributeName = e.attribute.settings.required ? attrName + '*' : attrName
-        e.attribute.placeholder = e.attribute.placeholder ? String(e.attribute.placeholder) : ''
+        e.attribute.placeholder = e.attribute.placeholder ? String(e.attribute.placeholder) : ' '
         e.attribute.errorMessage = ''
         e.attribute.isValid = true
         e.attribute.isActive = true

@@ -12,7 +12,7 @@
       <v-text-field
         v-model="currentValue"
         :label="attribute.attributeName"
-        :placeholder="attribute.placeholder"
+        :placeholder="attribute.placeholder || ' '"
         :error="!attribute.isValid"
         :hint="attribute.labelAfter"
         :persistent-hint="!!attribute.labelAfter"

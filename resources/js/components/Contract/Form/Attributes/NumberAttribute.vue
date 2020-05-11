@@ -1,7 +1,7 @@
 <template>
     <v-text-field
             :label="attribute.attributeName"
-            :placeholder="attribute.placeholder"
+            :placeholder="attribute.placeholder || ' '"
             :error="!attribute.isValid"
             :error-messages="attribute.errorMessage"
             v-model="currentValue"

@@ -3,7 +3,7 @@
         <v-switch
           class="mr-2"
           :label="boolLabel"
-          :placeholder="attribute.placeholder"
+          :placeholder="attribute.placeholder || ' '"
           :error="!attribute.isValid"
           :error-messages="attribute.errorMessage"
           :hint="attribute.labelAfter"
