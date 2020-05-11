@@ -40,9 +40,9 @@
   },
   "dependencies": {
     "eslint-loader": "^4.0.2",
-    "fuse.js": "^3.4.6",
+    "fuse.js": "^5.2.3",
     "sortablejs": "^1.10.2",
-    "tippy.js": "^4.3.5",
+    "tippy.js": "^6.2.3",
     "tiptap": "^1.24.2",
     "tiptap-extensions": "^1.27.0",
     "vue-draggable": "^2.0.6",
