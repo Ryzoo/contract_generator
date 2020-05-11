@@ -44,6 +44,8 @@ class ConditionalParser {
       .filter(e => e.elementType === FormElementsEnum.ATTRIBUTE)
       .map(e => e.attribute)
 
+    if (allAttributes.length === 0) { return null }
+
     let foundedAttribute = null
 
     if (varId.includes(':')) {

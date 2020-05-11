@@ -24,7 +24,7 @@ const prepareAttributeDefault = (attribute) => {
         placeholder: x.placeholder ? String(x.placeholder) : ' ',
         errorMessage: '',
         isValid: true,
-        isActive: true,
+        isActive: ConditionalParser.validate(ConditionalEnum.SHOW_ON, x),
         defaultValue: prepareAttributeDefault(x),
         value: prepareAttributeDefault(x)
       }))
@@ -68,8 +68,8 @@ const validateAttribute = (attribute) => {
 
 const actions = {
   formElements_validate_current: (context) => {
-    context.commit('VALIDATE_ACTUAL')
     context.commit('RECALCULATE_CONDITIONS')
+    context.commit('VALIDATE_ACTUAL')
   },
   formElements_set: (context, data) => {
     context.commit('SET_ELEMENTS', data)
@@ -78,7 +78,7 @@ const actions = {
   formElements_change_attribute: (context, data) => {
     context.commit('CHANGE_ELEMENT_ATTRIBUTE', data)
     context.commit('RECALCULATE_CONDITIONS')
-    context.commit('VALIDATE_ACTUAL')
+    context.commit('VALIDATE_CHANGED', data)
   },
   formElements_remove_attribute_row: (context, data) => {
     context.commit('REMOVE_ATTRIBUTE_ROW', data)
@@ -91,6 +91,19 @@ const actions = {
 }
 
 const mutations = {
+  VALIDATE_CHANGED: (state, data) => {
+    state.formElements = state.formElements.map(e => {
+      if (e.elementType === FormElementsEnum.ATTRIBUTE && e.attribute && e.attribute.id === data.id) {
+        const attribute = validateAttribute(e.attribute)
+        return {
+          ...e,
+          attribute,
+          isValid: true
+        }
+      }
+      return e
+    })
+  },
   REMOVE_ATTRIBUTE_ROW: (state, data) => {
     state.formElements = state.formElements.map(e => {
       if (e.attribute && e.attribute.id === data.id) {
@@ -167,15 +180,13 @@ const mutations = {
         const currentValue = e.attribute.value
         if (e.attribute.settings.isMultiUse) currentValue.shift()
 
-        let attribute = {
+        const attribute = {
           ...e.attribute,
           value: e.attribute.settings.isMultiUse ? [
             data.value,
             ...currentValue
           ] : data.value
         }
-
-        attribute = validateAttribute(attribute)
 
         return {
           ...e,
