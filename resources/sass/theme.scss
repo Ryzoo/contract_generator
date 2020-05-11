@@ -138,27 +138,6 @@ section {
   color: white;
 }
 
-.editor-container {
-  counter-reset: paragraph-counter;
-
-  ol {
-    counter-reset: section;
-    list-style-type: none;
-
-    li:before {
-      counter-increment: section;
-      content: counters(section, ".") ". ";
-    }
-
-    li {
-      & > p {
-        display: inline;
-      }
-    }
-  }
-
-}
-
 .paragraph-list {
   display: block;
   text-align: center;
