@@ -333,17 +333,16 @@ export default {
         onUpdate: ({ getHTML }) => {
           const html = getHTML()
           const element = $(`<div>${html}</div>`)
-          const styles = '<style>.paragraph-list{display: block; text-align: center;}.paragraph-list:before{content:"§"} div ol{counter-reset:section;list-style-type:none}div ol li:before{counter-increment:section;content:counters(section, ".") ". "}div ol li>p{display:inline}</style>'
 
           element.find('.mention').each(function () {
             $(this).replaceWith(`{${$(this).attr('data-mention-id')}}`)
           })
 
-          this.actualText = `${styles} ${element.prop('innerHTML')}`
+          this.actualText = `${element.prop('innerHTML')}`
           this.$store.dispatch('builder_blockUpdateContent', {
             id: this.block.id,
             content: {
-              text: `${styles} ${element.prop('innerHTML')}`
+              text: `${element.prop('innerHTML')}`
             }
           })
         },
@@ -548,20 +547,8 @@ export default {
     border-radius: 5px;
     margin: 0 10px 10px;
 
-    .ProseMirror {
-      padding: 10px 10px 0;
-      margin-bottom: -18px;
-      min-height: 100px;
-    }
-
-    ol {
-      counter-reset: section;
-      list-style-type: none;
-    }
-
-    li:before {
-      counter-increment: section;
-      content: counters(section, ".") " ";
+    .ProseMirror{
+      height: 100%;
     }
   }
 
