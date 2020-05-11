@@ -30,6 +30,19 @@
         @change="update"
       />
     </v-col>
+    <v-col cols="12" v-if="settingsData.isMultiSelect">
+      <v-select
+        persistent-hint
+        :items="multiRenderTypeItems"
+        :hint="$t('form.variableForm.multiRenderTypeHint')"
+        hide-details
+        dense
+        outlined
+        v-model="settingsData.listRenderType"
+        :label="$t('form.variableForm.multiRenderType')"
+        @change="update"
+      />
+    </v-col>
     <v-col cols="12">
       <v-combobox
         persistent-hint
@@ -50,11 +63,27 @@
 </template>
 
 <script>
+import {MultiUseRenderType} from "../../../../../../additionalModules/Enums";
+
 export default {
   name: 'SelectAttribute',
   props: ['settings'],
   data () {
     return {
+      multiRenderTypeItems: [
+        {
+          text: 'List',
+          value: MultiUseRenderType.LIST.toString()
+        },
+        {
+          text: 'Comma separated',
+          value: MultiUseRenderType.COMMA_SEPARATED.toString()
+        },
+        {
+          text: 'Table',
+          value: MultiUseRenderType.TABLE.toString()
+        }
+      ],
       settingsData: {
         ...this.settings
       }

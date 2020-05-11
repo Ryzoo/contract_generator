@@ -25,10 +25,48 @@ class SelectAttribute extends Attribute {
       'lengthMin' => NULL,
       'lengthMax' => NULL,
       'multiUseRenderType' => MultiUseRenderType::COMMA_SEPARATED,
+      'listRenderType' => MultiUseRenderType::COMMA_SEPARATED,
     ];
   }
 
   public function valueParser($value) {
-    return (bool) $this->settings['isMultiUse'] ? MultiRender::renderToHTML($value, $this->settings['multiUseRenderType'], false) : $value;
+    $newValue = $this->prepareValue($value);
+    return (bool) $this->settings['isMultiUse'] ? MultiRender::renderToHTML($newValue, $this->settings['multiUseRenderType'], false) : $newValue;
+  }
+
+  private function prepareValue($value) {
+    $preparedValue = '';
+    if(!is_array($value)){
+      $valueList = explode(',', $value);
+      switch ((int)$this->settings['listRenderType']){
+        case MultiUseRenderType::COMMA_SEPARATED:
+          $preparedValue = implode(', ', $valueList);
+          break;
+        case MultiUseRenderType::LIST:
+          $preparedValue .= '';
+          $preparedValue .= '<ul>';
+          foreach($valueList as $value) {
+            $preparedValue .= "<li>{$value}</li>";
+          }
+          $preparedValue .= '</ul>';
+          break;
+        case MultiUseRenderType::TABLE:
+          $preparedValue .= '<table>';
+          foreach($valueList as $value) {
+            $preparedValue .= '<tr>';
+            $preparedValue .= "<td>{$value}</td>";
+            $preparedValue .= '</tr>';
+          }
+          $preparedValue .= '</table>';
+          break;
+      }
+    }else{
+      $preparedValue = [];
+      foreach ($value as $element){
+        $preparedValue []= $this->prepareValue($element);
+      }
+    }
+
+    return $preparedValue;
   }
 }
