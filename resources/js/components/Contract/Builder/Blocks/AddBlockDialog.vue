@@ -41,15 +41,18 @@
 
 <script>
 import Selector from '../../../../additionalModules/StaticSelectors'
-import { BlockTypeEnum } from '../../../../additionalModules/Enums'
+import { BlockTypeEnum, ListEnumeratorType } from '../../../../additionalModules/Enums'
 
 export default {
   name: 'AddBlockDialog',
-  props: ['level'],
+  props: ['level', 'listOnly'],
   data () {
     return {
       addBlockDialog: false,
-      blockTypes: this.level ? Selector.BlockType.filter(x => x.value !== BlockTypeEnum.PAGE_DIVIDE_BLOCK) : Selector.BlockType,
+      blockTypes: (this.level ? Selector.BlockType
+        .filter(x => x.value !== BlockTypeEnum.PAGE_DIVIDE_BLOCK) : Selector.BlockType)
+        .filter(x => !this.listOnly || (x.value === BlockTypeEnum.LIST_BLOCK || x.value === BlockTypeEnum.LIST_ITEM_BLOCK))
+        .filter(x => this.listOnly || (!this.listOnly && x.value !== BlockTypeEnum.LIST_ITEM_BLOCK)),
       newBlock: {
         id: 1,
         parentId: this.level,
@@ -71,24 +74,39 @@ export default {
       this.newBlock.id = this.$store.getters.builder_getBlockId
       this.newBlock.blockType = blockType
       this.newBlock.blockName = `New block: ${this.newBlock.id}`
+      this.newBlock.settings = {}
 
       switch (parseInt(this.newBlock.blockType)) {
         case BlockTypeEnum.TEXT_BLOCK:
           this.newBlock.content = { text: '' }
           break
+        case BlockTypeEnum.LIST_BLOCK:
+          this.newBlock.settings = {
+            enumeratorType: ListEnumeratorType.DOT
+          }
+          break
+        case BlockTypeEnum.LIST_ITEM_BLOCK:
+          this.newBlock.content = { text: '' }
+          break
         case BlockTypeEnum.PAGE_DIVIDE_BLOCK:
-          this.newBlock.settings.isBreaker = false
+          this.newBlock.settings = {
+            isBreaker: false
+          }
           this.newBlock.blockName = 'Step'
           break
       }
 
       if (blocks.length > 0 && this.newBlock.parentId !== 0) {
-        blocks = this.addNewBlockToCurrentBlocks(blocks, this.newBlock)
+        blocks = this.addNewBlockToCurrentBlocks(blocks, {
+          ...this.newBlock
+        })
       } else {
         if (blocks.length === 0) {
           blocks.push(this.$store.getters.builder_getFirstStep)
         }
-        blocks.push(this.newBlock)
+        blocks.push({
+          ...this.newBlock
+        })
       }
 
       this.$store.dispatch('builder_set', blocks)
@@ -99,7 +117,10 @@ export default {
     addNewBlockToCurrentBlocks (blocks, newBlock) {
       blocks = blocks.map(x => {
         if (x.id === newBlock.parentId) {
-          x.content.blocks.push(this.newBlock)
+          x.content.blocks = [
+            ...x.content.blocks,
+            newBlock
+          ]
         } else if (typeof x.content.blocks !== 'undefined' && x.content.blocks.length > 0) {
           x.content.blocks = this.addNewBlockToCurrentBlocks(x.content.blocks, newBlock)
         }
@@ -119,7 +140,7 @@ export default {
           blocks: []
         },
         conditionals: [],
-        settings: {}
+        settings: null
       }
     }
   }

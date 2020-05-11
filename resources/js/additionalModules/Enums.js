@@ -14,7 +14,9 @@ export const BlockTypeEnum = {
   TEXT_BLOCK: 0,
   EMPTY_BLOCK: 1,
   PAGE_DIVIDE_BLOCK: 2,
-  REPEAT_BLOCK: 3
+  REPEAT_BLOCK: 3,
+  LIST_BLOCK: 4,
+  LIST_ITEM_BLOCK: 5
 }
 
 export const AttributeTypeEnum = {
@@ -55,4 +57,11 @@ export const MultiUseRenderType = {
   LIST: 0,
   TABLE: 1,
   COMMA_SEPARATED: 2
+}
+
+export const ListEnumeratorType = {
+  DOT: 0,
+  DECIMAL: 1,
+  LOVER_ALPHA: 2,
+  UPPER_ROMAN: 3
 }

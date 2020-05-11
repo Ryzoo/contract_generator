@@ -1,7 +1,7 @@
 <template>
   <div :class="block.id > 1 ? '' : 'ignore-elements'" :data-id="block.id">
     <div class="block-header accordion-body"
-      v-if="block.blockType !== BlockTypeEnum.PAGE_DIVIDE_BLOCK">
+         v-if="block.blockType !== BlockTypeEnum.PAGE_DIVIDE_BLOCK">
       <div class="block-handle">
         <i class="fas fa-arrows-alt"></i>
       </div>
@@ -24,9 +24,23 @@
             outlined
             @change="updateMultiGroupAttribute"
             :value="{
-            value: parseInt(currentMultiGroupAttribute)
-          }"
+              value: parseInt(currentMultiGroupAttribute)
+            }"
             label="Repeat attribute"
+          />
+        </div>
+        <div v-if="block.blockType === BlockTypeEnum.LIST_BLOCK">
+          <v-select
+            persistent-hint
+            :items="listEnumerationType"
+            hint="Select list enumeration type"
+            dense
+            outlined
+            @change="updateListEnumeratorType"
+            :value="{
+              value: parseInt(currentListEnumeratorType)
+            }"
+            label="Enumeration type"
           />
         </div>
         <!--      <v-btn small text color="accent" @click="saveAsPart()"> Save as part <v-icon small right>fa-save</v-icon> </v-btn>-->
@@ -64,13 +78,19 @@
 </template>
 
 <script>
-import { BlockTypeEnum } from '../../../../additionalModules/Enums'
+import { BlockTypeEnum, ListEnumeratorType } from '../../../../additionalModules/Enums'
 
 export default {
   name: 'BlockHeader',
   props: ['block', 'nestedVariables'],
   data () {
     return {
+      listEnumerationType: [
+        { text: 'Dot', value: ListEnumeratorType.DOT },
+        { text: 'Decimal', value: ListEnumeratorType.DECIMAL },
+        { text: 'Lover alpha', value: ListEnumeratorType.LOVER_ALPHA },
+        { text: 'Upper Roman', value: ListEnumeratorType.UPPER_ROMAN }
+      ],
       BlockTypeEnum: BlockTypeEnum,
       deleteDialog: false
     }
@@ -84,11 +104,20 @@ export default {
           value: x.id
         }))
     },
+    currentListEnumeratorType () {
+      return this.$store.getters.builder_currentListEnumeratorType(this.block.id)
+    },
     currentMultiGroupAttribute () {
       return this.$store.getters.builder_currentMultiGroupAttribute(this.block.id)
     }
   },
   methods: {
+    updateListEnumeratorType (value) {
+      this.$store.dispatch('builder_updateListEnumeratorType', {
+        id: this.block.id,
+        value: value
+      })
+    },
     updateMultiGroupAttribute (value) {
       this.$store.dispatch('builder_updateCurrentMultiGroupAttribute', {
         id: this.block.id,

@@ -72,6 +72,10 @@ abstract class Block implements IBlock {
         return new PageDivideBlock();
       case BlockType::REPEAT_BLOCK:
         return new RepeatBlock();
+      case BlockType::LIST_BLOCK:
+        return new ListBlock();
+      case BlockType::LIST_ITEM_BLOCK:
+        return new ListItemBlock();
     }
 
     throw new NotFoundException("Block {$blockType} was not found");

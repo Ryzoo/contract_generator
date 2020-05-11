@@ -24,6 +24,8 @@ import TextBlock from './Types/TextBlock'
 import EmptyBlock from './Types/EmptyBlock'
 import PageDivideBlock from './Types/PageDivideBlock'
 import RepeatBlock from './Types/RepeatBlock'
+import ListBlock from './Types/ListBlock'
+import ListItemBlock from './Types/ListItemBlock'
 import BlockHeader from './BlockHeader'
 import { BlockTypeEnum } from '../../../../additionalModules/Enums'
 import AddBlockDialog from './AddBlockDialog'
@@ -36,7 +38,9 @@ export default {
     TextBlock,
     EmptyBlock,
     PageDivideBlock,
-    RepeatBlock
+    RepeatBlock,
+    ListItemBlock,
+    ListBlock
   },
   props: [
     'block', 'divider', 'level', 'blockIndex', 'nestedVariables'

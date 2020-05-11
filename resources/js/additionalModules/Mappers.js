@@ -18,6 +18,10 @@ class Mapper {
         return 'TextBlock'
       case BlockTypeEnum.REPEAT_BLOCK:
         return 'RepeatBlock'
+      case BlockTypeEnum.LIST_BLOCK:
+        return 'ListBlock'
+      case BlockTypeEnum.LIST_ITEM_BLOCK:
+        return 'ListItemBlock'
       default:
         return 'NotFoundBlock'
     }

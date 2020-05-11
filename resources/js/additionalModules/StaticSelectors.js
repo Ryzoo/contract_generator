@@ -37,6 +37,14 @@ const Selector = {
     {
       value: BlockTypeEnum.REPEAT_BLOCK,
       text: 'Repeat'
+    },
+    {
+      value: BlockTypeEnum.LIST_BLOCK,
+      text: 'List'
+    },
+    {
+      value: BlockTypeEnum.LIST_ITEM_BLOCK,
+      text: 'List item'
     }
   ],
 

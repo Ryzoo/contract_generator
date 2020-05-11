@@ -16,6 +16,9 @@ const actions = {
   builder_set: (context, data) => {
     context.commit('BUILDER_SET_BLOCK', data)
   },
+  builder_updateListEnumeratorType: (context, data) => {
+    context.commit('BUILDER_UPDATE_CURRENT_LIST_ENUMERATOR', data)
+  },
   builder_updateCurrentMultiGroupAttribute: (context, data) => {
     context.commit('BUILDER_UPDATE_CURRENT_MULTI_ATTRIBUTE', data)
   },
@@ -173,6 +176,25 @@ const mutations = {
       isInGroup: inGroupVarId.includes(parseInt(attr.id))
     }))
   },
+  BUILDER_UPDATE_CURRENT_LIST_ENUMERATOR: (state, data) => {
+    const updateBlock = (blocks, dataValue) => {
+      return blocks.map(x => {
+        if (parseInt(x.id) === parseInt(dataValue.id)) {
+          x.settings = {
+            ...x.settings,
+            enumeratorType: dataValue.value
+          }
+        } else if (x.content.blocks) {
+          x.content.blocks = updateBlock(x.content.blocks, dataValue)
+        }
+        return x
+      })
+    }
+
+    state.builder.blocks = [
+      ...updateBlock(state.builder.blocks, data)
+    ]
+  },
   BUILDER_UPDATE_CURRENT_MULTI_ATTRIBUTE: (state, data) => {
     const updateBlock = (blocks, dataValue) => {
       return blocks.map(x => {
@@ -210,8 +232,9 @@ const mutations = {
     state.builder.variables.push(data)
   },
   BUILDER_SET_BLOCK: (state, data) => {
-    state.builder.blocks = []
-    state.builder.blocks = data
+    state.builder.blocks = [
+      ...data
+    ]
   },
   BUILDER_SET_ACTIVE_BLOCK: (state, data) => {
     state.builder.activeBlock = data.block
@@ -410,6 +433,10 @@ const getters = {
     }
 
     return attrToReturn
+  },
+  builder_currentListEnumeratorType: (state) => (id) => {
+    const block = getBlockById(state.builder.blocks, id)
+    return block ? block.settings.enumeratorType : null
   },
   builder_currentMultiGroupAttribute: (state) => (id) => {
     const block = getBlockById(state.builder.blocks, id)
