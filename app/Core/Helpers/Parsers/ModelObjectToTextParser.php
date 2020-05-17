@@ -37,7 +37,7 @@ class ModelObjectToTextParser {
       case RuleTypes::SELECT:
         return SelectOperatorParser::parse("'$variable'", $operatorType, $value ? "'$value'" : "''");
       case RuleTypes::MULTI_SELECT:
-        return MultiSelectOperatorParser::parse("'$variable'", $operatorType, $value ? "'$value'" : "''");
+        return MultiSelectOperatorParser::parse("'$variable'", $operatorType, $value ? "'".implode('|,', $value)."'" : "''");
       case RuleTypes::AGGREGATE:
         return AggregateOperatorParser::parse($variable, $operatorType, isset($value) ? (float) $value : null);
       case RuleTypes::BOOL_INPUT:

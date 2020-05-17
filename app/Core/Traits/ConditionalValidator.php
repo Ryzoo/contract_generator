@@ -92,7 +92,9 @@ trait ConditionalValidator {
       })
       ->all();
 
-    return eval('return ' . implode(' ', $contentWithVariables) . ';');
+    $fullEvalText = 'return ' . implode(' ', $contentWithVariables) . ';';
+
+    return eval($fullEvalText);
   }
 
   private function getVariableValue($varId, int $index = 0) {
@@ -139,6 +141,6 @@ trait ConditionalValidator {
     }
 
 
-    return $foundedAttribute->getValue();
+    return $foundedAttribute->getRavValue();
   }
 }

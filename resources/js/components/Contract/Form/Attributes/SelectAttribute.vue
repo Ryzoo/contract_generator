@@ -34,7 +34,6 @@
     v-model="currentValue"
     :hint="attribute.labelAfter"
     :persistent-hint="!!attribute.labelAfter"
-
     allowSelfOptions
     dense
     outlined
@@ -64,13 +63,13 @@ export default {
       if (this.outside) {
         this.$emit('change-value', {
           ...this.attribute,
-          value: Array.isArray(newValue) ? newValue.join(',') : newValue
+          value: Array.isArray(newValue) ? newValue.join('|,') : newValue
         })
         return
       }
       this.$store.dispatch('formElements_change_attribute', {
         id: this.attribute.id,
-        value: Array.isArray(newValue) ? newValue.join(',') : newValue
+        value: Array.isArray(newValue) ? newValue.join('|,') : newValue
       })
     }
   },

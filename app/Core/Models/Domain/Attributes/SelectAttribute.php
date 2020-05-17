@@ -37,7 +37,7 @@ class SelectAttribute extends Attribute {
   private function prepareValue($value) {
     $preparedValue = '';
     if(!is_array($value)){
-      $valueList = explode(',', $value);
+      $valueList = explode('|,', $value);
       switch ((int)$this->settings['listRenderType']){
         case MultiUseRenderType::COMMA_SEPARATED:
           $preparedValue = implode(', ', $valueList);

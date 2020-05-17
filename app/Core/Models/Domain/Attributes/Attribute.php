@@ -138,6 +138,11 @@ abstract class Attribute implements IAttribute {
     return $this->valueParser($this->value);
   }
 
+  // return value for other action like condition check
+  public function getRavValue() {
+    return $this->value;
+  }
+
   public function valueParser($value) {
     return $value;
   }
