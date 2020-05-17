@@ -60,7 +60,7 @@ class Provider extends ContractModule {
 
     try {
       $contractPdfFile = $this->contractService
-        ->renderContract($this->contract->id, $formComplete->form_elements);
+        ->renderContract($this->contract, $formComplete->form_elements);
 
       $directory = "renders/contract-{$this->contract->id}/user-{$formComplete->user->id}/";
       $filePath = $directory . Str::random(16) . '.pdf';

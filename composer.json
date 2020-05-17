@@ -14,14 +14,15 @@
     "fideloper/proxy": "^4.0",
     "intervention/image": "^2.5",
     "jeremykenedy/laravel-roles": "^2.3",
+    "kwn/number-to-words": "^1.9",
     "laravel/framework": "6.0",
     "laravel/tinker": "^1.0",
     "martinlindhe/laravel-vue-i18n-generator": "^0.1.39",
     "spatie/laravel-image-optimizer": "^1.4"
   },
   "require-dev": {
-    "roave/security-advisories": "dev-master",
     "barryvdh/laravel-ide-helper": "^2.6",
+    "symfony/css-selector": "^4.4.8",
     "beyondcode/laravel-dump-server": "^1.0",
     "doctrine/dbal": "^2.9",
     "fzaninotto/faker": "^1.4",
@@ -30,7 +31,7 @@
     "mockery/mockery": "^1.0",
     "nunomaduro/collision": "^3.0",
     "nunomaduro/larastan": "^0.4.0",
-    "phpunit/phpunit": "^8"
+    "phpunit/phpunit": "^9"
   },
   "config": {
     "optimize-autoloader": true,

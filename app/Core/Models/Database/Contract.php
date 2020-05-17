@@ -14,7 +14,6 @@ use App\Core\Models\Database\ContractFormComplete;
 use App\Core\Models\Database\Category;
 
 class Contract extends Model {
-
   use SoftDeletes;
 
   protected $guarded = [];

@@ -17,7 +17,7 @@ class FormService {
     $this->conditionalService = $conditionalService;
   }
 
-  public function createFromContract(Contract $contract): Form {
+  public function createFormElementsCollection(Contract $contract):Collection {
     $blocks = $contract->blocks;
 
     $formElementsCollection = collect();
@@ -30,7 +30,11 @@ class FormService {
     $formElementsCollection = $this->conditionalService
       ->initializeConditionalInFormElementsCollection($contract, $formElementsCollection);
     $formElementsCollection = $formElementsCollection->unique();
-    $formElementsCollection = $this->reduceElementsWithSameAttribute($formElementsCollection);
+    return $this->reduceElementsWithSameAttribute($formElementsCollection);
+  }
+
+  public function createFromContract(Contract $contract): Form {
+    $formElementsCollection = $this->createFormElementsCollection($contract);
 
     if (isset($contract->form)) {
       $contract->form->update([

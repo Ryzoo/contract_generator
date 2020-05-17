@@ -88,6 +88,12 @@ trait ConditionalValidator {
           $search = $matches[1];
           return str_replace("{{$search}}", $var ?? 'null', $textElements);
         }
+        preg_match('/{(\d+:number)}/', $textElements, $matches);
+        if (isset($matches[1])) {
+          $var = $self->getVariableValue($matches[1], $index);
+          $search = $matches[1];
+          return str_replace("{{$search}}", $var ?? 'null', $textElements);
+        }
         return $textElements;
       })
       ->all();
@@ -114,6 +120,10 @@ trait ConditionalValidator {
 
         if($value === 'counter'){
           return $attr->isActive ? count($attrValue) : 0;
+        }
+
+        if($value === 'number'){
+          return $attr->getRavValue()['number'];
         }
 
         if (!(bool)$attr->settings['isMultiUse'] && $attr->attributeType === AttributeType::ATTRIBUTE_GROUP) {

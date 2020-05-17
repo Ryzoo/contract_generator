@@ -18,9 +18,9 @@ class NumberOperatorParser extends DefaultParser
             case OperatorType::N_EMPTY:
                 return "(!!${variable} || ${variable} !== 0)";
             case OperatorType::BEGINS_WITH:
-                return "startsWith('${variable}', '${value}')";
+                return "Str::startsWith('${variable}', '${value}')";
             case OperatorType::ENDS_WITH:
-                return "endsWith('${variable}', '${value}')";
+                return "Str::endsWith('${variable}', '${value}')";
             case OperatorType::GREATER:
                 return "intval(${variable}) > ${value}";
             case OperatorType::GREATER_OR_EQUAL:

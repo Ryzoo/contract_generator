@@ -34,7 +34,6 @@ class AttributeResolver {
     }
 
     preg_match_all('/{(\d+):counter}/', $text, $attributeIdList);
-
     foreach ($attributeIdList[1] as $id) {
       $attribute = $this->getAttributeById((int) $id);
       if (isset($attribute) && (bool)$attribute->settings['isMultiUse']) {
@@ -45,6 +44,24 @@ class AttributeResolver {
         ], $text);
       }
     }
+
+    //currency attribute
+    preg_match_all('/{(\d+):(?>number|words|currency)}/', $text, $attributeIdList);
+    foreach ($attributeIdList[1] as $id) {
+      $attribute = $this->getAttributeById((int) $id);
+      if (isset($attribute)) {
+        $text = str_replace([
+          '{' . $id . ':number}',
+          '{' . $id . ':words}',
+          '{' . $id . ':currency}',
+        ], [
+          $this->escapeValue($attribute->getRavValue()['number']),
+          $this->escapeValue($attribute->getWords()),
+          $this->escapeValue($attribute->getRavValue()['currency']),
+        ], $text);
+      }
+    }
+    //currency attribute end
 
     if ($resolveGroup) {
       preg_match_all('/{(\d+):\d+}/', $text, $attributeIdList);

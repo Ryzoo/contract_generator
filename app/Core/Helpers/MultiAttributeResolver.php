@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 class MultiAttributeResolver {
 
   public static function resolve(Attribute $attribute, string $content, $value):string {
-    if($attribute->attributeType === AttributeType::ATTRIBUTE_GROUP) {
+    if($attribute->attributeType === AttributeType::ATTRIBUTE_GROUP && is_array($value)) {
       return self::resolveGroupAttributeInContent($attribute, $content, $value);
     }
 

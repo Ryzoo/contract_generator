@@ -6,9 +6,7 @@ namespace App\Core\Models\Domain\Attributes;
 
 use App\Core\Contracts\IAttribute;
 use App\Core\Enums\AttributeType;
-use App\Core\Enums\MultiUseRenderType;
 use App\Core\Models\Domain\Conditional\Conditional;
-use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Exception\NotFoundException;
@@ -55,6 +53,9 @@ abstract class Attribute implements IAttribute {
   }
 
   protected function parseContent(): void {
+    if(!isset($this->settings) || $this->settings === [])
+      $this->buildSettings();
+
     $this->content = (isset($this->content) && is_array($this->content)) ? self::getListFromString(json_encode($this->content, JSON_THROW_ON_ERROR, 512)) : [];
   }
 
@@ -78,6 +79,8 @@ abstract class Attribute implements IAttribute {
         return new AggregateAttribute();
       case AttributeType::BOOL_INPUT:
         return new BoolInputAttribute();
+      case AttributeType::CURRENCY:
+        return new CurrencyAttribute();
     }
 
     throw new NotFoundException("Attribute type number:{$attributeType} was not found");
@@ -87,9 +90,9 @@ abstract class Attribute implements IAttribute {
     Validator::validate($value, [
       'id' => 'sometimes|required|integer',
       'attributeType' => 'required|integer',
-      'attributeName' => 'required|string',
-      'conditionals' => 'sometimes|array',
-      'settings' => 'sometimes|required',
+      'attributeName' => 'nullable|string',
+      'conditionals' => 'present|array',
+      'settings' => 'sometimes|present',
     ]);
 
     return TRUE;
@@ -115,7 +118,7 @@ abstract class Attribute implements IAttribute {
     $attribute = self::getAttributeByType($value['attributeType']);
 
     $attribute->attributeType = (int) $value['attributeType'];
-    $attribute->attributeName = $value['attributeName'];
+    $attribute->attributeName = $value['attributeName'] ?? (string)$value['attributeType'];
     $attribute->settings = $value['settings'];
     $attribute->conditionals = isset($value['conditionals']) ? Conditional::getListFromString(json_encode($value['conditionals'], JSON_THROW_ON_ERROR, 512)) : [];
     $attribute->id = (int) ($value['id'] ?? -1);

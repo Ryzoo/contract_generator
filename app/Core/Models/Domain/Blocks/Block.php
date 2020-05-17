@@ -60,6 +60,9 @@ abstract class Block implements IBlock {
   protected function prepare(): void {
     $this->validateContent();
     $this->buildContent();
+
+    if(!isset($this->settings) || $this->settings === [])
+      $this->buildSettings();
   }
 
   public static function getBlockByType(int $blockType): Block {
@@ -116,7 +119,7 @@ abstract class Block implements IBlock {
     $block->id = (int) $value['id'];
     $block->parentId = (int) $value['parentId'];
     $block->blockType = (int) $value['blockType'];
-    $block->blockName = $value['blockName'];
+    $block->blockName = $value['blockName'] ?? (string)$value['blockType'];
     $block->settings = $value['settings'];
     $block->conditionals = Conditional::getListFromString(json_encode($value['conditionals'], JSON_THROW_ON_ERROR, 512));
     $block->content = (array) $value['content'];

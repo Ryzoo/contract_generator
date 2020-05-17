@@ -44,8 +44,7 @@ class ContractService {
     }
   }
 
-  public function renderContract(int $contractId, Collection $formElements): PDF {
-    $contract = Contract::findOrFail($contractId);
+  public function renderContract(Contract $contract, Collection $formElements): PDF {
     $blocks = $this->prepareRenderBlock($contract->blocks, $formElements, $contract);
 
     $pdfRenderer = new PdfRenderer();
