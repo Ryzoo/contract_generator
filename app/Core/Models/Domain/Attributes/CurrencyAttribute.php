@@ -45,7 +45,7 @@ class CurrencyAttribute extends Attribute implements IAggregableByAttributeAggre
     if(!$this->settings['renderFloatAsText']){
       $intNumber = (int)$number;
       $floatNumber = $number - $intNumber;
-      $floatNumber = $floatNumber > 0 ? $floatNumber * 100 : $floatNumber;
+      $floatNumber = $floatNumber > 0 ? ceil($floatNumber * 100) : $floatNumber;
       return $currencyTransformer->toWords($intNumber * 100, $currency) . ($floatNumber > 0 ? " $floatNumber/100" : '');
     }
 
