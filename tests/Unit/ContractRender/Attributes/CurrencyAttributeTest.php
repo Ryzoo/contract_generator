@@ -33,7 +33,7 @@ class CurrencyAttributeTest extends TestCase {
       ])
       ->getHTML();
 
-    $this->assertStringContainsString('The currency type: ' . $currency . ' and value ' . $number . '. In words: ' . $words, $html);
+    $this->assertStringContainsString($words, $html);
   }
 
   private function assertConditional(float $number, string $conditionals){
@@ -85,6 +85,8 @@ class CurrencyAttributeTest extends TestCase {
     $this->assertCurrencyFor(1003, $currency, 'jeden tysiąc trzy złote');
     $this->assertCurrencyFor(1004, $currency, 'jeden tysiąc cztery złote');
     $this->assertCurrencyFor(3043, $currency, 'trzy tysiące czterdzieści trzy złote');
+    $this->assertCurrencyFor(123.23, $currency, 'sto dwadzieścia trzy złote 23/100');
+    $this->assertCurrencyFor(123.23, $currency, '123,23');
   }
 
   public function testConditional(): void{
