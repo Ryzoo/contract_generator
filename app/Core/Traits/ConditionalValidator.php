@@ -70,25 +70,7 @@ trait ConditionalValidator {
           $search = $matches[1];
           return str_replace("{{$search}}", $var ?? 'null', $textElements);
         }
-        preg_match('/{(\d+:\d+)}/', $textElements, $matches);
-        if (isset($matches[1])) {
-          $var = $self->getVariableValue($matches[1], $index);
-          $search = $matches[1];
-          return str_replace("{{$search}}", $var ?? 'null', $textElements);
-        }
-        preg_match('/{(\d+:value)}/', $textElements, $matches);
-        if (isset($matches[1])) {
-          $var = $self->getVariableValue($matches[1], $index);
-          $search = $matches[1];
-          return str_replace("{{$search}}", $var ?? 'null', $textElements);
-        }
-        preg_match('/{(\d+:counter)}/', $textElements, $matches);
-        if (isset($matches[1])) {
-          $var = $self->getVariableValue($matches[1], $index);
-          $search = $matches[1];
-          return str_replace("{{$search}}", $var ?? 'null', $textElements);
-        }
-        preg_match('/{(\d+:number)}/', $textElements, $matches);
+        preg_match('/{(\d+:(?>number|counter|value|\d+))}/', $textElements, $matches);
         if (isset($matches[1])) {
           $var = $self->getVariableValue($matches[1], $index);
           $search = $matches[1];
@@ -99,7 +81,6 @@ trait ConditionalValidator {
       ->all();
 
     $fullEvalText = 'return ' . implode(' ', $contentWithVariables) . ';';
-
     return eval($fullEvalText);
   }
 
@@ -149,7 +130,6 @@ trait ConditionalValidator {
     if (!isset($foundedAttribute)) {
       throw new \ErrorException("Var: {$varId} not found");
     }
-
 
     return $foundedAttribute->getRavValue();
   }

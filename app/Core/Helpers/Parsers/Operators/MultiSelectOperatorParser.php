@@ -10,9 +10,9 @@ class MultiSelectOperatorParser extends DefaultParser
     {
         switch ($operatorType) {
             case OperatorType::EQUAL:
-                return "collect(explode('|,',$variable))->every(static function(".'$x'."){ return collect(explode('|,',$value))->contains(".'$x'.");})";
+                return "(count(explode('|,',$variable)) === count(explode('|,',$value)) && collect(explode('|,',$variable))->every(static function(".'$x'."){ return collect(explode('|,',$value))->contains(".'$x'.");}))";
             case OperatorType::N_EQUAL:
-                return "!collect(explode('|,',$variable))->every(static function(".'$x'."){ return collect(explode('|,',$value))->contains(".'$x'.");})";
+                return "(count(explode('|,',$variable)) !== count(explode('|,',$value)) || !collect(explode('|,',$variable))->every(static function(".'$x'."){ return collect(explode('|,',$value))->contains(".'$x'.");}))";
             case OperatorType::EMPTY:
               return "count(explode('|,',$variable)) <= 0";
             case OperatorType::N_EMPTY:

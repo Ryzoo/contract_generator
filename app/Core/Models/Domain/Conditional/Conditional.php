@@ -55,10 +55,11 @@ abstract class Conditional implements IConditional {
       if (is_array($conditional) && !isset($conditional['conditionalType'])) {
         $arIn = [];
         foreach ((array) $conditional as $condOne) {
-          $arIn []= self::getFromString((array) $condOne);
+          $arIn [] = self::getFromString((array) $condOne);
         }
         $returnedArray[] = $arIn;
-      }else{
+      }
+      else {
         $returnedArray[] = self::getFromString((array) $conditional);
       }
     }
@@ -78,7 +79,7 @@ abstract class Conditional implements IConditional {
   }
 
   public function getUsedVariable(): Collection {
-    preg_match_all('/"id": ?(\d+),/', $this->content, $output_array);
+    preg_match_all('/"id": ?"?(\d+)"?,/', $this->content, $output_array);
     $allElements = collect();
 
     if (isset($output_array[1]) && is_array($output_array[1])) {
@@ -87,38 +88,13 @@ abstract class Conditional implements IConditional {
       }
     }
 
-    preg_match_all('/"id": ?"(\d+):value",/', $this->content, $output_array);
-
+    preg_match_all('/"id": ?"?(\d+):(?>number|currency|words|counter|\d+|value)"?,/', $this->content, $output_array);
     if (isset($output_array[1]) && is_array($output_array[1])) {
       foreach ($output_array[1] as $item) {
         $allElements->push($item);
       }
     }
 
-    preg_match_all('/"id": ?"(\d+):(\d+)",/', $this->content, $output_array);
-
-    if (isset($output_array[1]) && is_array($output_array[1])) {
-      foreach ($output_array[1] as $item) {
-        $allElements->push($item);
-      }
-    }
-
-    preg_match_all('/"id": ?"(\d+):counter",/', $this->content, $output_array);
-
-    if (isset($output_array[1]) && is_array($output_array[1])) {
-      foreach ($output_array[1] as $item) {
-        $allElements->push($item);
-      }
-    }
-
-    preg_match_all('/"id": ?"(\d+):(?>number|currency|words)",/', $this->content, $output_array);
-
-    if (isset($output_array[1]) && is_array($output_array[1])) {
-      foreach ($output_array[1] as $item) {
-        $allElements->push($item);
-      }
-    }
-
-    return $allElements;
+    return $allElements->unique();
   }
 }
