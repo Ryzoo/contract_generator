@@ -12,40 +12,6 @@ use Tests\TestCase;
 class BlockTest extends TestCase {
   use RefreshDatabase;
 
-  public function testTextBlock(): void {
-    $testText = 'hello world';
-    $html = $this->builder()
-      ->buildBlock(BlockType::TEXT_BLOCK, [
-        'content' => [
-          'text' => $testText
-        ]
-      ])
-      ->getHTML();
-
-    $this->assertStringContainsString($testText, $html);
-  }
-
-  public function testEmptyBlock(): void {
-    $testText = 'hello world';
-    $testTextV2 = 'hello world v2';
-    $html = $this->builder()
-      ->buildBlock(BlockType::EMPTY_BLOCK, [
-        'content' => [
-          'blocks' => $this->builder()
-            ->buildBlock(BlockType::TEXT_BLOCK, [
-              'content' => ['text' => $testText]
-            ])
-            ->buildBlock(BlockType::TEXT_BLOCK, [
-              'content' => ['text' => $testTextV2]
-            ])
-            ->getBlocks()
-        ]])
-      ->getHTML();
-
-    $this->assertStringContainsString($testText, $html);
-    $this->assertStringContainsString($testTextV2, $html);
-  }
-
   public function testPageDivideBlock(): void {
     $testText = '<div class="page-break"></div>';
     $html = $this->builder()
