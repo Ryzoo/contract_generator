@@ -108,6 +108,10 @@ class AttributeResolver {
       $value = Str::substr($value, 1, Str::length($value) - 2);
     }
 
+    if(is_float($value)){
+      $value = number_format($value, 2, ',', '');
+    }
+
     return $value;
   }
 }
