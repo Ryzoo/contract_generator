@@ -36,13 +36,13 @@ export default {
       if (this.outside) {
         this.$emit('change-value', {
           ...this.attribute,
-          value: parseFloat(newValue)
+          value: newValue
         })
         return
       }
       this.$store.dispatch('formElements_change_attribute', {
         id: this.attribute.id,
-        value: parseFloat(newValue)
+        value: newValue
       })
     }
   },
