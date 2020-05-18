@@ -6,6 +6,7 @@
     :error="!attribute.isValid"
     :error-messages="attribute.errorMessage"
     :hint="attribute.labelAfter"
+    :show-details="true"
     :persistent-hint="!!attribute.labelAfter"
   >
     <template v-slot:append-outer v-if="attribute.additionalInformation && attribute.additionalInformation.length > 0">

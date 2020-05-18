@@ -213,6 +213,11 @@ class AttributeValidatorHelper {
       value = attribute.value[0]
     }
 
+    switch (parseInt(attribute.attributeType)) {
+      case AttributeTypeEnum.CURRENCY:
+        return value.number
+    }
+
     return value
   }
 }
