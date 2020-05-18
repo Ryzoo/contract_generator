@@ -89,9 +89,7 @@ abstract class Block implements IBlock {
       'id' => 'required|integer',
       'parentId' => 'required|integer',
       'blockType' => 'required|integer',
-      'content' => 'nullable',
-      'conditionals' => 'nullable|array',
-      'settings' => 'nullable',
+      'conditionals' => 'sometimes|array',
     ]);
 
     return TRUE;

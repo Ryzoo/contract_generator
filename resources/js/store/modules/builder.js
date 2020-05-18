@@ -386,6 +386,22 @@ const getters = {
             id: attribute.id + ':' + x.id
           })
         })
+      } else if (attribute.attributeType === AttributeTypeEnum.CURRENCY) {
+        returnedVar.push({
+          ...attribute,
+          attributeName: attribute.attributeName + ' - number',
+          id: attribute.id + ':number'
+        })
+        returnedVar.push({
+          ...attribute,
+          attributeName: attribute.attributeName + ' - currency',
+          id: attribute.id + ':currency'
+        })
+        returnedVar.push({
+          ...attribute,
+          attributeName: attribute.attributeName + ' - words',
+          id: attribute.id + ':words'
+        })
       } else returnedVar.push(attribute)
     })
 

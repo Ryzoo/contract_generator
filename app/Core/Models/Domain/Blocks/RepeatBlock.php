@@ -33,7 +33,7 @@ class RepeatBlock extends Block {
 
   protected function validateContent():bool {
     Validator::validate($this->content,[
-      'blocks' => 'nullable|array',
+      'blocks' => 'sometimes|array',
     ]);
 
     return true;

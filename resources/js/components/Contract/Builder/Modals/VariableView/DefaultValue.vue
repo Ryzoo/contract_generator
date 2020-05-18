@@ -87,15 +87,22 @@
       dense
       v-model="currentValue"
       :label="$t('form.variableForm.defaultValue') + ': ' + (!!currentValue).toString()"
-    ></v-switch>
+    />
+    <currency-select
+      v-if="acceptedType([type.CURRENCY])"
+      :label="$t('form.variableForm.defaultValue')"
+      v-model="currentValue"
+    />
   </section>
 </template>
 
 <script>
 import { AttributeTypeEnum } from '../../../../../additionalModules/Enums'
+import CurrencySelect from '../../../../common/CurrencySelect'
 
 export default {
   name: 'DefaultValue',
+  components: { CurrencySelect },
   props: [
     'attributeData', 'value'
   ],

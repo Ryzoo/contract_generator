@@ -23,6 +23,7 @@ import BoolInputAttribute from './BoolInputAttribute'
 import BoolAttribute from './BoolAttribute'
 import DateAttribute from './DateAttribute'
 import TimeAttribute from './TimeAttribute'
+import CurrencyAttribute from './CurrencyAttribute'
 
 export default {
   name: 'RepeatGroupAttribute',
@@ -34,7 +35,8 @@ export default {
     BoolAttribute,
     DateAttribute,
     TimeAttribute,
-    BoolInputAttribute
+    BoolInputAttribute,
+    CurrencyAttribute
   },
   data () {
     return {

@@ -56,6 +56,8 @@ class Mapper {
         return 'AggregateAttribute'
       case AttributeTypeEnum.BOOL_INPUT:
         return 'BoolInputAttribute'
+      case AttributeTypeEnum.CURRENCY:
+        return 'CurrencyAttribute'
       default:
         return 'NotFoundAttribute'
     }

@@ -28,7 +28,8 @@ export const AttributeTypeEnum = {
   TIME: 5,
   BOOL: 6,
   AGGREGATE: 7,
-  BOOL_INPUT: 8
+  BOOL_INPUT: 8,
+  CURRENCY: 9
 }
 
 export const ConditionalEnum = {

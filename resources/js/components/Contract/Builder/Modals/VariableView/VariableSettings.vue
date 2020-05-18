@@ -20,12 +20,13 @@ import TextAttribute from './VariableSettings/TextAttribute'
 import TimeAttribute from './VariableSettings/TimeAttribute'
 import AggregateAttribute from './VariableSettings/AggregateAttribute'
 import BoolInputAttribute from './VariableSettings/BoolInputAttribute'
+import CurrencyAttribute from './VariableSettings/CurrencyAttribute'
 
 export default {
   props: ['attribute', 'noStore', 'attributes'],
   name: 'VariableSettings',
   components: {
-    BoolAttribute, DateAttribute, NumberAttribute, RepeatGroupAttribute, SelectAttribute, TextAttribute, TimeAttribute, AggregateAttribute, BoolInputAttribute
+    CurrencyAttribute, BoolAttribute, DateAttribute, NumberAttribute, RepeatGroupAttribute, SelectAttribute, TextAttribute, TimeAttribute, AggregateAttribute, BoolInputAttribute
   },
   methods: {
     editVariable (attribute) {

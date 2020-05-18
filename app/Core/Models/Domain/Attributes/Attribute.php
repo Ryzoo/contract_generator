@@ -90,9 +90,8 @@ abstract class Attribute implements IAttribute {
     Validator::validate($value, [
       'id' => 'sometimes|required|integer',
       'attributeType' => 'required|integer',
-      'attributeName' => 'nullable|string',
-      'conditionals' => 'present|array',
-      'settings' => 'sometimes|present',
+      'attributeName' => 'sometimes|string',
+      'conditionals' => 'sometimes|array',
     ]);
 
     return TRUE;

@@ -21,7 +21,7 @@ class EmptyBlock extends Block {
 
     protected function validateContent():bool {
         Validator::validate($this->content,[
-            'blocks' => 'present|array',
+            'blocks' => 'sometimes|array',
         ]);
 
         return true;

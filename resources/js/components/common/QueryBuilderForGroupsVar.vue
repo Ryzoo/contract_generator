@@ -22,7 +22,7 @@
 <script>
 import VueQueryBuilder from 'vue-query-builder-vuetifyjs'
 import 'vue-query-builder-vuetifyjs/dist/VueQueryBuilder.css'
-import { ConditionalEnum } from '../../additionalModules/Enums'
+import {AttributeTypeEnum, ConditionalEnum} from '../../additionalModules/Enums'
 
 export default {
   name: 'QueryBuilderForGroupsVar',
@@ -90,15 +90,16 @@ export default {
     },
     mapBackendTypeToBuilderType (variable) {
       switch (parseInt(variable.attributeType)) {
-        case 0:
-        case 1:
-        case 4:
-        case 5:
-        case 6:
-        case 7:
-        case 8:
-          return variable.attributeType
-        case 2:
+        case AttributeTypeEnum.NUMBER:
+        case AttributeTypeEnum.TEXT:
+        case AttributeTypeEnum.DATE:
+        case AttributeTypeEnum.TIME:
+        case AttributeTypeEnum.BOOL:
+        case AttributeTypeEnum.AGGREGATE:
+        case AttributeTypeEnum.BOOL_INPUT:
+        case AttributeTypeEnum.CURRENCY:
+          return parseInt(variable.attributeType)
+        case AttributeTypeEnum.SELECT:
           return variable.settings.isMultiSelect ? 3 : 2
       }
       return -1

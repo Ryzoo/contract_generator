@@ -23,6 +23,7 @@ import BoolAttribute from '../../Attributes/BoolAttribute'
 import DateAttribute from '../../Attributes/DateAttribute'
 import TimeAttribute from '../../Attributes/TimeAttribute'
 import BoolInputAttribute from '../../Attributes/BoolInputAttribute'
+import CurrencyAttribute from '../../Attributes/CurrencyAttribute'
 
 export default {
   name: 'AddForm',
@@ -35,7 +36,8 @@ export default {
     BoolAttribute,
     DateAttribute,
     TimeAttribute,
-    BoolInputAttribute
+    BoolInputAttribute,
+    CurrencyAttribute
   },
   data () {
     return {
