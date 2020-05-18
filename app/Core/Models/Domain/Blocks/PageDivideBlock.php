@@ -35,13 +35,6 @@ class PageDivideBlock extends Block {
         return (bool)$this->settings['isBreaker'] ? $htmlString . '<div class="page-break"></div>' : $htmlString;
     }
 
-    public function renderAdditionalCss(): string{
-        $cssString = parent::renderAdditionalCss();
-        return $cssString . '.page-break {
-            page-break-after: always;
-        }';
-    }
-
     public function getFormElements(Contract $contract): Collection{
         $formElements = parent::getFormElements($contract);
         $formElements->push( new PageDividerFormElement($this->id, $this->blockName) );

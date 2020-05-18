@@ -163,10 +163,6 @@ abstract class Block implements IBlock {
     return '';
   }
 
-  public function renderAdditionalCss(): string {
-    return '';
-  }
-
   public function counterResolve(string $matchString, int $countStart, Contract $contract): int {
     return $countStart;
   }

@@ -15,7 +15,6 @@ interface IBlock {
     public static function getBlockByType(int $blockType): Block;
     public function getBlockCollection(Collection $blockCollection): Collection;
     public function renderToHtml(Collection $attributes, Attribute $repeatAttribute = null, $repeatValue = null): string;
-    public function renderAdditionalCss(): string;
     public function findVariable(Contract $contract): Collection;
     public function getFormElements(Contract $contract): Collection;
 }
