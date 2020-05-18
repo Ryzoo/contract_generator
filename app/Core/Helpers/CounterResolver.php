@@ -20,7 +20,7 @@ class CounterResolver {
     foreach ($elementList[0] as $index =>$element){
       $length = strlen($element[0]);
       $startPos = $element[1];
-      $text = substr_replace($text, " $this->countStart. ", $startPos + $length + $prevLength, 0);
+      $text = substr_replace($text, " $this->countStart ", $startPos + $length + $prevLength, 0);
       $prevLength += strlen(" $this->countStart. ");
       $this->countStart++;
     }

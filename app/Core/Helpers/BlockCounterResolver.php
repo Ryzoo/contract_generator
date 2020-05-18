@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Core\Helpers;
 
 use App\Core\Models\Database\Contract;
@@ -22,15 +23,15 @@ class BlockCounterResolver {
 
   public static function resolve(string $matchString, Collection $blockCollection, Contract $contract, int $countStart = 1): array {
     /**
-       * @var Block block
-       */
+     * @var Block block
+     */
     foreach ($blockCollection as &$block) {
       $countStart = $block->counterResolve($matchString, $countStart, $contract);
     }
 
     return [
       'data' => $blockCollection,
-      'count' => $countStart
+      'count' => $countStart,
     ];
   }
 
