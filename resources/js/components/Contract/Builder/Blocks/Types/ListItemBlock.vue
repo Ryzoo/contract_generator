@@ -319,7 +319,7 @@ export default {
               const fuse = new Fuse(items, {
                 keys: ['name']
               })
-              return fuse.search(query)
+              return fuse.search(query).map(x => x.item)
             }
           }),
           new ParagraphList(),
