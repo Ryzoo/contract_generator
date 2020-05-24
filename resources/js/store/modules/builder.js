@@ -405,7 +405,7 @@ const getters = {
       } else returnedVar.push(attribute)
     })
 
-    return returnedVar
+    return returnedVar.reverse()
   },
   builder_multiGroupAttributes: state => state.builder.variables.filter(x => !!x.settings.isMultiUse && !(x.settings.isInline)),
   builder_variablesForRepeatBlock: (state) => (id, nestedAttributes) => {
