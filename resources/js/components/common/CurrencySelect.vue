@@ -49,7 +49,7 @@ export default {
       number: this.value ? this.value.number : null,
       currency: this.value ? this.value.currency : null,
       listOfCurrency: [
-        'PLN', 'USD'
+        'PLN', 'USD', 'EUR', 'CHF', 'GBP'
       ]
     }
   },
