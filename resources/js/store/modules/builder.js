@@ -104,7 +104,7 @@ const mutations = {
     }
 
     state.builder.blocks = removeFromData(state.builder.blocks, blockId)
-    state.builder.blocks = addNewBlockToCurrentBlocks(state.builder.blocks, copiedBlock, parseInt(placeIndex) === 0 && parseInt(destinationBlock) === 0 ? 1 : placeIndex)
+    state.builder.blocks = addNewBlockToCurrentBlocks(state.builder.blocks, copiedBlock, parseInt(placeIndex) === 0 && parseInt(destinationBlock) === 0 ? 1 : parseInt(placeIndex))
   },
   BUILDER_ATTRIBUTE_IMPORT: (state, attributes) => {
     attributes.forEach(attribute => {
@@ -515,7 +515,7 @@ const addNewBlockToCurrentBlocks = (blocks, newBlock, index) => {
       if (parseInt(x.id) === parseInt(newBlock.parentId)) {
         x.content.blocks.splice(index, 0, newBlock)
       } else if (typeof x.content.blocks !== 'undefined' && x.content.blocks.length > 0) {
-        x.content.blocks = addNewBlockToCurrentBlocks(x.content.blocks, newBlock)
+        x.content.blocks = addNewBlockToCurrentBlocks(x.content.blocks, newBlock, index)
       }
       return x
     })
