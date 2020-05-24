@@ -10,6 +10,9 @@
     v-model="currentValue"
     :hint="attribute.labelAfter"
     :name="attribute.attributeName"
+    chips
+    small-chips
+    deletable-chips
     :persistent-hint="!!attribute.labelAfter"
     allowSelfOptions
     dense
@@ -36,6 +39,9 @@
     :hint="attribute.labelAfter"
     :persistent-hint="!!attribute.labelAfter"
     allowSelfOptions
+    chips
+    small-chips
+    deletable-chips
     dense
     outlined
   >
