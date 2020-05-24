@@ -9,6 +9,7 @@
     :placeholder="attribute.placeholder || ' '"
     v-model="currentValue"
     :hint="attribute.labelAfter"
+    :name="attribute.attributeName"
     :persistent-hint="!!attribute.labelAfter"
     allowSelfOptions
     dense

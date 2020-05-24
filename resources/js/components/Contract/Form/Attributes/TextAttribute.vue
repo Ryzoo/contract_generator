@@ -9,6 +9,7 @@
     :hint="attribute.labelAfter"
     :persistent-hint="!!attribute.labelAfter"
     outlined
+    :name="attribute.attributeName"
     dense
   >
     <template v-slot:append-outer v-if="attribute.additionalInformation && attribute.additionalInformation.length > 0">

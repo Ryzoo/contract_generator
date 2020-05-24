@@ -7,6 +7,7 @@
         :hint="attribute.labelAfter"
         :persistent-hint="!!attribute.labelAfter"
         v-model="currentValue"
+        :name="attribute.attributeName"
         outlined
         dense
     >

@@ -6,6 +6,7 @@
     type="number"
     :hide-details="!showDetails"
     :label="label"
+    :name="label"
     @change="changeNumber"
     :placeholder="placeholder"
     :error="error"
@@ -19,6 +20,7 @@
         :items="listOfCurrency"
         menu-props="auto"
         label="Currency"
+        name="Currency"
         dense
         outlined
         :hide-details="!showDetails"
