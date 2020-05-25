@@ -9,11 +9,12 @@
           :divider="fBlock.isDivider"
           :level="block.id"
           :blockIndex="index"
+          :in-list="inList"
           :nested-variables="nestedVariables"
           @show-block-modal="showBlockModal"
         />
       </section>
-      <AddBlockDialog :level="block.id"/>
+      <AddBlockDialog :level="block.id" :in-list="inList"/>
     </v-col>
   </v-row>
 </template>
@@ -26,7 +27,7 @@ export default {
   components: {
     AddBlockDialog
   },
-  props: ['block', 'level', 'nestedVariables'],
+  props: ['block', 'level', 'nestedVariables', 'inList'],
   computed: {
     filterParentBlocks () {
       return this.block.content.blocks

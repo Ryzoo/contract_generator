@@ -9,6 +9,7 @@
           :divider="fBlock.isDivider"
           :level="block.id"
           :blockIndex="index"
+          :in-list="true"
           :nested-variables="nestedVariables"
           @show-block-modal="showBlockModal"
         />

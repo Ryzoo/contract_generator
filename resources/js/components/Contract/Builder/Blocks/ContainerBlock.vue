@@ -13,6 +13,7 @@
         :nested-variables="nestedVariables"
         :is="Mapper.getBlockName(currentBlock.blockType)"
         :block="currentBlock"
+        :in-list="inList"
         @show-block-modal="showBlockModal"
       />
     </div>
@@ -43,7 +44,7 @@ export default {
     ListBlock
   },
   props: [
-    'block', 'divider', 'level', 'blockIndex', 'nestedVariables'
+    'block', 'divider', 'level', 'blockIndex', 'nestedVariables', 'inList'
   ],
   data () {
     return {

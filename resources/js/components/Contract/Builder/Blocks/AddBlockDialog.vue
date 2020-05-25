@@ -45,14 +45,11 @@ import { BlockTypeEnum, ListEnumeratorType } from '../../../../additionalModules
 
 export default {
   name: 'AddBlockDialog',
-  props: ['level', 'listOnly'],
+  props: ['level', 'listOnly', 'inList'],
   data () {
     return {
       addBlockDialog: false,
-      blockTypes: (this.level ? Selector.BlockType
-        .filter(x => x.value !== BlockTypeEnum.PAGE_DIVIDE_BLOCK) : Selector.BlockType)
-        .filter(x => !this.listOnly || (x.value === BlockTypeEnum.LIST_BLOCK || x.value === BlockTypeEnum.LIST_ITEM_BLOCK))
-        .filter(x => this.listOnly || (!this.listOnly && x.value !== BlockTypeEnum.LIST_ITEM_BLOCK)),
+      blockTypes: this.getBlockTypes(),
       newBlock: {
         id: 1,
         parentId: this.level,
@@ -67,6 +64,21 @@ export default {
     }
   },
   methods: {
+    getBlockTypes(){
+      let baseType = this.level ? Selector.BlockType.filter(x => x.value !== BlockTypeEnum.PAGE_DIVIDE_BLOCK) : Selector.BlockType
+
+      if(this.listOnly){
+        baseType = baseType.filter(x => x.value === BlockTypeEnum.LIST_BLOCK || x.value === BlockTypeEnum.LIST_ITEM_BLOCK || x.value === BlockTypeEnum.EMPTY_BLOCK)
+      }else{
+        if(this.inList){
+          baseType = baseType.filter(x => x.value !== BlockTypeEnum.TEXT_BLOCK && x.value !== BlockTypeEnum.REPEAT_BLOCK)
+        }else{
+          baseType = baseType.filter(x => x.value !== BlockTypeEnum.LIST_ITEM_BLOCK)
+        }
+      }
+
+      return baseType
+    },
     addBlock (blockType) {
       let blocks = this.$store.getters.builder_allBlocks
 
