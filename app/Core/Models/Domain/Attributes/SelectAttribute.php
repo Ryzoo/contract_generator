@@ -61,10 +61,8 @@ class SelectAttribute extends Attribute {
           break;
       }
     }else{
-      $preparedValue = [];
-      foreach ($value as $element){
-        $preparedValue []= $this->prepareValue($element);
-      }
+      $preparedValue = implode('|,', $value);
+      $preparedValue = $this->prepareValue($preparedValue);
     }
 
     return $preparedValue;
