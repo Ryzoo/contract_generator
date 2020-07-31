@@ -2,7 +2,7 @@
     <section>
       <v-row>
         <v-col>
-          <h3>{{$t("pages.panel.contracts.builder.header")}} <span class="light-text" v-if="contract">{{contract.name}}</span></h3>
+          <h3 name="builder-contract-name">{{$t("pages.panel.contracts.builder.header")}} <span class="light-text" v-if="contract">{{contract.name}}</span></h3>
           <v-btn color="primary mt-3" small @click="showAttributeModal">{{$t("pages.panel.contracts.builder.attributeList")}}</v-btn>
         </v-col>
         <v-col cols="auto">

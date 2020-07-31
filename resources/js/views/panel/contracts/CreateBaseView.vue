@@ -30,6 +30,7 @@
                   v-model="contract.name"
                   outlined
                   dense
+                  name="contract-name"
                   :label="$t('form.contractAddForm.field.contract_name')"
                   @change="saveContractDataToStore"
                   required
@@ -46,7 +47,7 @@
                   :items="categories"
                   :label="$t('form.contractAddForm.field.contract_categories')"
                 />
-                <vue-editor v-model="contract.description"></vue-editor>
+                <vue-editor name="contract-description" v-model="contract.description"></vue-editor>
               </v-col>
               <v-col cols="12" md="6">
                 <ContractModuleConfiguration/>

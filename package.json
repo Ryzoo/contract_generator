@@ -12,6 +12,7 @@
     "test-func": "./vendor/bin/codecept run functional",
     "test-unit": "./vendor/bin/codecept run unit",
     "test-api": "./vendor/bin/codecept run api",
+    "test-ui": "testcafe firefox uiTests --disable-page-caching --quarantine-mode --skip-js-errors -S -s screenshots",
     "lang": "php artisan vue-i18n:generate",
     "lint": "./node_modules/.bin/eslint resources/js/ --ext .js,.vue",
     "lint:fix": "./node_modules/.bin/eslint --fix resources/js/ --ext .js,.vue"
@@ -42,6 +43,8 @@
     "eslint-loader": "^4.0.2",
     "fuse.js": "^5.2.3",
     "sortablejs": "^1.10.2",
+    "testcafe": "^1.8.8",
+    "testcafe-vue-selectors": "^3.1.0",
     "tippy.js": "^4.3.5",
     "tiptap": "^1.27.1",
     "tiptap-extensions": "^1.29.1",
