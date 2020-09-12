@@ -14,9 +14,9 @@ class MultiSelectOperatorParser extends DefaultParser
             case OperatorType::N_EQUAL:
                 return "(count(explode('|,',$variable)) !== count(explode('|,',$value)) || !collect(explode('|,',$variable))->every(static function(".'$x'."){ return collect(explode('|,',$value))->contains(".'$x'.");}))";
             case OperatorType::EMPTY:
-              return "$variable === 'null'";
+              return "$variable === 'null' || $variable === ''";
             case OperatorType::N_EMPTY:
-              return "$variable !== 'null'";
+              return "$variable !== 'null' && $variable !== ''";
             case OperatorType::CONTAINS:
               return "collect(explode('|,',$variable))->contains(static function(".'$x'."){ return collect(explode('|,',$value))->contains(".'$x'.");})";
             case OperatorType::N_CONTAINS:
