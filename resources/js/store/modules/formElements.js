@@ -11,6 +11,11 @@ const defaultState = {
 }
 const prepareAttributeDefault = (attribute) => {
   switch (parseInt(attribute.attributeType)) {
+    case AttributeTypeEnum.BOOL_INPUT:
+      return {
+        input: attribute.defaultValue,
+        bool: false,
+      }
     case AttributeTypeEnum.BOOL:
       return !!attribute.defaultValue
     case AttributeTypeEnum.DATE:

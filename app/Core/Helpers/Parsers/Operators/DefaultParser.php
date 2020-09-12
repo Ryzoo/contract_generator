@@ -18,9 +18,9 @@ class DefaultParser
             case OperatorType::N_CONTAINS:
                 return "strpos(${variable},${value}) === false";
             case OperatorType::EMPTY:
-                return "!${variable}";
+                return "!${variable} && ${variable} !== 0 && ${variable} !== '0'";
             case OperatorType::N_EMPTY:
-                return "!!${variable}";
+                return "!!${variable} || ${variable} === 0 || ${variable} !== '0'";
             case OperatorType::BEGINS_WITH:
                 return "substr($variable, 0, strlen($value)) === $value";
             case OperatorType::ENDS_WITH:

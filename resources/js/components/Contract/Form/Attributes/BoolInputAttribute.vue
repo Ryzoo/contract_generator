@@ -49,21 +49,19 @@ export default {
   props: ['attribute', 'outside'],
   data () {
     return {
-      currentBoolValue: false,
-      currentInputValue: this.attribute.defaultValue,
+      currentBoolValue: this.attribute.defaultValue.value,
+      currentInputValue: this.attribute.defaultValue.input,
       boolLabel: this.attribute.settings.boolLabel || this.attribute.attributeName,
       inputLabel: this.attribute.settings.inputLabel || '',
       currentValue: {
-        input: this.attribute.defaultValue,
-        bool: false
+        ...this.attribute.defaultValue
       }
     }
   },
   methods: {
     resetForm () {
       this.currentValue = {
-        input: this.attribute.defaultValue,
-        bool: false
+        ...this.attribute.defaultValue
       }
     }
   },

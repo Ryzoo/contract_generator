@@ -131,6 +131,12 @@ trait ConditionalValidator {
       throw new \ErrorException("Var: {$varId} not found");
     }
 
+    $retValue = $foundedAttribute->getRavValue();
+
+	if(is_array($retValue)){
+	  return $foundedAttribute->getValue();
+	}
+
     return $foundedAttribute->getRavValue();
   }
 }
