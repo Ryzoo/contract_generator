@@ -2,7 +2,7 @@ APP_NAME="Contract generator"
 APP_ENV=local
 APP_KEY=base64:YYETOjoYIJ5jvrsmim3B/WP0Y8HsVZZWNXXD529lYQ8=
 APP_DEBUG=true
-APP_URL=http://generatorumowy.local
+APP_URL=http://homestead.test
 
 LOG_CHANNEL=stack
 
