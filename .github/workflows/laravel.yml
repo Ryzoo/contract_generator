@@ -14,7 +14,7 @@ jobs:
       - name: Move env file
         run: mv .env.testing .env
       - name: Install Dependencies
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
       - name: Generate key
         run: php artisan key:generate
       - name: Create Database
