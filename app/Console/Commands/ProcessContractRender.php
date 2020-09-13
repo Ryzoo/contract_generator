@@ -22,7 +22,7 @@ class ProcessContractRender extends Command
     $this->contractModuleService = $contractModuleService;
   }
 
-  public function handle(): void {
+  public function handle() {
     $this->checkNotRenderedAndPending();
 
     $lastNewContracts = ContractFormComplete::with('contract')
@@ -38,6 +38,8 @@ class ProcessContractRender extends Command
 
       RenderNewContract::dispatchNow($contract, $this->contractModuleService);
     }
+
+    return 0;
   }
 
   private function checkNotRenderedAndPending(): void {
