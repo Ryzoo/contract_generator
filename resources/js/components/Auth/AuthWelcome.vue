@@ -8,7 +8,7 @@
           <h3 class=" mx-auto">{{ $t("pages.auth.sigin") }}</h3>
         </v-row>
         <v-row class="mt-5 mb-2">
-          <h6 class=" mx-auto">generatorumowy.pl</h6>
+          <h6 class=" mx-auto">app.odszkodowaniezapaczke.pl</h6>
         </v-row>
       </v-container>
   </v-row>

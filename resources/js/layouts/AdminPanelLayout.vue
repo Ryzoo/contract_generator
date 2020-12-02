@@ -87,80 +87,14 @@
         @click.stop="navigationModel = !navigationModel"
       />
       <v-spacer/>
-      <v-menu
-        v-model="menu"
-        bottom
-        offset-y
+      <v-btn
+          text
+          color="white"
+          @click="logout()"
       >
-
-        <template v-slot:activator="{ on }">
-          <v-btn
-            text
-            dark
-            v-on="on"
-          >
-            <v-badge
-              color="error"
-              left
-              overlap
-              :content="unreadNotifications.length"
-              :value="unreadNotifications.length"
-            >
-              <v-avatar size="30" class="mr-2">
-                <v-img :src="user.profileImage"/>
-              </v-avatar>
-            </v-badge>
-            {{user.firstName}} {{user.lastName}}
-          </v-btn>
-        </template>
-        <v-card v-if="user">
-          <v-col cols="12">
-            <v-btn
-              class="mt-1"
-              small
-              text
-              block
-              color="primary"
-              @click="goToProfilePage()"
-            >
-              {{$t('navigation.profile.main')}}
-              <v-icon small right>fa-users-cog fa-fw</v-icon>
-            </v-btn>
-            <v-badge
-              color="error"
-              left
-              overlap
-              :content="unreadNotifications.length"
-              :value="unreadNotifications.length"
-            >
-              <v-btn
-                class="mt-1"
-                small
-                block
-                text
-                color="primary"
-                @click="showNotifications()"
-              >
-                {{$t('navigation.profile.notifications')}}
-                <v-icon small right>fa-bell fa-fw</v-icon>
-              </v-btn>
-            </v-badge>
-
-            <v-btn
-              class="mt-1"
-              small
-              block
-              text
-              color="error"
-              @click="logout()"
-            >
-              {{$t('navigation.logout')}}
-              <v-icon small right>fa-sign-out-alt fa-fw</v-icon>
-            </v-btn>
-          </v-col>
-        </v-card>
-      </v-menu>
-
+        {{$t('navigation.logout')}}
+        <v-icon small right>fa-sign-out-alt fa-fw</v-icon>
+      </v-btn>
     </v-app-bar>
 
     <v-content>
