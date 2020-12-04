@@ -1,7 +1,7 @@
 <?php
 
 return [
-  'appTitle' => 'Contract Generator',
+  'appTitle' => 'Odszkodowanie za paczkę',
   'copyright' => 'All rights reserved - Contract Generator',
   'common' => [
     'notFound' => [
