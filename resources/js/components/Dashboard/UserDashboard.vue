@@ -1,44 +1,50 @@
 <template>
   <v-row>
-    <ActionCard title="Reklamacja" number="1" :in-progress="false">
-      <p>Twoim pierwszym krokiem powinno być samodzielne <strong>złożenie reklamacji</strong>.<br/><br/>
-        Uzyskasz tu wszystkie informację potrzebne w prawidłowym przeprowadzeniu tego procesu.<br/><br/>
-        Przejdź dalej aby rozpocząć proces reklamacji na stronach poszczegolnych dostawców paczek.
-      </p>
-      <v-btn class="my-5" color="primary" small>Rozpocznij reklamację</v-btn>
-      <p>Jeżeli juz złożyłes reklamację albo Twoja sprawa jest skomplikowana możesz od razu przejść do <b>kroku 2</b> i zlecić nam analizę szans uzyskania odszkodowania.</p>
-    </ActionCard>
-    <ActionCard title="Zleć analizę online" number="2" :in-progress="true">
-      <p>Jeżeli złożyłeś reklamację za zniszczoną, zgubioną lub niedostarczoną paczkę, a <strong>dostawca jej nie uznał</strong>,
-        możesz zlecić nam odpłatną analizę szans uzyskania odszkodowania.
-      </p>
-      <v-btn class="my-5" color="primary" small>Zleć analizę online</v-btn>
-    </ActionCard>
-    <ActionCard title="Wezawanie do zapłaty" number="3" :in-progress="true">
-      <p>
-        Możesz zlecić nam wysłanie w Twoim imieniu <strong>przedsądowego wezwania do zapłaty</strong>.
-        Wezwanie to można poprzedzić analizą online przeprowadzaną przez prawników z wieloletnim doświadczeniem w tej tematyce.
-      </p>
-    </ActionCard>
-    <ActionCard title="Pozew do Sądu" number="4" :in-progress="true">
-      <p>
-        Możesz zlecić nam odpłatną analizę szans uzyskania odszkodowania.
-      </p>
-    </ActionCard>
+    <BaseStep v-if="currentStep==='base'" @step="showPage" />
+    <Complaint v-if="currentStep==='complaint'" @complaint="showComplaint" />
+    <component v-if="currentStep!=='complaint' && currentStep.includes('complaint')" :is="currentStep" />
   </v-row>
 </template>
 
 <script>
-import ActionCard from "./user-dashboard/start-actions/ActionCard";
+import BaseStep from "./user-dashboard/base-steps/BaseStep";
+import Complaint from "./user-dashboard/base-steps/Complaint";
+import ComplaintGls from "./user-dashboard/base-steps/complaint/ComplaintGls";
+import ComplaintInpost from "./user-dashboard/base-steps/complaint/ComplaintInpost";
+import ComplaintDpd from "./user-dashboard/base-steps/complaint/ComplaintDpd";
+import ComplaintGeis from "./user-dashboard/base-steps/complaint/ComplaintGeis";
+import ComplaintUps from "./user-dashboard/base-steps/complaint/ComplaintUps";
+import ComplaintDhl from "./user-dashboard/base-steps/complaint/ComplaintDhl";
+import ComplaintFedex from "./user-dashboard/base-steps/complaint/ComplaintFedex";
+import ComplaintTnt from "./user-dashboard/base-steps/complaint/ComplaintTnt";
 
 export default {
   name: 'UserDashboard',
   components: {
-    ActionCard
+    BaseStep, Complaint, ComplaintGls, ComplaintInpost, ComplaintDpd,
+    ComplaintDhl, ComplaintFedex, ComplaintTnt, ComplaintGeis, ComplaintUps,
+  },
+  data: () => {
+    return {
+      currentStep: 'base'
+    }
+  },
+  methods: {
+    showPage(step){
+      this.currentStep = step
+    },
+    showComplaint(step){
+      this.currentStep = 'complaint-' + step
+    }
   }
 }
 </script>
 
-<style scoped>
-
+<style>
+  h1{
+    font-size: 28px;
+  }
+  h1, h2{
+    color: #4C2E80;
+  }
 </style>

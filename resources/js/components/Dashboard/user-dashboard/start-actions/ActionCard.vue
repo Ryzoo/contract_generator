@@ -1,7 +1,7 @@
 <template>
-  <v-col cols="12" sm="12" md="6" lg="3">
-    <v-card :class="'action-card' + (inProgress ? ' action-in-progress' : '')">
-      <div class="action-title">
+  <v-col :cols="small ? 6 : 12" :sm="small ? 6 : 12" :md="small ? 3 : 6" :lg="big ? 6 : 3">
+    <v-card :style="`min-height: ${height || 100}px`" :class="'action-card' + (inProgress ? ' action-in-progress' : '')">
+      <div v-show="title" class="action-title">
         <span>{{ number }}</span>
         <span>
           {{title}}
@@ -17,13 +17,15 @@
 <script>
 export default {
   name: "ActionCard",
-  props: ['number', 'inProgress', 'title']
+  props: ['number', 'inProgress', 'title', 'small', 'big', 'height']
 }
 </script>
 
 <style scoped>
   .action-card{
-    padding: 25px;
+    padding: 15px;
+    border: 2px solid #d4d4d4;
+    margin: 5px;
   }
 
   .action-title span:nth-child(1){
@@ -63,7 +65,7 @@ export default {
     content: "W przygotowaniu";
     position: absolute;
     left: 50%;
-    top: 0;
+    bottom: -12px;
     transform: translate(-50%, -50%);
     color: red;
     font-size: 22px;

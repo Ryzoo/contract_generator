@@ -97,7 +97,7 @@
       </v-btn>
     </v-app-bar>
 
-    <v-content>
+    <v-main>
       <v-container
         class="fill-height mb-5"
         fluid
@@ -106,7 +106,7 @@
           <router-view/>
         </v-fade-transition>
       </v-container>
-    </v-content>
+    </v-main>
 
     <v-footer app inset>
             <span class="px-3"
