@@ -176,7 +176,7 @@ section {
   text-align: center;
 }
 
-.glslogo, .dhllogo, .inpostlogo, .dpdlogo {
+.glslogo, .dhllogo, .inpostlogo, .dpdlogo, .geislogo, .kexlogo  {
   border: 4px solid;
   padding: 0px 5px 0px 5px;
   font-size: 32px;
@@ -196,6 +196,16 @@ section {
 .dpdlogo {
   color: #414042;
   border-color: #DC0032;
+}
+
+.geislogo {
+  color: #204B7C;
+  border-color: #FFDD00;
+}
+
+.kexlogo {
+  color: #E0352A;
+  border-color: #2D2724;
 }
 
 .theme--light.v-expansion-panels .v-expansion-panel {
