@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row class="wantbigbuttons">
     <v-col cols="12" sm="12">
       <div class="text-center">
         <h1>Wybierz dostawcę spornej paczki</h1>

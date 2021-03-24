@@ -158,4 +158,47 @@ section {
   }
 }
 
+.wantbigbuttons button {
+  padding:20px !important;
+}
+
+.v-main__wrap {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.complaintlinks .action-content h3 {
+  margin-top: 20px;
+}
+
+.complaintlinks .action-card p {
+  line-height: 16px;
+  text-align: center;
+}
+
+.glslogo, .dhllogo, .inpostlogo {
+  border: 4px solid;
+  padding: 0px 5px 0px 5px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.glslogo {
+  color: #1F2457;
+  border-color: #F8B514;
+}
+
+.inpostlogo {
+  color: #424143;
+  border-color: #FFCB04;
+}
+
+.theme--light.v-expansion-panels .v-expansion-panel {
+  margin-bottom:15px;
+}
+
+.complaintlinks .v-btn {
+  padding:20px 20px !important;
+}
+
 @import "theme/table";

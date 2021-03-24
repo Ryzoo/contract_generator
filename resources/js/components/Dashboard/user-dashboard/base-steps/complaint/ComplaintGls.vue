@@ -19,12 +19,14 @@
               <ActionCard height="220" :big="true">
                 <div class="glslogo">GLS</div>
                 <h3 class="text-center">Regulamin świadczenia Usług</h3>
-                <v-btn class="my-3" color="primary" small target="_blank" href="https://gls-group.eu/PL/pl/regulamin">Otwórz w nowym oknie</v-btn>
+                <p><small>Otwórz w nowym oknie stronę GLS z aktualnymi regulaminami usług.</small></p>
+                <v-btn class="my-3" color="primary" small target="_blank" href="https://gls-group.eu/PL/pl/regulamin">Przejdź do regulaminu »</v-btn>
               </ActionCard>
               <ActionCard height="220" :big="true">
                 <div class="glslogo">GLS</div>
                 <h3 class="text-center">GLS - Generator Reklamacji</h3>
-                <v-btn class="my-3" color="primary" small href="https://google.pl">Wygeneruj Reklamację</v-btn>
+                <p><small>Uruchom generator dokumentu reklamacji GLS.<br />&nbsp;</small></p>
+                <v-btn class="my-3" color="primary" small href="https://google.pl">Wygeneruj Reklamację »</v-btn>
               </ActionCard>
             </v-row>
             <p>

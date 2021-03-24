@@ -6,7 +6,7 @@
         <p>Zakres naszej pomocy obejmuje kolejno:</p>
       </div>
     </v-col>
-    <ActionCard height="385" title="Reklamacja" number="1" :in-progress="false">
+    <ActionCard class="wantbigbuttons" height="385" title="Reklamacja" number="1" :in-progress="false">
       <p>Twoim pierwszym krokiem powinno być samodzielne <strong>złożenie reklamacji</strong>.<br/><br/>
         Uzyskasz tu wszystkie informację potrzebne w prawidłowym przeprowadzeniu tego procesu.<br/><br/>
         Przejdź dalej aby rozpocząć proces reklamacji na stronach poszczegolnych dostawców paczek.
