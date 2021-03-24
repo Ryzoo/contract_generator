@@ -19,11 +19,13 @@
               <ActionCard height="220" :big="true">
                 <div class="inpostlogo">InPost</div>
                 <h3 class="text-center">Regulamin świadczenia Usług</h3>
+                <p><small>Otwórz w nowym oknie stronę InPost z aktualnymi regulaminami usług.</small></p>
                 <v-btn class="my-3" color="primary" small target="_blank" href="https://inpost.pl/regulaminy">Przejdź do regulaminów »</v-btn>
               </ActionCard>
               <ActionCard height="220" :big="true">
                 <div class="inpostlogo">InPost</div>
                 <h3 class="text-center">InPost - Formularz Reklamacji</h3>
+                <p><small>Otwórz w nowym oknie stronę InPost<br />z formularzem reklamacji.<br />&nbsp;</small></p>
                 <v-btn class="my-3" color="primary" small target="_blank" href="https://inpost.pl/kontakt/zloz-reklamacje">Złóż reklamację »</v-btn>
               </ActionCard>
             </v-row>
@@ -232,7 +234,7 @@
 import ActionCard from "../../start-actions/ActionCard";
 
 export default {
-  name: "ComplaintGls",
+  name: "ComplaintInpost",
   components: {
     ActionCard
   }

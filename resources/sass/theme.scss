@@ -176,7 +176,7 @@ section {
   text-align: center;
 }
 
-.glslogo, .dhllogo, .inpostlogo {
+.glslogo, .dhllogo, .inpostlogo, .dpdlogo {
   border: 4px solid;
   padding: 0px 5px 0px 5px;
   font-size: 32px;
@@ -191,6 +191,11 @@ section {
 .inpostlogo {
   color: #424143;
   border-color: #FFCB04;
+}
+
+.dpdlogo {
+  color: #414042;
+  border-color: #DC0032;
 }
 
 .theme--light.v-expansion-panels .v-expansion-panel {
