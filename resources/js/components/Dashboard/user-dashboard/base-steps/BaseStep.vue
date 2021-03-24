@@ -22,7 +22,7 @@
       </p>
       <v-btn class="my-5" color="primary" small>Zleć analizę online</v-btn>
     </ActionCard>
-    <ActionCard height="385" title="Wezawanie do zapłaty" number="3" :in-progress="true">
+    <ActionCard height="385" title="Wezwanie do zapłaty" number="3" :in-progress="true">
       <p>
         Możesz zlecić nam wysłanie w Twoim imieniu <strong>przedsądowego wezwania do zapłaty</strong>.
         Wezwanie to można poprzedzić analizą online przeprowadzaną przez prawników z wieloletnim doświadczeniem w tej
