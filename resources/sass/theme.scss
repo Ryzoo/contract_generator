@@ -176,7 +176,7 @@ section {
   text-align: center;
 }
 
-.glslogo, .dhllogo, .inpostlogo, .dpdlogo, .geislogo, .kexlogo, .upslogo  {
+.glslogo, .dhllogo, .inpostlogo, .dpdlogo, .geislogo, .kexlogo, .upslogo, .fedexlogo  {
   border: 4px solid;
   padding: 0px 5px 0px 5px;
   font-size: 32px;
@@ -186,6 +186,11 @@ section {
 .glslogo {
   color: #1F2457;
   border-color: #F8B514;
+}
+
+.fedexlogo {
+  color: #472F91;
+  border-color: #F57921;
 }
 
 .dhllogo {
