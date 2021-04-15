@@ -176,11 +176,26 @@ section {
   text-align: center;
 }
 
-.glslogo, .dhllogo, .inpostlogo, .dpdlogo, .geislogo, .kexlogo, .upslogo, .fedexlogo  {
+.glslogo, .dhllogo, .inpostlogo, .dpdlogo, .geislogo, .kexlogo, .upslogo, .fedexlogo, .tntlogo, 
+#regfurgonetka a, #regkujerzy a, #reginsendit a, #regprzesylarka a, #regwysylajtaniej a, #regepaka a,
+#regapaczka a, #regbrokerkurier a {
   border: 4px solid;
   padding: 0px 5px 0px 5px;
   font-size: 32px;
   font-weight: 700;
+}
+
+#regfurgonetka a, #regkujerzy a, #reginsendit a, #regprzesylarka a, #regwysylajtaniej a, #regepaka a, #regapaczka a, #regbrokerkurier a {
+  font-size: 26px;
+}
+
+#regfurgonetka, #regkujerzy, #reginsendit, #regprzesylarka, #regwysylajtaniej, #regepaka, #regapaczka, #regbrokerkurier {
+  margin-bottom: 15px;
+} 
+
+.tntlogo  {
+  color: #FF6906;
+  border-color: #FF6906;
 }
 
 .glslogo {
@@ -223,12 +238,57 @@ section {
   border-color: #301506;
 }
 
+#regfurgonetka a {
+  color: #46474f;
+  border-color: #2393c9;
+}
+
+#regkujerzy a {
+  color: #138ddf;
+  border-color: #cacaca;
+}
+
+#reginsendit a {
+  color: #ff5a00;
+  border-color: #ff5a00;
+}
+
+#regprzesylarka a {
+  color: #ff0000;
+  border-color: #f6af19;
+}
+
+#regwysylajtaniej a {
+  color: #f06228;
+  border-color: #e0dfe1;
+}
+
+#regepaka a {
+  color: #000000;
+  border-color: #d40000;
+}
+
+#regapaczka a {
+  color: #0e2935;
+  border-color: #ee9935;
+}
+
+#regbrokerkurier a {
+  color: #1c424d;
+  border-color: #147592;
+}
+
 .theme--light.v-expansion-panels .v-expansion-panel {
   margin-bottom:15px;
 }
 
 .complaintlinks .v-btn {
   padding:20px 20px !important;
+}
+
+.fchr {
+  border-width: 1px !important;
+  margin:40px 20px 20px 20px;
 }
 
 @import "theme/table";

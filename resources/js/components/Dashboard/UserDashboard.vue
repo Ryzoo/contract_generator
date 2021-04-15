@@ -17,12 +17,25 @@ import ComplaintUps from "./user-dashboard/base-steps/complaint/ComplaintUps";
 import ComplaintDhl from "./user-dashboard/base-steps/complaint/ComplaintDhl";
 import ComplaintFedex from "./user-dashboard/base-steps/complaint/ComplaintFedex";
 import ComplaintTnt from "./user-dashboard/base-steps/complaint/ComplaintTnt";
+import ComplaintFurgonetka from "./user-dashboard/base-steps/complaint/ComplaintFurgonetka";
+import ComplaintKurjerzy from "./user-dashboard/base-steps/complaint/ComplaintKurjerzy";
+import ComplaintSendit from "./user-dashboard/base-steps/complaint/ComplaintSendit";
+import ComplaintPrzesylarka from "./user-dashboard/base-steps/complaint/ComplaintPrzesylarka";
+import ComplaintWysylajtaniej from "./user-dashboard/base-steps/complaint/ComplaintWysylajtaniej";
+import ComplaintEpaka from "./user-dashboard/base-steps/complaint/ComplaintEpaka";
+import ComplaintApaczka from "./user-dashboard/base-steps/complaint/ComplaintApaczka";
+import ComplaintBrokerkurier from "./user-dashboard/base-steps/complaint/ComplaintBrokerkurier";
+
+
+
 
 export default {
   name: 'UserDashboard',
   components: {
     BaseStep, Complaint, ComplaintGls, ComplaintInpost, ComplaintDpd,
-    ComplaintDhl, ComplaintFedex, ComplaintTnt, ComplaintGeis, ComplaintUps,
+    ComplaintDhl, ComplaintFedex, ComplaintTnt, ComplaintGeis, ComplaintUps, 
+    ComplaintFurgonetka, ComplaintKurjerzy, ComplaintSendit, ComplaintPrzesylarka,
+    ComplaintWysylajtaniej, ComplaintEpaka, ComplaintApaczka, ComplaintBrokerkurier, 
   },
   data: () => {
     return {
