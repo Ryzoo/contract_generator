@@ -178,7 +178,7 @@ section {
 
 .glslogo, .dhllogo, .inpostlogo, .dpdlogo, .geislogo, .kexlogo, .upslogo, .fedexlogo, .tntlogo, 
 #regfurgonetka a, #regkujerzy a, #reginsendit a, #regprzesylarka a, #regwysylajtaniej a, #regepaka a,
-#regapaczka a, #regbrokerkurier a, .regkujerzy {
+#regapaczka a, #regbrokerkurier a, .regkujerzy, .regfurgonetka {
   border: 4px solid;
   padding: 0px 5px 0px 5px;
   font-size: 32px;
@@ -238,7 +238,7 @@ section {
   border-color: #301506;
 }
 
-#regfurgonetka a {
+#regfurgonetka a, .regfurgonetka {
   color: #46474f;
   border-color: #2393c9;
 }
