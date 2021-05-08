@@ -379,7 +379,7 @@ export default {
         range: this.suggestionRange,
         attrs: {
           id: variable.id,
-          label: variable.name
+          label: ' ' + variable.name
         }
       })
       this.editor.focus()
