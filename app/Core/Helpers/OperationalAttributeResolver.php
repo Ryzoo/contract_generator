@@ -15,7 +15,7 @@ class OperationalAttributeResolver extends AttributeResolver {
     parent::__construct($formElements);
     $this->attributes = $this->formElements
       ->filter(static function ($e) {
-        return $e->attribute instanceof IAggregableByAttributeAggregator;
+        return isset($e->attribute) && $e->attribute instanceof IAggregableByAttributeAggregator;
       })
       ->where('elementType', ElementType::ATTRIBUTE)
       ->map(static function ($e) {
