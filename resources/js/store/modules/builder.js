@@ -341,7 +341,7 @@ const getters = {
 
     if (state.builder.activeBlockNestedAttributes) {
       state.builder.activeBlockNestedAttributes.forEach(x => {
-        if (!attributes.some(y => y.id == x.id)) {
+        if (!attributes.some(y => parseInt(y.id) === parseInt(x.id))) {
           attributes.push(x)
         }
       })
@@ -442,7 +442,7 @@ const getters = {
 
     if (nestedAttributes) {
       nestedAttributes.forEach(x => {
-        if (!attrIds.some(y => y.id == x.id)) {
+        if (!attrIds.some(y => parseInt(y.id) === parseInt(x.id))) {
           attrToReturn.push(x)
         }
       })

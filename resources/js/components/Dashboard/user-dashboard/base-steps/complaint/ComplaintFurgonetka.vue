@@ -19,7 +19,7 @@
               <ActionCard height="220" :big="true">
                 <div class="regfurgonetka">Furgonetka</div>
                 <h3 class="text-center">Regulamin świadczenia Usług</h3>
-                <p><small>Otwórz w nowym oknie stronę Furgonetka z aktualnymi regulaminami usług.</small><br />&npsp;</p>
+                <p><small>Otwórz w nowym oknie stronę Furgonetka z aktualnymi regulaminami usług.</small><br /></p>
                 <v-btn class="my-3" color="primary" small target="_blank" href="https://furgonetka.pl/regulamin/">Przejdź do regulaminu »</v-btn>
               </ActionCard>
               <ActionCard height="220" :big="true">
@@ -86,10 +86,10 @@
 </template>
 
 <script>
-import ActionCard from "../../start-actions/ActionCard";
+import ActionCard from '../../start-actions/ActionCard'
 
 export default {
-  name: "ComplaintFurgonetka",
+  name: 'ComplaintFurgonetka',
   components: {
     ActionCard
   }

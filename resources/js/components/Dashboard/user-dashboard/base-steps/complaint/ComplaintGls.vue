@@ -57,7 +57,6 @@
                 <p>Roszczenia wygasają wskutek przyjęcia paczki bez zastrzeżeń, oprócz niewidocznych w chwili wydania ubytków lub uszkodzeń zgłoszonych na piśmie przez odbiorcę do GLS nie później niż w ciągu 7 dni od przyjęcia paczki. W tym przypadku klient ma prawo żądać sporządzenia protokołu w obecności przedstawiciela GLS, musi on ponadto udowodnić, że uszkodzenie nastąpiło podczas przewozu przez GLS.</p>
                 <p>W bazie rejestru klauzul niedozwolonych znajduje się klauzula, którą sąd uznał za niedozwoloną i zakazał jej wykorzystywania przez pozwanego w obrocie z konsumentami w postanowieniach wzorca umowy o treści:<br />
                 ’’Sklep nie ponosi odpowiedzialności za uszkodzenia przesyłki powstałe na skutek działania poczty lub firm kurierskich.’’</p>
-                </p>
               </v-expansion-panel-content>
             </v-expansion-panel>
             <v-expansion-panel>
@@ -234,10 +233,10 @@
 </template>
 
 <script>
-import ActionCard from "../../start-actions/ActionCard";
+import ActionCard from '../../start-actions/ActionCard'
 
 export default {
-  name: "ComplaintGls",
+  name: 'ComplaintGls',
   components: {
     ActionCard
   }

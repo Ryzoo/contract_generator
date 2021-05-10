@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import {MultiUseRenderType} from "../../../../../../additionalModules/Enums";
+import { MultiUseRenderType } from '../../../../../../additionalModules/Enums'
 
 export default {
   name: 'SelectAttribute',

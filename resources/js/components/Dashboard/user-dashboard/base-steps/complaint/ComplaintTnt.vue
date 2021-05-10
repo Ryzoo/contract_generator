@@ -237,7 +237,7 @@
                     <li>rzeczy, które ze względu na swoje właściwości mogą stanowić zagrożenie dla zdrowia osób lub mienia z którymi mają styczność;</li>
                     <li>rośliny, zwierzęta</li>
                   </ul>
-                  </li> 
+                  </li>
                   <li>TNT nie przyjmuje przesyłek:
                   <ul>
                     <li>których wartość przekracza kwotę 100 000 PLN, o ile nie zostały ubezpieczone w sieci TNT</li>
@@ -273,10 +273,10 @@
 </template>
 
 <script>
-import ActionCard from "../../start-actions/ActionCard";
+import ActionCard from '../../start-actions/ActionCard'
 
 export default {
-  name: "ComplaintTnt",
+  name: 'ComplaintTnt',
   components: {
     ActionCard
   }

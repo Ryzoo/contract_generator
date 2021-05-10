@@ -2,7 +2,6 @@ import { OperatorType } from '../utilities'
 
 export class DefaultParser {
   static parse (variable, operatorType, value) {
-
     switch (operatorType) {
       case OperatorType.EQUAL:
         return `${variable} === ${value}`

@@ -22,7 +22,7 @@
 <script>
 import VueQueryBuilder from 'vue-query-builder-vuetifyjs'
 import 'vue-query-builder-vuetifyjs/dist/VueQueryBuilder.css'
-import {AttributeTypeEnum, ConditionalEnum} from '../../additionalModules/Enums'
+import { AttributeTypeEnum, ConditionalEnum } from '../../additionalModules/Enums'
 
 export default {
   name: 'QueryBuilderForGroupsVar',

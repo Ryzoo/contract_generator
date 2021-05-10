@@ -13,8 +13,8 @@
     "test-unit": "./vendor/bin/codecept run unit",
     "test-api": "./vendor/bin/codecept run api",
     "lang": "php artisan vue-i18n:generate",
-    "lint": "./node_modules/.bin/eslint resources/js/ --ext .js,.vue",
-    "lint:fix": "./node_modules/.bin/eslint --fix resources/js/ --ext .js,.vue"
+    "lint": "eslint resources/js/ --ext .js,.vue",
+    "lint:fix": "eslint --fix resources/js/ --ext .js,.vue"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.14.0",

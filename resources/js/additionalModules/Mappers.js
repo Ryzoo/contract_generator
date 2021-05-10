@@ -4,8 +4,6 @@ import {
   BlockTypeEnum,
   ContractModulesAvailablePlace
 } from './Enums'
-import AggregateAttribute
-  from "../components/Contract/Builder/Modals/VariableView/VariableSettings/AggregateAttribute";
 
 class Mapper {
   static getBlockName (type) {

@@ -131,21 +131,19 @@
       <v-btn class="my-3" color="primary" small @click="() => showComplaint('brokerkurier')">Wybierz</v-btn>
     </ActionCard>
 
-
-
   </v-row>
 </template>
 
 <script>
-import ActionCard from "../start-actions/ActionCard";
+import ActionCard from '../start-actions/ActionCard'
 
 export default {
-  name: "Complaint.vue",
+  name: 'Complaint',
   components: {
     ActionCard
   },
   methods: {
-    showComplaint(name){
+    showComplaint (name) {
       this.$emit('complaint', name)
     }
   }

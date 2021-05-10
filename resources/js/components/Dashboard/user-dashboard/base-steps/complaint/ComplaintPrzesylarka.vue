@@ -241,10 +241,10 @@
 </template>
 
 <script>
-import ActionCard from "../../start-actions/ActionCard";
+import ActionCard from '../../start-actions/ActionCard'
 
 export default {
-  name: "ComplaintPrzesylarka",
+  name: 'ComplaintPrzesylarka',
   components: {
     ActionCard
   }

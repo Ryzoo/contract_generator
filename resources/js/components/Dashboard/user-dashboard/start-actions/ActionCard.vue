@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: "ActionCard",
+  name: 'ActionCard',
   props: ['number', 'inProgress', 'title', 'small', 'big', 'height']
 }
 </script>

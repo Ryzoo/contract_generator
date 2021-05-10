@@ -80,10 +80,10 @@ class ConditionalParser {
       return null
     }
 
-    if(foundedAttribute.value instanceof Object && 'bool' in foundedAttribute.value){
-      if(!foundedAttribute.value.bool) return null
+    if (foundedAttribute.value instanceof Object && 'bool' in foundedAttribute.value) {
+      if (!foundedAttribute.value.bool) return null
 
-      if(typeof foundedAttribute.value.input === 'string' && isNaN(parseFloat(foundedAttribute.value.input))) return `'${foundedAttribute.value.input}'`
+      if (typeof foundedAttribute.value.input === 'string' && isNaN(parseFloat(foundedAttribute.value.input))) return `'${foundedAttribute.value.input}'`
       return foundedAttribute.value.input
     }
 

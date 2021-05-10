@@ -3,7 +3,6 @@ import { OperatorType } from '../utilities'
 
 export class AggregateOperatorParser extends DefaultParser {
   static parse (variable, operatorType, value) {
-
     if (!variable || !value) {
       return 'false'
     }

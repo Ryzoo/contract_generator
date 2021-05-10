@@ -70,7 +70,6 @@
 
               </v-expansion-panel-content>
             </v-expansion-panel>
-            
 
             <v-expansion-panel>
               <v-expansion-panel-header>
@@ -209,10 +208,10 @@
 </template>
 
 <script>
-import ActionCard from "../../start-actions/ActionCard";
+import ActionCard from '../../start-actions/ActionCard'
 
 export default {
-  name: "ComplaintFedex",
+  name: 'ComplaintFedex',
   components: {
     ActionCard
   }

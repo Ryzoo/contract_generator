@@ -64,15 +64,15 @@ export default {
     }
   },
   methods: {
-    getBlockTypes(){
+    getBlockTypes () {
       let baseType = this.level ? Selector.BlockType.filter(x => x.value !== BlockTypeEnum.PAGE_DIVIDE_BLOCK) : Selector.BlockType
 
-      if(this.listOnly){
+      if (this.listOnly) {
         baseType = baseType.filter(x => x.value === BlockTypeEnum.LIST_BLOCK || x.value === BlockTypeEnum.LIST_ITEM_BLOCK || x.value === BlockTypeEnum.EMPTY_BLOCK)
-      }else{
-        if(this.inList){
+      } else {
+        if (this.inList) {
           baseType = baseType.filter(x => x.value !== BlockTypeEnum.TEXT_BLOCK && x.value !== BlockTypeEnum.REPEAT_BLOCK)
-        }else{
+        } else {
           baseType = baseType.filter(x => x.value !== BlockTypeEnum.LIST_ITEM_BLOCK)
         }
       }

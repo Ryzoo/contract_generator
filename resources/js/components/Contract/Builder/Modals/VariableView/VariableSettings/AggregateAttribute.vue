@@ -75,7 +75,7 @@ export default {
   computed: {
     attributesToAggregate () {
       return this.attributes
-        .filter(x => x.attributeType == AttributeTypeEnum.NUMBER || x.attributeType == AttributeTypeEnum.ATTRIBUTE_GROUP || x.attributeType == AttributeTypeEnum.BOOL_INPUT)
+        .filter(x => parseInt(x.attributeType) === AttributeTypeEnum.NUMBER || parseInt(x.attributeType) === AttributeTypeEnum.ATTRIBUTE_GROUP || parseInt(x.attributeType) === AttributeTypeEnum.BOOL_INPUT)
         .map((x) => ({
           text: x.attributeName,
           value: x.id
