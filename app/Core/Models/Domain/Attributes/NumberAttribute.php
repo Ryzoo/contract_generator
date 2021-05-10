@@ -41,7 +41,7 @@ class NumberAttribute extends Attribute implements IAggregableByAttributeAggrega
       });
     }
     else {
-        $returnValue = $this->aggregateValue($returnValue, $operation, (float) $this->value);
+        $returnValue = $this->value;
     }
 
     return $returnValue;

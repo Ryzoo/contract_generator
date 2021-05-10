@@ -6,7 +6,6 @@
         :items="numberTypeFormatList"
         label="Number type format"
         persistent-hint
-        single-line
         hide-details
         dense
         outlined
@@ -19,7 +18,6 @@
         :items="operationTypeList"
         label="Type of aggregation"
         persistent-hint
-        single-line
         hide-details
         dense
         outlined
