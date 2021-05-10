@@ -17,9 +17,4 @@ Route::get('/{any}', 'CommonController@defaultView')->where('any', '^(?!api|stor
  * This route exist there only for get route to password on frontend by name
  */
 Route::get('/auth/resetPassword', 'CommonController@emptyFunction')->name('password.reset');
-
-Route::get('lang/{locale}', function (string $locale) {
-    App::setLocale($locale);
-    Session::put('locale', $locale);
-    return redirect(url(URL::previous()));
-});
+Route::get('/auth/{locale}', 'CommonController@changeLanguage');
