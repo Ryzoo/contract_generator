@@ -87,6 +87,7 @@
         @click.stop="navigationModel = !navigationModel"
       />
       <v-spacer/>
+      <LangSelector/>
       <v-btn
           text
           color="white"
@@ -152,10 +153,14 @@
 <script>
 import { Permissions } from '../additionalModules/Permissions'
 import { Roles } from '../additionalModules/Roles'
+import LangSelector from '../components/common/LangSelector'
 import appIcon from './../assets/fav.png'
 
 export default {
   name: 'PanelLayout',
+  components: {
+    LangSelector
+  },
   data: function () {
     return {
       showNotificationsDialog: false,

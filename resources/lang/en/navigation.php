@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'lang' => 'Change language',
     'dashboard' => 'Dashboard',
     'formContract' => 'Contract forms',
     'clients' => 'Clients',

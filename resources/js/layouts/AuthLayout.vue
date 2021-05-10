@@ -5,6 +5,7 @@
           <AuthWelcome />
         </v-col>
         <v-col cols="12" md="6" lg="5" class="ma-auto ma-md-0" style="max-width: 500px">
+          <LangSelector/>
           <v-fade-transition mode="out-in">
             <router-view/>
           </v-fade-transition>
@@ -15,10 +16,12 @@
 
 <script>
 import AuthWelcome from '../components/Auth/AuthWelcome'
+import LangSelector from '../components/common/LangSelector'
 
 export default {
   name: 'AuthLayout',
   components: {
+    LangSelector,
     AuthWelcome
   }
 }
