@@ -59,7 +59,7 @@
               :step="step.id"
             >
               <v-row v-if="step.content.length > 5">
-                <v-col align="end">
+                <v-col>
                   <v-btn text v-if="actualStep > 1 && actualStep <= stepList.length"
                          @click="goBackStep">Go back
                   </v-btn>
@@ -84,7 +84,7 @@
               />
 
               <v-row>
-                <v-col align="end">
+                <v-col>
                   <v-btn text v-if="actualStep > 1 && actualStep <= stepList.length"
                          @click="goBackStep">Go back
                   </v-btn>
@@ -107,7 +107,7 @@
 <script>
 import FormRenderer from './Form/FormRenderer'
 import ActionRenderer from './Form/ActionRenderer'
-import { AvailableRenderActionsHook } from './../../additionalModules/Enums'
+import { AvailableRenderActionsHook } from '../../additionalModules/Enums'
 
 export default {
   name: 'ContractFormRender',
@@ -178,6 +178,7 @@ export default {
             })
         })
         .catch((err) => {
+          console.error(err)
           this.currentAction = this.availableActionsHook.BEFORE_FORM_RENDER
           this.isLoading = false
         })
@@ -250,7 +251,7 @@ export default {
     height: 3px;
     width: 100%;
     align-self: center;
-    flex: 1 1 0px;
+    flex: 1 1 0;
     background-color: #cdcdcd;
     color: #cdcdcd;
     border: none;
@@ -269,7 +270,7 @@ export default {
     border: 3px solid $primary;
   }
   .v-application--is-ltr .v-stepper__step__step {
-    margin-right: 0px;
+    margin-right: 0;
   }
 
   .v-stepper__step {

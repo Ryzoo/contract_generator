@@ -14,14 +14,14 @@ const prepareAttributeDefault = (attribute) => {
     case AttributeTypeEnum.BOOL_INPUT:
       return {
         input: attribute.defaultValue,
-        bool: false,
+        bool: false
       }
     case AttributeTypeEnum.BOOL:
       return !!attribute.defaultValue
     case AttributeTypeEnum.DATE:
-      return attribute.defaultValue ? (new Date(attribute.defaultValue)).toISOString().substr(0, 10) : (new Date()).toISOString().substr(0, 10)
+      return attribute.value ? (new Date(attribute.value)).toISOString().substr(0, 10) : (new Date()).toISOString().substr(0, 10)
     case AttributeTypeEnum.TIME:
-      return attribute.defaultValue ? (new Date(attribute.defaultValue)).toISOString().substr(11, 5) : (new Date()).toISOString().substr(11, 5)
+      return attribute.value ? (new Date(attribute.value)).toISOString().substr(11, 5) : (new Date()).toISOString().substr(11, 5)
     case AttributeTypeEnum.ATTRIBUTE_GROUP:
       return attribute.settings.attributes.map((x) => ({
         ...x,

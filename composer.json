@@ -19,9 +19,13 @@
     "laravel/framework": "7.*",
     "laravel/tinker": "^v2.6.1",
     "martinlindhe/laravel-vue-i18n-generator": "^0.1.39",
-    "spatie/laravel-image-optimizer": "^1.4"
+    "spatie/laravel-image-optimizer": "^1.4",
+    "ext-json": "*",
+    "ext-gettext": "*"
   },
   "require-dev": {
+    "roave/security-advisories": "dev-latest"
+    ,
     "symfony/css-selector": "^4.4.8",
     "beyondcode/laravel-dump-server": "^1.7.0",
     "doctrine/dbal": "^3.1.0",

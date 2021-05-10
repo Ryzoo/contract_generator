@@ -13,7 +13,7 @@ class AttributeFormElement extends FormElement {
     parent::__construct($parentBlockId);
     $this->initialize(ElementType::ATTRIBUTE);
     $this->attribute = $attribute;
-    $this->attribute->value = $this->attribute->value ?? $this->attribute->defaultValue;
+    $this->attribute->value = $this->attribute->value ?? $this->attribute->getDefaultValue();
   }
 
   public function resolveAttributesInSettings(Collection $formElements):void {

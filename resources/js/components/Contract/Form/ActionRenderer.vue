@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { AvailableRenderActionsHook } from './../../../additionalModules/Enums'
+import { AvailableRenderActionsHook } from '../../../additionalModules/Enums'
 import AuthBeforeRenderView from '../Modules/Auth/AuthBeforeRenderView'
 import ProviderForContractView from '../Modules/Provider/ProviderForContractView'
 
@@ -29,7 +29,7 @@ export default {
   ],
 
   watch: {
-    value (newValue) {
+    value () {
       this.$forceUpdate()
       this.buildActions()
     }
