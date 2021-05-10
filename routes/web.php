@@ -19,9 +19,7 @@ Route::get('/{any}', 'CommonController@defaultView')->where('any', '^(?!api|stor
 Route::get('/auth/resetPassword', 'CommonController@emptyFunction')->name('password.reset');
 
 Route::get('lang/{locale}', function (string $locale) {
-    if (in_array($locale, ['en', 'pl'])) {
-        App::setLocale($locale);
-    }
-
-    return back();
+    App::setLocale($locale);
+    Session::put('locale', $locale);
+    return redirect(url(URL::previous()));
 });
