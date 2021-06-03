@@ -79,20 +79,21 @@ class ContractController extends Controller
         $amount = $verify['amount'];
         $currency = $verify['currency'];
         $country = $verify['country'];
-        $sign = $verify['sign'];
 
         $payment = new Przelewy24Provider($id, null, $amount, $currency, '', $country, Lang::getLocale());
 
-        if($payment->verify($orderId, $sign)){
+        if($payment->verify($orderId)){
             $contractFormComplete->update([
                 'action_details' => json_encode([
                     'action_type' => ContractAdditionalActionType::PAYMENT,
                     'payment_is_pending' => false,
                 ], JSON_THROW_ON_ERROR),
             ]);
+
+            Response::success();
         }
 
-        Response::success();
+        Response::error('Problem with verify');
     }
 
     public function add(ContractAddRequest $request)

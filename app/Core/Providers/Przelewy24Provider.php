@@ -76,21 +76,28 @@ class Przelewy24Provider
                 'amount' => $this->amount,
                 'currency' => $this->currency,
                 'country' => $this->country,
-                'orderId' => null,
-                'sign' => hash('sha384', json_encode($data, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)),
             ],
             "url" => $url . 'trnRequest/' . json_decode($response->getBody(), true)['data']['token']
         ];
     }
 
-    public function verify(int $orderId, string $sign): bool
+    public function verify(int $orderId): bool
     {
         $merchantId = (int)env('PAYMENT_PRZELEWY24_MERCHANTID');
         $posId = (int)env('PAYMENT_PRZELEWY24_POSID');
         $isSandbox = env('PAYMENT_PRZELEWY24_IS_SANDBOX');
         $secretId = env('PAYMENT_PRZELEWY24_SECRET');
+        $crc = env('PAYMENT_PRZELEWY24_CRC');
 
         $url = $isSandbox ? self::$SANDBOX_URL : self::$PRODUCTION_URL;
+
+        $data = [
+            'sessionId' => $this->id,
+            'orderId' => $orderId,
+            'amount' => $this->amount,
+            'currency' => $this->currency,
+            'crc' => $crc
+        ];
 
         $response = Http::withBasicAuth($posId, $secretId)
             ->put($url . 'api/v1/transaction/verify', [
@@ -100,7 +107,7 @@ class Przelewy24Provider
                 'amount' => $this->amount,
                 'currency' => $this->currency,
                 'orderId' => $orderId,
-                'sign' => $sign,
+                'sign' => hash('sha384', json_encode($data, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)),
             ]);
 
         return $response->getStatusCode() == 200;
