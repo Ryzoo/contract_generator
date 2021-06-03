@@ -75,7 +75,7 @@ class ContractController extends Controller
     {
         $orderId = $request->get('orderId');
         $id = $contractFormComplete->id;
-        $verify = json_decode($contractFormComplete->action_details, true)['verify'];
+        $verify = json_decode($contractFormComplete->action_details, true)['verify_data'];
         $amount = $verify['amount'];
         $currency = $verify['currency'];
         $country = $verify['country'];
