@@ -84,6 +84,7 @@ class ContractController extends Controller
 
         if($payment->verify($orderId)){
             $contractFormComplete->update([
+                'status' => ContractFormCompleteStatus::NEW,
                 'action_details' => json_encode([
                     'action_type' => ContractAdditionalActionType::PAYMENT,
                     'payment_is_pending' => false,
