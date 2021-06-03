@@ -75,6 +75,7 @@ class Przelewy24Provider
                 'sessionId' => $this->id,
                 'amount' => $this->amount,
                 'currency' => $this->currency,
+                'country' => $this->country,
                 'orderId' => null,
                 'sign' => hash('sha384', json_encode($data, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)),
             ],
