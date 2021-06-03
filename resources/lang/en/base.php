@@ -43,6 +43,8 @@ return [
     'edit' => 'Edit',
     'save_exit' => 'Save and exit',
     'save_build' => 'Save and build',
+      'pay' => 'Pay',
+      'pay_waiting' => 'Waiting for confirmation'
   ],
   'headers' => [
     'name' => 'Name',

@@ -42,7 +42,9 @@ export default {
                 "back": "Back",
                 "edit": "Edit",
                 "save_exit": "Save and exit",
-                "save_build": "Save and build"
+                "save_build": "Save and build",
+                "pay": "Pay",
+                "pay_waiting": "Waiting for payment"
             },
             "headers": {
                 "name": "Name",
@@ -89,7 +91,8 @@ export default {
                 "Pending",
                 "Available",
                 "Delivered",
-                "Error"
+                "Error",
+                "Wait for action"
             ]
         },
         "form": {
@@ -261,6 +264,11 @@ export default {
                     "renderAfterFinish": "Render to pdf after finish",
                     "renderToEmail": "Send to user email"
                 }
+            },
+            "payment": {
+                "title": "Payment",
+                "description": "Allow to get payment before client get rendered contract.",
+                "descriptionConfig": "This module determine payment settings for client."
             },
             "auth": {
                 "title": "Authorization for contract",

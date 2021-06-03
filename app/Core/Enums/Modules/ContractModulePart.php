@@ -10,5 +10,6 @@ class ContractModulePart {
 
     public const GET_CONTRACT = 0;
     public const RENDER_CONTRACT = 1;
+    public const AFTER_END_CONTRACT = 2;
 }
 

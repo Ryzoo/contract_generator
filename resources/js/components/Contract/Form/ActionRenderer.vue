@@ -16,12 +16,14 @@
 import { AvailableRenderActionsHook } from '../../../additionalModules/Enums'
 import AuthBeforeRenderView from '../Modules/Auth/AuthBeforeRenderView'
 import ProviderForContractView from '../Modules/Provider/ProviderForContractView'
+import PaymentForContractView from '../Modules/Payment/PaymentForContractView'
 
 export default {
   name: 'ActionRenderer',
   components: {
     AuthBeforeRenderView,
-    ProviderForContractView
+    ProviderForContractView,
+    PaymentForContractView
   },
   props: [
     'value',

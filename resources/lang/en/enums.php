@@ -10,6 +10,7 @@ return [
         '1' => "Pending",
         '2' => "Available",
         '3' => "Delivered",
-        '4' => "Error"
+        '4' => "Error",
+        '5' => "Wait for action"
     ]
 ];

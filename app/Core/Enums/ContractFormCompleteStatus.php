@@ -13,4 +13,5 @@ class ContractFormCompleteStatus {
     public const AVAILABLE = '2';
     public const DELIVERED = '3';
     public const ERROR = '4';
+    public const WAIT_FOR_ACTION = '5';
 }

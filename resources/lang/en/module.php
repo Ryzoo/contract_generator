@@ -11,6 +11,11 @@ return [
             'renderToEmail' => 'Send to user email',
         ]
     ],
+    'payment' => [
+        'title' => 'Payment',
+        'description' => 'Allow to get payment before client get rendered contract.',
+        'descriptionConfig' => 'This module determine payment settings for client.',
+    ],
     'auth' => [
         'title' => 'Authorization for contract',
         'authOptions' => 'Authorization options',

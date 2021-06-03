@@ -38,6 +38,7 @@
 <script>
 import AuthConfigView from '../Modules/Auth/AuthConfigView'
 import ProviderConfigView from '../Modules/Provider/ProviderConfigView'
+import PaymentConfigView from '../Modules/Payment/PaymentConfigView'
 
 export default {
   name: 'DefaultConfigModuleView',
@@ -52,7 +53,8 @@ export default {
   },
   components: {
     AuthConfigView,
-    ProviderConfigView
+    ProviderConfigView,
+    PaymentConfigView
   },
   methods: {
     saveConfig () {
