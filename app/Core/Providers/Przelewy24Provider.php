@@ -91,8 +91,9 @@ class Przelewy24Provider
         $secretId = env('PAYMENT_PRZELEWY24_SECRET');
 
         $url = $isSandbox ? self::$SANDBOX_URL : self::$PRODUCTION_URL;
+
         $response = Http::withBasicAuth($posId, $secretId)
-            ->post($url . '/api/v1/transaction/register', [
+            ->put($url . 'api/v1/transaction/verify', [
                 'merchantId' => $merchantId,
                 'posId' => $posId,
                 'sessionId' => $this->id,
@@ -102,6 +103,6 @@ class Przelewy24Provider
                 'sign' => $sign,
             ]);
 
-        return $response['statusCode'] !== 200;
+        return $response->getStatusCode() == 200;
     }
 }
