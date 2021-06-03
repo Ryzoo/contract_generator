@@ -75,10 +75,11 @@ class ContractController extends Controller
     {
         $orderId = $request->get('orderId');
         $id = $contractFormComplete->id;
-        $amount = $contractFormComplete->action_details['verify']['amount'];
-        $currency = $contractFormComplete->action_details['verify']['currency'];
-        $country = $contractFormComplete->action_details['verify']['country'];
-        $sign = $contractFormComplete->action_details['verify']['sign'];
+        $verify = json_decode($contractFormComplete->action_details, true)['verify'];
+        $amount = $verify['amount'];
+        $currency = $verify['currency'];
+        $country = $verify['country'];
+        $sign = $verify['sign'];
 
         $payment = new Przelewy24Provider($id, null, $amount, $currency, '', $country, Lang::getLocale());
 

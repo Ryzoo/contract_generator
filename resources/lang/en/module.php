@@ -13,7 +13,7 @@ return [
     ],
     'payment' => [
         'title' => 'Payment',
-        'description' => 'Allow to get payment before client get rendered contract.',
+        'description' => 'This contract requires payment. It will be rendered only if paid. Details can be found under the pay button after completing this form.',
         'descriptionConfig' => 'This module determine payment settings for client.',
     ],
     'auth' => [

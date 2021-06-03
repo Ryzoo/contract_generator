@@ -22,7 +22,6 @@ class CreateContractFormCompletesTable extends Migration
             $table->enum('status',[ContractFormCompleteStatus::WAIT_FOR_ACTION, ContractFormCompleteStatus::NEW, ContractFormCompleteStatus::PENDING, ContractFormCompleteStatus::AVAILABLE, ContractFormCompleteStatus::DELIVERED, ContractFormCompleteStatus::ERROR])
                 ->default(ContractFormCompleteStatus::NEW);
             $table->string('render_url')->nullable();
-            $table->string('action_id')->nullable();
             $table->json('action_details')->nullable();
             $table->softDeletes();
             $table->timestamps();
