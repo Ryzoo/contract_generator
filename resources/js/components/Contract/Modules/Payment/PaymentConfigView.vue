@@ -40,13 +40,13 @@
 export default {
   name: 'PaymentConfigView',
   props: ['module'],
-  data() {
+  data () {
     return {
       settings: this.$store.getters.getModuleSettings(this.module.slug) || this.module.settings
     }
   },
   methods: {
-    saveConfig() {
+    saveConfig () {
       this.$store.dispatch('newContract_saveModuleConfig', {
         slug: this.module.slug,
         value: this.settings

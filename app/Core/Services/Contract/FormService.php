@@ -2,6 +2,7 @@
 
 namespace App\Core\Services\Contract;
 
+use App\Core\Enums\BlockType;
 use App\Core\Enums\ElementType;
 use App\Core\Models\Database\Contract;
 use App\Core\Models\Database\Form;
@@ -60,10 +61,13 @@ class FormService {
         $newCollection->push($element);
         continue;
       }
+
       $atrId = $element->attribute->id;
+
       $sameElement = $newCollection->first(static function(FormElement $value)use($atrId){
         return $value->elementType === ElementType::ATTRIBUTE && $value->attribute->id === $atrId;
       });
+
       if(!isset($sameElement)){
         $newElement = clone $element;
         $newElement->conditionals = $this->getAllConditionalsFromAttribute($existElements, $atrId);

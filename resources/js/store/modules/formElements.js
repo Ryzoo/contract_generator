@@ -207,6 +207,7 @@ const mutations = {
       if (e.elementType === FormElementsEnum.ATTRIBUTE) {
         e.isActive = ConditionalParser.validate(ConditionalEnum.SHOW_ON, e) ||
           (e.attribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP && !!e.attribute.settings.isMultiUse)
+
         if (e.attribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {
           if (e.attribute.settings.isMultiUse) {
             e.attribute.value = e.attribute.value.map((x, index) => {
@@ -239,36 +240,36 @@ const getters = {
   formElements: state => state.formElements,
   formElementsStepList: state => {
     let currentIndex = 0
-    let listToReturn = [{
+    const listToReturn = [{
       id: 1,
       name: '',
       completed: false,
       content: []
     }]
 
-    state.formElements.filter(x => x.isActive).map(e => {
-      switch (e.elementType) {
-        case FormElementsEnum.PAGE_BRAKE:
-          currentIndex++
-          listToReturn.push({
-            id: 1 + currentIndex,
-            name: e.elementName,
-            completed: false,
-            content: []
-          })
-          break
-        default:
-          listToReturn[currentIndex].content.push(e)
-      }
-    })
-
-    listToReturn = listToReturn.filter(x => x.content.length > 0)
-    listToReturn = listToReturn.map((item, index) => {
-      item.id = 1 + index
-      return item
-    })
+    state.formElements
+      .map(e => {
+        switch (e.elementType) {
+          case FormElementsEnum.PAGE_BRAKE:
+            currentIndex++
+            listToReturn.push({
+              id: 1 + currentIndex,
+              name: e.elementName,
+              completed: false,
+              content: []
+            })
+            break
+          default:
+            listToReturn[currentIndex].content.push(e)
+        }
+      })
 
     return listToReturn
+      .filter(x => x.content.length > 0)
+      .map((item, index) => {
+        item.id = 1 + index
+        return item
+      })
   }
 }
 

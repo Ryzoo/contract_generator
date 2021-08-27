@@ -11,133 +11,158 @@ use App\Core\Helpers\Parsers\ModelObjectToTextParser;
 use App\Core\Helpers\PdfRenderer;
 use App\Core\Models\Database\Contract;
 use App\Core\Models\Domain\Attributes\Attribute;
+use App\Core\Models\Domain\FormElements\AttributeFormElement;
+use App\Core\Models\Domain\FormElements\PageDividerFormElement;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 
-class RepeatBlock extends Block {
+class RepeatBlock extends Block
+{
 
-  private ?Attribute $repeatAttribute;
-  private Contract $contract;
-  private int $conditionalType;
+    private ?Attribute $repeatAttribute;
+    private Contract $contract;
+    private int $conditionalType;
 
-  public function __construct() {
-    $this->initialize(BlockType::REPEAT_BLOCK);
-  }
-
-  protected function buildSettings():void {
-    $this->settings = [
-      'repeatAttributeId' => NULL,
-      'separator' => '',
-    ];
-  }
-
-  protected function validateContent():bool {
-    Validator::validate($this->content,[
-      'blocks' => 'sometimes|array',
-    ]);
-
-    return true;
-  }
-
-  protected function buildContent():void {
-    $this->content['blocks'] = Block::getListFromString(json_encode($this->content['blocks'], JSON_THROW_ON_ERROR, 512));
-  }
-
-  public function validateConditions(int $conditionalType, Collection $formElements, Contract $contract, int $index = 0): bool{
-    $parentActive = parent::validateConditions($conditionalType, $formElements, $contract, $index);
-
-    $this->conditionalType = $conditionalType;
-    $this->formElements = $formElements;
-    $this->contract = $contract;
-
-    return $parentActive;
-  }
-
-  public function findVariable(Contract $contract): Collection{
-    $variableArray = parent::findVariable($contract);
-
-    if(isset($this->settings['repeatAttributeId'])) {
-      $variableArray->push([$this->id, $this->settings['repeatAttributeId']]);
+    public function __construct()
+    {
+        $this->initialize(BlockType::REPEAT_BLOCK);
     }
 
-    /** @var \App\Core\Models\Domain\Blocks\Block $block */
-    foreach ($this->content['blocks'] as $block){
-      $variableArray = $variableArray->merge($block->findVariable($contract));
+    protected function buildSettings(): void
+    {
+        $this->settings = [
+            'repeatAttributeId' => NULL,
+            'separator' => '',
+        ];
     }
 
-    return $variableArray;
-  }
+    protected function validateContent(): bool
+    {
+        Validator::validate($this->content, [
+            'blocks' => 'sometimes|array',
+        ]);
 
-  public function counterResolve(string $matchString, int $countStart, Contract $contract): int {
-    $countStart = parent::counterResolve($matchString, $countStart, $contract);
-    $countStart = BlockCounterResolver::resolve($matchString, collect($this->content['blocks']), $contract, $countStart)['count'];
-    return $countStart;
-  }
-
-  public function getBlockCollection(Collection $blockCollection): Collection{
-    $blockCollection = parent::getBlockCollection($blockCollection);
-
-    /** @var \App\Core\Models\Domain\Blocks\Block $block */
-    foreach ($this->content['blocks'] as $block){
-      $blockCollection = $block->getBlockCollection($blockCollection);
+        return true;
     }
 
-    return $blockCollection;
-  }
-
-  protected function resolveAttributesInContent(Collection $formElements, Attribute $repeatAttribute = null, $repeatValue = null):void {
-    $attributeResolver = new AttributeResolver($formElements);
-    $this->repeatAttribute = $attributeResolver->getAttributeById($this->settings['repeatAttributeId'] ?? -1);
-
-    $blockList = $this->content['blocks'];
-
-    /** @var \App\Core\Models\Domain\Blocks\Block $block */
-    foreach ($blockList as $block){
-      $block->resolveAttributesInContent($formElements, $repeatAttribute, $repeatValue);
+    protected function buildContent(): void
+    {
+        $this->content['blocks'] = Block::getListFromString(json_encode($this->content['blocks'], JSON_THROW_ON_ERROR, 512));
     }
-  }
 
-  public function renderToHtml(Collection $attributes, Attribute $repeatAttribute = null, $repeatValue = null): string {
-    $htmlString = parent::renderToHtml($attributes, $repeatAttribute, $repeatValue);
-    return $this->repeatContent($htmlString, $attributes);
-  }
+    public function validateConditions(int $conditionalType, Collection $formElements, Contract $contract, int $index = 0): bool
+    {
+        $parentActive = parent::validateConditions($conditionalType, $formElements, $contract, $index);
 
-  private function repeatContent(string $htmlString, $attributes): string {
-    $valueCount = count($this->repeatAttribute->value);
+        $this->conditionalType = $conditionalType;
+        $this->formElements = $formElements;
+        $this->contract = $contract;
 
-    foreach (collect($this->repeatAttribute->value) as $key => $value){
-      $this->validateConditions($this->conditionalType, $this->formElements, $this->contract, $key);
+        return $parentActive;
+    }
 
-      if($this->isActive) {
+    public function findVariable(Contract $contract): Collection
+    {
+        $variableArray = parent::findVariable($contract);
+
+        if (isset($this->settings['repeatAttributeId'])) {
+            $variableArray->push([$this->id, $this->settings['repeatAttributeId']]);
+        }
+
         /** @var \App\Core\Models\Domain\Blocks\Block $block */
-        foreach ($this->content['blocks'] as $block){
-          $tempChild = clone $block;
-          $tempChild->validateConditions($this->conditionalType, $this->formElements, $this->contract, $key);
-
-          if($tempChild->isActive){
-            $tempChild->resolveAttributesInContent($this->formElements, $this->repeatAttribute, $value);
-            $htmlString .= PdfRenderer::blockHtmlTemplate($tempChild->renderToHtml($attributes));
-          }
+        foreach ($this->content['blocks'] as $block) {
+            $variableArray = $variableArray->merge($block->findVariable($contract));
         }
 
-        if(($valueCount - 1) !== $key){
-          $htmlString .= $this->getSeparator();
+        return $variableArray;
+    }
+
+    public function counterResolve(string $matchString, int $countStart, Contract $contract): int
+    {
+        $countStart = parent::counterResolve($matchString, $countStart, $contract);
+        $countStart = BlockCounterResolver::resolve($matchString, collect($this->content['blocks']), $contract, $countStart)['count'];
+        return $countStart;
+    }
+
+    public function getBlockCollection(Collection $blockCollection): Collection
+    {
+        $blockCollection = parent::getBlockCollection($blockCollection);
+
+        /** @var \App\Core\Models\Domain\Blocks\Block $block */
+        foreach ($this->content['blocks'] as $block) {
+            $blockCollection = $block->getBlockCollection($blockCollection);
         }
-      }
+
+        return $blockCollection;
     }
 
-    return $htmlString;
-  }
+    protected function resolveAttributesInContent(Collection $formElements, Attribute $repeatAttribute = null, $repeatValue = null): void
+    {
+        $attributeResolver = new AttributeResolver($formElements);
+        $this->repeatAttribute = $attributeResolver->getAttributeById($this->settings['repeatAttributeId'] ?? -1);
 
-  private function isSeparator():bool{
-    return isset($this->settings['separator']) && $this->settings['separator'] !== '';
-  }
+        $blockList = $this->content['blocks'];
 
-  private function getSeparator():string{
-    if(!$this->isSeparator()) {
-      return '';
+        /** @var \App\Core\Models\Domain\Blocks\Block $block */
+        foreach ($blockList as $block) {
+            $block->resolveAttributesInContent($formElements, $repeatAttribute, $repeatValue);
+        }
     }
-    $separator = $this->settings['separator'];
-    return "<p>$separator</p>";
-  }
+
+    public function renderToHtml(Collection $attributes, Attribute $repeatAttribute = null, $repeatValue = null): string
+    {
+        $htmlString = parent::renderToHtml($attributes, $repeatAttribute, $repeatValue);
+        return $this->repeatContent($htmlString, $attributes);
+    }
+
+    private function repeatContent(string $htmlString, $attributes): string
+    {
+        $valueCount = count($this->repeatAttribute->value);
+
+        foreach (collect($this->repeatAttribute->value) as $key => $value) {
+            $this->validateConditions($this->conditionalType, $this->formElements, $this->contract, $key);
+
+            if ($this->isActive) {
+                /** @var \App\Core\Models\Domain\Blocks\Block $block */
+                foreach ($this->content['blocks'] as $block) {
+                    $tempChild = clone $block;
+                    $tempChild->validateConditions($this->conditionalType, $this->formElements, $this->contract, $key);
+
+                    if ($tempChild->isActive) {
+                        $tempChild->resolveAttributesInContent($this->formElements, $this->repeatAttribute, $value);
+                        $htmlString .= PdfRenderer::blockHtmlTemplate($tempChild->renderToHtml($attributes));
+                    }
+                }
+
+                if (($valueCount - 1) !== $key) {
+                    $htmlString .= $this->getSeparator();
+                }
+            }
+        }
+
+        return $htmlString;
+    }
+
+    private function isSeparator(): bool
+    {
+        return isset($this->settings['separator']) && $this->settings['separator'] !== '';
+    }
+
+    private function getSeparator(): string
+    {
+        if (!$this->isSeparator()) {
+            return '';
+        }
+        $separator = $this->settings['separator'];
+        return "<p>$separator</p>";
+    }
+
+    public function getFormElements(Contract $contract): Collection
+    {
+        $elementCollection = collect();
+
+        $elementCollection->push(new AttributeFormElement($this->parentId, $contract->getAttributeByID($this->settings['repeatAttributeId'])));
+
+        return $elementCollection;
+    }
 }

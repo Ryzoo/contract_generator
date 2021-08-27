@@ -24,7 +24,7 @@ class Payment extends ContractModule
         $this->isActive = TRUE;
         $this->place = ContractModulesAvailablePlace::FINISHER;
         $this->configComponent = 'PaymentConfigView';
-        $this->required = TRUE;
+        $this->required = false;
 
         $actions = [];
         $actions['action-' . AvailableRenderActionsHook::AFTER_FORM_END] = 'PaymentForContractView';
