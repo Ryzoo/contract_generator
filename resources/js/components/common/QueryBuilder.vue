@@ -66,10 +66,12 @@ export default {
   },
   methods: {
     onConditionalChange (newValue) {
-      this.$emit('conditional-change', (newValue.children && newValue.children.length > 0) ? [{
-        conditionalType: parseInt(ConditionalEnum[this.conditionalType]),
-        content: JSON.stringify(newValue, null, 2)
-      }] : [])
+      this.$emit('conditional-change', (newValue.children && newValue.children.length > 0)
+        ? [{
+            conditionalType: parseInt(ConditionalEnum[this.conditionalType]),
+            content: JSON.stringify(newValue, null, 2)
+          }]
+        : [])
     },
     mapBackendTypeToBuilderType (variable) {
       switch (parseInt(variable.attributeType)) {

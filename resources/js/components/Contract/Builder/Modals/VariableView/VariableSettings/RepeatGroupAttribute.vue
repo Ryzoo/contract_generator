@@ -37,10 +37,12 @@ export default {
   props: ['settings', 'noStore', 'attributes'],
   computed: {
     selectedAttributes () {
-      return this.settingsData.attributes ? this.settingsData.attributes.map((x) => ({
-        text: x.attributeName,
-        value: parseInt(x.id)
-      })) : []
+      return this.settingsData.attributes
+        ? this.settingsData.attributes.map((x) => ({
+          text: x.attributeName,
+          value: parseInt(x.id)
+        }))
+        : []
     },
     attributesToAggregate () {
       return this.attributes.filter((x) => x.attributeType !== AttributeTypeEnum.ATTRIBUTE_GROUP && !(x.settings.isMultiUse))

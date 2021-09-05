@@ -98,13 +98,15 @@ class AttributeValidator {
         return this.setResponse(validationError, false)
       }
       if ((AttributeValidatorHelper.isArray(this.attribute) ? this.value.length : String(this.value).length) < parseInt(this.settings.lengthMin)) {
-        const validationError = AttributeValidatorHelper.isArray(this.attribute) ? i18n.t('validation.min.array', {
-          attribute: this.attribute.attributeName,
-          min: this.settings.lengthMin
-        }) : i18n.t('validation.min.string', {
-          attribute: this.attribute.attributeName,
-          min: this.settings.lengthMin
-        })
+        const validationError = AttributeValidatorHelper.isArray(this.attribute)
+          ? i18n.t('validation.min.array', {
+            attribute: this.attribute.attributeName,
+            min: this.settings.lengthMin
+          })
+          : i18n.t('validation.min.string', {
+            attribute: this.attribute.attributeName,
+            min: this.settings.lengthMin
+          })
 
         return this.setResponse(validationError, false)
       }
@@ -123,13 +125,15 @@ class AttributeValidator {
       }
 
       if ((AttributeValidatorHelper.isArray(this.attribute) ? this.value.length : String(this.value).length) > parseInt(this.settings.lengthMax)) {
-        const validationError = AttributeValidatorHelper.isArray(this.attribute) ? i18n.t('validation.max.array', {
-          attribute: this.attribute.attributeName,
-          max: this.settings.lengthMax
-        }) : i18n.t('validation.max.string', {
-          attribute: this.attribute.attributeName,
-          max: this.settings.lengthMax
-        })
+        const validationError = AttributeValidatorHelper.isArray(this.attribute)
+          ? i18n.t('validation.max.array', {
+            attribute: this.attribute.attributeName,
+            max: this.settings.lengthMax
+          })
+          : i18n.t('validation.max.string', {
+            attribute: this.attribute.attributeName,
+            max: this.settings.lengthMax
+          })
 
         return this.setResponse(validationError, false)
       }

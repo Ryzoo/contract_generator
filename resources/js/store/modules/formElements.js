@@ -187,10 +187,12 @@ const mutations = {
 
         const attribute = {
           ...e.attribute,
-          value: e.attribute.settings.isMultiUse ? [
-            data.value,
-            ...currentValue
-          ] : data.value
+          value: e.attribute.settings.isMultiUse
+            ? [
+                data.value,
+                ...currentValue
+              ]
+            : data.value
         }
 
         return {

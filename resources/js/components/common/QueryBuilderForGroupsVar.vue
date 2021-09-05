@@ -70,10 +70,12 @@ export default {
   },
   methods: {
     onConditionalChange (newValue) {
-      const data = (newValue.children && newValue.children.length > 0) ? [{
-        conditionalType: parseInt(ConditionalEnum[this.conditionalType]),
-        content: JSON.stringify(newValue, null, 2)
-      }] : []
+      const data = (newValue.children && newValue.children.length > 0)
+        ? [{
+            conditionalType: parseInt(ConditionalEnum[this.conditionalType]),
+            content: JSON.stringify(newValue, null, 2)
+          }]
+        : []
 
       this.attribute.conditionals = data
 
