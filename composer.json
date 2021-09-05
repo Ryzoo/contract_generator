@@ -17,9 +17,8 @@
     "intervention/image": "^2.5.1",
     "jeremykenedy/laravel-roles": "^v4.0.0",
     "kwn/number-to-words": "^1.12.1",
-    "laravel/framework": "7.*",
+    "laravel/framework": "^8.0",
     "laravel/tinker": "^v2.6.1",
-    "martinlindhe/laravel-vue-i18n-generator": "^0.1.39",
     "spatie/laravel-image-optimizer": "^1.4"
   },
   "require-dev": {
@@ -27,8 +26,7 @@
     "beyondcode/laravel-dump-server": "^1.7.0",
     "doctrine/dbal": "^3.1.0",
     "fzaninotto/faker": "^v1.9.2",
-    "laravel/telescope": "^v3.5.1",
-    "laravel/ui": "^v2.5.0",
+    "laravel/ui": "^3.0",
     "mockery/mockery": "^1.4.3",
     "nunomaduro/collision": "^v5.4.0",
     "nunomaduro/larastan": "^v0.7.5",
@@ -46,12 +44,10 @@
   },
   "autoload": {
     "psr-4": {
-      "App\\": "app/"
-    },
-    "classmap": [
-      "database/seeds",
-      "database/factories"
-    ]
+      "App\\": "app/",
+      "Database\\Factories\\": "database/factories/",
+      "Database\\Seeders\\": "database/seeders/"
+    }
   },
   "autoload-dev": {
     "psr-4": {

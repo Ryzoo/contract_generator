@@ -3,10 +3,11 @@
 namespace App\Core\Models\Database;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Core\Models\Database\Contract;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Category extends Model
 {
+    use HasFactory;
     protected $guarded = [];
 
     public function contracts(): \Illuminate\Database\Eloquent\Relations\BelongsToMany {

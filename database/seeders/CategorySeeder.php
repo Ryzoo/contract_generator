@@ -1,17 +1,19 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Core\Models\Database\Category;
 use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the database seeders.
      *
      * @return void
      */
     public function run()
     {
-        factory(Category::class, 10)->create();
+        Category::factory()->count(10)->create();
     }
 }

@@ -1,5 +1,8 @@
 <?php
 
+namespace Database\Seeders;
+
+
 use App\Core\Models\Database\VariableDraft;
 use Illuminate\Database\Seeder;
 
