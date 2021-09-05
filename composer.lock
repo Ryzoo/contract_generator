@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d39796655da6c9c628958bcfadd426f1",
+    "content-hash": "d23bdb38ceac26c0b6c4335d92e7dfa2",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -1266,23 +1266,23 @@
         },
         {
             "name": "jeremykenedy/laravel-roles",
-            "version": "v4.0.0",
+            "version": "v6.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jeremykenedy/laravel-roles.git",
-                "reference": "76baf4721eaebb4bc84559c0f9bd3dfd1258c8d0"
+                "reference": "b180f18a494ff8527c5dd120aca6a0515971abb5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jeremykenedy/laravel-roles/zipball/76baf4721eaebb4bc84559c0f9bd3dfd1258c8d0",
-                "reference": "76baf4721eaebb4bc84559c0f9bd3dfd1258c8d0",
+                "url": "https://api.github.com/repos/jeremykenedy/laravel-roles/zipball/b180f18a494ff8527c5dd120aca6a0515971abb5",
+                "reference": "b180f18a494ff8527c5dd120aca6a0515971abb5",
                 "shasum": ""
             },
             "require": {
                 "eklundkristoffer/seedster": "^4.0",
                 "laravel/framework": "5.3.*|5.4.*|5.5.*|5.6.*|5.7.*|5.8.*|6.*|7.*|8.*",
                 "laravel/helpers": "^1.3",
-                "php": "^7.2"
+                "php": "^7.2|^8.0"
             },
             "require-dev": {
                 "illuminate/support": "^8.5",
@@ -1330,7 +1330,7 @@
             ],
             "support": {
                 "issues": "https://github.com/jeremykenedy/laravel-roles/issues",
-                "source": "https://github.com/jeremykenedy/laravel-roles/tree/v4.0.0"
+                "source": "https://github.com/jeremykenedy/laravel-roles/tree/v6.0.0"
             },
             "funding": [
                 {
@@ -1342,28 +1342,28 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2020-09-21T19:35:41+00:00"
+            "time": "2021-03-26T02:54:50+00:00"
         },
         {
             "name": "kwn/number-to-words",
-            "version": "1.13.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kwn/number-to-words.git",
-                "reference": "df61dc0f2fffe49f87319c9bcf1f7f44669152c7"
+                "reference": "76c9251cdaa6931a403257cd0d9a2a25a2367c39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kwn/number-to-words/zipball/df61dc0f2fffe49f87319c9bcf1f7f44669152c7",
-                "reference": "df61dc0f2fffe49f87319c9bcf1f7f44669152c7",
+                "url": "https://api.github.com/repos/kwn/number-to-words/zipball/76c9251cdaa6931a403257cd0d9a2a25a2367c39",
+                "reference": "76c9251cdaa6931a403257cd0d9a2a25a2367c39",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.6|>=7.1"
+                "php": ">=7.4"
             },
             "require-dev": {
-                "phpunit/phpunit": "^5.7.9",
-                "squizlabs/php_codesniffer": "^3.3.0"
+                "phpunit/phpunit": "^9.5.6",
+                "squizlabs/php_codesniffer": "^3.6.0"
             },
             "type": "library",
             "autoload": {
@@ -1393,9 +1393,9 @@
             ],
             "support": {
                 "issues": "https://github.com/kwn/number-to-words/issues",
-                "source": "https://github.com/kwn/number-to-words/tree/1.13.0"
+                "source": "https://github.com/kwn/number-to-words/tree/2.0.0"
             },
-            "time": "2021-06-23T20:47:44+00:00"
+            "time": "2021-07-20T09:12:58+00:00"
         },
         {
             "name": "laravel/framework",
@@ -3646,20 +3646,20 @@
         },
         {
             "name": "symfony/css-selector",
-            "version": "v4.4.27",
+            "version": "v5.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
-                "reference": "5194f18bd80d106f11efa8f7cd0fbdcc3af96ce6"
+                "reference": "7fb120adc7f600a59027775b224c13a33530dd90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/css-selector/zipball/5194f18bd80d106f11efa8f7cd0fbdcc3af96ce6",
-                "reference": "5194f18bd80d106f11efa8f7cd0fbdcc3af96ce6",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/7fb120adc7f600a59027775b224c13a33530dd90",
+                "reference": "7fb120adc7f600a59027775b224c13a33530dd90",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1.3",
+                "php": ">=7.2.5",
                 "symfony/polyfill-php80": "^1.16"
             },
             "type": "library",
@@ -3692,7 +3692,7 @@
             "description": "Converts CSS selectors to XPath expressions",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/css-selector/tree/v4.4.27"
+                "source": "https://github.com/symfony/css-selector/tree/v5.3.4"
             },
             "funding": [
                 {
@@ -3708,7 +3708,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-07-21T12:19:41+00:00"
+            "time": "2021-07-21T12:38:00+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -7156,61 +7156,6 @@
                 }
             ],
             "time": "2021-08-29T12:00:00+00:00"
-        },
-        {
-            "name": "fzaninotto/faker",
-            "version": "v1.9.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "848d8125239d7dbf8ab25cb7f054f1a630e68c2e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/848d8125239d7dbf8ab25cb7f054f1a630e68c2e",
-                "reference": "848d8125239d7dbf8ab25cb7f054f1a630e68c2e",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.3.3 || ^7.0"
-            },
-            "require-dev": {
-                "ext-intl": "*",
-                "phpunit/phpunit": "^4.8.35 || ^5.7",
-                "squizlabs/php_codesniffer": "^2.9.2"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.9-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Faker\\": "src/Faker/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "François Zaninotto"
-                }
-            ],
-            "description": "Faker is a PHP library that generates fake data for you.",
-            "keywords": [
-                "data",
-                "faker",
-                "fixtures"
-            ],
-            "support": {
-                "issues": "https://github.com/fzaninotto/Faker/issues",
-                "source": "https://github.com/fzaninotto/Faker/tree/v1.9.2"
-            },
-            "abandoned": true,
-            "time": "2020-12-11T09:56:16+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",

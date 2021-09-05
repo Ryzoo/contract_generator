@@ -1,6 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
+/public/fonts/vendor
 /storage/*.key
 /vendor
 .env
@@ -18,9 +19,16 @@ composer\.lock
 package-lock.json
 composer.lock
 
-package-lock.json
-
 /public/css/app.css
 /public/js/app.js
 /public/font/vendor
 /public/font/vendor/**
+
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+/.yarn/cache/
