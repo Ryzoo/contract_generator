@@ -4,7 +4,7 @@
     <v-alert type="error" v-if="!attribute.isValid" dense class="ma-1 mx-auto">
       {{attribute.errorMessage}}
     </v-alert>
-    <v-col cols="12" v-for="(attribute, index) in attributesList" :key="index + '' + lastLength + '' + activeCount">
+    <v-col cols="12" v-for="(attribute, index) in attributesList" :key="index + ' ' + lastLength">
       <component
         :outside="true"
         :is="Mapper.getAttributeComponentName(attribute.attributeType)"
