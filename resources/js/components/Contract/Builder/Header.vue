@@ -2,7 +2,7 @@
     <section>
       <v-row>
         <v-col>
-          <h3>{{$t("pages.panel.contracts.builder.header")}} <span class="light-text" v-if="contract">{{contract.name}}</span></h3>
+          <h3>{{$t("pages.panel.contracts.builder.header")}} <span class="light-text" v-if="$store.getters.getNewContractData">{{$store.getters.getNewContractData.name}}</span></h3>
           <v-btn color="primary mt-3" small @click="showAttributeModal">{{$t("pages.panel.contracts.builder.attributeList")}}</v-btn>
         </v-col>
         <v-col cols="auto">
@@ -12,6 +12,11 @@
             </v-col>
             <v-col>
               <v-btn small block color="primary" @click="saveActual(true)">{{$t("base.button.save_exit")}}</v-btn>
+            </v-col>
+            <v-col>
+              <v-btn small block color="secondary" @click="openContentAsText">
+                <i class="fas fa-code"></i>
+              </v-btn>
             </v-col>
           </v-row>
           <v-row>
@@ -28,15 +33,21 @@
           </v-row>
         </v-col>
       </v-row>
+      <ContractAsCodeModal v-if="showContractCodeEditDialog" :content="JSON.stringify($store.getters.getNewContractData)" @close="showContractCodeEditDialog = false" />
     </section>
 </template>
 
 <script>
+import ContractAsCodeModal from './ContractAsCodeModal'
+
 export default {
   name: 'Header',
+  components: {
+    ContractAsCodeModal
+  },
   data () {
     return {
-      contract: null,
+      showContractCodeEditDialog: false,
       isLoaded: true,
       autoSave: true,
       autoSaveTime: 5,
@@ -59,22 +70,26 @@ export default {
       this.$emit('show-attribute-modal')
     },
     init () {
-      this.contract = this.$store.getters.getNewContractData
-      this.$store.dispatch('builder_set', this.contract.blocks)
-      this.$store.dispatch('builder_setVariable', this.contract.attributesList)
+      const contract = this.$store.getters.getNewContractData
+      this.$store.dispatch('builder_set', contract.blocks)
+      this.$store.dispatch('builder_setVariable', contract.attributesList)
     },
     goBack () {
       const updateState = this.$store.getters.getNewContractUpdateState
       this.$router.push(`/panel/contracts/edit/${updateState.id}`)
     },
+    openContentAsText () {
+      this.showContractCodeEditDialog = true
+    },
     saveActual (redirect) {
       this.isLoaded = false
       const updateState = this.$store.getters.getNewContractUpdateState
+      const contract = this.$store.getters.getNewContractData
 
-      this.contract.blocks = this.$store.getters.builder_allBlocks
-      this.contract.attributesList = this.$store.getters.builder_allVariables
+      contract.blocks = this.$store.getters.builder_allBlocks
+      contract.attributesList = this.$store.getters.builder_allVariables
 
-      this.$store.dispatch('newContract_setUpdate', this.contract)
+      this.$store.dispatch('newContract_setUpdate', contract)
         .then(() => {
           axios.put(`/contract/${updateState.id}`, this.$store.getters.getNewContractData)
             .then(response => {

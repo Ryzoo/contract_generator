@@ -4,21 +4,17 @@
 namespace App\Core\Models\Domain\Blocks;
 
 use App\Core\Enums\BlockType;
-use App\Core\Enums\ConditionalType;
 use App\Core\Helpers\AttributeResolver;
 use App\Core\Helpers\BlockCounterResolver;
-use App\Core\Helpers\Parsers\ModelObjectToTextParser;
 use App\Core\Helpers\PdfRenderer;
 use App\Core\Models\Database\Contract;
 use App\Core\Models\Domain\Attributes\Attribute;
 use App\Core\Models\Domain\FormElements\AttributeFormElement;
-use App\Core\Models\Domain\FormElements\PageDividerFormElement;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 
 class RepeatBlock extends Block
 {
-
     private ?Attribute $repeatAttribute;
     private Contract $contract;
     private int $conditionalType;
@@ -69,7 +65,7 @@ class RepeatBlock extends Block
             $variableArray->push([$this->id, $this->settings['repeatAttributeId']]);
         }
 
-        /** @var \App\Core\Models\Domain\Blocks\Block $block */
+        /** @var Block $block */
         foreach ($this->content['blocks'] as $block) {
             $variableArray = $variableArray->merge($block->findVariable($contract));
         }
@@ -80,15 +76,14 @@ class RepeatBlock extends Block
     public function counterResolve(string $matchString, int $countStart, Contract $contract): int
     {
         $countStart = parent::counterResolve($matchString, $countStart, $contract);
-        $countStart = BlockCounterResolver::resolve($matchString, collect($this->content['blocks']), $contract, $countStart)['count'];
-        return $countStart;
+        return BlockCounterResolver::resolve($matchString, collect($this->content['blocks']), $contract, $countStart)['count'];
     }
 
     public function getBlockCollection(Collection $blockCollection): Collection
     {
         $blockCollection = parent::getBlockCollection($blockCollection);
 
-        /** @var \App\Core\Models\Domain\Blocks\Block $block */
+        /** @var Block $block */
         foreach ($this->content['blocks'] as $block) {
             $blockCollection = $block->getBlockCollection($blockCollection);
         }
@@ -103,7 +98,7 @@ class RepeatBlock extends Block
 
         $blockList = $this->content['blocks'];
 
-        /** @var \App\Core\Models\Domain\Blocks\Block $block */
+        /** @var Block $block */
         foreach ($blockList as $block) {
             $block->resolveAttributesInContent($formElements, $repeatAttribute, $repeatValue);
         }
@@ -123,7 +118,11 @@ class RepeatBlock extends Block
             $this->validateConditions($this->conditionalType, $this->formElements, $this->contract, $key);
 
             if ($this->isActive) {
-                /** @var \App\Core\Models\Domain\Blocks\Block $block */
+                if (($valueCount - 1) !== $key) {
+                    $htmlString .= $this->getSeparator();
+                }
+
+                /** @var Block $block */
                 foreach ($this->content['blocks'] as $block) {
                     $tempChild = clone $block;
                     $tempChild->validateConditions($this->conditionalType, $this->formElements, $this->contract, $key);
@@ -132,10 +131,6 @@ class RepeatBlock extends Block
                         $tempChild->resolveAttributesInContent($this->formElements, $this->repeatAttribute, $value);
                         $htmlString .= PdfRenderer::blockHtmlTemplate($tempChild->renderToHtml($attributes));
                     }
-                }
-
-                if (($valueCount - 1) !== $key) {
-                    $htmlString .= $this->getSeparator();
                 }
             }
         }

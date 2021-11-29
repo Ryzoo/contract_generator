@@ -92,7 +92,6 @@ const mutations = {
       parentId: block.parentId,
       content: copyContentOfBlock(state, block.content, state.builder.idBlockIncrement)
     }
-    console.log(newBlockData)
     state.builder.blocks = copyBlockTo(state.builder.blocks, block.id, newBlockData)
   },
   BUILDER_REMOVE_BLOCK: (state, blockId) => {

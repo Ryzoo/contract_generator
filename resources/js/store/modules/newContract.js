@@ -18,6 +18,9 @@ const defaultState = {
 }
 
 const actions = {
+  newContract_update_code: (context, data) => {
+    context.commit('NEW_CONTRACT_UPDATE_CODE', data)
+  },
   newContract_clear: (context, data) => {
     context.commit('NEW_CONTRACT_CLEAR', data)
   },
@@ -33,6 +36,12 @@ const actions = {
 }
 
 const mutations = {
+  NEW_CONTRACT_UPDATE_CODE: (state, data) => {
+    state.contract = {
+      ...data
+    }
+    state.mode.update = true
+  },
   NEW_CONTRACT_SET_UPDATE: (state, data) => {
     state.contract = {
       ...data,
