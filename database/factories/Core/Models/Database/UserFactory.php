@@ -12,7 +12,7 @@ use jeremykenedy\LaravelRoles\Models\Role;
 class UserFactory extends Factory {
     protected $model = User::class;
 
-    public function definition()
+    public function definition() : array
     {
         return [
             'firstName' => $this->faker->firstName,
@@ -23,9 +23,9 @@ class UserFactory extends Factory {
         ];
     }
 
-    public function asAdmin()
+    public function asAdmin() : Factory
     {
-        return $this->state(function (array $attributes) {
+        return $this->state(function () {
             return [
                 'firstName' => 'test',
                 'lastName' => 'admin',
@@ -35,9 +35,9 @@ class UserFactory extends Factory {
         });
     }
 
-    public function asClient()
+    public function asClient() : Factory
     {
-        return $this->state(function (array $attributes) {
+        return $this->state(function () {
             return [
                 'firstName' => 'test',
                 'lastName' => 'client',
@@ -47,7 +47,7 @@ class UserFactory extends Factory {
         });
     }
 
-    public function configure()
+    public function configure() : Factory
     {
         return $this->afterCreating(function (User $user) {
             if($user->lastName === 'admin'){
