@@ -123,6 +123,10 @@ class RepeatBlock extends Block
             $this->validateConditions($this->conditionalType, $this->formElements, $this->contract, $key);
 
             if ($this->isActive) {
+                if (($valueCount - 1) !== $key) {
+                    $htmlString .= $this->getSeparator();
+                }
+
                 /** @var \App\Core\Models\Domain\Blocks\Block $block */
                 foreach ($this->content['blocks'] as $block) {
                     $tempChild = clone $block;
@@ -132,10 +136,6 @@ class RepeatBlock extends Block
                         $tempChild->resolveAttributesInContent($this->formElements, $this->repeatAttribute, $value);
                         $htmlString .= PdfRenderer::blockHtmlTemplate($tempChild->renderToHtml($attributes));
                     }
-                }
-
-                if (($valueCount - 1) !== $key) {
-                    $htmlString .= $this->getSeparator();
                 }
             }
         }
