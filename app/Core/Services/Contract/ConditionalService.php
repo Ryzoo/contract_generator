@@ -23,8 +23,8 @@ class ConditionalService {
         /** @var FormElement $element */
         foreach ($formCollection as &$element){
             $conditionals = $this->conditionalRepository
-                ->getConditionalsFromBlockWithId($blockCollection, $element->parentBlockId);
-            $element->conditionals = collect(array_reverse($conditionals->unique()->toArray()))->toArray();
+                ->getConditionalsFromBlockWithId($blockCollection, $element->parentBlockId, $element->attribute ?? null);
+            $element->conditionals = collect(array_reverse($conditionals->unique()->toArray()))->filter()->toArray();
         }
 
         return $formCollection;

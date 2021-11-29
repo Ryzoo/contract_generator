@@ -7,6 +7,7 @@ use App\Core\Enums\ElementType;
 use App\Core\Models\Database\Contract;
 use App\Core\Models\Database\Form;
 use App\Core\Models\Domain\Attributes\Attribute;
+use App\Core\Models\Domain\Blocks\Block;
 use App\Core\Models\Domain\FormElements\AttributeFormElement;
 use App\Core\Models\Domain\FormElements\FormElement;
 use Illuminate\Support\Collection;
@@ -23,7 +24,7 @@ class FormService {
 
     $formElementsCollection = collect();
 
-    /* @var $block \App\Core\Models\Domain\Blocks\Block */
+    /* @var $block Block */
     foreach ($blocks as $block) {
       $formElementsCollection = $formElementsCollection->merge($block->getFormElements($contract));
     }
@@ -82,11 +83,11 @@ class FormService {
     $collectionOfConditionals = collect();
 
     foreach ($existElements as $element){
-      if($element->elementType === ElementType::ATTRIBUTE && $element->attribute->id === $atrId){
+      if($element->elementType === ElementType::ATTRIBUTE && $element->attribute->id === $atrId && !empty($element->conditionals)){
         $collectionOfConditionals->push(collect($element->conditionals));
       }
     }
 
-    return $collectionOfConditionals->toArray();
+    return $collectionOfConditionals->filter()->toArray();
   }
 }
