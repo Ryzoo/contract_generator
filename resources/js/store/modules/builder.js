@@ -89,8 +89,10 @@ const mutations = {
       ...block,
       blockName: block.blockName + ' copy',
       id: state.builder.idBlockIncrement,
-      parentId: block.parentId
+      parentId: block.parentId,
+      content: copyContentOfBlock(state, block.content, state.builder.idBlockIncrement)
     }
+    console.log(newBlockData)
     state.builder.blocks = copyBlockTo(state.builder.blocks, block.id, newBlockData)
   },
   BUILDER_REMOVE_BLOCK: (state, blockId) => {
@@ -462,7 +464,24 @@ const getters = {
 
 const copyBlockTo = (blocks, copyBlockId, block) => {
   const returnBlockIndex = getBlockIndexById(blocks, copyBlockId)
-  return addNewBlockToCurrentBlocks(blocks, block, returnBlockIndex)
+  return addNewBlockToCurrentBlocks(blocks, block, 1 + returnBlockIndex)
+}
+const copyContentOfBlock = (state, content, parentId) => {
+  if (!content || !content.blocks || content.blocks.length === 0) return content
+
+  return {
+    ...content,
+    blocks: content.blocks.map((block) => {
+      state.builder.idBlockIncrement += 1
+      return {
+        ...block,
+        blockName: block.blockName,
+        id: state.builder.idBlockIncrement,
+        parentId: parentId,
+        content: copyContentOfBlock(state, block.content, state.builder.idBlockIncrement)
+      }
+    })
+  }
 }
 const getAttributeById = (attributes, id) => attributes.find(x => parseInt(x.id) === parseInt(id))
 const getBlockById = (blocks, id) => {

@@ -353,10 +353,10 @@ export default {
       let text = block.content.text
 
       if (block.content.text !== null) {
-        const matches = [...block.content.text.matchAll(/{(\d+)}|{(\d+:(\?>counter|value|number|currency|words|\d+))}/gm)]
+        const matches = [...block.content.text.matchAll(/{(\d+)}|{(\d+:(counter|value|number|currency|words|\d+))}/gm)]
         matches.forEach((match) => {
           const id = match[1] || match[2]
-          const variable = this.variableUpdated.find((x) => parseInt(x.id) === parseInt(id))
+          const variable = this.variableUpdated.find((x) => x.id.toString() === id.toString())
           if (variable) text = text.replace(`{${id}}`, `<span class="mention variable" data-mention-id='${id}' contenteditable="false">@${variable.name}</span>`)
         })
       }
