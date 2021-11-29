@@ -9,11 +9,11 @@ class BoolOperatorParser extends DefaultParser {
 
   public static function parse($variable, $operatorType, $value):string
   {
-    $value = (bool) $value;
+    $value = (int) $value;
 
     switch ($operatorType) {
       case OperatorType::EQUAL:
-        return "(bool) ${variable} === (bool) ${value}";
+          return "(bool) ${variable} === (bool) ${value}";
       case OperatorType::N_EQUAL:
         return "(bool) ${variable} !== (bool) ${value}";
     }

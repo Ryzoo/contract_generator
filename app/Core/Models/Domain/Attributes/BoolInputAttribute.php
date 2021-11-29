@@ -40,7 +40,7 @@ class BoolInputAttribute extends Attribute implements IAggregableByAttributeAggr
       return MultiRender::renderToHTML($values->toArray(), $this->settings['multiUseRenderType'], FALSE);
     }
 
-    if(isset($value['bool']) && (bool) $value['bool']) {
+    if(isset($value['bool']) && (bool)$value['bool'] === true) {
       return $value['input'];
     }
 
@@ -100,4 +100,9 @@ class BoolInputAttribute extends Attribute implements IAggregableByAttributeAggr
     $valueOp = (int) $number === 0 ? 1 : $number;
     return isset($value) ? $value / $valueOp : $valueOp;
   }
+
+    public function getRavValue()
+    {
+        return (bool)$this->value['bool'] === true ? 1 : 0;
+    }
 }

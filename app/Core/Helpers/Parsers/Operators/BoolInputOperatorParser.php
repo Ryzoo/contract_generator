@@ -8,7 +8,7 @@ class BoolInputOperatorParser extends DefaultParser
 {
     public static function parse($variable, $operatorType, $value):string
     {
-      $value = isset($value) ? (bool)$value->bool : false;
+      $value = isset($value) ? (int)$value->bool : false;
 
       switch ($operatorType) {
         case OperatorType::EQUAL:

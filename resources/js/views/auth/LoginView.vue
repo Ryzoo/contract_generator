@@ -11,10 +11,12 @@
           v-model="loginForm.email"
           :label="$t('base.field.email')"
           type="email"
+          name="email"
         >
         </v-text-field>
         <v-text-field
           prepend-icon="fa-lock"
+          name="password"
           v-model="loginForm.password"
           :label="$t('base.field.password')"
           type="password"

@@ -56,7 +56,7 @@ trait ConditionalValidator {
       return $equalValue;
     }
 
-    return $this->parseConditionalStringToBool($content, $index) === $equalValue;
+      return $this->parseConditionalStringToBool($content, $index) === $equalValue;
   }
 
   private function parseConditionalStringToBool($content, int $index = 0) {
@@ -80,8 +80,8 @@ trait ConditionalValidator {
       })
       ->all();
 
-    $fullEvalText = 'return ' . implode(' ', $contentWithVariables) . ';';
-    return eval($fullEvalText);
+      $fullEvalText = 'return ' . implode(' ', $contentWithVariables) . ';';
+      return eval($fullEvalText);
   }
 
   private function getVariableValue($varId, int $index = 0) {
@@ -137,6 +137,6 @@ trait ConditionalValidator {
 	  return $foundedAttribute->getValue();
 	}
 
-    return $foundedAttribute->getRavValue();
+    return $retValue;
   }
 }
