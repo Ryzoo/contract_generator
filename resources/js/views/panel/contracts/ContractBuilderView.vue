@@ -2,26 +2,27 @@
   <v-row v-if="isLoaded">
     <v-col cols="12">
       <Header
-        @show-attribute-modal="showAttributeModal = true"
+          @show-attribute-modal="showAttributeModal = true"
       />
       <v-divider class="mb-3"/>
     </v-col>
     <v-col cols="12">
       <BlockLayout
-        @show-block-modal="showBlockModal = true"
+          @show-block-modal="showBlockModal = true"
       />
     </v-col>
 
     <v-dialog
-      v-model="showBlockModal"
-      scrollable
-      max-width="800px">
+        v-model="showBlockModal"
+        scrollable
+        max-width="800px">
       <SelectedBlockView @close="showBlockModal=false"/>
     </v-dialog>
 
     <v-dialog
-      v-model="showAttributeModal"
-      scrollable>
+        v-model="showAttributeModal"
+        scrollable
+        width="900px">
       <VariableView @close="showAttributeModal=false"/>
     </v-dialog>
   </v-row>

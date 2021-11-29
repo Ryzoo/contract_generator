@@ -13,35 +13,35 @@
       <v-row class="mt-2">
         <v-btn color="primary mx-2" @click="addNewAttribute">+ Add new</v-btn>
         <v-text-field
-          v-if="this.$store.getters.builder_allVariables.length > 0"
-          label="Filter by name"
-          v-model="searchText"
-          dense
-          hide-details
-          outlined
+            v-if="this.$store.getters.builder_allVariables.length > 0"
+            label="Filter by name"
+            v-model="searchText"
+            dense
+            hide-details
+            outlined
         ></v-text-field>
       </v-row>
 
       <div v-if="this.$store.getters.builder_allVariables.length > 0"
            class="text-center">
-        <v-row>
-          <v-col cols="12" md="4">
-            <h4>Simple attributes</h4>
+        <v-row class="mt-4">
+          <v-col cols="12" md="6">
+            <h3 class="mb-3">Simple attributes</h3>
             <v-chip
-              class="d-block ma-1 py-1 variable-chip"
-              label
-              close
-              small
-              v-for="attribute in defaultAttributes"
-              :key="attribute.id"
-              color="primary"
-              @click="editVariable(attribute)"
-              @click:close="tryToRemoveAttribute(attribute)"
+                class="d-block ma-1 py-1 variable-chip"
+                label
+                close
+                small
+                v-for="attribute in defaultAttributes"
+                :key="attribute.id"
+                color="primary"
+                @click="editVariable(attribute)"
+                @click:close="tryToRemoveAttribute(attribute)"
             >
               <v-avatar
-                v-if="attribute.settings.isMultiUse"
-                left
-                class="yellow"
+                  v-if="attribute.settings.isMultiUse"
+                  left
+                  class="yellow"
               >
               </v-avatar>
               <v-btn x-small text color="white" class="mx-1 attribute-copy" @click="(ev) => {
@@ -50,67 +50,58 @@
               }">
                 <v-icon left small class="ma-0">fa-copy</v-icon>
               </v-btn>
-              {{attribute.attributeName}}
+              {{ attribute.attributeName }}
             </v-chip>
           </v-col>
-          <v-col cols="12" md="4">
-            <h4>Attributes used in group</h4>
-            <v-chip
-              class="d-block ma-1 py-1"
-              label
-              small
-              v-for="attribute in usedInGroupsAttributes"
-              :key="attribute.id"
-              color="primary"
-              @click="editVariable(attribute)"
-            >
-              <v-btn x-small text color="white" class="mx-1 attribute-copy" @click="(ev) => {
-                ev.stopPropagation();
-                copyAttribute(attribute)
-              }">
-                <v-icon left small class="ma-0">fa-copy</v-icon>
-              </v-btn>
-              {{attribute.attributeName}}
-            </v-chip>
-          </v-col>
-          <v-col cols="12" md="4">
-            <h4>Group attributes</h4>
-            <v-chip
-              class="d-block ma-1 py-1 variable-chip"
-              label
-              close
-              small
-              v-for="attribute in groupsAttributes"
-              :key="attribute.id"
-              color="primary"
-              @click="editVariable(attribute)"
-              @click:close="tryToRemoveAttribute(attribute)"
-            >
-              <v-avatar
-                v-if="attribute.settings.isMultiUse"
-                left
-                class="yellow"
+          <v-col cols="12" md="6">
+            <h3 class="mb-3">Group attributes</h3>
+            <div v-for="attribute in groupsAttributes" :key="attribute.id">
+              <v-chip
+                  class="d-block ma-1 py-1 variable-chip"
+                  label
+                  close
+                  small
+                  color="primary"
+                  @click="editVariable(attribute)"
+                  @click:close="tryToRemoveAttribute(attribute)"
               >
-              </v-avatar>
-              <v-btn x-small text color="white" class="mx-1 attribute-copy" @click="(ev) => {
+                <v-avatar
+                    v-if="attribute.settings.isMultiUse"
+                    left
+                    class="yellow"
+                >
+                </v-avatar>
+                <v-btn x-small text color="white" class="mx-1 attribute-copy" @click="(ev) => {
                 ev.stopPropagation();
                 copyAttribute(attribute)
               }">
-                <v-icon left small class="ma-0">fa-copy</v-icon>
-              </v-btn>
-              {{attribute.attributeName}}
-            </v-chip>
+                  <v-icon left small class="ma-0">fa-copy</v-icon>
+                </v-btn>
+                {{ attribute.attributeName }}
+              </v-chip>
+              <div class="attributes-in-group">
+                <v-chip
+                    v-for="attributeIn in usedInGroupsAttributes.filter((atr) => attribute.settings.attributes.map(x => x.id.toString()).includes(atr.id.toString()))"
+                    :key="attributeIn.id"
+                    label
+                    small
+                    @click="editVariable(attributeIn)"
+                >
+                  {{ attributeIn.attributeName }}
+                </v-chip>
+              </div>
+            </div>
           </v-col>
         </v-row>
       </div>
       <v-alert
-        v-else
-        dense
-        text
-        class="mt-5 mb-0"
-        type="info"
+          v-else
+          dense
+          text
+          class="mt-5 mb-0"
+          type="info"
       >
-        {{$t("pages.panel.contracts.builder.noVariables")}}
+        {{ $t("pages.panel.contracts.builder.noVariables") }}
       </v-alert>
     </v-card-text>
     <v-card-actions>
@@ -123,7 +114,6 @@
         <v-card-title class="headline">
           {{ $t("pages.panel.contracts.builder.removeAttributeTitle") }}
         </v-card-title>
-
         <v-card-text>
           {{ $t("base.description.remove") }}
         </v-card-text>
@@ -139,23 +129,23 @@
       </v-card>
     </v-dialog>
     <v-dialog persistent
-      v-model="showAddEditModal"
-      scrollable
-      max-width="800px">
+              v-model="showAddEditModal"
+              scrollable
+              max-width="800px">
       <CreateEditVariable
-        v-if="showAddEditModal"
-        :attribute="attribute"
-        @close="showAddEditModal = false"
+          v-if="showAddEditModal"
+          :attribute="attribute"
+          @close="showAddEditModal = false"
       />
     </v-dialog>
     <v-dialog persistent
-      v-model="showLibraryModal"
-      scrollable
-      max-width="500px">
+              v-model="showLibraryModal"
+              scrollable
+              max-width="500px">
       <VariableLibraryResolver
-        @import="importAttributes"
-        v-if="showLibraryModal"
-        @close="showLibraryModal = false"
+          @import="importAttributes"
+          v-if="showLibraryModal"
+          @close="showLibraryModal = false"
       />
     </v-dialog>
   </v-card>
@@ -236,57 +226,76 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-  @import "./../../../../../sass/colors";
-  .v-chip.v-size--small {
-    height: auto !important;
-  }
+<style lang="scss">
+@import "./../../../../../sass/colors";
+
+.attributes-in-group {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
 
   .v-chip {
-    white-space: normal !important;
+    margin: 3px;
+    width: calc(50% - 6px);
   }
 
-  .variables-list {
+  .v-chip__content{
+    display: block !important;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.v-chip.v-size--small {
+  height: auto !important;
+}
+
+.v-chip {
+  white-space: normal !important;
+}
+
+.variables-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  .variable {
+    background: $primary 0% 0% no-repeat padding-box;
+    padding: 3px 8px;
+    border-radius: 5px;
+    color: white;
+    margin: 5px;
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
 
-    .variable {
-      background: $primary 0% 0% no-repeat padding-box;
-      padding: 3px 8px;
-      border-radius: 5px;
-      color: white;
-      margin: 5px;
-      display: flex;
+    .delete-variable {
+      padding: 0 5px;
+      margin-left: 10px;
+    }
 
-      .delete-variable {
-        padding: 0 5px;
-        margin-left: 10px;
-      }
-
-      &:hover {
-        cursor: pointer;
-      }
+    &:hover {
+      cursor: pointer;
     }
   }
+}
 
-  .no-variables {
-    display: flex;
-    justify-content: center;
-    padding: 15px;
-    opacity: 0.3;
-  }
+.no-variables {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  opacity: 0.3;
+}
 
-  .variable-chip{
-    .v-avatar{
-      background: #E91E63 !important;
-      position: absolute;
-      left: -31px;
-      padding: 0;
-      margin: 0;
-      width: 50px !important;
-      height: 50px !important;
-    }
+.variable-chip {
+  .v-avatar {
+    background: #E91E63 !important;
+    position: absolute;
+    left: -31px;
+    padding: 0;
+    margin: 0;
+    width: 50px !important;
+    height: 50px !important;
   }
+}
 
 </style>
