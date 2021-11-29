@@ -168,7 +168,7 @@
 <script>
 import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
 import Fuse from 'fuse.js'
-import tippy from 'tippy.js'
+import tippy, { sticky } from 'tippy.js'
 import {
   Blockquote,
   BulletList,
@@ -385,35 +385,49 @@ export default {
       this.editor.focus()
     },
     renderPopup (node) {
+      const rect = node.getBoundingClientRect()
+      const { x, y, } = rect
+
+      if (x === 0 && y === 0) {
+        return
+      }
+
+      node.cachedRect = rect
+
       if (this.popup) {
         return
       }
-      this.popup = tippy(node, {
+
+      this.popup = tippy('.ProseMirror', {
+        getReferenceClientRect: () => node.cachedRect,
+        appendTo: () => document.body,
+        interactive: true,
+        sticky: true,
+        plugins: [sticky],
         content: this.$refs.suggestions,
         trigger: 'mouseenter',
-        interactive: true,
+        showOnCreate: true,
         theme: 'dark',
         placement: 'top-start',
         inertia: true,
         duration: [400, 200],
-        showOnInit: true,
-        arrow: true,
-        arrowType: 'round'
       })
-      if (MutationObserver) {
-        this.observer = new MutationObserver(() => {
-          this.popup.popperInstance.scheduleUpdate()
-        })
-        this.observer.observe(this.$refs.suggestions, {
-          childList: true,
-          subtree: true,
-          characterData: true
-        })
-      }
+
+      // if (MutationObserver) {
+      //   console.log(this.popup);
+      //   this.observer = new MutationObserver(() => {
+      //     this.popup.popperInstance.scheduleUpdate()
+      //   })
+      //   this.observer.observe(this.$refs.suggestions, {
+      //     childList: true,
+      //     subtree: true,
+      //     characterData: true
+      //   })
+      // }
     },
     destroyPopup () {
       if (this.popup) {
-        this.popup.destroy()
+        this.popup[0].destroy()
         this.popup = null
       }
       if (this.observer) {
@@ -480,66 +494,37 @@ export default {
 
   .suggestion-list {
     padding: 0.2rem;
-    border: 2px solid rgba(#2a272f, 0.1);
+    border: 2px solid rgba(black, 0.1);
     font-size: 0.8rem;
     font-weight: bold;
-
     &__no-results {
       padding: 0.2rem 0.5rem;
     }
-
     &__item {
       border-radius: 5px;
       padding: 0.2rem 0.5rem;
       margin-bottom: 0.2rem;
       cursor: pointer;
-
       &:last-child {
         margin-bottom: 0;
       }
-
       &.is-selected,
       &:hover {
-        background-color: rgba(#fff, 0.2);
+        background-color: rgba(white, 0.2);
       }
-
       &.is-empty {
         opacity: 0.5;
       }
     }
   }
 
-  .tippy-tooltip.dark-theme {
-    background-color: #2a272f;
+  .tippy-box[data-theme~=dark] {
+    background-color: black;
     padding: 0;
     font-size: 1rem;
     text-align: inherit;
-    color: #fff;
+    color: white;
     border-radius: 5px;
-
-    .tippy-backdrop {
-      display: none;
-    }
-
-    .tippy-roundarrow {
-      fill: #2a272f;
-    }
-
-    .tippy-popper[x-placement^=top] & .tippy-arrow {
-      border-top-color: #2a272f;
-    }
-
-    .tippy-popper[x-placement^=bottom] & .tippy-arrow {
-      border-bottom-color: #2a272f;
-    }
-
-    .tippy-popper[x-placement^=left] & .tippy-arrow {
-      border-left-color: #2a272f;
-    }
-
-    .tippy-popper[x-placement^=right] & .tippy-arrow {
-      border-right-color: #2a272f;
-    }
   }
 
   .editor-container {
