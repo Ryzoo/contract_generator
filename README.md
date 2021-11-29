@@ -2,7 +2,7 @@
 
 ## How to run
 - yarn
-- yarn run watch
+- yarn start
 - composer install
 - php artisan storage:link
 - copy env-local to .env

@@ -119,7 +119,7 @@ class RepeatBlock extends Block
     {
         $valueCount = count($this->repeatAttribute->value);
 
-        foreach (collect($this->repeatAttribute->value) as $key => $value) {
+        foreach (collect($this->repeatAttribute->value)->reverse() as $key => $value) {
             $this->validateConditions($this->conditionalType, $this->formElements, $this->contract, $key);
 
             if ($this->isActive) {

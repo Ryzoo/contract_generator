@@ -7782,7 +7782,7 @@ fsevents@~2.3.2:
     vue-router: ^3.5.2
     vue-template-compiler: ^2.6.14
     vue2-editor: ^2.10.3
-    vuetify: 2.5.8
+    vuetify: 2.6.0
     vuex: ^3.6.2
   languageName: unknown
   linkType: soft
@@ -9121,7 +9121,16 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"vuetify@npm:2.5.8, vuetify@npm:^2.2.18":
+"vuetify@npm:2.6.0":
+  version: 2.6.0
+  resolution: "vuetify@npm:2.6.0"
+  peerDependencies:
+    vue: ^2.6.4
+  checksum: ce28415e6b16561829292b844abbe53c4c4fd2bbd591fc6d59944b981769aae7c098da9299a9cf807d3a107e009f1d3e30f91525dd9ac02f2bde7a8fa8c227df
+  languageName: node
+  linkType: hard
+
+"vuetify@npm:^2.2.18":
   version: 2.5.8
   resolution: "vuetify@npm:2.5.8"
   peerDependencies:

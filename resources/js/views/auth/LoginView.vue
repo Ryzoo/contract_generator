@@ -5,7 +5,7 @@
       <h1 class="display-1 mb-5">{{$t("form.login.title") }}</h1>
     </v-card-title>
     <v-card-text class="pb-0">
-      <v-form v-if="isLoaded">
+      <v-form v-if="isLoaded" @submit="sendLoginForm">
         <v-text-field
           prepend-icon="fa-envelope"
           v-model="loginForm.email"
@@ -28,22 +28,24 @@
           </router-link>
         </small>
         <br/>
+        <div class="d-flex mt-3 justify-end">
+          <v-btn
+              :disabled="!isLoaded"
+              outlined
+              color="primary"
+              to="/auth/register"
+          >{{ $t("base.button.register") }}
+          </v-btn>
+          <v-btn
+              :disabled="!isLoaded"
+              color="primary"
+              type="submit"
+          >{{ $t("base.button.login") }}
+          </v-btn>
+        </div>
       </v-form>
       <loader v-else/>
     </v-card-text>
-    <v-card-actions>
-      <v-spacer/>
-      <v-btn
-        :disabled="!isLoaded"
-        outlined
-        color="primary"
-        to="/auth/register"
-      >{{ $t("base.button.register") }}
-      </v-btn>
-      <v-btn :disabled="!isLoaded" color="primary" @click="sendLoginForm"
-      >{{ $t("base.button.login") }}
-      </v-btn>
-    </v-card-actions>
   </v-card>
 </template>
 

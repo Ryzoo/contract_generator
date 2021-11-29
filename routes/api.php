@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-if ((bool)env('APP_DEBUG')) {
+if (env('APP_DEBUG')) {
     Route::prefix('debug')->group(static function () {
         Route::get('/render/{contractFormComplete}', 'ContractController@forceRender');
     });
