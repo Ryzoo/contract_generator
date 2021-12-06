@@ -57,7 +57,7 @@ class ModelObjectToTextParser
                 case 'rule':
                     return ModelObjectToTextParser::parseRule($child['query']['id'], $child['query']['operator'], $child['query']['value'], $child['query']['ruleType']);
                 case 'group':
-                    $var = ${ModelObjectToTextParser::parseGroup($child['query']['operator'], $child['query']['children'])};
+                    $var = ModelObjectToTextParser::parseGroup($child['query']['operator'], $child['query']['children']);
                     return "( $var )";
             }
             return '';
