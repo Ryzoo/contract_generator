@@ -14,6 +14,7 @@
         :label="attribute.attributeName"
         :placeholder="attribute.placeholder || ' '"
         :error="!attribute.isValid"
+        persistent-placeholder
         :hint="attribute.labelAfter"
         :persistent-hint="!!attribute.labelAfter"
         :error-messages="attribute.errorMessage"

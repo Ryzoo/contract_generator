@@ -72,8 +72,16 @@ export default {
     return {
       multiRenderTypeItems: [
         {
-          text: 'List',
+          text: 'List point',
           value: MultiUseRenderType.LIST.toString()
+        },
+        {
+          text: 'List numeric',
+          value: MultiUseRenderType.LIST_NUMBER.toString()
+        },
+        {
+          text: 'List alfa',
+          value: MultiUseRenderType.LIST_ALFA.toString()
         },
         {
           text: 'Comma separated',

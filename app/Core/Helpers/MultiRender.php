@@ -25,8 +25,10 @@ class MultiRender {
         ]);
       case MultiUseRenderType::COMMA_SEPARATED:
         return self::prepareHTMLSeparated($valueAsAttributesArray ? $value[0] : $value, ', ', $valueAsAttributesArray);
-      case MultiUseRenderType::LIST:
-        return self::prepareHTMLList($valueAsAttributesArray ? $value[0] : $value, ', ', $valueAsAttributesArray);
+        case MultiUseRenderType::LIST:
+        case MultiUseRenderType::LIST_ALFA:
+        case MultiUseRenderType::LIST_NUMBER:
+        return self::prepareHTMLList($valueAsAttributesArray ? $value[0] : $value, ', ', $valueAsAttributesArray, $type);
     }
 
     return 'error when parse multi use';
@@ -82,12 +84,21 @@ class MultiRender {
     return "<br/><table width='100%'><thead>$header</thead><tbody>$body</tbody></table>";
   }
 
-  private static function prepareHTMLList($value, string $glue, bool $valueAsAttributesArray): string {
+  private static function prepareHTMLList($value, string $glue, bool $valueAsAttributesArray, MultiUseRenderType $type): string {
     $body = '';
 
     foreach ($value as $items) {
       $elements = $valueAsAttributesArray ? implode($glue, $items->toArray()) : $items;
-      $body .= "<li>{$elements}</li>";
+      $body .= "<li>$elements</li>";
+    }
+
+    switch ($type){
+        case MultiUseRenderType::LIST:
+            return "<br/><ul width='100%' style='list-style-type: disc;'>$body</ul>";
+        case MultiUseRenderType::LIST_NUMBER:
+            return "<br/><ol width='100%' style='list-style-type: decimal;'>$body</ol>";
+        case MultiUseRenderType::LIST_ALFA:
+            return "<br/><ol width='100%' style='list-style-type: lower-alpha;'>$body</ol>";
     }
 
     return "<br/><ul width='100%'>$body</ul>";

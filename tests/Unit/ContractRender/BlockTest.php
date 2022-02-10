@@ -56,20 +56,6 @@ class BlockTest extends TestCase {
     $this->assertStringContainsString($testText, $html);
   }
 
-  public function testListItemBlock(): void {
-    $html = $this->builder()
-      ->buildBlock(BlockType::LIST_BLOCK, [
-        'settings' => [ 'enumeratorType' => EnumeratorListType::UPPER_ROMAN ],
-        'content' => [
-          'blocks' => $this->builder()->buildBlock(BlockType::LIST_ITEM_BLOCK, ['content' => ['text' => 'hello world']])->getBlocks()
-        ]
-      ])
-      ->getHTML();
-
-    $testText = '<ol style="list-style-type: upper-roman;"><li>hello world</li></ol>';
-    $this->assertStringContainsString($testText, $html);
-  }
-
   public function testAttributeWithValueBlock(): void {
     $html = $this->builder()
       ->buildBlock(BlockType::REPEAT_BLOCK, [

@@ -6,6 +6,7 @@
     :error="!attribute.isValid"
     :error-messages="attribute.errorMessage"
     :hint="attribute.labelAfter"
+    persistent-placeholder
     :show-details="true"
     :persistent-hint="!!attribute.labelAfter"
   >

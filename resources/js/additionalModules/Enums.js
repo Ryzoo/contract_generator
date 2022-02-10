@@ -15,8 +15,7 @@ export const BlockTypeEnum = {
   EMPTY_BLOCK: 1,
   PAGE_DIVIDE_BLOCK: 2,
   REPEAT_BLOCK: 3,
-  LIST_BLOCK: 4,
-  LIST_ITEM_BLOCK: 5
+  LIST_BLOCK: 4
 }
 
 export const AttributeTypeEnum = {
@@ -57,7 +56,9 @@ export const ContractModulesAvailablePlace = {
 export const MultiUseRenderType = {
   LIST: 0,
   TABLE: 1,
-  COMMA_SEPARATED: 2
+  COMMA_SEPARATED: 2,
+  LIST_NUMBER: 3,
+  LIST_ALFA: 4
 }
 
 export const ListEnumeratorType = {

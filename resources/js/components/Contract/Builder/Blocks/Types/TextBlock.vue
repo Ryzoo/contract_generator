@@ -391,7 +391,7 @@ export default {
 
     renderPopup (node) {
       const rect = node.getBoundingClientRect()
-      const { x, y, } = rect
+      const { x, y } = rect
 
       if (x === 0 && y === 0) {
         return
@@ -415,7 +415,7 @@ export default {
         theme: 'dark',
         placement: 'top-start',
         inertia: true,
-        duration: [400, 200],
+        duration: [400, 200]
       })
     },
     destroyPopup () {

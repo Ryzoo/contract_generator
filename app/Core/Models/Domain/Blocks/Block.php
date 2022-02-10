@@ -16,154 +16,170 @@ use Illuminate\Support\Collection;
 use Intervention\Image\Exception\NotFoundException;
 use Whoops\Exception\ErrorException;
 
-abstract class Block implements IBlock {
+abstract class Block implements IBlock
+{
 
-  use ConditionalValidator;
+    use ConditionalValidator;
 
-  public int $id;
+    public int $id;
 
-  public int $blockType;
+    public int $blockType;
 
-  public ?string $blockName;
+    public ?string $blockName;
 
-  public int $parentId;
+    public int $parentId;
 
-  public array $settings;
+    public array $settings;
 
-  public array $conditionals;
+    public array $conditionals;
 
-  public array $content;
+    public array $content;
 
-  abstract protected function buildSettings(): void;
+    abstract protected function buildSettings(): void;
 
-  abstract protected function buildContent(): void;
+    abstract protected function buildContent(): void;
 
-  abstract protected function validateContent(): bool;
+    abstract protected function validateContent(): bool;
 
-  abstract protected function resolveAttributesInContent(Collection $formElements, Attribute $repeatAttribute = NULL, $repeatValue = NULL):void;
+    abstract protected function resolveAttributesInContent(Collection $formElements, Attribute $repeatAttribute = NULL, $repeatValue = NULL): void;
 
-  protected function initialize(int $blockType): void {
-    $this->blockType = $blockType;
-    $this->blockName = BlockType::getName($blockType);
-    $this->settings = [];
-    $this->id = 0;
-    $this->parentId = 0;
-    $this->content = [];
-    $this->conditionals = [];
-    $this->buildObject();
-  }
-
-  protected function buildObject(): void {
-    $this->buildSettings();
-  }
-
-  protected function prepare(): void {
-    $this->validateContent();
-    $this->buildContent();
-
-    if(!isset($this->settings) || $this->settings === [])
-      $this->buildSettings();
-  }
-
-  public static function getBlockByType(int $blockType): Block {
-    switch ($blockType) {
-      case BlockType::TEXT_BLOCK:
-        return new TextBlock();
-      case BlockType::EMPTY_BLOCK:
-        return new EmptyBlock();
-      case BlockType::PAGE_DIVIDE_BLOCK:
-        return new PageDivideBlock();
-      case BlockType::REPEAT_BLOCK:
-        return new RepeatBlock();
-      case BlockType::LIST_BLOCK:
-        return new ListBlock();
-      case BlockType::LIST_ITEM_BLOCK:
-        return new ListItemBlock();
+    protected function initialize(int $blockType): void
+    {
+        $this->blockType = $blockType;
+        $this->blockName = BlockType::getName($blockType);
+        $this->settings = [];
+        $this->id = 0;
+        $this->parentId = 0;
+        $this->content = [];
+        $this->conditionals = [];
+        $this->buildObject();
     }
 
-    throw new NotFoundException("Block {$blockType} was not found");
-  }
-
-  public static function validate($value): bool {
-    Validator::validate($value, [
-      'id' => 'required|integer',
-      'parentId' => 'required|integer',
-      'blockType' => 'required|integer',
-      'conditionals' => 'sometimes|array',
-    ]);
-
-    return TRUE;
-  }
-
-  public static function getListFromString(string $value): array {
-    $arrayOfBlocks = json_decode($value, TRUE, 512, JSON_THROW_ON_ERROR);
-    $returnedArray = [];
-
-    if (!is_array($arrayOfBlocks)) {
-      throw new ErrorException(_('custom.array.attributes'), 500);
+    protected function buildObject(): void
+    {
+        $this->buildSettings();
     }
 
-    foreach ($arrayOfBlocks as $block) {
-      $returnedArray[] = self::getFromString((array) $block);
+    protected function prepare(): void
+    {
+        $this->validateContent();
+        $this->buildContent();
+
+        if (!isset($this->settings) || $this->settings === [])
+            $this->buildSettings();
     }
 
-    return $returnedArray;
-  }
+    public static function getBlockByType(int $blockType): Block
+    {
+        switch ($blockType) {
+            case BlockType::TEXT_BLOCK:
+                return new TextBlock();
+            case BlockType::EMPTY_BLOCK:
+                return new EmptyBlock();
+            case BlockType::PAGE_DIVIDE_BLOCK:
+                return new PageDivideBlock();
+            case BlockType::REPEAT_BLOCK:
+                return new RepeatBlock();
+            case BlockType::LIST_BLOCK:
+                return new ListBlock();
+        }
 
-  public static function getFromString(array $value): Block {
-    Block::validate($value);
-    $block = self::getBlockByType($value['blockType']);
-
-    $block->id = (int) $value['id'];
-    $block->parentId = (int) $value['parentId'];
-    $block->blockType = (int) $value['blockType'];
-    $block->blockName = $value['blockName'] ?? (string)$value['blockType'];
-    $block->settings = $value['settings'];
-    $block->conditionals = Conditional::getListFromString(json_encode($value['conditionals'], JSON_THROW_ON_ERROR, 512));
-    $block->content = (array) $value['content'];
-
-    $block->prepare();
-
-    return $block;
-  }
-
-  public function findVariable(Contract $contract): Collection {
-    $variableArray = collect();
-
-    foreach ($this->conditionals as $conditional) {
-      $conditionalVariablesList = $conditional->getUsedVariable();
-      foreach ($conditionalVariablesList as $arrayElement) {
-        $variableArray->push([$this->parentId, $arrayElement]);
-      }
+        throw new NotFoundException("Block {$blockType} was not found");
     }
 
-    return $variableArray;
-  }
+    public static function validate($value): bool
+    {
+        Validator::validate($value, [
+            'id' => 'required|integer',
+            'parentId' => 'required|integer',
+            'blockType' => 'required|integer',
+            'conditionals' => 'sometimes|array',
+        ]);
 
-  public function getFormElements(Contract $contract): Collection {
-    $variableArray = $this->findVariable($contract);
-    $elementCollection = collect();
+        return TRUE;
+    }
 
-    $variableArray->map(static function ($element) use ($contract, $elementCollection) {
-      $parentBlockId = (int) $element[0];
-      $attributeId = (int) $element[1];
-      $elementCollection->push(new AttributeFormElement($parentBlockId, $contract->getAttributeByID($attributeId)));
-    });
+    public static function getListFromString(string $value): array
+    {
+        $arrayOfBlocks = json_decode($value, TRUE, 512, JSON_THROW_ON_ERROR);
+        $returnedArray = [];
 
-    return $elementCollection;
-  }
+        if (!is_array($arrayOfBlocks)) {
+            throw new ErrorException(_('custom.array.attributes'), 500);
+        }
 
-  public function getBlockCollection(Collection $blockCollection): Collection {
-    $blockCollection->push($this);
-    return $blockCollection;
-  }
+        foreach ($arrayOfBlocks as $block) {
+            $returnedArray[] = self::getFromString((array)$block);
+        }
 
-  public function renderToHtml(Collection $attributes, Attribute $repeatAttribute = NULL, $repeatValue = NULL): string {
-    $this->resolveAttributesInContent($attributes, $repeatValue, $repeatValue);
-    return '';
-  }
+        return $returnedArray;
+    }
 
-  public function counterResolve(string $matchString, int $countStart, Contract $contract): int {
-    return $countStart;
-  }
+    public static function getFromString(array $value): Block
+    {
+        Block::validate($value);
+        $block = self::getBlockByType($value['blockType']);
+
+        $block->id = (int)$value['id'];
+        $block->parentId = (int)$value['parentId'];
+        $block->blockType = (int)$value['blockType'];
+        $block->blockName = $value['blockName'] ?? (string)$value['blockType'];
+        $block->settings = $value['settings'];
+        $block->conditionals = Conditional::getListFromString(json_encode($value['conditionals'], JSON_THROW_ON_ERROR, 512));
+        $block->content = (array)$value['content'];
+
+        $block->prepare();
+
+        return $block;
+    }
+
+    public function findVariable(Contract $contract): Collection
+    {
+        $variableArray = collect();
+
+        foreach ($this->conditionals as $conditional) {
+            $conditionalVariablesList = $conditional->getUsedVariable();
+            foreach ($conditionalVariablesList as $arrayElement) {
+                $variableArray->push([$this->parentId, $arrayElement]);
+            }
+        }
+
+        return $variableArray;
+    }
+
+    public function getFormElements(Contract $contract): Collection
+    {
+        $variableArray = $this->findVariable($contract);
+        $elementCollection = collect();
+
+        $variableArray->map(static function ($element) use ($contract, $elementCollection) {
+            $parentBlockId = (int)$element[0];
+            $attributeId = (int)$element[1];
+            $elementCollection->push(new AttributeFormElement($parentBlockId, $contract->getAttributeByID($attributeId)));
+        });
+
+        return $elementCollection;
+    }
+
+    public function getBlockCollection(Collection $blockCollection): Collection
+    {
+        $blockCollection->push($this);
+        return $blockCollection;
+    }
+
+    public function renderToHtml(Collection $attributes, Attribute $repeatAttribute = NULL, $repeatValue = NULL): string
+    {
+        $this->resolveAttributesInContent($attributes, $repeatValue, $repeatValue);
+        return '';
+    }
+
+    public function renderToHtmlArray(Collection $attributes, Attribute $repeatAttribute = NULL, $repeatValue = NULL)
+    {
+        return $this->renderToHtml($attributes, $repeatAttribute, $repeatValue);
+    }
+
+    public function counterResolve(string $matchString, int $countStart, Contract $contract): int
+    {
+        return $countStart;
+    }
 }

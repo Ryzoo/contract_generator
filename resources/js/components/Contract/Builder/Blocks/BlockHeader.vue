@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import { BlockTypeEnum, ListEnumeratorType } from '../../../../additionalModules/Enums'
+import { AttributeTypeEnum, BlockTypeEnum, ListEnumeratorType } from '../../../../additionalModules/Enums'
 
 export default {
   name: 'BlockHeader',
@@ -97,12 +97,22 @@ export default {
   },
   computed: {
     multiGroupAttributes () {
-      return this.$store.getters.builder_multiGroupAttributes
-        .filter(x => !x.settings.isInline)
-        .map(x => ({
-          text: x.attributeName,
-          value: x.id
-        }))
+      const selectsWithMultiUse = this.$store.getters.builder_allVariables
+        .filter(x => x.attributeType === AttributeTypeEnum.SELECT && x.settings.isMultiSelect)
+
+      return [
+        ...this.$store.getters.builder_multiGroupAttributes
+          .filter(x => !x.settings.isInline)
+          .map(x => ({
+            text: x.attributeName,
+            value: x.id
+          })),
+        ...selectsWithMultiUse
+          .map(x => ({
+            text: x.attributeName,
+            value: x.id
+          }))
+      ]
     },
     currentListEnumeratorType () {
       return this.$store.getters.builder_currentListEnumeratorType(this.block.id)

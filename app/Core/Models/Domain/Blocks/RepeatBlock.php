@@ -110,18 +110,38 @@ class RepeatBlock extends Block
         return $this->repeatContent($htmlString, $attributes);
     }
 
+
+    public function renderToHtmlArray(Collection $attributes, Attribute $repeatAttribute = null, $repeatValue = null)
+    {
+        $htmlString = parent::renderToHtml($attributes, $repeatAttribute, $repeatValue);
+        return $this->repeatContentAsArray($htmlString, $attributes);
+    }
+
+
     private function repeatContent(string $htmlString, $attributes): string
     {
-        $valueCount = count($this->repeatAttribute->value);
+        $elements = $this->repeatContentAsArray($htmlString, $attributes);
 
-        foreach (collect($this->repeatAttribute->value)->reverse() as $key => $value) {
+        $valueCount = count($this->repeatAttribute->getValueAsArray());
+
+        foreach ($elements as $key => $value) {
+            if (($valueCount - 1) !== $key) {
+                $htmlString .= $this->getSeparator();
+            }
+            $htmlString .= $value;
+        }
+
+        return $htmlString;
+    }
+
+    private function repeatContentAsArray(string $htmlString, $attributes)
+    {
+        $elements = [];
+
+        foreach (collect($this->repeatAttribute->getValueAsArray())->reverse() as $key => $value) {
             $this->validateConditions($this->conditionalType, $this->formElements, $this->contract, $key);
 
             if ($this->isActive) {
-                if (($valueCount - 1) !== $key) {
-                    $htmlString .= $this->getSeparator();
-                }
-
                 /** @var Block $block */
                 foreach ($this->content['blocks'] as $block) {
                     $tempChild = clone $block;
@@ -129,13 +149,13 @@ class RepeatBlock extends Block
 
                     if ($tempChild->isActive) {
                         $tempChild->resolveAttributesInContent($this->formElements, $this->repeatAttribute, $value);
-                        $htmlString .= PdfRenderer::blockHtmlTemplate($tempChild->renderToHtml($attributes));
+                        $elements[] = PdfRenderer::blockHtmlTemplate($tempChild->renderToHtml($attributes));
                     }
                 }
             }
         }
 
-        return $htmlString;
+        return $elements;
     }
 
     private function isSeparator(): bool

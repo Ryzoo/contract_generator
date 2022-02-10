@@ -49,7 +49,7 @@ export default {
     return {
       showContractCodeEditDialog: false,
       isLoaded: true,
-      autoSave: true,
+      autoSave: false,
       autoSaveTime: 5,
       saveInterval: null
     }
@@ -110,7 +110,6 @@ export default {
   },
   mounted () {
     this.init()
-    this.saveInterval = setInterval(this.saveActual, this.autoSaveTime * 10000)
   },
   destroyed () {
     if (this.saveInterval) { clearInterval(this.saveInterval) }
