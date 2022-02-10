@@ -56,7 +56,9 @@ export const ContractModulesAvailablePlace = {
 export const MultiUseRenderType = {
   LIST: 0,
   TABLE: 1,
-  COMMA_SEPARATED: 2
+  COMMA_SEPARATED: 2,
+  LIST_NUMBER: 3,
+  LIST_ALFA: 4
 }
 
 export const ListEnumeratorType = {

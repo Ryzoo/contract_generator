@@ -121,6 +121,7 @@ class RepeatBlock extends Block
     private function repeatContent(string $htmlString, $attributes): string
     {
         $elements = $this->repeatContentAsArray($htmlString, $attributes);
+
         $valueCount = count($this->repeatAttribute->getValueAsArray());
 
         foreach ($elements as $key => $value) {

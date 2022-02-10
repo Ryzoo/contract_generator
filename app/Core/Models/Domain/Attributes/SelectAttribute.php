@@ -53,12 +53,23 @@ class SelectAttribute extends Attribute
                     $preparedValue = implode(', ', $valueList);
                     break;
                 case MultiUseRenderType::LIST:
-                    $preparedValue .= '';
-                    $preparedValue .= '<ul>';
+                case MultiUseRenderType::LIST_NUMBER:
+                case MultiUseRenderType::LIST_ALFA:
+                    $content = '';
                     foreach ($valueList as $value) {
-                        $preparedValue .= "<li>$value</li>";
+                        $content .= "<li>$value</li>";
                     }
-                    $preparedValue .= '</ul>';
+                    switch ((int)$this->settings['listRenderType']){
+                        case MultiUseRenderType::LIST:
+                            $preparedValue .= "<ul width='100%' style='list-style-type: disc;'>$content</ul>";
+                            break;
+                        case MultiUseRenderType::LIST_NUMBER:
+                            $preparedValue .= "<ol width='100%' style='list-style-type: decimal;'>$content</ol>";
+                            break;
+                        case MultiUseRenderType::LIST_ALFA:
+                            $preparedValue .= "<ol width='100%' style='list-style-type: lower-alpha;'>$content</ol>";
+                            break;
+                    }
                     break;
                 case MultiUseRenderType::TABLE:
                     $preparedValue .= '<table>';
