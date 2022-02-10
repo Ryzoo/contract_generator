@@ -12,6 +12,7 @@
     :name="attribute.attributeName"
     chips
     small-chips
+    persistent-placeholder
     deletable-chips
     :persistent-hint="!!attribute.labelAfter"
     allowSelfOptions
@@ -32,6 +33,7 @@
     :items="this.attribute.settings.items"
     :error="!attribute.isValid"
     :error-messages="attribute.errorMessage"
+    persistent-placeholder
     :label="attribute.attributeName"
     :multiple="!!attribute.settings.isMultiSelect"
     :placeholder="attribute.placeholder"

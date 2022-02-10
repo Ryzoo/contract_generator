@@ -236,14 +236,11 @@ export default {
   }
 
   .v-stepper__header {
-    height: 100%;
     padding: 10px 40px 70px 40px;
   }
 
   .step-name {
     text-align: center;
-    word-break: break-word;
-    hyphens: auto;
     width: 80px;
   }
 

@@ -386,7 +386,7 @@ export default {
     },
     renderPopup (node) {
       const rect = node.getBoundingClientRect()
-      const { x, y, } = rect
+      const { x, y } = rect
 
       if (x === 0 && y === 0) {
         return
@@ -410,20 +410,8 @@ export default {
         theme: 'dark',
         placement: 'top-start',
         inertia: true,
-        duration: [400, 200],
+        duration: [400, 200]
       })
-
-      // if (MutationObserver) {
-      //   console.log(this.popup);
-      //   this.observer = new MutationObserver(() => {
-      //     this.popup.popperInstance.scheduleUpdate()
-      //   })
-      //   this.observer.observe(this.$refs.suggestions, {
-      //     childList: true,
-      //     subtree: true,
-      //     characterData: true
-      //   })
-      // }
     },
     destroyPopup () {
       if (this.popup) {

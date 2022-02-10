@@ -8,6 +8,7 @@
     v-model="currentValue"
     :hint="attribute.labelAfter"
     :persistent-hint="!!attribute.labelAfter"
+    persistent-placeholder
     outlined
     :name="attribute.attributeName"
     dense

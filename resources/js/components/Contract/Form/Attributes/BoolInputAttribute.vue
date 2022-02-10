@@ -7,6 +7,7 @@
           :error="!attribute.isValid"
           :error-messages="attribute.errorMessage"
           :hint="attribute.labelAfter"
+          persistent-placeholder
           :persistent-hint="!!attribute.labelAfter"
           v-model="currentBoolValue"
           :name="attribute.attributeName"

@@ -8,6 +8,7 @@
             :hint="attribute.labelAfter"
             :persistent-hint="!!attribute.labelAfter"
             type="number"
+            persistent-placeholder
             :name="attribute.attributeName"
             outlined
             dense
