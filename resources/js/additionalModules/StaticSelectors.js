@@ -42,10 +42,6 @@ const Selector = {
       value: BlockTypeEnum.LIST_BLOCK,
       text: 'List'
     },
-    {
-      value: BlockTypeEnum.LIST_ITEM_BLOCK,
-      text: 'List item'
-    }
   ],
 
   VariableType: [

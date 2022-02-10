@@ -6,6 +6,7 @@ namespace App\Core\Models\Domain\Attributes;
 
 use App\Core\Contracts\IAttribute;
 use App\Core\Enums\AttributeType;
+use App\Core\Helpers\MultiRender;
 use App\Core\Models\Domain\Conditional\Conditional;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
@@ -33,6 +34,10 @@ abstract class Attribute implements IAttribute
 
     public function resolveAttributesInSettings(Collection $formElements): void
     {
+    }
+
+    public function getValueAsArray() {
+        return $this->value;
     }
 
     protected function initialize(int $attributeType): void

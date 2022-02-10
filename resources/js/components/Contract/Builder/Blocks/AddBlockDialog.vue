@@ -65,19 +65,7 @@ export default {
   },
   methods: {
     getBlockTypes () {
-      let baseType = this.level ? Selector.BlockType.filter(x => x.value !== BlockTypeEnum.PAGE_DIVIDE_BLOCK) : Selector.BlockType
-
-      if (this.listOnly) {
-        baseType = baseType.filter(x => x.value === BlockTypeEnum.LIST_BLOCK || x.value === BlockTypeEnum.LIST_ITEM_BLOCK || x.value === BlockTypeEnum.EMPTY_BLOCK)
-      } else {
-        if (this.inList) {
-          baseType = baseType.filter(x => x.value !== BlockTypeEnum.TEXT_BLOCK && x.value !== BlockTypeEnum.REPEAT_BLOCK)
-        } else {
-          baseType = baseType.filter(x => x.value !== BlockTypeEnum.LIST_ITEM_BLOCK)
-        }
-      }
-
-      return baseType
+      return this.level ? Selector.BlockType.filter(x => x.value !== BlockTypeEnum.PAGE_DIVIDE_BLOCK) : Selector.BlockType
     },
     addBlock (blockType) {
       let blocks = this.$store.getters.builder_allBlocks
@@ -96,9 +84,6 @@ export default {
           this.newBlock.settings = {
             enumeratorType: ListEnumeratorType.DOT
           }
-          break
-        case BlockTypeEnum.LIST_ITEM_BLOCK:
-          this.newBlock.content = { text: '' }
           break
         case BlockTypeEnum.PAGE_DIVIDE_BLOCK:
           this.newBlock.settings = {

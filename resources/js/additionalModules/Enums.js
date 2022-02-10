@@ -15,8 +15,7 @@ export const BlockTypeEnum = {
   EMPTY_BLOCK: 1,
   PAGE_DIVIDE_BLOCK: 2,
   REPEAT_BLOCK: 3,
-  LIST_BLOCK: 4,
-  LIST_ITEM_BLOCK: 5
+  LIST_BLOCK: 4
 }
 
 export const AttributeTypeEnum = {

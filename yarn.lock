@@ -1333,6 +1333,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@popperjs/core@npm:^2.9.0":
+  version: 2.11.2
+  resolution: "@popperjs/core@npm:2.11.2"
+  checksum: 5695bf020eda54636e16a62dc9b5fdd92beaf7b2d19f62fcef049d57c5cff92773562d80cbf760b217c3ec928da310eb24994ab6a00fd39dffa0af9b5dfc01a6
+  languageName: node
+  linkType: hard
+
 "@tootallnate/once@npm:1":
   version: 1.1.2
   resolution: "@tootallnate/once@npm:1.1.2"
@@ -6665,7 +6672,7 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"popper.js@npm:^1.14.7, popper.js@npm:^1.16.1":
+"popper.js@npm:^1.16.1":
   version: 1.16.1
   resolution: "popper.js@npm:1.16.1"
   checksum: c56ae5001ec50a77ee297a8061a0221d99d25c7348d2e6bcd3e45a0d0f32a1fd81bca29d46cb0d4bdf13efb77685bd6a0ce93f9eb3c608311a461f945fffedbe
@@ -7770,7 +7777,7 @@ fsevents@~2.3.2:
     sass: ^1.39.0
     sass-loader: ^12.1.0
     sortablejs: ^1.14.0
-    tippy.js: ^4.3.5
+    tippy.js: ^6.3.7
     tiptap: ^1.32.2
     tiptap-extensions: ^1.35.2
     vue: ^2.6.14
@@ -8630,12 +8637,12 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"tippy.js@npm:^4.3.5":
-  version: 4.3.5
-  resolution: "tippy.js@npm:4.3.5"
+"tippy.js@npm:^6.3.7":
+  version: 6.3.7
+  resolution: "tippy.js@npm:6.3.7"
   dependencies:
-    popper.js: ^1.14.7
-  checksum: c093bc06740a61146e5aaa6d8109ccfb32ae6d32fee1b7c7a85e2db129bdddfc65b3e6e03f961104214ca382db889d35a34c039e77f7bba13d349b263d2e57ce
+    "@popperjs/core": ^2.9.0
+  checksum: cac955318a65288e8d2dca05059878b003c6e66f92c94f7810f5bc5448eb6646abdf7dacc9bd00020e2611592598d0aae3a28ec9a45349a159603c3fdddce5fb
   languageName: node
   linkType: hard
 
