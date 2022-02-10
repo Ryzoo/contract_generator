@@ -1,203 +1,198 @@
 <template>
   <section class="block-details">
-    <editor-menu-bar
-      :editor="editor"
-      v-slot="{ commands, isActive, getMarkAttrs }"
-    >
+    <div v-if="editor">
       <div class="menubar-container">
         <div class="menubar">
           <button
             class="menubar-button"
-            :class="{ 'is-active': isActive.bold() }"
-            @click="commands.bold"
+            :class="{ 'is-active': editor.isActive('bold') }"
+            @click="editor.chain().focus().toggleBold().run()"
           >
             <v-icon small>fa-bold</v-icon>
           </button>
 
           <button
             class="menubar-button"
-            :class="{ 'is-active': isActive.italic() }"
-            @click="commands.italic"
+            :class="{ 'is-active': editor.isActive('italic') }"
+            @click="editor.chain().focus().toggleItalic().run()"
           >
             <v-icon small>fa-italic</v-icon>
           </button>
 
           <button
             class="menubar-button"
-            :class="{ 'is-active': isActive.code() }"
-            @click="commands.code"
+            :class="{ 'is-active': editor.isActive('code') }"
+            @click="editor.chain().focus().toggleCode().run()"
           >
             <v-icon small>fa-code</v-icon>
           </button>
 
           <button
             class="menubar-button"
-            :class="{ 'is-active': isActive.underline() }"
-            @click="commands.underline"
+            :class="{ 'is-active': editor.isActive('underline') }"
+            @click="editor.chain().focus().toggleUnderline().run()"
           >
             <v-icon small>fa-underline</v-icon>
           </button>
 
           <button
             class="menubar-button"
-            :class="{ 'is-active': isActive.blockquote() }"
-            @click="commands.blockquote"
+            :class="{ 'is-active': editor.isActive('blockquote') }"
+            @click="editor.chain().focus().toggleBlockquote().run()"
           >
             <v-icon small>fa-quote-right</v-icon>
           </button>
 
           <button
             class="menubar-button"
-            :class="{ 'is-active': isActive.bullet_list() }"
-            @click="commands.bullet_list"
+            :class="{ 'is-active': editor.isActive('bulletList') }"
+            @click="editor.chain().focus().toggleBulletList().run()"
           >
             <v-icon small>fa-list-ul</v-icon>
           </button>
 
           <button
             class="menubar-button"
-            :class="{ 'is-active': isActive.ordered_list() }"
-            @click="commands.ordered_list"
+            :class="{ 'is-active': editor.isActive('orderedList') }"
+            @click="editor.chain().focus().toggleOrderedList().run()"
           >
             <v-icon small>fa-list-ol</v-icon>
           </button>
 
           <button
             class="menubar-button"
-            :class="{ 'is-active': getMarkAttrs('align').textAlign === 'left' }"
-            @click="commands.align({ textAlign: 'left', oldValue: getMarkAttrs('align').textAlign })"
+            :class="{ 'is-active': editor.isActive({ textAlign: 'left' }) }"
+            @click="editor.chain().focus().setTextAlign('left').run()"
           >
             <v-icon small>fa-align-left</v-icon>
           </button>
 
           <button
             class="menubar-button"
-            :class="{ 'is-active': getMarkAttrs('align').textAlign === 'center' }"
-            @click="commands.align({ textAlign: 'center', oldValue: getMarkAttrs('align').textAlign })"
+            :class="{ 'is-active': editor.isActive({ textAlign: 'center' }) }"
+            @click="editor.chain().focus().setTextAlign('center').run()"
           >
             <v-icon small>fa-align-center</v-icon>
           </button>
 
           <button
             class="menubar-button"
-            :class="{ 'is-active': getMarkAttrs('align').textAlign === 'right' }"
-            @click="commands.align({ textAlign: 'right', oldValue: getMarkAttrs('align').textAlign })"
+            :class="{ 'is-active': editor.isActive({ textAlign: 'right' }) }"
+            @click="editor.chain().focus().setTextAlign('right').run()"
           >
             <v-icon small>fa-align-right</v-icon>
           </button>
 
           <button
             class="menubar-button"
-            :class="{ 'is-active': getMarkAttrs('align').textAlign === 'justify' }"
-            @click="commands.align({ textAlign: 'justify', oldValue: getMarkAttrs('align').textAlign })"
+            :class="{ 'is-active': editor.isActive({ textAlign: 'justify' }) }"
+            @click="editor.chain().focus().setTextAlign('justify').run()"
           >
             <v-icon small>fa-align-justify</v-icon>
           </button>
 
           <button
             class="menubar-button"
-            :class="{ 'is-active': isActive.heading({ level: 1 }) }"
-            @click="commands.heading({ level: 1 })"
+            :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }"
+            @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
           >
             <span class="text-icon">H1</span>
           </button>
 
           <button
             class="menubar-button"
-            :class="{ 'is-active': isActive.heading({ level: 2 }) }"
-            @click="commands.heading({ level: 2 })"
+            :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }"
+            @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
           >
             <span class="text-icon">H2</span>
           </button>
 
           <button
             class="menubar-button"
-            :class="{ 'is-active': isActive.heading({ level: 3 }) }"
-            @click="commands.heading({ level: 3 })"
+            :class="{ 'is-active': editor.isActive('heading', { level: 3 }) }"
+            @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
           >
             <span class="text-icon">H3</span>
           </button>
 
           <button
+              class="menubar-button"
+              :class="{ 'is-active': editor.isActive('subscript') }"
+              @click="editor.chain().focus().toggleSubscript().run()"
+          >
+            <v-icon small>fa-subscript</v-icon>
+          </button>
+
+          <button
+              class="menubar-button"
+              :class="{ 'is-active': editor.isActive('superscript') }"
+              @click="editor.chain().focus().toggleSuperscript().run()"
+          >
+            <v-icon small>fa-superscript</v-icon>
+          </button>
+
+          <button
             class="menubar-button paragraph-button"
-            :class="{ 'is-active': isActive.paragraph_list() }"
-            @click="commands.paragraph_list"
+            :class="{ 'is-active': editor.isActive('paragraphList') }"
+            @click="editor.chain().focus().toggleParagraph().run()"
           >
             <span class="text-icon">§</span>
           </button>
 
-          <v-combobox
-            class="fontsize-selector"
-            v-model="selectedSize"
-            :items="fontSizes"
-            color="white"
-            dark
-            hide-details
-            placeholder="Select font size"
-            dense
-            filled
-            outlined
-            @change="commands.fontSize({fontSize:selectedSize + 'px'})"
-            @blur="commands.fontSize({fontSize:selectedSize + 'px'})"
-          ></v-combobox>
+<!--          <v-combobox-->
+<!--            class="fontsize-selector"-->
+<!--            v-model="selectedSize"-->
+<!--            :items="fontSizes"-->
+<!--            color="white"-->
+<!--            dark-->
+<!--            hide-details-->
+<!--            placeholder="Select font size"-->
+<!--            dense-->
+<!--            filled-->
+<!--            outlined-->
+<!--            @change="editor.chain().focus().setFontSize(selectedSize).run()"-->
+<!--            @blur="editor.chain().focus().setFontSize(selectedSize).run()"-->
+<!--          ></v-combobox>-->
 
         </div>
-      </div>
-    </editor-menu-bar>
-    <editor-content class="editor-container" :editor="editor"/>
-
-    <div class="suggestion-list" v-show="showSuggestions" ref="suggestions">
-      <template v-if="hasResults">
-        <div
-          v-for="(variable, index) in filteredVariables"
-          :key="variable.id"
-          class="suggestion-list__item"
-          :class="{ 'is-selected': navigatedVariableIndex === index }"
-          @click="selectVariable(variable)"
-        >
-          {{ variable.name }}
-        </div>
-      </template>
-      <div v-else class="suggestion-list__item is-empty">
-        No variables found
       </div>
     </div>
+    <editor-content class="editor-container" :editor="editor"/>
   </section>
 </template>
 
 <script>
-import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
+import {Editor, EditorContent, VueRenderer} from '@tiptap/vue-2'
 import Fuse from 'fuse.js'
 import tippy, { sticky } from 'tippy.js'
-import {
-  Blockquote,
-  BulletList,
-  CodeBlock,
-  HardBreak,
-  Heading,
-  ListItem,
-  OrderedList,
-  TodoItem,
-  TodoList,
-  Bold,
-  Code,
-  Italic,
-  Link,
-  Strike,
-  Underline,
-  Mention,
-  History
-} from 'tiptap-extensions'
+import Document from '@tiptap/extension-document'
+import Text from '@tiptap/extension-text'
+import Blockquote from '@tiptap/extension-blockquote'
+import BulletList from '@tiptap/extension-bullet-list'
+import CodeBlock from '@tiptap/extension-code-block'
+import HardBreak from '@tiptap/extension-hard-break'
+import Heading from '@tiptap/extension-heading'
+import ListItem from '@tiptap/extension-list-item'
+import OrderedList from '@tiptap/extension-ordered-list'
+import Bold from '@tiptap/extension-bold'
+import Code from '@tiptap/extension-code'
+import Italic from '@tiptap/extension-italic'
+import Underline from '@tiptap/extension-underline'
+import Mention from '@tiptap/extension-mention'
+import History from '@tiptap/extension-history'
+import Paragraph from '@tiptap/extension-paragraph'
+import Alignment from '@tiptap/extension-text-align'
+import Subscript from '@tiptap/extension-subscript'
+import Superscript from '@tiptap/extension-superscript'
 import ParagraphList from '../../../../../additionalModules/Nodes/ParagraphListNode'
-import Aligment from '../../../../../additionalModules/Nodes/AligmentNode'
 import FontSize from '../../../../../additionalModules/Nodes/FontSizeNode'
+import SuggestionList from "../../../../common/SuggestionList";
 
 export default {
   name: 'TextBlock',
   props: ['block', 'nestedVariables'],
   components: {
     EditorContent,
-    EditorMenuBar
   },
   data () {
     return {
@@ -226,7 +221,7 @@ export default {
       deep: true,
       handler (newValue) {
         if (this.editor && this.actualText !== newValue.content.text) {
-          this.editor.setContent(this.parseBlockContent(newValue))
+          this.editor.commands.setContent(this.parseBlockContent(newValue))
         }
       }
     }
@@ -256,88 +251,120 @@ export default {
   },
   methods: {
     initEditor () {
+      let self = this;
       this.editor = new Editor({
         extensions: [
-          new Blockquote(),
-          new BulletList(),
-          new CodeBlock(),
-          new HardBreak(),
-          new Heading({ levels: [1, 2, 3] }),
-          new ListItem(),
-          new OrderedList(),
-          new TodoItem(),
-          new TodoList(),
-          new Link(),
-          new Bold(),
-          new Code(),
-          new Italic(),
-          new Strike(),
-          new Underline(),
-          new History(),
-          new Mention({
-            items: () => this.variableUpdated,
-            onEnter: ({ items, query, range, command, virtualNode }) => {
-              this.query = query
-              this.filteredVariables = items
-              this.suggestionRange = range
-              this.renderPopup(virtualNode)
-              this.insertMention = command
+          Document,
+          Paragraph,
+          Text,
+          Blockquote,
+          BulletList,
+          CodeBlock,
+          HardBreak,
+          Heading.configure({ levels: [1, 2, 3] }),
+          ListItem,
+          OrderedList,
+          Bold,
+          Code,
+          Italic,
+          Underline,
+          History,
+          Subscript,
+          Superscript,
+          Mention.configure({
+            HTMLAttributes: {
+              class: 'mention',
             },
-            onChange: ({ items, query, range, virtualNode }) => {
-              this.query = query
-              this.filteredVariables = items
-              this.suggestionRange = range
-              this.navigatedVariableIndex = 0
-              this.renderPopup(virtualNode)
+            suggestion: {
+              items: ({ query }) => {
+                if (!query.length) {
+                  return this.variableUpdated
+                }
+
+                const fuse = new Fuse(this.variableUpdated, {
+                  keys: ['name']
+                })
+
+                return fuse.search(query).map(x => x.item)
+              },
+              render: () => {
+                let component;
+                let popup;
+
+                return {
+                  onStart: props => {
+                    component = new VueRenderer(SuggestionList, {
+                      parent: this,
+                      propsData: props,
+                    })
+
+                    popup = tippy('body', {
+                      getReferenceClientRect: props.clientRect,
+                      appendTo: () => document.body,
+                      content: component.element,
+                      showOnCreate: true,
+                      interactive: true,
+                      trigger: 'manual',
+                      placement: 'bottom-start',
+                    })
+                  },
+
+                  onUpdate(props) {
+                    component.updateProps(props)
+
+                    popup[0].setProps({
+                      getReferenceClientRect: props.clientRect,
+                    })
+                  },
+
+                  onKeyDown(props) {
+                    if (props.event.key === 'Escape') {
+                      popup[0].hide()
+
+                      return true
+                    }
+
+                    return component.ref?.onKeyDown(props)
+                  },
+
+                  onExit(props) {
+                    const html = props.editor.getHTML()
+                    const element = $(`<div>${html}</div>`)
+
+                    this.actualText = `${element.prop('innerHTML')}`
+
+                    self.$store.dispatch('builder_blockUpdateContent', {
+                      id: self.block.id,
+                      content: {
+                        text: `${element.prop('innerHTML')}`
+                      }
+                    })
+
+                    popup[0].destroy()
+                    component.destroy()
+                  },
+                }
+              },
             },
-            onExit: () => {
-              this.query = null
-              this.filteredVariables = []
-              this.suggestionRange = null
-              this.navigatedVariableIndex = 0
-              this.destroyPopup()
-            },
-            onKeyDown: ({ event }) => {
-              if (event.keyCode === 38) {
-                this.upHandler()
-                return true
-              }
-              if (event.keyCode === 40) {
-                this.downHandler()
-                return true
-              }
-              if (event.keyCode === 13) {
-                this.enterHandler()
-                return true
-              }
-              return false
-            },
-            onFilter: (items, query) => {
-              if (!query.length) {
-                return items
-              }
-              const fuse = new Fuse(items, {
-                keys: ['name']
-              })
-              return fuse.search(query).map(x => x.item)
+            renderLabel({ options, node }) {
+              return `${options.suggestion.char}${node.attrs.label ?? node.attrs.id + "-Unnamed"}`
             }
           }),
-          new ParagraphList(),
-          new Aligment(),
-          new FontSize()
+          ParagraphList,
+          Alignment.configure({
+            types: ['heading', 'paragraph'],
+            alignments: ['left', 'center', 'right'],
+          }),
+          FontSize
         ],
         parseOptions: {
           preserveWhitespace: true
         },
         content: this.parseBlockContent(this.block),
-        onUpdate: ({ getHTML }) => {
-          const html = getHTML()
+        useBuiltInExtensions: true,
+        onUpdate: ({ editor }) => {
+          const html = editor.getHTML()
           const element = $(`<div>${html}</div>`)
-
-          element.find('.mention').each(function () {
-            $(this).replaceWith(`{${$(this).attr('data-mention-id')}}`)
-          })
-
           this.actualText = `${element.prop('innerHTML')}`
           this.$store.dispatch('builder_blockUpdateContent', {
             id: this.block.id,
@@ -346,7 +373,6 @@ export default {
             }
           })
         },
-        useBuiltInExtensions: true
       })
     },
     parseBlockContent (block) {
@@ -362,28 +388,7 @@ export default {
       }
       return text === null ? '' : text
     },
-    upHandler () {
-      this.navigatedVariableIndex = ((this.navigatedVariableIndex + this.filteredVariables.length) - 1) % this.filteredVariables.length
-    },
-    downHandler () {
-      this.navigatedVariableIndex = (this.navigatedVariableIndex + 1) % this.filteredVariables.length
-    },
-    enterHandler () {
-      const variable = this.filteredVariables[this.navigatedVariableIndex]
-      if (variable) {
-        this.selectVariable(variable)
-      }
-    },
-    selectVariable (variable) {
-      this.insertMention({
-        range: this.suggestionRange,
-        attrs: {
-          id: variable.id,
-          label: ' ' + variable.name
-        }
-      })
-      this.editor.focus()
-    },
+
     renderPopup (node) {
       const rect = node.getBoundingClientRect()
       const { x, y, } = rect
@@ -412,18 +417,6 @@ export default {
         inertia: true,
         duration: [400, 200],
       })
-
-      // if (MutationObserver) {
-      //   console.log(this.popup);
-      //   this.observer = new MutationObserver(() => {
-      //     this.popup.popperInstance.scheduleUpdate()
-      //   })
-      //   this.observer.observe(this.$refs.suggestions, {
-      //     childList: true,
-      //     subtree: true,
-      //     characterData: true
-      //   })
-      // }
     },
     destroyPopup () {
       if (this.popup) {
@@ -435,7 +428,20 @@ export default {
       }
     }
   },
-  beforeDestroy () {
+
+  beforeUnmount () {
+    const html = this.editor.getHTML()
+    const element = $(`<div>${html}</div>`)
+
+    this.actualText = `${element.prop('innerHTML')}`
+
+    this.$store.dispatch('builder_blockUpdateContent', {
+      id: this.block.id,
+      content: {
+        text: `${element.prop('innerHTML')}`
+      }
+    })
+
     if (this.editor) { this.editor.destroy() }
   }
 }
@@ -493,24 +499,34 @@ export default {
   }
 
   .suggestion-list {
-    padding: 0.2rem;
-    border: 2px solid rgba(black, 0.1);
-    font-size: 0.8rem;
+    padding: 1.2rem;
+    font-size: 14px;
     font-weight: bold;
+    background: rgba(64, 89, 190, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(64, 89, 190, 0.4);
+    font-family: Roboto,sans-serif;
+
     &__no-results {
       padding: 0.2rem 0.5rem;
     }
+
     &__item {
       border-radius: 5px;
       padding: 0.2rem 0.5rem;
       margin-bottom: 0.2rem;
       cursor: pointer;
+
       &:last-child {
         margin-bottom: 0;
       }
+
       &.is-selected,
       &:hover {
-        background-color: rgba(white, 0.2);
+        background-color: rgba(64, 89, 190, 0.5);
       }
       &.is-empty {
         opacity: 0.5;
@@ -535,6 +551,38 @@ export default {
     .ProseMirror{
       height: 100%;
     }
+  }
+
+  h1 {
+    font-size: 36px;
+    line-height: 40px;
+  }
+
+  h2 {
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  h3 {
+    font-size: 24px;
+    line-height: 40px;
+  }
+
+  h4 {
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  /* Won't be used here */
+
+  h5 {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  h6 {
+    font-size: 12px;
+    line-height: 20px;
   }
 
 </style>

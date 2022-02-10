@@ -1,32 +1,51 @@
-import { Mark } from 'tiptap'
-import { markInputRule, updateMark, removeMark } from 'tiptap-commands'
+import { Extension } from '@tiptap/core'
+import '@tiptap/extension-text-style'
 
-export default class FontSizeNode extends Mark {
-  get name () {
-    return 'fontSize'
-  }
+export const FontSizeNode = Extension.create({
+  name: 'fontSize',
 
-  get schema () {
+  defaultOptions: {
+    types: ['textStyle'],
+  },
+
+  addGlobalAttributes() {
+    return [
+      {
+        types: this.options.types,
+        attributes: {
+          fontSize: {
+            default: null,
+            parseHTML: element => element.style.fontSize,
+            renderHTML: attributes => {
+              if (!attributes.fontSize) {
+                return {}
+              }
+
+              return {
+                style: `font-size: ${attributes.fontSize}`,
+              }
+            },
+          },
+        },
+      },
+    ]
+  },
+
+  addCommands() {
     return {
-      attrs: { fontSize: { default: '1em' } },
-      parseDOM: [{
-        style: 'font-size',
-        getAttrs: value => value.indexOf('em') !== -1 ? { fontSize: value } : ''
-      }],
-      toDOM: mark => ['span', { style: `font-size: ${mark.attrs.fontSize}` }, 0]
+      setFontSize: fontSize => ({ chain }) => {
+        return chain()
+          .setMark('textStyle', { fontSize })
+          .run()
+      },
+      unsetFontSize: () => ({ chain }) => {
+        return chain()
+          .setMark('textStyle', { fontSize: null })
+          .removeEmptyTextStyle()
+          .run()
+      },
     }
-  }
+  },
+})
 
-  commands ({ type }) {
-    return attrs => {
-      if ((attrs.fontSize) && (attrs.fontSize !== '1em')) {
-        return updateMark(type, attrs)
-      }
-      return removeMark(type)
-    }
-  }
-
-  inputRules ({ type }) {
-    return [markInputRule(/(?:\*\*|__)([^*_]+)(?:\*\*|__)$/, type)]
-  }
-}
+export default FontSizeNode;

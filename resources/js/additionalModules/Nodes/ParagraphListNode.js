@@ -1,26 +1,37 @@
-import { updateMark, removeMark } from 'tiptap-commands'
-import { Mark } from 'tiptap'
+import { Mark, mergeAttributes } from '@tiptap/core'
 
-export default class ParagraphListNode extends Mark {
-  get name () {
-    return 'paragraph_list'
-  }
+export const ParagraphListNode = Mark.create({
+  name: 'paragraphList',
 
-  get schema () {
+  addOptions() {
     return {
-      parseDOM: [
-        { tag: 'span.paragraph-list' }
-      ],
-      toDOM: mark => ['span', { class: 'paragraph-list' }, ['span', { class: 'paragraph-counter' }, 0]]
+      HTMLAttributes: {},
     }
-  }
+  },
 
-  commands ({ type }) {
-    return attrs => {
-      if ($(attrs.target).parent().hasClass('is-active')) {
-        return removeMark(type)
-      }
-      return updateMark(type, attrs)
+  parseHTML() {
+    return [
+      { tag: 'span.paragraph-list' },
+    ]
+  },
+
+  renderHTML() {
+    return ['span', { class: 'paragraph-list' }, ['span', { class: 'paragraph-counter' }, 0]]
+  },
+
+  addCommands() {
+    return {
+      setParagraph: () => ({ commands }) => {
+        return commands.setMark(this.name)
+      },
+      toggleParagraph: () => ({ commands }) => {
+        return commands.toggleMark(this.name)
+      },
+      unsetParagraph: () => ({ commands }) => {
+        return commands.unsetMark(this.name)
+      },
     }
-  }
-}
+  },
+})
+
+export default ParagraphListNode;
