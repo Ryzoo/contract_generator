@@ -365,6 +365,9 @@ export default {
         onUpdate: ({ editor }) => {
           const html = editor.getHTML()
           const element = $(`<div>${html}</div>`)
+          element.find('.mention').each(function () {
+            $(this).replaceWith(`{${$(this).attr('data-id')}}`)
+          })
           this.actualText = `${element.prop('innerHTML')}`
           this.$store.dispatch('builder_blockUpdateContent', {
             id: this.block.id,
@@ -383,7 +386,7 @@ export default {
         matches.forEach((match) => {
           const id = match[1] || match[2]
           const variable = this.variableUpdated.find((x) => x.id.toString() === id.toString())
-          if (variable) text = text.replace(`{${id}}`, `<span class="mention variable" data-mention-id='${id}' contenteditable="false">@${variable.name}</span>`)
+          if (variable) text = text.replace(`{${id}}`, `<span class="mention variable" data-type="mention" data-id='${id}' data-label='${variable.name}' contenteditable="false">@${variable.name}</span>`)
         })
       }
       return text === null ? '' : text
@@ -433,6 +436,9 @@ export default {
     const html = this.editor.getHTML()
     const element = $(`<div>${html}</div>`)
 
+    element.find('.mention').each(function () {
+      $(this).replaceWith(`{${$(this).attr('data-id')}}`)
+    })
     this.actualText = `${element.prop('innerHTML')}`
 
     this.$store.dispatch('builder_blockUpdateContent', {

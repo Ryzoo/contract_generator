@@ -9289,16 +9289,7 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"vuetify@npm:2.6.3":
-  version: 2.6.3
-  resolution: "vuetify@npm:2.6.3"
-  peerDependencies:
-    vue: ^2.6.4
-  checksum: f50a4c9d22c578a6a3d0c7def9ac3741a146a65aaf997062bf963e7ad8b1b2479c122f3f594694bb00293baec6e081d2f73f97bebbc9ce10a01e36096478b088
-  languageName: node
-  linkType: hard
-
-"vuetify@npm:^2.2.18":
+"vuetify@npm:2.6.3, vuetify@npm:^2.2.18":
   version: 2.6.3
   resolution: "vuetify@npm:2.6.3"
   peerDependencies:
