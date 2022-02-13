@@ -38,6 +38,8 @@ class ListBlock extends EmptyBlock
         /** @var \App\Core\Models\Domain\Blocks\Block $block */
         foreach ($blockList as $block) {
             $listItem = PdfRenderer::blockHtmlTemplate($block->renderToHtml($attributes, $repeatAttribute, $repeatValue));
+            $listItem = $this->removePFromListItem($listItem);
+
             if ($block->blockType === BlockType::LIST_BLOCK && $this->endswith($htmlString, '</li>')) {
                 $htmlString = substr($htmlString, 0, -5);
                 $htmlString .= " $listItem</li>";
@@ -45,6 +47,7 @@ class ListBlock extends EmptyBlock
                 $elements = $block->renderToHtmlArray($attributes, $repeatAttribute, $repeatValue);
                 foreach ($elements as $element) {
                     $data = PdfRenderer::blockHtmlTemplate($element);
+                    $data = $this->removePFromListItem($data);
                     $htmlString .= "<li>$data</li>";
                 }
             } else {
@@ -63,6 +66,24 @@ class ListBlock extends EmptyBlock
         $testlen = strlen($test);
         if ($testlen > $strlen) return false;
         return substr_compare($string, $test, $strlen - $testlen, $testlen) === 0;
+    }
+
+    private function startWith($string, $test)
+    {
+        $strlen = strlen($string);
+        $testlen = strlen($test);
+        if ($testlen > $strlen) return false;
+        return substr_compare($string, $test, 0, $testlen) === 0;
+    }
+
+    private function removePFromListItem($string)
+    {
+        if($this->startWith($string, '<p')){
+            $string = substr($string, 2, -4);
+            $string = "<div$string</div>";
+        }
+
+        return $string;
     }
 
     private function getListStartTag()
