@@ -68,22 +68,9 @@ class ListBlock extends EmptyBlock
         return substr_compare($string, $test, $strlen - $testlen, $testlen) === 0;
     }
 
-    private function startWith($string, $test)
-    {
-        $strlen = strlen($string);
-        $testlen = strlen($test);
-        if ($testlen > $strlen) return false;
-        return substr_compare($string, $test, 0, $testlen) === 0;
-    }
-
     private function removePFromListItem($string)
     {
-        if($this->startWith($string, '<p')){
-            $string = substr($string, 2, -4);
-            $string = "<div$string</div>";
-        }
-
-        return $string;
+        return "<div class='element-in-list' >$string</div>";
     }
 
     private function getListStartTag()
