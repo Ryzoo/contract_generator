@@ -9,9 +9,9 @@ export class NumberOperatorParser extends DefaultParser {
       case OperatorType.N_CONTAINS:
         return `!'${variable}'.includes('${value}')`
       case OperatorType.EMPTY:
-        return `(!${variable} && ${variable} !== 0)`
+        return `('${variable}' === 'null')`
       case OperatorType.N_EMPTY:
-        return `(!!${variable} || ${variable} !== 0)`
+        return `('${variable}' !== 'null')`
       case OperatorType.BEGINS_WITH:
         return `'${variable}'.startsWith('${value}')`
       case OperatorType.ENDS_WITH:

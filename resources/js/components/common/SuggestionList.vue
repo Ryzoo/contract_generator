@@ -37,10 +37,6 @@ export default {
     }
   },
 
-  mounted () {
-    console.log('suggestion mounted', this.items);
-  },
-
   computed: {
     hasResults() {
       return this.items.length

@@ -28,7 +28,7 @@ class ModelObjectToTextParser
 
         switch ($ruleType) {
             case RuleTypes::TEXT:
-                return TextOperatorParser::parse("'$variable'", $operatorType, $value ? "'$value'" : "''");
+                return TextOperatorParser::parse("'$variable'", $operatorType, "'$value'");
             case RuleTypes::DATE:
                 return DateOperatorParser::parse("'$variable'", $operatorType, $value ? new Carbon($value) : null);
             case RuleTypes::TIME:
@@ -36,7 +36,7 @@ class ModelObjectToTextParser
             case RuleTypes::BOOL:
                 return BoolOperatorParser::parse($variable, $operatorType, $value ?? false);
             case RuleTypes::NUMBER:
-                return NumberOperatorParser::parse($variable, $operatorType, isset($value) ? (float)$value : -1);
+                return NumberOperatorParser::parse($variable, $operatorType, isset($value) ? (float)$value : null);
             case RuleTypes::SELECT:
                 return SelectOperatorParser::parse("'$variable'", $operatorType, $value ? "'$value'" : "''");
             case RuleTypes::MULTI_SELECT:

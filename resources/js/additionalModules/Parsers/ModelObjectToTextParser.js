@@ -10,8 +10,8 @@ export default class ModelObjectToTextParser {
     const variable = `{${id}}`
 
     switch (ruleType) {
-      case RuleTypes.TEXT: return TextOperatorParser.parse(`'${variable}'`, operatorType, value ? `'${value}'` : '\'\'')
-      case RuleTypes.NUMBER: return NumberOperatorParser.parse(variable, operatorType, (value || parseInt(value) === 0) ? Number(value) : -1)
+      case RuleTypes.TEXT: return TextOperatorParser.parse(variable, operatorType, value ? `'${value}'` : '\'\'')
+      case RuleTypes.NUMBER: return NumberOperatorParser.parse(variable, operatorType, (value || parseInt(value) === 0) ? Number(value) : null)
       case RuleTypes.SELECT: return SelectOperatorParser.parse(`'${variable}'`, operatorType, value ? `'${value}'` : '\'\'')
       case RuleTypes.MULTI_SELECT: return MultiSelectOperatorParser.parse(`'${variable}'`, operatorType, value ? `'${value}'` : '\'\'')
       case RuleTypes.DATE: return DateOperatorParser.parse(`'${variable}'`, operatorType, value || null)

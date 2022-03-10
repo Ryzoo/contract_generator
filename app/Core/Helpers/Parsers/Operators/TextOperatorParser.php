@@ -10,9 +10,9 @@ class TextOperatorParser extends DefaultParser {
     {
         switch ($operatorType) {
             case OperatorType::EMPTY:
-                return "!$variable || $variable === 'null'";
+                return "($variable === 'null' && $variable !== '')";
             case OperatorType::N_EMPTY:
-                return "!!$variable && $variable !== 'null'";
+                return "($variable !== 'null' || $variable === '')";
         }
 
         return DefaultParser::parse($variable, $operatorType, $value);

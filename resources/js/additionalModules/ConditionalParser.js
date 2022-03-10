@@ -87,7 +87,7 @@ class ConditionalParser {
       return foundedAttribute.value.input
     }
 
-    return foundedAttribute.value || null
+    return !!foundedAttribute.value || foundedAttribute.value === 0 ? foundedAttribute.value : null
   }
 }
 
