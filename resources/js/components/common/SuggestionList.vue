@@ -22,29 +22,29 @@ export default {
   props: {
     items: {
       type: Array,
-      required: true,
+      required: true
     },
 
     command: {
       type: Function,
-      required: true,
-    },
+      required: true
+    }
   },
 
-  data() {
+  data () {
     return {
-      navigatedVariableIndex: 0,
+      navigatedVariableIndex: 0
     }
   },
 
   computed: {
-    hasResults() {
+    hasResults () {
       return this.items.length
-    },
+    }
   },
 
   methods: {
-    onKeyDown({ event }) {
+    onKeyDown ({ event }) {
       if (event.keyCode === 38) {
         this.upHandler()
         return true
@@ -80,7 +80,7 @@ export default {
 
     selectVariable (variable) {
       this.command({ id: variable.id, label: variable.name })
-    },
-  },
+    }
+  }
 }
 </script>

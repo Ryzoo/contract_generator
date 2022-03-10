@@ -162,9 +162,9 @@
 </template>
 
 <script>
-import {Editor, EditorContent, VueRenderer} from '@tiptap/vue-2'
+import { Editor, EditorContent, VueRenderer } from '@tiptap/vue-2'
 import Fuse from 'fuse.js'
-import tippy, { sticky } from 'tippy.js'
+import tippy from 'tippy.js'
 import Document from '@tiptap/extension-document'
 import Text from '@tiptap/extension-text'
 import Blockquote from '@tiptap/extension-blockquote'
@@ -186,13 +186,13 @@ import Subscript from '@tiptap/extension-subscript'
 import Superscript from '@tiptap/extension-superscript'
 import ParagraphList from '../../../../../additionalModules/Nodes/ParagraphListNode'
 import FontSize from '../../../../../additionalModules/Nodes/FontSizeNode'
-import SuggestionList from "../../../../common/SuggestionList";
+import SuggestionList from '../../../../common/SuggestionList'
 
 export default {
   name: 'TextBlock',
   props: ['block', 'nestedVariables'],
   components: {
-    EditorContent,
+    EditorContent
   },
   data () {
     return {
@@ -205,7 +205,6 @@ export default {
       fontSizes: [8, 10, 12, 14, 16, 18, 20, 24, 36],
       selectedSize: 0,
       navigatedVariableIndex: 0,
-      insertMention: () => {},
       observer: null,
       variableSuggestions: this.variableUpdated || []
     }
@@ -235,9 +234,6 @@ export default {
         id: x.id,
         name: x.attributeName
       }))
-    },
-    showSuggestions () {
-      return this.query || this.hasResults
     }
   },
   mounted () {
@@ -251,7 +247,7 @@ export default {
   },
   methods: {
     initEditor () {
-      let self = this;
+      const self = this
       this.editor = new Editor({
         extensions: [
           Document,
@@ -273,7 +269,7 @@ export default {
           Superscript,
           Mention.configure({
             HTMLAttributes: {
-              class: 'mention',
+              class: 'mention'
             },
             suggestion: {
               items: ({ query }) => {
@@ -288,14 +284,14 @@ export default {
                 return fuse.search(query).map(x => x.item)
               },
               render: () => {
-                let component;
-                let popup;
+                let component
+                let popup
 
                 return {
                   onStart: props => {
                     component = new VueRenderer(SuggestionList, {
                       parent: this,
-                      propsData: props,
+                      propsData: props
                     })
 
                     popup = tippy('body', {
@@ -305,29 +301,29 @@ export default {
                       showOnCreate: true,
                       interactive: true,
                       trigger: 'manual',
-                      placement: 'bottom-start',
+                      placement: 'bottom-start'
                     })
                   },
 
-                  onUpdate(props) {
+                  onUpdate (props) {
                     component.updateProps(props)
 
                     popup[0].setProps({
-                      getReferenceClientRect: props.clientRect,
+                      getReferenceClientRect: props.clientRect
                     })
                   },
 
-                  onKeyDown(props) {
+                  onKeyDown (props) {
                     if (props.event.key === 'Escape') {
                       popup[0].hide()
 
                       return true
                     }
 
-                    return component.ref?.onKeyDown(props)
+                    return component.ref ? component.ref.onKeyDown(props) : null
                   },
 
-                  onExit(props) {
+                  onExit (props) {
                     const html = props.editor.getHTML()
                     const element = $(`<div>${html}</div>`)
 
@@ -342,18 +338,18 @@ export default {
 
                     popup[0].destroy()
                     component.destroy()
-                  },
+                  }
                 }
-              },
+              }
             },
-            renderLabel({ options, node }) {
-              return `${options.suggestion.char}${node.attrs.label ?? node.attrs.id + "-Unnamed"}`
+            renderLabel ({ options, node }) {
+              return `${options.suggestion.char}${node.attrs.label || node.attrs.id + '-Unnamed'}`
             }
           }),
           ParagraphList,
           Alignment.configure({
             types: ['heading', 'paragraph'],
-            alignments: ['left', 'center', 'right'],
+            alignments: ['left', 'center', 'right']
           }),
           FontSize
         ],
@@ -375,63 +371,24 @@ export default {
               text: `${element.prop('innerHTML')}`
             }
           })
-        },
+        }
       })
     },
     parseBlockContent (block) {
       let text = block.content.text
 
       if (block.content.text !== null) {
-        const matches = [...block.content.text.matchAll(/{(\d+)}|{(\d+:(counter|value|number|currency|words|\d+))}/gm)]
+        const matches = [...block.content.text.matchAll(/{(\d+)}|{(\d+:(counter|value|number|currency|words|\d+))}|{(\d+:\d+:(words|currency|number))}/gm)]
+        console.log(matches)
         matches.forEach((match) => {
-          const id = match[1] || match[2]
+          const id = match[1] || match[2] || match[4]
           const variable = this.variableUpdated.find((x) => x.id.toString() === id.toString())
           if (variable) text = text.replace(`{${id}}`, `<span class="mention variable" data-type="mention" data-id='${id}' data-label='${variable.name}' contenteditable="false">@${variable.name}</span>`)
         })
       }
       return text === null ? '' : text
-    },
-
-    renderPopup (node) {
-      const rect = node.getBoundingClientRect()
-      const { x, y } = rect
-
-      if (x === 0 && y === 0) {
-        return
-      }
-
-      node.cachedRect = rect
-
-      if (this.popup) {
-        return
-      }
-
-      this.popup = tippy('.ProseMirror', {
-        getReferenceClientRect: () => node.cachedRect,
-        appendTo: () => document.body,
-        interactive: true,
-        sticky: true,
-        plugins: [sticky],
-        content: this.$refs.suggestions,
-        trigger: 'mouseenter',
-        showOnCreate: true,
-        theme: 'dark',
-        placement: 'top-start',
-        inertia: true,
-        duration: [400, 200]
-      })
-    },
-    destroyPopup () {
-      if (this.popup) {
-        this.popup[0].destroy()
-        this.popup = null
-      }
-      if (this.observer) {
-        this.observer.disconnect()
-      }
     }
   },
-
   beforeUnmount () {
     const html = this.editor.getHTML()
     const element = $(`<div>${html}</div>`)

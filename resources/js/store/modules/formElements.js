@@ -18,6 +18,11 @@ const prepareAttributeDefault = (attribute) => {
       }
     case AttributeTypeEnum.BOOL:
       return !!attribute.defaultValue
+    case AttributeTypeEnum.CURRENCY:
+      return {
+        currency: 'PLN',
+        number: attribute.defaultValue
+      }
     case AttributeTypeEnum.DATE:
       return attribute.value ? (new Date(attribute.value)).toISOString().substr(0, 10) : (new Date()).toISOString().substr(0, 10)
     case AttributeTypeEnum.TIME:

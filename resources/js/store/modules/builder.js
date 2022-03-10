@@ -381,11 +381,29 @@ const getters = {
     allVar.forEach(attribute => {
       if (attribute.attributeType === AttributeTypeEnum.ATTRIBUTE_GROUP) {
         attribute.settings.attributes.forEach(x => {
-          returnedVar.push({
-            ...x,
-            attributeName: attribute.attributeName + ' - ' + x.attributeName,
-            id: attribute.id + ':' + x.id
-          })
+          if (parseInt(x.attributeType) === AttributeTypeEnum.CURRENCY) {
+            returnedVar.push({
+              ...x,
+              attributeName: attribute.attributeName + ' - ' + x.attributeName + ' - number',
+              id: attribute.id + ':' + x.id + ':number'
+            })
+            returnedVar.push({
+              ...x,
+              attributeName: attribute.attributeName + ' - ' + x.attributeName + ' - currency',
+              id: attribute.id + ':' + x.id + ':currency'
+            })
+            returnedVar.push({
+              ...x,
+              attributeName: attribute.attributeName + ' - ' + x.attributeName + ' - words',
+              id: attribute.id + ':' + x.id + ':words'
+            })
+          } else {
+            returnedVar.push({
+              ...x,
+              attributeName: attribute.attributeName + ' - ' + x.attributeName,
+              id: attribute.id + ':' + x.id
+            })
+          }
         })
       } else if (attribute.attributeType === AttributeTypeEnum.CURRENCY) {
         returnedVar.push({

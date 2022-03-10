@@ -34,7 +34,6 @@ class RepeatGroupAttribute extends Attribute implements IAggregableByAttributeAg
 
   public function getOperationalValue(string $operation) {
     $returnValue = NULL;
-
     if ((bool) $this->settings['isMultiUse']) {
       foreach ($this->value as $attributes) {
         foreach ($attributes as $attribute) {
