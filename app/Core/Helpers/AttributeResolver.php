@@ -67,7 +67,7 @@ class AttributeResolver
         //currency attribute end
 
         if ($resolveGroup) {
-            preg_match_all('/{(\d+):\d+}/', $text, $attributeIdList);
+            preg_match_all('/{(\d+):\d+(:(words|number|currency))}/', $text, $attributeIdList);
 
             foreach ($attributeIdList[1] as $id) {
                 $attribute = $this->getAttributeById((int)$id);
