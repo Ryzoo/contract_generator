@@ -161,7 +161,7 @@ class AttributeValidatorHelper {
       case AttributeTypeEnum.BOOL:
         return !value
       case AttributeTypeEnum.BOOL_INPUT:
-        return (!value.bool) && (value.input === null || value.input === undefined || value.input === '' || (value.input.length === undefined && isNaN(value.input)))
+        return (!value.bool) || (value.input === null || value.input === undefined || value.input === '' || (value.input.length === undefined && isNaN(value.input)))
       case AttributeTypeEnum.SELECT:
         return value === null || value === undefined || value === ''
       case AttributeTypeEnum.ATTRIBUTE_GROUP:
