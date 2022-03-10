@@ -116,10 +116,8 @@ export default {
     margin: 10px 0;
 
     & > h3 {
-      position: absolute;
       color: #7d7d7d;
-      left: 5px;
-      top: -15px;
+      margin: -30px 8px 0;
       background: white;
       padding: 0 10px;
     }

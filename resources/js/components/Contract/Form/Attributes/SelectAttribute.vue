@@ -59,12 +59,20 @@
 </template>
 
 <script>
+const parseValue = (value) => {
+  if (value.includes('|,')) {
+    return value.split('|,');
+  }
+
+  return value;
+}
+
 export default {
   name: 'SelectAttribute',
   props: ['attribute', 'outside'],
   data () {
     return {
-      currentValue: this.attribute.value || this.attribute.defaultValue
+      currentValue: parseValue(this.attribute.value || this.attribute.defaultValue)
     }
   },
   watch: {
@@ -84,7 +92,7 @@ export default {
   },
   methods: {
     resetForm () {
-      this.currentValue = this.attribute.defaultValue
+      this.currentValue = parseValue(this.attribute.defaultValue);
     }
   }
 }
