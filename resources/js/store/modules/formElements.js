@@ -38,6 +38,10 @@ const prepareAttributeDefault = (attribute) => {
         defaultValue: prepareAttributeDefault(x),
         value: prepareAttributeDefault(x)
       }))
+    case AttributeTypeEnum.SELECT:
+      if (Array.isArray(attribute.defaultValue)) {
+        return attribute.defaultValue.join('|,');
+      }
   }
 
   return attribute.defaultValue
@@ -61,6 +65,7 @@ const validateAttribute = (attribute) => {
         }
         return x
       })
+
     } else {
       currentAttribute.value = currentAttribute.value.map(attributeIn => {
         if (attributeIn.isActive) {
@@ -68,6 +73,7 @@ const validateAttribute = (attribute) => {
             ...AttributeValidator.validate(attributeIn)
           }
         }
+
         return attributeIn
       })
     }

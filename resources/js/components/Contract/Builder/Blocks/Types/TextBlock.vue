@@ -379,7 +379,6 @@ export default {
 
       if (block.content.text !== null) {
         const matches = [...block.content.text.matchAll(/{(\d+)}|{(\d+:(counter|value|number|currency|words|\d+))}|{(\d+:\d+:(words|currency|number))}/gm)]
-        console.log(matches)
         matches.forEach((match) => {
           const id = match[1] || match[2] || match[4]
           const variable = this.variableUpdated.find((x) => x.id.toString() === id.toString())

@@ -36,11 +36,9 @@ export default {
     padding: 15px;
 
     & > h3 {
-      position: absolute;
       background: white;
-      margin: 0px -8px;
+      margin: -30px -8px 0;
       padding: 0 10px;
-      top: -15px;
       color: #626a6f;
     }
   }
