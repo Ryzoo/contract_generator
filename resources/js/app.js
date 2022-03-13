@@ -8,10 +8,13 @@ import 'vuetify/dist/vuetify.min.css'
 import Validator from './additionalModules/Validator'
 import Sortable from 'sortablejs'
 import DragService from './additionalModules/Services/DragService'
+import translator from './VueTranslation/Translation'
 
 import store from './store'
 import route from './route'
-import i18n from './lang'
+
+Vue.prototype.$t = window.$t = translator.translate
+
 require('./bootstrap')
 
 window.Validator = Validator
@@ -61,14 +64,12 @@ Vue.mixin({
 Vue.filter('striphtml', function (value) {
   const div = document.createElement('div')
   div.innerHTML = value
-  const text = div.textContent || div.innerText || ''
-  return text
+  return div.textContent || div.innerText || ''
 })
 
 const app = new Vue({
   vuetify,
   el: '#app',
-  i18n,
   store,
   router: route
 })

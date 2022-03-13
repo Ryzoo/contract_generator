@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import AdminPanelLayout from './layouts/AdminPanelLayout'
-import i18n from './lang'
 import AuthLayout from './layouts/AuthLayout'
 import DashboardView from './views/panel/DashboardView'
 import ContractListView from './views/panel/contracts/ContractListView'
@@ -33,6 +32,9 @@ import EditCategoryView from './views/panel/contracts/category/EditView'
 import CreateCategoryView from './views/panel/contracts/category/CreateView'
 import AttributesLibraryView from './views/panel/library/attributes/AttributesLibraryView'
 import { Permissions } from './additionalModules/Permissions'
+import translator from './VueTranslation/Translation'
+
+Vue.prototype.$t = window.$t = translator.translate
 
 Vue.use(VueRouter)
 
@@ -44,7 +46,7 @@ const router = new VueRouter({
       path: '/no-access',
       component: NoAccessView,
       meta: {
-        title: i18n.t('pageMeta.common.noAccess.title'),
+        title: window.$t('pageMeta.common.noAccess.title'),
         noRequireAuthorization: true
       }
     },
@@ -52,7 +54,7 @@ const router = new VueRouter({
       path: '/not-found',
       component: NotFoundView,
       meta: {
-        title: i18n.t('pageMeta.common.notFound.title'),
+        title: window.$t('pageMeta.common.notFound.title'),
         noRequireAuthorization: true
       }
     },
@@ -87,7 +89,7 @@ const router = new VueRouter({
           name: 'dashboard',
           component: DashboardView,
           meta: {
-            title: i18n.t('pageMeta.panel.dashboard.title')
+            title: window.$t('pageMeta.panel.dashboard.title')
           }
         },
         {
@@ -95,7 +97,7 @@ const router = new VueRouter({
           name: 'formSubmission',
           component: FormSubmissionView,
           meta: {
-            title: i18n.t('pageMeta.panel.formSubmission.title')
+            title: window.$t('pageMeta.panel.formSubmission.title')
           }
         },
         {
@@ -103,7 +105,7 @@ const router = new VueRouter({
           name: 'contractList',
           component: ContractListView,
           meta: {
-            title: i18n.t('pageMeta.panel.contract.title'),
+            title: window.$t('pageMeta.panel.contract.title'),
             access: [
               Permissions.MANAGE_CONTRACTS
             ]
@@ -114,7 +116,7 @@ const router = new VueRouter({
           name: 'createContract',
           component: CreateBaseView,
           meta: {
-            title: i18n.t('pageMeta.panel.contract.create.title'),
+            title: window.$t('pageMeta.panel.contract.create.title'),
             access: [
               Permissions.MANAGE_CONTRACTS
             ]
@@ -125,7 +127,7 @@ const router = new VueRouter({
           name: 'editContract',
           component: CreateBaseView,
           meta: {
-            title: i18n.t('pageMeta.panel.contract.edit.title'),
+            title: window.$t('pageMeta.panel.contract.edit.title'),
             access: [
               Permissions.MANAGE_CONTRACTS
             ]
@@ -136,7 +138,7 @@ const router = new VueRouter({
           name: 'buildContract',
           component: ContractBuilderView,
           meta: {
-            title: i18n.t('pageMeta.panel.contract.builder.title'),
+            title: window.$t('pageMeta.panel.contract.builder.title'),
             access: [
               Permissions.MANAGE_CONTRACTS
             ]
@@ -147,7 +149,7 @@ const router = new VueRouter({
           name: 'category',
           component: CategoryView,
           meta: {
-            title: i18n.t('pageMeta.panel.category.title'),
+            title: window.$t('pageMeta.panel.category.title'),
             access: [
               Permissions.MANAGE_ROLES
             ]
@@ -158,7 +160,7 @@ const router = new VueRouter({
           name: 'createCategory',
           component: CreateCategoryView,
           meta: {
-            title: i18n.t('pageMeta.panel.category.create.title'),
+            title: window.$t('pageMeta.panel.category.create.title'),
             access: [
               Permissions.MANAGE_ROLES
             ]
@@ -169,7 +171,7 @@ const router = new VueRouter({
           name: 'editCategory',
           component: EditCategoryView,
           meta: {
-            title: i18n.t('pageMeta.panel.category.edit.title'),
+            title: window.$t('pageMeta.panel.category.edit.title'),
             access: [
               Permissions.MANAGE_ROLES
             ]
@@ -180,7 +182,7 @@ const router = new VueRouter({
           name: 'attributes-lib',
           component: AttributesLibraryView,
           meta: {
-            title: i18n.t('pageMeta.panel.library.title'),
+            title: window.$t('pageMeta.panel.library.title'),
             access: [
               Permissions.MANAGE_ATTRIBUTES
             ]
@@ -191,7 +193,7 @@ const router = new VueRouter({
           name: 'accounts',
           component: AccountsView,
           meta: {
-            title: i18n.t('pageMeta.panel.accounts.title'),
+            title: window.$t('pageMeta.panel.accounts.title'),
             access: [
               Permissions.MANAGE_USERS
             ]
@@ -202,7 +204,7 @@ const router = new VueRouter({
           name: 'createAccount',
           component: CreateView,
           meta: {
-            title: i18n.t('pageMeta.panel.accounts.create.title'),
+            title: window.$t('pageMeta.panel.accounts.create.title'),
             access: [
               Permissions.MANAGE_USERS
             ]
@@ -213,7 +215,7 @@ const router = new VueRouter({
           name: 'editAccount',
           component: EditView,
           meta: {
-            title: i18n.t('pageMeta.panel.accounts.edit.title'),
+            title: window.$t('pageMeta.panel.accounts.edit.title'),
             access: [
               Permissions.MANAGE_USERS
             ]
@@ -224,7 +226,7 @@ const router = new VueRouter({
           name: 'accountPreview',
           component: AccountPreview,
           meta: {
-            title: i18n.t('pageMeta.panel.accounts.preview.title')
+            title: window.$t('pageMeta.panel.accounts.preview.title')
           }
         },
         {
@@ -232,7 +234,7 @@ const router = new VueRouter({
           name: 'my_profile',
           component: MyProfileView,
           meta: {
-            title: i18n.t('pageMeta.panel.profile.title')
+            title: window.$t('pageMeta.panel.profile.title')
           }
         },
         {
@@ -240,7 +242,7 @@ const router = new VueRouter({
           name: 'roles',
           component: RolesView,
           meta: {
-            title: i18n.t('pageMeta.panel.roles.title'),
+            title: window.$t('pageMeta.panel.roles.title'),
             access: [
               Permissions.MANAGE_ROLES
             ]
@@ -251,7 +253,7 @@ const router = new VueRouter({
           name: 'createRoles',
           component: CreateRolesView,
           meta: {
-            title: i18n.t('pageMeta.panel.roles.create.title'),
+            title: window.$t('pageMeta.panel.roles.create.title'),
             access: [
               Permissions.MANAGE_ROLES
             ]
@@ -262,7 +264,7 @@ const router = new VueRouter({
           name: 'editRole',
           component: EditRoleView,
           meta: {
-            title: i18n.t('pageMeta.panel.roles.edit.title'),
+            title: window.$t('pageMeta.panel.roles.edit.title'),
             access: [
               Permissions.MANAGE_ROLES
             ]
@@ -279,7 +281,7 @@ const router = new VueRouter({
           name: 'login',
           component: LoginView,
           meta: {
-            title: i18n.t('pageMeta.auth.login.title'),
+            title: window.$t('pageMeta.auth.login.title'),
             noRequireAuthorization: true
           }
         },
@@ -288,7 +290,7 @@ const router = new VueRouter({
           name: 'register',
           component: RegisterView,
           meta: {
-            title: i18n.t('pageMeta.auth.register.title'),
+            title: window.$t('pageMeta.auth.register.title'),
             noRequireAuthorization: true
           }
         },
@@ -297,7 +299,7 @@ const router = new VueRouter({
           name: 'sendResetPasswordToken',
           component: SendResetPasswordTokenView,
           meta: {
-            title: i18n.t('pageMeta.auth.sendResetPasswordToken.title'),
+            title: window.$t('pageMeta.auth.sendResetPasswordToken.title'),
             noRequireAuthorization: true
           }
         },
@@ -306,7 +308,7 @@ const router = new VueRouter({
           name: 'resetPassword',
           component: ResetPasswordView,
           meta: {
-            title: i18n.t('pageMeta.auth.resetPassword.title'),
+            title: window.$t('pageMeta.auth.resetPassword.title'),
             noRequireAuthorization: true
           }
         }

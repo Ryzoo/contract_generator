@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "881ed5537c57a6025f89a643be0447e5",
+    "content-hash": "83f6c9506f362f7c9b7d436726dd57be",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -628,6 +628,53 @@
                 "source": "https://github.com/eklundkristoffer/seedster/tree/4.0"
             },
             "time": "2020-09-14T16:33:44+00:00"
+        },
+        {
+            "name": "elementaryframework/fire-fs",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ElementaryFramework/FireFS.git",
+                "reference": "dc804ad697fb2b98af1735f3742dccd41ffe4598"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ElementaryFramework/FireFS/zipball/dc804ad697fb2b98af1735f3742dccd41ffe4598",
+                "reference": "dc804ad697fb2b98af1735f3742dccd41ffe4598",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.10"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ElementaryFramework\\FireFS\\": "src/FireFS/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Axel Nana",
+                    "email": "ax.lnana@outlook.com"
+                }
+            ],
+            "description": "Easily access and manage your files with PHP",
+            "keywords": [
+                "files",
+                "filesystem"
+            ],
+            "support": {
+                "issues": "https://github.com/ElementaryFramework/FireFS/issues",
+                "source": "https://github.com/ElementaryFramework/FireFS/tree/master"
+            },
+            "time": "2018-12-22T02:01:13+00:00"
         },
         {
             "name": "facade/flare-client-php",
@@ -5907,6 +5954,53 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/2.2.3"
             },
             "time": "2020-07-13T06:12:54+00:00"
+        },
+        {
+            "name": "tohidplus/laravel-vue-translation",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tohidplus/laravel-vue-translation.git",
+                "reference": "559e3f97f6dbf24f547e64c452365b3d5b2d0fec"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tohidplus/laravel-vue-translation/zipball/559e3f97f6dbf24f547e64c452365b3d5b2d0fec",
+                "reference": "559e3f97f6dbf24f547e64c452365b3d5b2d0fec",
+                "shasum": ""
+            },
+            "require": {
+                "elementaryframework/fire-fs": "1.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Tohidplus\\Translation\\TranslationServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tohidplus\\Translation\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tohid",
+                    "email": "tohid.dadashnejad@gmail.com"
+                }
+            ],
+            "description": "A package to have Laravel translation feature in VueJs",
+            "support": {
+                "issues": "https://github.com/tohidplus/laravel-vue-translation/issues",
+                "source": "https://github.com/tohidplus/laravel-vue-translation/tree/2.2.0"
+            },
+            "time": "2021-08-12T08:03:11+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

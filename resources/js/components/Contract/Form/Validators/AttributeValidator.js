@@ -1,4 +1,3 @@
-import i18n from '../../../../lang'
 import { AttributeTypeEnum } from '../../../../additionalModules/Enums'
 
 class AttributeValidator {
@@ -38,7 +37,7 @@ class AttributeValidator {
 
   validateRequired () {
     if (!!this.settings.required && AttributeValidatorHelper.isEmpty(this.attribute)) {
-      const validationError = i18n.t('validation.required', {
+      const validationError = window.$t('validation.required', {
         attribute: this.attribute.attributeName
       })
       return this.setResponse(validationError, false)
@@ -50,14 +49,14 @@ class AttributeValidator {
   validateValueMax () {
     if (this.settings.valueMax) {
       if (!AttributeValidatorHelper.isInteger(this.attribute)) {
-        const validationError = i18n.t('validation.numeric', {
+        const validationError = window.$t('validation.numeric', {
           attribute: this.attribute.attributeName
         })
         return this.setResponse(validationError, false)
       }
 
       if (parseInt(this.value) > parseInt(this.settings.valueMax)) {
-        const validationError = i18n.t('validation.max.numeric', {
+        const validationError = window.$t('validation.max.numeric', {
           attribute: this.attribute.attributeName,
           max: this.settings.valueMax
         })
@@ -71,14 +70,14 @@ class AttributeValidator {
   validateValueMin () {
     if (this.settings.valueMin) {
       if (!AttributeValidatorHelper.isInteger(this.attribute)) {
-        const validationError = i18n.t('validation.numeric', {
+        const validationError = window.$t('validation.numeric', {
           attribute: this.attribute.attributeName
         })
         return this.setResponse(validationError, false)
       }
 
       if (parseInt(this.value) < parseInt(this.settings.valueMin)) {
-        const validationError = i18n.t('validation.min.numeric', {
+        const validationError = window.$t('validation.min.numeric', {
           attribute: this.attribute.attributeName,
           min: this.settings.valueMin
         })
@@ -92,18 +91,18 @@ class AttributeValidator {
   validateLengthMin () {
     if (this.settings.lengthMin) {
       if (!AttributeValidatorHelper.isString(this.attribute) && !AttributeValidatorHelper.isArray(this.attribute)) {
-        const validationError = i18n.t('validation.string', {
+        const validationError = window.$t('validation.string', {
           attribute: this.attribute.attributeName
         })
         return this.setResponse(validationError, false)
       }
       if ((AttributeValidatorHelper.isArray(this.attribute) ? this.value.length : String(this.value).length) < parseInt(this.settings.lengthMin)) {
         const validationError = AttributeValidatorHelper.isArray(this.attribute)
-          ? i18n.t('validation.min.array', {
+          ? window.$t('validation.min.array', {
             attribute: this.attribute.attributeName,
             min: this.settings.lengthMin
           })
-          : i18n.t('validation.min.string', {
+          : window.$t('validation.min.string', {
             attribute: this.attribute.attributeName,
             min: this.settings.lengthMin
           })
@@ -118,7 +117,7 @@ class AttributeValidator {
   validateLengthMax () {
     if (this.settings.lengthMax) {
       if (!AttributeValidatorHelper.isString(this.attribute) && !AttributeValidatorHelper.isArray(this.attribute)) {
-        const validationError = i18n.t('validation.string', {
+        const validationError = window.$t('validation.string', {
           attribute: this.attribute.attributeName
         })
         return this.setResponse(validationError, false)
@@ -126,11 +125,11 @@ class AttributeValidator {
 
       if ((AttributeValidatorHelper.isArray(this.attribute) ? this.value.length : String(this.value).length) > parseInt(this.settings.lengthMax)) {
         const validationError = AttributeValidatorHelper.isArray(this.attribute)
-          ? i18n.t('validation.max.array', {
+          ? window.$t('validation.max.array', {
             attribute: this.attribute.attributeName,
             max: this.settings.lengthMax
           })
-          : i18n.t('validation.max.string', {
+          : window.$t('validation.max.string', {
             attribute: this.attribute.attributeName,
             max: this.settings.lengthMax
           })

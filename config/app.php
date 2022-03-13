@@ -175,7 +175,8 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class
+        Intervention\Image\ImageServiceProvider::class,
+        Tohidplus\Translation\TranslationServiceProvider::class,
     ],
 
     /*

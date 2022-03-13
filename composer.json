@@ -20,7 +20,8 @@
     "kwn/number-to-words": "^2.0.0",
     "laravel/framework": "^8.0",
     "laravel/tinker": "^v2.6.1",
-    "spatie/laravel-image-optimizer": "^1.4"
+    "spatie/laravel-image-optimizer": "^1.4",
+    "tohidplus/laravel-vue-translation": "^2.2"
   },
   "require-dev": {
     "symfony/css-selector": "^v5.3.4",

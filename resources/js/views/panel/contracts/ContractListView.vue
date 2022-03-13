@@ -4,7 +4,8 @@
             <v-col align="start">
                 <v-btn v-if="multiSelectedItems.length > 0" @click="tryToRemoveContract(multiSelectedItems.map(e=>e.id))"
                        color="error">
-                    Delete selected
+                  <v-icon small>fa-trash</v-icon>
+                  {{ $t("base.button.remove") }}
                 </v-btn>
                 <v-btn @click="newContract" color="primary">
                     {{ $t("pages.panel.contracts.buttons.new_contract") }}

@@ -1,5 +1,8 @@
 .ProseMirror{
   font-family: 'Times New Roman', serif;
+  overflow: hidden;
+  padding: 5px;
+  outline: none;
 
   .mention, .variable{
     font-family: monospace;

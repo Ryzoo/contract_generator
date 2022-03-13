@@ -8,7 +8,7 @@
     "test-func": "./vendor/bin/codecept run functional",
     "test-unit": "./vendor/bin/codecept run unit",
     "test-api": "./vendor/bin/codecept run api",
-    "lang": "php artisan vue-i18n:generate",
+    "lang": "php artisan VueTranslation:generate",
     "lint": "eslint resources/js/ --ext .js,.vue",
     "lint:fix": "eslint --fix resources/js/ --ext .js,.vue"
   },
@@ -64,7 +64,6 @@
     "sortablejs": "^1.14.0",
     "tippy.js": "^6.3.7",
     "vue-draggable": "^2.0.6",
-    "vue-i18n": "^8.27.0",
     "vue-query-builder-vuetifyjs": "0.7.16",
     "vue-router": "^3.5.3",
     "vue2-editor": "^2.10.3",

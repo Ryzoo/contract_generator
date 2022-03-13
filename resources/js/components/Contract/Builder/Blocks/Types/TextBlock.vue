@@ -443,7 +443,7 @@ export default {
       justify-content: left;
       background: $primary;
       color: white;
-      border-radius: 5px;
+      border-radius: 5px 5px 0 0;
       flex-wrap: wrap;
 
       .menubar-button {
@@ -507,7 +507,9 @@ export default {
 
   .editor-container {
     border: 2px solid #cfcfcf;
-    border-radius: 5px;
+    border-top: none;
+    overflow: hidden;
+    border-radius: 0 0 5px 5px;
     margin: 0 10px 10px;
 
     .ProseMirror{

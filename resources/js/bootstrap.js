@@ -1,6 +1,9 @@
 import Notify from './additionalModules/Notify'
 import Auth from './additionalModules/Auth'
 import Notification from './additionalModules/Notification'
+import translator from './VueTranslation/Translation'
+
+window.$t = translator.translate
 
 try {
   window.$ = window.jQuery = require('jquery')
