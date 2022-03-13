@@ -40,7 +40,7 @@ const prepareAttributeDefault = (attribute) => {
       }))
     case AttributeTypeEnum.SELECT:
       if (Array.isArray(attribute.defaultValue)) {
-        return attribute.defaultValue.join('|,');
+        return attribute.defaultValue.join('|,')
       }
   }
 
@@ -65,7 +65,6 @@ const validateAttribute = (attribute) => {
         }
         return x
       })
-
     } else {
       currentAttribute.value = currentAttribute.value.map(attributeIn => {
         if (attributeIn.isActive) {
@@ -261,7 +260,7 @@ const getters = {
     }]
 
     state.formElements
-      .map(e => {
+      .forEach(e => {
         switch (e.elementType) {
           case FormElementsEnum.PAGE_BRAKE:
             currentIndex++

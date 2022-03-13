@@ -77,8 +77,6 @@ export default {
           }]
         : []
 
-      this.attribute.conditionals = data
-
       if (this.noStore) {
         this.$emit('edit', {
           ...this.attribute

@@ -1,26 +1,26 @@
 <template>
   <section>
     <v-card
-      v-if="!isLoading"
-      max-width="800px"
-      class="mx-auto"
-      style="margin-top: -60px;"
+        v-if="!isLoading"
+        max-width="800px"
+        class="mx-auto"
+        style="margin-top: -60px;"
     >
       <v-card-title v-if="currentAction === availableActionsHook.FORM_RENDER">
-        {{contract.name}}
+        {{ contract.name }}
       </v-card-title>
       <v-divider/>
 
       <action-renderer
-        v-if="currentAction === availableActionsHook.BEFORE_FORM_RENDER"
-        v-model="currentAction"
-        @action-pass="loadContractForm"
-        :contract="contract"
+          v-if="currentAction === availableActionsHook.BEFORE_FORM_RENDER"
+          v-model="currentAction"
+          @action-pass="loadContractForm"
+          :contract="contract"
       />
       <action-renderer
-        v-if="currentAction === availableActionsHook.BEFORE_FORM_END || currentAction === availableActionsHook.AFTER_FORM_END"
-        v-model="currentAction"
-        :contract="contract"
+          v-if="currentAction === availableActionsHook.BEFORE_FORM_END || currentAction === availableActionsHook.AFTER_FORM_END"
+          v-model="currentAction"
+          :contract="contract"
       />
     </v-card>
     <loader v-else/>
@@ -35,13 +35,12 @@
                 v-if="step.id > 1"
                 :key="step.id + '-up-hr'"
               />
-
               <v-stepper-step
                 :key="`${step.id}-header`"
                 :complete="actualStep > step.id"
                 :step="step.id"
               >
-                <span class="step-name">{{step.name | truncateStep}}</span>
+              <span class="step-name">{{ step.name | truncateStep }}</span>
               </v-stepper-step>
               <hr
                 :class="{'colored-hr': actualStep >= step.id}"
@@ -54,9 +53,9 @@
 
           <v-stepper-items>
             <v-stepper-content
-              v-for="step in stepList"
-              :key="`${step.id}-content`"
-              :step="step.id"
+                v-for="step in stepList"
+                :key="`${step.id}-content`"
+                :step="step.id"
             >
               <v-row v-if="step.content.length > 5">
                 <v-col>
@@ -74,13 +73,13 @@
 
               <v-row v-if="actualStep === 1">
                 <v-col>
-                  <v-alert type="info" v-if="contract && contract.description" >
+                  <v-alert type="info" v-if="contract && contract.description">
                     <div v-html="contract.description"/>
                   </v-alert>
                 </v-col>
               </v-row>
               <form-renderer
-                :formElements="step.content"
+                  :formElements="step.content"
               />
 
               <v-row>
@@ -187,7 +186,7 @@ export default {
       if (!additionalAttributes.length) return ''
 
       const defaultAttributeObject = {}
-      additionalAttributes.map(x => {
+      additionalAttributes.forEach(x => {
         Object.assign(defaultAttributeObject, x)
       })
       return defaultAttributeObject ? new URLSearchParams(defaultAttributeObject).toString() : ''
@@ -221,67 +220,69 @@ export default {
 }
 </script>
 
-<style lang="scss" >
-  @import "./../../../sass/colors";
+<style lang="scss">
+@import "./../../../sass/colors";
 
-  .v-stepper__label {
-    position: absolute;
-    top: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+.v-stepper__label {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
-  .v-input--selection-controls{
-    margin-top: 0;
-  }
+.v-input--selection-controls {
+  margin-top: 0;
+}
 
-  .v-stepper__header {
-    padding: 10px 40px 70px 40px;
-  }
+.v-stepper__header {
+  padding: 10px 40px 70px 40px;
+}
 
-  .step-name {
-    text-align: center;
-    width: 80px;
-  }
+.step-name {
+  text-align: center;
+  width: 80px;
+}
 
-  .stepper-divider {
-    height: 3px;
-    width: 100%;
-    align-self: center;
-    flex: 1 1 0;
-    background-color: #cdcdcd;
-    color: #cdcdcd;
-    border: none;
+.stepper-divider {
+  height: 3px;
+  width: 100%;
+  align-self: center;
+  flex: 1 1 0;
+  background-color: #cdcdcd;
+  color: #cdcdcd;
+  border: none;
 
-    &.colored-hr {
-      background-color: $primary;
-      color: $primary;
-    }
+  &.colored-hr {
+    background-color: $primary;
+    color: $primary;
   }
-  .v-stepper__step__step .v-icon.v-icon {
-    font-size: 1rem;
-  }
+}
 
-  .v-stepper__step--active {
-    border-radius: 50%;
-    border: 3px solid $primary;
-  }
-  .v-application--is-ltr .v-stepper__step__step {
-    margin-right: 0;
-  }
+.v-stepper__step__step .v-icon.v-icon {
+  font-size: 1rem;
+}
 
-  .v-stepper__step {
-    padding: 3px;
-    height: max-content;
-    align-self: center;
-  }
+.v-stepper__step--active {
+  border-radius: 50%;
+  border: 3px solid $primary;
+}
 
-  .v-stepper__step__step {
-    background: #cdcdcd !important;
-    font-weight: 500;
-  }
+.v-application--is-ltr .v-stepper__step__step {
+  margin-right: 0;
+}
 
-  .v-stepper__step--inactive {
-    padding: 0;
-  }
+.v-stepper__step {
+  padding: 3px;
+  height: max-content;
+  align-self: center;
+}
+
+.v-stepper__step__step {
+  background: #cdcdcd !important;
+  font-weight: 500;
+}
+
+.v-stepper__step--inactive {
+  padding: 0;
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <v-row class="complaint-container">
-    <v-btn v-if="currentStep!=='base'" class="my-5" color="primary" @click="showPage('base')">< Powrót</v-btn>
+    <v-btn v-if="currentStep!=='base'" class="my-5" color="primary" @click="showPage('base')">Powrót</v-btn>
     <BaseStep v-if="currentStep==='base'" @step="showPage"/>
     <Complaint v-if="currentStep==='complaint'" @complaint="showComplaint"/>
     <component v-if="currentStep!=='complaint' && currentStep.includes('complaint')" :is="currentStep"/>

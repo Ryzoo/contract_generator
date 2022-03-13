@@ -1,25 +1,25 @@
-import { Mark, mergeAttributes } from '@tiptap/core'
+import { Mark } from '@tiptap/core'
 
 export const ParagraphListNode = Mark.create({
   name: 'paragraphList',
 
-  addOptions() {
+  addOptions () {
     return {
-      HTMLAttributes: {},
+      HTMLAttributes: {}
     }
   },
 
-  parseHTML() {
+  parseHTML () {
     return [
-      { tag: 'span.paragraph-list' },
+      { tag: 'span.paragraph-list' }
     ]
   },
 
-  renderHTML() {
+  renderHTML () {
     return ['span', { class: 'paragraph-list' }, ['span', { class: 'paragraph-counter' }, 0]]
   },
 
-  addCommands() {
+  addCommands () {
     return {
       setParagraph: () => ({ commands }) => {
         return commands.setMark(this.name)
@@ -29,9 +29,9 @@ export const ParagraphListNode = Mark.create({
       },
       unsetParagraph: () => ({ commands }) => {
         return commands.unsetMark(this.name)
-      },
+      }
     }
-  },
+  }
 })
 
-export default ParagraphListNode;
+export default ParagraphListNode

@@ -118,12 +118,10 @@ export default {
       const idList = this.removeContractId.join(',')
       axios
         .delete(`/contract?idList=${idList}`)
-        .then(response => {
-          this.removeContractId.map(x => {
-            this.contractItems = this.contractItems.filter(
-              e => e.id !== x
-            )
-          })
+        .then(_ => {
+          this.contractItems = this.contractItems.filter(
+            e => !this.removeContractId.includes(e.id)
+          )
 
           this.removeContractId = null
           this.multiSelectedItems = []
@@ -154,7 +152,7 @@ export default {
     makeContractOffline (id) {
       this.isLoaded = false
       axios.put(`/contract/${id}/status/offline`)
-        .then(response => {
+        .then(_ => {
           this.contractItems = this.contractItems.map((x) => {
             if (x.id === id) {
               return {
@@ -172,7 +170,7 @@ export default {
     makeContractOnline (id) {
       this.isLoaded = false
       axios.put(`/contract/${id}/status/online`)
-        .then(response => {
+        .then(_ => {
           this.contractItems = this.contractItems.map((x) => {
             if (x.id === id) {
               return {

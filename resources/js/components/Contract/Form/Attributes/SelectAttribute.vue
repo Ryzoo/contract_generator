@@ -61,10 +61,10 @@
 <script>
 const parseValue = (value) => {
   if (value.includes('|,')) {
-    return value.split('|,');
+    return value.split('|,')
   }
 
-  return value;
+  return value
 }
 
 export default {
@@ -92,7 +92,7 @@ export default {
   },
   methods: {
     resetForm () {
-      this.currentValue = parseValue(this.attribute.defaultValue);
+      this.currentValue = parseValue(this.attribute.defaultValue)
     }
   }
 }

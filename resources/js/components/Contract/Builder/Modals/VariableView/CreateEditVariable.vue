@@ -251,7 +251,7 @@ export default {
         ...this.attributeData.settings
       }
 
-      Object.keys(defaultSettings).map((key, index) => {
+      Object.keys(defaultSettings).forEach((key) => {
         if (!settings[key]) {
           settings[key] = defaultSettings[key]
         }

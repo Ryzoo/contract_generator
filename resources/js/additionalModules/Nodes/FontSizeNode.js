@@ -5,10 +5,10 @@ export const FontSizeNode = Extension.create({
   name: 'fontSize',
 
   defaultOptions: {
-    types: ['textStyle'],
+    types: ['textStyle']
   },
 
-  addGlobalAttributes() {
+  addGlobalAttributes () {
     return [
       {
         types: this.options.types,
@@ -22,16 +22,16 @@ export const FontSizeNode = Extension.create({
               }
 
               return {
-                style: `font-size: ${attributes.fontSize}`,
+                style: `font-size: ${attributes.fontSize}`
               }
-            },
-          },
-        },
-      },
+            }
+          }
+        }
+      }
     ]
   },
 
-  addCommands() {
+  addCommands () {
     return {
       setFontSize: fontSize => ({ chain }) => {
         return chain()
@@ -43,9 +43,9 @@ export const FontSizeNode = Extension.create({
           .setMark('textStyle', { fontSize: null })
           .removeEmptyTextStyle()
           .run()
-      },
+      }
     }
-  },
+  }
 })
 
-export default FontSizeNode;
+export default FontSizeNode
