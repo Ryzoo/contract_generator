@@ -6,20 +6,37 @@ import {
 } from './Enums'
 
 class Mapper {
+  static getBlockComponentByName (type) {
+    switch (parseInt(type)) {
+      case BlockTypeEnum.EMPTY_BLOCK:
+        return window.$t('EmptyBlock')
+      case BlockTypeEnum.PAGE_DIVIDE_BLOCK:
+        return window.$t('PageDivideBlock')
+      case BlockTypeEnum.TEXT_BLOCK:
+        return window.$t('TextBlock')
+      case BlockTypeEnum.REPEAT_BLOCK:
+        return window.$t('RepeatBlock')
+      case BlockTypeEnum.LIST_BLOCK:
+        return window.$t('ListBlock')
+      default:
+        return window.$t('NotFoundBlock')
+    }
+  }
+
   static getBlockName (type) {
     switch (parseInt(type)) {
       case BlockTypeEnum.EMPTY_BLOCK:
-        return 'EmptyBlock'
+        return window.$t('elements.EmptyBlock')
       case BlockTypeEnum.PAGE_DIVIDE_BLOCK:
-        return 'PageDivideBlock'
+        return window.$t('elements.PageDivideBlock')
       case BlockTypeEnum.TEXT_BLOCK:
-        return 'TextBlock'
+        return window.$t('elements.TextBlock')
       case BlockTypeEnum.REPEAT_BLOCK:
-        return 'RepeatBlock'
+        return window.$t('elements.RepeatBlock')
       case BlockTypeEnum.LIST_BLOCK:
-        return 'ListBlock'
+        return window.$t('elements.ListBlock')
       default:
-        return 'NotFoundBlock'
+        return window.$t('elements.NotFoundBlock')
     }
   }
 

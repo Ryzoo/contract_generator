@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h3>{{ $t('module.payment.descriptionConfig') }}</h3>
+    <h6>{{ $t('module.payment.descriptionConfig') }}</h6>
     <v-divider class="my-3"/>
     <v-row>
       <v-col>

@@ -461,16 +461,12 @@ export default {
   }
 
   .suggestion-list {
-    padding: 1.2rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 $primary;
+    padding: 10px;
     font-size: 14px;
     font-weight: bold;
-    background: rgba(64, 89, 190, 0.3);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(64, 89, 190, 0.4);
-    font-family: Roboto,sans-serif;
+    background: white;
 
     &__no-results {
       padding: 0.2rem 0.5rem;
@@ -486,8 +482,12 @@ export default {
         margin-bottom: 0;
       }
 
-      &.is-selected,
+      &.is-selected{
+        color: white;
+        background: $primary;
+      }
       &:hover {
+        color: white;
         background-color: rgba(64, 89, 190, 0.5);
       }
       &.is-empty {

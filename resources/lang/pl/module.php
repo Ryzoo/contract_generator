@@ -33,7 +33,7 @@ return [
         'moduleConfiguration' => 'Konfiguracja modułu:'
     ],
     'base' => [
-        'step' => 'Krok:'
+        'step' => 'Strona formularza'
     ],
     'notify' => [
         'completeAllElement' => 'Wypełnij poprawnie wszystkie dane na tej stronie, aby przejść dalej!'

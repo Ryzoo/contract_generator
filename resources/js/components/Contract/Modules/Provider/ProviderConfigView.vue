@@ -1,6 +1,6 @@
 <template>
     <section>
-        <h3>{{$t('module.provider.descriptionConfig')}}</h3>
+        <h6>{{$t('module.provider.descriptionConfig')}}</h6>
       <v-divider class="my-3"/>
         <v-row>
             <v-col class="d-flex" cols="12" >

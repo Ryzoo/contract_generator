@@ -1,16 +1,13 @@
 <template>
   <section class="pr-4">
     <div class="block-handle" v-if="block.id > 1">
-      <i class="fas fa-arrows-alt"></i>
+      <i class="fas fa-arrows-alt"/>
     </div>
     <div class="block-divider-line">{{block.blockName}}</div>
-    <v-btn small text color="info" @click="editBlock()"> Copy
-      <v-icon small right>fa-copy</v-icon>
-    </v-btn>
-    <v-btn small text color="primary" @click="editBlock"> Edit
+    <v-btn v-if="block.id > 1" small text color="primary" @click="editBlock"> {{$t('base.button.edit')}}
       <v-icon small right>fa-edit</v-icon>
     </v-btn>
-    <v-btn v-if="block.id > 1" small text color="error" @click="removeBlock"> Delete
+    <v-btn v-if="block.id > 1" small text color="error" @click="removeBlock"> {{$t('base.button.delete')}}
       <v-icon small right>fa-trash</v-icon>
     </v-btn>
   </section>
@@ -26,9 +23,6 @@ export default {
     }
   },
   methods: {
-    copyBlock () {
-      this.$store.dispatch('builder_copyBlock', this.block)
-    },
     removeBlock () {
       this.$store.dispatch('builder_removeBlock', this.block.id)
     },

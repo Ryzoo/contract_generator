@@ -11,7 +11,7 @@
       <component
         class="block-content-in"
         :nested-variables="nestedVariables"
-        :is="Mapper.getBlockName(currentBlock.blockType)"
+        :is="Mapper.getBlockComponentByName(currentBlock.blockType)"
         :block="currentBlock"
         :in-list="inList"
         @show-block-modal="showBlockModal"

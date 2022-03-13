@@ -1,4 +1,7 @@
 import { BlockTypeEnum } from './Enums'
+import translator from '../VueTranslation/Translation'
+
+window.$t = translator.translate
 
 const Selector = {
 
@@ -24,23 +27,23 @@ const Selector = {
   BlockType: [
     {
       value: BlockTypeEnum.TEXT_BLOCK,
-      text: 'Text'
+      text: window.$t('elements.TextBlock')
     },
     {
       value: BlockTypeEnum.EMPTY_BLOCK,
-      text: 'Container'
+      text: window.$t('elements.EmptyBlock')
     },
     {
       value: BlockTypeEnum.PAGE_DIVIDE_BLOCK,
-      text: 'Page breaker'
+      text: window.$t('elements.PageDivideBlock')
     },
     {
       value: BlockTypeEnum.REPEAT_BLOCK,
-      text: 'Repeat'
+      text: window.$t('elements.RepeatBlock')
     },
     {
       value: BlockTypeEnum.LIST_BLOCK,
-      text: 'List'
+      text: window.$t('elements.ListBlock')
     }
   ],
 

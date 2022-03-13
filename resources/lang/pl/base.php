@@ -33,6 +33,8 @@ return [
         'download' => 'Pobierz',
         'remind' => 'Przypomnij',
         'remove' => 'Usuń',
+        'delete' => 'Usuń',
+        'copy' => 'Kopiuj',
         'render' => 'Renderuj',
         'try_again' => 'Spróbuj ponownie',
         'save' => 'Zapisz',

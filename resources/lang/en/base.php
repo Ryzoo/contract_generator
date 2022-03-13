@@ -33,6 +33,8 @@ return [
         'download' => 'Download',
         'remind' => 'Remind',
         'remove' => 'Remove',
+        'delete' => 'Delete',
+        'copy' => 'Copy',
         'render' => 'Render',
         'try_again' => 'Try again',
         'save' => 'Save',

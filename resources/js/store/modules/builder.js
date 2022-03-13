@@ -315,11 +315,11 @@ const getters = {
   builder_getBlockId: state => state.builder.idBlockIncrement,
   builder_getVariableId: state => state.builder.idVariableIncrement,
   builder_allVariables: state => state.builder.variables,
-  builder_getFirstStep: state => {
+  builder_getFirstStep: _ => {
     return {
       id: 1,
       parentId: 0,
-      blockName: 'Step',
+      blockName: `${window.$t('elements.PageDivideBlock')} 1`,
       blockType: BlockTypeEnum.PAGE_DIVIDE_BLOCK,
       content: {
         blocks: []

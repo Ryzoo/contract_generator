@@ -73,7 +73,7 @@ export default {
       this.$store.dispatch('builder_idBlockIncrement')
       this.newBlock.id = this.$store.getters.builder_getBlockId
       this.newBlock.blockType = blockType
-      this.newBlock.blockName = `New block: ${this.newBlock.id}`
+      this.newBlock.blockName = `${window.$t('elements.newBlock')} ${this.newBlock.id}`
       this.newBlock.settings = {}
 
       switch (parseInt(this.newBlock.blockType)) {
@@ -89,7 +89,7 @@ export default {
           this.newBlock.settings = {
             isBreaker: false
           }
-          this.newBlock.blockName = 'Step'
+          this.newBlock.blockName = window.$t('elements.PageDivideBlock')
           break
       }
 
@@ -184,7 +184,7 @@ export default {
     .builder-elements {
       padding: 15px 0;
       display: flex;
-      justify-content: space-around;
+      justify-content: flex-start;
       flex-wrap: wrap;
 
       .select-options {

@@ -33,7 +33,7 @@ return [
         'moduleConfiguration' => 'Configuration of the module:'
     ],
     'base' => [
-        'step' => 'Step:'
+        'step' => 'Form step'
     ],
     'notify' => [
         'completeAllElement' => 'Fill properly all inputs on this page to go next!'

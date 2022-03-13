@@ -2,14 +2,11 @@
   <div :class="block.id > 1 ? '' : 'ignore-elements'" :data-id="block.id">
     <div class="block-header accordion-body"
          v-if="block.blockType !== BlockTypeEnum.PAGE_DIVIDE_BLOCK">
-      <div class="block-handle">
-        <i class="fas fa-arrows-alt"></i>
-      </div>
-      <div class="block-header--icon">
-        <v-icon class="mx-3 rotate" @click="toggleBlock($event)">fa-chevron-right</v-icon>
+      <div class="block-handle pr-5">
+        <i class="fas fa-arrows-alt"/>
       </div>
       <div class="block-header--content" @click="toggleBlock($event)">
-        <div class="block-header--type">{{ toUpper(Mapper.getBlockName(block.blockType)) }}</div>
+        <div class="block-header--type">{{ Mapper.getBlockName(block.blockType) }}</div>
         <h5 class="pr-2">
           {{ block.blockName | truncate}}
         </h5>
@@ -44,13 +41,13 @@
           />
         </div>
         <!--      <v-btn small text color="accent" @click="saveAsPart()"> Save as part <v-icon small right>fa-save</v-icon> </v-btn>-->
-        <v-btn small text color="info" @click="copyBlock()"> Copy
+        <v-btn small text color="info" @click="copyBlock()"> {{$t('base.button.copy')}}
           <v-icon small right>fa-copy</v-icon>
         </v-btn>
-        <v-btn small text color="primary" @click="editBlock()"> Edit
+        <v-btn small text color="primary" @click="editBlock()"> {{$t('base.button.edit')}}
           <v-icon small right>fa-edit</v-icon>
         </v-btn>
-        <v-btn small text color="error" @click="deleteDialog=true"> Delete
+        <v-btn small text color="error" @click="deleteDialog=true"> {{$t('base.button.delete')}}
           <v-icon small right>fa-trash</v-icon>
         </v-btn>
       </div>
@@ -92,7 +89,8 @@ export default {
         { text: 'Upper Roman', value: ListEnumeratorType.UPPER_ROMAN }
       ],
       BlockTypeEnum: BlockTypeEnum,
-      deleteDialog: false
+      deleteDialog: false,
+      isOpened: false
     }
   },
   computed: {
@@ -134,9 +132,6 @@ export default {
         value: value
       })
     },
-    toUpper (text) {
-      return text.replace(/([A-Z])/g, ' $1').trim().toUpperCase()
-    },
     copyBlock () {
       this.$store.dispatch('builder_copyBlock', this.block)
     },
@@ -150,6 +145,7 @@ export default {
         })
     },
     toggleBlock (e) {
+      this.isOpened = !this.isOpened
       e.target.closest('.accordion-header').classList.toggle('active')
     },
     removeBlock () {
@@ -212,8 +208,7 @@ export default {
     }
 
     &.active {
-      border: 3px solid $primary;
-      box-shadow: 0 2px 3px 0 $primary;
+      box-shadow: 0 0 10px 0 $primary;
 
       & > .row > .block-details {
         display: block;
