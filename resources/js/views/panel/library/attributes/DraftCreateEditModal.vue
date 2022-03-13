@@ -62,7 +62,7 @@
           Get from library
         </v-btn>
       </v-row>
-      <v-divider class="my-2"></v-divider>
+      <v-divider class="my-5"></v-divider>
       <div v-if="draft.content.length"
            class="text-center">
         <v-row>

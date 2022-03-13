@@ -4,7 +4,7 @@
       <Header
           @show-attribute-modal="showAttributeModal = true"
       />
-      <v-divider class="mb-3"/>
+      <v-divider class="my-3"/>
     </v-col>
     <v-col cols="12">
       <BlockLayout

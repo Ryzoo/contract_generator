@@ -8,6 +8,9 @@
               :headers="headers"
               :items="items"
           >
+            <template v-slot:item.id="{ item }">
+              <a :href="`/api/debug/render/${item.id}`">{{item.id}}</a>
+            </template>
             <template v-slot:item.status="{ item }">
               <v-chip
                   class="ma-1"
@@ -57,6 +60,10 @@ export default {
     return {
       isLoaded: true,
       headers: [
+        {
+          text: 'ID',
+          value: 'id'
+        },
         {
           text: this.$t('base.headers.name'),
           value: 'name'

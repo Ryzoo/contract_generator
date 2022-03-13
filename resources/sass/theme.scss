@@ -291,4 +291,12 @@ section {
   margin:40px 20px 20px 20px;
 }
 
+.v-card__text{
+  padding: 20px 24px !important;
+}
+
+.v-sheet{
+  border-radius: 0 !important;
+}
+
 @import "theme/table";
