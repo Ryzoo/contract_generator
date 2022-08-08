@@ -11,7 +11,7 @@
 - create database `theDatabaseName` on localhost mysql server that can be connected using root, root
 - run `yarn`
 - run `yarn start`
-- run `composer install`
+- run `composer install --ignore-platform-reqs`
 - run `php artisan storage:link`
 - run `php artisan migrate:fresh --seed`
 - run `php artisan serve`
