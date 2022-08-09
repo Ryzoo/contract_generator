@@ -1,10 +1,8 @@
 import Notify from "./additionalModules/Notify";
 import Auth from "./additionalModules/Auth";
 import Notification from "./additionalModules/Notification";
-import translator from "./VueTranslation/Translation";
 
-window.$t = translator.translate;
-
+window.$ = window.jQuery = require("jquery");
 window.Notify = window.notify = new Notify();
 window.auth = new Auth();
 window.Notification = new Notification();

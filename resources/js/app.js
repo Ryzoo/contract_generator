@@ -13,9 +13,8 @@ import translator from "./VueTranslation/Translation";
 import store from "./store";
 import route from "./route";
 
-Vue.prototype.$t = window.$t = translator.translate;
-
 require("./bootstrap");
+Vue.prototype.$t = window.$t = translator.translate;
 
 window.Validator = Validator;
 window.Sortable = Sortable;

@@ -233,7 +233,7 @@ export default {
       selectedSize: 0,
       navigatedVariableIndex: 0,
       observer: null,
-      variableSuggestions: this.variableUpdated || [],
+      variableSuggestions: [],
     };
   },
   watch: {

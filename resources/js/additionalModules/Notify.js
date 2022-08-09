@@ -20,10 +20,11 @@ export default class Notify {
 
   createContainer() {
     const containerHtml = '<div class="notify-container"></div>';
-    const container = $("body").find(".notify-container");
+    const container =
+      window.document.getElementsByClassName(".notify-container");
 
     if (container.length <= 0) {
-      $("body").append(containerHtml);
+      window.document.body.insertAdjacentHTML("beforeend", containerHtml);
     }
   }
 

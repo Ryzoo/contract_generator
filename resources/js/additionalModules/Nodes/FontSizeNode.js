@@ -4,7 +4,7 @@ import "@tiptap/extension-text-style";
 export const FontSizeNode = Extension.create({
   name: "fontSize",
 
-  defaultOptions: {
+  addOptions: {
     types: ["textStyle"],
   },
 
