@@ -17,10 +17,10 @@
 import VclCode from 'vue-content-loading'
 
 export default {
-  name: 'Loader',
-  components: {
-    VclCode
-  }
+    name: 'Loader',
+    components: {
+        VclCode,
+    },
 }
 </script>
 

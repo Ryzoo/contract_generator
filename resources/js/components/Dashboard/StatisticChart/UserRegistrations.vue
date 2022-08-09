@@ -1,64 +1,62 @@
 <template>
-  <v-card
-    class="mt-4 mx-auto"
-  >
-    <v-sheet
-      class="v-sheet--offset mx-auto"
-      color="cyan"
-      elevation="12"
-      max-width="calc(100% - 32px)"
-    >
-      <v-sparkline
-        :labels="labels"
-        :value="value"
-        color="white"
-        line-width="2"
-        padding="16"
-      ></v-sparkline>
-    </v-sheet>
+    <v-card class="mt-4 mx-auto">
+        <v-sheet
+            class="v-sheet--offset mx-auto"
+            color="cyan"
+            elevation="12"
+            max-width="calc(100% - 32px)"
+        >
+            <v-sparkline
+                :labels="labels"
+                :value="value"
+                color="white"
+                line-width="2"
+                padding="16"
+            ></v-sparkline>
+        </v-sheet>
 
-    <v-card-text class="pt-0">
-      <div class="title font-weight-light mb-2">User Registrations</div>
-      <v-divider class="my-2"></v-divider>
-      <v-icon
-        class="mr-2"
-        small
-      >
-        fa-clock
-      </v-icon>
-      <span class="caption grey--text font-weight-light" v-if="lastTime">last registration created {{lastTime}}</span>
-      <span class="caption grey--text font-weight-light" v-else>Wait for some registrations!</span>
-    </v-card-text>
-  </v-card>
+        <v-card-text class="pt-0">
+            <div class="title font-weight-light mb-2">User Registrations</div>
+            <v-divider class="my-2"></v-divider>
+            <v-icon class="mr-2" small> fa-clock </v-icon>
+            <span class="caption grey--text font-weight-light" v-if="lastTime"
+                >last registration created {{ lastTime }}</span
+            >
+            <span class="caption grey--text font-weight-light" v-else
+                >Wait for some registrations!</span
+            >
+        </v-card-text>
+    </v-card>
 </template>
 
 <script>
 import { StatisticType } from '../../../additionalModules/Enums'
 
 export default {
-  name: 'UserRegistrations',
-  data: () => ({
-    lastTime: null,
-    labels: [],
-    value: []
-  }),
-  mounted () {
-    axios.get(`statistic/${StatisticType.REGISTRATIONS}`)
-      .then((response) => {
-        this.lastTime = response.data.lastTime
+    name: 'UserRegistrations',
+    data: () => ({
+        lastTime: null,
+        labels: [],
+        value: [],
+    }),
+    mounted() {
+        axios
+            .get(`statistic/${StatisticType.REGISTRATIONS}`)
+            .then((response) => {
+                this.lastTime = response.data.lastTime
 
-        response.data.data.forEach(x => {
-          this.labels.push(x.date.substring(0, 2))
-          this.value.push(x.count)
-        })
-      })
-  }
+                response.data.data.forEach((x) => {
+                    this.labels.push(x.date.substring(0, 2))
+                    this.value.push(x.count)
+                })
+            })
+    },
 }
 </script>
 
 <style scoped>
-  .v-sheet--offset {
+.v-sheet--offset {
     top: -24px;
     position: relative;
-  }
+}
 </style>

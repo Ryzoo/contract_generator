@@ -1,23 +1,24 @@
 <template>
-  <div
-    :class="currentBlock.id > 1 ? 'block' : 'block ignore-elements'"
-    :blockid="currentBlock.id">
-    <div class="accordion-header" :data-id="0">
-      <BlockHeader
-        @show-block-modal="showBlockModal"
-        :block="currentBlock"
-        :nested-variables="nestedVariables"
-      />
-      <component
-        class="block-content-in"
-        :nested-variables="nestedVariables"
-        :is="Mapper.getBlockComponentByName(currentBlock.blockType)"
-        :block="currentBlock"
-        :in-list="inList"
-        @show-block-modal="showBlockModal"
-      />
+    <div
+        :class="currentBlock.id > 1 ? 'block' : 'block ignore-elements'"
+        :blockid="currentBlock.id"
+    >
+        <div class="accordion-header" :data-id="0">
+            <BlockHeader
+                @show-block-modal="showBlockModal"
+                :block="currentBlock"
+                :nested-variables="nestedVariables"
+            />
+            <component
+                class="block-content-in"
+                :nested-variables="nestedVariables"
+                :is="Mapper.getBlockComponentByName(currentBlock.blockType)"
+                :block="currentBlock"
+                :in-list="inList"
+                @show-block-modal="showBlockModal"
+            />
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -31,41 +32,46 @@ import { BlockTypeEnum } from '../../../../additionalModules/Enums'
 import AddBlockDialog from './AddBlockDialog'
 
 export default {
-  name: 'ContainerBlock',
-  components: {
-    AddBlockDialog,
-    BlockHeader,
-    TextBlock,
-    EmptyBlock,
-    PageDivideBlock,
-    RepeatBlock,
-    ListBlock
-  },
-  props: [
-    'block', 'divider', 'level', 'blockIndex', 'nestedVariables', 'inList'
-  ],
-  data () {
-    return {
-      BlockTypeEnum: BlockTypeEnum,
-      currentBlock: this.block
-    }
-  },
-  methods: {
-    showBlockModal () {
-      this.$emit('show-block-modal')
-    }
-  },
-  watch: {
-    block (newValue) {
-      this.currentBlock = newValue
-      this.$forceUpdate()
-    }
-  }
+    name: 'ContainerBlock',
+    components: {
+        AddBlockDialog,
+        BlockHeader,
+        TextBlock,
+        EmptyBlock,
+        PageDivideBlock,
+        RepeatBlock,
+        ListBlock,
+    },
+    props: [
+        'block',
+        'divider',
+        'level',
+        'blockIndex',
+        'nestedVariables',
+        'inList',
+    ],
+    data() {
+        return {
+            BlockTypeEnum: BlockTypeEnum,
+            currentBlock: this.block,
+        }
+    },
+    methods: {
+        showBlockModal() {
+            this.$emit('show-block-modal')
+        },
+    },
+    watch: {
+        block(newValue) {
+            this.currentBlock = newValue
+            this.$forceUpdate()
+        },
+    },
 }
 </script>
 
 <style lang="scss" scoped>
-  .block {
+.block {
     margin: 8px;
-  }
+}
 </style>

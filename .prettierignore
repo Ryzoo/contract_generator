@@ -1,0 +1,14 @@
+# Ignore artifacts:
+app
+bootstrap
+config
+database
+resources/lang
+resources/sass
+resources/views
+routes
+storage
+tests
+public
+.yarn
+vendor

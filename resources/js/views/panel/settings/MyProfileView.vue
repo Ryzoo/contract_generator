@@ -8,15 +8,15 @@
 import ProfileView from '../../../components/ProfileView'
 
 export default {
-  name: 'MyProfileView',
-  components: {
-    'profile-view': ProfileView
-  },
-  data () {
-    return {
-      user: Object.assign({}, this.$store.getters.authUser)
-    }
-  }
+    name: 'MyProfileView',
+    components: {
+        'profile-view': ProfileView,
+    },
+    data() {
+        return {
+            user: Object.assign({}, this.$store.getters.authUser),
+        }
+    },
 }
 </script>
 

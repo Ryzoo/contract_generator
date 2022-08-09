@@ -11,13 +11,13 @@ import LibraryAttributeModule from './modules/libraryAttribute'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  modules: {
-    authUser: authUserModule,
-    formElements: formElementsModule,
-    builder: builderModule,
-    contractModules: contractModulesModule,
-    newContract: newContractModule,
-    notification: NotificationModule,
-    libraryAttribute: LibraryAttributeModule
-  }
+    modules: {
+        authUser: authUserModule,
+        formElements: formElementsModule,
+        builder: builderModule,
+        contractModules: contractModulesModule,
+        newContract: newContractModule,
+        notification: NotificationModule,
+        libraryAttribute: LibraryAttributeModule,
+    },
 })

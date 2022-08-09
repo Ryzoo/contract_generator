@@ -1,37 +1,45 @@
 import { Mark } from '@tiptap/core'
 
 export const ParagraphListNode = Mark.create({
-  name: 'paragraphList',
+    name: 'paragraphList',
 
-  addOptions () {
-    return {
-      HTMLAttributes: {}
-    }
-  },
+    addOptions() {
+        return {
+            HTMLAttributes: {},
+        }
+    },
 
-  parseHTML () {
-    return [
-      { tag: 'span.paragraph-list' }
-    ]
-  },
+    parseHTML() {
+        return [{ tag: 'span.paragraph-list' }]
+    },
 
-  renderHTML () {
-    return ['span', { class: 'paragraph-list' }, ['span', { class: 'paragraph-counter' }, 0]]
-  },
+    renderHTML() {
+        return [
+            'span',
+            { class: 'paragraph-list' },
+            ['span', { class: 'paragraph-counter' }, 0],
+        ]
+    },
 
-  addCommands () {
-    return {
-      setParagraph: () => ({ commands }) => {
-        return commands.setMark(this.name)
-      },
-      toggleParagraph: () => ({ commands }) => {
-        return commands.toggleMark(this.name)
-      },
-      unsetParagraph: () => ({ commands }) => {
-        return commands.unsetMark(this.name)
-      }
-    }
-  }
+    addCommands() {
+        return {
+            setParagraph:
+                () =>
+                ({ commands }) => {
+                    return commands.setMark(this.name)
+                },
+            toggleParagraph:
+                () =>
+                ({ commands }) => {
+                    return commands.toggleMark(this.name)
+                },
+            unsetParagraph:
+                () =>
+                ({ commands }) => {
+                    return commands.unsetMark(this.name)
+                },
+        }
+    },
 })
 
 export default ParagraphListNode

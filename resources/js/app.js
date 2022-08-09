@@ -22,17 +22,20 @@ window.Sortable = Sortable
 window.DragService = DragService
 
 Vue.component('loader', require('./components/Loader').default)
-Vue.component('ContainerBlock', require('./components/Contract/Builder/Blocks/ContainerBlock').default)
+Vue.component(
+    'ContainerBlock',
+    require('./components/Contract/Builder/Blocks/ContainerBlock').default
+)
 
 ConditionalParser.setStore(store)
 
 window.ConditionalParser = ConditionalParser
 
 Vue.filter('truncate', function (text, clamp) {
-  return text.slice(0, 50) + (text.length > 50 ? clamp || '...' : '')
+    return text.slice(0, 50) + (text.length > 50 ? clamp || '...' : '')
 })
 Vue.filter('truncateStep', function (text, clamp) {
-  return text.slice(0, 20) + (text.length > 20 ? clamp || '...' : '')
+    return text.slice(0, 20) + (text.length > 20 ? clamp || '...' : '')
 })
 
 window.Notification.setStore(store)
@@ -41,37 +44,39 @@ window.Notification.setRouter(route)
 window.auth.setRouter(route)
 
 Vue.mixin({
-  data: function () {
-    return {
-      Auth: window.auth,
-      Notification: window.Notification,
-      Mapper: Mapper,
-      Validator: Validator,
-      Notify: window.Notify,
-      ConditionalParser: ConditionalParser
-    }
-  },
-  methods: {
-    getRoleName (roleId) {
-      for (const i in UserRoleEnum) {
-        if (UserRoleEnum[i] === roleId) { return this.$t(`user.roles.${i}`) }
-      }
-      return '---'
-    }
-  }
+    data: function () {
+        return {
+            Auth: window.auth,
+            Notification: window.Notification,
+            Mapper: Mapper,
+            Validator: Validator,
+            Notify: window.Notify,
+            ConditionalParser: ConditionalParser,
+        }
+    },
+    methods: {
+        getRoleName(roleId) {
+            for (const i in UserRoleEnum) {
+                if (UserRoleEnum[i] === roleId) {
+                    return this.$t(`user.roles.${i}`)
+                }
+            }
+            return '---'
+        },
+    },
 })
 
 Vue.filter('striphtml', function (value) {
-  const div = document.createElement('div')
-  div.innerHTML = value
-  return div.textContent || div.innerText || ''
+    const div = document.createElement('div')
+    div.innerHTML = value
+    return div.textContent || div.innerText || ''
 })
 
 const app = new Vue({
-  vuetify,
-  el: '#app',
-  store,
-  router: route
+    vuetify,
+    el: '#app',
+    store,
+    router: route,
 })
 
 export default app
