@@ -1,4 +1,4 @@
 export const AuthType = {
-    LOGIN: '1',
-    PASSWORD: '2',
-}
+  LOGIN: "1",
+  PASSWORD: "2",
+};

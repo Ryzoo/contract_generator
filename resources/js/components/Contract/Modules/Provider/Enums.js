@@ -1,4 +1,4 @@
 export const ContractProviderType = {
-    RENDER: '0',
-    EMAIL: '1',
-}
+  RENDER: "0",
+  EMAIL: "1",
+};

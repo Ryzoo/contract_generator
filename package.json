@@ -9,8 +9,8 @@
         "test-unit": "./vendor/bin/codecept run unit",
         "test-api": "./vendor/bin/codecept run api",
         "lang": "php artisan VueTranslation:generate",
-        "lint": "eslint resources/js/ --ext .js,.vue",
-        "lint:fix": "eslint --fix resources/js/ --ext .js,.vue"
+        "lint": "eslint resources/js",
+        "lint:fix": "eslint --fix resources/js"
     },
     "devDependencies": {
         "@fortawesome/fontawesome-free": "^6.1.2",
@@ -20,12 +20,7 @@
         "css-loader": "^6.7.1",
         "eslint": "^7.32.0",
         "eslint-config-prettier": "^8.5.0",
-        "eslint-config-standard": "^16.0.3",
-        "eslint-plugin-import": "^2.26.0",
-        "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-prettier": "^4.2.1",
-        "eslint-plugin-promise": "^5.2.0",
-        "eslint-plugin-standard": "^5.0.0",
         "eslint-plugin-vue": "^7.20.0",
         "jquery": "^3.6.0",
         "laravel-mix": "^6.0.49",

@@ -1,149 +1,149 @@
 class validation {
-    constructor(elements) {
-        this.elements = elements
-        this.currentName = null
-        this.current = null
+  constructor(elements) {
+    this.elements = elements;
+    this.currentName = null;
+    this.current = null;
+  }
+
+  get(name) {
+    this.currentName = name;
+    this.current = this.elements[name];
+    return this;
+  }
+
+  returnError(errorText) {
+    window.Notify.push(errorText, window.notify.ERROR, 4000);
+    // eslint-disable-next-line no-throw-literal
+    throw "validate failed";
+  }
+
+  isTrue() {
+    this.isNotNull();
+    const re = !!this.current;
+    if (re !== true) {
+      this.returnError(
+        window.$t("validation.required", {
+          attribute: this.currentName,
+        })
+      );
+    }
+    return this;
+  }
+
+  isBetween(min, max) {
+    this.isNotNull();
+
+    const re = parseInt(this.current);
+
+    if (re === null || re === undefined) {
+      this.returnError(
+        window.$t("validation.numeric", { attribute: this.currentName })
+      );
     }
 
-    get(name) {
-        this.currentName = name
-        this.current = this.elements[name]
-        return this
+    if (!(re >= min && re <= max)) {
+      this.returnError(
+        window.$t("validation.between.numeric", {
+          attribute: this.currentName,
+          min: min,
+          max: max,
+        })
+      );
     }
+    return this;
+  }
 
-    returnError(errorText) {
-        window.Notify.push(errorText, window.notify.ERROR, 4000)
-        // eslint-disable-next-line no-throw-literal
-        throw 'validate failed'
+  isEmail() {
+    this.isString();
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!re.test(this.current.toLowerCase())) {
+      this.returnError(
+        window.$t("validation.email", { attribute: this.currentName })
+      );
     }
+    return this;
+  }
 
-    isTrue() {
-        this.isNotNull()
-        const re = !!this.current
-        if (re !== true) {
-            this.returnError(
-                window.$t('validation.required', {
-                    attribute: this.currentName,
-                })
-            )
-        }
-        return this
+  sameAs(comparedProp) {
+    this.isString();
+    if (this.elements[comparedProp] !== this.current) {
+      this.returnError(
+        window.$t("validation.same", {
+          attribute: this.currentName,
+          other: comparedProp,
+        })
+      );
     }
+    return this;
+  }
 
-    isBetween(min, max) {
-        this.isNotNull()
-
-        const re = parseInt(this.current)
-
-        if (re === null || re === undefined) {
-            this.returnError(
-                window.$t('validation.numeric', { attribute: this.currentName })
-            )
-        }
-
-        if (!(re >= min && re <= max)) {
-            this.returnError(
-                window.$t('validation.between.numeric', {
-                    attribute: this.currentName,
-                    min: min,
-                    max: max,
-                })
-            )
-        }
-        return this
+  isNotNull() {
+    if (this.current === null || this.current.length === 0) {
+      this.returnError(
+        window.$t("validation.required", {
+          attribute: this.currentName,
+        })
+      );
     }
+    return this;
+  }
 
-    isEmail() {
-        this.isString()
-        const re =
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        if (!re.test(this.current.toLowerCase())) {
-            this.returnError(
-                window.$t('validation.email', { attribute: this.currentName })
-            )
-        }
-        return this
+  isString() {
+    this.isNotNull();
+    const ret = typeof this.current === "string";
+    if (!ret) {
+      this.returnError(
+        window.$t("validation.string", { attribute: this.currentName })
+      );
     }
+    return this;
+  }
 
-    sameAs(comparedProp) {
-        this.isString()
-        if (this.elements[comparedProp] !== this.current) {
-            this.returnError(
-                window.$t('validation.same', {
-                    attribute: this.currentName,
-                    other: comparedProp,
-                })
-            )
-        }
-        return this
+  length(min = 0, max = null) {
+    this.isString();
+    let ret = this.current.length >= min;
+    if (max && ret) {
+      ret = this.current.length <= max;
     }
+    if (!ret) {
+      this.returnError(
+        window.$t("validation.between.string", {
+          attribute: this.currentName,
+          min: min,
+          max: max,
+        })
+      );
+    }
+    return this;
+  }
 
-    isNotNull() {
-        if (this.current === null || this.current.length === 0) {
-            this.returnError(
-                window.$t('validation.required', {
-                    attribute: this.currentName,
-                })
-            )
-        }
-        return this
+  isArray() {
+    if (!Array.isArray(this.current)) {
+      this.returnError(
+        window.$t("validation.array", { attribute: this.currentName })
+      );
     }
+    return this;
+  }
 
-    isString() {
-        this.isNotNull()
-        const ret = typeof this.current === 'string'
-        if (!ret) {
-            this.returnError(
-                window.$t('validation.string', { attribute: this.currentName })
-            )
-        }
-        return this
+  count(min = 0, max = null) {
+    this.isArray();
+    let ret = this.current.length >= min;
+    if (max && ret) {
+      ret = this.current.length <= max;
     }
-
-    length(min = 0, max = null) {
-        this.isString()
-        let ret = this.current.length >= min
-        if (max && ret) {
-            ret = this.current.length <= max
-        }
-        if (!ret) {
-            this.returnError(
-                window.$t('validation.between.string', {
-                    attribute: this.currentName,
-                    min: min,
-                    max: max,
-                })
-            )
-        }
-        return this
+    if (!ret) {
+      this.returnError(
+        window.$t("validation.between.array", {
+          attribute: this.currentName,
+          min: min,
+          max: max,
+        })
+      );
     }
-
-    isArray() {
-        if (!Array.isArray(this.current)) {
-            this.returnError(
-                window.$t('validation.array', { attribute: this.currentName })
-            )
-        }
-        return this
-    }
-
-    count(min = 0, max = null) {
-        this.isArray()
-        let ret = this.current.length >= min
-        if (max && ret) {
-            ret = this.current.length <= max
-        }
-        if (!ret) {
-            this.returnError(
-                window.$t('validation.between.array', {
-                    attribute: this.currentName,
-                    min: min,
-                    max: max,
-                })
-            )
-        }
-        return this
-    }
+    return this;
+  }
 }
 
-export default validation
+export default validation;

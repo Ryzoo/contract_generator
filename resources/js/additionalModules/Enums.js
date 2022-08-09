@@ -1,69 +1,69 @@
 export const UserRoleEnum = {
-    CLIENT: '0',
-    ADMINISTRATOR: '1',
-}
+  CLIENT: "0",
+  ADMINISTRATOR: "1",
+};
 
 export const StatisticType = {
-    SUBMISSIONS: 0,
-    REGISTRATIONS: 1,
-    NEW_CONTRACTS: 2,
-}
+  SUBMISSIONS: 0,
+  REGISTRATIONS: 1,
+  NEW_CONTRACTS: 2,
+};
 
 export const BlockTypeEnum = {
-    NEW_BLOCK: -1,
-    TEXT_BLOCK: 0,
-    EMPTY_BLOCK: 1,
-    PAGE_DIVIDE_BLOCK: 2,
-    REPEAT_BLOCK: 3,
-    LIST_BLOCK: 4,
-}
+  NEW_BLOCK: -1,
+  TEXT_BLOCK: 0,
+  EMPTY_BLOCK: 1,
+  PAGE_DIVIDE_BLOCK: 2,
+  REPEAT_BLOCK: 3,
+  LIST_BLOCK: 4,
+};
 
 export const AttributeTypeEnum = {
-    NUMBER: 0,
-    TEXT: 1,
-    SELECT: 2,
-    ATTRIBUTE_GROUP: 3,
-    DATE: 4,
-    TIME: 5,
-    BOOL: 6,
-    AGGREGATE: 7,
-    BOOL_INPUT: 8,
-    CURRENCY: 9,
-}
+  NUMBER: 0,
+  TEXT: 1,
+  SELECT: 2,
+  ATTRIBUTE_GROUP: 3,
+  DATE: 4,
+  TIME: 5,
+  BOOL: 6,
+  AGGREGATE: 7,
+  BOOL_INPUT: 8,
+  CURRENCY: 9,
+};
 
 export const ConditionalEnum = {
-    SHOW_ON: 0,
-}
+  SHOW_ON: 0,
+};
 
 export const FormElementsEnum = {
-    PAGE_BRAKE: 0,
-    ATTRIBUTE: 1,
-}
+  PAGE_BRAKE: 0,
+  ATTRIBUTE: 1,
+};
 
 export const AvailableRenderActionsHook = {
-    BEFORE_FORM_RENDER: 0,
-    FORM_RENDER: 1,
-    BEFORE_FORM_END: 2,
-    AFTER_FORM_END: 3,
-}
+  BEFORE_FORM_RENDER: 0,
+  FORM_RENDER: 1,
+  BEFORE_FORM_END: 2,
+  AFTER_FORM_END: 3,
+};
 
 export const ContractModulesAvailablePlace = {
-    PRE_FORM: 0,
-    POST_FORM: 1,
-    FINISHER: 2,
-}
+  PRE_FORM: 0,
+  POST_FORM: 1,
+  FINISHER: 2,
+};
 
 export const MultiUseRenderType = {
-    LIST: 0,
-    TABLE: 1,
-    COMMA_SEPARATED: 2,
-    LIST_NUMBER: 3,
-    LIST_ALFA: 4,
-}
+  LIST: 0,
+  TABLE: 1,
+  COMMA_SEPARATED: 2,
+  LIST_NUMBER: 3,
+  LIST_ALFA: 4,
+};
 
 export const ListEnumeratorType = {
-    DOT: 0,
-    DECIMAL: 1,
-    LOVER_ALPHA: 2,
-    UPPER_ROMAN: 3,
-}
+  DOT: 0,
+  DECIMAL: 1,
+  LOVER_ALPHA: 2,
+  UPPER_ROMAN: 3,
+};
