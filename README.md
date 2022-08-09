@@ -2,9 +2,10 @@
 
 ## Requirement
 
--   php 8.1
--   mysql 5.7 with database theDatabaseName on localhost and login root, password root
--   composer
+- php 8.1
+- node 16.x
+- mysql 5.7 with database theDatabaseName on localhost and login root, password root
+- composer
 
 ## How to run
 
