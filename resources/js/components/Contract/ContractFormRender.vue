@@ -68,32 +68,6 @@
                             :key="`${step.id}-content`"
                             :step="step.id"
                         >
-                            <v-row v-if="step.content.length > 5">
-                                <v-col>
-                                    <v-btn
-                                        text
-                                        v-if="
-                                            actualStep > 1 &&
-                                            actualStep <= stepList.length
-                                        "
-                                        @click="goBackStep"
-                                        >Go back
-                                    </v-btn>
-                                    <v-btn
-                                        color="primary"
-                                        v-if="actualStep < stepList.length"
-                                        @click="goToNextStep"
-                                        >Go next
-                                    </v-btn>
-                                    <v-btn
-                                        color="success"
-                                        v-if="actualStep === stepList.length"
-                                        @click="finishContractForm"
-                                        >Finish
-                                    </v-btn>
-                                </v-col>
-                            </v-row>
-
                             <v-row v-if="actualStep === 1">
                                 <v-col>
                                     <v-alert
