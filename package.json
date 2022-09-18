@@ -3,7 +3,7 @@
     "scripts": {
         "start": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
-        "production": "mix --production",
+        "production": "mix",
         "test": "./vendor/bin/codecept build && npm run test-unit && npm run test-api",
         "test-func": "./vendor/bin/codecept run functional",
         "test-unit": "./vendor/bin/codecept run unit",
