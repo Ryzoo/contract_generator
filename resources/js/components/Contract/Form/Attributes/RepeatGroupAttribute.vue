@@ -11,7 +11,7 @@
     <v-col
       cols="12"
       v-for="(attribute, index) in attributesList"
-      :key="index + ' ' + lastLength"
+      :key="`${index}--${attributesList.id}--${lastLength}`"
     >
       <component
         :outside="true"
