@@ -98,6 +98,7 @@ export default {
         { text: "Decimal", value: ListEnumeratorType.DECIMAL },
         { text: "Lover alpha", value: ListEnumeratorType.LOVER_ALPHA },
         { text: "Upper Roman", value: ListEnumeratorType.UPPER_ROMAN },
+        { text: "Lower Roman", value: ListEnumeratorType.LOWER_ROMAN },
       ],
       BlockTypeEnum: BlockTypeEnum,
       deleteDialog: false,

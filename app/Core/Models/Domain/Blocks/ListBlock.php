@@ -84,6 +84,8 @@ class ListBlock extends EmptyBlock
                 return '<ol style="list-style-type: lower-alpha;">';
             case EnumeratorListType::UPPER_ROMAN:
                 return '<ol style="list-style-type: upper-roman;">';
+            case EnumeratorListType::LOWER_ROMAN:
+                return '<ol style="list-style-type: lower-roman;">';
         }
 
         return '<ul>';
@@ -97,6 +99,7 @@ class ListBlock extends EmptyBlock
             case EnumeratorListType::DECIMAL:
             case EnumeratorListType::LOVER_ALPHA:
             case EnumeratorListType::UPPER_ROMAN:
+            case EnumeratorListType::LOWER_ROMAN:
                 return '</ol>';
         }
 

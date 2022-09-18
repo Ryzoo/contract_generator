@@ -66,4 +66,5 @@ export const ListEnumeratorType = {
   DECIMAL: 1,
   LOVER_ALPHA: 2,
   UPPER_ROMAN: 3,
+  LOWER_ROMAN: 4,
 };
