@@ -3,7 +3,7 @@
     <v-container>
       <component
         v-for="(formElement, index) in activeFormElements"
-        :key="`${index}--${activeFormElements.id}`"
+        :key="`${index}--${formElement.id}`"
         :is="Mapper.getElementFormComponentName(formElement.elementType)"
         v-bind="{
           formElement: Object.assign({}, formElement),
