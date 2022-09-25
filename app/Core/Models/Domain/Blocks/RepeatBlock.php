@@ -123,10 +123,12 @@ class RepeatBlock extends Block
         $elements = $this->repeatContentAsArray($htmlString, $attributes);
 
         foreach ($elements as $key => $value) {
-            $htmlString .= $value;
-            if (count($elements) > ($key + 1)) {
+
+            if ($key !== 0) {
                 $htmlString .= $this->getSeparator();
             }
+
+            $htmlString .= $value;
         }
 
         return $htmlString;
