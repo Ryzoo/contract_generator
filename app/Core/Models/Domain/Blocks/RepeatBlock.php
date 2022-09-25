@@ -124,7 +124,7 @@ class RepeatBlock extends Block
 
         foreach ($elements as $key => $value) {
             $htmlString .= $value;
-            if ($key === 0) {
+            if (count($elements) > ($key + 1)) {
                 $htmlString .= $this->getSeparator();
             }
         }
