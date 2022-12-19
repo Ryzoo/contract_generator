@@ -1,15 +1,15 @@
 <template>
   <v-autocomplete
     v-if="!this.attribute.settings.allowSelfOptions"
-    :items="this.attribute.settings.items"
     :error="!attribute.isValid"
     :error-messages="attribute.errorMessage"
     :label="attribute.attributeName"
     :multiple="!!attribute.settings.isMultiSelect"
     :placeholder="attribute.placeholder || ' '"
-    v-model="currentValue"
     :hint="attribute.labelAfter"
     :name="attribute.attributeName"
+    :items="this.attribute.settings.items"
+    v-model="currentValue"
     chips
     small-chips
     persistent-placeholder
@@ -71,9 +71,13 @@
 </template>
 
 <script>
-const parseValue = (value) => {
+const parseValue = (value, attribute) => {
   if (value.includes("|,")) {
     return value.split("|,");
+  }
+
+  if(!!attribute.settings.isMultiSelect && !Array.isArray(value)){
+    return [value];
   }
 
   return value;
@@ -83,14 +87,16 @@ export default {
   name: "SelectAttribute",
   props: ["attribute", "outside"],
   data() {
+      console.log('start')
     return {
       currentValue: parseValue(
         this.attribute.value || this.attribute.defaultValue
-      ),
+      , this.attribute),
     };
   },
   watch: {
     currentValue(newValue) {
+      console.log(newValue)
       if (this.outside) {
         this.$emit("change-value", {
           ...this.attribute,
@@ -106,7 +112,8 @@ export default {
   },
   methods: {
     resetForm() {
-      this.currentValue = parseValue(this.attribute.defaultValue);
+      console.log('resetForm')
+      this.currentValue = parseValue(this.attribute.defaultValue, this.attribute);
     },
   },
 };
