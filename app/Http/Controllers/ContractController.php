@@ -125,7 +125,7 @@ class ContractController extends Controller
         $contract->categories()->sync($contractCategories);
         $contract->save();
 
-        UpdateContract::dispatch($contract, $this->contractService);
+        UpdateContract::dispatchNow($contract, $this->contractService);
 
         Response::success();
     }
