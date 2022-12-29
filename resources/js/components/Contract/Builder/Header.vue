@@ -20,7 +20,7 @@
             }}</v-btn>
           </v-col>
           <v-col>
-            <v-btn small block color="primary" @click="saveActual(true)">{{
+            <v-btn small block color="primary"  @click="saveActual(true)">{{
               $t("base.button.save_exit")
             }}</v-btn>
           </v-col>
@@ -116,6 +116,7 @@ export default {
     },
     saveActual(redirect) {
       this.isLoaded = false;
+      this.$emit("loading");
       const updateState = this.$store.getters.getNewContractUpdateState;
       const contract = this.$store.getters.getNewContractData;
 
@@ -139,6 +140,7 @@ export default {
             }
           })
           .finally(() => {
+          this.$emit("loaded");
             this.isLoaded = true;
           });
       });

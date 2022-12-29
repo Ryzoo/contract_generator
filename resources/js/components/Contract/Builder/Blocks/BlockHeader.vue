@@ -107,24 +107,23 @@ export default {
   },
   computed: {
     multiGroupAttributes() {
-      const selectsWithMultiUse =
-        this.$store.getters.builder_allVariables.filter(
-          (x) =>
-            x.attributeType === AttributeTypeEnum.SELECT &&
-            x.settings.isMultiSelect
-        );
+      const selectsWithMultiUse = this.$store.getters.builder_allVariables.reduce((out, next) => {
+        if(next.attributeType === AttributeTypeEnum.SELECT && next.settings.isMultiSelect){
+          return [...out, {text: next.attributeName, value: next.id,}]
+        }
+        return out
+      }, []);
+
+      const multiAttributes = this.$store.getters.builder_multiGroupAttributes.reduce((out, next) => {
+        if(!next.settings.isInline){
+          return [...out, {text: next.attributeName, value: next.id,}]
+        }
+        return out
+      }, []); 
 
       return [
-        ...this.$store.getters.builder_multiGroupAttributes
-          .filter((x) => !x.settings.isInline)
-          .map((x) => ({
-            text: x.attributeName,
-            value: x.id,
-          })),
-        ...selectsWithMultiUse.map((x) => ({
-          text: x.attributeName,
-          value: x.id,
-        })),
+        ...multiAttributes,
+        ...selectsWithMultiUse
       ];
     },
     currentListEnumeratorType() {
@@ -166,6 +165,11 @@ export default {
     },
     toggleBlock(e) {
       this.isOpened = !this.isOpened;
+      if(this.isOpened){
+        this.$emit("show-block-content");
+      }else{
+        this.$emit("hide-block-content");
+      }
       e.target.closest(".accordion-header").classList.toggle("active");
     },
     removeBlock() {

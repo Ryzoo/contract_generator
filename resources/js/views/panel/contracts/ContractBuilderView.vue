@@ -1,7 +1,7 @@
 <template>
   <v-row v-if="isLoaded">
     <v-col cols="12">
-      <Header @show-attribute-modal="showAttributeModal = true" />
+      <Header  @loading="isLoaded = false" @loaded="isLoaded = true" @show-attribute-modal="showAttributeModal = true" />
       <v-divider class="my-3" />
     </v-col>
     <v-col cols="12">

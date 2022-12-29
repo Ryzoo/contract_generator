@@ -6,10 +6,13 @@
     <div class="accordion-header" :data-id="0">
       <BlockHeader
         @show-block-modal="showBlockModal"
+        @show-block-content="showBlockContent"
+        @hide-block-content="hideBlockContent"
         :block="currentBlock"
         :nested-variables="nestedVariables"
       />
       <component
+        v-if="isOpened || Mapper.getBlockComponentByName(currentBlock.blockType) === 'PageDivideBlock'"
         class="block-content-in"
         :nested-variables="nestedVariables"
         :is="Mapper.getBlockComponentByName(currentBlock.blockType)"
@@ -29,12 +32,10 @@ import RepeatBlock from "./Types/RepeatBlock";
 import ListBlock from "./Types/ListBlock";
 import BlockHeader from "./BlockHeader";
 import { BlockTypeEnum } from "../../../../additionalModules/Enums";
-import AddBlockDialog from "./AddBlockDialog";
 
 export default {
   name: "ContainerBlock",
   components: {
-    AddBlockDialog,
     BlockHeader,
     TextBlock,
     EmptyBlock,
@@ -54,11 +55,18 @@ export default {
     return {
       BlockTypeEnum: BlockTypeEnum,
       currentBlock: this.block,
+      isOpened: false,
     };
   },
   methods: {
     showBlockModal() {
       this.$emit("show-block-modal");
+    },
+    showBlockContent() {
+      this.isOpened = true;
+    },
+    hideBlockContent() {
+      this.isOpened = false;
     },
   },
   watch: {

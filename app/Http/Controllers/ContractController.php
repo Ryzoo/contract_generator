@@ -121,11 +121,12 @@ class ContractController extends Controller
 
         $contract->fill(collect($contractData)->except(['categories', 'settings'])->toArray());
         $contract->settings = ContractSettings::fromArray($contractSettings);
+        
+        // $fullContract = $this->contractService->createContract($contract);
+        $contract->categories()->sync($contractCategories);
+        $contract->save();
 
-        $fullContract = $this->contractService->createContract($contract);
-        $fullContract->categories()->sync($contractCategories);
-
-        Response::success($fullContract);
+        Response::success();
     }
 
     public function remove(ContractRemoveRequest $request, int $contractID)
