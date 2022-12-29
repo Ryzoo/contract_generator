@@ -135,16 +135,19 @@ abstract class Block implements IBlock
 
     public function findVariable(Contract $contract): Collection
     {
-        $variableArray = collect();
+        $variables = collect();
+        $parentId = $this->parentId;
 
         foreach ($this->conditionals as $conditional) {
             $conditionalVariablesList = $conditional->getUsedVariable();
             foreach ($conditionalVariablesList as $arrayElement) {
-                $variableArray->push([$this->parentId, $arrayElement]);
+                $variables->push($arrayElement);
             }
         }
 
-        return $variableArray;
+        return $variables->unique()->map(static function ($e) use($parentId) {
+            return [$parentId, $e];
+        });
     }
 
     public function getFormElements(Contract $contract): Collection

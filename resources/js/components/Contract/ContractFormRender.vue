@@ -253,6 +253,7 @@ export default {
 }
 
 .v-stepper__header {
+  height: auto !important;
   padding: 10px 40px 70px 40px;
 }
 

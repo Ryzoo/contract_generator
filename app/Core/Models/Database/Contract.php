@@ -51,14 +51,13 @@ class Contract extends Model {
   }
 
   public function getAttributeByID(int $attributeID): ?Attribute {
-    $attributes = $this->attributesList;
     $id = $attributeID;
 
     if(str_contains((string)$attributeID, ':')){
       [$id] = explode(':', (string)$attributeID);
     }
 
-    foreach ($attributes as $attribute) {
+    foreach ($this->attributesList as $attribute) {
       if ($attribute->id === $id) {
         return $attribute;
       }

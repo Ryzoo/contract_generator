@@ -70,7 +70,9 @@ class RepeatBlock extends Block
             $variableArray = $variableArray->merge($block->findVariable($contract));
         }
 
-        return $variableArray;
+        return $variableArray->unique(function ($item) {
+            return $item[0].$item[1];
+        });
     }
 
     public function counterResolve(string $matchString, int $countStart, Contract $contract): int

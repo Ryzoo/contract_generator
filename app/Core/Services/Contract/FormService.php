@@ -32,6 +32,7 @@ class FormService {
     $formElementsCollection = $this->conditionalService
       ->initializeConditionalInFormElementsCollection($contract, $formElementsCollection);
     $formElementsCollection = $formElementsCollection->unique();
+    
     return $this->reduceElementsWithSameAttribute($formElementsCollection);
   }
 

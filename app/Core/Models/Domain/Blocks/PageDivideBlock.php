@@ -36,7 +36,7 @@ class PageDivideBlock extends Block {
     }
 
     public function getFormElements(Contract $contract): Collection{
-        $formElements = parent::getFormElements($contract);
+        $formElements = collect();
         $formElements->push( new PageDividerFormElement($this->id, $this->blockName) );
         return $formElements;
     }
