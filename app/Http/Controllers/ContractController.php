@@ -23,6 +23,7 @@ use App\Core\Services\Contract\ContractModuleService;
 use App\Http\Resources\ContractInfoCollection;
 use App\Http\Resources\ContractSubmissionCollection;
 use App\Jobs\RenderNewContract;
+use App\Jobs\UpdateContract;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
@@ -121,10 +122,10 @@ class ContractController extends Controller
 
         $contract->fill(collect($contractData)->except(['categories', 'settings'])->toArray());
         $contract->settings = ContractSettings::fromArray($contractSettings);
-        
-        // $fullContract = $this->contractService->createContract($contract);
         $contract->categories()->sync($contractCategories);
         $contract->save();
+
+        UpdateContract::dispatch($contract, $this->contractService);
 
         Response::success();
     }
