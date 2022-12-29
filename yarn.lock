@@ -6615,10 +6615,10 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"orderedmap@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "orderedmap@npm:2.0.0"
-  checksum: ccb835deb47f7b20f5e0e82a6f01f6be35faf2c67a8f598d02468d65c87e4548d3f76f98108edcbed729b60f5282bfbba4e357d5caf2868134996ef6ec1ea8b2
+"orderedmap@npm:^1.1.0":
+  version: 1.1.8
+  resolution: "orderedmap@npm:1.1.8"
+  checksum: fbf110e901fdbaf515caf0cba6c281c085e8fa3c9c1255d831f8ceecc925d4d945004d683c8a15a0d3049005a73a73f343831906c3516deef8dc8cd802235458
   languageName: node
   linkType: hard
 
@@ -7457,12 +7457,12 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"prosemirror-model@npm:1.18.1, prosemirror-model@npm:^1.0.0, prosemirror-model@npm:^1.16.0":
-  version: 1.18.1
-  resolution: "prosemirror-model@npm:1.18.1"
+"prosemirror-model@npm:1.8.2":
+  version: 1.8.2
+  resolution: "prosemirror-model@npm:1.8.2"
   dependencies:
-    orderedmap: ^2.0.0
-  checksum: 1c42fac8f4a52f02643824d93689748208abad56d69044b226d0f2533cddaf6bd1bef3a1adbd159967b6be57ccd6c4b1a6030ecf675ee4e9d0a27d2bfee98699
+    orderedmap: ^1.1.0
+  checksum: 7c5660a3391820b6da99bccdef55b94a76c47c42b3310e96e5894bbb14b589ba0f39d51ffc7cf4649b7f7d3ef0368e05e8f618afec5a5c7ceb0d8837d1e415fc
   languageName: node
   linkType: hard
 
@@ -7477,13 +7477,14 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"prosemirror-state@npm:^1.4.1":
-  version: 1.4.1
-  resolution: "prosemirror-state@npm:1.4.1"
+"prosemirror-state@npm:1.4.2":
+  version: 1.4.2
+  resolution: "prosemirror-state@npm:1.4.2"
   dependencies:
     prosemirror-model: ^1.0.0
     prosemirror-transform: ^1.0.0
-  checksum: d094a48c3087e5b13cadf9a7416ea65efa14372953b0058eb9c695346cabfe56c85d0281348fb97720d4c941046e159ef282f2aa168abd8b6c4862e59845ef18
+    prosemirror-view: ^1.27.0
+  checksum: a9e44df56aeb53fb99036742fbb63826380cf74cb115efffdd9f4e096bfb27dc7bf35c46d4b5fb5f260cd84e8bdc467aa5dc9540bd06f9f802de70b4873d8db4
   languageName: node
   linkType: hard
 
@@ -7524,6 +7525,17 @@ fsevents@~2.3.2:
     prosemirror-state: ^1.0.0
     prosemirror-transform: ^1.1.0
   checksum: 2cdd39580cc0f23d924723906d6df51344620541303f8cc0138f6536d3527c34f87e5ac72153cd7ab6c3ef23d3754f372d9a04a221792e4f61dcd84c38490710
+  languageName: node
+  linkType: hard
+
+"prosemirror-view@npm:^1.27.0":
+  version: 1.29.1
+  resolution: "prosemirror-view@npm:1.29.1"
+  dependencies:
+    prosemirror-model: ^1.16.0
+    prosemirror-state: ^1.0.0
+    prosemirror-transform: ^1.1.0
+  checksum: c800a182339e7d343b3f3593556c9c815843fcc6a7f41430b4f7d489e9a0905fe9492900cf5d9285c2da96692344a0a492537ca14e1ae54cd949bb0ee78a4141
   languageName: node
   linkType: hard
 
@@ -7986,6 +7998,8 @@ fsevents@~2.3.2:
     popper.js: ^1.16.1
     postcss: ^8.4.16
     prettier: 2.7.1
+    prosemirror-model: ^1.18.3
+    prosemirror-state: ^1.4.2
     resolve-url-loader: ^5.0.0
     sass: ^1.54.3
     sass-loader: ^13.0.2
